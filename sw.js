@@ -1,6 +1,6 @@
 // Simple service worker: caches the app shell for offline use. Price APIs are never cached.
-const CACHE = 'portfolio-shell-v14';
-const SHELL = ['./', './index.html', './manifest.json', './icon-192.png?v=14', './icon-512.png?v=14', './icon-maskable-512.png?v=14', './apple-touch-icon.png?v=14', './logo.svg?v=14', './favicon-32.png?v=14',
+const CACHE = 'portfolio-shell-v15';
+const SHELL = ['./', './index.html', './manifest.json', './icon-192.png?v=15', './icon-512.png?v=15', './icon-maskable-512.png?v=15', './apple-touch-icon.png?v=15', './logo.svg?v=15', './favicon-32.png?v=15',
   'https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js',
   'https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js'];   // Excel reader for the bank-file import (code only; files are parsed on the device)
 self.addEventListener('install', e => {
