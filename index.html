@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=17">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=17">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=17">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=17">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=18">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=18">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=18">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=18">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -62,6 +62,22 @@ h2 small{font-weight:500;color:var(--muted);font-size:.78rem}
 .cash-row .c .v{font-weight:700;font-size:1.1rem}
 .cash-row .c.negc{border-color:#fecaca;background:#fef2f2}
 .pos-list{display:flex;flex-direction:column;gap:8px}
+.pos-list.compact{gap:6px}
+.ytd{display:flex;align-items:baseline;justify-content:space-between;gap:10px;background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:8px 12px;margin:6px 0 10px}
+.ytd:empty{display:none}.ytd .l{font-size:.85rem;color:var(--muted)}.ytd .l small{display:block;font-size:.72rem}.ytd .v{text-align:left}.ytd .v b{font-size:1.3rem;font-weight:800;display:block}.ytd .v span{font-size:.85rem}
+.h2row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.viewtgl{display:inline-flex;border:1px solid var(--border);border-radius:99px;overflow:hidden;font-size:.78rem}
+.viewtgl button{border:0;background:#fff;color:var(--muted);padding:5px 10px;font:inherit;cursor:pointer}.viewtgl button.on{background:#1e3a8a;color:#fff}
+.pcard.pc{padding:0;cursor:default}
+.pc-h{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;width:100%;padding:9px 12px;border:0;background:none;font:inherit;color:inherit;text-align:inherit;cursor:pointer;border-radius:14px}
+.pc-h:active{background:#f8fafc}
+.pc-n{min-width:0}.pc-n .psym{font-size:.98rem;display:flex;align-items:center;gap:6px}.pc-n .pname{font-size:.74rem;max-width:40vw}
+.pc-v{text-align:left;font-weight:700;font-size:.92rem}.pc-v .pname{display:block;font-weight:400;font-size:.72rem;text-align:left;max-width:none}
+.pc-d{text-align:left;min-width:74px;line-height:1.15}.pc-d b{display:block;font-size:.95rem}.pc-d span{display:block;font-size:.72rem}
+.pc-c{color:var(--muted);font-size:.7rem;transition:transform .15s}.pc.open .pc-c{transform:rotate(180deg)}
+.pc-b{display:none;border-top:1px solid var(--border);padding:8px 12px 12px}.pc.open .pc-b{display:block}
+.pc-g{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:.82rem}.pc-g>div{display:flex;justify-content:space-between;gap:6px;min-width:0}.pc-g span{color:var(--muted)}
+.pc-b .btn-row{margin-top:10px}.pc-g .age:empty{display:none}.pc-n .pname{unicode-bidi:plaintext;text-align:right}
 .pcard{border:1px solid var(--border);border-radius:14px;padding:12px;background:#fff;cursor:pointer;display:block;width:100%;text-align:inherit;font:inherit;color:inherit}
 .pcard:active{background:#f8fafc}
 .prow{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
@@ -208,7 +224,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=17" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=18" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -226,11 +242,12 @@ input.ltr-in{direction:ltr;text-align:right}
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
     <div class="card"><h2>מזומן <small id="fxSmall"></small></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><h2>פוזיציות <small id="posCount"></small></h2><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
       <h2>ביצועי התיק <small id="perfSrc"></small></h2>
+      <div class="ytd" id="perfYtd"></div>
       <div class="ctrls"><div class="seg sm" id="perfRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M" class="on">3 ח׳</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
       <div class="ctrls">
         <div class="seg sm" id="perfMode"><button data-v="value" class="on">שווי ₪</button><button data-v="ret">תשואה % מול מדדים</button></div>
@@ -419,9 +436,28 @@ function loadState(){
   return s;
 }
 let state = loadState();
+try{ if(markSplitDupes(state.txs)) localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){ console.warn('split check failed', e); }   // repairs portfolios imported before v18
 let hist = (()=>{ try{ return JSON.parse(localStorage.getItem(HIST_KEY)||'{}')||{}; }catch(e){ return {}; } })();
-const ui = {showHiddenClosed:false, tab:'portfolio', perfRange:'3M', perfMode:'value', perfStyle:'line', posRange:'1Y', posStyle:'candle'};
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){ toast('שגיאה בשמירה בדפדפן'); } }
+const VIEW_KEY = 'portfolioTracker.posView';
+function posView(){ try{ return localStorage.getItem(VIEW_KEY)==='full' ? 'full' : 'compact'; }catch(e){ return 'compact'; } }   // compact is the default
+const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'3M', perfMode:'value', perfStyle:'line', posRange:'1Y', posStyle:'candle'};
+// A split must never be counted twice. The bank books some splits as bonus shares ('הטבה' rows → sharebonus), and the importer can
+// also add a split it detected in the price history. If the same security has a bonus row, or an earlier split, within ±5 days,
+// the later split is a duplicate: it stays in the list (visible, deletable) but is never applied (t.dupSkip).
+function splitDupes(txs){
+  const out = new Map(), kept = [], list = txs.filter(t=>t.symbol && (t.type==='split' || t.type==='sharebonus'));
+  const bon = list.filter(t=>t.type==='sharebonus');
+  list.filter(t=>t.type==='split').sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:(a.ts||0)-(b.ts||0)).forEach(t=>{
+    const b = bon.find(x=>x.symbol===t.symbol && Math.abs(daysBetween(x.date, t.date))<=5);
+    if(b){ out.set(t, `הבנק כבר רשם את הפיצול כמניות הטבה (+${fmtQty(num(b.qty)||0)} ב-${fmtDate(b.date)})`); return; }
+    const k = kept.find(x=>x.symbol===t.symbol && Math.abs(daysBetween(x.date, t.date))<=5);
+    if(k){ out.set(t, `כבר יש פיצול ל-${t.symbol} ב-${fmtDate(k.date)}`); return; }
+    kept.push(t); });
+  return out;
+}
+function markSplitDupes(txs){ const m = splitDupes(txs); let ch = false;
+  txs.forEach(t=>{ if(t.type!=='split') return; const r = m.get(t) || null; if((t.dupSkip||null)!==r){ ch = true; if(r) t.dupSkip = r; else delete t.dupSkip; } }); return ch; }
+function save(){ try{ markSplitDupes(state.txs); localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){ toast('שגיאה בשמירה בדפדפן'); } }
 function saveHist(){ try{ localStorage.setItem(HIST_KEY, JSON.stringify(hist)); }catch(e){ /* quota: drop cache */ hist = {}; try{ localStorage.removeItem(HIST_KEY); }catch(_){} } }
 
 function assetOf(sym){ return state.assets[sym] || {name:'', type: CRYPTO_IDS[sym]?'crypto':(isTaIndex(sym)?'index':'stock'), currency: isTaseSec(sym)||isTaIndex(sym)?'ILS':'USD'}; }
@@ -471,6 +507,7 @@ function applyTx(L, t, fxForDeposit){
     return;
   }
   if(t.type==='split'){                                       // stock split: qty × ratio, avg ÷ ratio, value unchanged
+    if(t.dupSkip) return;                                     // duplicate of a bank bonus row / another split: not applied
     const P = L.pos[t.symbol], r = num(t.ratio);
     if(P && r>0 && Math.abs(P.qty)>1e-9){ P.qty *= r; P.avg /= r; }
     return;
@@ -517,7 +554,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=17').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=18').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -590,7 +627,7 @@ function taxModel(txs){
     const o = yo(y), trade = (t.type==='sell'||t.type==='buy') && t.symbol;
     const P0 = trade ? L.pos[t.symbol] : null, held0 = P0 ? P0.qty : 0, before = P0 ? P0.realized : 0;
     applyTx(L, t);
-    if(t.type==='split' && lots[t.symbol]){ const r = num(t.ratio); if(r>0) lots[t.symbol].forEach(l=>{ l.q *= r; l.c /= r; l.ils /= r; }); }
+    if(t.type==='split' && !t.dupSkip && lots[t.symbol]){ const r = num(t.ratio); if(r>0) lots[t.symbol].forEach(l=>{ l.q *= r; l.c /= r; l.ils /= r; }); }
     if(t.type==='sharebonus' && t.symbol){ const LT = lots[t.symbol] || (lots[t.symbol] = []), q = num(t.qty)||0, h = LT.reduce((a,l)=>a+l.q,0);   // bonus shares: same total cost spread over more units (like a split)
       if(q>0){ if(h > 1e-9){ const r = (h+q)/h; LT.forEach(l=>{ l.q *= r; l.c /= r; l.ils /= r; }); } else LT.push({q, c:0, ils:0, cpi: t.currency==='USD' ? null : cpiKnown(t.date), date:t.date}); } }
     if(!trade) {}
@@ -868,7 +905,7 @@ async function buildPerformance(){
     twr *= (1+r); prevV = C;
     pts.push({date:d, o:O, h:Hh, l:Ll, c:C, netDep:L.netDepILS, twr:(twr-1)*100, show: traded || !held || d===end || d===start});
   }
-  return {pts: pts.filter(p=>p.show), all:pts, noHist, anyOHLC, syms, sources:[...new Set(syms.map(s=>H[s]&&H[s].source).filter(Boolean))]};
+  return {pts: pts.filter(p=>p.show), all:pts, ytd:ytdBase(pts), noHist, anyOHLC, syms, sources:[...new Set(syms.map(s=>H[s]&&H[s].source).filter(Boolean))]};
 }
 
 // ====================== refresh ======================
@@ -1004,7 +1041,15 @@ function cardFields(p){
     day:[p.day!=null?`${fmtSigned(p.day,cur)} (${fmtPct(p.dayPct)})`:'—', 'num '+cls(p.day)],
     unreal:[`${fmtSigned(p.unreal,cur)} (${fmtPct(p.unrealPct)})`, 'num '+cls(p.unreal)],
     price:[fmtPrice(p.price,cur)+(p.ext?(p.ext==='pre'?' ·טרום':' ·אפטר'):''), 'num'],
-    age:[a.t, 'age '+a.c]};
+    age:[a.t, 'age '+a.c],
+    dayp:[p.dayPct!=null?fmtPct(p.dayPct):'—', 'num '+cls(p.day)],
+    daya:[p.day!=null?fmtSigned(p.day,cur):'', 'num '+cls(p.day)],
+    mvs:[fmtMoney(p.mv,cur,0), 'num'],
+    unra:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
+    unrp:[fmtPct(p.unrealPct), 'num '+cls(p.unreal)],
+    cost:[fmtMoney(Math.abs(p.qty)*p.avg,cur), 'num'],
+    costils:[p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', 'num'],
+    mvils2:[p.mvILS!=null ? fmtMoney(p.mvILS,'ILS',0) : '—', 'num']};
 }
 function renderPortfolio(S){
   renderCash(S);
@@ -1013,6 +1058,32 @@ function renderPortfolio(S){
     $('posList').innerHTML = state.txs.length ? '<div class="empty">אין פוזיציות פתוחות</div>' :
       `<div class="empty"><div class="big">💼</div><div>התיק ריק. מתחילים בהפקדת מזומן ואז קנייה.</div>
        <div class="btn-row" style="margin-top:12px"><button class="btn btn-primary" data-new="deposit">⬇️ הפקדה</button><button class="btn btn-light" data-new="buy">🛒 קנייה</button></div></div>`;
+  } else if(posView()==='compact'){
+    // compact: one slim row per holding (value + daily change); tap expands the details inline, state kept in ui.expanded
+    $('posList').innerHTML = S.positions.map(p=>{
+      const cur = p.cur, F = cardFields(p), f = (k, tag='b')=>`<${tag} data-f="${k}" class="${F[k][1]}">${F[k][0]}</${tag}>`, open = ui.expanded.has(p.sym), short = p.qty < 0;
+      shownPrice[p.sym] = p.price;
+      const tag = short ? '<span class="tag short">שורט</span>' : p.manual ? '<span class="tag manual">ידני</span>' : p.est ? '<span class="tag err">אין מחיר</span>' : '';
+      return `<div class="pcard pc${open?' open':''}" data-sym="${esc(p.sym)}">
+        <button class="pc-h" data-ctoggle aria-expanded="${open}">
+          <div class="pc-n"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tag}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
+          <div class="pc-v">${f('mvs','span')}${cur==='USD'?f('mvils','span'):''}</div>
+          <div class="pc-d">${f('dayp')}${f('daya','span')}</div>
+        </button>
+        <div class="pc-b"><div class="pc-g">
+          <div><span>${short?'כמות בשורט':'כמות'}</span><b class="num">${fmtQtyP(Math.abs(p.qty))}</b></div>
+          <div><span>מחיר</span>${f('price')}</div>
+          <div><span>${short?'מחיר שורט':'עלות ממוצעת'}</span><b class="num">${fmtMoney(p.avg,cur)}</b></div>
+          <div><span>עלות</span>${f('cost')}</div>
+          <div><span>שווי</span>${f('mv')}</div>
+          <div><span>שווי בשקלים</span>${f('mvils2')}</div>
+          <div><span>רווח/הפסד</span>${f('unra')}</div>
+          <div><span>תשואה</span>${f('unrp')}</div>
+          <div><span>עלות בשקלים למס</span>${f('costils')}</div>
+          <div>${f('age','span')}</div>
+        </div><div class="ext" data-f="ext">${extLine(p.sym)}</div>
+        <div class="btn-row"><button class="btn btn-light btn-sm" data-cact="open">📄 פרטים מלאים</button><button class="btn btn-light btn-sm" data-cact="buy">🛒 קנייה</button><button class="btn btn-light btn-sm" data-cact="sell">💰 מכירה</button></div></div></div>`;
+    }).join('');
   } else {
     $('posList').innerHTML = S.positions.map(p=>{
       const short = p.qty < 0, cur = p.cur, F = cardFields(p);
@@ -1035,6 +1106,8 @@ function renderPortfolio(S){
         </div><div class="ext" data-f="ext">${ex}</div></button>`;
     }).join('');
   }
+  $('posList').classList.toggle('compact', posView()==='compact');
+  $('posView').querySelectorAll('[data-view]').forEach(b=>{ const on = b.dataset.view===posView(); b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
   renderClosed(S);
 }
 // Closed positions (qty 0): realized P/L rows; can be hidden from the list without touching their transactions
@@ -1112,6 +1185,7 @@ $('closedWrap').addEventListener('click', e=>{
 function patchPortfolio(S){
   const cards = $('posList').querySelectorAll('.pcard');
   if(cards.length !== S.positions.length || !cards.length) return false;
+  if(($('posList').querySelector('.pcard.pc') ? 'compact' : 'full') !== posView()) return false;
   for(let i=0;i<cards.length;i++) if(cards[i].dataset.sym !== S.positions[i].sym) return false;
   renderCash(S);
   S.positions.forEach((p,i)=>{
@@ -1150,7 +1224,7 @@ function txDesc(t){
   if(t.type==='taxacct'){ const l = (TAXACCT[t.acct]||{})[t.dir] || TX_LABELS.taxacct, d = taxAcctDelta(t);
     return {t1:`${l} <span class="tag taxi">ללא תנועת מזומן</span>`, amt:fmtMoney(num(t.amount)||0,'ILS'), c:''}; }
   if(t.type==='sharebonus') return {t1:`מניות הטבה <span class="ltr">${esc(t.symbol)}</span>`, amt:`<span class="num">+${fmtQty(num(t.qty))}</span> יח׳`, c:'pos'};
-  if(t.type==='split') return {t1:`פיצול <span class="ltr">${esc(t.symbol)}</span> · כל מניה ← <span class="num">${fmtQty(num(t.ratio))}</span>`, amt:`<span class="num">×${fmtQty(num(t.ratio))}</span>`, c:''};
+  if(t.type==='split') return {t1:`פיצול <span class="ltr">${esc(t.symbol)}</span> · כל מניה ← <span class="num">${fmtQty(num(t.ratio))}</span>${t.dupSkip?` · <b class="neg">לא הוחל – כפילות</b>`:''}`, amt:`<span class="num">×${fmtQty(num(t.ratio))}</span>`, c:''};
   if(t.type==='deposit'||t.type==='withdraw') return {t1:`${TX_LABELS[t.type]} ${t.currency==='USD'?'דולרים':'שקלים'}`, amt:fmtSigned((t.type==='deposit'?1:-1)*t.amount, t.currency), c: t.type==='deposit'?'pos':'neg'};
   if(t.type==='convert'){ const to = t.from==='ILS'?'USD':'ILS'; const net = t.amount-(t.fee||0); const recv = t.from==='ILS' ? net/t.rate : net*t.rate;
     return {t1:`המרה ${CUR_SYM[t.from]} → ${CUR_SYM[to]} <span class="num muted">@${num(t.rate).toFixed(4)}</span>`, amt:`${fmtMoney(recv,to)}`, c:''}; }
@@ -1179,7 +1253,40 @@ function makeChart(el, pctMode, money){
 }
 function destroyPerf(){ if(perfChart){ perfChart.remove(); perfChart = null; } perfLive = null; }
 // live: move today's point/candle with every price tick (no rebuild)
+// ---- YTD (תשואה מתחילת השנה), modified Dietz ----
+// V0 = portfolio value (ILS cash + holdings) at the close of 31/12 of last year, rebuilt from the transactions with CNBC daily
+//      closes and the USD/ILS close of that day (buildPerformance carries the last close over weekends/holidays).
+//      If the portfolio started this year, V0 = 0 and the start is its first day; the first deposit then enters as a flow with
+//      weight 1, which is exactly the same as using it as the start value.
+// F  = net deposits/withdrawals this year (ILS, at each deposit's own rate); V1 = live value now.
+// YTD amount = V1 − V0 − F.  YTD % = (V1 − V0 − F) / (V0 + Σ wᵢ·Fᵢ), wᵢ = (T − tᵢ)/T (T = days since the start, tᵢ = day of the flow).
+// Modified Dietz weights each flow by how long it was invested, so money added late in the year doesn't dilute or inflate the
+// return the way a simple (V0 + F) base would, and it needs no daily valuation at each flow (unlike a true time-weighted return).
+let perfYtd = null;
+function ytdBase(all){
+  if(!all || !all.length) return null;
+  const d0 = `${Number(today().slice(0,4))-1}-12-31`, before = all.filter(x=>x.date<=d0).pop();
+  const start = before ? d0 : all[0].date, V0 = before ? before.c : 0;
+  let prev = before ? before.netDep : 0; const flows = [];
+  all.filter(x=>x.date > (before ? d0 : '')).forEach(x=>{ const f = x.netDep - prev; prev = x.netDep; if(Math.abs(f) > 0.005) flows.push([x.date, f]); });
+  return {start, V0, flows, fromStart: !before};
+}
+function ytdCalc(Y, V1){
+  if(!Y || V1==null) return null;
+  const T = Math.max(1, daysBetween(Y.start, today()));
+  let F = 0, W = 0; Y.flows.forEach(([d,f])=>{ const t = Math.min(T, Math.max(0, daysBetween(Y.start, d))); F += f; W += f*(T - t)/T; });
+  const gain = V1 - Y.V0 - F, den = Y.V0 + W;
+  return {gain, pct: den > 0 ? gain/den*100 : null, F, V0:Y.V0};
+}
+function renderYtd(S){
+  const el = $('perfYtd'); if(!el) return;
+  const r = ytdCalc(perfYtd, (S||computeAll()).equity); if(!r){ el.innerHTML = ''; return; }
+  const y = today().slice(0,4);
+  el.innerHTML = `<div class="l">תשואה מתחילת השנה (${y})<small>${perfYtd.fromStart ? `מאז פתיחת התיק ב-<span class="num">${fmtDate(perfYtd.start)}</span>` : `מול שווי 31.12.${Number(y)-1}: <span class="num">${fmtMoney(r.V0,'ILS',0)}</span>`} · הפקדות נטו השנה <span class="num">${fmtSigned(r.F,'ILS',0)}</span></small></div>
+    <div class="v"><b id="ytdPct" class="num ${cls(r.gain)}">${r.pct!=null ? fmtPct(r.pct) : '—'}</b><span id="ytdAmt" class="num ${cls(r.gain)}">${fmtSigned(r.gain,'ILS',0)}</span></div>`;
+}
 function updatePerfLive(S){
+  renderYtd(S);
   const L = perfLive; if(!perfChart || !L || L.date!==today()) return;
   const eq = S.equity;
   try{
@@ -1197,11 +1304,12 @@ async function renderPerf(S){
   const pct = ui.perfMode==='ret';
   $('perfStyle').style.display = pct ? 'none' : '';
   const el = $('perfChart'), msg = $('perfMsg'), token = ++perfToken;
-  if(!state.txs.length){ destroyPerf(); msg.style.display='flex'; msg.textContent='אין עדיין עסקאות – הגרף יופיע אחרי ההפקדה הראשונה'; $('perfLegend').innerHTML=''; $('perfCmp').innerHTML=''; $('perfNote').textContent=''; return; }
+  if(!state.txs.length){ perfYtd = null; $('perfYtd').innerHTML = ''; destroyPerf(); msg.style.display='flex'; msg.textContent='אין עדיין עסקאות – הגרף יופיע אחרי ההפקדה הראשונה'; $('perfLegend').innerHTML=''; $('perfCmp').innerHTML=''; $('perfNote').textContent=''; return; }
   if(!lwOk()){ msg.style.display='flex'; msg.textContent='לא ניתן לטעון את ספריית הגרפים (אין חיבור לאינטרנט?)'; return; }
   msg.style.display='flex'; msg.textContent='בונה היסטוריה מהעסקאות…';
   const perf = await buildPerformance();
   if(token!==perfToken || !perf) return;
+  perfYtd = perf.ytd; renderYtd(S);
   const rStart = ui.perfRange==='ALL' ? perf.all[0].date : addDays(today(), -RANGE_DAYS[ui.perfRange]);
   const pts = perf.pts.filter(p=>p.date >= rStart);
   if(!pts.length){ msg.textContent='אין נתונים בטווח הזה'; return; }
@@ -1790,7 +1898,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v17</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v18</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -1868,7 +1976,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 17;
+const SEC_DIR_V = 18;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
@@ -2117,6 +2225,7 @@ function bankFinal(){
   }
   if(gapAdj) add.unshift(gapAdj);
   let base0 = replace ? add : state.txs.concat(add);
+  const dupIn = splitDupes(base0); base0 = base0.filter(t=>!dupIn.has(t));       // a split already booked by the bank as bonus shares is never applied again
   // units sold that were never bought (held before the file started): never open a short silently – ask for opening holdings
   const need = {}, Lr = newLedger();
   const mk = t => need[t.symbol] || (need[t.symbol] = {sym:t.symbol, cur:t.currency, qty:0, sold:0, bon:0, div:0, first:t.date, px:num(t.price)||0});
@@ -2147,7 +2256,13 @@ function bankFinal(){
   const splits = bankSplits(base), chosen = splits.filter(sp=>IMP.splitOff[sp.key]!==true);
   const held = Object.values(computeLedger(base.filter(t=>t.date<=IMP.P.last)).pos).filter(p=>p.qty>1e-9).map(p=>p.sym);
   const splitTx = chosen.map((sp,i)=>({id:uid(), ts:Date.now()+i, type:'split', date:sp.date, symbol:sp.sym, ratio:sp.ratio, note:'נוסף בייבוא', src:'bank', ikey:`split|${sp.sym}|${sp.date}`}));
-  return {B, add, splits, splitTx, held, final: base.concat(splitTx), dup: B.txs.length - add.length};
+  // per-security summary of every split / bonus-share event: source, ratio, quantity before → after, applied or skipped as a duplicate
+  const newSet = new Set(add.concat(splitTx)), allEv = base0.concat([...dupIn.keys()], splitTx), dupAll = splitDupes(allEv), Ls = newLedger(), splitSum = [];
+  sortedTxs(allEv).forEach(t=>{ const ev = t.symbol && (t.type==='split' || t.type==='sharebonus'), q0 = ev && Ls.pos[t.symbol] ? Ls.pos[t.symbol].qty : 0, skip = dupAll.get(t);
+    if(!skip) applyTx(Ls, t);
+    if(ev) splitSum.push({sym:t.symbol, date:t.date, type:t.type, ratio:num(t.ratio), q:num(t.qty), before:q0, after: skip ? q0 : (Ls.pos[t.symbol] ? Ls.pos[t.symbol].qty : 0), skip:skip||null, isNew:newSet.has(t),
+      src: t.type==='sharebonus' ? (t.src==='bank' ? 'שורת "הטבה" בקובץ הבנק' : 'מניות הטבה שהוזנו ידנית') : (t.note==='נוסף בייבוא' || /^split\|/.test(t.ikey||'') ? 'זוהה אוטומטית בהיסטוריית המחירים' : 'פיצול שהוזן ידנית')}); });
+  return {B, add:add.filter(t=>!dupIn.has(t)), splits, splitTx, held, splitSum, final: base.concat(splitTx), dup: B.txs.length - add.length};
 }
 function bankSecs(){
   const secs = {}; IMP.P.rows.forEach(r=>{ const c = bankClassify(r); if(!c.sec) return; const k = bankSecKey(r);
@@ -2192,6 +2307,7 @@ function openBankPreview(){
       ${secs.map((sc,i)=>`<div class="isec" data-sec="${i}"><div class="nm">${esc(sc.name)}</div><div class="sub">מס׳ נייר <span class="num">${esc(sc.num||'—')}</span> · ${sc.cur==='USD'?'דולר':'שקל'} · ${sc.n} עסקאות</div>
         <div class="ac" style="margin-top:6px"><input class="ltr-in" data-tick="${i}" value="${esc(IMP.map[sc.key].sym||'')}" placeholder="סימול – חיפוש" autocapitalize="characters" spellcheck="false" aria-label="סימול עבור ${esc(sc.name)}"><div class="ac-list" data-ticklist="${i}"></div></div>
         <div class="sub" data-tickst="${i}"></div></div>`).join('')}</div>
+    <div class="set-sec" id="bankSplitSum"></div>
     <div class="set-sec" id="bankSplitSec"></div>
     <div class="set-sec" id="bankOpenSec"></div>
     <div class="set-sec" id="bankUsdSec"></div>
@@ -2247,6 +2363,10 @@ function bankRefresh(){
   if(doScan) bankScan(R.held);
   const scanList = R.held.map(s=>[s, IMP.scan[s]]).filter(x=>x[1]), running = scanList.filter(x=>x[1].st==='run').map(x=>x[0]), errs = scanList.filter(x=>x[1].st==='err').map(x=>x[0]);
   // splits (detected from each held ticker's price history after the file's last date)
+  const SS = R.splitSum || [];
+  $('bankSplitSum').innerHTML = !SS.length ? '' : `<h4>✂️ פיצולים ומניות הטבה – לפי נייר</h4><div class="note" style="margin-top:0">כל פיצול נספר פעם אחת בלבד: אם הבנק כבר רשם את הפיצול כ"הטבה", פיצול שזוהה בנוסף לא יוחל.</div>
+    ${SS.map(e=>`<div class="irow"><span><b class="ltr">${esc(e.sym)}</b> · <span class="num">${fmtDate(e.date)}</span> · ${e.type==='split' ? `כל מניה ← <span class="num">${fmtQty(e.ratio)}</span>` : `+<span class="num">${fmtQty(e.q)}</span> מניות`}<br><span class="muted" style="font-size:.78rem">${e.src}${e.isNew?'':' · כבר בתיק'}${e.skip?` · ${esc(e.skip)}`:''}</span></span>
+      <span class="r">${e.skip ? '<b class="neg">⛔ לא הוחל</b>' : `<span class="num">${fmtQty(e.before)} → ${fmtQty(e.after)}</span> <b class="pos">✓</b>`}</span></div>`).join('')}`;
   $('bankSplitSec').innerHTML = !doScan || !R.held.length ? '' : `<h4>✂️ פיצולי מניות אחרי סוף הקובץ</h4>
     <div class="note" style="margin-top:0">בדיקה אוטומטית בהיסטוריית המחירים (CNBC) של כל נייר שמוחזק בסוף הקובץ, מ-<span class="num">${fmtDate(IMP.P.last)}</span> עד היום. פיצול שקרה אחרי סוף הקובץ לא מופיע בו – ובלעדיו הכמות והמחיר הממוצע לא יתאימו למחיר של היום.</div>
     ${running.length ? `<div class="note">⏳ בודק פיצולים… (${R.held.length-running.length}/${R.held.length})</div>` : ''}
@@ -2335,7 +2455,15 @@ $('btnRefresh').onclick = ()=>refreshPrices(false);
 function renderEye(){ const h = hidden(), b = $('btnEye'); b.textContent = h ? '🙈' : '👁'; b.setAttribute('aria-pressed', h?'true':'false');
   const l = h ? 'הצגת סכומים' : 'הסתרת סכומים'; b.setAttribute('aria-label', l); b.title = l; document.body.classList.toggle('privacy', h); }
 $('btnEye').onclick = ()=>{ state.settings.hideAmounts = !hidden(); save(); renderAll(); toast(hidden() ? 'הסכומים מוסתרים 🙈' : 'הסכומים מוצגים 👁'); };
-$('posList').addEventListener('click', e=>{ const n = e.target.closest('[data-new]'); if(n) return openTxForm(n.dataset.new); const c = e.target.closest('.pcard'); if(c) openPosition(c.dataset.sym); });
+$('posView').addEventListener('click', e=>{ const b = e.target.closest('[data-view]'); if(!b) return; try{ localStorage.setItem(VIEW_KEY, b.dataset.view); }catch(_){} renderPortfolio(computeAll()); });
+$('posList').addEventListener('click', e=>{ const n = e.target.closest('[data-new]'); if(n) return openTxForm(n.dataset.new);
+  const cm = e.target.closest('.pcard.pc');
+  if(cm){ const sym = cm.dataset.sym;
+    if(e.target.closest('[data-ctoggle]')){ const o = !cm.classList.contains('open'); cm.classList.toggle('open', o); cm.querySelector('[data-ctoggle]').setAttribute('aria-expanded', o); if(o) ui.expanded.add(sym); else ui.expanded.delete(sym); return; }
+    const a = e.target.closest('[data-cact]'); if(!a) return;
+    if(a.dataset.cact==='open') return openPosition(sym);
+    const S = computeAll(), p = S.positions.find(x=>x.sym===sym); if(!p) return;
+    return openTxForm(a.dataset.cact, {symbol:sym, currency:p.cur, assetType:p.asset.type, date:today(), ...(p.price!=null ? {price: p.price<10 ? Math.round(p.price*10000)/10000 : Math.round(p.price*100)/100} : {}), ...(a.dataset.cact==='sell' && p.qty>0 ? {qty:p.qty} : {})}, null, sym); } const c = e.target.closest('.pcard'); if(c) openPosition(c.dataset.sym); });
 $('txList').addEventListener('click', e=>{ const b = e.target.closest('[data-tx]'); if(b) openTxForm(null, null, b.dataset.tx); });
 [['perfRange','perfRange'],['perfMode','perfMode'],['perfStyle','perfStyle']].forEach(([id,key])=>$(id).addEventListener('click', e=>{
   const b = e.target.closest('button[data-v]'); if(!b) return; ui[key] = b.dataset.v; $(id).querySelectorAll('button').forEach(x=>x.classList.toggle('on', x===b)); renderPerf(); }));
@@ -2360,10 +2488,10 @@ if(/^https?:$/.test(location.protocol)){
 
 // ====================== init ======================
 renderAll();
-if(state.txs.some(t=>t.type==='sell')) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
+if(state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {get state(){ return state; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get state(){ return state; }, livePatch, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 })();
 </script>
 </body>
