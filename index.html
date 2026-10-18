@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=16">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=16">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=16">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=16">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=17">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=17">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=17">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=17">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -40,6 +40,9 @@ body{font-family:system-ui,"Segoe UI",Roboto,"Rubik","Heebo",Arial,sans-serif;ba
 .icon-btn.spin span{display:inline-block;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .tot-val{font-size:1.9rem;font-weight:800;margin-top:2px;letter-spacing:-.5px}
+.tot-pct{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.tot-pct .tp{background:rgba(255,255,255,.14);border-radius:12px;padding:6px 10px;display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;min-width:0}
+.tot-pct .tp-l{font-size:.74rem;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tot-pct .tp-v{font-size:1.25rem;font-weight:800}.tot-pct .tp-a{font-size:.8rem;opacity:.95}.tot-pct .tp-v,.tot-pct .tp-a{direction:ltr;text-align:right;unicode-bidi:isolate}
 .tot-sub{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.84rem;margin-top:4px}
 .tot-sub .chip{background:rgba(255,255,255,.14);border-radius:99px;padding:3px 10px}
 .top .pos{color:#6ee7b7}.top .neg{color:#fca5a5}
@@ -205,13 +208,15 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=16" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=17" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
+    <div class="tot-pct">
+      <div class="tp"><span class="tp-l">מתחילת התיק</span><b class="tp-v num" id="hPLPct">—</b><span class="tp-a num" id="hPL">—</span></div>
+      <div class="tp"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-a num" id="hDay">—</span></div>
+    </div>
     <div class="tot-sub">
-      <span class="chip">היום: <b class="num" id="hDay">—</b></span>
-      <span class="chip">רווח כולל: <b class="num" id="hPL">—</b></span>
       <span class="chip">נטו אחרי מס: <b class="num" id="hNet">—</b></span>
     </div>
     <div class="mkts" id="hMkts"></div>
@@ -508,44 +513,124 @@ function applyTx(L, t, fxForDeposit){
   }
 }
 function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>applyTx(L,t)); return L; }
-// Israeli capital-gains tax, per calendar tax year, in ILS "tax shekels" (same unit as the broker's מגן מס):
-//  sale at a loss → shield += |loss|×rate · sale at a gain → tax = max(0, gain×rate − shield), shield −= amount used
-//  a capital-gains tax refund (זיכוי מס) is paid out of the shield · the shield resets on Jan 1 (brokers offset only within the year)
-//  a sale's own estimate from the bank file (אומדן מס רווחי הון) is used when present; otherwise gain in ILS at the sale-date USD rate × taxRate
+// ---------- tax reference data: Bank of Israel representative USD/ILS rate + CPI (static file, CPI extended live from CBS) ----------
+let TAXD = null, taxDataP = null;
+function loadTaxData(){
+  if(taxDataP) return taxDataP;
+  return (taxDataP = fetch('tax-data.json?v=17').then(r=>r.ok ? r.json() : null).then(async j=>{
+    if(!j || !j.fx || !j.cpi) return null;
+    const last = j.cpi.d[j.cpi.d.length-1];
+    const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
+    try{ await extendCPI(D); }catch(e){}
+    TAXD = D; return D;
+  }).catch(()=>null));
+}
+async function extendCPI(D){                       // months published after the static file (CBS allows browser requests)
+  let [y,m] = D.cpiLast.split('-').map(Number); m++; if(m>12){ m=1; y++; }
+  if(`${y}-${String(m).padStart(2,'0')}` > today().slice(0,7)) return;
+  const j = await fetchJSON(`https://api.cbs.gov.il/index/data/price?id=120010&format=json&download=false&startPeriod=${String(m).padStart(2,'0')}-${y}&endPeriod=12-${y+1}`, 8000);
+  const rows = (((j&&j.month)||[])[0]||{}).date || [];
+  rows.sort((a,b)=>a.year-b.year || a.month-b.month).forEach(c=>{
+    const k = `${c.year}-${String(c.month).padStart(2,'0')}`; if(k <= D.cpiLast || !c.currBase) return;
+    const v = c.currBase.value, b = c.currBase.baseDesc, prev = D.cpi.get(D.cpiLast);
+    D.cpi.set(k, (b===D.cpiBase && D.cpiPts) ? prev*v/D.cpiPts : prev*(1+(num(c.percent)||0)/100));
+    D.cpiLast = k; D.cpiPts = v; D.cpiBase = b; });
+}
+const _usHol = {};
+function usSettleHolidays(y){                      // NYSE holidays + Fed-only Columbus / Veterans Day (no settlement)
+  if(_usHol[y]) return _usHol[y];
+  const S = new Set(), iso = (m,d)=>new Date(Date.UTC(y,m-1,d)).toISOString().slice(0,10), wd = (m,d)=>new Date(Date.UTC(y,m-1,d)).getUTCDay();
+  const nth = (m,w,n)=>iso(m, 1 + (w - wd(m,1) + 7)%7 + (n-1)*7), lastW = (m,w)=>{ const dim = new Date(Date.UTC(y,m,0)).getUTCDate(); return iso(m, dim - (wd(m,dim) - w + 7)%7); };
+  const obs = (m,d)=>{ const w = wd(m,d); return iso(m, d + (w===0 ? 1 : w===6 ? -1 : 0)); };
+  [obs(1,1), nth(1,1,3), nth(2,1,3), lastW(5,1), obs(7,4), nth(9,1,1), nth(10,1,2), obs(11,11), nth(11,4,4), obs(12,25)].forEach(d=>S.add(d));
+  if(y>=2022) S.add(obs(6,19));
+  const a=y%19, b=Math.floor(y/100), c=y%100, d=Math.floor(b/4), e=b%4, f=Math.floor((b+8)/25), g=Math.floor((b-f+1)/3), hh=(19*a+b-d-g+15)%30,
+    i=Math.floor(c/4), k=c%4, l=(32+2*e+2*i-hh-k)%7, mm=Math.floor((a+11*hh+22*l)/451), mo=Math.floor((hh+l-7*mm+114)/31), da=((hh+l-7*mm+114)%31)+1;
+  S.add(iso(mo, da-2));                            // Good Friday
+  return (_usHol[y] = S);
+}
+function settleDate(d, cur){                       // US trades settled T+2 until 27.05.2024, T+1 since
+  if(cur!=='USD' || !d) return d;
+  let n = d >= '2024-05-28' ? 1 : 2, x = d;
+  while(n>0){ x = addDays(x, 1); const w = new Date(x+'T12:00:00Z').getUTCDay(); if(w!==0 && w!==6 && !usSettleHolidays(+x.slice(0,4)).has(x)) n--; }
+  return x;
+}
+function boiRate(d){ const F = TAXD && TAXD.fx; if(!F || !F.length || d > TAXD.fxLast || d < F[0][0]) return null;
+  let lo = 0, hi = F.length-1, r = null; while(lo<=hi){ const mid = (lo+hi)>>1; if(F[mid][0] <= d){ r = F[mid][1]; lo = mid+1; } else hi = mid-1; } return r; }
+// USD/ILS rate for tax: Bank of Israel representative rate on the settlement date (what Israeli brokers use)
+function taxFx(tradeDate){ const s = settleDate(tradeDate, 'USD'); return boiRate(s) || (s < today() ? rateOn(s) : (fxNow() || rateOn(tradeDate))) || fxNow() || 0; }
+// "known" CPI on a date: the index published on the 15th covers the previous month
+function cpiKnown(d){ if(!TAXD || !d) return null; let [y,m,dd] = d.split('-').map(Number); m -= dd>15 ? 1 : 2; if(m<=0){ m += 12; y--; }
+  let k = `${y}-${String(m).padStart(2,'0')}`; if(k > TAXD.cpiLast) k = TAXD.cpiLast; return TAXD.cpi.get(k) || null; }
+// Israeli rule: tax the real gain, but never more than the nominal one; a loss counts only if both are losses (the smaller one)
+function lowerOf(nom, real){ return nom>0 && real>0 ? Math.min(nom, real) : nom<0 && real<0 ? Math.max(nom, real) : 0; }
+// taxable result of selling `q` units from FIFO lots at net proceeds per unit `pu` on `date` (lots are consumed when `consume`)
+function lotSale(LT, cur, q, pu, date, consume){
+  let need = q, cC = 0, cI = 0, infl = 0, approx = !TAXD, from = null; const ks = cur==='USD' ? null : cpiKnown(date);
+  for(let i=0; need>1e-9 && i<LT.length; i++){ const l = LT[i], take = Math.min(need, l.q);
+    if(take > 1e-9 && (!from || l.date < from)) from = l.date; cC += take*l.c; cI += take*l.ils; if(cur!=='USD'){ if(l.cpi && ks) infl += take*l.ils*Math.max(0, ks/l.cpi - 1); else approx = true; }
+    need -= take; if(consume) l.q -= take; }
+  if(consume) while(LT.length && LT[0].q <= 1e-9) LT.shift();
+  const done = q - need, proc = done*pu, Rs = cur==='USD' ? taxFx(date) : 1;
+  const nominal = proc*Rs - cI, real = cur==='USD' ? (proc - cC)*Rs : nominal - infl;
+  return {q:done, nominal, real, taxable:lowerOf(nominal, real), costILS:cI, cost:cC, infl, Rs, approx, from};
+}
+// Israeli capital-gains tax, per calendar tax year, in ILS "tax shekels" (the same unit as the broker's מגן מס):
+//  taxable result per sale = FIFO lots, ILS cost at each buy's settlement-date BOI rate; USD: lower of nominal-ILS and dollar gain; ILS: real (CPI) vs nominal
+//  loss → shield += |taxable|×rate, and if tax was already paid this year the bank refunds it (estimated until the refund row appears)
+//  gain → tax = max(0, taxable×rate − shield), shield −= used · the shield resets on Jan 1 · imported rows keep the bank's own estimate
 function taxModel(txs){
-  const L = newLedger(), rate = taxRate(), Y = {}, sales = {}, list = sortedTxs(txs);
-  const yo = y => Y[y] || (Y[y] = {y, gainTax:0, lossShield:0, used:0, due:0, paid:0, refund:0, shieldEnd:0, sales:0, b:{future:0, payable:0, shield:0, has:false}});
+  const L = newLedger(), rate = taxRate(), Y = {}, sales = {}, lots = {}, list = sortedTxs(txs);
+  const yo = y => Y[y] || (Y[y] = {y, gainTax:0, lossShield:0, used:0, due:0, paid:0, refund:0, refundEst:0, shieldEnd:0, sales:0, b:{future:0, payable:0, shield:0, has:false}});
+  const refundable = o => Math.max(0, Math.max(o.paid, o.due) - o.refund - o.refundEst);
   let yr = null, S = 0;
   list.forEach(t=>{
     const y = String(t.date||'').slice(0,4); if(!y) return;
     if(y!==yr){ if(yr) yo(yr).shieldEnd = S; S = 0; yr = y; }
     const o = yo(y), trade = (t.type==='sell'||t.type==='buy') && t.symbol;
-    const before = trade && L.pos[t.symbol] ? L.pos[t.symbol].realized : 0;
+    const P0 = trade ? L.pos[t.symbol] : null, held0 = P0 ? P0.qty : 0, before = P0 ? P0.realized : 0;
     applyTx(L, t);
-    if(trade){
-      const P = L.pos[t.symbol], d = P ? P.realized - before : 0, hasEst = t.cgtEst!=null && t.cgtEst!=='' && num(t.cgtEst)!=null;
-      if(t.type==='sell' || Math.abs(d)>1e-9 || hasEst){
-        if(Math.abs(d)>1e-9 || hasEst){
-          const fx = P && P.cur==='USD' ? (num(t.fx) || rateOn(t.date) || 0) : 1, plILS = d*fx;
-          const e = hasEst ? num(t.cgtEst) : rate*plILS, s = {id:t.id, date:t.date, sym:t.symbol, plILS, e, src:hasEst?'bank':'app', before:S, used:0, due:0, added:0};
-          if(e>0){ s.used = Math.min(S, e); S -= s.used; s.due = e - s.used; o.gainTax += e; o.used += s.used; o.due += s.due; }
-          else if(e<0){ s.added = -e; S += -e; o.lossShield += -e; }
-          s.after = S; o.sales++; sales[t.id] = s;
-        }
+    if(t.type==='split' && lots[t.symbol]){ const r = num(t.ratio); if(r>0) lots[t.symbol].forEach(l=>{ l.q *= r; l.c /= r; l.ils /= r; }); }
+    if(t.type==='sharebonus' && t.symbol){ const LT = lots[t.symbol] || (lots[t.symbol] = []), q = num(t.qty)||0, h = LT.reduce((a,l)=>a+l.q,0);   // bonus shares: same total cost spread over more units (like a split)
+      if(q>0){ if(h > 1e-9){ const r = (h+q)/h; LT.forEach(l=>{ l.q *= r; l.c /= r; l.ils /= r; }); } else LT.push({q, c:0, ils:0, cpi: t.currency==='USD' ? null : cpiKnown(t.date), date:t.date}); } }
+    if(!trade) {}
+    else {
+      const P = L.pos[t.symbol], cur = t.currency, q = num(t.qty)||0, p = num(t.price)||0, fee = num(t.fee)||0, LT = lots[t.symbol] || (lots[t.symbol] = []);
+      const d = P ? P.realized - before : 0, hasEst = t.cgtEst!=null && t.cgtEst!=='' && num(t.cgtEst)!=null;
+      let calc = null, other = 0;
+      if(t.type==='buy' && q>0){
+        const longQ = held0 < 0 ? Math.max(0, q + held0) : q, c = (q*p + fee)/q;
+        if(longQ > 1e-9) LT.push({q:longQ, c, ils: cur==='USD' ? c*taxFx(t.date) : c, cpi: cur==='USD' ? null : cpiKnown(t.date), date:t.date});
+        if(held0 < -1e-9) other = d * (cur==='USD' ? taxFx(t.date) : 1);         // covering a short: plain P/L in ILS
+      }
+      if(t.type==='sell' && q>0){
+        const closeQ = Math.min(q, Math.max(0, held0));
+        if(closeQ > 1e-9){ calc = lotSale(LT, cur, closeQ, (q*p - fee)/q, t.date, true);
+          if(calc.q < closeQ - 1e-9){ const miss = closeQ - calc.q; other += miss*((q*p-fee)/q - (P0 ? P0.avg : 0))*(cur==='USD' ? taxFx(t.date) : 1); calc.approx = true; } }
+      }
+      if(calc || Math.abs(other) > 1e-9 || hasEst){
+        const taxable = (calc ? calc.taxable : 0) + other, e = hasEst ? num(t.cgtEst) : rate*taxable;
+        const s = {id:t.id, date:t.date, sym:t.symbol, plILS:taxable, calc, e, src:hasEst?'bank':'app', appE: rate*taxable, before:S, used:0, due:0, added:0, refundEst:0};
+        if(e>0){ s.used = Math.min(S, e); S -= s.used; s.due = e - s.used; o.gainTax += e; o.used += s.used; o.due += s.due; }
+        else if(e<0){ s.added = -e; S += -e; o.lossShield += -e;
+          const r = Math.min(S, refundable(o)); if(r > 0.005){ s.refundEst = r; o.refundEst += r; S -= r; } }   // the bank refunds this year's tax from the new shield
+        s.after = S; o.sales++; sales[t.id] = s;
       }
     }
     if((t.type==='tax'||t.type==='taxrefund') && t.taxKind==='cgt'){
       const a = (num(t.amount)||0)*(t.currency==='USD' ? (num(t.fx)||rateOn(t.date)||0) : 1);
-      if(t.type==='tax') o.paid += a; else { o.refund += a; S = Math.max(0, S - a); }
+      if(t.type==='tax') o.paid += a;
+      else { o.refund += a; const m = Math.min(o.refundEst, a); o.refundEst -= m; S = Math.max(0, S - (a - m)); }   // an expected refund arrived
     }
     if(t.type==='taxacct' && TAXACCT[t.acct]){ o.b.has = true; if(t.acct in o.b) o.b[t.acct] += taxAcctDelta(t); }
   });
   if(yr) yo(yr).shieldEnd = S;
   const curY = today().slice(0,4), years = Object.values(Y).sort((a,b)=>a.y<b.y?-1:1);
   years.forEach(o=>{ const net = o.b.shield - o.refund + o.paid - o.b.payable; o.b.pending = Math.max(0, o.b.future) + Math.max(0, -net); o.b.shieldBal = Math.max(0, net); if(o.b.shieldBal < 0.05) o.b.shieldBal = 0;   // agorot rounding between the shield and the refund
-    o.outstanding = Math.max(0, o.due - o.paid); });
+    if(o.refundEst < 0.05) o.refundEst = 0; o.outstanding = Math.max(0, o.due - o.paid); });
   const C = Y[curY] || yo(curY);
-  return {L, years, Y, sales, curY, cur:C, shieldNow: yr===curY ? S : 0, dueAll: years.reduce((a,o)=>a+o.due,0), outstanding: years.reduce((a,o)=>a+o.outstanding,0)};
+  return {L, lots, years, Y, sales, curY, cur:C, shieldNow: yr===curY ? S : 0, refundableNow: refundable(C), refundEstNow: C.refundEst,
+    dueAll: years.reduce((a,o)=>a+o.due,0), outstanding: years.reduce((a,o)=>a+o.outstanding,0), approx: !TAXD};
 }
 function priceOf(sym){
   const a = assetOf(sym);
@@ -567,6 +652,7 @@ function computeAll(){
   const TM = taxModel(state.txs), L = TM.L;
   let gTax = 0, lTax = 0;
   const positions = [], closed = [];
+  let prevHoldILS = 0; const dayMk = new Set();
   let mvILS = 0, dayILS = 0, unrealILS = 0, realizedILS = 0, closeFeesILS = 0, estimated = 0;
   Object.values(L.pos).forEach(P=>{
     const a = assetOf(P.sym), pr = priceOf(P.sym);
@@ -578,15 +664,24 @@ function computeAll(){
     const unreal = P.qty*(price - P.avg);                      // same formula works for long & short
     const basis = Math.abs(P.qty)*P.avg;
     const day = (!pr.manual && pr.prev!=null && pr.price!=null) ? P.qty*(pr.price - pr.prev) : null;
+    // daily change in ILS = qty × (price × FX now − prior close × FX prior close): the stock move and the shekel/dollar move together.
+    // CNBC's price/prior-close pair is always the last session, so when a market is closed this is that session's change (plus today's FX move).
+    const fxP = state.fx.prev || fxNow(), dayILSx = day==null ? null : P.cur==='USD' ? (fxNow() ? P.qty*(pr.price*fxNow() - pr.prev*fxP) : null) : day;
+    if(day!=null && dayILSx!=null){ prevHoldILS += P.qty*pr.prev*(P.cur==='USD' ? fxP : 1); if(P.qty>0) dayMk.add(marketOf(P.sym)); }
     const closeFee = commission(P.cur, Math.abs(mv));
     // tax if sold now (today's rate): a gain uses this year's shield first; a loss would add to the shield
-    const eP = taxRate()*(toILS(unreal - closeFee, P.cur)||0), shieldUse = eP>0 ? Math.min(TM.shieldNow, eP) : 0, taxILS = eP>0 ? eP - shieldUse : 0;
+    const LT = TM.lots[P.sym] || [], longQ = P.qty > 0 ? P.qty : 0;
+    const hyp = longQ > 0 && LT.length ? lotSale(LT, P.cur, longQ, (P.qty*price - closeFee)/P.qty, today(), false) : null;
+    const taxableNow = hyp ? hyp.taxable : (toILS(unreal - closeFee, P.cur)||0);
+    const eP = taxRate()*taxableNow, shieldUse = eP>0 ? Math.min(TM.shieldNow, eP) : 0, taxILS = eP>0 ? eP - shieldUse : 0;
+    const refundP = eP<0 ? Math.min(-eP, TM.refundableNow) : 0;             // a loss now could bring back tax paid this year (estimate)
     if(eP>0) gTax += eP; else lTax += -eP;
-    const taxNow = P.cur==='ILS' ? taxILS : (convertCur(taxILS,'ILS',P.cur)||0);
-    const netIfSold = unreal - closeFee - taxNow;
-    const row = Object.assign({}, P, {asset:a, price, prev:pr.prev, manual:!!pr.manual, est, mv, unreal, unrealPct: basis? unreal/basis*100 : null, taxGross:eP, shieldUse, taxILS, taxNow,
+    const toCur = v => P.cur==='ILS' ? v : (convertCur(v,'ILS',P.cur)||0), taxNow = toCur(taxILS);
+    const netIfSold = unreal - closeFee - taxNow + toCur(refundP);
+    const costILS = LT.reduce((a,l)=>a + l.q*l.ils, 0);
+    const row = Object.assign({}, P, {asset:a, price, prev:pr.prev, manual:!!pr.manual, est, mv, unreal, unrealPct: basis? unreal/basis*100 : null, taxGross:eP, shieldUse, taxILS, taxNow, refundP, costILS, taxableNow, hyp,
       day, dayPct: (day!=null && pr.prev)? (pr.price/pr.prev-1)*100*(P.qty<0?-1:1) : null,
-      closeFee, netIfSold, mvILS:toILS(mv,P.cur), unrealILS:toILS(unreal,P.cur), dayILS: day!=null?toILS(day,P.cur):null, quote:pr.q});
+      closeFee, netIfSold, mvILS:toILS(mv,P.cur), unrealILS:toILS(unreal,P.cur), dayILS: dayILSx, quote:pr.q});
     mvILS += row.mvILS||0; unrealILS += row.unrealILS||0; dayILS += row.dayILS||0; closeFeesILS += toILS(closeFee,P.cur)||0;
     positions.push(row);
   });
@@ -597,13 +692,17 @@ function computeAll(){
   // still owed for realized sales (tax recorded as paid is already out of the cash) + tax if everything open were sold today,
   // where open losses join this year's shield before it offsets the open gains
   const hypoTax = Math.max(0, gTax - TM.shieldNow - lTax);
-  const netIfSoldAll = totalPL - closeFeesILS - TM.outstanding - hypoTax;
+  const hypoRefund = Math.min(Math.max(0, TM.shieldNow + lTax - gTax), TM.refundableNow);   // leftover shield → refund of tax paid this year (estimate)
+  const netIfSoldAll = totalPL - closeFeesILS - TM.outstanding - hypoTax + TM.refundEstNow + hypoRefund;
   const F = L.flows;
   positions.sort((a,b)=>Math.abs(b.mvILS||0)-Math.abs(a.mvILS||0));
+  // total return since the portfolio started = (current value − net deposits) / net deposits, in ILS.
+  // current value = cash + market value, so realized + unrealized gains, dividends, interest, fees and tax are all inside it.
   return {L, positions, closed, cashILS, mvILS, equity, totalPL, totalPLPct: L.netDepILS>0? totalPL/L.netDepILS*100 : null,
-    dayILS, dayPct: (equity-dayILS)>0 ? dayILS/(equity-dayILS)*100 : null, unrealILS, realizedILS, taxRealized, netIfSoldAll, closeFeesILS, estimated,
+    // daily % = Σ daily change (ILS) / Σ value of those holdings at the prior close (ILS) – holdings only, cash excluded
+    dayILS, dayPct: prevHoldILS>0 ? dayILS/prevHoldILS*100 : null, dayMk:[...dayMk], unrealILS, realizedILS, taxRealized, netIfSoldAll, closeFeesILS, estimated,
     feesILS: L.fees.ILS + (toILS(L.fees.USD,'USD')||0),
-    TM, hypoTax, hypoShieldUse: Math.min(gTax, TM.shieldNow + lTax),
+    TM, hypoTax, hypoRefund, hypoShieldUse: Math.min(gTax, TM.shieldNow + lTax),
     divILS: F.dividend, intILS: F.interest + F.bonus, taxPaidILS: -(F.tax + F.taxrefund), cgtPaidILS: L.cgtILS,
     hasFlows: state.txs.some(t=>CASH_FLOW[t.type])};
 }
@@ -878,8 +977,13 @@ function renderHeader(S){
   const t = $('hTotal'); t.textContent = fmtMoney(S.equity,'ILS',0);
   if(lastEquity!=null && Math.abs(S.equity-lastEquity) >= 0.5 && !hidden()) flash(t, S.equity-lastEquity);
   lastEquity = S.equity;
-  const d = $('hDay'); d.textContent = S.dayILS ? `${fmtSigned(S.dayILS,'ILS',0)} (${fmtPct(S.dayPct)})` : '—'; d.className = 'num '+cls(S.dayILS);
-  const p = $('hPL'); p.textContent = has ? `${fmtSigned(S.totalPL,'ILS',0)}${S.totalPLPct!=null?' ('+fmtPct(S.totalPLPct)+')':''}` : '—'; p.className = 'num '+cls(S.totalPL);
+  const hasDay = S.dayPct!=null;                                 // percentages stay visible with the eye toggle; amounts are masked by fmtSigned
+  const d = $('hDay'); d.textContent = hasDay ? fmtSigned(S.dayILS,'ILS',0) : '—'; d.className = 'tp-a num '+cls(S.dayILS);
+  const dp = $('hDayPct'); dp.textContent = hasDay ? fmtPct(S.dayPct) : '—'; dp.className = 'tp-v num '+cls(S.dayILS);
+  const open = (S.dayMk||[]).some(m=>{ const st = marketState(m).state; return st==='open' || st==='pre' || st==='post'; });
+  $('hDayLbl').textContent = !hasDay || open ? 'שינוי יומי' : 'שינוי יומי · מסחר אחרון';
+  const p = $('hPL'); p.textContent = has ? fmtSigned(S.totalPL,'ILS',0) : '—'; p.className = 'tp-a num '+cls(S.totalPL);
+  const pp = $('hPLPct'); pp.textContent = has && S.totalPLPct!=null ? fmtPct(S.totalPLPct) : '—'; pp.className = 'tp-v num '+cls(S.totalPL);
   const n = $('hNet'); n.textContent = has ? fmtSigned(S.netIfSoldAll,'ILS',0) : '—'; n.className = 'num '+cls(S.netIfSoldAll);
   renderEye();
   $('hUpd').textContent = state.lastRefresh ? `מחירים עודכנו ${new Date(state.lastRefresh).toLocaleTimeString('he-IL')}${state.refreshErrors?` · ${state.refreshErrors} לא עודכנו`:''}` : 'טרם עודכנו מחירים';
@@ -1191,17 +1295,20 @@ function renderTaxBox(S){
     ['מס משוער על מכירות השנה (אחרי קיזוז)', m(C.due), ''],
     ['קוזז ממגן מס השנה', m(C.used), ''],
     ['מס שעוד לא שולם (משוער)', m(TM.outstanding), ''],
+    ['החזר מס צפוי מהבנק (הערכה)', m(TM.refundEstNow), TM.refundEstNow>0.005?'hl':''],
     ['מס אם מוכרים הכול עכשיו', m(S.hypoTax), ''],
-    ['מתוכו מקוזז ממגן מס', m(S.hypoShieldUse), '']];
+    ['מתוכו מקוזז ממגן מס', m(S.hypoShieldUse), ''],
+    ['החזר אם מוכרים הכול עכשיו (הערכה)', m(S.hypoRefund), '']];
   $('taxBox').innerHTML = `<h3>🏛️ מס רווחי הון ומגן מס · ${C.y}</h3>
     <div class="kv">${kv.map(([l,v,c])=>`<div class="${c}"><span>${l}</span><b class="num">${v}</b></div>`).join('')}</div>
     ${yrs.length ? `<h3 style="margin-top:12px">לפי שנות מס</h3>${yrs.slice().reverse().map(o=>`<div class="taxyr"><div class="yh">${o.y}${o.y===C.y?' · השנה':''}</div><div class="yg">
       <span>מס על רווחים</span><b class="num">${m(o.gainTax)}</b><span>מגן מס שנוצר</span><b class="num">${m(o.lossShield)}</b>
       <span>קוזז ממגן מס</span><b class="num">${m(o.used)}</b><span>מס אחרי קיזוז</span><b class="num">${m(o.due)}</b>
       <span>מס ששולם</span><b class="num">${m(o.paid)}</b><span>החזרי מס</span><b class="num">${m(o.refund)}</b>
+      ${o.refundEst>0.005?`<span>החזר צפוי (הערכה)</span><b class="num">${m(o.refundEst)}</b>`:''}
       <span>${o.y===C.y?'מגן מס זמין עכשיו':'מגן בסוף השנה (מתאפס)'}</span><b class="num">${m(o.shieldEnd)}</b>
       ${o.b.has?`<span>לפי רישומי הבנק: מגן / מס ממתין</span><b class="num">${m(o.b.shieldBal)} / ${m(o.b.pending)}</b>`:''}</div></div>`).join('')}` : ''}
-    <div class="note">מגן מס = ההפסד הממומש × שיעור המס (${state.settings.taxRate}%), בשקלים של מס – כמו אצל הבנק. מכירה ברווח משתמשת קודם במגן: מס = רווח × שיעור המס פחות המגן הזמין. דולרים מומרים לשקלים לפי שער יום המכירה. החזר מס (זיכוי מס) יוצא מהמגן. המגן מתאפס ב-1 בינואר – הבנק מקזז רק בתוך שנת המס; כדי להעביר הפסד לשנה הבאה צריך להגיש דוח שנתי.</div>`;
+    <div class="note">מגן מס = ההפסד הממומש × שיעור המס (${state.settings.taxRate}%), בשקלים של מס – כמו אצל הבנק. מכירה ברווח משתמשת קודם במגן: מס = רווח × שיעור המס פחות המגן הזמין. הפסד אחרי שכבר שולם מס באותה שנה – הבנק מחזיר את המס מהמגן (החזר צפוי = הערכה). הרווח לצורכי מס: לפי FIFO; בנייר דולרי – עלות בשקלים לפי השער היציג ביום הסליקה של כל קנייה, והנמוך מבין הרווח הנומינלי בשקלים לרווח הדולרי; בנייר שקלי – רווח ריאלי לפי המדד הידוע.${TM.approx?' <b>נתוני שער יציג/מדד לא נטענו – חישוב משוער.</b>':''} המגן מתאפס ב-1 בינואר – הבנק מקזז רק בתוך שנת המס; כדי להעביר הפסד לשנה הבאה צריך להגיש דוח שנתי.</div>`;
 }
 
 // ---------- benchmarks ----------
@@ -1382,8 +1489,7 @@ function openTxForm(type, preset, editId, backSym, after){
       $('fSym').addEventListener('change', ()=>{ const s = $('fSym').value.trim().toUpperCase(); if(s && s!==f.symbol) setSymbol({sym:s, free:true}); });
       $('fPrice').addEventListener('input', ()=>{ st.priceTouched = true; });
       $('fDate').addEventListener('change', ()=>{ if(!st.priceTouched) prefillPrice(); });
-      const fxLoad = ()=>{ const d = $('fDate').value||today(); if(d<today()) getHistory('ILS=', addDays(d,-7)).then(()=>update()).catch(()=>{}); };
-      $('fDate').addEventListener('change', fxLoad); fxLoad();
+      if(!TAXD) loadTaxData().then(()=>update()).catch(()=>{});
       if(!t && f.symbol) prefillPrice();
     }
     if($('fFee')) $('fFee').addEventListener('input', ()=>{ st.feeTouched = true; });
@@ -1437,14 +1543,17 @@ function openTxForm(type, preset, editId, backSym, after){
       if(ty==='sell' && q>0 && p>0 && sym && held>1e-9){
         const cand = {id:'__new', ts: t?t.ts:Date.now(), type:'sell', date:$('fDate').value||today(), symbol:sym, currency:cur, qty:q, price:p, fee};
         const cg = $('fCgt') ? num($('fCgt').value) : null; if(cg!=null && $('fCgt').value.trim()!=='') cand.cgtEst = cg;
-        if(cur==='USD') cand.fx = (t && t.date===cand.date && num(t.fx)) ? num(t.fx) : rateOn(cand.date);
         const TMf = taxModel(state.txs.filter(x=>x.id!==editId).concat(cand)), s = TMf.sales['__new'];
         if(s){ const g = s.e>0;
-          sum.insertAdjacentHTML('beforeend', `<div><span>${s.plILS>=0?'רווח':'הפסד'} ממומש לצורכי מס (₪)</span><b class="num ${cls(s.plILS)}">${s.src==='app'?fmtSigned(s.plILS,'ILS'):'לפי אומדן הבנק'}</b></div>
+          const c = s.calc;
+          sum.insertAdjacentHTML('beforeend', `<div><span>${s.plILS>=0?'רווח':'הפסד'} לצורכי מס (₪)</span><b class="num ${cls(s.plILS)}">${s.src==='app'?fmtSigned(s.plILS,'ILS'):'לפי אומדן הבנק'}</b></div>
+            ${c && s.src==='app' ? `<div><span>${cur==='USD'?`נומינלי בשקלים / דולרי (שער ${c.Rs.toFixed(3)})`:'נומינלי / ריאלי (מדד)'}</span><b class="num">${fmtSigned(c.nominal,'ILS',0)} / ${fmtSigned(c.real,'ILS',0)}</b></div>
+            <div><span>עלות בשקלים למס</span><b class="num">${fmtMoney(c.costILS,'ILS')}</b></div>` : ''}
             <div><span>מס משוער על המכירה</span><b class="num">${fmtMoney(g?s.e:0,'ILS')}</b></div>
             <div><span>מקוזז ממגן מס</span><b class="num">${fmtMoney(s.used,'ILS')}</b></div>
             <div><span>מס לתשלום אחרי קיזוז</span><b class="num">${fmtMoney(s.due,'ILS')}</b></div>
             ${s.added>0.005?`<div><span>נוסף למגן המס</span><b class="num pos">${fmtMoney(s.added,'ILS')}</b></div>`:''}
+            ${s.refundEst>0.005?`<div><span>החזר מס צפוי מהבנק (הערכה)</span><b class="num pos">${fmtMoney(s.refundEst,'ILS')}</b></div>`:''}
             <div><span>מגן מס שנשאר (${cand.date.slice(0,4)})</span><b class="num">${fmtMoney(s.after,'ILS')}</b></div>`); }
       }
       if(ty==='sell' && q>0){
@@ -1495,8 +1604,7 @@ function openTxForm(type, preset, editId, backSym, after){
       if(p==null || p<0) return toast('מחיר לא תקין');
       if(fee<0) return toast('עמלה לא תקינה');
       Object.assign(tx, {symbol:sym, currency:cur, qty:q, price:p, fee});
-      if(ty==='sell'){ const cg = $('fCgt') && $('fCgt').value.trim()!=='' ? num($('fCgt').value) : null; if(cg!=null) tx.cgtEst = cg;
-        if(cur==='USD') tx.fx = (t && t.date===date && num(t.fx)) ? num(t.fx) : rateOn(date); }   // sale-date USD rate → tax in ILS
+      if(ty==='sell'){ const cg = $('fCgt') && $('fCgt').value.trim()!=='' ? num($('fCgt').value) : null; if(cg!=null) tx.cgtEst = cg; }
       const prev = state.assets[sym] || {};
       state.assets[sym] = Object.assign({}, prev, {type:$('fAType').value, currency:cur, name: prev.name || (f._meta&&f._meta.name) || $('fSymName').textContent || ''});
       if(f._meta && f._meta.cgId) state.assets[sym].cgId = f._meta.cgId;
@@ -1571,7 +1679,7 @@ function openPosition(sym){
 let TXTAX = null;                                  // per-render cache of the tax model (shield after each sale)
 function saleTaxNote(t){ if(t.type!=='sell' && t.type!=='buy') return ''; const s = TXTAX && TXTAX.sales[t.id]; if(!s || hidden()) return '';
   return s.e>0 ? ` · מס משוער <span class="num">${fmtMoney(s.due,'ILS')}</span>${s.used>0.005?` (קוזז <span class="num">${fmtMoney(s.used,'ILS')}</span>)`:''} · מגן מס <span class="num">${fmtMoney(s.after,'ILS')}</span>`
-    : s.e<0 ? ` · +<span class="num">${fmtMoney(s.added,'ILS')}</span> למגן מס (<span class="num">${fmtMoney(s.after,'ILS')}</span>)` : ''; }
+    : s.e<0 ? ` · +<span class="num">${fmtMoney(s.added,'ILS')}</span> למגן מס${s.refundEst>0.005?` · החזר צפוי <span class="num">${fmtMoney(s.refundEst,'ILS')}</span>`:''} (מגן <span class="num">${fmtMoney(s.after,'ILS')}</span>)` : ''; }
 function txRowHtml(t){ const d = txDesc(t);
   return `<button class="tx" data-tx="${esc(t.id)}"><span class="ic ${t.type}">${TX_ICONS[t.type]}</span>
       <span class="d"><div class="t1">${d.t1}${t.symbol && isRemoved(t.symbol) ? ' <span class="tag rm">נייר שהוסר</span>' : ''}${t.src==='bank' ? ' <span class="tag imp">יובא</span>' : ''}</div><div class="t2">${fmtDate(t.date)}${saleTaxNote(t)}${t.fee?` · עמלה <span class="num">${fmtMoney(t.fee, t.type==='convert'?t.from:t.currency)}</span>`:''}${t.note?' · '+esc(t.note):''}</div></span>
@@ -1584,7 +1692,9 @@ function posKvRows(p){
     ['day','שינוי היום', p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
     ['qty', short?'כמות בשורט':'כמות', fmtQtyP(Math.abs(p.qty)), ''], ['avg', short?'מחיר שורט ממוצע':'עלות ממוצעת', fmtMoney(p.avg,cur), ''],
     ['open','נפתחה', fmtDate(p.openDate), 'nonum'], ['unreal','מאז פתיחה (ברוטו)', `${fmtSigned(p.unreal,cur)} (${fmtPct(p.unrealPct)})`, cls(p.unreal)],
-    ['ptax','מס משוער אם מוכרים', p.taxGross>0 ? fmtMoney(p.taxILS,'ILS') + (p.shieldUse>0.005 ? ` (קוזזו ${fmtMoney(p.shieldUse,'ILS')} ממגן מס)` : '') : (p.taxGross<0 ? `אין · יוסיף ${fmtMoney(-p.taxGross,'ILS')} למגן המס` : '—'), ''],
+    ['costils','עלות בשקלים למס', p.qty>0 && p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', ''],
+    ['taxable','רווח/הפסד לצורכי מס אם מוכרים', p.qty>0 && p.hyp ? fmtSigned(p.taxableNow,'ILS') : '—', p.qty>0 && p.hyp ? cls(p.taxableNow) : ''],
+    ['ptax','מס משוער אם מוכרים', p.taxGross>0 ? fmtMoney(p.taxILS,'ILS') + (p.shieldUse>0.005 ? ` (קוזזו ${fmtMoney(p.shieldUse,'ILS')} ממגן מס)` : '') : (p.taxGross<0 ? `אין · יוסיף ${fmtMoney(-p.taxGross,'ILS')} למגן המס${p.refundP>0.005?` · החזר צפוי ${fmtMoney(p.refundP,'ILS')} (הערכה)`:''}` : '—'), ''],
     ['net',`נטו אם ${short?'מכסים':'מוכרים'} עכשיו`, fmtSigned(p.netIfSold,cur), cls(p.netIfSold)]);
   R.push(['real','רווח ממומש', fmtSigned(p.realized,cur), cls(p.realized)], ['fees','עמלות ששולמו', fmtMoney(p.fees,cur), '']);
   return R;
@@ -1680,7 +1790,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v16</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v17</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -1758,7 +1868,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 15;
+const SEC_DIR_V = 17;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
@@ -2206,7 +2316,7 @@ function bankApply(){
   else state.txs = state.txs.concat(add);
   const n = add.length; IMP = null;
   save(); closeSheet(); setTab('portfolio'); renderAll();
-  toast(`יובאו ${n} תנועות ✓`); refreshPrices(true); ensureSaleFx().catch(()=>{});
+  toast(`יובאו ${n} תנועות ✓`); refreshPrices(true); loadTaxData().then(D=>{ if(D) renderAll(); });
 }
 
 // ====================== navigation ======================
@@ -2248,22 +2358,12 @@ if(/^https?:$/.test(location.protocol)){
   });
 }
 
-// USD trades need the sale-date USD/ILS rate for capital-gains tax: fill it in once from the rate history (CNBC / Frankfurter)
-async function ensureSaleFx(){
-  const need = state.txs.filter(t=>(t.type==='sell'||t.type==='buy') && t.currency==='USD' && !(num(t.fx)>0) && t.date<today());
-  if(!need.length) return 0;
-  const from = need.reduce((a,t)=>t.date<a?t.date:a, need[0].date);
-  try{ await getHistory('ILS=', addDays(from,-7)); }catch(e){ return 0; }
-  const h = hist['ILS=']; if(!h || !h.bars.length) return 0;
-  let n = 0; need.forEach(t=>{ const r = rateOn(t.date); if(r>0){ t.fx = r; n++; } });
-  if(n){ save(); renderAll(); } return n;
-}
 // ====================== init ======================
 renderAll();
-ensureSaleFx().catch(()=>{});
+if(state.txs.some(t=>t.type==='sell')) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {get state(){ return state; }, taxModel, ensureSaleFx, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get state(){ return state; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 })();
 </script>
 </body>
