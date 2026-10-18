@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=19">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=19">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=19">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=19">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=20">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=20">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=20">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -64,6 +64,11 @@ h2 small{font-weight:500;color:var(--muted);font-size:.78rem}
 .cash-row .c.negc{border-color:#fecaca;background:#fef2f2}
 .pos-list{display:flex;flex-direction:column;gap:8px}
 .pos-list.compact{gap:6px}
+.splitsug{border:1.5px solid #c4b5fd;background:#f5f3ff}.splitsug h2{font-size:1rem}.ss-row{display:flex;gap:8px;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid #e9e5ff;font-size:.9rem}.ss-row:first-of-type{border-top:0}.ss-row .muted{font-size:.8rem;margin-top:2px}.ss-b{display:flex;gap:6px;flex:0 0 auto}.btn.sm{padding:6px 10px;font-size:.85rem;min-height:0}
+#cashHead{display:flex;align-items:baseline;gap:6px}#cashHead .chev{margin-inline-start:auto;color:var(--muted);font-size:.9rem}
+#cashCard.collapsible #cashHead{cursor:pointer;-webkit-tap-highlight-color:transparent}#cashCard.collapsed{padding-top:11px;padding-bottom:11px}#cashCard.collapsed #cashHead{margin:0}
+#cashCard.collapsed .cash-row,#cashCard.collapsed .fxr{display:none}#cashCard.collapsed #fxSmall{font-size:.95rem;color:var(--text)}
+.rchg{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:.85rem;margin-top:6px}.rchg:empty{display:none}.rchg b{font-size:1.05rem}
 .ytd{display:flex;align-items:baseline;justify-content:space-between;gap:10px;background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:8px 12px;margin:6px 0 10px}
 .ytd:empty{display:none}.ytd .l{font-size:.85rem;color:var(--muted)}.ytd .l small{display:block;font-size:.72rem}.ytd .v{text-align:left}.ytd .v b{font-size:1.3rem;font-weight:800;display:block}.ytd .v span{font-size:.85rem}
 .h2row{display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -225,7 +230,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=19" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=20" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -242,14 +247,15 @@ input.ltr-in{direction:ltr;text-align:right}
 </header>
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
-    <div class="card"><h2>מזומן <small id="fxSmall"></small></h2><div class="cash-row" id="cashRow"></div></div>
+    <div id="splitSug"></div>
+    <div class="card" id="cashCard"><h2 id="cashHead"><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
     <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
       <h2>ביצועי התיק <small id="perfSrc"></small></h2>
       <div class="ytd" id="perfYtd"></div>
-      <div class="ctrls"><div class="seg sm" id="perfRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M" class="on">3 ח׳</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
+      <div class="ctrls"><div class="seg sm" id="perfRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M" class="on">3 ח׳</button><button data-v="YTD">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
       <div class="ctrls">
         <div class="seg sm" id="perfMode"><button data-v="value" class="on">שווי ₪</button><button data-v="ret">תשואה % מול מדדים</button></div>
         <div class="seg sm" id="perfStyle" style="flex:0 0 auto"><button data-v="line" class="on">קו</button><button data-v="candle">נרות</button></div>
@@ -290,8 +296,8 @@ input.ltr-in{direction:ltr;text-align:right}
 // ====================== constants ======================
 const KEY = 'portfolioTracker.v2', OLD_KEY = 'portfolioTracker.v1', HIST_KEY = 'portfolioTracker.hist.v1';
 const TYPE_LABELS = {stock:'מניה', etf:'תעודת סל', fund:'קרן', crypto:'קריפטו', index:'מדד', bond:'אג״ח'};
-const TX_LABELS = {buy:'קנייה', sell:'מכירה', deposit:'הפקדה', withdraw:'משיכה', convert:'המרת מט״ח', dividend:'דיבידנד', interest:'ריבית', bonus:'הטבה', tax:'מס ששולם', taxrefund:'החזר מס', split:'פיצול מניה', taxacct:'רישום מס של הבנק', fee:'עמלה', sharebonus:'מניות הטבה'};
-const TX_ICONS = {buy:'🛒', sell:'💰', deposit:'⬇️', withdraw:'⬆️', convert:'💱', dividend:'💵', interest:'🏦', bonus:'🎁', tax:'🏛️', taxrefund:'↩️', split:'✂️', taxacct:'📒', fee:'🧾', sharebonus:'🎁'};
+const TX_LABELS = {buy:'קנייה', sell:'מכירה', deposit:'הפקדה', withdraw:'משיכה', convert:'המרת מט״ח', dividend:'דיבידנד', interest:'ריבית', bonus:'הטבה', tax:'מס ששולם', taxrefund:'החזר מס', split:'פיצול מניה', symchange:'המרת נייר', taxacct:'רישום מס של הבנק', fee:'עמלה', sharebonus:'מניות הטבה'};
+const TX_ICONS = {symchange:'🔁', buy:'🛒', sell:'💰', deposit:'⬇️', withdraw:'⬆️', convert:'💱', dividend:'💵', interest:'🏦', bonus:'🎁', tax:'🏛️', taxrefund:'↩️', split:'✂️', taxacct:'📒', fee:'🧾', sharebonus:'🎁'};
 const TX_SHORT = {dividend:'דיבידנד', interest:'ריבית', tax:'מס', taxrefund:'החזר מס', fee:'עמלה', split:'פיצול'};
 // cash-only income/expense rows (sign applied to amount; amount may be negative for a reversal). Not deposits → they count in P/L.
 const CASH_FLOW = {dividend:1, interest:1, bonus:1, tax:-1, taxrefund:1, fee:-1};
@@ -448,11 +454,11 @@ const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRan
 // also add a split it detected in the price history. If the same security has a bonus row, or an earlier split, within ±5 days,
 // the later split is a duplicate: it stays in the list (visible, deletable) but is never applied (t.dupSkip).
 function splitDupes(txs){
-  const out = new Map(), kept = [], list = txs.filter(t=>t.symbol && (t.type==='split' || t.type==='sharebonus'));
+  const out = new Map(), kept = [], list = txs.filter(t=>t.symbol && !t.voided && (t.type==='split' || t.type==='sharebonus'));
   const bon = list.filter(t=>t.type==='sharebonus');
   list.filter(t=>t.type==='split').sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:(a.ts||0)-(b.ts||0)).forEach(t=>{
     const b = bon.find(x=>x.symbol===t.symbol && Math.abs(daysBetween(x.date, t.date))<=5);
-    if(b){ out.set(t, `הבנק כבר רשם את הפיצול כמניות הטבה (+${fmtQty(num(b.qty)||0)} ב-${fmtDate(b.date)})`); return; }
+    if(b){ out.set(t, `הבנק כבר רשם את הפיצול כשינוי כמות (${num(b.qty)>0?'+':''}${fmtQty(num(b.qty)||0)} ב-${fmtDate(b.date)})`); return; }
     const k = kept.find(x=>x.symbol===t.symbol && Math.abs(daysBetween(x.date, t.date))<=5);
     if(k){ out.set(t, `כבר יש פיצול ל-${t.symbol} ב-${fmtDate(k.date)}`); return; }
     kept.push(t); });
@@ -507,6 +513,17 @@ function applyTx(L, t, fxForDeposit){
     if((t.type==='tax'||t.type==='taxrefund') && t.taxKind==='cgt') L.cgtILS -= ils;   // capital-gains tax actually paid (net of refunds)
     return;
   }
+  if(t.type==='shareadj') return;
+  if(t.type==='symchange'){                                   // security converted into another (ticker change / merger): position + cost move, no cash
+    const P = L.pos[t.symbol], r = num(t.ratio)||1; if(!P || P.qty <= 1e-9 || !t.toSymbol) return;
+    const mv = Math.min(P.qty, num(t.qty) || P.qty), cost = mv*P.avg;
+    const Q = L.pos[t.toSymbol] || (L.pos[t.toSymbol] = {sym:t.toSymbol, cur:P.cur, qty:0, avg:0, realized:0, fees:0, openDate:P.openDate});
+    const nq = Q.qty + mv*r; Q.avg = nq > 1e-9 ? (Math.max(0,Q.qty)*Q.avg + cost)/nq : 0; Q.qty = nq; if(!Q.openDate) Q.openDate = P.openDate;
+    P.qty -= mv; if(Math.abs(P.qty) < 1e-9){ P.qty = 0; P.avg = 0; } return; }
+  if((t.type==='sharebonus' || t.type==='split') && t.voided) return;   // replaced by a corrected split (kept visible)
+  if(t.type==='sharebonus' && num(t.qty) < 0){                // bank removed shares without cash (part of a reverse split): same total cost, fewer units
+    const P = L.pos[t.symbol]; if(!P || P.qty <= 1e-9) return; const nq = Math.max(0, P.qty + num(t.qty));
+    if(nq > 1e-9){ P.avg = P.avg*P.qty/nq; P.qty = nq; } else P.qty = 0; return; }
   if(t.type==='sharebonus'){                                  // bonus shares at no cost (the bank books some splits this way): value unchanged
     const q = num(t.qty)||0; if(q<=0 || !t.symbol) return;
     const P = L.pos[t.symbol] || (L.pos[t.symbol] = {sym:t.symbol, cur:t.currency||'USD', qty:0, avg:0, realized:0, fees:0, openDate:t.date});
@@ -561,7 +578,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=19').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=20').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -634,8 +651,12 @@ function taxModel(txs){
     const o = yo(y), trade = (t.type==='sell'||t.type==='buy') && t.symbol;
     const P0 = trade ? L.pos[t.symbol] : null, held0 = P0 ? P0.qty : 0, before = P0 ? P0.realized : 0;
     applyTx(L, t);
-    if(t.type==='split' && !t.dupSkip && lots[t.symbol]){ const r = num(t.ratio); if(r>0) lots[t.symbol].forEach(l=>{ l.q *= r; l.c /= r; l.ils /= r; }); }
-    if(t.type==='sharebonus' && t.symbol){ const LT = lots[t.symbol] || (lots[t.symbol] = []), q = num(t.qty)||0, h = LT.reduce((a,l)=>a+l.q,0);   // bonus shares: same total cost spread over more units (like a split)
+    if(t.type==='split' && !t.dupSkip && !t.voided && lots[t.symbol]){ const r = num(t.ratio); if(r>0) lots[t.symbol].forEach(l=>{ l.q *= r; l.c /= r; l.ils /= r; }); }
+    if(t.type==='symchange' && lots[t.symbol] && t.toSymbol){ let mv = Math.min(lots[t.symbol].reduce((a,l)=>a+l.q,0), num(t.qty) || Infinity); const r = num(t.ratio)||1, D = lots[t.toSymbol] || (lots[t.toSymbol] = []);
+      while(mv > 1e-9 && lots[t.symbol].length){ const l = lots[t.symbol][0], q = Math.min(l.q, mv), f = q/l.q;   // FIFO lots keep their date, ILS cost and CPI
+        D.push(Object.assign({}, l, {q:q*r, c:l.c/r, ils:l.ils/r})); l.q -= q; mv -= q; if(l.q <= 1e-9) lots[t.symbol].shift(); } }
+    if(t.type==='sharebonus' && t.symbol && !t.voided){ const LT = lots[t.symbol] || (lots[t.symbol] = []), q = num(t.qty)||0, h = LT.reduce((a,l)=>a+l.q,0);   // bonus shares: same total cost spread over more units (like a split)
+      if(q<0 && h > 1e-9){ const r = Math.max(0, (h+q)/h); LT.forEach(l=>{ l.q *= r; if(r>0){ l.c /= r; l.ils /= r; } }); }
       if(q>0){ if(h > 1e-9){ const r = (h+q)/h; LT.forEach(l=>{ l.q *= r; l.c /= r; l.ils /= r; }); } else LT.push({q, c:0, ils:0, cpi: t.currency==='USD' ? null : cpiKnown(t.date), date:t.date}); } }
     if(!trade) {}
     else {
@@ -912,7 +933,7 @@ async function buildPerformance(){
     if(prevV > 0) r = (C - flow)/prevV - 1; else if(flow > 0) r = (C - flow)/flow;
     if(!isFinite(r)) r = 0;
     twr *= (1+r); prevV = C;
-    pts.push({date:d, o:O, h:Hh, l:Ll, c:C, netDep:L.netDepILS, fx:lastFx, netDepU:L.netDepUSD, twr:(twr-1)*100, show: traded || !held || d===end || d===start});
+    pts.push({date:d, o:O, h:Hh, l:Ll, c:C, netDep:L.netDepILS, fx:(d===end && fxNow()) ? fxNow() : lastFx, netDepU:L.netDepUSD, twr:(twr-1)*100, show: traded || !held || d===end || d===start});
   }
   return {pts: pts.filter(p=>p.show), all:pts, ytd:ytdBase(pts), noHist, anyOHLC, syms, sources:[...new Set(syms.map(s=>H[s]&&H[s].source).filter(Boolean))]};
 }
@@ -921,7 +942,7 @@ async function buildPerformance(){
 // ====================== refresh & live polling ======================
 let refreshing = false, manualWaiting = false, backoff = 0, pollTimer = null, lastPoll = 0, lastEquity = null, pollReady = false;
 const shownPrice = {};   // sym -> last displayed price (for green/red flash)
-function trackedSymbols(){ return [...new Set(state.txs.filter(t=>t.symbol).map(t=>t.symbol))]; }
+function trackedSymbols(){ return [...new Set(state.txs.flatMap(t=>[t.symbol, t.toSymbol]).filter(Boolean))]; }
 function openSymbols(){ const L = computeLedger(); return Object.values(L.pos).filter(p=>Math.abs(p.qty)>1e-9).map(p=>p.sym); }
 function applyQuotes(res, syms){
   const now = Date.now(); let errors = 0;
@@ -949,6 +970,7 @@ async function refreshPrices(silent, live){
   }catch(e){ console.warn('refresh failed', e); errors++; ok = false; }
   state.lastRefresh = Date.now(); state.refreshErrors = errors; lastPoll = Date.now();
   save(); refreshing = false; b.classList.remove('spin'); b.disabled = false;
+  if(!live && ok) setTimeout(()=>scanHeldSplits().catch(e=>console.warn('split scan', e.message)), 1500);
   if(live) livePatch(); else renderAll();
   if(!silent || manualWaiting) toast(errors ? 'חלק מהמחירים לא עודכנו – אפשר להזין מחיר ידני' : 'המחירים עודכנו ✓');
   manualWaiting = false;
@@ -1045,10 +1067,17 @@ function renderHeader(S){
   renderEye();
   $('hUpd').textContent = state.lastRefresh ? `מחירים עודכנו ${new Date(state.lastRefresh).toLocaleTimeString('he-IL')}${state.refreshErrors?` · ${state.refreshErrors} לא עודכנו`:''}` : 'טרם עודכנו מחירים';
 }
+const CASH_KEY = 'portfolioTracker.cashOpen';
+function cashOpen(){ try{ return localStorage.getItem(CASH_KEY)==='1'; }catch(e){ return false; } }
 function renderCash(S){
   const c = S.L.cash, fx = fxNow();
   const C = dispCur()==='USD' && fx ? 'USD' : 'ILS', tot = C==='USD' ? c.USD + c.ILS/fx : c.ILS + c.USD*(fx||0);
-  $('fxSmall').innerHTML = `סה״כ <b class="num" id="cashTot">${fmtMoney(tot,C,0)}</b>` + (fx ? ` · <span class="num">$1 = ₪${fx.toFixed(4)}</span>` : '');
+  $('fxSmall').innerHTML = `סה״כ <b class="num" id="cashTot">${fmtMoney(tot,C,0)}</b>` + (fx ? `<span class="fxr"> · <span class="num">$1 = ₪${fx.toFixed(4)}</span></span>` : '');
+  // compact view: the cash card folds to one slim row (total in the header currency); tap to open – remembered like the holdings view
+  const card = $('cashCard'), compact = posView()==='compact', open = !compact || cashOpen();
+  card.classList.toggle('collapsible', compact); card.classList.toggle('collapsed', !open);
+  $('cashHead').setAttribute('role', compact ? 'button' : 'heading'); $('cashHead').setAttribute('aria-expanded', String(open));
+  $('cashChev').textContent = compact ? ((!open && (c.ILS < -0.005 || c.USD < -0.005) ? '⚠️ ' : '') + (open ? '▴' : '▾')) : '';
   $('cashRow').innerHTML = ['ILS','USD'].map(cur=>{ const neg = c[cur] < -0.005;
     return `<div class="c ${neg?'negc':''}"><div class="l">${cur==='ILS'?'מזומן בשקלים':'מזומן בדולרים'}</div>
      <div class="v num ${neg?'neg':''}">${fmtMoney(c[cur],cur)}</div>
@@ -1072,8 +1101,53 @@ function cardFields(p){
     costils:[p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', 'num'],
     mvils2:[p.mvILS!=null ? fmtMoney(p.mvILS,'ILS',0) : '—', 'num']};
 }
+// ---------- splits the portfolio is missing (checked in each security's unadjusted price history, whole holding period) ----------
+let splitSug = [];
+const splitScanned = {};
+function splitDismissed(){ return state.splitDismiss || (state.splitDismiss = {}); }
+async function scanHeldSplits(only){
+  const txs = sortedTxs(), first = {}, Le = newLedger();
+  txs.forEach(t=>{ applyTx(Le, t); const P = t.symbol && Le.pos[t.symbol]; if(P && P.qty > 1e-9 && !first[t.symbol]) first[t.symbol] = t.date; });
+  const syms = (only || Object.keys(first)).filter(s=>first[s] && !isCrypto(s) && !splitScanned[s]);
+  for(const sym of syms){ splitScanned[sym] = true;
+    let h = null; try{ h = await getHistory(sym, addDays(first[sym], -10)); }catch(e){}
+    if(!h || !h.bars || h.bars.length < 2) continue;
+    splitSug = splitSug.filter(x=>x.sym!==sym);
+    detectSplits(h.bars, first[sym]).filter(sp=>sp.date<=today()).forEach(sp=>{
+      const key = sym+'|'+sp.date; if(splitDismissed()[key]) return;
+      const evs = state.txs.filter(t=>t.symbol===sym && (t.type==='split'||t.type==='sharebonus') && !t.voided && !t.dupSkip && Math.abs(daysBetween(t.date, sp.date))<=5);
+      const L0 = computeLedger(state.txs.filter(t=>t.date < sp.date && !evs.includes(t))), q0 = L0.pos[sym] ? L0.pos[sym].qty : 0;
+      if(!(q0 > 1e-9)) return;
+      let q1 = q0; sortedTxs(evs).forEach(t=>{ if(t.type==='split') q1 *= num(t.ratio)||1; else q1 = Math.max(0, q1 + (num(t.qty)||0)); });
+      const want = q0*sp.ratio;
+      if(!evs.length) splitSug.push({key, sym, date:sp.date, ratio:sp.ratio, q0, q1:want, kind:'missing', jump:sp.jump});
+      else if(Math.abs(q1/want - 1) > 0.15) splitSug.push({key, sym, date:sp.date, ratio:sp.ratio, q0, q1:want, got:q1, kind:'mismatch', evs:evs.map(t=>t.id), jump:sp.jump});
+    });
+    renderSplitSug();
+  }
+}
+function splitSugHtml(sym){
+  const L = splitSug.filter(x=>!sym || x.sym===sym); if(!L.length) return '';
+  const q = v => hidden() ? MASK : fmtQtyP(v);
+  return `<div class="card splitsug"><h2>✂️ ${L.length===1 ? 'פיצול שלא נרשם בתיק' : 'פיצולים שלא נרשמו בתיק'}</h2>
+    ${L.map(x=>`<div class="ss-row"><div><b class="ltr">${esc(x.sym)}</b> · <span class="num">${fmtDate(x.date)}</span> · <b>${splitLabel(x.ratio)}</b><div class="muted">${x.kind==='missing'
+      ? `כמות <span class="num">${q(x.q0)} → ${q(x.q1)}</span> · העלות הממוצעת ×<span class="num">${fmtQty(Math.round(1/x.ratio*1e6)/1e6)}</span>, סך העלות לא משתנה`
+      : `רשום בתיק כשינוי כמות שלא מתאים ליחס (<span class="num">${q(x.q0)} → ${q(x.got)}</span>, צריך <span class="num">${q(x.q1)}</span>) – החלה תבטל את הרישום הקיים ותרשום את הפיצול`}</div></div>
+      <div class="ss-b"><button class="btn btn-primary sm" data-ss-apply="${esc(x.key)}">החל</button><button class="btn btn-light sm" data-ss-no="${esc(x.key)}">לא נכון</button></div></div>`).join('')}
+    <div class="note">זוהה בהיסטוריית המחירים הלא־מתואמת (CNBC): קפיצת מחיר בפתיחה ביום הפיצול. אפשר גם להוסיף או לתקן ידנית: לחיצה על הנייר ← ✂️ פיצול / איחוד.</div></div>`;
+}
+function renderSplitSug(){ const el = $('splitSug'); if(el) el.innerHTML = splitSugHtml(); const ps = $('posSplitSug'); if(ps && sheetSym) ps.innerHTML = splitSugHtml(sheetSym); }
+function splitSugClick(e){
+  const a = e.target.closest('[data-ss-apply]'), n = e.target.closest('[data-ss-no]'); if(!a && !n) return;
+  const key = (a||n).dataset[a ? 'ssApply' : 'ssNo'], x = splitSug.find(y=>y.key===key); if(!x) return;
+  if(n){ splitDismissed()[key] = Date.now(); }
+  else { (x.evs||[]).forEach(id=>{ const t = state.txs.find(y=>y.id===id); if(t) t.voided = `הוחלף ב${splitLabel(x.ratio)} ${fmtDate(x.date)}`; });
+    state.txs.push({id:uid(), ts:Date.now(), type:'split', date:x.date, symbol:x.sym, ratio:x.ratio, note:`${splitLabel(x.ratio)} – זוהה בהיסטוריית המחירים`, src:'auto', ikey:`split|${x.sym}|${x.date}`});
+    toast(`נרשם ${splitLabel(x.ratio)} ב-${x.sym}`); }
+  splitSug = splitSug.filter(y=>y.key!==key); save(); renderAll(); if(sheetSym===x.sym && $('posSplitSug')) openPosition(x.sym);
+}
 function renderPortfolio(S){
-  renderCash(S);
+  renderCash(S); renderSplitSug();
   $('posCount').textContent = S.positions.length ? `${S.positions.length} פתוחות` : '';
   if(!S.positions.length){
     $('posList').innerHTML = state.txs.length ? '<div class="empty">אין פוזיציות פתוחות</div>' :
@@ -1244,8 +1318,11 @@ function txDesc(t){
   }
   if(t.type==='taxacct'){ const l = (TAXACCT[t.acct]||{})[t.dir] || TX_LABELS.taxacct, d = taxAcctDelta(t);
     return {t1:`${l} <span class="tag taxi">ללא תנועת מזומן</span>`, amt:fmtMoney(num(t.amount)||0,'ILS'), c:''}; }
-  if(t.type==='sharebonus') return {t1:`מניות הטבה <span class="ltr">${esc(t.symbol)}</span>`, amt:`<span class="num">+${fmtQty(num(t.qty))}</span> יח׳`, c:'pos'};
-  if(t.type==='split') return {t1:`פיצול <span class="ltr">${esc(t.symbol)}</span> · כל מניה ← <span class="num">${fmtQty(num(t.ratio))}</span>${t.dupSkip?` · <b class="neg">לא הוחל – כפילות</b>`:''}`, amt:`<span class="num">×${fmtQty(num(t.ratio))}</span>`, c:''};
+  const vd = t.voided ? ` · <b class="neg">בוטל – הוחלף בפיצול מתוקן</b>` : '';
+  if(t.type==='symchange') return {t1:`המרת נייר <span class="ltr">${esc(t.symbol)} → ${esc(t.toSymbol)}</span>`, amt:`<span class="num">${fmtQty(num(t.qty))} → ${fmtQty(num(t.qty)*(num(t.ratio)||1))}</span> יח׳`, c:''};
+  if(t.type==='sharebonus') return num(t.qty)<0 ? {t1:`הפחתת כמות <span class="ltr">${esc(t.symbol)}</span>${vd}`, amt:`<span class="num">${fmtQty(num(t.qty))}</span> יח׳`, c:'neg'}
+    : {t1:`מניות הטבה <span class="ltr">${esc(t.symbol)}</span>${vd}`, amt:`<span class="num">+${fmtQty(num(t.qty))}</span> יח׳`, c:'pos'};
+  if(t.type==='split') return {t1:`${num(t.ratio)<1?'איחוד':'פיצול'} <span class="ltr">${esc(t.symbol)}</span> · <span class="num">${splitLabel(t.ratio).replace(/^\S+ /,'')}</span> · כל מניה ← <span class="num">${fmtQty(num(t.ratio))}</span>${t.dupSkip?` · <b class="neg">לא הוחל – כפילות</b>`:''}${vd}`, amt:`<span class="num">×${fmtQty(num(t.ratio))}</span>`, c:''};
   if(t.type==='deposit'||t.type==='withdraw') return {t1:`${TX_LABELS[t.type]} ${t.currency==='USD'?'דולרים':'שקלים'}`, amt:fmtSigned((t.type==='deposit'?1:-1)*t.amount, t.currency), c: t.type==='deposit'?'pos':'neg'};
   if(t.type==='convert'){ const to = t.from==='ILS'?'USD':'ILS'; const net = t.amount-(t.fee||0); const recv = t.from==='ILS' ? net/t.rate : net*t.rate;
     return {t1:`המרה ${CUR_SYM[t.from]} → ${CUR_SYM[to]} <span class="num muted">@${num(t.rate).toFixed(4)}</span>`, amt:`${fmtMoney(recv,to)}`, c:''}; }
@@ -1283,20 +1360,25 @@ function destroyPerf(){ if(perfChart){ perfChart.remove(); perfChart = null; } p
 // YTD amount = V1 − V0 − F.  YTD % = (V1 − V0 − F) / (V0 + Σ wᵢ·Fᵢ), wᵢ = (T − tᵢ)/T (T = days since the start, tᵢ = day of the flow).
 // Modified Dietz weights each flow by how long it was invested, so money added late in the year doesn't dilute or inflate the
 // return the way a simple (V0 + F) base would, and it needs no daily valuation at each flow (unlike a true time-weighted return).
+// The same function serves every chart range except "הכול": base = the close of the day before the range starts (31/12 for YTD).
+// "הכול" uses the header's since-start formula instead ((value − net deposits) / net deposits), so it equals the header exactly.
 let perfYtd = null;
-function ytdBase(all){
+function ytdStart(){ return today().slice(0,4)+'-01-01'; }
+function ytdBase(all){ return rangeBase(all, ytdStart()); }
+function rangeBase(all, rStart){
   if(!all || !all.length) return null;
-  const d0 = `${Number(today().slice(0,4))-1}-12-31`, before = all.filter(x=>x.date<=d0).pop();
+  const d0 = addDays(rStart, -1), before = all.filter(x=>x.date<=d0).pop();
   const start = before ? d0 : all[0].date, V0 = before ? before.c : 0, V0u = before && before.fx ? before.c/before.fx : 0;   // in $: the 31/12 value at the 31/12 FX close
   let prev = before ? before.netDep : 0, prevU = before ? (before.netDepU||0) : 0; const flows = [], flowsU = [];
   all.filter(x=>x.date > (before ? d0 : '')).forEach(x=>{ const f = x.netDep - prev, fu = (x.netDepU||0) - prevU; prev = x.netDep; prevU = x.netDepU||0;
     if(Math.abs(f) > 0.005) flows.push([x.date, f]); if(Math.abs(fu) > 0.005) flowsU.push([x.date, fu]); });
   return {start, V0, flows, V0u, flowsU, fromStart: !before};
 }
-function ytdCalc(Y, V1, usd){
+function ytdCalc(Y, V1, usd, end){
   if(!Y || V1==null) return null;
-  const T = Math.max(1, daysBetween(Y.start, today())), V0 = usd ? Y.V0u : Y.V0;
-  let F = 0, W = 0; (usd ? Y.flowsU : Y.flows).forEach(([d,f])=>{ const t = Math.min(T, Math.max(0, daysBetween(Y.start, d))); F += f; W += f*(T - t)/T; });
+  end = end || today();
+  const T = Math.max(1, daysBetween(Y.start, end)), V0 = usd ? Y.V0u : Y.V0;
+  let F = 0, W = 0; (usd ? Y.flowsU : Y.flows).forEach(([d,f])=>{ if(d > end) return; const t = Math.min(T, Math.max(0, daysBetween(Y.start, d))); F += f; W += f*(T - t)/T; });
   const gain = V1 - V0 - F, den = V0 + W;
   return {gain, pct: den > 0 ? gain/den*100 : null, F, V0};
 }
@@ -1311,14 +1393,14 @@ function renderYtd(S){
 function updatePerfLive(S){
   renderYtd(S);
   const L = perfLive; if(!perfChart || !L || L.date!==today()) return;
-  const eq = S.equity;
+  const fx = fxNow(), eq = L.usd ? (fx ? S.equity/fx : null) : S.equity; if(eq==null) return;
   try{
     if(L.mode==='candle'){ L.h = Math.max(L.h, eq); L.l = Math.min(L.l, eq); L.series.update({time:L.date, open:L.o, high:L.h, low:L.l, close:eq}); }
     else if(L.mode==='value') L.series.update({time:L.date, value:eq});
-    else { const r = L.prevC>0 ? (eq - L.flow)/L.prevC - 1 : (L.flow>0 ? (eq-L.flow)/L.flow : 0);
-      const tw = ((1+L.prevTwr/100)*(1+r) - 1)*100, v = ((1+tw/100)/(1+L.base/100)-1)*100;
-      L.series.update({time:L.date, value:v});
-      const el = $('perfPortRet'); if(el){ el.textContent = fmtPct(v); el.className = 'num '+cls(v); } }
+    const r = L.ret(eq, S);
+    if(L.mode==='ret' && r && r.pct!=null) L.series.update({time:L.date, value:r.pct});
+    const el = $('perfPortRet'); if(el && r){ el.textContent = r.pct!=null ? fmtPct(r.pct) : '—'; el.className = 'num '+cls(r.gain); }
+    const ea = $('perfPortAmt'); if(ea && r){ ea.textContent = fmtSigned(r.gain, L.cur, 0); ea.className = 'd num '+cls(r.gain); }
   }catch(e){ console.warn('live chart update', e.message); }
 }
 async function renderPerf(S){
@@ -1333,7 +1415,8 @@ async function renderPerf(S){
   const perf = await buildPerformance();
   if(token!==perfToken || !perf) return;
   perfYtd = perf.ytd; renderYtd(S);
-  const rStart = ui.perfRange==='ALL' ? perf.all[0].date : addDays(today(), -RANGE_DAYS[ui.perfRange]);
+  const isAll = ui.perfRange==='ALL';
+  const rStart = isAll ? perf.all[0].date : ui.perfRange==='YTD' ? ytdStart() : addDays(today(), -RANGE_DAYS[ui.perfRange]);
   const pts = perf.pts.filter(p=>p.date >= rStart);
   if(!pts.length){ msg.textContent='אין נתונים בטווח הזה'; return; }
   const before = perf.all.filter(p=>p.date < pts[0].date).pop();      // base point for the range
@@ -1344,29 +1427,38 @@ async function renderPerf(S){
   destroyPerf(); msg.style.display='none';
   perfChart = makeChart(el, pct, !pct);
   const legend = [], cmp = [];
-  const base = before ? before.twr : 0;
-  const rebase = v => ((1+v/100)/(1+base/100)-1)*100;
-  const lastP = pts[pts.length-1], portRet = rebase(lastP.twr);
+  // values in the header's currency (₪/$ toggle): $ = each day's ILS value at that day's FX close; net deposits in $ at each deposit's own rate
+  const C = dispCur()==='USD' && fxNow() ? 'USD' : 'ILS', usd = C==='USD';
+  { const mb = document.querySelector('#perfMode [data-v="value"]'); if(mb) mb.textContent = 'שווי ' + (usd ? '$' : '₪'); }
+  const vOf = (p, k='c') => usd ? p[k]/(p.fx||fxNow()) : p[k], ndOf = p => usd ? (p.netDepU||0) : p.netDep;
+  const RB = isAll ? null : rangeBase(perf.all, rStart), lastP = pts[pts.length-1];
+  // return at a point: "הכול" = the header's since-start ((V − net deposits)/net deposits); any other range = modified Dietz from the range base
+  // (YTD = the same rangeBase/ytdCalc as the YTD box, so the two always agree). The last point uses the live value and live net deposits.
+  const ret = (V, nd, end) => { if(isAll){ const g = V - nd; return {gain:g, pct: nd>0 ? g/nd*100 : null}; } return ytdCalc(RB, V, usd, end); };
+  const liveRet = (V, S2) => ret(V, isAll ? (usd ? S2.L.netDepUSD : S2.L.netDepILS) : null, today());
+  const series = pts.map(p=>{ const V = p.date===lastP.date && lastP.date===today() ? (usd ? S.equity/fxNow() : S.equity) : vOf(p);
+    const r = p.date===today() ? liveRet(V, S) : ret(V, ndOf(p), p.date); return {p, V, r}; });
+  const last = series[series.length-1].r || {gain:0, pct:null}, portRet = last.pct;
   if(!pct){
     if(ui.perfStyle==='candle' && perf.anyOHLC){
       const s = perfChart.addCandlestickSeries({upColor:'#059669', downColor:'#dc2626', borderVisible:false, wickUpColor:'#059669', wickDownColor:'#dc2626', lastValueVisible:!hidden()});
-      s.setData(pts.map(p=>({time:p.date, open:p.o, high:p.h, low:p.l, close:p.c})));
-      legend.push(['#059669','שווי התיק – נרות יומיים']); perfLive = {mode:'candle', series:s, o:lastP.o, h:lastP.h, l:lastP.l};
+      s.setData(series.map(({p,V})=>({time:p.date, open:vOf(p,'o'), high:Math.max(vOf(p,'h'),V), low:Math.min(vOf(p,'l'),V), close:V})));
+      legend.push(['#059669',`שווי התיק – נרות יומיים${usd?' ($)':''}`]); perfLive = {mode:'candle', series:s, o:vOf(lastP,'o'), h:vOf(lastP,'h'), l:vOf(lastP,'l')};
     } else {
       const s = perfChart.addAreaSeries({lineColor:'#2563eb', topColor:'rgba(37,99,235,.28)', bottomColor:'rgba(37,99,235,.02)', lineWidth:2, priceLineVisible:false, lastValueVisible:!hidden()});
-      s.setData(pts.map(p=>({time:p.date, value:p.c}))); legend.push(['#2563eb','שווי התיק']); perfLive = {mode:'value', series:s};
+      s.setData(series.map(({p,V})=>({time:p.date, value:V}))); legend.push(['#2563eb',`שווי התיק${usd?' ($)':''}`]); perfLive = {mode:'value', series:s};
     }
     const dep = perfChart.addLineSeries({color:'#94a3b8', lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false});
-    dep.setData(pts.map(p=>({time:p.date, value:p.netDep}))); legend.push(['#94a3b8','הפקדות נטו']);
+    dep.setData(pts.map(p=>({time:p.date, value:ndOf(p)}))); legend.push(['#94a3b8','הפקדות נטו']);
   } else {
     const s = perfChart.addLineSeries({color:'#2563eb', lineWidth:3, priceLineVisible:false, title:'התיק'});
-    s.setData(pts.map(p=>({time:p.date, value:rebase(p.twr)}))); legend.push(['#2563eb','התיק (תשואה משוקללת־זמן)']);
-    const pv = perf.all[perf.all.length-2]; perfLive = {mode:'ret', series:s, base, prevC: pv?pv.c:0, prevTwr: pv?pv.twr:0, flow: lastP.netDep - (pv?pv.netDep:0)};
+    s.setData(series.filter(x=>x.r && x.r.pct!=null).map(({p,r})=>({time:p.date, value:r.pct})));
+    legend.push(['#2563eb', isAll ? 'התיק (תשואה על ההפקדות נטו)' : 'התיק (תשואה מתחילת הטווח, Modified Dietz)']); perfLive = {mode:'ret', series:s};
   }
-  if(perfLive) perfLive.date = lastP.date;
-  cmp.push(`<div>התיק בטווח<b id="perfPortRet" class="num ${cls(portRet)}">${fmtPct(portRet)}</b></div>`);
-  if(!pct){ const ch = lastP.c - (before?before.c:0), dd = lastP.netDep - (before?before.netDep:0);
-    cmp.push(`<div>שינוי בשווי<b class="num ${cls(ch)}">${fmtSigned(ch,'ILS',0)}</b><span class="d muted">מתוכו הפקדות נטו <span class="num">${fmtSigned(dd,'ILS',0)}</span></span></div>`); }
+  if(perfLive) Object.assign(perfLive, {date:lastP.date, usd, cur:C, ret:liveRet});
+  cmp.push(`<div>${ui.perfRange==='YTD' ? 'התיק מתחילת השנה' : isAll ? 'התיק מאז הפתיחה' : 'התיק בטווח'}<b id="perfPortRet" class="num ${cls(last.gain)}">${portRet!=null ? fmtPct(portRet) : '—'}</b><span id="perfPortAmt" class="d num ${cls(last.gain)}">${fmtSigned(last.gain,C,0)}</span></div>`);
+  if(!pct){ const V0 = before ? vOf(before) : 0, ch = series[series.length-1].V - V0, dd = ndOf(lastP) - (before ? ndOf(before) : 0);
+    cmp.push(`<div>שינוי בשווי<b class="num ${cls(ch)}">${fmtSigned(ch,C,0)}</b><span class="d muted">מתוכו הפקדות נטו <span class="num">${fmtSigned(dd,C,0)}</span></span></div>`); }
   bmRes.forEach(([b,h],i)=>{
     const color = BM_COLORS[i%BM_COLORS.length];
     if(!h || !h.bars.length){ cmp.push(`<div><span class="ltr">${esc(b)}</span><b class="muted">אין נתונים</b></div>`); return; }
@@ -1383,7 +1475,8 @@ async function renderPerf(S){
   $('perfLegend').innerHTML = legend.map(([c,t])=>`<span><i style="background:${c}"></i>${esc(t)}</span>`).join('');
   $('perfCmp').innerHTML = cmp.join('');
   $('perfSrc').textContent = perf.sources.length ? 'מקור: '+perf.sources.join(', ') : '';
-  $('perfNote').innerHTML = 'תשואת התיק משוקללת־זמן (מנטרלת הפקדות ומשיכות). מדדים: תשואת מחיר במטבע המקור, ללא דיבידנדים.'
+  $('perfNote').innerHTML = (isAll ? 'תשואת התיק בטווח "הכול" = רווח ÷ הפקדות נטו (כמו בראש המסך).' : 'תשואת התיק בטווח = רווח ÷ (שווי בתחילת הטווח + הפקדות משוקללות לפי הזמן שהושקעו) – Modified Dietz, כמו "מתחילת השנה".')
+    + (usd ? ' בדולרים: כל הפקדה לפי השער ביום שלה.' : '') + ' מדדים: תשואת מחיר במטבע המקור, ללא דיבידנדים.'
     + (pct && !bms.length ? ' בחרו מדד השוואה למטה.' : '')
     + (perf.noHist.length ? `<br>⚠️ אין היסטוריית מחירים עבור <span class="ltr">${perf.noHist.map(esc).join(', ')}</span> – הוערך לפי מחיר העסקה/ידני.` : '')
     + (!pct && ui.perfStyle==='candle' ? (perf.anyOHLC ? '<br>בנרות: פתיחה/סגירה מחושבות מהנכסים; גבוה/נמוך הם הערכה (סכום הגבוהים/נמוכים).' : '<br>אין נתוני OHLC – מוצג קו.') : '');
@@ -1588,7 +1681,7 @@ function openTxForm(type, preset, editId, backSym, after){
         <div class="sumbox" id="fSum"></div><div id="fWarn"></div>`;
     if(ty==='split') return `<div class="fgrid">
         <label class="f full"><span>נייר ערך *</span><div class="ac"><input id="fSym" class="ltr-in" value="${esc(d.symbol||'')}" placeholder="למשל AAPL" autocapitalize="characters" enterkeyhint="next" spellcheck="false"><div class="ac-list" id="fSymList"></div></div></label>
-        <label class="f"><span>כל מניה הופכת ל־ *</span><input id="fRatio" inputmode="decimal" class="ltr-in" value="${d.ratio??''}" placeholder="10"><div class="hint">איחוד 10 מניות לאחת → 0.1</div></label>
+        <label class="f"><span>יחס (חדשות:ישנות) *</span><input id="fRatio" class="ltr-in" value="${d.ratio!=null&&d.ratio!=='' ? (num(d.ratio)<1 ? '1:'+Math.round(1/num(d.ratio)*1e6)/1e6 : num(d.ratio)+':1') : ''}" placeholder="1:10" spellcheck="false"><div class="hint">פיצול 10:1 (מניה ← 10) · איחוד 1:10 (10 מניות ← 1). אפשר גם 0.1 / 10</div></label>
         <label class="f"><span>תאריך הפיצול</span><input id="fDate" type="date" value="${esc(d.date)}" max="${today()}"></label>
         <label class="f full"><span>הערה</span><input id="fNote" value="${esc(d.note||'')}" placeholder="לא חובה"></label></div>
         <div class="sumbox" id="fSum"></div><div id="fWarn"></div>`;
@@ -1700,9 +1793,10 @@ function openTxForm(type, preset, editId, backSym, after){
       const cur = $('fCur').value, a = num($('fAmt').value)||0, L = ledgerWithout(), after = L.cash[cur] + CASH_FLOW[ty]*a;
       sum.innerHTML = `<div><span>יתרת מזומן ${CUR_SYM[cur]} אחרי</span><b class="num ${after<-0.005?'neg':''}">${fmtMoney(after,cur)}</b></div>`;
     } else if(ty==='split'){
-      const sym = ($('fSym').value||'').trim().toUpperCase(), r = num($('fRatio').value)||0, d0 = $('fDate').value || today();
+      const sym = ($('fSym').value||'').trim().toUpperCase(), r = parseRatio($('fRatio').value)||0, d0 = $('fDate').value || today();
       const L = computeLedger(state.txs.filter(x=>x.id!==editId && x.date<=d0)), held = L.pos[sym] ? L.pos[sym].qty : 0;
-      sum.innerHTML = sym ? `<div><span>כמות לפני ← אחרי</span><b class="num">${fmtQtyP(held)} ← ${fmtQtyP(held*(r||1))}</b></div>` : '';
+      const P0 = L.pos[sym], avg0 = P0 ? P0.avg : 0;
+      sum.innerHTML = sym ? `<div><span>${r>0&&r!==1 ? splitLabel(r) : 'יחס'} · כמות לפני ← אחרי</span><b class="num">${fmtQtyP(held)} → ${fmtQtyP(held*(r||1))}</b></div>${avg0 && r>0 ? `<div><span>עלות ממוצעת לפני ← אחרי</span><b class="num">${fmtPrice(avg0, P0.cur)} → ${fmtPrice(avg0/r, P0.cur)}</b></div>` : ''}` : '';
       if(sym && Math.abs(held)<1e-9) W.push('<div class="warn">אין החזקה בנייר הזה בתאריך הפיצול – הכמות לא תשתנה.</div>');
     } else {
       const from = $('fFrom').value, to = from==='ILS'?'USD':'ILS', a = num($('fAmt').value)||0;
@@ -1749,7 +1843,7 @@ function openTxForm(type, preset, editId, backSym, after){
       const sy = $('fSym') ? ($('fSym').value||'').trim().toUpperCase() : ''; if(sy) tx.symbol = sy;
       if(cur==='USD') tx.fx = (t && t.currency==='USD' && num(t.fx)) ? num(t.fx) : rateOn(date);
     } else if(ty==='split'){
-      const sy = ($('fSym').value||'').trim().toUpperCase(), r = num($('fRatio').value);
+      const sy = ($('fSym').value||'').trim().toUpperCase(), r = parseRatio($('fRatio').value);
       if(!sy) return toast('יש לבחור נייר ערך'); if(!(r>0) || r===1) return toast('יחס פיצול לא תקין');
       Object.assign(tx, {symbol:sy, ratio:r});
     } else {
@@ -1775,16 +1869,18 @@ function openPosition(sym){
   const cur = p.cur, short = p.qty<0, open = Math.abs(p.qty)>1e-9, q = state.quotes[sym]||{};
   openSheet(`<h3><span><span class="ltr">${esc(sym)}</span>${short?'<span class="tag short">שורט</span>':''}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="muted" style="margin:-8px 0 10px;font-size:.85rem">${esc(p.asset.name||'')}</div>
-    <div class="ctrls"><div class="seg sm" id="posRange">${['1M','3M','1Y','5Y'].map(r=>`<button data-v="${r}" class="${r===ui.posRange?'on':''}">${{'1M':'חודש','3M':'3 ח׳','1Y':'שנה','5Y':'5 שנים'}[r]}</button>`).join('')}</div>
+    <div class="ctrls"><div class="seg sm" id="posRange">${['1M','3M','YTD','1Y','5Y'].map(r=>`<button data-v="${r}" class="${r===ui.posRange?'on':''}">${{'1M':'חודש','3M':'3 ח׳','YTD':'YTD','1Y':'שנה','5Y':'5 שנים'}[r]}</button>`).join('')}</div>
       <div class="seg sm" id="posStyle" style="flex:0 0 auto"><button data-v="candle" class="${ui.posStyle==='candle'?'on':''}">נרות</button><button data-v="line" class="${ui.posStyle==='line'?'on':''}">קו</button></div></div>
     <div class="chart" id="posChartEl" style="height:260px"><div class="chart-msg" id="posMsg">טוען גרף…</div></div>
+    <div class="rchg" id="posRchg"></div>
     <div class="note" id="posNote"></div>
     <div class="kv" style="margin-top:10px" id="posKv">${posKvHtml(p)}</div>
     <div class="note" id="posInfo">${posInfoHtml(p)}</div>
     <div class="btn-row" style="margin-top:12px">
       <button class="btn btn-primary" data-pact="buy">🛒 ${short?'קנייה לכיסוי':'קנייה'}</button>
       <button class="btn btn-light" data-pact="sell">💰 ${short?'הגדלת שורט':'מכירה'}</button></div>
-    <div class="btn-row" style="margin-top:8px"><button class="btn btn-light" data-pact="manual">✏️ מחיר ידני${num(state.manual[sym])!=null?' (פעיל)':''}</button>
+    <div id="posSplitSug">${splitSugHtml(sym)}</div>
+    <div class="btn-row" style="margin-top:8px"><button class="btn btn-light" data-pact="manual">✏️ מחיר ידני${num(state.manual[sym])!=null?' (פעיל)':''}</button><button class="btn btn-light" data-pact="split">✂️ פיצול / איחוד</button>
       ${!open ? (isHiddenClosed(sym) ? '<button class="btn btn-light" data-pact="unhide">↩️ החזרה לרשימה</button>' : '<button class="btn btn-light" data-pact="hide">הסר מהרשימה</button>') : ''}</div>
     <div class="btn-row" style="margin-top:8px"><button class="btn btn-danger" data-pact="remove">🗑️ הסר לגמרי</button></div>
     <div class="sym-tx"><h4>העסקאות שלך ב-<span class="ltr">${esc(sym)}</span> <small class="muted" style="font-weight:500">(לחיצה לעריכה או מחיקה)</small></h4><div id="symTx">${symTxHtml(sym)}</div></div>`);
@@ -1802,10 +1898,12 @@ function openPosition(sym){
     if(act==='hide'){ if(hideClosed(sym)) closeSheet(); return; }
     if(act==='remove') return removeFlow(sym);
     if(act==='unhide'){ unhideClosed(sym); openPosition(sym); return; }
+    if(act==='split') return openTxForm('split', {symbol:sym}, null, sym);
     openTxForm(act, {symbol:sym, currency:cur, assetType:p.asset.type, qty: act==='sell'&&p.qty>0 ? p.qty : (act==='buy'&&p.qty<0 ? -p.qty : '')}, null, sym);
   });
   $('symTx').addEventListener('click', e=>{ const b = e.target.closest('[data-tx]'); if(b) openTxForm(null, null, b.dataset.tx, sym); });
-  drawPosChart(sym);
+  $('posSplitSug').addEventListener('click', splitSugClick);
+  drawPosChart(sym); scanHeldSplits([sym]);
 }
 let TXTAX = null;                                  // per-render cache of the tax model (shield after each sale)
 function saleTaxNote(t){ if(t.type!=='sell' && t.type!=='buy') return ''; const s = TXTAX && TXTAX.sales[t.id]; if(!s || hidden()) return '';
@@ -1815,7 +1913,7 @@ function txRowHtml(t){ const d = txDesc(t);
   return `<button class="tx" data-tx="${esc(t.id)}"><span class="ic ${t.type}">${TX_ICONS[t.type]}</span>
       <span class="d"><div class="t1">${d.t1}${t.symbol && isRemoved(t.symbol) ? ' <span class="tag rm">נייר שהוסר</span>' : ''}${t.src==='bank' ? ' <span class="tag imp">יובא</span>' : ''}</div><div class="t2">${fmtDate(t.date)}${saleTaxNote(t)}${t.fee?` · עמלה <span class="num">${fmtMoney(t.fee, t.type==='convert'?t.from:t.currency)}</span>`:''}${t.note?' · '+esc(t.note):''}</div></span>
       <span class="amt num ${d.c}">${d.amt}</span></button>`; }
-function symTxHtml(sym){ const l = sortedTxs().filter(t=>t.symbol===sym).reverse(); TXTAX = taxModel(state.txs); const o = l.length ? l.map(txRowHtml).join('') : '<div class="muted" style="font-size:.85rem">אין עסקאות</div>'; TXTAX = null; return o; }
+function symTxHtml(sym){ const l = sortedTxs().filter(t=>t.symbol===sym || t.toSymbol===sym).reverse(); TXTAX = taxModel(state.txs); const o = l.length ? l.map(txRowHtml).join('') : '<div class="muted" style="font-size:.85rem">אין עסקאות</div>'; TXTAX = null; return o; }
 // detail-sheet numbers: each value cell has data-k so live ticks can patch it in place
 function posKvRows(p){
   const cur = p.cur, short = p.qty<0, open = Math.abs(p.qty)>1e-9, R = [];
@@ -1847,10 +1945,16 @@ function updatePosSheet(S){
   sheetPrice = p.price;
 }
 function marketDate(m){ return zoned(m==='tase' ? 'Asia/Jerusalem' : 'America/New_York').date; }
+function renderPosRchg(price){
+  const L = posLive, el = $('posRchg'); if(!el || !L || !(L.base>0) || price==null) return;
+  const v = (price/L.base - 1)*100;
+  el.innerHTML = `<span>${L.ytd ? `מתחילת השנה <span class="muted">(מול סגירת <span class="num">${fmtDate(L.baseDate)}</span>: <span class="num">${fmtMoneyRaw(L.base, L.hcur, 2)}</span>)</span>` : `שינוי בטווח <span class="muted">(מול <span class="num">${fmtDate(L.baseDate)}</span>)</span>`}</span><b id="posRchgPct" class="num ${cls(v)}">${fmtPct(v)}</b>`;
+}
 function updatePosLive(){
   const L = posLive; if(!posChart || !L) return;
   const pr = priceOf(L.sym); if(pr.price==null || pr.manual) return;
   const price = convertCur(pr.price, assetOf(L.sym).currency, L.hcur), m = marketOf(L.sym), d = marketDate(m);
+  renderPosRchg(price);
   let b = L.bar;
   if(b.time !== d){ if(marketState(m).state!=='open' || d < b.time) return; b = {time:d, open:price, high:price, low:price, close:price}; }   // first tick of a new session
   else b = {time:b.time, open:b.open, high:Math.max(b.high,price), low:Math.min(b.low,price), close:price};
@@ -1863,8 +1967,8 @@ async function drawPosChart(sym){
   if(posChart){ posChart.remove(); posChart=null; }
   if(!lwOk()){ msg.textContent='ספריית הגרפים לא נטענה'; return; }
   msg.style.display='flex'; msg.textContent='טוען גרף…';
-  const from = addDays(today(), -RANGE_DAYS[ui.posRange]);
-  const h = await getHistory(sym, from);
+  const ytd = ui.posRange==='YTD', from = ytd ? ytdStart() : addDays(today(), -RANGE_DAYS[ui.posRange]);
+  const h = await getHistory(sym, addDays(from, -10));
   if(el!==$('posChartEl')) return;
   if(posChart){ posChart.remove(); posChart=null; }
   const bars = h ? h.bars.filter(b=>b[0]>=from) : [];
@@ -1880,7 +1984,10 @@ async function drawPosChart(sym){
   const mk = sortedTxs().filter(t=>t.symbol===sym && t.date>=from && (t.type==='buy'||t.type==='sell')).map(t=>({time:t.date, position:t.type==='buy'?'belowBar':'aboveBar', color:t.type==='buy'?'#2563eb':'#db2777', shape:t.type==='buy'?'arrowUp':'arrowDown', text:t.type==='buy'?'B':'S'}));
   const times = new Set(bars.map(b=>b[0])); const mks = mk.filter(m=>times.has(m.time));
   if(mks.length) s.setMarkers(mks);
-  const lb = bars[bars.length-1]; posLive = {sym, series:s, candle: ui.posStyle==='candle' && h.ohlc, hcur:h.cur, bar:{time:lb[0], open:lb[1], high:lb[2], low:lb[3], close:lb[4]}};
+  // change over the range: YTD = vs the 31/12 close of last year; other ranges = vs the last close before the range (else its first close)
+  const baseBar = h.bars.filter(b=>b[0] < from).pop() || bars[0];
+  const lb = bars[bars.length-1]; posLive = {sym, series:s, candle: ui.posStyle==='candle' && h.ohlc, hcur:h.cur, bar:{time:lb[0], open:lb[1], high:lb[2], low:lb[3], close:lb[4]}, base:baseBar[4], baseDate:baseBar[0], ytd};
+  renderPosRchg(lb[4]); updatePosLive();   // live quote right away
   posChart.timeScale().fitContent();
   $('posNote').textContent = `מקור: ${h.source} · מחירים ב${h.cur==='USD'?'דולר':'שקל'}${ui.posStyle==='candle'&&!h.ohlc?' · אין נתוני OHLC – מוצג קו':''}${mks.length?' · B/S = הקניות והמכירות שלך':''}`;
 }
@@ -1921,7 +2028,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v19</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v20</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -1999,7 +2106,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 19;
+const SEC_DIR_V = 20;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
@@ -2021,6 +2128,7 @@ const IL_NOQUOTE = {b:1, g:1, w:1, f:1};        // bonds, T-bills, warrants, mut
 function ilEntry(r){ const k = r[4]; return {sym: r[1] ? r[1].toUpperCase()+'.TA' : r[0]+'.TA', name: r[3] || r[2], type: k==='e'?'etf' : k==='f'?'fund' : (k==='b'||k==='g')?'bond' : 'stock', noQuote: !!IL_NOQUOTE[k] || !r[1], num:String(r[0])}; }
 function usEntry(r){ return {sym:r[0], name:r[1], type: r[2] ? 'etf' : 'stock'}; }
 // fuzzy name → US ticker: token containment + Dice; exact normalized name = 1. Confidence: high (auto) / mid (confirm) / low (ask)
+function dirOf(n){ n = String(n||'').toLowerCase(); return /\b(bear|short|inverse|ultrashort)\b/.test(n) ? -1 : /\b(bull|long)\b/.test(n) ? 1 : 0; }
 function matchUSName(name){
   const D = SECDIR; if(!D || !D.us.length) return null;
   const A = nameTokens(name); if(!A.length) return null;
@@ -2028,7 +2136,9 @@ function matchUSName(name){
   A.forEach(w=>(D.tok.get(w)||[]).forEach(i=>hits.set(i, (hits.get(i)||0)+1)));
   const sc = [];
   hits.forEach((h,i)=>{ if(h < Math.ceil(A.length/2)) return; const [bk, bn] = D.nt[i], cont = h/A.length, dice = 2*h/(A.length+bn);
-    let s = bk===key ? 1 : 0.6*cont + 0.4*dice; if(etfHint!=null && D.us[i][2]!==etfHint) s -= 0.15; sc.push({i, s, cont}); });
+    let s = bk===key ? 1 : 0.6*cont + 0.4*dice; if(etfHint!=null && D.us[i][2]!==etfHint) s -= 0.15;
+    if(dirOf(name) * dirOf(D.us[i][1]) < 0) s -= 0.5;                 // Bull ↔ Bear / Long ↔ Short: a different product
+    sc.push({i, s, cont}); });
   if(!sc.length) return null;
   sc.sort((a,b)=>b.s-a.s || D.us[a.i][0].length - D.us[b.i][0].length);
   const top = sc[0], second = sc[1] ? sc[1].s : 0;
@@ -2048,20 +2158,30 @@ function localSearch(D, q){
   return out;
 }
 // split detection from unadjusted daily closes: a one-day jump close to a standard ratio that persists for the next days
-const SPLIT_UP = [2,3,4,5,6,7,8,10,12,15,20,25,30,40,50], SPLIT_DOWN = [2,3,4,5,8,10,15,20,25,30,40,50,100].map(k=>1/k);
+// Splits AND reverse splits (e.g. 1:10 → ratio 0.1), found from UNADJUSTED daily bars. The ratio is read from the overnight gap
+// (previous close → split-day open) first, because leveraged ETFs often move ±20% during the split day itself (OKLL 10.09.2026: close
+// ×4.38, open ×4.73 for a 1:5). Nearest common ratio in log space; the price must stay on the new level (no one-day data glitch).
+const SPLIT_K = [2,3,4,5,6,7,8,10,12,15,20,25,30,40,50,100];
+function nearSplitK(R){ return SPLIT_K.reduce((b,k)=>Math.abs(Math.log(R/k)) < Math.abs(Math.log(R/b)) ? k : b, 2); }
 function detectSplits(bars, after){
   const out = [], med = a=>a.slice().sort((x,y)=>x-y)[Math.floor(a.length/2)];
   for(let i=1;i<bars.length;i++){
-    if(bars[i][0] <= after) continue;
-    const a = bars[i-1][4], c = bars[i][4]; if(!(a>0 && c>0)) continue;
-    const r = a/c; if(r < 1.8 && r > 0.55) continue;
-    const cand = (r>=1 ? SPLIT_UP : SPLIT_DOWN).find(k=>Math.abs(r/k-1) < 0.12); if(!cand) continue;
+    if(after && bars[i][0] <= after) continue;
+    const a = bars[i-1][4], o = bars[i][1], c = bars[i][4]; if(!(a>0 && c>0)) continue;
+    let best = null;
+    for(const r of [o>0 && o!==c ? a/o : null, a/c]){ if(!r || (r < 1.7 && r > 1/1.7)) continue;
+      const R = r>=1 ? r : 1/r, k = nearSplitK(R);
+      if(Math.abs(Math.log(R/k)) < (k===2 ? 0.12 : 0.2)){ best = r>=1 ? k : 1/k; break; } }
+    if(!best) continue;
     const pre = med(bars.slice(Math.max(0,i-3), i).map(b=>b[4])), post = med(bars.slice(i, i+3).map(b=>b[4]));
-    if(Math.abs(pre/post/cand - 1) > 0.2) continue;
-    out.push({date:bars[i][0], ratio: cand>=1 ? cand : Math.round(cand*10000)/10000, jump: Math.round(r*100)/100});
+    if(Math.abs(Math.log(pre/post/best)) > 0.45) continue;
+    out.push({date:bars[i][0], ratio:best, jump: Math.round(a/c*100)/100});
   }
   return out;
 }
+function parseRatio(v){ const t = String(v==null?'':v).trim().replace(/\s/g,''); const m = t.match(/^(\d+(?:\.\d+)?)[:\/](\d+(?:\.\d+)?)$/);
+  if(m){ const a = +m[1], b = +m[2]; return a>0 && b>0 ? a/b : null; } return num(t); }      // "new:old" – 1:10 = 0.1 (reverse), 10:1 = 10
+function splitLabel(r){ r = num(r); if(!(r>0)) return ''; if(r>=1) return `פיצול ${fmtQty(r)}:1`; const k = 1/r; return `איחוד 1:${Math.abs(k-Math.round(k))<1e-6 ? Math.round(k) : fmtQty(k)}`; }
 const SEC_USD = '99028', SEC_TAX = '9992983', SEC_FUT = '9992985';
 const r2 = v => Math.round(v*100)/100;
 function normH(v){ return String(v==null?'':v).replace(/[\s"'״׳`]/g,''); }
@@ -2130,10 +2250,17 @@ function bankClassify(r){
   if(/ריבית/.test(a)) return amt ? {type:'interest', currency:cur, amount:amt} : {skip:'zero'};
   if(/עמל/.test(a) && !buy && !sell){                               // account fees ('עמלה מזומן בשח', 'משיכת עמלה מטח')
     const nm = bankNameNorm(r.name); return amt ? {type:'fee', currency:cur, amount:-amt, note: /^דולר ארה/.test(nm) ? '' : nm} : {skip:'zero'}; }
+  // zero-cash quantity changes on a real security: split / reverse split / conversion rows, and 'הטבה' with a negative quantity.
+  // They are paired in bankBuild (shares out + shares in on the same security within 5 days → one split with the bank's own ratio).
+  const zq = !amt && Math.abs(r.qty)>0 && !bankInternal(r) && r.secNum!==SEC_USD;
+  const qdir = /משיכ|הוצא|גריע|ביטול|יציא/.test(a) ? -1 : /הפקד|הכנס|קבל|כניס/.test(a) ? 1 : (r.qty<0 ? -1 : 0);
+  if(zq && /פיצול|איחוד|ספליט|split|המר|החלפ|הקצא|הפחת|reverse/i.test(a)) return {type:'shareadj', qty:Math.abs(r.qty), dir:qdir, currency:cur, sec:true, act:a};
+  if(zq && /הטב/.test(a) && !buy && !sell && qdir<0) return {type:'shareadj', qty:Math.abs(r.qty), dir:-1, currency:cur, sec:true, act:a};
+  if(zq && /העברה|הפקדה|משיכה/.test(a) && !/הטב/.test(r.name)) return {type:'shareadj', qty:Math.abs(r.qty), dir:qdir, currency:cur, sec:true, act:a, lone:'skip'};
   if(/הטב/.test(a) && !buy && !sell){                                // 'הטבה': bonus shares on a security, or a cash bonus
     if(!amt && Math.abs(r.qty)>0 && !bankInternal(r) && r.secNum!==SEC_USD) return {type:'sharebonus', qty:Math.abs(r.qty), currency:cur, sec:true};
     return amt ? {type: amt>0 ? 'bonus' : 'withdraw', currency:cur, amount:Math.abs(amt)} : {skip:'zero'}; }
-  if(/(^|\s)מס(\s|$)/.test(a) && !buy && !sell){                 // withholding on foreign income; positive = reversal/refund
+  if(/(^|\s)מסח?(\s|$)/.test(a) && !buy && !sell){              // withholding on foreign income ('מסח' = truncated מס חו"ל); positive = reversal/refund
     if(!amt) return {skip:'zero'};
     const kind = /חול|חו"ל|חו״ל/.test(a) ? 'foreign' : (cur==='USD' ? 'il' : 'other');
     return amt<0 ? {type:'tax', taxKind:kind, currency:cur, amount:-amt} : {type:'taxrefund', taxKind:kind, currency:cur, amount:amt};
@@ -2163,9 +2290,15 @@ function bankClassify(r){
 }
 function bankMatch(r){
   const k = bankSecKey(r), D = SECDIR;
-  if(state.importMap && state.importMap[k] && state.importMap[k].sym) return Object.assign({}, state.importMap[k], {conf:'high', how:'saved'});   // Ori's earlier choice (this device only)
+  if(state.importMap && state.importMap[k] && state.importMap[k].sym){                    // the earlier choice (this device only)…
+    const sv = state.importMap[k];
+    if(r.cur!=='ILS' && D && D.bySym){ const u = matchUSName(r.name), key = nameTokens(r.name).sort().join(' '), se = D.bySym.get(sv.sym);
+      // …unless the directory now has an EXACT name match and the saved ticker's name is a different product (e.g. an old partial-match suggestion)
+      if(u && u.score===1 && u.conf==='high' && u.sym!==sv.sym && (!se || nameTokens(se[1]).sort().join(' ')!==key)) return Object.assign(u, {conf:'high', how:'resaved', prev:sv.sym});
+      if(u && se && u.sym!==sv.sym && dirOf(se[1])*dirOf(r.name) < 0 && dirOf(u.name)*dirOf(r.name) >= 0 && u.score >= 0.75) return Object.assign(u, {conf:'mid', how:'resaved', prev:sv.sym}); }   // saved Bear for a Bull fund (or Short/Long)
+    return Object.assign({}, sv, {conf:'high', how:'saved'}); }
   if(r.cur==='ILS' && r.secNum && D && D.byNum.has(r.secNum)) return Object.assign(ilEntry(D.byNum.get(r.secNum)), {conf:'high', how:'num', score:1});
-  const m = r.name.match(/\(([A-Z][A-Z0-9.\-]{0,9})\)/);
+  const m = r.name.match(/\(([A-Z][A-Z0-9.\-]{0,9})\)/) || (r.cur!=='ILS' && r.name.trim().match(/^([A-Z][A-Z0-9.\-]{0,5})\s+(?:US|UN|UW|UQ)$/));
   if(m){ const u = D && D.bySym.get(m[1]); return u ? Object.assign(usEntry(u), {conf:'high', how:'ticker', score:1}) : {sym:m[1], type:'stock', name:'', conf:D?'mid':'high', how:'ticker', score:0.7}; }
   if(r.cur!=='ILS'){ const u = matchUSName(r.name); if(u) return u.conf==='low' ? {sym:'', conf:'low', how:'name', alts:[usEntry(D.bySym.get(u.sym)), ...u.alts]} : u; }
   return null;
@@ -2186,10 +2319,40 @@ function bankBuild(){
     if(c.sec){ const m = IMP.map[bankSecKey(r)]; if(!m || !m.sym){ needRows.push(r); perRow.push([]); cnt.as.add(TX_LABELS[c.type]); return; } t.symbol = m.sym; }
     if(t.currency==='USD' && !c.sec && r.rate>2 && r.rate<10) t.fx = r.rate;          // the row's own USD/ILS rate → exact ILS value of the flow
     if((t.type==='sell'||t.type==='buy') && r.cgt!=null && Math.abs(r.cgt)>0.004) t.cgtEst = r.cgt;   // bank's own capital-gains tax estimate for this trade
-    cnt.as.add(t.type==='tax' ? TAX_KINDS[t.taxKind] : t.type==='taxrefund' ? 'החזר מס' : t.type==='sharebonus' ? 'מניות הטבה (בלי מזומן)' : t.type==='taxacct' ? (t.acct==='shield'?'מגן מס':t.acct==='payable'?'מס לשלם':t.acct==='future'?'מס עתידי':'רישום מס')+' – רישום מס, ללא מזומן' : t.internal ? 'התאמת מזומן (רישום פנימי)' : TX_LABELS[t.type]);
+    cnt.as.add(t.type==='tax' ? TAX_KINDS[t.taxKind] : t.type==='taxrefund' ? 'החזר מס' : t.type==='sharebonus' ? 'מניות הטבה (בלי מזומן)' : t.type==='shareadj' ? 'שינוי כמות בלי מזומן (פיצול/איחוד)' : t.type==='taxacct' ? (t.acct==='shield'?'מגן מס':t.acct==='payable'?'מס לשלם':t.acct==='future'?'מס עתידי':'רישום מס')+' – רישום מס, ללא מזומן' : t.internal ? 'התאמת מזומן (רישום פנימי)' : TX_LABELS[t.type]);
     out.push(t); perRow.push([t]);
   });
+  bankPairAdj(out);
   return {txs:opening ? [opening, ...out] : out, opening, unknown, skipped, needRows, perRow, counts};
+}
+// zero-cash share rows (see bankClassify) → a split with the bank's own ratio when shares go out and come back in; a lone 'in' = bonus
+// shares, a lone 'out' = quantity reduction at the same total cost; lone securities transfers stay out (as before)
+function bankPairAdj(out){
+  const adj = out.filter(t=>t.type==='shareadj' || (t.type==='sharebonus' && t.src==='bank')), used = new Set();
+  // 1) conversion rows on two different securities on the same day: old shares out, new shares in → symchange
+  adj.filter(t=>t.type==='shareadj' && /המר|החלפ/.test(t.act||'') && t.dir<0).forEach(o=>{
+    const i = adj.find(t=>t!==o && !used.has(t) && t.type==='shareadj' && /המר|החלפ/.test(t.act||'') && t.dir>0 && t.symbol!==o.symbol && Math.abs(daysBetween(t.date, o.date))<=3);
+    if(!i || used.has(o)) return; used.add(o); used.add(i);
+    const r = num(i.qty)/num(o.qty), k = out.indexOf(i); if(k>=0) out.splice(k,1);
+    Object.assign(o, {type:'symchange', toSymbol:i.symbol, ratio:r, qty:num(o.qty), note:`המרת נייר: ${o.symbol} → ${i.symbol}${Math.abs(r-1)>1e-9?` (יחס ${fmtQty(r)})`:''} – לפי שורות הבנק`, ikey:`symchange|${o.symbol}|${i.symbol}|${o.date}`}); delete o.dir; delete o.act; delete o.lone; });
+  const heldAt = (sym, d) => { const L = computeLedger((IMP.mode==='replace' ? [] : state.txs).concat(out.filter(t=>t.type!=='shareadj')).filter(t=>t.date < d)); return L.pos[sym] ? L.pos[sym].qty : 0; };
+  adj.forEach(t0=>{ if(used.has(t0) || t0.type!=='shareadj') return;
+    const grp = adj.filter(t=>!used.has(t) && t.symbol===t0.symbol && Math.abs(daysBetween(t.date, t0.date))<=5); grp.forEach(t=>used.add(t));
+    const held = heldAt(t0.symbol, grp.reduce((a,t)=>t.date<a?t.date:a, t0.date));
+    grp.forEach(t=>{ if(t.type==='sharebonus') t.dir = 1; else if(!t.dir) t.dir = Math.abs(num(t.qty)-held) < 1e-6 ? -1 : 1; });   // unsigned rows: the one equal to the holding is the old shares going out
+    const O = grp.filter(t=>t.dir<0).reduce((a,t)=>a+num(t.qty),0), I = grp.filter(t=>t.dir>0).reduce((a,t)=>a+num(t.qty),0), d = grp.find(t=>t.dir>0)?.date || t0.date;
+    const drop = t => { const i = out.indexOf(t); if(i>=0) out.splice(i,1); };
+    const outs = grp.filter(t=>t.dir<0), ins = grp.filter(t=>t.dir>0);
+    if(O>0 && I>0 && Math.abs(I/O - 1) < 1e-6 && ins.every(t=>t.symbol===t0.symbol)){ grp.forEach(drop); return; }   // same security out and back in 1:1 → nothing changed
+    if(O>0 && I>0){
+      let r = I/O; const R = r>=1 ? r : 1/r, k = nearSplitK(R); if(Math.abs(R/k-1) < 0.15) r = r>=1 ? k : 1/k;    // fractional shares paid in cash → snap to the round ratio
+      grp.forEach(drop); out.push(Object.assign({}, t0, {id:uid(), type:'split', date:d, ratio:r, note:`${splitLabel(r)} – לפי שורות הבנק (${fmtQty(O)} יצאו, ${fmtQty(I)} נכנסו)`, ikey:`banksplit|${t0.symbol}|${d}`, qty:undefined, dir:undefined, act:undefined, lone:undefined}));
+      return; }
+    grp.filter(t=>t.type==='shareadj').forEach(t=>{ if(t.lone==='skip'){ drop(t); return; }
+      Object.assign(t, {type:'sharebonus', qty: t.dir<0 ? -num(t.qty) : num(t.qty), note: t.dir<0 ? `הפחתת כמות בלי מזומן (${t.act})` : t.note}); delete t.dir; delete t.act; delete t.lone; });
+  });
+  out.forEach(t=>{ if(t.type==='shareadj'){ delete t.dir; delete t.act; delete t.lone; t.type = 'sharebonus'; } });
+  out.sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:(a.ts||0)-(b.ts||0));
 }
 // re-play only the file's rows and compare the app's ILS cash with the file's running balance after every row
 function bankReconcile(B){
@@ -2216,16 +2379,17 @@ function bankSplits(final){      // `final` = the transaction list the portfolio
   }));
   return out.sort((a,b)=>a.date<b.date?-1:1);
 }
-function bankScan(syms){                    // look for splits between the file's last date and today in each held ticker's price history
+function bankScan(syms, first){             // look for splits / reverse splits over each security's whole holding period (bank-booked ones dedupe by the 5-day rule)
   const me = IMP;
   syms.forEach(sym=>{
     if(me.scan[sym]) return;
     const m = Object.values(me.map).find(x=>x.sym===sym);
     if(isCrypto(sym) || (m && m.noQuote)){ me.scan[sym] = {st:'na', found:[]}; return; }
     me.scan[sym] = {st:'run', found:[]};
-    getHistory(sym, addDays(me.P.last, -10)).then(h=>{
+    const f0 = (first && first[sym]) || me.P.first;
+    getHistory(sym, addDays(f0, -10)).then(h=>{
       if(IMP!==me) return; const S = me.scan[sym];
-      if(h && h.bars && h.bars.length>1 && h.bars[h.bars.length-1][0] > me.P.last){ S.st = 'done'; S.found = detectSplits(h.bars, me.P.last).filter(x=>x.date<=today()); } else S.st = 'err';
+      if(h && h.bars && h.bars.length>1){ S.st = 'done'; S.found = detectSplits(h.bars, f0).filter(x=>x.date<=today()); } else S.st = 'err';
       bankRefresh();
     }).catch(()=>{ if(IMP===me){ me.scan[sym].st = 'err'; bankRefresh(); } });
   });
@@ -2235,6 +2399,9 @@ function bankFinal(){
   const replace = IMP.mode==='replace';
   const P = IMP.P, exBank = replace ? [] : state.txs.filter(t=>t.src==='bank');
   const add = replace ? B.txs : B.txs.filter(t=>!existing.has(t.ikey) && !(t===B.opening && exBank.length));
+  // rows imported earlier by an older version (or with another ticker) under a different type/security: the file is the source of truth → replace them
+  const exMap = new Map(state.txs.filter(t=>t.ikey && t.src==='bank').map(t=>[t.ikey, t])), reclOld = new Set(), recl = [];
+  if(!replace) B.txs.forEach(t=>{ const o = exMap.get(t.ikey); if(o && (o.type!==t.type || (o.symbol||'')!==(t.symbol||''))){ reclOld.add(o); recl.push({from:o, to:t}); add.push(t); } });
   // adding a file to bank data already in the portfolio: move the ILS cash to the file's own opening balance (covers any gap between files)
   let gap = null, gapAdj = null;
   if(exBank.length){
@@ -2247,13 +2414,13 @@ function bankFinal(){
     IMP.overlap = inside.length; 
   }
   if(gapAdj) add.unshift(gapAdj);
-  let base0 = replace ? add : state.txs.concat(add);
+  let base0 = replace ? add : state.txs.filter(t=>!reclOld.has(t)).concat(add);
   const dupIn = splitDupes(base0); base0 = base0.filter(t=>!dupIn.has(t));       // a split already booked by the bank as bonus shares is never applied again
   // units sold that were never bought (held before the file started): never open a short silently – ask for opening holdings
   const need = {}, Lr = newLedger();
   const mk = t => need[t.symbol] || (need[t.symbol] = {sym:t.symbol, cur:t.currency, qty:0, sold:0, bon:0, div:0, first:t.date, px:num(t.price)||0});
   sortedTxs(base0).forEach(t=>{ const inF = t.symbol && t.date>=P.first, held = () => (Lr.pos[t.symbol] ? Lr.pos[t.symbol].qty : 0) + (need[t.symbol] ? need[t.symbol].sold + need[t.symbol].bon : 0);
-    if(inF && t.type==='sharebonus' && held() < 1e-9){ const n = mk(t); n.bon += num(t.qty)||0; }            // e.g. a 2:1 split booked as bonus shares on a position the file never bought
+    if(inF && t.type==='sharebonus' && num(t.qty) > 0 && held() < 1e-9){ const n = mk(t); n.bon += num(t.qty)||0; }            // e.g. a 2:1 split booked as bonus shares on a position the file never bought
     if(inF && t.type==='dividend' && held() < 1e-9){ const n = mk(t); n.div++; }
     applyTx(Lr, t);
     if(t.type==='sell' && inF){ const q = Lr.pos[t.symbol] ? Lr.pos[t.symbol].qty : 0;
@@ -2278,14 +2445,15 @@ function bankFinal(){
   const base = base0;
   const splits = bankSplits(base), chosen = splits.filter(sp=>IMP.splitOff[sp.key]!==true);
   const held = Object.values(computeLedger(base.filter(t=>t.date<=IMP.P.last)).pos).filter(p=>p.qty>1e-9).map(p=>p.sym);
+  const ever = {}, Le = newLedger(); sortedTxs(base).forEach(t=>{ applyTx(Le, t); const P = t.symbol && Le.pos[t.symbol]; if(P && P.qty > 1e-9 && !ever[t.symbol]) ever[t.symbol] = t.date; });
   const splitTx = chosen.map((sp,i)=>({id:uid(), ts:Date.now()+i, type:'split', date:sp.date, symbol:sp.sym, ratio:sp.ratio, note:'נוסף בייבוא', src:'bank', ikey:`split|${sp.sym}|${sp.date}`}));
   // per-security summary of every split / bonus-share event: source, ratio, quantity before → after, applied or skipped as a duplicate
   const newSet = new Set(add.concat(splitTx)), allEv = base0.concat([...dupIn.keys()], splitTx), dupAll = splitDupes(allEv), Ls = newLedger(), splitSum = [];
   sortedTxs(allEv).forEach(t=>{ const ev = t.symbol && (t.type==='split' || t.type==='sharebonus'), q0 = ev && Ls.pos[t.symbol] ? Ls.pos[t.symbol].qty : 0, skip = dupAll.get(t);
     if(!skip) applyTx(Ls, t);
     if(ev) splitSum.push({sym:t.symbol, date:t.date, type:t.type, ratio:num(t.ratio), q:num(t.qty), before:q0, after: skip ? q0 : (Ls.pos[t.symbol] ? Ls.pos[t.symbol].qty : 0), skip:skip||null, isNew:newSet.has(t),
-      src: t.type==='sharebonus' ? (t.src==='bank' ? 'שורת "הטבה" בקובץ הבנק' : 'מניות הטבה שהוזנו ידנית') : (t.note==='נוסף בייבוא' || /^split\|/.test(t.ikey||'') ? 'זוהה אוטומטית בהיסטוריית המחירים' : 'פיצול שהוזן ידנית')}); });
-  return {B, add:add.filter(t=>!dupIn.has(t)), splits, splitTx, held, splitSum, final: base.concat(splitTx), dup: B.txs.length - add.length};
+      src: t.type==='sharebonus' ? (t.src==='bank' ? (num(t.qty)<0 ? 'שורת הפחתה בלי מזומן בקובץ הבנק (למשל "הפחתת הון" באיחוד)' : 'שורת "הטבה" בקובץ הבנק') : 'מניות הטבה שהוזנו ידנית') : (t.note==='נוסף בייבוא' || /^split\|/.test(t.ikey||'') ? 'זוהה אוטומטית בהיסטוריית המחירים' : 'פיצול שהוזן ידנית')}); });
+  return {B, add:add.filter(t=>!dupIn.has(t)), recl, reclOld, splits, splitTx, held, ever, splitSum, final: base.concat(splitTx), dup: B.txs.length - add.length};
 }
 function bankSecs(){
   const secs = {}; IMP.P.rows.forEach(r=>{ const c = bankClassify(r); if(!c.sec) return; const k = bankSecKey(r);
@@ -2376,24 +2544,24 @@ function bankRefresh(){
   secs.forEach((sc,i)=>{ const m = IMP.map[sc.key], el = document.querySelector(`[data-tickst="${i}"]`), box = document.querySelector(`[data-sec="${i}"]`); if(!el) return;
     const mt = IMP.match[sc.key] || {}, has = m && m.sym, ok = has && IMP.ok[sc.key]; box.classList.toggle('need', !ok);
     const pct = mt.score!=null ? ` ${Math.round(mt.score*100)}%` : '', nm = m && m.name ? ` · ${esc(m.name)}` : '', ta = has && /\.TA$/.test(m.sym) ? ' · בורסת ת״א' : '';
-    const why = {num:'לפי מספר הנייר בבורסה', ticker:'לפי הסימול שבשם', name:`לפי השם (התאמה${pct})`, saved:'לפי הבחירה הקודמת שלך', manual:'נבחר ידנית'}[mt.how] || '';
+    const why = {num:'לפי מספר הנייר בבורסה', ticker:'לפי הסימול שבשם', name:`לפי השם (התאמה${pct})`, saved:'לפי הבחירה הקודמת שלך', resaved:`תוקן – הבחירה הקודמת (${esc(mt.prev||'')}) היא נייר אחר; לפי השם המלא`, manual:'נבחר ידנית'}[mt.how] || '';
     const chips = list=>list.filter(Boolean).map(x=>`<button type="button" class="chip-b" data-alt="${i}|${esc(x.sym)}" style="margin:4px 0 0 6px"><b class="ltr">${esc(x.sym)}</b> <span class="muted" style="font-size:.74rem">${esc((x.name||'').slice(0,34))}</span></button>`).join('');
     el.innerHTML = ok ? `<span class="ok">✓ ${why}:</span> <b class="ltr">${esc(m.sym)}</b>${nm}${ta}${m.noQuote?' · <b>אין מחיר חי</b> – אחרי הייבוא הזינו מחיר ידני':''}`
       : has ? `<span class="bad">⚠️ התאמה חלקית${pct}:</span> <b class="ltr">${esc(m.sym)}</b>${nm} – זה הנייר?<br><button type="button" class="btn btn-light btn-sm" data-okay="${i}" style="margin-top:6px">✓ כן, זה נכון</button> ${(mt.alts||[]).length?'<br>או אחד מאלה: '+chips(mt.alts):''}`
       : `<span class="bad">⚠️ צריך סימול</span> – חפשו את הנייר (שם, סימול או מספר נייר). בלי סימול העסקאות שלו לא ייובאו.${(mt.alts||[]).length?'<br>אולי: '+chips(mt.alts):''}`; });
   const pending = secs.filter(sc=>IMP.map[sc.key].sym && !IMP.ok[sc.key]).length;
-  const doScan = daysBetween(IMP.P.last, today()) > 1;
-  if(doScan) bankScan(R.held);
-  const scanList = R.held.map(s=>[s, IMP.scan[s]]).filter(x=>x[1]), running = scanList.filter(x=>x[1].st==='run').map(x=>x[0]), errs = scanList.filter(x=>x[1].st==='err').map(x=>x[0]);
+  const scanSyms = Object.keys(R.ever||{}), doScan = scanSyms.length > 0;
+  if(doScan) bankScan(scanSyms, R.ever);
+  const scanList = scanSyms.map(s=>[s, IMP.scan[s]]).filter(x=>x[1]), running = scanList.filter(x=>x[1].st==='run').map(x=>x[0]), errs = scanList.filter(x=>x[1].st==='err').map(x=>x[0]);
   // splits (detected from each held ticker's price history after the file's last date)
   const SS = R.splitSum || [];
   $('bankSplitSum').innerHTML = !SS.length ? '' : `<h4>✂️ פיצולים ומניות הטבה – לפי נייר</h4><div class="note" style="margin-top:0">כל פיצול נספר פעם אחת בלבד: אם הבנק כבר רשם את הפיצול כ"הטבה", פיצול שזוהה בנוסף לא יוחל.</div>
-    ${SS.map(e=>`<div class="irow"><span><b class="ltr">${esc(e.sym)}</b> · <span class="num">${fmtDate(e.date)}</span> · ${e.type==='split' ? `כל מניה ← <span class="num">${fmtQty(e.ratio)}</span>` : `+<span class="num">${fmtQty(e.q)}</span> מניות`}<br><span class="muted" style="font-size:.78rem">${e.src}${e.isNew?'':' · כבר בתיק'}${e.skip?` · ${esc(e.skip)}`:''}</span></span>
+    ${SS.map(e=>`<div class="irow"><span><b class="ltr">${esc(e.sym)}</b> · <span class="num">${fmtDate(e.date)}</span> · ${e.type==='split' ? `${splitLabel(e.ratio)} · כל מניה ← <span class="num">${fmtQty(e.ratio)}</span>` : `<span class="num">${e.q<0?'':'+'}${fmtQty(e.q)}</span> מניות${e.q<0?' (הפחתה)':''}`}<br><span class="muted" style="font-size:.78rem">${e.src}${e.isNew?'':' · כבר בתיק'}${e.skip?` · ${esc(e.skip)}`:''}</span></span>
       <span class="r">${e.skip ? '<b class="neg">⛔ לא הוחל</b>' : `<span class="num">${fmtQty(e.before)} → ${fmtQty(e.after)}</span> <b class="pos">✓</b>`}</span></div>`).join('')}`;
-  $('bankSplitSec').innerHTML = !doScan || !R.held.length ? '' : `<h4>✂️ פיצולי מניות אחרי סוף הקובץ</h4>
-    <div class="note" style="margin-top:0">בדיקה אוטומטית בהיסטוריית המחירים (CNBC) של כל נייר שמוחזק בסוף הקובץ, מ-<span class="num">${fmtDate(IMP.P.last)}</span> עד היום. פיצול שקרה אחרי סוף הקובץ לא מופיע בו – ובלעדיו הכמות והמחיר הממוצע לא יתאימו למחיר של היום.</div>
-    ${running.length ? `<div class="note">⏳ בודק פיצולים… (${R.held.length-running.length}/${R.held.length})</div>` : ''}
-    ${R.splits.map(sp=>`<label class="chk"><input type="checkbox" data-split="${esc(sp.key)}" ${IMP.splitOff[sp.key]?'':'checked'}><span><b class="ltr">${esc(sp.sym)}</b> · <span class="num">${fmtDate(sp.date)}</span> · ${sp.ratio>=1?`כל מניה ← ${sp.ratio}`:`איחוד ${Math.round(1/sp.ratio)} מניות לאחת`} (<span class="num">${fmtQtyP(sp.qty)} ← ${fmtQtyP(sp.qty*sp.ratio)}</span>)</span></label>`).join('')}
+  $('bankSplitSec').innerHTML = !doScan ? '' : `<h4>✂️ פיצולים ואיחודים בתקופת ההחזקה</h4>
+    <div class="note" style="margin-top:0">בדיקה אוטומטית בהיסטוריית המחירים הלא־מתואמת (CNBC) של כל נייר שהוחזק, לאורך כל תקופת ההחזקה ועד היום – פיצולים ואיחודים (reverse split). פיצול שהבנק כבר רשם (הטבה / שורות פיצול־איחוד) לא נספר שוב.</div>
+    ${running.length ? `<div class="note">⏳ בודק פיצולים… (${scanSyms.length-running.length}/${scanSyms.length})</div>` : ''}
+    ${R.splits.map(sp=>`<label class="chk"><input type="checkbox" data-split="${esc(sp.key)}" ${IMP.splitOff[sp.key]?'':'checked'}><span><b class="ltr">${esc(sp.sym)}</b> · <span class="num">${fmtDate(sp.date)}</span> · ${sp.ratio>=1?`כל מניה ← ${sp.ratio}`:`${splitLabel(sp.ratio)} (${Math.round(1/sp.ratio)} מניות לאחת)`} (<span class="num">${fmtQtyP(sp.qty)} → ${fmtQtyP(sp.qty*sp.ratio)}</span>)</span></label>`).join('')}
     ${!running.length && !R.splits.length ? '<div class="note">✓ לא נמצאו פיצולים.</div>' : ''}
     ${errs.length ? `<div class="warn">לא ניתן היה לבדוק: <span class="ltr">${errs.map(esc).join(', ')}</span>. אם היה בהם פיצול – הוסיפו אותו ידנית אחרי הייבוא.</div>` : ''}
     <div class="note">יודעים על פיצול שלא מופיע כאן? אחרי הייבוא: ➕ ← <b>פיצול</b>.</div>`;
@@ -2403,7 +2571,9 @@ function bankRefresh(){
     return !(o.unknown && n.px>0) && !(num(o.cost)>=0 && String(o.cost||'').trim()!==''); });
   const sig = D.map(n=>n.sym+':'+n.qty).join(',') + '|' + (X.gap ? X.gap.from : '');
   if(IMP.openSig !== sig){ IMP.openSig = sig;
-    $('bankOpenSec').innerHTML = (X.gap ? `<h4>🕳️ פער בין הקבצים</h4><div class="warn">בתיק יש נתונים מהבנק עד <b class="num">${fmtDate(X.gap.from)}</b>, והקובץ הזה מתחיל ב-<b class="num">${fmtDate(X.gap.to)}</b> – <b class="num">${Math.round(X.gap.days/30.4)}</b> חודשים בלי תנועות. היתרה השקלית תותאם ליתרה שבקובץ (שורת "התאמת יתרה"), אבל קניות, מכירות ודיבידנדים מהתקופה החסרה לא יופיעו – והחזקות שנמכרו בה יישארו בתיק. מומלץ לייבא גם את קובץ התקופה החסרה (הוספה לתיק).</div>` : '')
+    $('bankOpenSec').innerHTML = (X.gap && !(X.gapAdj && num(X.gapAdj.amount) >= 1) ? `<h4>📅 בין הקבצים</h4><div class="note">✓ אין תנועות בין <b class="num">${fmtDate(X.gap.from)}</b> ל-<b class="num">${fmtDate(X.gap.to)}</b>, והיתרה השקלית ממשיכה בדיוק מהקובץ הקודם${X.gapAdj ? ` (הפרש עיגול <span class="num">${fmtMoney(num(X.gapAdj.amount),'ILS')}</span>)` : ''} – כנראה פשוט לא היו פעולות בתקופה הזו.</div>` : '')
+     + (R.recl && R.recl.length ? `<h4>🔄 תיקון רישומים מייבוא קודם</h4><div class="note">${R.recl.length} שורות מהקובץ כבר יובאו בעבר בסיווג אחר, והן יוחלפו בסיווג הנכון:<br>${R.recl.slice(0,8).map(x=>`<span class="num">${fmtDate(x.to.date)}</span> · ${esc(TX_LABELS[x.from.type]||x.from.type)}${x.from.symbol?` <span class="ltr">${esc(x.from.symbol)}</span>`:''} → ${esc(TX_LABELS[x.to.type]||x.to.type)}${x.to.symbol?` <span class="ltr">${esc(x.to.symbol)}</span>`:''}`).join('<br>')}${R.recl.length>8?'<br>…':''}</div>` : '')
+     + (X.gap && X.gapAdj && num(X.gapAdj.amount) >= 1 ? `<h4>🕳️ פער בין הקבצים</h4><div class="warn">בתיק יש נתונים מהבנק עד <b class="num">${fmtDate(X.gap.from)}</b>, והקובץ הזה מתחיל ב-<b class="num">${fmtDate(X.gap.to)}</b> – <b class="num">${Math.round(X.gap.days/30.4)}</b> חודשים בלי תנועות. היתרה השקלית תותאם ליתרה שבקובץ (שורת "התאמת יתרה"), אבל קניות, מכירות ודיבידנדים מהתקופה החסרה לא יופיעו – והחזקות שנמכרו בה יישארו בתיק. מומלץ לייבא גם את קובץ התקופה החסרה (הוספה לתיק).</div>` : '')
       + (D.length ? `<h4>📦 החזקות מלפני תחילת הקובץ</h4><div class="note" style="margin-top:0">בקובץ יש מכירות של ניירות שלא נקנו בו (נקנו לפני <b class="num">${fmtDate(IMP.P.first)}</b>). בלי החזקת פתיחה הן היו נרשמות כ"שורט". <b>הכי מדויק:</b> לייבא קודם את קובץ התקופה הקודמת. אחרת – הזינו כמה יחידות היו לכם ובאיזו עלות ממוצעת (מופיע בדוח האחזקות של הבנק):</div>
         ${D.map(n=>`<div class="isec"><div class="nm"><b class="ltr">${esc(n.sym)}</b> · ${[n.sold?`נמכרו <span class="num">${fmtQtyP(n.sold)}</span> יח׳ יותר מהקנייה בקובץ`:'', n.bon?`התקבלו <span class="num">${fmtQtyP(n.bon)}</span> מניות הטבה (פיצול?) כשלפי הקובץ לא הוחזקו – כנראה הוחזקו עוד <span class="num">${fmtQtyP(n.bon)}</span> לפחות`:'', n.div?`התקבלו <span class="num">${n.div}</span> דיבידנדים כשלפי הקובץ לא הוחזק – הזינו את הכמות אם ידועה`:''].filter(Boolean).join(' · ')} (מ-<span class="num">${fmtDate(n.first)}</span>)</div>
           <div class="fgrid" style="margin-top:6px"><label class="f"><span>כמות בתחילת הקובץ</span><input class="ltr-in" inputmode="decimal" data-op="${esc(n.sym)}|qty" value="${n.qty||''}" ${n.qty?'':'placeholder="לא ידוע"'}></label>
@@ -2456,7 +2626,7 @@ function bankApply(){
     const prev = state.assets[m.sym] || {};
     state.assets[m.sym] = Object.assign({}, prev, {name: prev.name || m.name || sc.name, type: prev.type || m.type || 'stock', currency: sc.cur}); });
   if(IMP.mode==='replace'){ state.txs = add; state.hiddenClosed = []; state.removedSymbols = []; }
-  else state.txs = state.txs.concat(add);
+  else state.txs = state.txs.filter(t=>!(R.reclOld && R.reclOld.has(t))).concat(add);
   const n = add.length; IMP = null;
   save(); closeSheet(); setTab('portfolio'); renderAll();
   toast(`יובאו ${n} תנועות ✓`); refreshPrices(true); loadTaxData().then(D=>{ if(D) renderAll(); });
@@ -2481,7 +2651,9 @@ $('btnCur').onclick = ()=>{ const u = dispCur()!=='USD'; try{ localStorage.setIt
   if(u && !TAXD) loadTaxData().then(D=>{ if(D) renderAll(); }).catch(()=>{});   // dated rates for converting shekel deposits
   renderAll(); toast(u ? 'התיק מוצג בדולרים 💵' : 'התיק מוצג בשקלים'); };
 $('btnEye').onclick = ()=>{ state.settings.hideAmounts = !hidden(); save(); renderAll(); toast(hidden() ? 'הסכומים מוסתרים 🙈' : 'הסכומים מוצגים 👁'); };
+$('cashHead').addEventListener('click', ()=>{ if(posView()!=='compact') return; try{ localStorage.setItem(CASH_KEY, cashOpen() ? '0' : '1'); }catch(_){} renderCash(computeAll()); });
 $('posView').addEventListener('click', e=>{ const b = e.target.closest('[data-view]'); if(!b) return; try{ localStorage.setItem(VIEW_KEY, b.dataset.view); }catch(_){} renderPortfolio(computeAll()); });
+$('splitSug').addEventListener('click', splitSugClick);
 $('posList').addEventListener('click', e=>{ const n = e.target.closest('[data-new]'); if(n) return openTxForm(n.dataset.new);
   const cm = e.target.closest('.pcard.pc');
   if(cm){ const sym = cm.dataset.sym;
@@ -2517,7 +2689,7 @@ renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {get state(){ return state; }, livePatch, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get state(){ return state; }, livePatch, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 })();
 </script>
 </body>
