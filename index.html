@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=18">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=18">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=18">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=18">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=19">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=19">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=19">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=19">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -49,6 +49,7 @@ body{font-family:system-ui,"Segoe UI",Roboto,"Rubik","Heebo",Arial,sans-serif;ba
 .top .upd{font-size:.72rem;opacity:.75;margin-top:4px}
 .tot-row{display:flex;align-items:center;gap:8px;margin-top:2px}
 .tot-row .tot-val{margin-top:0}
+.cur-btn{font-weight:800;font-size:1.05rem}
 .eye-btn{min-width:40px;height:40px;padding:0 8px;font-size:1.1rem}
 .eye-btn[aria-pressed="true"]{background:rgba(255,255,255,.3)}
 section.tab{display:none;padding-top:12px}
@@ -224,10 +225,10 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=18" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=19" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
-    <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
+    <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
     <div class="tot-pct">
       <div class="tp"><span class="tp-l">מתחילת התיק</span><b class="tp-v num" id="hPLPct">—</b><span class="tp-a num" id="hPL">—</span></div>
       <div class="tp"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-a num" id="hDay">—</span></div>
@@ -317,6 +318,8 @@ function addDays(ds, n){ const [y,m,d] = ds.split('-').map(Number); return new D
 function daysBetween(a,b){ return Math.round((Date.parse(b+'T00:00:00Z')-Date.parse(a+'T00:00:00Z'))/864e5); }
 function fmtDate(ds){ if(!ds) return ''; const [y,m,d]=ds.split('-'); return `${d}.${m}.${y}`; }
 const MASK = '••••';
+const CUR_KEY = 'portfolioTracker.dispCur';
+function dispCur(){ try{ return localStorage.getItem(CUR_KEY)==='USD' ? 'USD' : 'ILS'; }catch(e){ return 'ILS'; } }   // top summary only; holdings keep their own currency
 function hidden(){ return !!(state && state.settings && state.settings.hideAmounts); }
 // fmtMoney/fmtSigned/fmtQtyP = personal amounts → masked in privacy mode. fmtPrice/fmtMoneyRaw = market prices, form inputs, settings examples → always shown.
 function fmtMoney(v, cur, digits){
@@ -481,7 +484,7 @@ function taxRate(){ return (num(state.settings.taxRate)||0)/100; }
 
 // ====================== ledger engine ======================
 function sortedTxs(list){ return (list||state.txs).slice().sort((a,b)=> a.date<b.date?-1: a.date>b.date?1 : (a.ts||0)-(b.ts||0)); }
-function newLedger(){ return {cash:{ILS:0,USD:0}, pos:{}, netDepILS:0, fees:{ILS:0,USD:0}, flows:{dividend:0, interest:0, bonus:0, tax:0, taxrefund:0, fee:0}, cgtILS:0}; }
+function newLedger(){ return {cash:{ILS:0,USD:0}, pos:{}, netDepILS:0, netDepUSD:0, fees:{ILS:0,USD:0}, flows:{dividend:0, interest:0, bonus:0, tax:0, taxrefund:0, fee:0}, cgtILS:0}; }
 function applyTx(L, t, fxForDeposit){
   if(t.type==='taxacct') return;                              // broker tax bookkeeping: informational, never moves cash
   const amt = num(t.amount)||0, fee = num(t.fee)||0;
@@ -489,6 +492,10 @@ function applyTx(L, t, fxForDeposit){
     const sign = t.type==='deposit'?1:-1;
     L.cash[t.currency] += sign*amt;
     L.netDepILS += sign*(t.currency==='USD' ? amt*(num(t.fx)||fxForDeposit||fxNow()||0) : amt);
+    // the same deposits in dollars: a USD deposit is its amount; a shekel deposit is converted at that day's rate
+    // (Bank of Israel rate of that date; else the replay's history close / cached FX history), never at today's rate
+    if(t.currency==='USD') L.netDepUSD += sign*amt;
+    else { const r = boiRate(t.date) || fxForDeposit || rateOn(t.date) || fxNow(); if(r) L.netDepUSD += sign*amt/r; }   // same rate in the header and in the YTD replay
     return;
   }
   if(CASH_FLOW[t.type]){                                      // dividend / interest / bonus / tax paid / tax refund: cash only
@@ -554,7 +561,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=18').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=19').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -689,7 +696,7 @@ function computeAll(){
   const TM = taxModel(state.txs), L = TM.L;
   let gTax = 0, lTax = 0;
   const positions = [], closed = [];
-  let prevHoldILS = 0; const dayMk = new Set();
+  let prevHoldILS = 0, dayUSD = 0, prevHoldUSD = 0; const dayMk = new Set();
   let mvILS = 0, dayILS = 0, unrealILS = 0, realizedILS = 0, closeFeesILS = 0, estimated = 0;
   Object.values(L.pos).forEach(P=>{
     const a = assetOf(P.sym), pr = priceOf(P.sym);
@@ -704,7 +711,9 @@ function computeAll(){
     // daily change in ILS = qty × (price × FX now − prior close × FX prior close): the stock move and the shekel/dollar move together.
     // CNBC's price/prior-close pair is always the last session, so when a market is closed this is that session's change (plus today's FX move).
     const fxP = state.fx.prev || fxNow(), dayILSx = day==null ? null : P.cur==='USD' ? (fxNow() ? P.qty*(pr.price*fxNow() - pr.prev*fxP) : null) : day;
-    if(day!=null && dayILSx!=null){ prevHoldILS += P.qty*pr.prev*(P.cur==='USD' ? fxP : 1); if(P.qty>0) dayMk.add(marketOf(P.sym)); }
+    if(day!=null && dayILSx!=null){ prevHoldILS += P.qty*pr.prev*(P.cur==='USD' ? fxP : 1); if(P.qty>0) dayMk.add(marketOf(P.sym));
+      // in dollars: a USD holding moves by its price only; a shekel holding by its price and the FX move (prev at the prior FX close)
+      if(P.cur==='USD'){ dayUSD += day; prevHoldUSD += P.qty*pr.prev; } else if(fxNow() && fxP){ dayUSD += P.qty*(pr.price/fxNow() - pr.prev/fxP); prevHoldUSD += P.qty*pr.prev/fxP; } }
     const closeFee = commission(P.cur, Math.abs(mv));
     // tax if sold now (today's rate): a gain uses this year's shield first; a loss would add to the shield
     const LT = TM.lots[P.sym] || [], longQ = P.qty > 0 ? P.qty : 0;
@@ -737,7 +746,7 @@ function computeAll(){
   // current value = cash + market value, so realized + unrealized gains, dividends, interest, fees and tax are all inside it.
   return {L, positions, closed, cashILS, mvILS, equity, totalPL, totalPLPct: L.netDepILS>0? totalPL/L.netDepILS*100 : null,
     // daily % = Σ daily change (ILS) / Σ value of those holdings at the prior close (ILS) – holdings only, cash excluded
-    dayILS, dayPct: prevHoldILS>0 ? dayILS/prevHoldILS*100 : null, dayMk:[...dayMk], unrealILS, realizedILS, taxRealized, netIfSoldAll, closeFeesILS, estimated,
+    dayILS, dayPct: prevHoldILS>0 ? dayILS/prevHoldILS*100 : null, dayMk:[...dayMk], dayUSD, dayPctUSD: prevHoldUSD>0 ? dayUSD/prevHoldUSD*100 : null, unrealILS, realizedILS, taxRealized, netIfSoldAll, closeFeesILS, estimated,
     feesILS: L.fees.ILS + (toILS(L.fees.USD,'USD')||0),
     TM, hypoTax, hypoRefund, hypoShieldUse: Math.min(gTax, TM.shieldNow + lTax),
     divILS: F.dividend, intILS: F.interest + F.bonus, taxPaidILS: -(F.tax + F.taxrefund), cgtPaidILS: L.cgtILS,
@@ -903,7 +912,7 @@ async function buildPerformance(){
     if(prevV > 0) r = (C - flow)/prevV - 1; else if(flow > 0) r = (C - flow)/flow;
     if(!isFinite(r)) r = 0;
     twr *= (1+r); prevV = C;
-    pts.push({date:d, o:O, h:Hh, l:Ll, c:C, netDep:L.netDepILS, twr:(twr-1)*100, show: traded || !held || d===end || d===start});
+    pts.push({date:d, o:O, h:Hh, l:Ll, c:C, netDep:L.netDepILS, fx:lastFx, netDepU:L.netDepUSD, twr:(twr-1)*100, show: traded || !held || d===end || d===start});
   }
   return {pts: pts.filter(p=>p.show), all:pts, ytd:ytdBase(pts), noHist, anyOHLC, syms, sources:[...new Set(syms.map(s=>H[s]&&H[s].source).filter(Boolean))]};
 }
@@ -1009,25 +1018,37 @@ function renderAll(){
   if(pollReady) schedulePoll(); else renderLiveStatus();   // positions may have changed → re-evaluate poll speed
 }
 function flash(el, dir){ if(!el || !dir) return; el.classList.remove('flash-up','flash-down'); void el.offsetWidth; el.classList.add(dir>0?'flash-up':'flash-down'); }
+// Top summary in the chosen currency. In dollars every figure is a dollar figure, not a relabelled shekel one:
+//  value = ILS value ÷ live USD/ILS rate;  since start = value$ − net deposits$ (each deposit at its own date's rate, L.netDepUSD),
+//  % = that ÷ net deposits$;  daily = Σ holding moves in $ (shekel holdings include the FX move) ÷ their prior-close value in $.
+//  So the $ and ₪ percentages differ by the shekel/dollar move since each deposit – both are correct, from different viewpoints.
+function hdrVals(S){
+  const fx = fxNow(), usd = dispCur()==='USD' && fx > 0;
+  if(!usd) return {c:'ILS', eq:S.equity, pl:S.totalPL, plPct:S.totalPLPct, day:S.dayILS, dayPct:S.dayPct, net:S.netIfSoldAll};
+  const eq = S.equity/fx, nd = S.L.netDepUSD, pl = eq - nd;
+  return {c:'USD', eq, pl, plPct: nd>0 ? pl/nd*100 : null, day:S.dayUSD, dayPct:S.dayPctUSD, net:S.netIfSoldAll/fx};
+}
 function renderHeader(S){
-  const has = state.txs.length>0;
-  const t = $('hTotal'); t.textContent = fmtMoney(S.equity,'ILS',0);
+  const has = state.txs.length>0, V = hdrVals(S), C = V.c;
+  const bc = $('btnCur'); bc.textContent = C==='USD' ? '$' : '₪'; bc.setAttribute('aria-pressed', C==='USD'); bc.setAttribute('aria-label', C==='USD' ? 'מוצג בדולרים – החלפה לשקלים' : 'מוצג בשקלים – החלפה לדולרים');
+  const t = $('hTotal'); t.textContent = fmtMoney(V.eq,C,0);
   if(lastEquity!=null && Math.abs(S.equity-lastEquity) >= 0.5 && !hidden()) flash(t, S.equity-lastEquity);
   lastEquity = S.equity;
   const hasDay = S.dayPct!=null;                                 // percentages stay visible with the eye toggle; amounts are masked by fmtSigned
-  const d = $('hDay'); d.textContent = hasDay ? fmtSigned(S.dayILS,'ILS',0) : '—'; d.className = 'tp-a num '+cls(S.dayILS);
-  const dp = $('hDayPct'); dp.textContent = hasDay ? fmtPct(S.dayPct) : '—'; dp.className = 'tp-v num '+cls(S.dayILS);
+  const d = $('hDay'); d.textContent = hasDay ? fmtSigned(V.day,C,0) : '—'; d.className = 'tp-a num '+cls(V.day);
+  const dp = $('hDayPct'); dp.textContent = hasDay && V.dayPct!=null ? fmtPct(V.dayPct) : '—'; dp.className = 'tp-v num '+cls(V.day);
   const open = (S.dayMk||[]).some(m=>{ const st = marketState(m).state; return st==='open' || st==='pre' || st==='post'; });
   $('hDayLbl').textContent = !hasDay || open ? 'שינוי יומי' : 'שינוי יומי · מסחר אחרון';
-  const p = $('hPL'); p.textContent = has ? fmtSigned(S.totalPL,'ILS',0) : '—'; p.className = 'tp-a num '+cls(S.totalPL);
-  const pp = $('hPLPct'); pp.textContent = has && S.totalPLPct!=null ? fmtPct(S.totalPLPct) : '—'; pp.className = 'tp-v num '+cls(S.totalPL);
-  const n = $('hNet'); n.textContent = has ? fmtSigned(S.netIfSoldAll,'ILS',0) : '—'; n.className = 'num '+cls(S.netIfSoldAll);
+  const p = $('hPL'); p.textContent = has ? fmtSigned(V.pl,C,0) : '—'; p.className = 'tp-a num '+cls(V.pl);
+  const pp = $('hPLPct'); pp.textContent = has && V.plPct!=null ? fmtPct(V.plPct) : '—'; pp.className = 'tp-v num '+cls(V.pl);
+  const n = $('hNet'); n.textContent = has ? fmtSigned(V.net,C,0) : '—'; n.className = 'num '+cls(V.net);
   renderEye();
   $('hUpd').textContent = state.lastRefresh ? `מחירים עודכנו ${new Date(state.lastRefresh).toLocaleTimeString('he-IL')}${state.refreshErrors?` · ${state.refreshErrors} לא עודכנו`:''}` : 'טרם עודכנו מחירים';
 }
 function renderCash(S){
   const c = S.L.cash, fx = fxNow();
-  $('fxSmall').innerHTML = fx ? `<span class="num">$1 = ₪${fx.toFixed(4)}</span>` : '';
+  const C = dispCur()==='USD' && fx ? 'USD' : 'ILS', tot = C==='USD' ? c.USD + c.ILS/fx : c.ILS + c.USD*(fx||0);
+  $('fxSmall').innerHTML = `סה״כ <b class="num" id="cashTot">${fmtMoney(tot,C,0)}</b>` + (fx ? ` · <span class="num">$1 = ₪${fx.toFixed(4)}</span>` : '');
   $('cashRow').innerHTML = ['ILS','USD'].map(cur=>{ const neg = c[cur] < -0.005;
     return `<div class="c ${neg?'negc':''}"><div class="l">${cur==='ILS'?'מזומן בשקלים':'מזומן בדולרים'}</div>
      <div class="v num ${neg?'neg':''}">${fmtMoney(c[cur],cur)}</div>
@@ -1266,24 +1287,26 @@ let perfYtd = null;
 function ytdBase(all){
   if(!all || !all.length) return null;
   const d0 = `${Number(today().slice(0,4))-1}-12-31`, before = all.filter(x=>x.date<=d0).pop();
-  const start = before ? d0 : all[0].date, V0 = before ? before.c : 0;
-  let prev = before ? before.netDep : 0; const flows = [];
-  all.filter(x=>x.date > (before ? d0 : '')).forEach(x=>{ const f = x.netDep - prev; prev = x.netDep; if(Math.abs(f) > 0.005) flows.push([x.date, f]); });
-  return {start, V0, flows, fromStart: !before};
+  const start = before ? d0 : all[0].date, V0 = before ? before.c : 0, V0u = before && before.fx ? before.c/before.fx : 0;   // in $: the 31/12 value at the 31/12 FX close
+  let prev = before ? before.netDep : 0, prevU = before ? (before.netDepU||0) : 0; const flows = [], flowsU = [];
+  all.filter(x=>x.date > (before ? d0 : '')).forEach(x=>{ const f = x.netDep - prev, fu = (x.netDepU||0) - prevU; prev = x.netDep; prevU = x.netDepU||0;
+    if(Math.abs(f) > 0.005) flows.push([x.date, f]); if(Math.abs(fu) > 0.005) flowsU.push([x.date, fu]); });
+  return {start, V0, flows, V0u, flowsU, fromStart: !before};
 }
-function ytdCalc(Y, V1){
+function ytdCalc(Y, V1, usd){
   if(!Y || V1==null) return null;
-  const T = Math.max(1, daysBetween(Y.start, today()));
-  let F = 0, W = 0; Y.flows.forEach(([d,f])=>{ const t = Math.min(T, Math.max(0, daysBetween(Y.start, d))); F += f; W += f*(T - t)/T; });
-  const gain = V1 - Y.V0 - F, den = Y.V0 + W;
-  return {gain, pct: den > 0 ? gain/den*100 : null, F, V0:Y.V0};
+  const T = Math.max(1, daysBetween(Y.start, today())), V0 = usd ? Y.V0u : Y.V0;
+  let F = 0, W = 0; (usd ? Y.flowsU : Y.flows).forEach(([d,f])=>{ const t = Math.min(T, Math.max(0, daysBetween(Y.start, d))); F += f; W += f*(T - t)/T; });
+  const gain = V1 - V0 - F, den = V0 + W;
+  return {gain, pct: den > 0 ? gain/den*100 : null, F, V0};
 }
 function renderYtd(S){
   const el = $('perfYtd'); if(!el) return;
-  const r = ytdCalc(perfYtd, (S||computeAll()).equity); if(!r){ el.innerHTML = ''; return; }
+  S = S || computeAll(); const fx = fxNow(), C = dispCur()==='USD' && fx ? 'USD' : 'ILS';
+  const r = ytdCalc(perfYtd, C==='USD' ? S.equity/fx : S.equity, C==='USD'); if(!r){ el.innerHTML = ''; return; }
   const y = today().slice(0,4);
-  el.innerHTML = `<div class="l">תשואה מתחילת השנה (${y})<small>${perfYtd.fromStart ? `מאז פתיחת התיק ב-<span class="num">${fmtDate(perfYtd.start)}</span>` : `מול שווי 31.12.${Number(y)-1}: <span class="num">${fmtMoney(r.V0,'ILS',0)}</span>`} · הפקדות נטו השנה <span class="num">${fmtSigned(r.F,'ILS',0)}</span></small></div>
-    <div class="v"><b id="ytdPct" class="num ${cls(r.gain)}">${r.pct!=null ? fmtPct(r.pct) : '—'}</b><span id="ytdAmt" class="num ${cls(r.gain)}">${fmtSigned(r.gain,'ILS',0)}</span></div>`;
+  el.innerHTML = `<div class="l">תשואה מתחילת השנה (${y})<small>${perfYtd.fromStart ? `מאז פתיחת התיק ב-<span class="num">${fmtDate(perfYtd.start)}</span>` : `מול שווי 31.12.${Number(y)-1}: <span class="num">${fmtMoney(r.V0,C,0)}</span>`} · הפקדות נטו השנה <span class="num">${fmtSigned(r.F,C,0)}</span>${C==='USD'?' · בדולרים':''}</small></div>
+    <div class="v"><b id="ytdPct" class="num ${cls(r.gain)}">${r.pct!=null ? fmtPct(r.pct) : '—'}</b><span id="ytdAmt" class="num ${cls(r.gain)}">${fmtSigned(r.gain,C,0)}</span></div>`;
 }
 function updatePerfLive(S){
   renderYtd(S);
@@ -1898,7 +1921,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v18</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v19</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -1976,7 +1999,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 18;
+const SEC_DIR_V = 19;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
@@ -2454,6 +2477,9 @@ $('fab').onclick = ()=>openTxForm(state.txs.length ? 'buy' : 'deposit');
 $('btnRefresh').onclick = ()=>refreshPrices(false);
 function renderEye(){ const h = hidden(), b = $('btnEye'); b.textContent = h ? '🙈' : '👁'; b.setAttribute('aria-pressed', h?'true':'false');
   const l = h ? 'הצגת סכומים' : 'הסתרת סכומים'; b.setAttribute('aria-label', l); b.title = l; document.body.classList.toggle('privacy', h); }
+$('btnCur').onclick = ()=>{ const u = dispCur()!=='USD'; try{ localStorage.setItem(CUR_KEY, u ? 'USD' : 'ILS'); }catch(_){}
+  if(u && !TAXD) loadTaxData().then(D=>{ if(D) renderAll(); }).catch(()=>{});   // dated rates for converting shekel deposits
+  renderAll(); toast(u ? 'התיק מוצג בדולרים 💵' : 'התיק מוצג בשקלים'); };
 $('btnEye').onclick = ()=>{ state.settings.hideAmounts = !hidden(); save(); renderAll(); toast(hidden() ? 'הסכומים מוסתרים 🙈' : 'הסכומים מוצגים 👁'); };
 $('posView').addEventListener('click', e=>{ const b = e.target.closest('[data-view]'); if(!b) return; try{ localStorage.setItem(VIEW_KEY, b.dataset.view); }catch(_){} renderPortfolio(computeAll()); });
 $('posList').addEventListener('click', e=>{ const n = e.target.closest('[data-new]'); if(n) return openTxForm(n.dataset.new);
@@ -2488,7 +2514,7 @@ if(/^https?:$/.test(location.protocol)){
 
 // ====================== init ======================
 renderAll();
-if(state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
+if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
 window.__portfolio = {get state(){ return state; }, livePatch, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
