@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=20">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=20">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=20">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=21">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=21">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=21">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=21">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -230,7 +230,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=20" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=21" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -296,8 +296,8 @@ input.ltr-in{direction:ltr;text-align:right}
 // ====================== constants ======================
 const KEY = 'portfolioTracker.v2', OLD_KEY = 'portfolioTracker.v1', HIST_KEY = 'portfolioTracker.hist.v1';
 const TYPE_LABELS = {stock:'מניה', etf:'תעודת סל', fund:'קרן', crypto:'קריפטו', index:'מדד', bond:'אג״ח'};
-const TX_LABELS = {buy:'קנייה', sell:'מכירה', deposit:'הפקדה', withdraw:'משיכה', convert:'המרת מט״ח', dividend:'דיבידנד', interest:'ריבית', bonus:'הטבה', tax:'מס ששולם', taxrefund:'החזר מס', split:'פיצול מניה', symchange:'המרת נייר', taxacct:'רישום מס של הבנק', fee:'עמלה', sharebonus:'מניות הטבה'};
-const TX_ICONS = {symchange:'🔁', buy:'🛒', sell:'💰', deposit:'⬇️', withdraw:'⬆️', convert:'💱', dividend:'💵', interest:'🏦', bonus:'🎁', tax:'🏛️', taxrefund:'↩️', split:'✂️', taxacct:'📒', fee:'🧾', sharebonus:'🎁'};
+const TX_LABELS = {buy:'קנייה', sell:'מכירה', deposit:'הפקדה', withdraw:'משיכה', convert:'המרת מט״ח', dividend:'דיבידנד', interest:'ריבית', bonus:'הטבה', tax:'מס ששולם', taxrefund:'החזר מס', split:'פיצול מניה', symchange:'המרת נייר', fraczero:'סגירת שבר מניה', taxacct:'רישום מס של הבנק', fee:'עמלה', sharebonus:'מניות הטבה'};
+const TX_ICONS = {symchange:'🔁', fraczero:'🧹', buy:'🛒', sell:'💰', deposit:'⬇️', withdraw:'⬆️', convert:'💱', dividend:'💵', interest:'🏦', bonus:'🎁', tax:'🏛️', taxrefund:'↩️', split:'✂️', taxacct:'📒', fee:'🧾', sharebonus:'🎁'};
 const TX_SHORT = {dividend:'דיבידנד', interest:'ריבית', tax:'מס', taxrefund:'החזר מס', fee:'עמלה', split:'פיצול'};
 // cash-only income/expense rows (sign applied to amount; amount may be negative for a reversal). Not deposits → they count in P/L.
 const CASH_FLOW = {dividend:1, interest:1, bonus:1, tax:-1, taxrefund:1, fee:-1};
@@ -446,6 +446,7 @@ function loadState(){
 }
 let state = loadState();
 try{ if(markSplitDupes(state.txs)) localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){ console.warn('split check failed', e); }   // repairs portfolios imported before v18
+setTimeout(()=>{ try{ if(closeFractions()){ save(); renderAll(); } }catch(e){ console.warn('fraction check failed', e); } }, 0);   // closes leftover split fractions in existing portfolios (v21), after init
 let hist = (()=>{ try{ return JSON.parse(localStorage.getItem(HIST_KEY)||'{}')||{}; }catch(e){ return {}; } })();
 const VIEW_KEY = 'portfolioTracker.posView';
 function posView(){ try{ return localStorage.getItem(VIEW_KEY)==='full' ? 'full' : 'compact'; }catch(e){ return 'compact'; } }   // compact is the default
@@ -464,9 +465,24 @@ function splitDupes(txs){
     kept.push(t); });
   return out;
 }
+function fracCandidates(txs){
+  const L = newLedger(), last = {}, out = [], sorted = sortedTxs(txs), dis = state.fracDismiss || {};
+  sorted.forEach(t=>{ applyTx(L, t); [t.symbol, t.toSymbol].forEach(s=>{ if(s) last[s] = t; }); });
+  Object.values(L.pos).forEach(P=>{ const sym = P.sym, q = P.qty, lt = last[sym];
+    if(!(q > 1e-9 && q < 1 - 1e-9) || !lt || isCrypto(sym)) return;
+    const own = sorted.filter(t=>t.symbol===sym || t.toSymbol===sym);
+    if(own.some(t=>(t.type==='buy' || t.type==='sell') && Math.abs(num(t.qty) - Math.round(num(t.qty))) > 1e-9)) return;   // traded in fractions → a genuine fractional holding
+    const fromEvent = own.some(t=>(t.type==='split' && !t.dupSkip && !t.voided) || (t.type==='sharebonus' && !t.voided) || t.type==='symchange');
+    if(!fromEvent && lt.type!=='sell') return;
+    const key = `fraczero|${sym}|${lt.date}|${Math.round(q*1e6)}`; if(dis[key] || txs.some(t=>t.ikey===key)) return;
+    out.push({id:uid(), ts:(lt.ts||0)+1, type:'fraczero', date:lt.date, symbol:sym, currency:P.cur, qty:Math.round(q*1e8)/1e8, cost:Math.round(q*P.avg*100)/100, src:'auto', ikey:key,
+      note:'סגירה אוטומטית של שבר מניה שנשאר אחרי פיצול/איחוד או מכירה מלאה'}); });
+  return out;
+}
+function closeFractions(){ const add = fracCandidates(state.txs); if(add.length) state.txs.push(...add); return add.length; }
 function markSplitDupes(txs){ const m = splitDupes(txs); let ch = false;
   txs.forEach(t=>{ if(t.type!=='split') return; const r = m.get(t) || null; if((t.dupSkip||null)!==r){ ch = true; if(r) t.dupSkip = r; else delete t.dupSkip; } }); return ch; }
-function save(){ try{ markSplitDupes(state.txs); localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){ toast('שגיאה בשמירה בדפדפן'); } }
+function save(){ try{ markSplitDupes(state.txs); closeFractions(); localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){ toast('שגיאה בשמירה בדפדפן'); } }
 function saveHist(){ try{ localStorage.setItem(HIST_KEY, JSON.stringify(hist)); }catch(e){ /* quota: drop cache */ hist = {}; try{ localStorage.removeItem(HIST_KEY); }catch(_){} } }
 
 function assetOf(sym){ return state.assets[sym] || {name:'', type: CRYPTO_IDS[sym]?'crypto':(isTaIndex(sym)?'index':'stock'), currency: isTaseSec(sym)||isTaIndex(sym)?'ILS':'USD'}; }
@@ -514,6 +530,12 @@ function applyTx(L, t, fxForDeposit){
     return;
   }
   if(t.type==='shareadj') return;
+  // 'fraczero' = automatic "סגירת שבר מניה": a leftover fraction (< 1 share) after a split/reverse split or a full sale is closed with
+  // zero cash. Its remaining cost basis is written off as a realized loss, so total value (cash + holdings) and P/L stay consistent:
+  // the fraction's tiny market value leaves the holdings and its cost moves from unrealized to realized. No tax sale is created
+  // (the tax lots of the fraction are simply removed) – if the bank pays cash in lieu, that cash row is imported as usual.
+  if(t.type==='fraczero'){ const P = L.pos[t.symbol]; if(!P || P.qty <= 1e-9) return; const q = Math.min(P.qty, num(t.qty) || P.qty);
+    P.realized -= q*P.avg; P.qty -= q; if(Math.abs(P.qty) < 1e-9){ P.qty = 0; P.avg = 0; } return; }
   if(t.type==='symchange'){                                   // security converted into another (ticker change / merger): position + cost move, no cash
     const P = L.pos[t.symbol], r = num(t.ratio)||1; if(!P || P.qty <= 1e-9 || !t.toSymbol) return;
     const mv = Math.min(P.qty, num(t.qty) || P.qty), cost = mv*P.avg;
@@ -578,7 +600,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=20').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=21').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -652,6 +674,7 @@ function taxModel(txs){
     const P0 = trade ? L.pos[t.symbol] : null, held0 = P0 ? P0.qty : 0, before = P0 ? P0.realized : 0;
     applyTx(L, t);
     if(t.type==='split' && !t.dupSkip && !t.voided && lots[t.symbol]){ const r = num(t.ratio); if(r>0) lots[t.symbol].forEach(l=>{ l.q *= r; l.c /= r; l.ils /= r; }); }
+    if(t.type==='fraczero' && lots[t.symbol]){ let q = num(t.qty)||0; while(q > 1e-9 && lots[t.symbol].length){ const l = lots[t.symbol][0], d = Math.min(l.q, q); l.q -= d; q -= d; if(l.q <= 1e-9) lots[t.symbol].shift(); } }
     if(t.type==='symchange' && lots[t.symbol] && t.toSymbol){ let mv = Math.min(lots[t.symbol].reduce((a,l)=>a+l.q,0), num(t.qty) || Infinity); const r = num(t.ratio)||1, D = lots[t.toSymbol] || (lots[t.toSymbol] = []);
       while(mv > 1e-9 && lots[t.symbol].length){ const l = lots[t.symbol][0], q = Math.min(l.q, mv), f = q/l.q;   // FIFO lots keep their date, ILS cost and CPI
         D.push(Object.assign({}, l, {q:q*r, c:l.c/r, ils:l.ils/r})); l.q -= q; mv -= q; if(l.q <= 1e-9) lots[t.symbol].shift(); } }
@@ -1319,6 +1342,7 @@ function txDesc(t){
   if(t.type==='taxacct'){ const l = (TAXACCT[t.acct]||{})[t.dir] || TX_LABELS.taxacct, d = taxAcctDelta(t);
     return {t1:`${l} <span class="tag taxi">ללא תנועת מזומן</span>`, amt:fmtMoney(num(t.amount)||0,'ILS'), c:''}; }
   const vd = t.voided ? ` · <b class="neg">בוטל – הוחלף בפיצול מתוקן</b>` : '';
+  if(t.type==='fraczero') return {t1:`סגירת שבר מניה <span class="ltr">${esc(t.symbol)}</span> · <span class="num">${fmtQty(num(t.qty))}</span> יח׳ · אוטומטי`, amt:`<span class="num">${fmtSigned(-(num(t.cost)||0), t.currency||'USD')}</span> הפסד ממומש`, c:'neg'};
   if(t.type==='symchange') return {t1:`המרת נייר <span class="ltr">${esc(t.symbol)} → ${esc(t.toSymbol)}</span>`, amt:`<span class="num">${fmtQty(num(t.qty))} → ${fmtQty(num(t.qty)*(num(t.ratio)||1))}</span> יח׳`, c:''};
   if(t.type==='sharebonus') return num(t.qty)<0 ? {t1:`הפחתת כמות <span class="ltr">${esc(t.symbol)}</span>${vd}`, amt:`<span class="num">${fmtQty(num(t.qty))}</span> יח׳`, c:'neg'}
     : {t1:`מניות הטבה <span class="ltr">${esc(t.symbol)}</span>${vd}`, amt:`<span class="num">+${fmtQty(num(t.qty))}</span> יח׳`, c:'pos'};
@@ -1331,7 +1355,7 @@ function txDesc(t){
 }
 function renderTxList(){
   let list = sortedTxs().reverse(), hiddenN = 0;
-  if(histHidden()){ const cs = closedSymSet(); const all = list.length; list = list.filter(t=>!(t.symbol && (t.type==='buy'||t.type==='sell'||t.type==='split'||t.type==='sharebonus') && cs.has(t.symbol))); hiddenN = all - list.length; }
+  if(histHidden()){ const cs = closedSymSet(); const all = list.length; list = list.filter(t=>!(t.symbol && (t.type==='buy'||t.type==='sell'||t.type==='split'||t.type==='sharebonus'||t.type==='fraczero') && cs.has(t.symbol))); hiddenN = all - list.length; }
   $('txHistBar').innerHTML = state.txs.length ? histToggleHtml() + (hiddenN ? `<span class="hist-note" id="txHiddenNote">מוסתרות ${hiddenN} עסקאות של פוזיציות סגורות · <button class="linkbtn" data-histshow>הצג</button></span>` : '') : '';
   $('txCount').textContent = list.length ? `${list.length} עסקאות` : '';
   if(!list.length && hiddenN){ $('txList').innerHTML = '<div class="empty">כל העסקאות שייכות לפוזיציות סגורות ומוסתרות.</div>'; return; }
@@ -1638,10 +1662,18 @@ function openShareBonus(t, backSym){
     <div class="btn-row" style="margin-top:14px"><button class="btn btn-danger" id="sbDel">🗑️ מחיקה</button><button class="btn btn-light" data-close>סגירה</button></div>`);
   $('sbDel').onclick = ()=>{ if(!confirm('למחוק את הרישום?')) return; state.txs = state.txs.filter(x=>x.id!==t.id); save(); closeSheet(); renderAll(); toast('הרישום נמחק'); if(backSym) openPosition(backSym); };
 }
+function openFracZero(t, backSym){
+  openSheet(`<h3>🧹 סגירת שבר מניה <span class="ltr">${esc(t.symbol)}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
+    <div class="kv"><div><span>תאריך</span><b>${fmtDate(t.date)}</b></div><div><span>כמות שנסגרה</span><b class="num">${fmtQty(num(t.qty))}</b></div><div><span>עלות שנמחקה (הפסד ממומש)</span><b class="num">${fmtMoney(num(t.cost)||0, t.currency||'USD')}</b></div></div>
+    <div class="note">נשאר שבר של מניה (פחות ממניה אחת) אחרי פיצול/איחוד או מכירה מלאה – שבר כזה לא נסחר, ולכן האפליקציה סגרה אותו אוטומטית בלי מזומן. אם הבנק שילם עליו כסף, שורת התשלום מיובאת כרגיל. ביטול יחזיר את השבר להחזקות ולא ייסגר שוב אוטומטית.</div>
+    <div class="btn-row" style="margin-top:14px"><button class="btn btn-danger" id="fzDel">↩️ ביטול הסגירה</button><button class="btn btn-light" data-close>סגירה</button></div>`);
+  $('fzDel').onclick = ()=>{ (state.fracDismiss || (state.fracDismiss = {}))[t.ikey] = Date.now(); state.txs = state.txs.filter(x=>x.id!==t.id); save(); closeSheet(); renderAll(); toast('הסגירה בוטלה'); if(backSym) openPosition(backSym); };
+}
 function openTxForm(type, preset, editId, backSym, after){
   const t = editId ? state.txs.find(x=>x.id===editId) : null;
   if(t && t.type==='taxacct') return openTaxAcct(t, backSym);
   if(t && t.type==='sharebonus') return openShareBonus(t, backSym);
+  if(t && t.type==='fraczero') return openFracZero(t, backSym);
   type = t ? t.type : (type||'buy');
   const f = Object.assign({date:today(), from:'ILS'}, preset||{}, t||{});
   const st = {type, feeTouched: !!t, priceTouched: !!t || !!(preset && preset.price!=null), rateTouched: !!t};
@@ -2028,7 +2060,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v20</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v21</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -2106,7 +2138,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 20;
+const SEC_DIR_V = 21;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
@@ -2689,7 +2721,7 @@ renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {get state(){ return state; }, livePatch, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get state(){ return state; }, livePatch, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 })();
 </script>
 </body>
