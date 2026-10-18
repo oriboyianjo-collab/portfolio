@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=21">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=21">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=21">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=21">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=22">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=22">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=22">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=22">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -73,6 +73,10 @@ h2 small{font-weight:500;color:var(--muted);font-size:.78rem}
 .ytd:empty{display:none}.ytd .l{font-size:.85rem;color:var(--muted)}.ytd .l small{display:block;font-size:.72rem}.ytd .v{text-align:left}.ytd .v b{font-size:1.3rem;font-weight:800;display:block}.ytd .v span{font-size:.85rem}
 .h2row{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .viewtgl{display:inline-flex;border:1px solid var(--border);border-radius:99px;overflow:hidden;font-size:.78rem}
+.sortbar{display:flex;align-items:center;gap:6px;margin:10px 0 2px;flex-wrap:wrap;font-size:.8rem}.sortbar>span{color:var(--muted)}
+.sortbar button{border:1px solid var(--border);background:#fff;color:var(--muted);border-radius:99px;padding:5px 11px;font:inherit;font-weight:600;cursor:pointer;min-height:34px}
+.sortbar button.on{background:#dbeafe;border-color:#93c5fd;color:#1e40af}.sortbar .ar{display:inline-block;margin-inline-start:4px}
+.pos-list .pcard.mv{transition:transform .32s ease}@media (prefers-reduced-motion:reduce){.pos-list .pcard.mv{transition:none}}
 .viewtgl button{border:0;background:#fff;color:var(--muted);padding:5px 10px;font:inherit;cursor:pointer}.viewtgl button.on{background:#1e3a8a;color:#fff}
 .pcard.pc{padding:0;cursor:default}
 .pc-h{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;width:100%;padding:9px 12px;border:0;background:none;font:inherit;color:inherit;text-align:inherit;cursor:pointer;border-radius:14px}
@@ -230,7 +234,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=21" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=22" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -249,7 +253,7 @@ input.ltr-in{direction:ltr;text-align:right}
   <section class="tab on" id="tab-portfolio">
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="value">שווי</button><button data-sort="day">שינוי יומי</button><button data-sort="unreal">שינוי מעלות</button></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
@@ -450,6 +454,21 @@ setTimeout(()=>{ try{ if(closeFractions()){ save(); renderAll(); } }catch(e){ co
 let hist = (()=>{ try{ return JSON.parse(localStorage.getItem(HIST_KEY)||'{}')||{}; }catch(e){ return {}; } })();
 const VIEW_KEY = 'portfolioTracker.posView';
 function posView(){ try{ return localStorage.getItem(VIEW_KEY)==='full' ? 'full' : 'compact'; }catch(e){ return 'compact'; } }   // compact is the default
+// holdings sort (display only – S.positions keeps its value order for the other views)
+let sortPending = null, listTouch = false;   // see reorderCards
+const SORT_KEY = 'portfolioTracker.posSort', SORT_FIELDS = {value:'mvILS', day:'dayPct', unreal:'unrealPct'};
+function posSort(){ try{ const [k,d] = (localStorage.getItem(SORT_KEY)||'').split(':'); if(SORT_FIELDS[k]) return {k, d: d==='asc'?'asc':'desc'}; }catch(e){} return {k:'value', d:'desc'}; }
+// value = market value in ILS for every holding (USD converted at the live rate) so ₪ and $ holdings compare correctly;
+// day = daily %, unreal = unrealized P/L % vs cost. Holdings without a number (no quote yet) always go last; ties by symbol.
+function sortPositions(list){ const {k,d} = posSort(), f = SORT_FIELDS[k], sg = d==='asc' ? 1 : -1;
+  return list.slice().sort((a,b)=>{ const x = a[f], y = b[f], nx = x==null || !isFinite(x), ny = y==null || !isFinite(y);
+    if(nx || ny) return nx===ny ? (a.sym<b.sym?-1:1) : (nx?1:-1);
+    return (x-y)*sg || (a.sym<b.sym?-1:a.sym>b.sym?1:0); }); }
+function renderSortBar(n){ const bar = $('posSort'), {k,d} = posSort(); bar.hidden = n < 2;
+  bar.querySelectorAll('[data-sort]').forEach(b=>{ const on = b.dataset.sort===k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
+    const ar = b.querySelector('.ar'); if(ar) ar.remove();
+    if(on){ const s = document.createElement('span'); s.className = 'ar'; s.textContent = d==='desc' ? '↓' : '↑'; s.setAttribute('aria-hidden','true'); b.appendChild(s);
+      b.setAttribute('aria-label', `${b.firstChild.textContent} – ${d==='desc'?'מהגבוה לנמוך':'מהנמוך לגבוה'}`); } else b.removeAttribute('aria-label'); }); }
 const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'3M', perfMode:'value', perfStyle:'line', posRange:'1Y', posStyle:'candle'};
 // A split must never be counted twice. The bank books some splits as bonus shares ('הטבה' rows → sharebonus), and the importer can
 // also add a split it detected in the price history. If the same security has a bonus row, or an earlier split, within ±5 days,
@@ -600,7 +619,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=21').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=22').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -1170,7 +1189,8 @@ function splitSugClick(e){
   splitSug = splitSug.filter(y=>y.key!==key); save(); renderAll(); if(sheetSym===x.sym && $('posSplitSug')) openPosition(x.sym);
 }
 function renderPortfolio(S){
-  renderCash(S); renderSplitSug();
+  renderCash(S); renderSplitSug(); renderSortBar(S.positions.length);
+  S = Object.assign({}, S, {positions: sortPositions(S.positions)}); sortPending = null;
   $('posCount').textContent = S.positions.length ? `${S.positions.length} פתוחות` : '';
   if(!S.positions.length){
     $('posList').innerHTML = state.txs.length ? '<div class="empty">אין פוזיציות פתוחות</div>' :
@@ -1304,17 +1324,37 @@ function patchPortfolio(S){
   const cards = $('posList').querySelectorAll('.pcard');
   if(cards.length !== S.positions.length || !cards.length) return false;
   if(($('posList').querySelector('.pcard.pc') ? 'compact' : 'full') !== posView()) return false;
-  for(let i=0;i<cards.length;i++) if(cards[i].dataset.sym !== S.positions[i].sym) return false;
-  renderCash(S);
+  const bySym = new Map([...cards].map(c=>[c.dataset.sym, c])), order = sortPositions(S.positions);
+  if(bySym.size !== cards.length || order.some(p=>!bySym.has(p.sym))) return false;
+  renderCash(S); renderSortBar(S.positions.length);
+  S = Object.assign({}, S, {positions: order});
   S.positions.forEach((p,i)=>{
-    const c = cards[i], F = cardFields(p);
+    const c = bySym.get(p.sym), F = cardFields(p);
     for(const k in F){ const el = c.querySelector(`[data-f="${k}"]`); if(!el) continue; if(el.textContent!==F[k][0]) el.textContent = F[k][0]; el.className = F[k][1]; }
     const ex = c.querySelector('[data-f="ext"]'), eh = extLine(p.sym); if(ex && ex.innerHTML!==eh) ex.innerHTML = eh;
     const old = shownPrice[p.sym];
     if(old!=null && p.price!=null && Math.abs(p.price-old) > 1e-9){ flash(c.querySelector('[data-f="price"]'), p.price-old); if(!hidden()) flash(c.querySelector('[data-f="mv"]'), (p.price-old)*(p.qty<0?-1:1)); }
     shownPrice[p.sym] = p.price;
   });
+  reorderCards(order.map(p=>bySym.get(p.sym)));
   return true;
+}
+// move the existing cards into the new order without rebuilding them; each card slides from its old spot (FLIP).
+// While a finger is on the list the move waits until it lifts, so a row never jumps out from under a tap.
+function reorderCards(want){
+  const list = $('posList'), cur = [...list.querySelectorAll('.pcard')];
+  if(want.length !== cur.length || want.some(c=>!c || c.parentNode!==list)){ sortPending = null; return; }   // list was rebuilt meanwhile
+  if(want.every((c,i)=>c===cur[i])){ sortPending = null; return; }
+  if(listTouch){ sortPending = want; return; }
+  sortPending = null;
+  const before = new Map(cur.map(c=>[c, c.getBoundingClientRect().top]));
+  want.forEach(c=>list.appendChild(c));
+  const after = new Map(want.map(c=>[c, c.getBoundingClientRect().top]));
+  want.forEach(c=>{ const dy = before.get(c) - after.get(c); if(Math.abs(dy) < 1) return;
+    c.classList.remove('mv'); c.style.transform = `translateY(${dy}px)`; });
+  void list.offsetHeight;
+  want.forEach(c=>{ if(!c.style.transform) return; c.classList.add('mv'); c.style.transform = '';
+    c.addEventListener('transitionend', ()=>c.classList.remove('mv'), {once:true}); });
 }
 function updateAges(){
   $('posList').querySelectorAll('.pcard').forEach(c=>{ const el = c.querySelector('[data-f="age"]'); if(!el) return;
@@ -2060,7 +2100,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v21</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v22</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -2138,7 +2178,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 21;
+const SEC_DIR_V = 22;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
@@ -2686,6 +2726,11 @@ $('btnEye').onclick = ()=>{ state.settings.hideAmounts = !hidden(); save(); rend
 $('cashHead').addEventListener('click', ()=>{ if(posView()!=='compact') return; try{ localStorage.setItem(CASH_KEY, cashOpen() ? '0' : '1'); }catch(_){} renderCash(computeAll()); });
 $('posView').addEventListener('click', e=>{ const b = e.target.closest('[data-view]'); if(!b) return; try{ localStorage.setItem(VIEW_KEY, b.dataset.view); }catch(_){} renderPortfolio(computeAll()); });
 $('splitSug').addEventListener('click', splitSugClick);
+$('posSort').addEventListener('click', e=>{ const b = e.target.closest('[data-sort]'); if(!b) return; const cur = posSort();
+  const d = cur.k===b.dataset.sort ? (cur.d==='desc' ? 'asc' : 'desc') : 'desc';
+  try{ localStorage.setItem(SORT_KEY, `${b.dataset.sort}:${d}`); }catch(_){} renderPortfolio(computeAll()); });
+$('posList').addEventListener('pointerdown', ()=>{ listTouch = true; });
+['pointerup','pointercancel'].forEach(ev=>document.addEventListener(ev, ()=>{ if(!listTouch) return; listTouch = false; if(sortPending) setTimeout(()=>{ if(sortPending && !listTouch) reorderCards(sortPending); }, 250); }));
 $('posList').addEventListener('click', e=>{ const n = e.target.closest('[data-new]'); if(n) return openTxForm(n.dataset.new);
   const cm = e.target.closest('.pcard.pc');
   if(cm){ const sym = cm.dataset.sym;
