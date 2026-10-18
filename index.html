@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=15">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=15">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=15">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=15">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=16">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=16">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=16">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=16">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -118,7 +118,8 @@ button{font-family:inherit}
 .tx .t2{font-size:.76rem;color:var(--muted)}
 .tx .amt{text-align:left;font-weight:700;font-size:.9rem}
 .ic.buy{background:#dbeafe}.ic.sell{background:#fce7f3}.ic.deposit{background:#d1fae5}.ic.withdraw{background:#fee2e2}.ic.convert{background:#fef3c7}
-.ic.dividend{background:#dcfce7}.ic.interest{background:#e0f2fe}.ic.bonus{background:#fae8ff}.ic.tax{background:#fee2e2}.ic.taxrefund{background:#d1fae5}.ic.split{background:#ede9fe}.ic.taxacct{background:#fef3c7}
+.ic.dividend{background:#dcfce7}.ic.interest{background:#e0f2fe}.ic.bonus{background:#fae8ff}.ic.tax{background:#fee2e2}.ic.taxrefund{background:#d1fae5}.ic.split{background:#ede9fe}.ic.fee{background:#f1f5f9}.ic.sharebonus{background:#fae8ff}
+.upd-bar{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:60;background:#0f172a;color:#fff;border-radius:14px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.9rem;box-shadow:0 10px 30px rgba(0,0,0,.25)}.ic.taxacct{background:#fef3c7}
 .taxbox{margin-top:12px}.taxbox h3{font-size:.95rem;margin:0 0 6px}.taxbox .kv div.hl{background:#ecfdf5}
 .taxyr{background:#f8fafc;border-radius:10px;padding:8px 10px;margin-top:8px}.taxyr .yh{font-weight:700;margin-bottom:4px}.taxyr .yg{display:grid;grid-template-columns:1fr auto;gap:3px 10px;font-size:.82rem}.taxyr .yg span{color:var(--muted)}.taxyr .yg b{text-align:left}.tag.taxi{background:#fef3c7;color:#92400e}
 .tag.imp{background:#ecfeff;color:#155e75}
@@ -204,7 +205,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=15" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=16" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -266,15 +267,15 @@ input.ltr-in{direction:ltr;text-align:right}
 // ====================== constants ======================
 const KEY = 'portfolioTracker.v2', OLD_KEY = 'portfolioTracker.v1', HIST_KEY = 'portfolioTracker.hist.v1';
 const TYPE_LABELS = {stock:'מניה', etf:'תעודת סל', fund:'קרן', crypto:'קריפטו', index:'מדד', bond:'אג״ח'};
-const TX_LABELS = {buy:'קנייה', sell:'מכירה', deposit:'הפקדה', withdraw:'משיכה', convert:'המרת מט״ח', dividend:'דיבידנד', interest:'ריבית', bonus:'הטבה', tax:'מס ששולם', taxrefund:'החזר מס', split:'פיצול מניה', taxacct:'רישום מס של הבנק'};
-const TX_ICONS = {buy:'🛒', sell:'💰', deposit:'⬇️', withdraw:'⬆️', convert:'💱', dividend:'💵', interest:'🏦', bonus:'🎁', tax:'🏛️', taxrefund:'↩️', split:'✂️', taxacct:'📒'};
-const TX_SHORT = {dividend:'דיבידנד', interest:'ריבית', tax:'מס', taxrefund:'החזר מס', split:'פיצול'};
+const TX_LABELS = {buy:'קנייה', sell:'מכירה', deposit:'הפקדה', withdraw:'משיכה', convert:'המרת מט״ח', dividend:'דיבידנד', interest:'ריבית', bonus:'הטבה', tax:'מס ששולם', taxrefund:'החזר מס', split:'פיצול מניה', taxacct:'רישום מס של הבנק', fee:'עמלה', sharebonus:'מניות הטבה'};
+const TX_ICONS = {buy:'🛒', sell:'💰', deposit:'⬇️', withdraw:'⬆️', convert:'💱', dividend:'💵', interest:'🏦', bonus:'🎁', tax:'🏛️', taxrefund:'↩️', split:'✂️', taxacct:'📒', fee:'🧾', sharebonus:'🎁'};
+const TX_SHORT = {dividend:'דיבידנד', interest:'ריבית', tax:'מס', taxrefund:'החזר מס', fee:'עמלה', split:'פיצול'};
 // cash-only income/expense rows (sign applied to amount; amount may be negative for a reversal). Not deposits → they count in P/L.
-const CASH_FLOW = {dividend:1, interest:1, bonus:1, tax:-1, taxrefund:1};
+const CASH_FLOW = {dividend:1, interest:1, bonus:1, tax:-1, taxrefund:1, fee:-1};
 // broker tax-account bookkeeping rows (no cash): מס עתידי → מס לשלם → מס ששולם for gains; מגן מס for losses (in tax shekels)
-const TAXACCT = {future:{in:'מס עתידי שוחרר', out:'מס עתידי נרשם (על רווח הון)'}, payable:{in:'מס לשלם בוטל', out:'מס לשלם נרשם'}, shield:{in:'מגן מס נוצר (מהפסד הון)', out:'מגן מס נוצל'}};
+const TAXACCT = {future:{in:'מס עתידי שוחרר', out:'מס עתידי נרשם (על רווח הון)'}, payable:{in:'מס לשלם בוטל', out:'מס לשלם נרשם'}, shield:{in:'מגן מס נוצר (מהפסד הון)', out:'מגן מס נוצל'}, note:{in:'רישום מס של הבנק', out:'רישום מס של הבנק'}};
 function taxAcctDelta(t){ const a = num(t.amount)||0; return t.acct==='shield' ? (t.dir==='in'?a:-a) : (t.dir==='out'?a:-a); }
-const TAX_KINDS = {cgt:'מס רווחי הון', foreign:'מס במקור בחו״ל', il:'מס ישראלי על דיבידנד', other:'מס אחר'};
+const TAX_KINDS = {cgt:'מס רווחי הון', foreign:'מס במקור בחו״ל', il:'מס ישראלי על דיבידנד', int:'מס על ריבית ותקבולים', other:'מס אחר'};
 const CUR_SYM = {USD:'$', ILS:'₪'};
 const COLORS = ['#2563eb','#059669','#f59e0b','#dc2626','#7c3aed','#0891b2','#db2777','#65a30d','#ea580c','#4f46e5','#0d9488','#9333ea','#ca8a04','#be123c','#475569'];
 const BM_COLORS = ['#f59e0b','#7c3aed','#db2777','#0891b2','#65a30d'];
@@ -439,7 +440,7 @@ function taxRate(){ return (num(state.settings.taxRate)||0)/100; }
 
 // ====================== ledger engine ======================
 function sortedTxs(list){ return (list||state.txs).slice().sort((a,b)=> a.date<b.date?-1: a.date>b.date?1 : (a.ts||0)-(b.ts||0)); }
-function newLedger(){ return {cash:{ILS:0,USD:0}, pos:{}, netDepILS:0, fees:{ILS:0,USD:0}, flows:{dividend:0, interest:0, bonus:0, tax:0, taxrefund:0}, cgtILS:0}; }
+function newLedger(){ return {cash:{ILS:0,USD:0}, pos:{}, netDepILS:0, fees:{ILS:0,USD:0}, flows:{dividend:0, interest:0, bonus:0, tax:0, taxrefund:0, fee:0}, cgtILS:0}; }
 function applyTx(L, t, fxForDeposit){
   if(t.type==='taxacct') return;                              // broker tax bookkeeping: informational, never moves cash
   const amt = num(t.amount)||0, fee = num(t.fee)||0;
@@ -454,7 +455,14 @@ function applyTx(L, t, fxForDeposit){
     L.cash[cur] += v;
     const ils = cur==='USD' ? v*(num(t.fx)||fxForDeposit||fxNow()||0) : v;
     L.flows[t.type] += ils;
+    if(t.type==='fee') L.fees[cur] += amt;                    // account / FX fees count with the trading fees
     if((t.type==='tax'||t.type==='taxrefund') && t.taxKind==='cgt') L.cgtILS -= ils;   // capital-gains tax actually paid (net of refunds)
+    return;
+  }
+  if(t.type==='sharebonus'){                                  // bonus shares at no cost (the bank books some splits this way): value unchanged
+    const q = num(t.qty)||0; if(q<=0 || !t.symbol) return;
+    const P = L.pos[t.symbol] || (L.pos[t.symbol] = {sym:t.symbol, cur:t.currency||'USD', qty:0, avg:0, realized:0, fees:0, openDate:t.date});
+    if(P.qty > 1e-9){ P.avg = P.avg*P.qty/(P.qty+q); P.qty += q; } else if(Math.abs(P.qty) < 1e-9){ P.qty = q; P.avg = 0; P.openDate = t.date; }
     return;
   }
   if(t.type==='split'){                                       // stock split: qty × ratio, avg ÷ ratio, value unchanged
@@ -530,11 +538,11 @@ function taxModel(txs){
       const a = (num(t.amount)||0)*(t.currency==='USD' ? (num(t.fx)||rateOn(t.date)||0) : 1);
       if(t.type==='tax') o.paid += a; else { o.refund += a; S = Math.max(0, S - a); }
     }
-    if(t.type==='taxacct' && TAXACCT[t.acct]){ o.b.has = true; o.b[t.acct] += taxAcctDelta(t); }
+    if(t.type==='taxacct' && TAXACCT[t.acct]){ o.b.has = true; if(t.acct in o.b) o.b[t.acct] += taxAcctDelta(t); }
   });
   if(yr) yo(yr).shieldEnd = S;
   const curY = today().slice(0,4), years = Object.values(Y).sort((a,b)=>a.y<b.y?-1:1);
-  years.forEach(o=>{ o.b.pending = Math.max(0, o.b.future) + Math.max(0, o.b.payable - o.paid); o.b.shieldBal = Math.max(0, o.b.shield - o.refund); if(o.b.shieldBal < 0.05) o.b.shieldBal = 0;   // agorot rounding between the shield and the refund
+  years.forEach(o=>{ const net = o.b.shield - o.refund + o.paid - o.b.payable; o.b.pending = Math.max(0, o.b.future) + Math.max(0, -net); o.b.shieldBal = Math.max(0, net); if(o.b.shieldBal < 0.05) o.b.shieldBal = 0;   // agorot rounding between the shield and the refund
     o.outstanding = Math.max(0, o.due - o.paid); });
   const C = Y[curY] || yo(curY);
   return {L, years, Y, sales, curY, cur:C, shieldNow: yr===curY ? S : 0, dueAll: years.reduce((a,o)=>a+o.due,0), outstanding: years.reduce((a,o)=>a+o.outstanding,0)};
@@ -1028,14 +1036,16 @@ function txDesc(t){
   if(CASH_FLOW[t.type]){
     const cur = t.currency==='USD' ? 'USD' : 'ILS', v = CASH_FLOW[t.type]*(num(t.amount)||0), k = t.taxKind;
     let l = TX_LABELS[t.type];
-    if(t.type==='tax') l = k==='cgt' ? 'מס רווחי הון ששולם' : k==='foreign' ? 'מס במקור בחו״ל' : k==='il' ? 'מס ישראלי על דיבידנד' : 'מס ששולם';
-    else if(t.type==='taxrefund') l = k==='cgt' ? 'זיכוי מס רווחי הון' : k==='foreign' ? 'החזר מס במקור (חו״ל)' : k==='il' ? 'החזר מס ישראלי' : 'החזר מס';
+    if(t.type==='tax') l = k==='cgt' ? 'מס רווחי הון ששולם' : k==='foreign' ? 'מס במקור בחו״ל' : k==='il' ? 'מס ישראלי על דיבידנד' : k==='int' ? 'מס על ריבית/תקבולים' : 'מס ששולם';
+    else if(t.type==='taxrefund') l = k==='cgt' ? 'זיכוי מס רווחי הון' : k==='foreign' ? 'החזר מס במקור (חו״ל)' : k==='il' ? 'החזר מס ישראלי' : k==='int' ? 'החזר מס על ריבית/תקבולים' : 'החזר מס';
     else if(t.type==='interest' && v<0) l = 'ריבית חובה';
+    else if(t.type==='fee' && v>0) l = 'החזר עמלה';
     if(t.type==='dividend' && v<0) l = 'ביטול דיבידנד';
     return {t1:`${l}${t.symbol?` <span class="ltr">${esc(t.symbol)}</span>`:''}${cur==='USD'?' <span class="muted">· דולרים</span>':''}`, amt:fmtSigned(v, cur), c:cls(v)};
   }
   if(t.type==='taxacct'){ const l = (TAXACCT[t.acct]||{})[t.dir] || TX_LABELS.taxacct, d = taxAcctDelta(t);
     return {t1:`${l} <span class="tag taxi">ללא תנועת מזומן</span>`, amt:fmtMoney(num(t.amount)||0,'ILS'), c:''}; }
+  if(t.type==='sharebonus') return {t1:`מניות הטבה <span class="ltr">${esc(t.symbol)}</span>`, amt:`<span class="num">+${fmtQty(num(t.qty))}</span> יח׳`, c:'pos'};
   if(t.type==='split') return {t1:`פיצול <span class="ltr">${esc(t.symbol)}</span> · כל מניה ← <span class="num">${fmtQty(num(t.ratio))}</span>`, amt:`<span class="num">×${fmtQty(num(t.ratio))}</span>`, c:''};
   if(t.type==='deposit'||t.type==='withdraw') return {t1:`${TX_LABELS[t.type]} ${t.currency==='USD'?'דולרים':'שקלים'}`, amt:fmtSigned((t.type==='deposit'?1:-1)*t.amount, t.currency), c: t.type==='deposit'?'pos':'neg'};
   if(t.type==='convert'){ const to = t.from==='ILS'?'USD':'ILS'; const net = t.amount-(t.fee||0); const recv = t.from==='ILS' ? net/t.rate : net*t.rate;
@@ -1045,7 +1055,7 @@ function txDesc(t){
 }
 function renderTxList(){
   let list = sortedTxs().reverse(), hiddenN = 0;
-  if(histHidden()){ const cs = closedSymSet(); const all = list.length; list = list.filter(t=>!(t.symbol && (t.type==='buy'||t.type==='sell'||t.type==='split') && cs.has(t.symbol))); hiddenN = all - list.length; }
+  if(histHidden()){ const cs = closedSymSet(); const all = list.length; list = list.filter(t=>!(t.symbol && (t.type==='buy'||t.type==='sell'||t.type==='split'||t.type==='sharebonus') && cs.has(t.symbol))); hiddenN = all - list.length; }
   $('txHistBar').innerHTML = state.txs.length ? histToggleHtml() + (hiddenN ? `<span class="hist-note" id="txHiddenNote">מוסתרות ${hiddenN} עסקאות של פוזיציות סגורות · <button class="linkbtn" data-histshow>הצג</button></span>` : '') : '';
   $('txCount').textContent = list.length ? `${list.length} עסקאות` : '';
   if(!list.length && hiddenN){ $('txList').innerHTML = '<div class="empty">כל העסקאות שייכות לפוזיציות סגורות ומוסתרות.</div>'; return; }
@@ -1285,14 +1295,22 @@ function openTaxAcct(t, backSym){
   const l = (TAXACCT[t.acct]||{})[t.dir] || TX_LABELS.taxacct;
   openSheet(`<h3>📒 ${l}<button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="kv"><div><span>תאריך</span><b>${fmtDate(t.date)}</b></div><div><span>סכום</span><b class="num">${fmtMoney(num(t.amount)||0,'ILS')}</b></div>
-      <div><span>חשבון</span><b>${t.acct==='shield'?'מגן מס':t.acct==='payable'?'מס לשלם':'מס עתידי'}</b></div><div><span>בקובץ</span><b>${esc(t.bankName||'')}</b></div></div>
+      <div><span>חשבון</span><b>${t.acct==='shield'?'מגן מס':t.acct==='payable'?'מס לשלם':t.acct==='future'?'מס עתידי':'רישום מס'}</b></div><div><span>בקובץ</span><b>${esc(t.bankName||'')}</b></div></div>
     <div class="note">רישום פנימי של הבנק בחשבון המס, <b>בלי תנועת מזומן</b>. רווח הון יוצר "מס עתידי" שעובר ל"מס לשלם" ונגבה כ"מס ששולם"; הפסד הון יוצר "מגן מס" שמקזז מס עתידי או מוחזר כ"זיכוי מס" באותה שנה. מוצג לצורך מעקב והשוואה – החישוב באפליקציה נעשה מהמכירות עצמן.</div>
     <div class="btn-row" style="margin-top:14px"><button class="btn btn-danger" id="taDel">🗑️ מחיקה</button><button class="btn btn-light" data-close>סגירה</button></div>`);
   $('taDel').onclick = ()=>{ if(!confirm('למחוק את הרישום?')) return; state.txs = state.txs.filter(x=>x.id!==t.id); save(); closeSheet(); renderAll(); toast('הרישום נמחק'); if(backSym) openPosition(backSym); };
 }
+function openShareBonus(t, backSym){
+  openSheet(`<h3>🎁 מניות הטבה <span class="ltr">${esc(t.symbol)}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
+    <div class="kv"><div><span>תאריך</span><b>${fmtDate(t.date)}</b></div><div><span>כמות שנוספה</span><b class="num">${fmtQty(num(t.qty))}</b></div></div>
+    <div class="note">מניות שהתקבלו בלי תשלום (כך הבנק רושם חלק מהפיצולים). הכמות גדלה והעלות הכוללת לא משתנה – העלות הממוצעת למניה יורדת.</div>
+    <div class="btn-row" style="margin-top:14px"><button class="btn btn-danger" id="sbDel">🗑️ מחיקה</button><button class="btn btn-light" data-close>סגירה</button></div>`);
+  $('sbDel').onclick = ()=>{ if(!confirm('למחוק את הרישום?')) return; state.txs = state.txs.filter(x=>x.id!==t.id); save(); closeSheet(); renderAll(); toast('הרישום נמחק'); if(backSym) openPosition(backSym); };
+}
 function openTxForm(type, preset, editId, backSym, after){
   const t = editId ? state.txs.find(x=>x.id===editId) : null;
   if(t && t.type==='taxacct') return openTaxAcct(t, backSym);
+  if(t && t.type==='sharebonus') return openShareBonus(t, backSym);
   type = t ? t.type : (type||'buy');
   const f = Object.assign({date:today(), from:'ILS'}, preset||{}, t||{});
   const st = {type, feeTouched: !!t, priceTouched: !!t || !!(preset && preset.price!=null), rateTouched: !!t};
@@ -1661,7 +1679,8 @@ function renderSettings(){
     <div class="set-sec" id="installSec" style="display:none"><h4>📲 התקנה כאפליקציה</h4><button class="btn btn-primary btn-block" id="btnInstall">הוספה למסך הבית</button></div>
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
-      <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>`;
+      <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v16</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -1744,7 +1763,7 @@ let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
   s = String(s||'').toLowerCase().replace(/\([^)]*\)/g,' ').replace(/s\s*&\s*p/g,' sp ').replace(/&/g,' ')
-    .replace(/technolog(y|ies)/g,'tech').replace(/international/g,'intl').replace(/[^a-z0-9\u05d0-\u05ea]+/g,' ');
+    .replace(/technolog(y|ies)/g,'tech').replace(/international/g,'intl').replace(/\bincorporat(ion|ed)\b/g,'inc').replace(/\bcorporation\b/g,'corp').replace(/\bcompany\b/g,'co').replace(/\blimited\b/g,'ltd').replace(/[^a-z0-9\u05d0-\u05ea]+/g,' ');
   return [...new Set(s.split(' ').filter(w=>w && !NAME_STOP.has(w)))];
 }
 function loadSecDir(){
@@ -1839,11 +1858,40 @@ function parseBankSheet(aoa){
   return {rows, opening, adjusted, first: f ? f.date : null, last: rows.length ? rows[rows.length-1].date : null};
 }
 function bankSecKey(r){ return r.secNum || r.name; }
+// broker-internal rows: tax-account names, or the bank's internal security numbers (999xxxx, e.g. 9992983 / 9992985)
+const TAX_NAME = [['receipts', /מס\s*תקבולים/], ['shield', /מגן\s*מס/], ['future', /מס\s*עתידי/], ['payable', /מס\s*(?:לשלם|לתשלום)/], ['paid', /מס\s*(?:ששולם|שנוכה|רווחי\s*הון)/],
+  ['refund', /(?:זיכוי|החזר)\s*מס/], ['withhold', /(?:ניכוי\s*)?מס\s*(?:במקור|חו["״']?ל|מט["״']?ח)/]];
+function bankNameNorm(s){ return String(s||'').replace(/[\u200e\u200f\u202a-\u202e]/g,'').replace(/[״"']/g,'"').replace(/\s+/g,' ').trim(); }
+function bankInternal(r){
+  const nm = bankNameNorm(r.name), k = (TAX_NAME.find(([,re])=>re.test(nm))||[])[0] || null;
+  const num = /^999\d{3,5}$/.test(r.secNum||'');
+  return k || num ? {kind:k, num} : null;
+}
 function bankClassify(r){
   const a = r.act, buy = /קני/.test(a), sell = /מכיר/.test(a), cur = r.cur, amt = cur==='USD' ? r.fx : r.ilsEff;
-  const usdSec = r.secNum===SEC_USD || /^דולר ארה/.test(r.name), taxSec = r.secNum===SEC_TAX || /^(מס ששולם|זיכוי מס)/.test(r.name);
+  const inr = r.secNum===SEC_USD || /^דולר ארה/.test(r.name) ? null : bankInternal(r);
+  if(inr && !/דיבידנד|ריבית/.test(a) && !(/(^|\s)מס(\s|$)/.test(a) && !buy && !sell)){   // never a security, whatever the action type
+    const k = inr.kind, label = bankNameNorm(r.name);
+    if(amt){                                                      // real cash: keep it exact
+      if(k==='receipts') return amt<0 ? {type:'tax', taxKind:'int', currency:cur, amount:-amt} : {type:'taxrefund', taxKind:'int', currency:cur, amount:amt};
+      if(k==='withhold') return amt<0 ? {type:'tax', taxKind:cur==='USD'?'foreign':'other', currency:cur, amount:-amt} : {type:'taxrefund', taxKind:cur==='USD'?'foreign':'other', currency:cur, amount:amt};
+      if(k) return amt<0 ? {type:'tax', taxKind:'cgt', currency:cur, amount:-amt} : {type:'taxrefund', taxKind:'cgt', currency:cur, amount:amt};
+      return {type:amt>0?'deposit':'withdraw', currency:cur, amount:Math.abs(amt), note: /פח"?ק|פיקדון|פקדון/.test(label) ? `העברה ${amt>0?'מפיקדון':'לפיקדון'} בבנק: ${label}` : `התאמת מזומן – רישום פנימי של הבנק: ${label}`, internal:true};
+    }
+    const q = Math.abs(r.qty||0), units = cur==='ILS' && r.rate && Math.abs(r.rate-100)>1e-9 ? q*r.rate/100 : q;   // ILS internal units: price 100 = ₪1
+    const dir = /הפקד|קני/.test(a) ? 'in' : 'out';
+    if(q && (k==='future' || k==='payable' || k==='shield')) return {type:'taxacct', acct:k, dir, currency:'ILS', amount:units, bankName:label};
+    if(q && k) return {type:'taxacct', acct:'note', dir, currency:'ILS', amount:units, bankName:label};
+    return {skip:'internal'};
+  }
+  const usdSec = r.secNum===SEC_USD || /^דולר ארה/.test(r.name), taxSec = r.secNum===SEC_TAX || /(מס ששולם|זיכוי מס)/.test(bankNameNorm(r.name));
   if(/דיבידנד/.test(a)) return amt ? {type:'dividend', currency:cur, amount:amt} : {skip:'zero'};
   if(/ריבית/.test(a)) return amt ? {type:'interest', currency:cur, amount:amt} : {skip:'zero'};
+  if(/עמל/.test(a) && !buy && !sell){                               // account fees ('עמלה מזומן בשח', 'משיכת עמלה מטח')
+    const nm = bankNameNorm(r.name); return amt ? {type:'fee', currency:cur, amount:-amt, note: /^דולר ארה/.test(nm) ? '' : nm} : {skip:'zero'}; }
+  if(/הטב/.test(a) && !buy && !sell){                                // 'הטבה': bonus shares on a security, or a cash bonus
+    if(!amt && Math.abs(r.qty)>0 && !bankInternal(r) && r.secNum!==SEC_USD) return {type:'sharebonus', qty:Math.abs(r.qty), currency:cur, sec:true};
+    return amt ? {type: amt>0 ? 'bonus' : 'withdraw', currency:cur, amount:Math.abs(amt)} : {skip:'zero'}; }
   if(/(^|\s)מס(\s|$)/.test(a) && !buy && !sell){                 // withholding on foreign income; positive = reversal/refund
     if(!amt) return {skip:'zero'};
     const kind = /חול|חו"ל|חו״ל/.test(a) ? 'foreign' : (cur==='USD' ? 'il' : 'other');
@@ -1897,7 +1945,7 @@ function bankBuild(){
     if(c.sec){ const m = IMP.map[bankSecKey(r)]; if(!m || !m.sym){ needRows.push(r); perRow.push([]); cnt.as.add(TX_LABELS[c.type]); return; } t.symbol = m.sym; }
     if(t.currency==='USD' && !c.sec && r.rate>2 && r.rate<10) t.fx = r.rate;          // the row's own USD/ILS rate → exact ILS value of the flow
     if((t.type==='sell'||t.type==='buy') && r.cgt!=null && Math.abs(r.cgt)>0.004) t.cgtEst = r.cgt;   // bank's own capital-gains tax estimate for this trade
-    cnt.as.add(t.type==='tax' ? TAX_KINDS[t.taxKind] : t.type==='taxrefund' ? 'החזר מס' : t.type==='taxacct' ? (t.acct==='shield'?'מגן מס':t.acct==='payable'?'מס לשלם':'מס עתידי')+' – רישום מס, ללא מזומן' : TX_LABELS[t.type]);
+    cnt.as.add(t.type==='tax' ? TAX_KINDS[t.taxKind] : t.type==='taxrefund' ? 'החזר מס' : t.type==='sharebonus' ? 'מניות הטבה (בלי מזומן)' : t.type==='taxacct' ? (t.acct==='shield'?'מגן מס':t.acct==='payable'?'מס לשלם':t.acct==='future'?'מס עתידי':'רישום מס')+' – רישום מס, ללא מזומן' : t.internal ? 'התאמת מזומן (רישום פנימי)' : TX_LABELS[t.type]);
     out.push(t); perRow.push([t]);
   });
   return {txs:opening ? [opening, ...out] : out, opening, unknown, skipped, needRows, perRow, counts};
@@ -1919,7 +1967,7 @@ function bankReconcile(B){
   return {checked, mism, ils:L.cash.ILS, usd:L.cash.USD, usdMin, episodes, longest, stillNeg:!!start, endNeg, odd: !!start || longest>7};
 }
 function bankSplits(final){      // `final` = the transaction list the portfolio will have (already-present splits are in it)
-  const out = [], have = final.filter(t=>t.type==='split');
+  const out = [], have = final.filter(t=>t.type==='split' || t.type==='sharebonus');
   Object.entries(IMP.scan).forEach(([sym, S])=>(S.found||[]).forEach(sp=>{
     if(have.some(t=>t.symbol===sym && Math.abs(daysBetween(t.date, sp.date))<=5)) return;
     const P = computeLedger(final.filter(t=>t.date < sp.date)).pos[sym];
@@ -1944,8 +1992,48 @@ function bankScan(syms){                    // look for splits between the file'
 function bankFinal(){
   const B = bankBuild(), existing = new Set(state.txs.filter(t=>t.ikey).map(t=>t.ikey));
   const replace = IMP.mode==='replace';
-  const add = replace ? B.txs : B.txs.filter(t=>!existing.has(t.ikey) && !(t===B.opening && state.txs.some(x=>x.src==='bank')));
-  const base = replace ? add : state.txs.concat(add);
+  const P = IMP.P, exBank = replace ? [] : state.txs.filter(t=>t.src==='bank');
+  const add = replace ? B.txs : B.txs.filter(t=>!existing.has(t.ikey) && !(t===B.opening && exBank.length));
+  // adding a file to bank data already in the portfolio: move the ILS cash to the file's own opening balance (covers any gap between files)
+  let gap = null, gapAdj = null;
+  if(exBank.length){
+    const before = exBank.filter(t=>t.date < P.first && t.type!=='split'), lastBefore = before.reduce((a,t)=>t.date>a?t.date:a, ''), inside = exBank.filter(t=>t.date>=P.first && t.date<=P.last && !B.txs.some(b=>b.ikey===t.ikey));
+    if(lastBefore && daysBetween(lastBefore, P.first) > 10) gap = {from:lastBefore, to:P.first, days:daysBetween(lastBefore, P.first)};
+    const cashBefore = computeLedger(state.txs.filter(t=>t.date < P.first)).cash.ILS, d = r2(P.opening - cashBefore);
+    if(Math.abs(d) > 0.005 && !existing.has(`gapadj|${P.first}|${P.opening.toFixed(2)}`))
+      gapAdj = {id:uid(), ts:(B.txs[0]?B.txs[0].ts:Date.now())-4, type:d>0?'deposit':'withdraw', date:P.first, currency:'ILS', amount:Math.abs(d), src:'bank', ikey:`gapadj|${P.first}|${P.opening.toFixed(2)}`,
+        note: gap ? `התאמת יתרה לתחילת הקובץ – תנועות חסרות בין ${fmtDate(gap.from)} ל-${fmtDate(gap.to)}` : 'התאמת יתרה לתחילת הקובץ'};
+    IMP.overlap = inside.length; 
+  }
+  if(gapAdj) add.unshift(gapAdj);
+  let base0 = replace ? add : state.txs.concat(add);
+  // units sold that were never bought (held before the file started): never open a short silently – ask for opening holdings
+  const need = {}, Lr = newLedger();
+  const mk = t => need[t.symbol] || (need[t.symbol] = {sym:t.symbol, cur:t.currency, qty:0, sold:0, bon:0, div:0, first:t.date, px:num(t.price)||0});
+  sortedTxs(base0).forEach(t=>{ const inF = t.symbol && t.date>=P.first, held = () => (Lr.pos[t.symbol] ? Lr.pos[t.symbol].qty : 0) + (need[t.symbol] ? need[t.symbol].sold + need[t.symbol].bon : 0);
+    if(inF && t.type==='sharebonus' && held() < 1e-9){ const n = mk(t); n.bon += num(t.qty)||0; }            // e.g. a 2:1 split booked as bonus shares on a position the file never bought
+    if(inF && t.type==='dividend' && held() < 1e-9){ const n = mk(t); n.div++; }
+    applyTx(Lr, t);
+    if(t.type==='sell' && inF){ const q = Lr.pos[t.symbol] ? Lr.pos[t.symbol].qty : 0;
+      if(q < -1e-9){ const n = mk(t); if(!n.px) n.px = num(t.price)||0; n.sold = Math.max(n.sold, -q); } } });
+  const deficits = Object.values(need).map(n=>Object.assign(n, {qty:Math.round((n.sold + n.bon)*1e6)/1e6}));
+  const openDate = addDays(P.first, -1), openTx = [];
+  deficits.forEach(n=>{ const o = (IMP.openPos||{})[n.sym]; if(!o) return; const q = o.qty!=null && String(o.qty).trim()!=='' ? num(o.qty) : n.qty, c = o.unknown ? n.px : num(o.cost);
+    if(!(q>0) || !(c>=0) || c==null) return; const fx = n.cur==='USD' ? rateOn(openDate) : null, k = `openpos|${n.sym}|${openDate}`; if(existing.has(k)) return;
+    openTx.push({id:uid(), ts:1, type:'deposit', date:openDate, currency:n.cur, amount:q*c, ...(fx?{fx}:{}), note:`הפקדה רעיונית לכיסוי החזקת פתיחה ${n.sym}`, src:'bank', ikey:k+'|d'},
+      {id:uid(), ts:2, type:'buy', date:openDate, symbol:n.sym, currency:n.cur, qty:q, price:c, fee:0, note:`החזקת פתיחה – לפני תחילת הקובץ${o.unknown?' (עלות לא ידועה: לפי מחיר המכירה)':''}`, src:'bank', ikey:k}); });
+  base0 = base0.concat(openTx);
+  // USD cash before the file (the export has no USD balance column): suggest the smallest opening balance that keeps it ≥ 0
+  const eod = {}, Lu = newLedger(); sortedTxs(base0).forEach(t=>{ applyTx(Lu, t); if(t.date>=P.first) eod[t.date] = Lu.cash.USD; });
+  const negDays = Object.entries(eod).filter(([,v])=>v < -0.5), usdMin = Math.min(0, ...Object.values(eod));
+  let run = 0, st = null; Object.entries(eod).sort().forEach(([d,v])=>{ if(v < -0.5){ if(!st) st = d; } else if(st){ run = Math.max(run, daysBetween(st, d)); st = null; } });
+  const usdSug = (st || run > 7) && negDays.length >= 3 ? Math.ceil(-usdMin*100)/100 : 0;   // only when it stays negative (same rule as the reconciliation), not a T+1 dip
+  let usdTx = null; const ou = IMP.openUsd;
+  if(ou && ou.on && num(ou.amt) > 0 && !existing.has(`openusd|${openDate}`)) usdTx = {id:uid(), ts:0, type:'deposit', date:openDate, currency:'USD', amount:num(ou.amt), fx:rateOn(openDate), note:'יתרת דולרים בתחילת הקובץ (הוזנה בייבוא)', src:'bank', ikey:`openusd|${openDate}`};
+  if(usdTx) base0 = base0.concat(usdTx);
+  add.push(...openTx, ...(usdTx?[usdTx]:[]));
+  IMP.extra = {gap, gapAdj, deficits, usdSug, usdMin, negDays:negDays.length, openDate};
+  const base = base0;
   const splits = bankSplits(base), chosen = splits.filter(sp=>IMP.splitOff[sp.key]!==true);
   const held = Object.values(computeLedger(base.filter(t=>t.date<=IMP.P.last)).pos).filter(p=>p.qty>1e-9).map(p=>p.sym);
   const splitTx = chosen.map((sp,i)=>({id:uid(), ts:Date.now()+i, type:'split', date:sp.date, symbol:sp.sym, ratio:sp.ratio, note:'נוסף בייבוא', src:'bank', ikey:`split|${sp.sym}|${sp.date}`}));
@@ -1995,6 +2083,8 @@ function openBankPreview(){
         <div class="ac" style="margin-top:6px"><input class="ltr-in" data-tick="${i}" value="${esc(IMP.map[sc.key].sym||'')}" placeholder="סימול – חיפוש" autocapitalize="characters" spellcheck="false" aria-label="סימול עבור ${esc(sc.name)}"><div class="ac-list" data-ticklist="${i}"></div></div>
         <div class="sub" data-tickst="${i}"></div></div>`).join('')}</div>
     <div class="set-sec" id="bankSplitSec"></div>
+    <div class="set-sec" id="bankOpenSec"></div>
+    <div class="set-sec" id="bankUsdSec"></div>
     <div class="set-sec"><h4>✅ בדיקת התאמה מול הקובץ</h4><div id="bankRecon"></div></div>
     <div class="set-sec"><h4>💼 התיק שיתקבל</h4><div id="bankHold"></div></div>
     <div class="set-sec" id="bankUnk"></div>
@@ -2019,6 +2109,11 @@ function openBankPreview(){
       inp.value = sym; inp._set(sym, it); }
     if(y){ const sc = secs[+y.dataset.okay]; IMP.ok[sc.key] = true; bankRefresh(); }
   });
+  $('bankOpenSec').addEventListener('input', e=>{ const i = e.target.closest('[data-op]'); if(!i) return; const [sym, f] = i.dataset.op.split('|');
+    const o = (IMP.openPos = IMP.openPos || {})[sym] || (IMP.openPos[sym] = {}); o[f] = f==='unknown' ? i.checked : i.value;
+    const c = $('bankOpenSec').querySelector(`[data-op="${sym}|cost"]`); if(c) c.disabled = !!o.unknown; clearTimeout(IMP.opT); IMP.opT = setTimeout(bankRefresh, 300); });
+  $('bankUsdSec').addEventListener('input', e=>{ const i = e.target.closest('[data-ou]'); if(!i) return; IMP.openUsd = IMP.openUsd || {};
+    IMP.openUsd[i.dataset.ou] = i.type==='checkbox' ? i.checked : i.value; clearTimeout(IMP.ouT); IMP.ouT = setTimeout(bankRefresh, 300); });
   $('bankCancel').onclick = closeSheet;
   $('bankGo').onclick = bankApply;
   bankRefresh();
@@ -2049,6 +2144,23 @@ function bankRefresh(){
     ${!running.length && !R.splits.length ? '<div class="note">✓ לא נמצאו פיצולים.</div>' : ''}
     ${errs.length ? `<div class="warn">לא ניתן היה לבדוק: <span class="ltr">${errs.map(esc).join(', ')}</span>. אם היה בהם פיצול – הוסיפו אותו ידנית אחרי הייבוא.</div>` : ''}
     <div class="note">יודעים על פיצול שלא מופיע כאן? אחרי הייבוא: ➕ ← <b>פיצול</b>.</div>`;
+  // holdings from before the file / opening USD / gap between files
+  const X = IMP.extra || {}, D = X.deficits || [];
+  const openMissing = D.filter(n=>{ const o = (IMP.openPos||{})[n.sym] || {}, q = o.qty!=null && String(o.qty).trim()!=='' ? num(o.qty) : n.qty; if(!(q>0)) return false;   // nothing to open (e.g. dividend hint left at 0)
+    return !(o.unknown && n.px>0) && !(num(o.cost)>=0 && String(o.cost||'').trim()!==''); });
+  const sig = D.map(n=>n.sym+':'+n.qty).join(',') + '|' + (X.gap ? X.gap.from : '');
+  if(IMP.openSig !== sig){ IMP.openSig = sig;
+    $('bankOpenSec').innerHTML = (X.gap ? `<h4>🕳️ פער בין הקבצים</h4><div class="warn">בתיק יש נתונים מהבנק עד <b class="num">${fmtDate(X.gap.from)}</b>, והקובץ הזה מתחיל ב-<b class="num">${fmtDate(X.gap.to)}</b> – <b class="num">${Math.round(X.gap.days/30.4)}</b> חודשים בלי תנועות. היתרה השקלית תותאם ליתרה שבקובץ (שורת "התאמת יתרה"), אבל קניות, מכירות ודיבידנדים מהתקופה החסרה לא יופיעו – והחזקות שנמכרו בה יישארו בתיק. מומלץ לייבא גם את קובץ התקופה החסרה (הוספה לתיק).</div>` : '')
+      + (D.length ? `<h4>📦 החזקות מלפני תחילת הקובץ</h4><div class="note" style="margin-top:0">בקובץ יש מכירות של ניירות שלא נקנו בו (נקנו לפני <b class="num">${fmtDate(IMP.P.first)}</b>). בלי החזקת פתיחה הן היו נרשמות כ"שורט". <b>הכי מדויק:</b> לייבא קודם את קובץ התקופה הקודמת. אחרת – הזינו כמה יחידות היו לכם ובאיזו עלות ממוצעת (מופיע בדוח האחזקות של הבנק):</div>
+        ${D.map(n=>`<div class="isec"><div class="nm"><b class="ltr">${esc(n.sym)}</b> · ${[n.sold?`נמכרו <span class="num">${fmtQtyP(n.sold)}</span> יח׳ יותר מהקנייה בקובץ`:'', n.bon?`התקבלו <span class="num">${fmtQtyP(n.bon)}</span> מניות הטבה (פיצול?) כשלפי הקובץ לא הוחזקו – כנראה הוחזקו עוד <span class="num">${fmtQtyP(n.bon)}</span> לפחות`:'', n.div?`התקבלו <span class="num">${n.div}</span> דיבידנדים כשלפי הקובץ לא הוחזק – הזינו את הכמות אם ידועה`:''].filter(Boolean).join(' · ')} (מ-<span class="num">${fmtDate(n.first)}</span>)</div>
+          <div class="fgrid" style="margin-top:6px"><label class="f"><span>כמות בתחילת הקובץ</span><input class="ltr-in" inputmode="decimal" data-op="${esc(n.sym)}|qty" value="${n.qty||''}" ${n.qty?'':'placeholder="לא ידוע"'}></label>
+          <label class="f"><span>עלות ממוצעת ליחידה (${n.cur==='USD'?'$':'₪'})</span><input class="ltr-in" inputmode="decimal" data-op="${esc(n.sym)}|cost" placeholder="חובה"></label></div>
+          ${n.px>0?`<label class="chk"><input type="checkbox" data-op="${esc(n.sym)}|unknown"><span>לא יודע/ת – להשתמש במחיר המכירה (<span class="num">${fmtMoney(n.px,n.cur)}</span>) כעלות; הרווח במכירה יהיה 0</span></label>`:''}</div>`).join('')}` : '');
+    $('bankUsdSec').innerHTML = X.usdSug > 0 ? `<h4>💵 יתרת דולרים בתחילת הקובץ</h4><div class="note" style="margin-top:0">בקובץ אין עמודת יתרה בדולרים, ויתרת הדולרים יוצאת שלילית ב-<b class="num">${X.negDays}</b> ימים – כנראה היו דולרים בחשבון לפני <b class="num">${fmtDate(IMP.P.first)}</b>. המינימום הנדרש: <b class="num">${fmtMoney(X.usdSug,'USD')}</b>. אם ידועה היתרה המדויקת – הזינו אותה.</div>
+      <label class="chk"><input type="checkbox" data-ou="on" ${IMP.openUsd && IMP.openUsd.on===false ? '' : 'checked'}><span>להוסיף יתרת פתיחה בדולרים</span></label>
+      <label class="f"><span>יתרה ב-<span class="num">${fmtDate(X.openDate)}</span> ($)</span><input class="ltr-in" inputmode="decimal" data-ou="amt" value="${(IMP.openUsd && IMP.openUsd.amt) || X.usdSug}"></label>` : '';
+    if(X.usdSug > 0 && !IMP.openUsd){ IMP.openUsd = {on:true, amt:X.usdSug}; IMP.openSig = null; return bankRefresh(); }
+  }
   // reconciliation (file only)
   const mm = rec.mism;
   $('bankRecon').innerHTML = `<div class="irow"><span>יתרה שקלית אחרי כל שורה (${rec.checked} שורות)</span><span class="r">${mm.length ? `<span class="bad">${mm.length} הפרשים</span>` : '<span class="ok">✓ תואם בדיוק</span>'}</span></div>
@@ -2074,14 +2186,14 @@ function bankRefresh(){
     ? `<div class="note" id="bankNew"><b class="num">${R.add.length}</b> תנועות חדשות ייתווספו${R.dup?` · <b class="num">${R.dup}</b> כבר קיימות בתיק ולכן ידלגו עליהן`:''}${R.splitTx.length?` · ${R.splitTx.length} פיצולים`:''}.</div>`
     : (state.txs.length ? `<div class="warn red">כל ${state.txs.length} העסקאות הנוכחיות יימחקו ויוחלפו ב-${nAdd} התנועות מהקובץ. ההגדרות נשמרות.</div><button class="btn btn-light btn-block" id="bankBackup" style="margin-top:8px">⬇️ הורדת גיבוי של התיק הנוכחי (מומלץ)</button>` : `<div class="note" id="bankNew"><b class="num">${nAdd}</b> תנועות ייובאו.</div>`);
   if($('bankBackup')) $('bankBackup').onclick = ()=>{ exportData(); IMP.backedUp = true; $('bankBackup').textContent = '✓ הגיבוי ירד למכשיר'; };
-  const blocked = need > 0 || pending > 0, go = $('bankGo');
+  const blocked = need > 0 || pending > 0 || openMissing.length > 0, go = $('bankGo');
   IMP.blocked = blocked || running.length>0;
   go.disabled = IMP.blocked || !nAdd; go.style.opacity = go.disabled ? '.5' : '';
-  go.textContent = need ? '⚠️ חסרים סימולים' : pending ? '⚠️ אשרו את הסימולים המסומנים' : running.length ? '⏳ בודק פיצולים…' : !nAdd ? 'אין תנועות חדשות' : `✓ ${IMP.mode==='replace' && state.txs.length ? 'החלפה וייבוא' : 'ייבוא'} ${nAdd} תנועות`;
+  go.textContent = need ? '⚠️ חסרים סימולים' : openMissing.length ? `⚠️ חסרה עלות ל-${openMissing.length} החזקות פתיחה` : pending ? '⚠️ אשרו את הסימולים המסומנים' : running.length ? '⏳ בודק פיצולים…' : !nAdd ? 'אין תנועות חדשות' : `✓ ${IMP.mode==='replace' && state.txs.length ? 'החלפה וייבוא' : 'ייבוא'} ${nAdd} תנועות`;
 }
 function bankApply(){
   if(!IMP) return; bankRefresh(); const R = IMP.last;
-  if(!R || IMP.blocked) return toast('יש להשלים/לאשר סימולים');
+  if(!R || IMP.blocked) return toast('יש להשלים את הסימולים / החזקות הפתיחה');
   const add = R.add.concat(R.splitTx); if(!add.length) return toast('אין תנועות חדשות');
   const replace = IMP.mode==='replace' && state.txs.length>0;
   if(replace && !confirm(`להחליף את כל ${state.txs.length} העסקאות הנוכחיות ב-${add.length} התנועות מהקובץ?${IMP.backedUp?'':'\n\nלא הורדתם גיבוי – אי אפשר לבטל את זה.'}`)) return;
@@ -2122,7 +2234,18 @@ $('txList').addEventListener('click', e=>{ const b = e.target.closest('[data-tx]
 window.addEventListener('beforeinstallprompt', e=>{ e.preventDefault(); deferredInstall = e; if(ui.tab==='settings') renderSettings(); });
 if(/^https?:$/.test(location.protocol)){
   const l = document.createElement('link'); l.rel='manifest'; l.href='manifest.json'; document.head.appendChild(l);
-  if('serviceWorker' in navigator) window.addEventListener('load', ()=>navigator.serviceWorker.register('sw.js').catch(err=>console.warn('SW registration failed', err)));
+  if('serviceWorker' in navigator) window.addEventListener('load', ()=>{
+    const had = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.register('sw.js', {updateViaCache:'none'}).then(reg=>{
+      const check = ()=>reg.update().catch(()=>{});
+      check(); document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) check(); }); setInterval(check, 30*60e3);
+    }).catch(err=>console.warn('SW registration failed', err));
+    let shown = false;                                           // a newer version took over: offer a reload (automatic when nothing is open)
+    navigator.serviceWorker.addEventListener('controllerchange', ()=>{ if(!had || shown) return; shown = true;
+      if(!document.querySelector('.sheet.open, #sheet.open')) { location.reload(); return; }
+      const b = document.createElement('div'); b.className = 'upd-bar'; b.innerHTML = 'גרסה חדשה של האפליקציה מוכנה <button class="btn btn-primary" id="updReload">רענון</button>';
+      document.body.appendChild(b); $('updReload').onclick = ()=>location.reload(); });
+  });
 }
 
 // USD trades need the sale-date USD/ILS rate for capital-gains tax: fill it in once from the rate history (CNBC / Frankfurter)

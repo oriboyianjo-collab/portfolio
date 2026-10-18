@@ -1,6 +1,6 @@
 // Simple service worker: caches the app shell for offline use. Price APIs are never cached.
-const CACHE = 'portfolio-shell-v15';
-const SHELL = ['./', './index.html', './manifest.json', './icon-192.png?v=15', './icon-512.png?v=15', './icon-maskable-512.png?v=15', './apple-touch-icon.png?v=15', './logo.svg?v=15', './favicon-32.png?v=15',
+const CACHE = 'portfolio-shell-v16';
+const SHELL = ['./', './index.html', './manifest.json', './icon-192.png?v=16', './icon-512.png?v=16', './icon-maskable-512.png?v=16', './apple-touch-icon.png?v=16', './logo.svg?v=16', './favicon-32.png?v=16',
   'https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js',
   'https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js'];   // Excel reader for the bank-file import (code only; files are parsed on the device)
 self.addEventListener('install', e => {
@@ -17,7 +17,7 @@ self.addEventListener('fetch', e => {
   if (!isShell) return; // live data (prices/FX): straight to network
   // network-first for the page itself (so updates arrive), cache-first for the rest
   if (req.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname.endsWith('/')) {
-    e.respondWith(fetch(req).then(r => { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); return r; })
+    e.respondWith(fetch(req.url, {cache: 'no-cache', credentials: 'same-origin'}).then(r => { const cp = r.clone(); if (r.ok) caches.open(CACHE).then(c => c.put(req, cp)); return r; })
       .catch(() => caches.match(req).then(r => r || caches.match('./index.html'))));
     return;
   }
