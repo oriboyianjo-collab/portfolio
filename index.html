@@ -30,7 +30,7 @@ body{font-family:system-ui,"Segoe UI",Roboto,"Rubik","Heebo",Arial,sans-serif;ba
 .wrap{max-width:820px;margin:0 auto;padding:0 12px}
 .top{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;box-shadow:0 2px 10px rgba(30,58,138,.25)}
 .top .wrap{padding-top:8px;padding-bottom:9px}
-.tot-day{display:flex;align-items:baseline;gap:8px;line-height:1.25;margin-top:1px;flex-wrap:wrap}.tot-day .tp-l{font-size:.78rem;opacity:.85;white-space:nowrap}.tot-day .tp-v{font-size:1.05rem;font-weight:800}.tot-day .tp-a{font-size:.85rem;opacity:.95}.tot-day .tp-v,.tot-day .tp-a{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+.tot-day{display:flex;align-items:baseline;gap:8px;line-height:1.25;margin-top:1px;flex-wrap:wrap}.tot-day .tp-l{font-size:.8rem;opacity:.85;white-space:nowrap}.tot-day .tp-v{font-size:1.3rem;font-weight:800}.tot-day .tp-a{font-size:1.05rem;font-weight:700;opacity:.95}.tot-day{line-height:1.15}.tot-day .tp-v,.tot-day .tp-a{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
 .top-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .top h1{margin:0;font-size:1.05rem;font-weight:700;opacity:.95}
 .brand{display:flex;align-items:center;gap:8px;direction:ltr}
@@ -134,7 +134,8 @@ button{font-family:inherit}
 .bmleg{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:.8rem;margin:0 2px 4px}.bmleg:empty{display:none}.bmleg span{white-space:nowrap}.bmleg i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-inline-end:4px;vertical-align:middle}.bmleg b{font-weight:700}
 .pc-wd{grid-column:1/-1}.pc-u{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;background:#f1f5f9;border-radius:10px;padding:6px 10px}.pc-u>span{font-weight:700;color:var(--muted)}.pc-u b:first-of-type{font-size:1.05rem}
 #posKv div.hl{background:#eff6ff;border-radius:8px}#posKv div.hl b{font-size:1.05rem}
-.mini{padding:10px 10px 6px}.mini .seg{margin-bottom:6px}.mini-ret{font-size:.8rem;color:var(--muted);margin:0 2px 2px}.mini-ret b{font-size:.95rem}.mini-chart{height:136px}
+.mini{padding:10px 10px 6px}.mini-ret{display:flex;align-items:baseline;gap:6px}.mini-tgl{margin-inline-start:auto;align-self:center;border:1px solid var(--border);background:#f8fafc;color:#475569;border-radius:999px;width:34px;height:28px;font:inherit;font-size:.9rem;cursor:pointer;flex:none}
+.mini.collapsed{padding:8px 10px}.mini.collapsed .mini-h,.mini.collapsed .bmq,.mini.collapsed .bmleg,.mini.collapsed .mini-chart{display:none}.mini.collapsed .mini-ret{margin:0;cursor:pointer}.mini-rng{display:none;color:var(--muted);font-size:.85em}.mini.collapsed .mini-rng{display:inline}.mini .seg{margin-bottom:6px}.mini-ret{font-size:.8rem;color:var(--muted);margin:0 2px 2px}.mini-ret b{font-size:.95rem}.mini-chart{height:136px}
 .chart-msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.9rem;text-align:center;padding:10px;direction:rtl;z-index:3;background:rgba(255,255,255,.6)}
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;margin-top:8px}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:5px;vertical-align:middle}
@@ -230,6 +231,21 @@ input.ltr-in{direction:ltr;text-align:right}
 .sym-tx h4{margin:0 0 4px;font-size:.92rem}
 @media (max-width:380px){.fgrid{grid-template-columns:1fr}.tot-val{font-size:1.4rem}}
 @media (min-width:860px){body{font-size:15px}.chart{height:360px}}
+/* v34: holding rows as aligned columns (RTL): logo · name · price · % מהתיק · יומי – same grid for the column headers, compact and full */
+.pgrid,.pc-h.pgrid{display:grid;grid-template-columns:28px minmax(0,1fr) 78px 46px 62px;align-items:center;column-gap:6px}
+.pgrid>*{min-width:0}
+.pc-c{text-align:right;direction:ltr;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+.pc-p{font-weight:700;font-size:.9rem}.pc-c .pw{font-weight:600;font-size:.84rem;color:#334155}
+.pc-d b{display:block;font-size:.88rem;font-weight:700;line-height:1.2}.pc-d.two b+b{font-size:.74rem;opacity:.92}
+.pos-cols{padding:0 13px 3px;font-size:.66rem;color:var(--muted);font-weight:600}.pos-cols .pc-c{direction:rtl}.pos-cols[hidden]{display:none}
+.pcard .pgrid .psym{display:flex;flex-wrap:wrap;align-items:center;gap:4px;min-width:0}.pcard .pgrid .psym .ltr{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.pcard .pgrid .pname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* company logo: initials circle (deterministic color) under the image; the image shows only once it has loaded */
+.logo{position:relative;width:28px;height:28px;border-radius:50%;overflow:hidden;flex:none;background:var(--lc,#64748b);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;letter-spacing:-.3px;direction:ltr;line-height:1;box-shadow:inset 0 0 0 1px rgba(15,23,42,.08)}
+.logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;background:#fff;border-radius:50%}.logo img.fmp{object-fit:contain;padding:3px}.logo img.ok{opacity:1}
+.logo.lg{width:36px;height:36px;font-size:.74rem}
+#sheet h3 .logo{margin-inline-end:8px;vertical-align:middle}
+#cashHead .logo{width:24px;height:24px;font-size:.62rem;margin-inline-end:6px;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -247,19 +263,19 @@ input.ltr-in{direction:ltr;text-align:right}
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
     <div class="logostrip"><img src="logo.svg?v=33" alt="" width="40" height="40"><span>Savage Tracker</span></div>
-    <div class="card mini" id="miniCard"><div class="mini-h"><div class="seg sm" id="miniRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M" class="on">3 ח׳</button><button data-v="YTD">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
-      <div class="mini-ret"><span id="miniLbl">התיק בטווח</span> <b id="miniPct" class="num">—</b> <span id="miniAmt" class="num"></span></div>
+    <div class="card mini" id="miniCard"><div class="mini-h"><div class="seg sm" id="miniRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M">3 ח׳</button><button data-v="YTD" class="on">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
+      <div class="mini-ret" id="miniHead"><span id="miniLbl">התיק בטווח</span><span class="mini-rng" id="miniRng"></span> <b id="miniPct" class="num">—</b> <span id="miniAmt" class="num"></span><button class="mini-tgl" id="miniTgl" aria-expanded="true" aria-label="כיווץ גרף הביצועים">▴</button></div>
       <div class="bmq" id="miniBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק</button></div><div class="bmleg" id="miniLeg"></div>
       <div class="chart mini-chart" id="miniChart"><div class="chart-msg" id="miniMsg">טוען…</div></div></div>
     <div id="splitSug"></div>
-    <div class="card" id="cashCard"><h2 id="cashHead"><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight">% מהתיק</button><button data-sort="day">שינוי יומי %</button><button data-sort="unreal">שינוי מעלות %</button></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight">% מהתיק</button><button data-sort="day">שינוי יומי %</button><button data-sort="unreal">שינוי מעלות %</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span></span><span>נייר</span><span class="pc-c">מחיר</span><span class="pc-c">% מהתיק</span><span class="pc-c" id="posColD">יומי</span></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
       <h2>ביצועי התיק <small id="perfSrc"></small></h2>
       <div class="ytd" id="perfYtd"></div>
-      <div class="ctrls"><div class="seg sm" id="perfRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M" class="on">3 ח׳</button><button data-v="YTD">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
+      <div class="ctrls"><div class="seg sm" id="perfRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M">3 ח׳</button><button data-v="YTD" class="on">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
       <div class="bmq" id="perfBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק</button></div><div class="bmleg" id="perfBmLeg"></div>
       <div class="chart" id="perfChart"><div class="chart-msg" id="perfMsg">טוען…</div></div>
       <div class="legend" id="perfLegend"></div>
@@ -475,7 +491,7 @@ function renderSortBar(n){ const bar = $('posSort'), {k,d} = effSort(); bar.hidd
     const ar = b.querySelector('.ar'); if(ar) ar.remove();
     if(on){ const s = document.createElement('span'); s.className = 'ar'; s.textContent = d==='desc' ? '↓' : '↑'; s.setAttribute('aria-hidden','true'); b.appendChild(s);
       b.setAttribute('aria-label', `${b.firstChild.textContent} – ${d==='desc'?'מהגבוה לנמוך':'מהנמוך לגבוה'}`); } else b.removeAttribute('aria-label'); }); }
-const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'3M', posRange:'1Y', posStyle:'candle'};
+const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'YTD', posRange:'1Y', posStyle:'candle'};
 // A split must never be counted twice. The bank books some splits as bonus shares ('הטבה' rows → sharebonus), and the importer can
 // also add a split it detected in the price history. If the same security has a bonus row, or an earlier split, within ±5 days,
 // the later split is a duplicate: it stays in the list (visible, deletable) but is never applied (t.dupSkip).
@@ -1134,6 +1150,34 @@ function renderCash(S){
      <div class="v num ${neg?'neg':''}">${fmtMoney(c[cur],cur)}</div>
      ${cur==='USD'&&fx&&Math.abs(c.USD)>0.005?`<div class="l num">≈ ${fmtMoney(c.USD*fx,'ILS',0)}</div>`:''}${neg?'<div class="l neg">⚠️ יתרה שלילית</div>':''}</div>`; }).join('');
 }
+// ---------- company logos ----------
+// Sources (free, no key; plain <img> so no CORS is needed; only the ticker is in the URL, no referrer, no cookies):
+//   1. Parqet  assets.parqet.com/logos/symbol/{SYM}  – app-icon style squares with their own background; US stocks/ETFs and TASE
+//      ".TA" tickers (LUMI.TA, TEVA.TA…)
+//   2. Financial Modeling Prep  financialmodelingprep.com/image-stock/{SYM}.png – fills what Parqet lacks (e.g. MUU, OKLL)
+//   3. initials in a circle with a color derived from the ticker – crypto, cash, TASE funds/bonds and anything both sources 404.
+// The source that worked per ticker is remembered on the device (and "none" for 14 days), so a missing logo is not re-requested
+// on every render. The image bytes are cached by the service worker (runtime cache, capped). Logos are drawn only on full
+// renders; live price ticks never touch them.
+const LOGO_SRC = [s=>`https://assets.parqet.com/logos/symbol/${encodeURIComponent(s)}?format=png`, s=>`https://financialmodelingprep.com/image-stock/${encodeURIComponent(s)}.png`];
+const LOGO_KEY = 'portfolioTracker.logoSrc';
+let logoMemoC = null;
+function logoMemo(){ if(!logoMemoC){ try{ logoMemoC = JSON.parse(localStorage.getItem(LOGO_KEY)||'{}') || {}; }catch(e){ logoMemoC = {}; } } return logoMemoC; }
+function logoSet(sym, i){ const m = logoMemo(), o = m[sym]; if(o && o[0]===i) return; m[sym] = [i, Date.now()]; try{ localStorage.setItem(LOGO_KEY, JSON.stringify(m)); }catch(e){} }
+function logoIni(sym){ const b = String(sym||'').replace(/\.TA$/i,'').replace(/[^A-Za-z0-9\u0590-\u05FF]/g,''); return (b.slice(0, b.length<=3 ? 3 : 2) || '?').toUpperCase(); }
+function logoColor(sym){ let h = 7; for(const ch of String(sym||'')) h = (h*31 + ch.charCodeAt(0)) >>> 0; return `hsl(${h%360} 52% 42%)`; }
+function logoStart(sym){ if(isCrypto(sym)) return -1; const m = logoMemo()[sym]; if(m){ if(m[0] >= 0) return m[0]; if(Date.now()-m[1] < 14*864e5) return -1; } return 0; }
+function logoHtml(sym, big, txt, color){
+  const i = txt ? -1 : logoStart(sym);
+  return `<span class="logo${big?' lg':''}" style="--lc:${color||logoColor(sym)}" aria-hidden="true"><span>${esc(txt||logoIni(sym))}</span>${i>=0 ? `<img alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-lsym="${esc(sym)}" data-li="${i}"${i?' class="fmp"':''} src="${esc(LOGO_SRC[i](sym))}">` : ''}</span>`;
+}
+document.addEventListener('load', e=>{ const im = e.target; if(!im || im.tagName!=='IMG' || !im.dataset || !im.dataset.lsym) return;
+  if(im.naturalWidth < 8){ im.dispatchEvent(new Event('error')); return; }
+  im.classList.add('ok'); logoSet(im.dataset.lsym, +im.dataset.li); }, true);
+document.addEventListener('error', e=>{ const im = e.target; if(!im || im.tagName!=='IMG' || !im.dataset || !im.dataset.lsym) return;
+  const sym = im.dataset.lsym, n = +im.dataset.li + 1;
+  if(n < LOGO_SRC.length){ im.dataset.li = n; im.className = n ? 'fmp' : ''; im.src = LOGO_SRC[n](sym); }
+  else { im.remove(); logoSet(sym, -1); } }, true);
 function cardFields(p){
   const cur = p.cur, a = ageInfo(p.sym, p);
   // collapsed row: share price + daily % (plus change-from-cost % while sorting by it); value, amounts and change-from-cost live in the details
@@ -1142,7 +1186,7 @@ function cardFields(p){
     hu:[p.unrealPct!=null ? fmtPct(p.unrealPct) : '—', 'num '+cls(p.unrealPct)],
     mv:[fmtMoney(p.mv,cur), 'v num'],
     hp:[fmtPrice(p.price,cur), 'v num'],
-    hw:[fmtW(p.weight)+' מהתיק', 'pw'],      // weight under the price (row)
+    hw:[fmtW(p.weight), 'pw'],                  // weight column (row)
     hwd:[fmtW(p.weight), 'num'],                  // weight in the details          // row price: market price in the security's own currency (TASE in ₪), never masked
     mvils:[cur==='USD'&&p.mvILS!=null ? fmtMoney(p.mvILS,'ILS',0) : '', 'pname num'],
     day:[p.day!=null ? fmtSigned(p.day,cur) : '—', 'num '+cls(p.day)],
@@ -1210,6 +1254,7 @@ function renderPortfolio(S){
   // the change-from-cost % lives in the details (expanded row / detail sheet); the collapsed row shows it only while
   // sorting by it, so the order makes sense
   const showU = effSort().k==='unreal';
+  $('posCols').hidden = !S.positions.length; $('posColD').textContent = showU ? 'יומי / מעלות' : 'יומי';
   if(!S.positions.length){
     $('posList').innerHTML = state.txs.length ? '<div class="empty">אין פוזיציות פתוחות</div>' :
       `<div class="empty"><div class="big">💼</div><div>התיק ריק. מתחילים בהפקדת מזומן ואז קנייה.</div>
@@ -1221,10 +1266,12 @@ function renderPortfolio(S){
       shownPrice[p.sym] = p.price;
       const tag = short ? '<span class="tag short">שורט</span>' : p.manual ? '<span class="tag manual">ידני</span>' : p.est ? '<span class="tag err">אין מחיר</span>' : '';
       return `<div class="pcard pc${open?' open':''}" data-sym="${esc(p.sym)}">
-        <button class="pc-h" data-ctoggle aria-expanded="${open}">
+        <button class="pc-h pgrid" data-ctoggle aria-expanded="${open}">
+          ${logoHtml(p.sym)}
           <div class="pc-n"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tag}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
-          <div class="pc-v">${f('hp','span')}${f('hw','span')}</div>
-          <div class="pc-d"><span class="chg"><i>יומי</i>${f('hd')}</span>${showU?`<span class="chg"><i>מעלות</i>${f('hu')}</span>`:''}</div>
+          <div class="pc-c pc-p">${f('hp','span')}</div>
+          <div class="pc-c">${f('hw','span')}</div>
+          <div class="pc-c pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}</div>
         </button>
         <div class="pc-b"><div class="pc-g">
           <div><span>${short?'כמות בשורט':'כמות'}</span><b class="num">${fmtQtyP(Math.abs(p.qty))}</b></div>
@@ -1250,9 +1297,9 @@ function renderPortfolio(S){
       shownPrice[p.sym] = p.price;
       const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0]}</b>`;
       return `<button class="pcard" data-sym="${esc(p.sym)}">
-        <div class="prow"><div style="min-width:0"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tags.join('')}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
-        <div class="pval"><div data-f="hp" class="${F.hp[1]}">${F.hp[0]}</div><div data-f="hw" class="${F.hw[1]}">${F.hw[0]}</div></div></div>
-        <div class="pchg"><span class="chg"><i>יומי</i>${f('hd')}</span>${showU?`<span class="chg"><i>מעלות</i>${f('hu')}</span>`:''}</div>
+        <div class="pgrid">${logoHtml(p.sym)}<div style="min-width:0"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tags.join('')}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
+          <div class="pc-c pc-p"><span data-f="hp" class="${F.hp[1]}">${F.hp[0]}</span></div><div class="pc-c"><span data-f="hw" class="${F.hw[1]}">${F.hw[0]}</span></div>
+          <div class="pc-c pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}</div></div>
         <div class="pmeta">
           <span>היום: ${f('day')}</span>
           <span>${short?'כמות בשורט':'כמות'}: <b class="num">${fmtQtyP(Math.abs(p.qty))}</b></span>
@@ -1631,6 +1678,14 @@ document.addEventListener('click', e=>{
   else renderMini();
 });
 // ---------- main screen: compact performance chart ----------
+// The card can be collapsed to one slim row (title + the range return); remembered in localStorage (a UI preference only).
+// Collapsed, the chart is only hidden (the range return above it still comes from the same calculation and updates live);
+// expanding rebuilds it so it is drawn at its real size.
+const MINI_KEY = 'portfolioTracker.miniOpen';
+function miniOpen(){ try{ return localStorage.getItem(MINI_KEY) !== '0'; }catch(e){ return true; } }
+function applyMiniOpen(){ const o = miniOpen(), card = $('miniCard'), b = $('miniTgl'); if(!card) return; card.classList.toggle('collapsed', !o);
+  const r = $('miniRange') && $('miniRange').querySelector('.on'), rn = $('miniRng'); if(rn) rn.textContent = r && !/^(YTD|ALL)$/.test(r.dataset.v) ? ' · '+r.textContent.trim() : '';   // YTD / ALL: the label already names the range
+  if(b){ b.textContent = o ? '▴' : '▾'; b.setAttribute('aria-expanded', String(o)); b.setAttribute('aria-label', o ? 'כיווץ גרף הביצועים' : 'הצגת גרף הביצועים'); } }
 // The same series as the performance tab's value chart (buildPerformance + rangeBase/ytdCalc): value in the header currency (₪/$),
 // the range shared with the tab (ui.perfRange, both chip rows kept in sync), the range return = the tab's "התיק בטווח"
 // ("הכול" = since-start like the header). It is rebuilt only when its inputs change (range, currency, eye, transactions, day);
@@ -1645,7 +1700,7 @@ function setMiniRet(r, C){ const p = $('miniPct'), a = $('miniAmt'); if(!p) retu
 async function renderMini(S, force){
   const card = $('miniCard'); if(!card) return;
   if(!state.txs.length){ card.style.display = 'none'; destroyMini(); return; } card.style.display = '';
-  S = S || computeAll(); syncRangeChips(); syncBmqChips();
+  S = S || computeAll(); syncRangeChips(); syncBmqChips(); applyMiniOpen();
   const key = miniSig();
   if(!force && miniChart && key===miniKey){ updateMiniLive(S); return; }
   const msg = $('miniMsg'), token = ++miniToken;
@@ -2087,7 +2142,7 @@ function openTxForm(type, preset, editId, backSym, after){
 function openPosition(sym){
   const S = computeAll(), p = S.positions.find(x=>x.sym===sym) || S.closed.find(x=>x.sym===sym); if(!p) return;
   const cur = p.cur, short = p.qty<0, open = Math.abs(p.qty)>1e-9, q = state.quotes[sym]||{};
-  openSheet(`<h3><span><span class="ltr">${esc(sym)}</span>${short?'<span class="tag short">שורט</span>':''}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
+  openSheet(`<h3><span>${logoHtml(sym, true)}<span class="ltr">${esc(sym)}</span>${short?'<span class="tag short">שורט</span>':''}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="muted" style="margin:-8px 0 10px;font-size:.85rem">${esc(p.asset.name||'')}</div>
     <div class="ctrls"><div class="seg sm" id="posRange">${['1M','3M','YTD','1Y','5Y'].map(r=>`<button data-v="${r}" class="${r===ui.posRange?'on':''}">${{'1M':'חודש','3M':'3 ח׳','YTD':'YTD','1Y':'שנה','5Y':'5 שנים'}[r]}</button>`).join('')}</div>
       <div class="seg sm" id="posStyle" style="flex:0 0 auto"><button data-v="candle" class="${ui.posStyle==='candle'?'on':''}">נרות</button><button data-v="line" class="${ui.posStyle==='line'?'on':''}">קו</button></div></div>
@@ -2890,6 +2945,8 @@ $('posList').addEventListener('click', e=>{ const n = e.target.closest('[data-ne
 $('txList').addEventListener('click', e=>{ const b = e.target.closest('[data-tx]'); if(b) openTxForm(null, null, b.dataset.tx); });
 [['perfRange','perfRange']].forEach(([id,key])=>$(id).addEventListener('click', e=>{
   const b = e.target.closest('button[data-v]'); if(!b) return; ui[key] = b.dataset.v; $(id).querySelectorAll('button').forEach(x=>x.classList.toggle('on', x===b)); if(key==='perfRange') syncRangeChips(); renderPerf(); }));
+$('miniHead').addEventListener('click', e=>{ if(e.target.closest('#miniTgl') || miniOpen()) return; $('miniTgl').click(); });   // collapsed: the whole slim row expands
+$('miniTgl').addEventListener('click', e=>{ e.stopPropagation(); const o = !miniOpen(); try{ localStorage.setItem(MINI_KEY, o ? '1' : '0'); }catch(_){} applyMiniOpen(); if(o) renderMini(null, true); });
 $('miniRange').addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b) return; ui.perfRange = b.dataset.v; syncRangeChips(); renderMini(); });
 
 // PWA: manifest + service worker only when served over http(s); as a plain file:// page everything else still works
