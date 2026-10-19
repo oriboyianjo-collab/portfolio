@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=22">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=22">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=22">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=22">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=23">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=23">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=23">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=23">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -97,7 +97,7 @@ h2 small{font-weight:500;color:var(--muted);font-size:.78rem}
 .pval .v{font-weight:700}
 .pval .num{display:block;text-align:left}
 .pmeta{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;font-size:.8rem;color:var(--muted)}
-.pmeta b{color:var(--text);font-weight:600}
+.pmeta b{color:var(--text);font-weight:600}.pmeta b.pri{font-weight:800;font-size:.9rem}.pmeta span:has(> b.pri){order:-1}.pc-d .lbl{display:block;font-size:.66rem;color:var(--muted);font-weight:600}
 .tag{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:99px;background:#eef2ff;color:#3730a3;margin-inline-start:6px;vertical-align:middle;font-weight:700}
 .tag.short{background:#fce7f3;color:#9d174d}
 .tag.manual{background:#fef3c7;color:#92400e}
@@ -234,7 +234,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=22" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=23" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -253,7 +253,7 @@ input.ltr-in{direction:ltr;text-align:right}
   <section class="tab on" id="tab-portfolio">
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="value">שווי</button><button data-sort="day">שינוי יומי</button><button data-sort="unreal">שינוי מעלות</button></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="value">שווי</button><button data-sort="day">שינוי יומי %</button><button data-sort="unreal">שינוי מעלות %</button></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
@@ -619,7 +619,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=22').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=23').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -1126,12 +1126,18 @@ function renderCash(S){
      ${cur==='USD'&&fx&&Math.abs(c.USD)>0.005?`<div class="l num">≈ ${fmtMoney(c.USD*fx,'ILS',0)}</div>`:''}${neg?'<div class="l neg">⚠️ יתרה שלילית</div>':''}</div>`; }).join('');
 }
 function cardFields(p){
-  const cur = p.cur, a = ageInfo(p.sym, p);
+  const cur = p.cur, a = ageInfo(p.sym, p), sk = posSort().k;
+  // the sort chips order by % (dayPct / unrealPct, never the amount); while one of them is active its % leads the row
+  const dayTxt = p.day!=null ? (sk==='day' ? `${fmtPct(p.dayPct)} (${fmtSigned(p.day,cur)})` : `${fmtSigned(p.day,cur)} (${fmtPct(p.dayPct)})`) : '—';
+  const unrTxt = sk==='unreal' ? `${fmtPct(p.unrealPct)} (${fmtSigned(p.unreal,cur)})` : `${fmtSigned(p.unreal,cur)} (${fmtPct(p.unrealPct)})`;
+  const colU = sk==='unreal';
   return {
+    colp:[colU ? fmtPct(p.unrealPct) : (p.dayPct!=null?fmtPct(p.dayPct):'—'), 'num '+cls(colU ? p.unreal : p.day)],
+    cola:[colU ? fmtSigned(p.unreal,cur) : (p.day!=null?fmtSigned(p.day,cur):''), 'num '+cls(colU ? p.unreal : p.day)],
     mv:[fmtMoney(p.mv,cur), 'v num'],
     mvils:[cur==='USD'&&p.mvILS!=null ? fmtMoney(p.mvILS,'ILS',0) : '', 'pname num'],
-    day:[p.day!=null?`${fmtSigned(p.day,cur)} (${fmtPct(p.dayPct)})`:'—', 'num '+cls(p.day)],
-    unreal:[`${fmtSigned(p.unreal,cur)} (${fmtPct(p.unrealPct)})`, 'num '+cls(p.unreal)],
+    day:[dayTxt, 'num '+cls(p.day)+(sk==='day'?' pri':'')],
+    unreal:[unrTxt, 'num '+cls(p.unreal)+(sk==='unreal'?' pri':'')],
     price:[fmtPrice(p.price,cur)+(p.ext?(p.ext==='pre'?' ·טרום':' ·אפטר'):''), 'num'],
     age:[a.t, 'age '+a.c],
     dayp:[p.dayPct!=null?fmtPct(p.dayPct):'—', 'num '+cls(p.day)],
@@ -1206,7 +1212,7 @@ function renderPortfolio(S){
         <button class="pc-h" data-ctoggle aria-expanded="${open}">
           <div class="pc-n"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tag}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
           <div class="pc-v">${f('mvs','span')}${cur==='USD'?f('mvils','span'):''}</div>
-          <div class="pc-d">${f('dayp')}${f('daya','span')}</div>
+          <div class="pc-d">${posSort().k==='unreal'?'<span class="lbl">מעלות</span>':''}${f('colp')}${f('cola','span')}</div>
         </button>
         <div class="pc-b"><div class="pc-g">
           <div><span>${short?'כמות בשורט':'כמות'}</span><b class="num">${fmtQtyP(Math.abs(p.qty))}</b></div>
@@ -2100,7 +2106,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v22</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v23</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -2178,7 +2184,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 22;
+const SEC_DIR_V = 23;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
