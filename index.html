@@ -134,6 +134,13 @@ button{font-family:inherit}
 .bmleg{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:.8rem;margin:0 2px 4px}.bmleg:empty{display:none}.bmleg span{white-space:nowrap}.bmleg i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-inline-end:4px;vertical-align:middle}.bmleg b{font-weight:700}
 .pc-wd{grid-column:1/-1}.pc-u{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;background:#f1f5f9;border-radius:10px;padding:6px 10px}.pc-u>span{font-weight:700;color:var(--muted)}.pc-u b:first-of-type{font-size:1.05rem}
 #posKv div.hl{background:#eff6ff;border-radius:8px}#posKv div.hl b{font-size:1.05rem}
+.idxrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}
+.idx{background:#fff;border:1px solid var(--border);border-radius:14px;padding:6px 10px;line-height:1.2;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto;column-gap:6px;align-items:center;min-height:56px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.idx-n{font-size:.74rem;font-weight:700;color:#334155;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.idx-n small{font-weight:500;color:var(--muted);font-size:.9em}
+.idx-v{font-size:.98rem;font-weight:800;direction:ltr;unicode-bidi:isolate;text-align:right;white-space:nowrap;letter-spacing:-.2px}
+.idx-c{font-size:.74rem;font-weight:700;direction:ltr;unicode-bidi:isolate;text-align:right;white-space:nowrap}
+.idx .spark{grid-column:2;grid-row:1/4;width:58px;height:30px;display:block}.idx .spark path{fill:none;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}.idx .spark line{stroke:#94a3b8;stroke-width:1;stroke-dasharray:2 2}
+@media (max-width:370px){.idx{padding:6px 8px}.idx .spark{width:44px}.idx-v{font-size:.92rem}}
 .mini{padding:10px 10px 6px}.mini-ret{display:flex;align-items:baseline;gap:6px}.mini-tgl{margin-inline-start:auto;align-self:center;border:1px solid var(--border);background:#f8fafc;color:#475569;border-radius:999px;width:34px;height:28px;font:inherit;font-size:.9rem;cursor:pointer;flex:none}
 .mini.collapsed{padding:8px 10px}.mini.collapsed .mini-h,.mini.collapsed .bmq,.mini.collapsed .bmleg,.mini.collapsed .mini-chart{display:none}.mini.collapsed .mini-ret{margin:0;cursor:pointer}.mini-rng{display:none;color:var(--muted);font-size:.85em}.mini.collapsed .mini-rng{display:inline}.mini .seg{margin-bottom:6px}.mini-ret{font-size:.8rem;color:var(--muted);margin:0 2px 2px}.mini-ret b{font-size:.95rem}.mini-chart{height:136px}
 .chart-msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.9rem;text-align:center;padding:10px;direction:rtl;z-index:3;background:rgba(255,255,255,.6)}
@@ -262,6 +269,7 @@ input.ltr-in{direction:ltr;text-align:right}
 </header>
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
+    <div class="idxrow" id="idxRow" hidden></div>
     <div class="card mini" id="miniCard"><div class="mini-h"><div class="seg sm" id="miniRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M">3 ח׳</button><button data-v="YTD" class="on">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
       <div class="mini-ret" id="miniHead"><span id="miniLbl">התיק בטווח</span><span class="mini-rng" id="miniRng"></span> <b id="miniPct" class="num">—</b> <span id="miniAmt" class="num"></span><button class="mini-tgl" id="miniTgl" aria-expanded="true" aria-label="כיווץ גרף הביצועים">▴</button></div>
       <div class="bmq" id="miniBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק</button></div><div class="bmleg" id="miniLeg"></div>
@@ -911,7 +919,7 @@ async function coingeckoQuotes(syms){
 // One batched CNBC request for every stock/ETF/index + crypto (SYM.CM=) + USD/ILS; CoinGecko only for coins CNBC doesn't carry
 async function fetchQuotes(syms, withFx){
   const cr = syms.filter(isCrypto), st = syms.filter(s=>!isCrypto(s));
-  const req = [...st, ...cr.map(s=>s+'.CM='), ...(withFx?['ILS=']:[])];
+  const req = [...new Set([...st, ...cr.map(s=>s+'.CM='), ...(withFx?['ILS=']:[]), ...(withFx ? IDX.map(x=>x.s) : [])])];   // + the two index tiles
   let q = {}, ok = true;
   if(req.length){ try{ q = await cnbcQuotes(req); }catch(e){ ok = false; console.warn('CNBC failed', e.message); } }
   const out = {};
@@ -919,7 +927,7 @@ async function fetchQuotes(syms, withFx){
   cr.forEach(s=>{ if(q[s+'.CM=']) out[s] = q[s+'.CM=']; });
   const miss = cr.filter(s=>!out[s]);
   if(miss.length) Object.assign(out, await coingeckoQuotes(miss));
-  return {quotes:out, fx:q['ILS='] || null, ok};
+  return {quotes:out, fx:q['ILS='] || null, ok, raw:q};
 }
 async function fetchFX(){
   const tries = [
@@ -1050,6 +1058,7 @@ async function refreshPrices(silent, live){
     const res = await fetchQuotes(syms, true);           // ONE batched request (stocks + crypto + USD/ILS)
     ok = res.ok;
     errors += applyQuotes(res, syms);
+    idxApply(res.raw || {}).catch(e=>console.warn('index tiles', e.message));
     if(!res.fx && (!live || !state.fx.rate || Date.now()-(state.fx.updated||0) > 600000)){ if(!(await fetchFX())) errors++; }
   }catch(e){ console.warn('refresh failed', e); errors++; ok = false; }
   state.lastRefresh = Date.now(); state.refreshErrors = errors; lastPoll = Date.now();
@@ -1104,7 +1113,7 @@ function ageInfo(sym, p){
 // ====================== rendering ======================
 function renderAll(){
   const S = computeAll();
-  renderHeader(S); renderPortfolio(S); renderTxList();
+  renderHeader(S); renderPortfolio(S); renderTxList(); renderIdx();
   if(ui.tab==='perf') renderPerf(S); else if(ui.tab==='portfolio') renderMini(S);
   updatePosSheet(S);
   if(pollReady) schedulePoll(); else renderLiveStatus();   // positions may have changed → re-evaluate poll speed
@@ -1638,6 +1647,49 @@ async function renderPerf(S){
 // Data: CNBC daily history (free, no key) of the index itself (.SPX / .IXIC); if it has no data, the ETF (SPY / QQQ).
 // The choice is remembered in localStorage (a UI preference, like the sort). Index lines are history only (daily closes),
 // so a live price tick never refetches or rebuilds them.
+// ---------- main screen: S&P 500 / Nasdaq 100 tiles (Yahoo-style) ----------
+// Quotes ride the existing batched CNBC request (same poll cycle); prior close = last − change, as for every quote (CNBC rolls
+// previous_day_closing to today's close after the bell). Indices only trade the regular session, so pre/after/overnight never
+// show up. Sparkline = the last session's 5-minute bars, regular hours only (09:30–16:00 ET), refetched at most every 5 min while
+// the market is open. If CNBC gives no index quote, SPY / QQQ are shown instead, labelled as such. Market data only is cached.
+const IDX = [{k:'spx', s:'.SPX', alt:'SPY', n:'S&P 500'}, {k:'ndx', s:'.NDX', alt:'QQQ', n:'נאסד"ק 100'}];
+const IDX_KEY = 'portfolioTracker.idx.v1';
+let idxData = (()=>{ try{ return JSON.parse(localStorage.getItem(IDX_KEY)) || {q:{}, sp:{}}; }catch(e){ return {q:{}, sp:{}}; } })();
+if(!idxData.q) idxData.q = {}; if(!idxData.sp) idxData.sp = {};
+function idxSave(){ try{ localStorage.setItem(IDX_KEY, JSON.stringify(idxData)); }catch(e){} }
+const fmtLvl = v=>v==null ? '—' : v.toLocaleString('en-US',{minimumFractionDigits:2, maximumFractionDigits:2});
+async function idxApply(q){
+  const miss = IDX.filter(x=>!(q[x.s] && q[x.s].price!=null && q[x.s].prev));
+  let alt = {}; if(miss.length){ try{ alt = await cnbcQuotes(miss.map(x=>x.alt)); }catch(e){} }
+  IDX.forEach(x=>{ const a = q[x.s], b = alt[x.alt], u = a && a.price!=null && a.prev ? a : b && b.price!=null && b.prev ? b : null; if(!u) return;
+    idxData.q[x.k] = {last:u.price, prev:u.prev, sym: u===a ? x.s : x.alt, etf: u!==a, status:u.status||'', ts:u.ts||null, date:u.date||''}; });
+  idxSave(); renderIdx(); idxSpark().catch(e=>console.warn('index sparkline', e.message));
+}
+async function idxSpark(){
+  let ch = false;
+  for(const x of IDX){ const q = idxData.q[x.k]; if(!q || !q.date) continue; const sp = idxData.sp[x.k], open = q.status==='REG_MKT';
+    if(sp && sp.sym===q.sym && sp.date===q.date && (!open || Date.now()-sp.at < 5*60e3)) continue;
+    const st = q.date.replace(/-/g,''), url = `https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(q.sym)}/5M/${st}000000/${addDays(q.date,1).replace(/-/g,'')}000000/adjusted/EST5EDT.json`;
+    try{ const j = await fetchJSON(url, 10000), bars = (j && j.barData && j.barData.priceBars) || [];
+      const pts = bars.filter(b=>{ const t = String(b.tradeTime||''), hm = +t.slice(8,12); return t.slice(0,8)===st && hm>=930 && hm<1600; }).map(b=>+b.close).filter(v=>v>0);
+      idxData.sp[x.k] = {sym:q.sym, date:q.date, at:Date.now(), pts}; ch = true; }catch(e){ console.warn('index bars', x.s, e.message); } }
+  if(ch){ idxSave(); renderIdx(); }
+}
+function sparkSvg(pts, prev, up){
+  if(!pts || pts.length < 2) return '';
+  const W = 58, H = 30, all = prev ? [...pts, prev] : pts, lo = Math.min(...all), hi = Math.max(...all), r = hi-lo || 1, y = v=>(H-2 - (v-lo)/r*(H-4)).toFixed(1);
+  const d = pts.map((v,i)=>(i?'L':'M')+(i/(pts.length-1)*W).toFixed(1)+' '+y(v)).join(' ');
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${prev ? `<line x1="0" x2="${W}" y1="${y(prev)}" y2="${y(prev)}"/>` : ''}<path d="${d}" stroke="${up ? 'var(--green)' : 'var(--red)'}"/></svg>`;
+}
+function renderIdx(){
+  const row = $('idxRow'); if(!row) return; const have = IDX.filter(x=>idxData.q[x.k]); row.hidden = !have.length; if(!have.length) return;
+  row.innerHTML = IDX.map(x=>{ const q = idxData.q[x.k]; if(!q) return `<div class="idx" data-idx="${x.k}"><div class="idx-n">${x.n}</div><b class="idx-v num">—</b><div class="idx-c num"></div></div>`;
+    const c = q.last - q.prev, pc = c/q.prev*100, up = c >= 0, sp = idxData.sp[x.k], cl = q.status && q.status!=='REG_MKT';
+    let pts = sp && sp.sym===q.sym && sp.date===q.date ? sp.pts.slice() : null; if(pts && pts.length && !cl) pts.push(q.last);
+    const name = q.etf ? `${x.n} <small>· ${x.alt}</small>` : x.n;
+    return `<div class="idx" data-idx="${x.k}" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}"><div class="idx-n">${name}${cl ? ' <small>· סגור</small>' : ''}</div>`+
+      `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(q.last)}</b><div class="idx-c num ${cls(c)}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${sparkSvg(pts, q.prev, up)}</div>`; }).join('');
+}
 const QUICK_BM = [{k:'spx', s:'.SPX', alt:'SPY', n:'S&P 500', color:'#ea580c'}, {k:'ndx', s:'.IXIC', alt:'QQQ', n:'נאסד"ק', color:'#9333ea'}];
 const BMQ_KEY = 'portfolioTracker.bmQuick';
 function bmQuick(){ try{ const v = (localStorage.getItem(BMQ_KEY)||'').split(',').filter(k=>QUICK_BM.some(q=>q.k===k)); return v; }catch(e){ return []; } }
@@ -2972,7 +3024,7 @@ renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {get state(){ return state; }, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get state(){ return state; }, idx(){ return idxData; }, idxApply, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 })();
 </script>
 </body>
