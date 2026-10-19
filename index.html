@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=31">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=31">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=31">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=31">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=32">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=32">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=32">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -238,7 +238,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=31" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=32" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -251,7 +251,7 @@ input.ltr-in{direction:ltr;text-align:right}
 </header>
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
-    <div class="logostrip"><img src="logo.svg?v=31" alt="" width="40" height="40"><span>Savage Tracker</span></div>
+    <div class="logostrip"><img src="logo.svg?v=32" alt="" width="40" height="40"><span>Savage Tracker</span></div>
     <div class="card mini" id="miniCard"><div class="mini-h"><div class="seg sm" id="miniRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M" class="on">3 ח׳</button><button data-v="YTD">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
       <div class="mini-ret"><span id="miniLbl">התיק בטווח</span> <b id="miniPct" class="num">—</b> <span id="miniAmt" class="num"></span></div>
       <div class="bmq" id="miniBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק</button></div><div class="bmleg" id="miniLeg"></div>
@@ -463,14 +463,18 @@ function posView(){ try{ return localStorage.getItem(VIEW_KEY)==='full' ? 'full'
 let sortPending = null, listTouch = false;   // see reorderCards
 const SORT_KEY = 'portfolioTracker.posSort', SORT_FIELDS = {value:'mvILS', day:'dayPct', unreal:'unrealPct'};
 function posSort(){ try{ const [k,d] = (localStorage.getItem(SORT_KEY)||'').split(':'); if(SORT_FIELDS[k]) return {k, d: d==='asc'?'asc':'desc'}; }catch(e){} return {k:'value', d:'desc'}; }
+// The "שווי" chip exists only while amounts are visible (sorting by value would leak the ranking of hidden amounts). With the
+// eye closed a saved value sort shows as "שינוי יומי %" ↓ for the time being; the saved choice is not touched, so value sort
+// comes back as soon as the eye opens. Picking another chip while hidden is a real choice and is saved as usual.
+function effSort(){ const s = posSort(); return hidden() && s.k==='value' ? {k:'day', d:'desc', fallback:true} : s; }
 // value = market value in ILS for every holding (USD converted at the live rate) so ₪ and $ holdings compare correctly;
 // day = daily %, unreal = unrealized P/L % vs cost. Holdings without a number (no quote yet) always go last; ties by symbol.
-function sortPositions(list){ const {k,d} = posSort(), f = SORT_FIELDS[k], sg = d==='asc' ? 1 : -1;
+function sortPositions(list){ const {k,d} = effSort(), f = SORT_FIELDS[k], sg = d==='asc' ? 1 : -1;
   return list.slice().sort((a,b)=>{ const x = a[f], y = b[f], nx = x==null || !isFinite(x), ny = y==null || !isFinite(y);
     if(nx || ny) return nx===ny ? (a.sym<b.sym?-1:1) : (nx?1:-1);
     return (x-y)*sg || (a.sym<b.sym?-1:a.sym>b.sym?1:0); }); }
-function renderSortBar(n){ const bar = $('posSort'), {k,d} = posSort(); bar.hidden = n < 2;
-  bar.querySelectorAll('[data-sort]').forEach(b=>{ const on = b.dataset.sort===k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
+function renderSortBar(n){ const bar = $('posSort'), {k,d} = effSort(); bar.hidden = n < 2;
+  bar.querySelectorAll('[data-sort]').forEach(b=>{ const on = b.dataset.sort===k; if(b.dataset.sort==='value') b.hidden = hidden(); b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
     const ar = b.querySelector('.ar'); if(ar) ar.remove();
     if(on){ const s = document.createElement('span'); s.className = 'ar'; s.textContent = d==='desc' ? '↓' : '↑'; s.setAttribute('aria-hidden','true'); b.appendChild(s);
       b.setAttribute('aria-label', `${b.firstChild.textContent} – ${d==='desc'?'מהגבוה לנמוך':'מהנמוך לגבוה'}`); } else b.removeAttribute('aria-label'); }); }
@@ -641,7 +645,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=31').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=32').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -1131,11 +1135,12 @@ function renderCash(S){
 }
 function cardFields(p){
   const cur = p.cur, a = ageInfo(p.sym, p);
-  // collapsed row: daily % (plus change-from-cost % while sorting by it); amounts and change-from-cost live in the details
+  // collapsed row: share price + daily % (plus change-from-cost % while sorting by it); value, amounts and change-from-cost live in the details
   return {
     hd:[p.dayPct!=null ? fmtPct(p.dayPct) : '—', 'num '+cls(p.dayPct)],
     hu:[p.unrealPct!=null ? fmtPct(p.unrealPct) : '—', 'num '+cls(p.unrealPct)],
     mv:[fmtMoney(p.mv,cur), 'v num'],
+    hp:[fmtPrice(p.price,cur), 'v num'],          // row price: market price in the security's own currency (TASE in ₪), never masked
     mvils:[cur==='USD'&&p.mvILS!=null ? fmtMoney(p.mvILS,'ILS',0) : '', 'pname num'],
     day:[p.day!=null ? fmtSigned(p.day,cur) : '—', 'num '+cls(p.day)],
     unreal:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
@@ -1201,7 +1206,7 @@ function renderPortfolio(S){
   $('posCount').textContent = S.positions.length ? `${S.positions.length} פתוחות` : '';
   // the change-from-cost % lives in the details (expanded row / detail sheet); the collapsed row shows it only while
   // sorting by it, so the order makes sense
-  const showU = posSort().k==='unreal';
+  const showU = effSort().k==='unreal';
   if(!S.positions.length){
     $('posList').innerHTML = state.txs.length ? '<div class="empty">אין פוזיציות פתוחות</div>' :
       `<div class="empty"><div class="big">💼</div><div>התיק ריק. מתחילים בהפקדת מזומן ואז קנייה.</div>
@@ -1215,7 +1220,7 @@ function renderPortfolio(S){
       return `<div class="pcard pc${open?' open':''}" data-sym="${esc(p.sym)}">
         <button class="pc-h" data-ctoggle aria-expanded="${open}">
           <div class="pc-n"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tag}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
-          <div class="pc-v">${f('mvs','span')}${cur==='USD'?f('mvils','span'):''}</div>
+          <div class="pc-v">${f('hp','span')}</div>
           <div class="pc-d"><span class="chg"><i>יומי</i>${f('hd')}</span>${showU?`<span class="chg"><i>מעלות</i>${f('hu')}</span>`:''}</div>
         </button>
         <div class="pc-b"><div class="pc-g">
@@ -1223,8 +1228,7 @@ function renderPortfolio(S){
           <div><span>מחיר</span>${f('price')}</div>
           <div><span>${short?'מחיר שורט':'עלות ממוצעת'}</span><b class="num">${fmtMoney(p.avg,cur)}</b></div>
           <div><span>עלות</span>${f('cost')}</div>
-          <div><span>שווי</span>${f('mv')}</div>
-          <div><span>שווי בשקלים</span>${f('mvils2')}</div>
+          <div class="pc-u"><span>שווי</span>${f('mv')}${cur==='USD'?f('mvils2'):''}</div>
           <div class="pc-u"><span>שינוי מעלות</span>${f('unrp')}${f('unra')}</div>
           <div><span>שינוי יומי</span>${f('daya')}</div>
           <div><span>שינוי יומי %</span>${f('dayp')}</div>
@@ -1243,10 +1247,9 @@ function renderPortfolio(S){
       const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0]}</b>`;
       return `<button class="pcard" data-sym="${esc(p.sym)}">
         <div class="prow"><div style="min-width:0"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tags.join('')}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
-        <div class="pval"><div data-f="mv" class="${F.mv[1]}">${F.mv[0]}</div><div data-f="mvils" class="${F.mvils[1]}">${F.mvils[0]}</div></div></div>
+        <div class="pval"><div data-f="hp" class="${F.hp[1]}">${F.hp[0]}</div></div></div>
         <div class="pchg"><span class="chg"><i>יומי</i>${f('hd')}</span>${showU?`<span class="chg"><i>מעלות</i>${f('hu')}</span>`:''}</div>
         <div class="pmeta">
-          <span>מחיר: ${f('price')}</span>
           <span>היום: ${f('day')}</span>
           <span>${short?'כמות בשורט':'כמות'}: <b class="num">${fmtQtyP(Math.abs(p.qty))}</b></span>
           <span>${short?'מחיר שורט':'עלות ממוצעת'}: <b class="num">${fmtMoney(p.avg,cur)}</b></span>
@@ -1342,7 +1345,7 @@ function patchPortfolio(S){
     const c = bySym.get(p.sym), F = cardFields(p);
     for(const k in F){ const el = c.querySelector(`[data-f="${k}"]`); if(!el) continue; if(el.textContent!==F[k][0]) el.textContent = F[k][0]; el.className = F[k][1]; }
     const old = shownPrice[p.sym];
-    if(old!=null && p.price!=null && Math.abs(p.price-old) > 1e-9){ flash(c.querySelector('[data-f="price"]'), p.price-old); if(!hidden()) flash(c.querySelector('[data-f="mv"]'), (p.price-old)*(p.qty<0?-1:1)); }
+    if(old!=null && p.price!=null && Math.abs(p.price-old) > 1e-9){ flash(c.querySelector('[data-f="hp"]'), p.price-old); flash(c.querySelector('[data-f="price"]'), p.price-old); if(!hidden()) flash(c.querySelector('[data-f="mv"]'), (p.price-old)*(p.qty<0?-1:1)); }
     shownPrice[p.sym] = p.price;
   });
   reorderCards(order.map(p=>bySym.get(p.sym)));
@@ -2130,7 +2133,7 @@ function symTxHtml(sym){ const l = sortedTxs().filter(t=>t.symbol===sym || t.toS
 // detail-sheet numbers: each value cell has data-k so live ticks can patch it in place
 function posKvRows(p){
   const cur = p.cur, short = p.qty<0, open = Math.abs(p.qty)>1e-9, R = [];
-  if(open) R.push(['unreal','שינוי מעלות (ברוטו)', `${fmtPct(p.unrealPct)} · ${fmtSigned(p.unreal,cur)}`, cls(p.unreal), 'hl'], ['mv','שווי', fmtMoney(p.mv,cur), ''], ['price',`מחיר נוכחי${p.manual?' (ידני)':''}`, fmtPrice(p.price,cur), ''],
+  if(open) R.push(['mv','שווי', fmtMoney(p.mv,cur) + (cur==='USD' && p.mvILS!=null ? ' · ' + fmtMoney(p.mvILS,'ILS',0) : ''), '', 'hl'], ['unreal','שינוי מעלות (ברוטו)', `${fmtPct(p.unrealPct)} · ${fmtSigned(p.unreal,cur)}`, cls(p.unreal), 'hl'], ['price',`מחיר נוכחי${p.manual?' (ידני)':''}`, fmtPrice(p.price,cur), ''],
     ['day','שינוי היום', p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
     ['qty', short?'כמות בשורט':'כמות', fmtQtyP(Math.abs(p.qty)), ''], ['avg', short?'מחיר שורט ממוצע':'עלות ממוצעת', fmtMoney(p.avg,cur), ''],
     ['open','נפתחה', fmtDate(p.openDate), 'nonum'],
@@ -2241,7 +2244,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v31</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v32</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -2318,7 +2321,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 31;
+const SEC_DIR_V = 32;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
@@ -2867,7 +2870,7 @@ $('btnEye').onclick = ()=>{ state.settings.hideAmounts = !hidden(); save(); rend
 $('cashHead').addEventListener('click', ()=>{ if(posView()!=='compact') return; try{ localStorage.setItem(CASH_KEY, cashOpen() ? '0' : '1'); }catch(_){} renderCash(computeAll()); });
 $('posView').addEventListener('click', e=>{ const b = e.target.closest('[data-view]'); if(!b) return; try{ localStorage.setItem(VIEW_KEY, b.dataset.view); }catch(_){} renderPortfolio(computeAll()); });
 $('splitSug').addEventListener('click', splitSugClick);
-$('posSort').addEventListener('click', e=>{ const b = e.target.closest('[data-sort]'); if(!b) return; const cur = posSort();
+$('posSort').addEventListener('click', e=>{ const b = e.target.closest('[data-sort]'); if(!b) return; const cur = effSort();
   const d = cur.k===b.dataset.sort ? (cur.d==='desc' ? 'asc' : 'desc') : 'desc';
   try{ localStorage.setItem(SORT_KEY, `${b.dataset.sort}:${d}`); }catch(_){} renderPortfolio(computeAll()); });
 $('posList').addEventListener('pointerdown', ()=>{ listTouch = true; });
