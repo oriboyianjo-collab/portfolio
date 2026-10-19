@@ -143,6 +143,11 @@ button{font-family:inherit}
 .idx-c{font-size:.74rem;font-weight:700;direction:ltr;unicode-bidi:isolate;text-align:right;white-space:nowrap}
 .idx .spark{grid-column:2;grid-row:1/4;width:58px;height:30px;display:block}.idx .spark path{fill:none;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}.idx .spark line{stroke:var(--fg-94a3b8);stroke-width:1;stroke-dasharray:2 2}
 @media (max-width:370px){.idx{padding:6px 8px}.idx .spark{width:44px}.idx-v{font-size:.92rem}}
+.heat{padding:10px}.heat-h{display:flex;align-items:center;gap:8px;min-height:30px}.heat-t{font-weight:700;font-size:.95rem}.heat-h small{color:var(--muted);font-size:.78rem}.heat-h .mini-tgl{margin-inline-start:auto}
+.heat-map{position:relative;height:240px;margin-top:8px;border-radius:10px;overflow:hidden}.heat.collapsed{padding:8px 10px}.heat.collapsed .heat-map{display:none}.heat.collapsed .heat-h{cursor:pointer}
+.heat-map .ht{position:absolute;box-sizing:border-box;border:1px solid var(--card);border-radius:4px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;cursor:pointer;padding:1px;line-height:1.12;transition:background-color .4s}
+.heat-map .ht b{font-weight:800;direction:ltr;unicode-bidi:isolate;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 1px rgba(0,0,0,.25)}.heat-map .ht i{font-style:normal;font-weight:700;direction:ltr;unicode-bidi:isolate;white-space:nowrap}.heat-map .ht s{text-decoration:none;opacity:.85;font-weight:600;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media (max-width:370px){.heat-map{height:224px}}
 .mini{padding:10px 10px 6px}.mini-ret{display:flex;align-items:baseline;gap:6px}.mini-tgl{margin-inline-start:auto;align-self:center;border:1px solid var(--border);background:var(--bg-f8fafc);color:var(--fg-475569);border-radius:999px;width:34px;height:28px;font:inherit;font-size:.9rem;cursor:pointer;flex:none}
 .mini.collapsed{padding:8px 10px}.mini.collapsed .mini-h,.mini.collapsed .bmq,.mini.collapsed .bmleg,.mini.collapsed .mini-chart{display:none}.mini.collapsed .mini-ret{margin:0;cursor:pointer}.mini-rng{display:none;color:var(--muted);font-size:.85em}.mini.collapsed .mini-rng{display:inline}.mini .seg{margin-bottom:6px}.mini-ret{font-size:.8rem;color:var(--muted);margin:0 2px 2px}.mini-ret b{font-size:.95rem}.mini-chart{height:136px}
 .chart-msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.9rem;text-align:center;padding:10px;direction:rtl;z-index:3;background:var(--bg-w60)}
@@ -286,6 +291,8 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
       <div class="mini-ret" id="miniHead"><span id="miniLbl">התיק בטווח</span><span class="mini-rng" id="miniRng"></span> <b id="miniPct" class="num">—</b> <span id="miniAmt" class="num"></span><button class="mini-tgl" id="miniTgl" aria-expanded="true" aria-label="כיווץ גרף הביצועים">▴</button></div>
       <div class="bmq" id="miniBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק</button></div><div class="bmleg" id="miniLeg"></div>
       <div class="chart mini-chart" id="miniChart"><div class="chart-msg" id="miniMsg">טוען…</div></div></div>
+    <div class="card heat" id="heatCard" hidden><div class="heat-h" id="heatHead"><span class="heat-t">מפת חום</span><small id="heatSum"></small><button class="mini-tgl" id="heatTgl" aria-expanded="true" aria-label="כיווץ מפת החום">▴</button></div>
+      <div class="heat-map" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי"></div></div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
     <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight" title="% מהתיק">% מהתיק</button><button data-sort="day" title="שינוי יומי %">יומי %</button><button data-sort="unreal" title="שינוי מעלות %">מעלות %</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span></span><span>נייר</span><span class="pcol">היום</span><span class="pcol">% מהתיק</span><span class="pcol" id="posColD"><span>יומי</span><small>מחיר</small></span></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
@@ -1126,7 +1133,7 @@ function ageInfo(sym, p){
 // ====================== rendering ======================
 function renderAll(){
   const S = computeAll();
-  renderHeader(S); renderPortfolio(S); renderTxList(); renderIdx();
+  renderHeader(S); renderPortfolio(S); renderTxList(); renderIdx(); renderHeat(S);
   if(ui.tab==='perf') renderPerf(S); else if(ui.tab==='portfolio') renderMini(S);
   updatePosSheet(S);
   if(pollReady) schedulePoll(); else renderLiveStatus();   // positions may have changed → re-evaluate poll speed
@@ -1449,6 +1456,7 @@ function livePatch(){
   const S = computeAll();
   renderHeader(S);
   if(!patchPortfolio(S)) renderPortfolio(S); else spkPatch();
+  renderHeat(S);
   if(ui.tab==='perf'){ renderAlloc(S); renderPL(S); updatePerfLive(S); } else if(ui.tab==='portfolio') updateMiniLive(S);
   updatePosLive(); updatePosSheet(S);
   renderLiveStatus();
@@ -1510,7 +1518,7 @@ function makeChart(el, pctMode, money){
   const mask = money && hidden();
   const T = chartTheme(), c = LightweightCharts.createChart(el, {autoSize:true, layout:{background:{color:T.bg}, textColor:T.text, fontFamily:'system-ui, Roboto, Arial', fontSize:11},
     grid:{vertLines:{visible:false}, horzLines:{color:T.grid}}, rightPriceScale:{borderVisible:false, visible:!mask}, timeScale:{borderVisible:false, fixLeftEdge:true, fixRightEdge:true},
-    crosshair:{mode:0}, localization:{locale:'he-IL', priceFormatter: mask ? (()=>MASK) : pctMode ? (v=>v.toFixed(1)+'%') : (v=>Math.abs(v)>=10000 ? (v/1000).toFixed(1)+'K' : v.toFixed(Math.abs(v)<10?2:0))}}); chartReg.add(c); return c;
+    crosshair:{mode:0}, localization:{locale:'he-IL', priceFormatter: mask ? (()=>MASK) : pctMode ? (v=>v.toFixed(1)+'%') : (v=>Math.abs(v)>=10000 ? (v/1000).toFixed(1)+'K' : v.toFixed(Math.abs(v)<10?2:0))}}); chartReg.add(c); const rm = c.remove.bind(c); c.remove = ()=>{ chartReg.delete(c); return rm(); }; return c;   // removed charts leave the theme registry
 }
 // ---- end-of-line return labels (shared by the ביצועים tab and the main-screen chart) ----
 // One colored label per line at its last point, showing that line's % return, drawn over the right price scale. Our own HTML
@@ -1743,6 +1751,49 @@ async function spkRun(){ if(spkBusy) return; spkBusy = true;
     await Promise.all([0,1,2].map(async()=>{ while(i < todo.length){ const sym = todo[i++]; await spkFetch(sym); spkPatch(sym); } }));
     if(todo.length){ Object.keys(spk).forEach(k=>{ if(!open.includes(k)) delete spk[k]; }); try{ localStorage.setItem(SPK_KEY, JSON.stringify(spk)); }catch(e){} }
   }finally{ spkBusy = false; } }
+// ---------- main screen: portfolio heatmap (Finviz-style treemap) ----------
+// Tile area = the holding's % of the portfolio (long positions only, cash excluded); colour = daily % (grey near 0, full green/red
+// at ±3%; dark enough for white text in both themes). Squarified layout, mirrored so the biggest holding sits on the right (RTL).
+// Live ticks only recolour/re-label the existing tiles; the tiles are rebuilt only when the weights move the layout (≥0.25% steps),
+// so a tap is never lost to a rebuild. Tap = the holding's detail sheet. Collapsible like the chart (UI preference only).
+const HEAT_KEY = 'portfolioTracker.heatOpen';
+let heatKey = '';
+function heatOpen(){ try{ return localStorage.getItem(HEAT_KEY) !== '0'; }catch(e){ return true; } }
+function squarify(items, W, H){   // items: [{v}] sorted desc, Σv>0 → adds x,y,w,h (LTR)
+  const out = [], tot = items.reduce((a,b)=>a+b.v, 0), scale = W*H/tot; let x = 0, y = 0, w = W, h = H, row = [], i = 0;
+  const worst = (r, side)=>{ const s = r.reduce((a,b)=>a+b.a, 0), mx = Math.max(...r.map(o=>o.a)), mn = Math.min(...r.map(o=>o.a)); return Math.max(side*side*mx/(s*s), s*s/(side*side*mn)); };
+  const lay = r=>{ const s = r.reduce((a,b)=>a+b.a, 0);
+    if(w >= h){ const cw = s/h; let yy = y; r.forEach(o=>{ const oh = o.a/cw; out.push(Object.assign(o.it, {x, y:yy, w:cw, h:oh})); yy += oh; }); x += cw; w -= cw; }
+    else { const rh = s/w; let xx = x; r.forEach(o=>{ const ow = o.a/rh; out.push(Object.assign(o.it, {x:xx, y, w:ow, h:rh})); xx += ow; }); y += rh; h -= rh; } };
+  const A = items.map(it=>({it, a:it.v*scale}));
+  while(i < A.length){ const side = Math.min(w, h), o = A[i];
+    if(!row.length || worst([...row, o], side) <= worst(row, side)){ row.push(o); i++; } else { lay(row); row = []; } }
+  if(row.length) lay(row);
+  return out; }
+function heatColor(p){ if(p==null || !isFinite(p)) return 'rgb(71,85,105)';
+  const t = Math.min(1, Math.abs(p)/3), n = [71,85,105], g = [21,128,61], r = [185,28,28], c = p >= 0 ? g : r, k = Math.abs(p) < 0.05 ? 0 : 0.18 + 0.82*t;
+  return `rgb(${n.map((v,i)=>Math.round(v + (c[i]-v)*k)).join(',')})`; }
+function heatTileInner(it){ const w = it.w, h = it.h, mn = Math.min(w, h), fs = Math.max(10, Math.min(19, mn/3.1, w/(it.sym.length*0.62+0.8)));
+  if(w < 26 || h < 15) return '';
+  const pct = it.p!=null ? fmtPct(it.p) : '—';
+  if(w < 46 || h < 30) return `<b style="font-size:${Math.min(fs,11)}px">${esc(it.sym)}</b>`;
+  const sub = Math.max(9.5, Math.min(14, fs*0.72));
+  return `<b style="font-size:${fs.toFixed(1)}px">${esc(it.sym)}</b><i style="font-size:${sub.toFixed(1)}px">${pct}</i>` + (h >= 58 && w >= 54 ? `<s style="font-size:${Math.max(9,sub*0.82).toFixed(1)}px">${fmtW(it.wt)}</s>` : ''); }
+function renderHeat(S){ const card = $('heatCard'), map = $('heatMap'); if(!card) return;
+  const items = S.positions.filter(p=>p.qty > 0 && p.weight > 0).map(p=>({sym:p.sym, v:p.weight, wt:p.weight, p:p.dayPct})).sort((a,b)=>b.v-a.v);
+  card.hidden = !items.length; if(!items.length){ heatKey = ''; return; }
+  const open = heatOpen(), b = $('heatTgl'); card.classList.toggle('collapsed', !open);
+  if(b){ b.textContent = open ? '▴' : '▾'; b.setAttribute('aria-expanded', String(open)); b.setAttribute('aria-label', open ? 'כיווץ מפת החום' : 'הצגת מפת החום'); }
+  const up = items.filter(x=>x.p > 0.004).length, dn = items.filter(x=>x.p < -0.004).length; $('heatSum').textContent = `· ${up} עולות · ${dn} יורדות`;
+  if(!open){ heatKey = ''; return; }
+  const W = map.clientWidth, H = map.clientHeight; if(!W || !H) return;
+  const key = W+'x'+H+'|'+items.map(x=>x.sym+':'+Math.round(x.v*4)).join(',');
+  if(key !== heatKey){ heatKey = key; squarify(items, W, H);
+    map.innerHTML = items.map(it=>`<div class="ht" role="listitem" data-hsym="${esc(it.sym)}" title="${esc(it.sym)} · ${it.p!=null ? fmtPct(it.p) : '—'} · ${fmtW(it.wt)} מהתיק" style="right:${it.x.toFixed(1)}px;top:${it.y.toFixed(1)}px;width:${it.w.toFixed(1)}px;height:${it.h.toFixed(1)}px;background-color:${heatColor(it.p)}">${heatTileInner(it)}</div>`).join(''); return; }
+  // same layout: recolour + relabel in place
+  const geo = Object.fromEntries([...map.children].map(e=>[e.dataset.hsym, e]));
+  items.forEach(it=>{ const e = geo[it.sym]; if(!e) return; it.w = parseFloat(e.style.width); it.h = parseFloat(e.style.height);
+    const bg = heatColor(it.p); if(e.style.backgroundColor !== bg) e.style.backgroundColor = bg; const html = heatTileInner(it); if(e.dataset.h !== html){ e.innerHTML = html; e.dataset.h = html; } }); }
 const QUICK_BM = [{k:'spx', s:'.SPX', alt:'SPY', n:'S&P 500', color:'#ea580c'}, {k:'ndx', s:'.IXIC', alt:'QQQ', n:'נאסד"ק', color:'#9333ea'}];
 const BMQ_KEY = 'portfolioTracker.bmQuick';
 function bmQuick(){ try{ const v = (localStorage.getItem(BMQ_KEY)||'').split(',').filter(k=>QUICK_BM.some(q=>q.k===k)); return v; }catch(e){ return []; } }
@@ -3021,7 +3072,7 @@ function setTab(tab){
   $('fab').style.display = tab==='settings' ? 'none' : '';
   window.scrollTo({top:0});
   if(tab==='perf') renderPerf(); else destroyPerf();
-  if(tab==='portfolio') renderMini(); else destroyMini();
+  if(tab==='portfolio'){ renderMini(); heatKey = ''; renderHeat(computeAll()); } else destroyMini();
   if(tab==='settings') renderSettings();
 }
 document.querySelector('nav.bottom').addEventListener('click', e=>{ const b = e.target.closest('button[data-tab]'); if(b) setTab(b.dataset.tab); });
@@ -3055,6 +3106,10 @@ $('txList').addEventListener('click', e=>{ const b = e.target.closest('[data-tx]
 $('btnTheme').addEventListener('click', ()=>setTheme(isDark() ? 'light' : 'dark'));
 applyTheme(false);
 setTimeout(()=>spkRun().catch(()=>{}), 1500);
+$('heatTgl').addEventListener('click', e=>{ e.stopPropagation(); try{ localStorage.setItem(HEAT_KEY, heatOpen() ? '0' : '1'); }catch(_){} heatKey = ''; renderHeat(computeAll()); });
+$('heatHead').addEventListener('click', e=>{ if(!heatOpen() && !e.target.closest('#heatTgl')) $('heatTgl').click(); });
+$('heatMap').addEventListener('click', e=>{ const t = e.target.closest('[data-hsym]'); if(t) openPosition(t.dataset.hsym); });
+window.addEventListener('resize', ()=>{ if(heatOpen() && ui.tab==='portfolio'){ heatKey = ''; renderHeat(computeAll()); } });
 $('miniHead').addEventListener('click', e=>{ if(e.target.closest('#miniTgl') || miniOpen()) return; $('miniTgl').click(); });   // collapsed: the whole slim row expands
 $('miniTgl').addEventListener('click', e=>{ e.stopPropagation(); const o = !miniOpen(); try{ localStorage.setItem(MINI_KEY, o ? '1' : '0'); }catch(_){} applyMiniOpen(); if(o) renderMini(null, true); });
 $('miniRange').addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b) return; ui.perfRange = b.dataset.v; syncRangeChips(); renderMini(); });
@@ -3082,7 +3137,7 @@ renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {get state(){ return state; }, spark(){ return spk; }, spkRun, setTheme, idx(){ return idxData; }, idxApply, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get state(){ return state; }, squarify, heatColor, spark(){ return spk; }, spkRun, setTheme, idx(){ return idxData; }, idxApply, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 })();
 </script>
 </body>
