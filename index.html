@@ -212,7 +212,8 @@ nav.bottom button .i{font-size:1.35rem;line-height:1}nav.bottom button{min-width
 nav.bottom button.on{color:var(--primary)}
 .fab{position:fixed;left:16px;bottom:calc(var(--nav-h) + var(--safe-b) + 16px);z-index:31;width:60px;height:60px;border-radius:20px;border:0;background:var(--primary);color:#fff;font-size:2rem;box-shadow:0 6px 18px rgba(37,99,235,.45);cursor:pointer;display:flex;align-items:center;justify-content:center}
 @media (min-width:860px){.fab{left:calc(50% - 410px + 16px)}}
-html,body{overscroll-behavior-x:none}@keyframes swl{from{transform:translateX(-28px);opacity:.4}to{transform:none;opacity:1}}@keyframes swr{from{transform:translateX(28px);opacity:.4}to{transform:none;opacity:1}}.tab.sw-l{animation:swl .22s ease-out}.tab.sw-r{animation:swr .22s ease-out}
+html,body{overscroll-behavior-x:none}main .chart:not(.active){touch-action:pan-y}main .chart:not(.active) *{pointer-events:none!important}main .chart{transition:box-shadow .15s}main .chart.active{box-shadow:0 0 0 2px var(--accent,#3b82f6);border-radius:10px}
+@keyframes swl{from{transform:translateX(-28px);opacity:.4}to{transform:none;opacity:1}}@keyframes swr{from{transform:translateX(28px);opacity:.4}to{transform:none;opacity:1}}.tab.sw-l{animation:swl .22s ease-out}.tab.sw-r{animation:swr .22s ease-out}
 .sheet-bg{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
 .sheet-bg.open{opacity:1;pointer-events:auto}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;background:var(--bg-fff);border-radius:22px 22px 0 0;max-height:92vh;max-height:92dvh;overflow:auto;transform:translateY(105%);transition:transform .25s ease;padding:8px 16px calc(16px + var(--safe-b));max-width:820px;margin:0 auto;overscroll-behavior:contain;visibility:hidden}
@@ -2725,7 +2726,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v43</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v44</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3351,9 +3352,22 @@ function setTab(tab){
   if(tab==='market') renderMarket(); if(tab==='watch') renderWatch();
   mktPoll();
 }
+// ---- inline charts (v44): inert until tapped / long-pressed, so a swipe over them switches tabs; sheets' charts stay live ----
+(function(){ let act = null, idle = 0, lp = 0, lx = 0, ly = 0;
+  const off = ()=>{ if(act){ act.classList.remove('active'); act = null; } clearTimeout(idle); };
+  const bump = ()=>{ clearTimeout(idle); idle = setTimeout(off, 4000); };
+  const on = el=>{ if(act === el){ bump(); return; } off(); act = el; el.classList.add('active'); bump(); };
+  const inline = t => t instanceof Element ? t.closest('main .chart') : null;
+  document.addEventListener('click', e=>{ const c = inline(e.target); if(c) on(c); else if(act && !act.contains(e.target)) off(); }, true);
+  document.addEventListener('touchstart', e=>{ const c = inline(e.target); clearTimeout(lp); if(act && !(c===act)) off();
+    if(c && c!==act && e.touches.length===1){ lx = e.touches[0].clientX; ly = e.touches[0].clientY; lp = setTimeout(()=>on(c), 300); } else if(c===act) bump(); }, {passive:true});
+  document.addEventListener('touchmove', e=>{ if(act && act.contains(e.target)) bump(); const t = e.touches[0]; if(t && (Math.abs(t.clientX-lx) > 10 || Math.abs(t.clientY-ly) > 10)) clearTimeout(lp); }, {passive:true});
+  document.addEventListener('touchend', ()=>clearTimeout(lp), {passive:true});
+  window.__chartActive = ()=>act && act.id;
+})();
 // ---- swipe between tabs (v42) ----
 (function(){ let sx=0, sy=0, st=0, ok=false;
-  const NOSW = 'canvas,svg,.chart,.mini-chart,.heat-map,.mc,.idxrow,input,textarea,select,[contenteditable],.editing,.sheet,.sheet-bg,nav.bottom,.seg,.sortbar,#wlChips,#mktRange,.bmq';
+  const NOSW = 'input,textarea,select,[contenteditable],.editing,.sheet,.sheet-bg,main .chart.active';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
   function scrollsX(el){ for(; el && el !== document.body; el = el.parentElement){ if(el.scrollWidth > el.clientWidth + 2){ const o = getComputedStyle(el).overflowX; if(o==='auto' || o==='scroll') return true; } } return false; }
   function blocked(t){ if(!(t instanceof Element)) return true; if(t.closest(NOSW)) return true; if($('sheetBg').classList.contains('open') || document.querySelector('dialog[open],.modal.open,.modal-bg.open')) return true; return scrollsX(t); }
   document.addEventListener('touchstart', e=>{ ok = e.touches.length===1 && !blocked(e.target); if(!ok) return; sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now(); }, {passive:true});
