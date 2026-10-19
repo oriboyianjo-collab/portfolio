@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=30">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=30">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=30">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=30">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=31">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=31">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=31">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=31">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -128,6 +128,7 @@ button{font-family:inherit}
 .ctrls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
 .ctrls .seg{flex:1 1 auto}
 .chart{height:300px;direction:ltr;position:relative}
+.endlbls{position:absolute;inset:0;pointer-events:none;z-index:3;overflow:hidden}.endlbls span{position:absolute;right:0;transform:translateY(-50%);padding:1px 5px;border-radius:5px;color:#fff;font-size:.72rem;line-height:15px;font-weight:700;white-space:nowrap;direction:ltr;font-variant-numeric:tabular-nums;box-shadow:0 1px 2px rgba(15,23,42,.25)}
 .logostrip{display:flex;align-items:center;justify-content:center;gap:10px;direction:ltr;padding:4px 0 10px}.logostrip img{width:40px;height:40px;border-radius:10px;box-shadow:0 2px 8px rgba(15,23,42,.18);flex:none}.logostrip span{font-weight:800;font-size:1.15rem;letter-spacing:-.2px;color:#1e3a8a}
 .bmq{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:2px 2px 6px}.bmq>span{font-size:.74rem;color:var(--muted)}
 .bmq button{border:1px solid var(--line,#e2e8f0);background:#fff;border-radius:999px;padding:3px 10px;font:inherit;font-size:.76rem;font-weight:600;color:#475569;direction:ltr;cursor:pointer}
@@ -237,7 +238,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=30" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=31" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -250,7 +251,7 @@ input.ltr-in{direction:ltr;text-align:right}
 </header>
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
-    <div class="logostrip"><img src="logo.svg?v=30" alt="" width="40" height="40"><span>Savage Tracker</span></div>
+    <div class="logostrip"><img src="logo.svg?v=31" alt="" width="40" height="40"><span>Savage Tracker</span></div>
     <div class="card mini" id="miniCard"><div class="mini-h"><div class="seg sm" id="miniRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M" class="on">3 ח׳</button><button data-v="YTD">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
       <div class="mini-ret"><span id="miniLbl">התיק בטווח</span> <b id="miniPct" class="num">—</b> <span id="miniAmt" class="num"></span></div>
       <div class="bmq" id="miniBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק</button></div><div class="bmleg" id="miniLeg"></div>
@@ -640,7 +641,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=30').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=31').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -1421,7 +1422,35 @@ function makeChart(el, pctMode, money){
     grid:{vertLines:{visible:false}, horzLines:{color:'#f1f5f9'}}, rightPriceScale:{borderVisible:false, visible:!mask}, timeScale:{borderVisible:false, fixLeftEdge:true, fixRightEdge:true},
     crosshair:{mode:0}, localization:{locale:'he-IL', priceFormatter: mask ? (()=>MASK) : pctMode ? (v=>v.toFixed(1)+'%') : (v=>Math.abs(v)>=10000 ? (v/1000).toFixed(1)+'K' : v.toFixed(Math.abs(v)<10?2:0))}});
 }
-function destroyPerf(){ if(perfChart){ perfChart.remove(); perfChart = null; } perfLive = null; }
+// ---- end-of-line return labels (shared by the ביצועים tab and the main-screen chart) ----
+// One colored label per line at its last point, showing that line's % return, drawn over the right price scale. Our own HTML
+// layer instead of the library's last-value labels: those are de-overlapped separately above and below the chart's middle,
+// so two close values on either side of the middle could still collide, and they could be clipped at the edges. Here all labels
+// are laid out together: sorted by the line's y, pushed apart to at least one label height, then shifted back inside the
+// plot area (top and bottom), so they never overlap or clip however close the values are.
+// lines: [{series, color}]. Returns a redraw function (call it after setData / live updates; it also follows resizes).
+function endLabels(chart, el, lines){
+  let box = el.querySelector(':scope > .endlbls'); if(!box){ box = document.createElement('div'); box.className = 'endlbls'; el.appendChild(box); }
+  box.innerHTML = lines.map(l=>`<span style="background:${l.color}"></span>`).join('');
+  const spans = [...box.children];
+  const draw = ()=>{
+    if(!chart || !el.isConnected) return;
+    let H; try{ H = chart.paneSize().height; }catch(e){ H = el.clientHeight - 26; }
+    const items = lines.map((l,i)=>{ const d = l.series.data(), last = d.length ? d[d.length-1].value : null, y = last!=null ? l.series.priceToCoordinate(last) : null;
+      const sp = spans[i]; sp.textContent = last!=null ? fmtPct(last) : ''; sp.style.display = (last==null || y==null) ? 'none' : ''; return {sp, y, h:17}; }).filter(x=>x.y!=null && x.sp.style.display!=='none');
+    if(!items.length || !(H > 0)) return;
+    items.sort((a,b)=>a.y-b.y);
+    const h = items[0].h, lo = h/2 + 1, hi = H - h/2 - 1;
+    items.forEach((it,i)=>{ it.p = Math.min(Math.max(it.y, lo), hi); if(i && it.p < items[i-1].p + h) it.p = items[i-1].p + h; });     // push down
+    for(let i = items.length-1; i >= 0; i--){ const cap = i===items.length-1 ? hi : items[i+1].p - h; if(items[i].p > cap) items[i].p = cap; }   // back inside (bottom)
+    items.forEach(it=>{ it.p = Math.max(it.p, lo); it.sp.style.top = it.p.toFixed(1)+'px'; });
+  };
+  const raf = ()=>requestAnimationFrame(draw);
+  try{ chart.timeScale().subscribeSizeChange(raf); }catch(e){}
+  raf(); return raf;
+}
+let perfLbl = null, miniLbls = null;
+function destroyPerf(){ perfLbl = null; const b = document.querySelector('#perfChart > .endlbls'); if(b) b.remove(); if(perfChart){ perfChart.remove(); perfChart = null; } perfLive = null; }
 // live: move today's point/candle with every price tick (no rebuild)
 // ---- YTD (תשואה מתחילת השנה), modified Dietz ----
 // V0 = portfolio value (ILS cash + holdings) at the close of 31/12 of last year, rebuilt from the transactions with CNBC daily
@@ -1470,7 +1499,7 @@ function updatePerfLive(S){
     if(L.mode==='candle'){ L.h = Math.max(L.h, eq); L.l = Math.min(L.l, eq); L.series.update({time:L.date, open:L.o, high:L.h, low:L.l, close:eq}); }
     else if(L.mode==='value') L.series.update({time:L.date, value:eq});
     const r = L.ret(eq, S);
-    if(L.mode==='ret' && r && r.pct!=null) L.series.update({time:L.date, value:r.pct});
+    if(L.mode==='ret' && r && r.pct!=null){ L.series.update({time:L.date, value:r.pct}); if(perfLbl) perfLbl(); }
     const el = $('perfPortRet'); if(el && r){ el.textContent = r.pct!=null ? fmtPct(r.pct) : '—'; el.className = 'num '+cls(r.gain); }
     const lp = $('perfLegPort'); if(lp && r){ lp.textContent = r.pct!=null ? fmtPct(r.pct) : '—'; lp.className = 'num '+cls(r.pct); }
     const ea = $('perfPortAmt'); if(ea && r){ ea.textContent = fmtSigned(r.gain, L.cur, 0); ea.className = 'd num '+cls(r.gain); }
@@ -1518,11 +1547,12 @@ async function renderPerf(S){
     const r = p.date===today() ? liveRet(V, S) : ret(V, ndOf(p), p.date); return {p, V, r}; });
   const last = series[series.length-1].r || {gain:0, pct:null}, portRet = last.pct;
   {
-    const s = perfChart.addLineSeries({color:'#2563eb', lineWidth:3, priceLineVisible:false, title:'התיק'});
+    const s = perfChart.addLineSeries({color:'#2563eb', lineWidth:3, priceLineVisible:false, lastValueVisible:false});
     s.setData([{time:baseDate, value:0}, ...series.filter(x=>x.r && x.r.pct!=null).map(({p,r})=>({time:p.date, value:r.pct}))]);
     legend.push(['#2563eb', isAll ? 'התיק (תשואה על ההפקדות נטו)' : 'התיק (תשואה מתחילת הטווח, Modified Dietz)']); perfLive = {mode:'ret', series:s};
   }
   if(perfLive) Object.assign(perfLive, {date:lastP.date, usd, cur:C, ret:liveRet});
+  const lblLines = perfLive ? [{series:perfLive.series, color:'#2563eb'}] : [];
   cmp.push(`<div>${ui.perfRange==='YTD' ? 'התיק מתחילת השנה' : isAll ? 'התיק מאז הפתיחה' : 'התיק בטווח'}<b id="perfPortRet" class="num ${cls(last.gain)}">${portRet!=null ? fmtPct(portRet) : '—'}</b><span id="perfPortAmt" class="d num ${cls(last.gain)}">${fmtSigned(last.gain,C,0)}</span></div>`);
   { const V0 = before ? vOf(before) : 0, ch = series[series.length-1].V - V0, dd = ndOf(lastP) - (before ? ndOf(before) : 0);
     cmp.push(`<div>שינוי בשווי<b class="num ${cls(ch)}">${fmtSigned(ch,C,0)}</b><span class="d muted">מתוכו הפקדות נטו <span class="num">${fmtSigned(dd,C,0)}</span></span></div>`); }
@@ -1534,12 +1564,13 @@ async function renderPerf(S){
     const bs = benchSeries(h, pts, bmBase, C);
     if(!bs){ cmp.push(`<div><span class="ltr">${esc(name)}</span><b class="muted">אין נתונים</b></div>`); if(q) bleg.push([color, name, null]); return; }
     const data = bs.data, bRet = bs.ret, diff = portRet - bRet;
-    if(pct){ const s = perfChart.addLineSeries({color, lineWidth:2, priceLineVisible:false, title:q ? '' : b}); s.setData(data); legend.push([color, q ? `${q.n} (${b})` : b+(assetOf(b).name?' · '+assetOf(b).name:'')]); }
+    if(pct){ const s = perfChart.addLineSeries({color, lineWidth:2, priceLineVisible:false, lastValueVisible:false}); s.setData(data); lblLines.push({series:s, color}); legend.push([color, q ? `${q.n} (${b})` : b+(assetOf(b).name?' · '+assetOf(b).name:'')]); }
     if(q) bleg.push([color, name, bRet]);
     cmp.push(`<div><span class="ltr">${esc(name)}</span><b class="num ${cls(bRet)}">${fmtPct(bRet)}</b><span class="d num ${cls(diff)}">התיק ${diff>=0?'עדיף':'מפגר'} ב-${Math.abs(diff).toFixed(2)}%</span></div>`);
   });
   $('perfBmLeg').innerHTML = bq.length ? bmLegHtml(bleg) : '';
   perfChart.timeScale().fitContent();
+  perfLbl = endLabels(perfChart, el, lblLines);
   $('perfLegend').innerHTML = legend.map(([c,t])=>`<span><i style="background:${c}"></i>${esc(t)}</span>`).join('');
   $('perfCmp').innerHTML = cmp.join('');
   $('perfSrc').textContent = perf.sources.length ? 'מקור: '+perf.sources.join(', ') : '';
@@ -1599,7 +1630,7 @@ document.addEventListener('click', e=>{
 // a live price tick only moves today's point (cheap), so it never slows the screen's live updates.
 let miniChart = null, miniLive = null, miniKey = '', miniToken = 0;
 function miniSig(){ const t = state.txs; return [ui.perfRange, dispCur(), bmQuick().join(','), t.length, t.reduce((a,x)=>Math.max(a, x.ts||0), 0), today()].join('|'); }
-function destroyMini(){ if(miniChart){ miniChart.remove(); miniChart = null; } miniLive = null; miniKey = ''; }
+function destroyMini(){ miniLbls = null; { const b = document.querySelector('#miniChart > .endlbls'); if(b) b.remove(); } if(miniChart){ miniChart.remove(); miniChart = null; } miniLive = null; miniKey = ''; }
 function syncRangeChips(){ ['perfRange','miniRange'].forEach(id=>{ const el = $(id); if(el) el.querySelectorAll('button[data-v]').forEach(b=>b.classList.toggle('on', b.dataset.v===ui.perfRange)); }); }
 function setMiniRet(r, C){ const p = $('miniPct'), a = $('miniAmt'); if(!p) return;
   p.textContent = r && r.pct!=null ? fmtPct(r.pct) : '—'; p.className = 'num '+cls(r ? r.gain : 0);
@@ -1633,14 +1664,15 @@ async function renderMini(S, force){
     // every line is a % return from the same base day (the portfolio: the same range return as the figure above it)
     const ndOf = p => usd ? (p.netDepU||0) : p.netDep;
     const retAt = p => { if(p.date===today()) return ret(eqNow(S), S); const V = vOf(p); if(isAll){ const nd = ndOf(p), g = V - nd; return {gain:g, pct: nd>0 ? g/nd*100 : null}; } return ytdCalc(RB, V, usd, p.date); };
-    s = miniChart.addLineSeries({color:'#2563eb', lineWidth:3, priceLineVisible:false, lastValueVisible:false});
+    s = miniChart.addLineSeries({color:'#2563eb', lineWidth:3, priceLineVisible:false, lastValueVisible:false}); var mLines = [{series:s, color:'#2563eb'}];
     s.setData([{time:base.date, value:0}, ...pts.map(p=>({p, r:retAt(p)})).filter(x=>x.r && x.r.pct!=null).map(({p,r})=>({time:p.date, value:r.pct}))]);
     const leg = [['#2563eb','התיק', ret(eqNow(S), S)?.pct, 'miniLegPort']];
     bres.forEach(({q,h})=>{ const b = benchSeries(h, pts, base, C); if(!b){ leg.push([q.color, q.n, null]); return; }
-      miniChart.addLineSeries({color:q.color, lineWidth:2, priceLineVisible:false, lastValueVisible:false}).setData(b.data); leg.push([q.color, q.n, b.ret]); });
+      const bs = miniChart.addLineSeries({color:q.color, lineWidth:2, priceLineVisible:false, lastValueVisible:false}); bs.setData(b.data); mLines.push({series:bs, color:q.color}); leg.push([q.color, q.n, b.ret]); });
     $('miniLeg').innerHTML = bq.length ? bmLegHtml(leg) : '';
   }
   miniChart.timeScale().fitContent();
+  miniLbls = endLabels(miniChart, el, mLines);
   miniLive = {series:s, date:lastP.date, ret, C, eqNow, pctMode};
   $('miniLbl').textContent = ui.perfRange==='YTD' ? 'התיק מתחילת השנה' : isAll ? 'התיק מאז הפתיחה' : 'התיק בטווח';
   setMiniRet(ret(eqNow(S), S), C);
@@ -1649,7 +1681,7 @@ function updateMiniLive(S){
   const L = miniLive; if(!miniChart || !L || !fxNow() && L.C==='USD') return;
   const V = L.eqNow(S); if(V==null || !isFinite(V)) return;
   try{ const r = L.ret(V, S);
-    if(L.date===today()){ if(!L.pctMode) L.series.update({time:L.date, value:V}); else if(r && r.pct!=null) L.series.update({time:L.date, value:r.pct}); }
+    if(L.date===today()){ if(!L.pctMode) L.series.update({time:L.date, value:V}); else if(r && r.pct!=null){ L.series.update({time:L.date, value:r.pct}); if(miniLbls) miniLbls(); } }
     setMiniRet(r, L.C);
     const lp = L.pctMode && $('miniLegPort'); if(lp && r){ lp.textContent = r.pct!=null ? fmtPct(r.pct) : '—'; lp.className = 'num '+cls(r.pct); }
   }catch(e){ console.warn('mini chart live', e.message); }
@@ -2209,7 +2241,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v30</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v31</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -2286,7 +2318,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 30;
+const SEC_DIR_V = 31;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
