@@ -32,9 +32,9 @@ body{font-family:system-ui,"Segoe UI",Roboto,"Rubik","Heebo",Arial,sans-serif;ba
 .top .wrap{padding-top:8px;padding-bottom:9px}
 .tot-day{display:flex;align-items:baseline;gap:8px;line-height:1.25;margin-top:1px;flex-wrap:wrap}.tot-day .tp-l{font-size:.8rem;opacity:.85;white-space:nowrap}.tot-day .tp-v{font-size:1.3rem;font-weight:800}.tot-day .tp-a{font-size:1.05rem;font-weight:700;opacity:.95}.tot-day{line-height:1.15}.tot-day .tp-v,.tot-day .tp-a{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
 .top-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.top h1{margin:0;font-size:1.05rem;font-weight:700;opacity:.95}
+.top h1{margin:0;font-size:1.18rem;font-weight:700;opacity:.95}
 .brand{display:flex;align-items:center;gap:8px;direction:ltr}
-.brand img{width:30px;height:30px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.25);flex:none}
+.brand img{width:40px;height:40px;border-radius:10px;margin-block:-3px;box-shadow:0 2px 8px rgba(0,0,0,.25);flex:none}
 .brand span{font-weight:800;letter-spacing:-.2px}
 .icon-btn{background:rgba(255,255,255,.16);color:#fff;border:0;border-radius:12px;min-width:44px;height:44px;font-size:1.15rem;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;gap:6px;padding:0 12px;font-weight:600;font-family:inherit}
 .icon-btn:active{background:rgba(255,255,255,.28)}
@@ -127,7 +127,6 @@ button{font-family:inherit}
 .ctrls .seg{flex:1 1 auto}
 .chart{height:300px;direction:ltr;position:relative}
 .endlbls{position:absolute;inset:0;pointer-events:none;z-index:3;overflow:hidden}.endlbls span{position:absolute;right:0;transform:translateY(-50%);padding:1px 5px;border-radius:5px;color:#fff;font-size:.72rem;line-height:15px;font-weight:700;white-space:nowrap;direction:ltr;font-variant-numeric:tabular-nums;box-shadow:0 1px 2px rgba(15,23,42,.25)}
-.logostrip{display:flex;align-items:center;justify-content:center;gap:10px;direction:ltr;padding:4px 0 10px}.logostrip img{width:40px;height:40px;border-radius:10px;box-shadow:0 2px 8px rgba(15,23,42,.18);flex:none}.logostrip span{font-weight:800;font-size:1.15rem;letter-spacing:-.2px;color:#1e3a8a}
 .bmq{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:2px 2px 6px}.bmq>span{font-size:.74rem;color:var(--muted)}
 .bmq button{border:1px solid var(--line,#e2e8f0);background:#fff;border-radius:999px;padding:3px 10px;font:inherit;font-size:.76rem;font-weight:600;color:#475569;direction:ltr;cursor:pointer}
 .bmq button i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-inline-end:5px;vertical-align:middle;opacity:.35}.bmq button.on{border-color:currentColor;background:#f8fafc}.bmq button.on i{opacity:1}
@@ -252,7 +251,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=33" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=33" alt="" width="40" height="40"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -262,7 +261,6 @@ input.ltr-in{direction:ltr;text-align:right}
 </header>
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
-    <div class="logostrip"><img src="logo.svg?v=33" alt="" width="40" height="40"><span>Savage Tracker</span></div>
     <div class="card mini" id="miniCard"><div class="mini-h"><div class="seg sm" id="miniRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M">3 ח׳</button><button data-v="YTD" class="on">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
       <div class="mini-ret" id="miniHead"><span id="miniLbl">התיק בטווח</span><span class="mini-rng" id="miniRng"></span> <b id="miniPct" class="num">—</b> <span id="miniAmt" class="num"></span><button class="mini-tgl" id="miniTgl" aria-expanded="true" aria-label="כיווץ גרף הביצועים">▴</button></div>
       <div class="bmq" id="miniBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק</button></div><div class="bmleg" id="miniLeg"></div>
