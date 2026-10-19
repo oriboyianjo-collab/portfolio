@@ -69,11 +69,12 @@ h2 small{font-weight:500;color:var(--muted);font-size:.78rem}
 .ytd:empty{display:none}.ytd .l{font-size:.85rem;color:var(--muted)}.ytd .l small{display:block;font-size:.72rem}.ytd .v{text-align:left}.ytd .v b{font-size:1.3rem;font-weight:800;display:block}.ytd .v span{font-size:.85rem}
 .h2row{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .viewtgl{display:inline-flex;border:1px solid var(--border);border-radius:99px;overflow:hidden;font-size:.78rem}
-.sortbar{display:flex;align-items:center;gap:6px;margin:10px 0 2px;flex-wrap:wrap;font-size:.8rem}.sortbar>span{color:var(--muted)}
-.sortbar button{border:1px solid var(--border);background:#fff;color:var(--muted);border-radius:99px;padding:5px 11px;font:inherit;font-weight:600;cursor:pointer;min-height:34px}
+.sortbar{display:flex;align-items:center;gap:5px;margin:10px 0 2px;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;font-size:.78rem}.sortbar::-webkit-scrollbar{display:none}.sortbar>span{color:var(--muted);flex:none}
+/* sort chips: always one row; if it ever runs out of room (large system font) it scrolls sideways instead of wrapping */
+.sortbar button{border:1px solid var(--border);background:#fff;color:var(--muted);border-radius:99px;padding:5px 10px;font:inherit;font-weight:600;cursor:pointer;min-height:34px;flex:none;white-space:nowrap}
 .sortbar button.on{background:#dbeafe;border-color:#93c5fd;color:#1e40af}.sortbar .ar{display:inline-block;margin-inline-start:4px}
 .pos-list .pcard.mv{transition:transform .32s ease}@media (prefers-reduced-motion:reduce){.pos-list .pcard.mv{transition:none}}
-.viewtgl button{border:0;background:#fff;color:var(--muted);padding:5px 10px;font:inherit;cursor:pointer}.viewtgl button.on{background:#1e3a8a;color:#fff}
+.viewtgl button{border:0;background:#fff;color:var(--muted);padding:5px 10px;font:inherit;cursor:pointer;white-space:nowrap}.viewtgl{flex:none}.h2row h2{min-width:0}.viewtgl button.on{background:#1e3a8a;color:#fff}
 .pcard.pc{padding:0;cursor:default}
 .pc-h{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;width:100%;padding:9px 12px;border:0;background:none;font:inherit;color:inherit;text-align:inherit;cursor:pointer;border-radius:14px}
 .pc-h:active{background:#f8fafc}
@@ -267,7 +268,7 @@ input.ltr-in{direction:ltr;text-align:right}
       <div class="chart mini-chart" id="miniChart"><div class="chart-msg" id="miniMsg">טוען…</div></div></div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight">% מהתיק</button><button data-sort="day">שינוי יומי %</button><button data-sort="unreal">שינוי מעלות %</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span></span><span>נייר</span><span class="pc-c">מחיר</span><span class="pc-c">% מהתיק</span><span class="pc-c" id="posColD">יומי</span></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight" title="% מהתיק">% מהתיק</button><button data-sort="day" title="שינוי יומי %">יומי %</button><button data-sort="unreal" title="שינוי מעלות %">מעלות %</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span></span><span>נייר</span><span class="pc-c">מחיר</span><span class="pc-c">% מהתיק</span><span class="pc-c" id="posColD">יומי</span></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
@@ -488,7 +489,8 @@ function renderSortBar(n){ const bar = $('posSort'), {k,d} = effSort(); bar.hidd
   bar.querySelectorAll('[data-sort]').forEach(b=>{ const on = b.dataset.sort===k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
     const ar = b.querySelector('.ar'); if(ar) ar.remove();
     if(on){ const s = document.createElement('span'); s.className = 'ar'; s.textContent = d==='desc' ? '↓' : '↑'; s.setAttribute('aria-hidden','true'); b.appendChild(s);
-      b.setAttribute('aria-label', `${b.firstChild.textContent} – ${d==='desc'?'מהגבוה לנמוך':'מהנמוך לגבוה'}`); } else b.removeAttribute('aria-label'); }); }
+      b.setAttribute('aria-label', `מיון לפי ${b.title||b.firstChild.textContent} – ${d==='desc'?'מהגבוה לנמוך':'מהנמוך לגבוה'}`); } else b.setAttribute('aria-label', `מיון לפי ${b.title||b.firstChild.textContent}`); });
+  const on = bar.querySelector('.on'); if(on && bar.scrollWidth > bar.clientWidth + 1) on.scrollIntoView({block:'nearest', inline:'nearest'}); }
 const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'YTD', posRange:'1Y', posStyle:'candle'};
 // A split must never be counted twice. The bank books some splits as bonus shares ('הטבה' rows → sharebonus), and the importer can
 // also add a split it detected in the price history. If the same security has a bonus row, or an earlier split, within ±5 days,
