@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=32">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=32">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=32">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=32">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=33">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=33">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=33">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=33">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -29,7 +29,8 @@ body{font-family:system-ui,"Segoe UI",Roboto,"Rubik","Heebo",Arial,sans-serif;ba
 .pos{color:var(--green)}.neg{color:var(--red)}.muted{color:var(--muted)}
 .wrap{max-width:820px;margin:0 auto;padding:0 12px}
 .top{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;box-shadow:0 2px 10px rgba(30,58,138,.25)}
-.top .wrap{padding-top:10px;padding-bottom:12px}
+.top .wrap{padding-top:8px;padding-bottom:9px}
+.tot-day{display:flex;align-items:baseline;gap:8px;line-height:1.25;margin-top:1px;flex-wrap:wrap}.tot-day .tp-l{font-size:.78rem;opacity:.85;white-space:nowrap}.tot-day .tp-v{font-size:1.05rem;font-weight:800}.tot-day .tp-a{font-size:.85rem;opacity:.95}.tot-day .tp-v,.tot-day .tp-a{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
 .top-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .top h1{margin:0;font-size:1.05rem;font-weight:700;opacity:.95}
 .brand{display:flex;align-items:center;gap:8px;direction:ltr}
@@ -39,13 +40,10 @@ body{font-family:system-ui,"Segoe UI",Roboto,"Rubik","Heebo",Arial,sans-serif;ba
 .icon-btn:active{background:rgba(255,255,255,.28)}
 .icon-btn.spin span{display:inline-block;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.tot-val{font-size:1.9rem;font-weight:800;margin-top:2px;letter-spacing:-.5px}
-.tot-pct{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-.tot-pct .tp{background:rgba(255,255,255,.14);border-radius:12px;padding:6px 10px;display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;min-width:0}
-.tot-pct .tp-l{font-size:.74rem;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tot-pct .tp-v{font-size:1.25rem;font-weight:800}.tot-pct .tp-a{font-size:.8rem;opacity:.95}.tot-pct .tp-v,.tot-pct .tp-a{direction:ltr;text-align:right;unicode-bidi:isolate}
+.tot-val{font-size:1.6rem;font-weight:800;margin-top:0;letter-spacing:-.5px;line-height:1.15}
 .top .pos{color:#6ee7b7}.top .neg{color:#fca5a5}
-.top .upd{font-size:.72rem;opacity:.75;margin-top:4px}
-.tot-row{display:flex;align-items:center;gap:8px;margin-top:2px}
+.top .upd{font-size:.7rem;opacity:.75;margin-top:1px}
+.tot-row{display:flex;align-items:center;gap:8px;margin-top:2px;min-width:0}.tot-row .tot-val{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tot-row .tot-val{margin-top:0}
 .cur-btn{font-weight:800;font-size:1.05rem}
 .eye-btn{min-width:40px;height:40px;padding:0 8px;font-size:1.1rem}
@@ -80,7 +78,7 @@ h2 small{font-weight:500;color:var(--muted);font-size:.78rem}
 .pc-h{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;width:100%;padding:9px 12px;border:0;background:none;font:inherit;color:inherit;text-align:inherit;cursor:pointer;border-radius:14px}
 .pc-h:active{background:#f8fafc}
 .pc-n{min-width:0}.pc-n .psym{font-size:.98rem;display:flex;align-items:center;gap:6px}.pc-n .pname{font-size:.74rem;max-width:40vw}
-.pc-v{text-align:left;font-weight:700;font-size:.92rem}.pc-v .pname{display:block;font-weight:400;font-size:.72rem;text-align:left;max-width:none}
+.pc-v{text-align:left;font-weight:700;font-size:.92rem}.pc-v .pw,.pval .pw{display:block;font-weight:600;font-size:.7rem;color:var(--muted);white-space:nowrap;text-align:left;direction:rtl;unicode-bidi:isolate}.cw{direction:rtl;unicode-bidi:isolate;white-space:nowrap}.pc-v .pname{display:block;font-weight:400;font-size:.72rem;text-align:left;max-width:none}
 .pc-d{display:flex;gap:8px;align-items:center;line-height:1.15}
 .chg{display:flex;flex-direction:column;align-items:center;min-width:52px}.chg i{font-style:normal;font-size:.62rem;color:var(--muted);font-weight:600}.chg b{font-size:.86rem;font-weight:700;white-space:nowrap}
 .pchg{display:flex;gap:14px;margin-top:6px}.pchg .chg{flex-direction:row;gap:6px;align-items:baseline;min-width:0}.pchg .chg i{font-size:.74rem}.pchg .chg b{font-size:.95rem}
@@ -134,9 +132,9 @@ button{font-family:inherit}
 .bmq button{border:1px solid var(--line,#e2e8f0);background:#fff;border-radius:999px;padding:3px 10px;font:inherit;font-size:.76rem;font-weight:600;color:#475569;direction:ltr;cursor:pointer}
 .bmq button i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-inline-end:5px;vertical-align:middle;opacity:.35}.bmq button.on{border-color:currentColor;background:#f8fafc}.bmq button.on i{opacity:1}
 .bmleg{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:.8rem;margin:0 2px 4px}.bmleg:empty{display:none}.bmleg span{white-space:nowrap}.bmleg i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-inline-end:4px;vertical-align:middle}.bmleg b{font-weight:700}
-.pc-u{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;background:#f1f5f9;border-radius:10px;padding:6px 10px}.pc-u>span{font-weight:700;color:var(--muted)}.pc-u b:first-of-type{font-size:1.05rem}
+.pc-wd{grid-column:1/-1}.pc-u{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;background:#f1f5f9;border-radius:10px;padding:6px 10px}.pc-u>span{font-weight:700;color:var(--muted)}.pc-u b:first-of-type{font-size:1.05rem}
 #posKv div.hl{background:#eff6ff;border-radius:8px}#posKv div.hl b{font-size:1.05rem}
-.mini{padding:10px 10px 6px}.mini .seg{margin-bottom:6px}.mini-ret{font-size:.8rem;color:var(--muted);margin:0 2px 2px}.mini-ret b{font-size:.95rem}.mini-chart{height:170px}
+.mini{padding:10px 10px 6px}.mini .seg{margin-bottom:6px}.mini-ret{font-size:.8rem;color:var(--muted);margin:0 2px 2px}.mini-ret b{font-size:.95rem}.mini-chart{height:136px}
 .chart-msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.9rem;text-align:center;padding:10px;direction:rtl;z-index:3;background:rgba(255,255,255,.6)}
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;margin-top:8px}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:5px;vertical-align:middle}
@@ -230,7 +228,7 @@ input.ltr-in{direction:ltr;text-align:right}
 .btn-sm{min-height:38px;padding:6px 10px;font-size:.8rem;border-radius:10px}
 .sym-tx{margin-top:12px}
 .sym-tx h4{margin:0 0 4px;font-size:.92rem}
-@media (max-width:380px){.fgrid{grid-template-columns:1fr}.tot-val{font-size:1.6rem}}
+@media (max-width:380px){.fgrid{grid-template-columns:1fr}.tot-val{font-size:1.4rem}}
 @media (min-width:860px){body{font-size:15px}.chart{height:360px}}
 </style>
 </head>
@@ -238,27 +236,24 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=32" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=33" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
-    <div class="tot-pct">
-      <div class="tp"><span class="tp-l">מתחילת התיק</span><b class="tp-v num" id="hPLPct">—</b><span class="tp-a num" id="hPL">—</span></div>
-      <div class="tp"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-a num" id="hDay">—</span></div>
-    </div>
+    <div class="tot-day"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-a num" id="hDay">—</span></div>
     <div class="upd"><span id="hUpd">טרם עודכנו מחירים</span><span id="hLive"></span></div>
   </div>
 </header>
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
-    <div class="logostrip"><img src="logo.svg?v=32" alt="" width="40" height="40"><span>Savage Tracker</span></div>
+    <div class="logostrip"><img src="logo.svg?v=33" alt="" width="40" height="40"><span>Savage Tracker</span></div>
     <div class="card mini" id="miniCard"><div class="mini-h"><div class="seg sm" id="miniRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M" class="on">3 ח׳</button><button data-v="YTD">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
       <div class="mini-ret"><span id="miniLbl">התיק בטווח</span> <b id="miniPct" class="num">—</b> <span id="miniAmt" class="num"></span></div>
       <div class="bmq" id="miniBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק</button></div><div class="bmleg" id="miniLeg"></div>
       <div class="chart mini-chart" id="miniChart"><div class="chart-msg" id="miniMsg">טוען…</div></div></div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="value">שווי</button><button data-sort="day">שינוי יומי %</button><button data-sort="unreal">שינוי מעלות %</button></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight">% מהתיק</button><button data-sort="day">שינוי יומי %</button><button data-sort="unreal">שינוי מעלות %</button></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
@@ -347,6 +342,7 @@ function fmtMoneyRaw(v, cur, digits){
 function fmtSigned(v, cur, digits){ if(v==null||!isFinite(v)) return '—'; if(hidden()) return fmtMoney(v,cur,digits); return (v>0.0000001?'+':'') + fmtMoneyRaw(v,cur,digits); }
 function fmtSignedRaw(v, cur, digits){ if(v==null||!isFinite(v)) return '—'; return (v>0.0000001?'+':'') + fmtMoneyRaw(v,cur,digits); }
 const fmtPrice = fmtMoneyRaw;
+function fmtW(v){ return v==null || !isFinite(v) ? '—' : (Math.abs(v) < 0.05 && v!==0 ? (v<0?'-':'')+'<0.1' : v.toFixed(1)) + '%'; }   // weight, never masked
 function fmtPct(v){ if(v==null||!isFinite(v)) return '—'; return (v>0.0000001?'+':'') + v.toFixed(2) + '%'; }
 function fmtQty(v){ if(v==null) return '—'; return v.toLocaleString('en-US',{maximumFractionDigits:8}); }
 function fmtQtyP(v){ if(v==null) return '—'; return hidden() ? MASK : fmtQty(v); }
@@ -461,20 +457,21 @@ const VIEW_KEY = 'portfolioTracker.posView';
 function posView(){ try{ return localStorage.getItem(VIEW_KEY)==='full' ? 'full' : 'compact'; }catch(e){ return 'compact'; } }   // compact is the default
 // holdings sort (display only – S.positions keeps its value order for the other views)
 let sortPending = null, listTouch = false;   // see reorderCards
-const SORT_KEY = 'portfolioTracker.posSort', SORT_FIELDS = {value:'mvILS', day:'dayPct', unreal:'unrealPct'};
-function posSort(){ try{ const [k,d] = (localStorage.getItem(SORT_KEY)||'').split(':'); if(SORT_FIELDS[k]) return {k, d: d==='asc'?'asc':'desc'}; }catch(e){} return {k:'value', d:'desc'}; }
-// The "שווי" chip exists only while amounts are visible (sorting by value would leak the ranking of hidden amounts). With the
-// eye closed a saved value sort shows as "שינוי יומי %" ↓ for the time being; the saved choice is not touched, so value sort
-// comes back as soon as the eye opens. Picking another chip while hidden is a real choice and is saved as usual.
-function effSort(){ const s = posSort(); return hidden() && s.k==='value' ? {k:'day', d:'desc', fallback:true} : s; }
-// value = market value in ILS for every holding (USD converted at the live rate) so ₪ and $ holdings compare correctly;
+const SORT_KEY = 'portfolioTracker.posSort', SORT_FIELDS = {weight:'mvILS', day:'dayPct', unreal:'unrealPct'};
+function posSort(){ try{ let [k,d] = (localStorage.getItem(SORT_KEY)||'').split(':');
+    if(k==='value'){ k = 'weight'; localStorage.setItem(SORT_KEY, `weight:${d==='asc'?'asc':'desc'}`); }      // migrate the old value chip
+    if(SORT_FIELDS[k]) return {k, d: d==='asc'?'asc':'desc'}; }catch(e){} return {k:'weight', d:'desc'}; }
+// "% מהתיק" sorts by weight (= value ÷ the same total for every holding, so the order equals a value sort) and is always shown,
+// eye open or closed. A saved "value" choice from v22–v32 is migrated to "weight" (same direction).
+function effSort(){ return posSort(); }
+// weight/value = market value in ILS for every holding (USD converted at the live rate) so ₪ and $ holdings compare correctly;
 // day = daily %, unreal = unrealized P/L % vs cost. Holdings without a number (no quote yet) always go last; ties by symbol.
 function sortPositions(list){ const {k,d} = effSort(), f = SORT_FIELDS[k], sg = d==='asc' ? 1 : -1;
   return list.slice().sort((a,b)=>{ const x = a[f], y = b[f], nx = x==null || !isFinite(x), ny = y==null || !isFinite(y);
     if(nx || ny) return nx===ny ? (a.sym<b.sym?-1:1) : (nx?1:-1);
     return (x-y)*sg || (a.sym<b.sym?-1:a.sym>b.sym?1:0); }); }
 function renderSortBar(n){ const bar = $('posSort'), {k,d} = effSort(); bar.hidden = n < 2;
-  bar.querySelectorAll('[data-sort]').forEach(b=>{ const on = b.dataset.sort===k; if(b.dataset.sort==='value') b.hidden = hidden(); b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
+  bar.querySelectorAll('[data-sort]').forEach(b=>{ const on = b.dataset.sort===k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
     const ar = b.querySelector('.ar'); if(ar) ar.remove();
     if(on){ const s = document.createElement('span'); s.className = 'ar'; s.textContent = d==='desc' ? '↓' : '↑'; s.setAttribute('aria-hidden','true'); b.appendChild(s);
       b.setAttribute('aria-label', `${b.firstChild.textContent} – ${d==='desc'?'מהגבוה לנמוך':'מהנמוך לגבוה'}`); } else b.removeAttribute('aria-label'); }); }
@@ -645,7 +642,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=32').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=33').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -818,6 +815,12 @@ function computeAll(){
   });
   const cashILS = L.cash.ILS + (toILS(L.cash.USD,'USD')||0);
   const equity = cashILS + mvILS;
+  // "% מהתיק" (weight) = the holding's market value in ILS (USD at the live rate) ÷ the header total (cash + all holdings, the same
+  // "equity" as the big number at the top). Cash is part of the denominator on purpose: the weights of the holdings plus the cash
+  // weight add up to 100%, so it reads as "how much of everything I have is in this stock". A short has a negative value → negative
+  // weight. It is a ratio, not an amount, so it stays visible when amounts are hidden.
+  positions.forEach(r=>{ r.weight = equity > 0 && r.mvILS!=null && isFinite(r.mvILS) ? r.mvILS/equity*100 : null; });
+  const cashWeight = equity > 0 ? cashILS/equity*100 : null;
   const totalPL = equity - L.netDepILS;
   const taxRealized = TM.dueAll;                              // tax on realized sales after the yearly shield
   // still owed for realized sales (tax recorded as paid is already out of the cash) + tax if everything open were sold today,
@@ -829,7 +832,7 @@ function computeAll(){
   positions.sort((a,b)=>Math.abs(b.mvILS||0)-Math.abs(a.mvILS||0));
   // total return since the portfolio started = (current value − net deposits) / net deposits, in ILS.
   // current value = cash + market value, so realized + unrealized gains, dividends, interest, fees and tax are all inside it.
-  return {L, positions, closed, cashILS, mvILS, equity, totalPL, totalPLPct: L.netDepILS>0? totalPL/L.netDepILS*100 : null,
+  return {L, positions, closed, cashILS, cashWeight, mvILS, equity, totalPL, totalPLPct: L.netDepILS>0? totalPL/L.netDepILS*100 : null,
     // daily % = Σ daily change (ILS) / Σ value of those holdings at the prior close (ILS) – holdings only, cash excluded
     dayILS, dayPct: prevHoldILS>0 ? dayILS/prevHoldILS*100 : null, dayMk:[...dayMk], dayUSD, dayPctUSD: prevHoldUSD>0 ? dayUSD/prevHoldUSD*100 : null, unrealILS, realizedILS, taxRealized, netIfSoldAll, closeFeesILS, estimated,
     feesILS: L.fees.ILS + (toILS(L.fees.USD,'USD')||0),
@@ -1112,8 +1115,6 @@ function renderHeader(S){
   const dp = $('hDayPct'); dp.textContent = hasDay && V.dayPct!=null ? fmtPct(V.dayPct) : '—'; dp.className = 'tp-v num '+cls(V.day);
   const open = (S.dayMk||[]).some(m=>{ const st = marketState(m).state; return st==='open' || st==='pre' || st==='post'; });
   $('hDayLbl').textContent = !hasDay || open ? 'שינוי יומי' : 'שינוי יומי · מסחר אחרון';
-  const p = $('hPL'); p.textContent = has ? fmtSigned(V.pl,C,0) : '—'; p.className = 'tp-a num '+cls(V.pl);
-  const pp = $('hPLPct'); pp.textContent = has && V.plPct!=null ? fmtPct(V.plPct) : '—'; pp.className = 'tp-v num '+cls(V.pl);
   renderEye();
   $('hUpd').textContent = state.lastRefresh ? `מחירים עודכנו ${new Date(state.lastRefresh).toLocaleTimeString('he-IL')}${state.refreshErrors?` · ${state.refreshErrors} לא עודכנו`:''}` : 'טרם עודכנו מחירים';
 }
@@ -1122,7 +1123,7 @@ function cashOpen(){ try{ return localStorage.getItem(CASH_KEY)==='1'; }catch(e)
 function renderCash(S){
   const c = S.L.cash, fx = fxNow();
   const C = dispCur()==='USD' && fx ? 'USD' : 'ILS', tot = C==='USD' ? c.USD + c.ILS/fx : c.ILS + c.USD*(fx||0);
-  $('fxSmall').innerHTML = `סה״כ <b class="num" id="cashTot">${fmtMoney(tot,C,0)}</b>` + (fx ? `<span class="fxr"> · <span class="num">$1 = ₪${fx.toFixed(4)}</span></span>` : '');
+  $('fxSmall').innerHTML = `סה״כ <b class="num" id="cashTot">${fmtMoney(tot,C,0)}</b>` + (S.cashWeight!=null ? ` · <span class="cw" id="cashW">${fmtW(S.cashWeight)} מהתיק</span>` : '') + (fx ? `<span class="fxr"> · <span class="num">$1 = ₪${fx.toFixed(4)}</span></span>` : '');
   // compact view: the cash card folds to one slim row (total in the header currency); tap to open – remembered like the holdings view
   const card = $('cashCard'), compact = posView()==='compact', open = !compact || cashOpen();
   card.classList.toggle('collapsible', compact); card.classList.toggle('collapsed', !open);
@@ -1140,7 +1141,9 @@ function cardFields(p){
     hd:[p.dayPct!=null ? fmtPct(p.dayPct) : '—', 'num '+cls(p.dayPct)],
     hu:[p.unrealPct!=null ? fmtPct(p.unrealPct) : '—', 'num '+cls(p.unrealPct)],
     mv:[fmtMoney(p.mv,cur), 'v num'],
-    hp:[fmtPrice(p.price,cur), 'v num'],          // row price: market price in the security's own currency (TASE in ₪), never masked
+    hp:[fmtPrice(p.price,cur), 'v num'],
+    hw:[fmtW(p.weight)+' מהתיק', 'pw'],      // weight under the price (row)
+    hwd:[fmtW(p.weight), 'num'],                  // weight in the details          // row price: market price in the security's own currency (TASE in ₪), never masked
     mvils:[cur==='USD'&&p.mvILS!=null ? fmtMoney(p.mvILS,'ILS',0) : '', 'pname num'],
     day:[p.day!=null ? fmtSigned(p.day,cur) : '—', 'num '+cls(p.day)],
     unreal:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
@@ -1220,7 +1223,7 @@ function renderPortfolio(S){
       return `<div class="pcard pc${open?' open':''}" data-sym="${esc(p.sym)}">
         <button class="pc-h" data-ctoggle aria-expanded="${open}">
           <div class="pc-n"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tag}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
-          <div class="pc-v">${f('hp','span')}</div>
+          <div class="pc-v">${f('hp','span')}${f('hw','span')}</div>
           <div class="pc-d"><span class="chg"><i>יומי</i>${f('hd')}</span>${showU?`<span class="chg"><i>מעלות</i>${f('hu')}</span>`:''}</div>
         </button>
         <div class="pc-b"><div class="pc-g">
@@ -1229,6 +1232,7 @@ function renderPortfolio(S){
           <div><span>${short?'מחיר שורט':'עלות ממוצעת'}</span><b class="num">${fmtMoney(p.avg,cur)}</b></div>
           <div><span>עלות</span>${f('cost')}</div>
           <div class="pc-u"><span>שווי</span>${f('mv')}${cur==='USD'?f('mvils2'):''}</div>
+          <div class="pc-wd"><span>% מהתיק</span>${f('hwd')}</div>
           <div class="pc-u"><span>שינוי מעלות</span>${f('unrp')}${f('unra')}</div>
           <div><span>שינוי יומי</span>${f('daya')}</div>
           <div><span>שינוי יומי %</span>${f('dayp')}</div>
@@ -1247,7 +1251,7 @@ function renderPortfolio(S){
       const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0]}</b>`;
       return `<button class="pcard" data-sym="${esc(p.sym)}">
         <div class="prow"><div style="min-width:0"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tags.join('')}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
-        <div class="pval"><div data-f="hp" class="${F.hp[1]}">${F.hp[0]}</div></div></div>
+        <div class="pval"><div data-f="hp" class="${F.hp[1]}">${F.hp[0]}</div><div data-f="hw" class="${F.hw[1]}">${F.hw[0]}</div></div></div>
         <div class="pchg"><span class="chg"><i>יומי</i>${f('hd')}</span>${showU?`<span class="chg"><i>מעלות</i>${f('hu')}</span>`:''}</div>
         <div class="pmeta">
           <span>היום: ${f('day')}</span>
@@ -2133,7 +2137,7 @@ function symTxHtml(sym){ const l = sortedTxs().filter(t=>t.symbol===sym || t.toS
 // detail-sheet numbers: each value cell has data-k so live ticks can patch it in place
 function posKvRows(p){
   const cur = p.cur, short = p.qty<0, open = Math.abs(p.qty)>1e-9, R = [];
-  if(open) R.push(['mv','שווי', fmtMoney(p.mv,cur) + (cur==='USD' && p.mvILS!=null ? ' · ' + fmtMoney(p.mvILS,'ILS',0) : ''), '', 'hl'], ['unreal','שינוי מעלות (ברוטו)', `${fmtPct(p.unrealPct)} · ${fmtSigned(p.unreal,cur)}`, cls(p.unreal), 'hl'], ['price',`מחיר נוכחי${p.manual?' (ידני)':''}`, fmtPrice(p.price,cur), ''],
+  if(open) R.push(['mv','שווי', fmtMoney(p.mv,cur) + (cur==='USD' && p.mvILS!=null ? ' · ' + fmtMoney(p.mvILS,'ILS',0) : ''), '', 'hl'], ['unreal','שינוי מעלות (ברוטו)', `${fmtPct(p.unrealPct)} · ${fmtSigned(p.unreal,cur)}`, cls(p.unreal), 'hl'], ['weight','% מהתיק', fmtW(p.weight), ''], ['price',`מחיר נוכחי${p.manual?' (ידני)':''}`, fmtPrice(p.price,cur), ''],
     ['day','שינוי היום', p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
     ['qty', short?'כמות בשורט':'כמות', fmtQtyP(Math.abs(p.qty)), ''], ['avg', short?'מחיר שורט ממוצע':'עלות ממוצעת', fmtMoney(p.avg,cur), ''],
     ['open','נפתחה', fmtDate(p.openDate), 'nonum'],
@@ -2244,7 +2248,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v32</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v33</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -2321,7 +2325,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 32;
+const SEC_DIR_V = 33;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
@@ -2911,7 +2915,7 @@ renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {get state(){ return state; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get state(){ return state; }, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 })();
 </script>
 </body>
