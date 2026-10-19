@@ -143,7 +143,7 @@ button{font-family:inherit}
 .idx-c{font-size:.74rem;font-weight:700;direction:ltr;unicode-bidi:isolate;text-align:right;white-space:nowrap}
 .idx .spark{grid-column:2;grid-row:1/4;width:58px;height:30px;display:block}.idx .spark path{fill:none;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}.idx .spark line{stroke:var(--fg-94a3b8);stroke-width:1;stroke-dasharray:2 2}
 @media (max-width:370px){.idx{padding:6px 8px}.idx .spark{width:44px}.idx-v{font-size:.92rem}}
-.heat{padding:10px}.heat-h{display:flex;align-items:center;gap:8px;min-height:30px}.heat-t{font-weight:700;font-size:.95rem}.heat-h small{color:var(--muted);font-size:.78rem}.heat-h .mini-tgl{margin-inline-start:auto}
+.heat{padding:10px}.heat-h{display:flex;align-items:center;gap:8px;min-height:30px}.heat-t{font-weight:700;font-size:.95rem}.heat-h small{color:var(--muted);font-size:.78rem}.heat-h small b{font-weight:700}.heat-h .mini-tgl{margin-inline-start:auto}
 .heat-map{position:relative;height:240px;margin-top:8px;border-radius:10px;overflow:hidden}.heat.collapsed{padding:8px 10px}.heat.collapsed .heat-map{display:none}.heat.collapsed .heat-h{cursor:pointer}
 .heat-map .ht{position:absolute;box-sizing:border-box;border:1px solid var(--card);border-radius:4px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;cursor:pointer;padding:1px;line-height:1.12;transition:background-color .4s}
 .heat-map .ht b{font-weight:800;direction:ltr;unicode-bidi:isolate;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 1px rgba(0,0,0,.25)}.heat-map .ht i{font-style:normal;font-weight:700;direction:ltr;unicode-bidi:isolate;white-space:nowrap}.heat-map .ht s{text-decoration:none;opacity:.85;font-weight:600;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
@@ -1784,7 +1784,7 @@ function renderHeat(S){ const card = $('heatCard'), map = $('heatMap'); if(!card
   card.hidden = !items.length; if(!items.length){ heatKey = ''; return; }
   const open = heatOpen(), b = $('heatTgl'); card.classList.toggle('collapsed', !open);
   if(b){ b.textContent = open ? '▴' : '▾'; b.setAttribute('aria-expanded', String(open)); b.setAttribute('aria-label', open ? 'כיווץ מפת החום' : 'הצגת מפת החום'); }
-  const up = items.filter(x=>x.p > 0.004).length, dn = items.filter(x=>x.p < -0.004).length; $('heatSum').textContent = `· ${up} עולות · ${dn} יורדות`;
+  const up = items.filter(x=>x.p > 0.004).length, dn = items.filter(x=>x.p < -0.004).length; $('heatSum').innerHTML = `· <b class="pos">${up} עולות</b> · <b class="neg">${dn} יורדות</b>`;
   if(!open){ heatKey = ''; return; }
   const W = map.clientWidth, H = map.clientHeight; if(!W || !H) return;
   const key = W+'x'+H+'|'+items.map(x=>x.sym+':'+Math.round(x.v*4)).join(',');
