@@ -321,7 +321,7 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
     <div class="idxrow" id="idxRow" hidden></div>
     <div class="card mini" id="miniCard"><div class="mini-h"><div class="seg sm" id="miniRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M">3 ח׳</button><button data-v="YTD" class="on">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
       <div class="mini-ret" id="miniHead"><span id="miniLbl">התיק בטווח</span><span class="mini-rng" id="miniRng"></span> <b id="miniPct" class="num">—</b> <span id="miniAmt" class="num"></span><button class="mini-tgl" id="miniTgl" aria-expanded="true" aria-label="כיווץ גרף הביצועים">▴</button></div>
-      <div class="bmq" id="miniBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק</button></div><div class="bmleg" id="miniLeg"></div>
+      <div class="bmq" id="miniBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק 100</button></div><div class="bmleg" id="miniLeg"></div>
       <div class="chart mini-chart" id="miniChart"><div class="chart-msg" id="miniMsg">טוען…</div></div></div>
     <div class="card heat" id="heatCard" hidden><div class="heat-h" id="heatHead"><span class="heat-t">מפת חום</span><small id="heatSum"></small><button class="mini-tgl" id="heatTgl" aria-expanded="true" aria-label="כיווץ מפת החום">▴</button></div>
       <div class="heat-map" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי"></div></div>
@@ -334,7 +334,7 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
       <h2>ביצועי התיק <small id="perfSrc"></small></h2>
       <div class="ytd" id="perfYtd"></div>
       <div class="ctrls"><div class="seg sm" id="perfRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M">3 ח׳</button><button data-v="YTD" class="on">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
-      <div class="bmq" id="perfBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק</button></div><div class="bmleg" id="perfBmLeg"></div>
+      <div class="bmq" id="perfBmq"><span>השוואה:</span><button data-bmq="spx" style="color:#ea580c"><i style="background:#ea580c"></i>S&amp;P 500</button><button data-bmq="ndx" style="color:#9333ea"><i style="background:#9333ea"></i>נאסד"ק 100</button></div><div class="bmleg" id="perfBmLeg"></div>
       <div class="chart" id="perfChart"><div class="chart-msg" id="perfMsg">טוען…</div></div>
       <div class="legend" id="perfLegend"></div>
       <div class="cmp" id="perfCmp"></div>
@@ -547,7 +547,7 @@ function loadState(){
 let state = loadState();
 try{ if(markSplitDupes(state.txs)) localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){ console.warn('split check failed', e); }   // repairs portfolios imported before v18
 setTimeout(()=>{ try{ if(closeFractions()){ save(); renderAll(); } }catch(e){ console.warn('fraction check failed', e); } }, 0);   // closes leftover split fractions in existing portfolios (v21), after init
-let hist = (()=>{ try{ return JSON.parse(localStorage.getItem(HIST_KEY)||'{}')||{}; }catch(e){ return {}; } })();
+let hist = (()=>{ try{ const h = JSON.parse(localStorage.getItem(HIST_KEY)||'{}')||{}; delete h['.IXIC']; return h; }catch(e){ return {}; } })();   // v48: Nasdaq benchmark is .NDX; drop the old Composite cache
 const VIEW_KEY = 'portfolioTracker.posView';
 function posView(){ try{ return localStorage.getItem(VIEW_KEY)==='full' ? 'full' : 'compact'; }catch(e){ return 'compact'; } }   // compact is the default
 // holdings sort (display only – S.positions keeps its value order for the other views)
@@ -1760,7 +1760,7 @@ async function renderPerf(S){
     + ' הגרף מציג תשואה באחוזים מתחילת הטווח (0% ביום הבסיס), כך שהפקדות ומשיכות לא נראות כרווח.';
 }
 // ---------- quick benchmarks (S&P 500 / נאסד"ק) – shared by the main-screen chart and the performance tab ----------
-// Data: CNBC daily history (free, no key) of the index itself (.SPX / .IXIC); if it has no data, the ETF (SPY / QQQ).
+// Data: CNBC daily history (free, no key) of the index itself (.SPX / .NDX); if it has no data, the ETF (SPY / QQQ).
 // The choice is remembered in localStorage (a UI preference, like the sort). Index lines are history only (daily closes),
 // so a live price tick never refetches or rebuilds them.
 // ---------- main screen: S&P 500 / Nasdaq 100 tiles (Yahoo-style) ----------
@@ -1875,7 +1875,7 @@ function renderHeat(S){ const card = $('heatCard'), map = $('heatMap'); if(!card
   const geo = Object.fromEntries([...map.children].map(e=>[e.dataset.hsym, e]));
   items.forEach(it=>{ const e = geo[it.sym]; if(!e) return; it.w = parseFloat(e.style.width); it.h = parseFloat(e.style.height);
     const bg = heatColor(it.p); if(e.style.backgroundColor !== bg) e.style.backgroundColor = bg; const html = heatTileInner(it); if(e.dataset.h !== html){ e.innerHTML = html; e.dataset.h = html; } }); }
-const QUICK_BM = [{k:'spx', s:'.SPX', alt:'SPY', n:'S&P 500', color:'#ea580c'}, {k:'ndx', s:'.IXIC', alt:'QQQ', n:'נאסד"ק', color:'#9333ea'}];
+const QUICK_BM = [{k:'spx', s:'.SPX', alt:'SPY', n:'S&P 500', color:'#ea580c'}, {k:'ndx', s:'.NDX', alt:'QQQ', n:'נאסד"ק 100', color:'#9333ea'}];
 const BMQ_KEY = 'portfolioTracker.bmQuick';
 function bmQuick(){ try{ const v = (localStorage.getItem(BMQ_KEY)||'').split(',').filter(k=>QUICK_BM.some(q=>q.k===k)); return v; }catch(e){ return []; } }
 function setBmQuick(list){ try{ localStorage.setItem(BMQ_KEY, list.join(',')); }catch(e){} }
@@ -2767,7 +2767,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v47</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v48</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
