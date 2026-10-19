@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=26">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=26">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=26">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=26">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=27">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=27">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=27">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=27">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -204,7 +204,7 @@ input.ltr-in{direction:ltr;text-align:right}
 .mkts{display:flex;flex-wrap:wrap;gap:4px 6px;margin-top:6px;font-size:.74rem}
 .mk{background:rgba(255,255,255,.12);border-radius:99px;padding:2px 9px;display:inline-flex;align-items:center;gap:5px}
 .mk i{width:7px;height:7px;border-radius:50%;background:#94a3b8;display:inline-block}
-.mk.open i{background:#34d399;box-shadow:0 0 0 3px rgba(52,211,153,.25)}.mk.pre i,.mk.post i{background:#fbbf24}.mk.night i{background:#818cf8}
+.mk.open i{background:#34d399;box-shadow:0 0 0 3px rgba(52,211,153,.25)}.mk.pre i,.mk.post i{background:#fbbf24}
 .mk.live{background:rgba(52,211,153,.18)}
 @keyframes flashUp{0%{background:rgba(16,185,129,.45)}100%{background:transparent}}
 @keyframes flashDown{0%{background:rgba(239,68,68,.45)}100%{background:transparent}}
@@ -213,12 +213,6 @@ input.ltr-in{direction:ltr;text-align:right}
 .age{font-size:.72rem;padding:1px 7px;border-radius:99px;background:#f1f5f9;color:#475569;white-space:nowrap}
 .age.live{background:#d1fae5;color:#065f46}.age.delay{background:#fef3c7;color:#92400e}
 .ext{font-size:.75rem;color:var(--muted);margin-top:4px}.ext:empty{display:none}
-.sessg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin-top:6px}
-.ss{border:1px solid var(--border);border-radius:9px;padding:4px 5px;text-align:center;line-height:1.2;min-width:0;background:#fff}
-.ss span{display:block;font-size:.66rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ss b{display:block;font-size:.8rem}.ss i{display:block;font-style:normal;font-size:.64rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ss.on{border-color:#93c5fd;background:#eff6ff}.ss.on span{color:#1e40af;font-weight:700}.ss.na b{font-weight:600;font-size:.72rem}
-.sesst{font-size:.72rem;color:var(--muted);margin-top:4px}
-.pc-d .sb{display:inline-block;margin-top:2px;font-size:.62rem;font-weight:700;border-radius:99px;padding:0 5px;background:#f1f5f9;white-space:nowrap}.pc-d .sb:empty{display:none}.pc-d .sb.live{background:#eff6ff}.pc-d .sb{white-space:pre-line;line-height:1.25;text-align:center}.pc-d .sb.night{background:#eef2ff;color:#3730a3}
 .closed-list{margin-top:12px;border-top:1px solid var(--border);padding-top:10px}
 .closed-list h4{margin:0 0 6px;font-size:.88rem;color:var(--muted);font-weight:600}
 .crow{display:flex;align-items:center;gap:6px 8px;padding:6px 0;border-bottom:1px solid #f1f5f9;flex-wrap:wrap}
@@ -240,7 +234,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=26" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=27" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -322,7 +316,7 @@ const CRYPTO_IDS = {BTC:'bitcoin',ETH:'ethereum',SOL:'solana',XRP:'ripple',ADA:'
 const BM_PRESETS = [
   {s:'SPY',n:'S&P 500 · SPY'},{s:'QQQ',n:'Nasdaq 100 · QQQ'},{s:'SOXX',n:'שבבים · SOXX'},{s:'VOO',n:'VOO'},
   {s:'DIA',n:'Dow Jones · DIA'},{s:'IWM',n:'Russell 2000 · IWM'},{s:'.TA35',n:'ת״א 35'},{s:'.TA125',n:'ת״א 125'},{s:'BTC',n:'ביטקוין',t:'crypto'}];
-const DEFAULT_SETTINGS = {commission:{USD:{fixed:0,pct:0,min:0,smallBelow:0,smallFee:0}, ILS:{fixed:0,pct:0,min:0,smallBelow:0,smallFee:0}}, fxFeePct:0, taxRate:25, benchmarks:['SPY','.TA35'], refreshSec:15, useExtended:true, hideAmounts:false, hideHistory:false};
+const DEFAULT_SETTINGS = {commission:{USD:{fixed:0,pct:0,min:0,smallBelow:0,smallFee:0}, ILS:{fixed:0,pct:0,min:0,smallBelow:0,smallFee:0}}, fxFeePct:0, taxRate:25, benchmarks:['SPY','.TA35'], refreshSec:15, hideAmounts:false, hideHistory:false};
 
 // ====================== helpers ======================
 const $ = id => document.getElementById(id);
@@ -401,58 +395,10 @@ function usSession(now){
   if(z.min < close) return 'reg';
   return z.min < close+4*60 ? 'post' : 'closed';
 }
-const SESS_LBL = {night:'לילה', pre:'טרום מסחר', reg:'מסחר רציף', post:'אחרי המסחר'}, SESS_SHORT = {night:'לילה', pre:'טרום', reg:'רציף', post:'אפטר'};
-// Per-session change for a US holding (CNBC restQuote is the only free keyless source a browser can read):
-//  · pre-market and overnight are measured vs the prior close (the close before that trading day);
-//  · the regular session = its last / closing price vs the prior close;
-//  · after-hours is measured vs that day's regular close;
-//  · total = the latest price (after-hours if there is one) vs the prior close – the same number as the row's daily change.
-// Overnight (Blue Ocean etc.) prices are NOT available from any free source a browser can reach (CNBC has no overnight field;
-// Robinhood/Webull/Nasdaq/Yahoo send no CORS headers), so that session is shown as unavailable, never estimated.
-// CNBC returns only the current extended quote, so a pre price seen earlier in the day is kept in q.sess to show it later.
-function sessionsOf(sym){
-  const q = state.quotes[sym]; if(!q || q.price==null || marketOf(sym)!=='us' || num(state.manual[sym])!=null) return null;
-  const cur = usSession(), E = q.ext, S = q.sess || {}, pct = (a,b)=> a!=null && b ? (a/b-1)*100 : null, R = {};
-  let P, cycle, total;
-  if(E && E.type==='PRE_MKT' && (!q.date || !E.date || E.date > q.date)){       // a new trading day has started (pre-market)
-    cycle = E.date || null; P = q.price;
-    R.pre = {price:E.price, pct:pct(E.price, P), st:'ok'}; R.reg = {st:'notyet'}; R.post = {st:'notyet'};
-    total = {price:E.price, pct:pct(E.price, P)};
-  } else {
-    cycle = q.date || null; P = q.prev;
-    const pre = S.pre && S.pre.d===cycle ? S.pre : null, post = E && E.type==='POST_MKT' && (!E.date || !cycle || E.date===cycle) ? {price:E.price} : (S.post && S.post.d===cycle ? S.post : null);
-    R.pre = pre ? {price:pre.price, pct:pct(pre.price, P), st:'ok'} : {st:'none'};
-    R.reg = {price:q.price, pct:pct(q.price, P), st:'ok'};
-    R.post = post ? {price:post.price, pct:pct(post.price, q.price), st:'ok'} : {st: cur==='reg' ? 'notyet' : 'none'};
-    const last = post ? post.price : q.price; total = {price:last, pct:pct(last, P)};
-  }
-  R.night = {st:'na'};
-  return {cur, cycle, prior:P, rows:R, total, cy:q.cur||'USD'};
-}
-// small badge for the compact row: the current session's change (overnight has no data → the latest after-hours, marked as such)
-// The session comes from the ET clock only (usSession), never from CNBC's quote type, so every US holding shows the same session.
-// Overnight has no free price: the badge says "לילה" and, if there is one, the last after-hours change labelled "מחיר אפטר אחרון".
-function sessBadge(sym){
-  const X = sessionsOf(sym); if(!X || X.cur==='reg') return ['', 'sb'];
-  const pc = r=> r && r.st==='ok' && r.pct!=null ? ` \u2066${fmtPct(r.pct)}\u2069` : '';   // LTR isolate keeps the sign with the number in the RTL row
-  if(X.cur==='pre' || X.cur==='post'){ const r = X.rows[X.cur]; return [`${SESS_SHORT[X.cur]}${pc(r)}`, 'sb live '+(pc(r) ? cls(r.pct) : '')]; }
-  const lp = X.rows.post && X.rows.post.st==='ok' ? `\n${'מחיר אפטר אחרון'}${pc(X.rows.post)}` : '';
-  if(X.cur==='night') return [`🌙 לילה${lp}`, 'sb night'];
-  return lp ? [`סגור${lp}`, 'sb'] : ['', 'sb'];
-}
-function sessHtml(sym){
-  const X = sessionsOf(sym); if(!X) return '';
-  const cell = k=>{ const r = X.rows[k], on = X.cur===k;
-    const v = r.st==='ok' ? `<b class="num ${cls(r.pct)}">${fmtPct(r.pct)}</b><i class="num">${fmtPrice(r.price, X.cy)}</i>`
-      : `<b class="muted">${r.st==='na' ? 'לא זמין' : r.st==='notyet' ? 'טרם החל' : '—'}</b><i>${r.st==='na' ? 'אין מקור חינמי' : r.st==='notyet' ? '' : 'לא נקלט'}</i>`;
-    return `<div class="ss${on?' on':''}${r.st==='na'?' na':''}"><span>${SESS_LBL[k]}${on?' ●':''}</span>${v}</div>`; };
-  return `<div class="sessg">${['night','pre','reg','post'].map(cell).join('')}</div>
-    <div class="sesst">סה״כ מול סגירה קודמת${X.prior!=null?` (<span class="num">${fmtPrice(X.prior, X.cy)}</span>)`:''}: <b class="num ${cls(X.total.pct)}">${fmtPct(X.total.pct)}</b>${X.cycle?` · יום מסחר ${fmtDate(X.cycle)}`:''}</div>`;
-}
 function marketOf(sym){ if(isCrypto(sym)) return 'crypto'; if(isTaseSec(sym) || isTaIndex(sym)) return 'tase'; return 'us'; }
 function marketState(m, now){
   if(m==='crypto') return {state:'open', label:'24/7'};
-  if(m==='us'){ const ss = usSession(now); return {state: ss==='reg' ? 'open' : ss}; }   // ET clock (DST-aware): night / pre / open / post / closed
+  if(m==='us') return {state: usSession(now)==='reg' ? 'open' : 'closed'};   // ET clock (DST-aware, holidays, early close): only the regular session counts
   // TASE (since 5.1.2026: Mon–Thu 09:59–17:25 + closing auction to ~17:35, Fri 09:59–13:50; no Sunday trading). Jewish holidays not modelled.
   const z = zoned('Asia/Jerusalem', now);
   if(z.wd==='Sat' || z.wd==='Sun') return {state:'closed'};
@@ -475,7 +421,7 @@ function mergeSettings(s){
   const d = JSON.parse(JSON.stringify(DEFAULT_SETTINGS)); s = s||{}; const c = s.commission||{};
   return {commission:{USD:Object.assign(d.commission.USD, c.USD||{}), ILS:Object.assign(d.commission.ILS, c.ILS||{})},
     fxFeePct: num(s.fxFeePct) ?? d.fxFeePct, taxRate: num(s.taxRate) ?? d.taxRate, benchmarks: Array.isArray(s.benchmarks)? s.benchmarks.slice(0,5) : d.benchmarks,
-    refreshSec: [0,5,15,30,60].includes(num(s.refreshSec)) ? num(s.refreshSec) : d.refreshSec, useExtended: s.useExtended==null ? d.useExtended : !!s.useExtended,
+    refreshSec: [0,5,15,30,60].includes(num(s.refreshSec)) ? num(s.refreshSec) : d.refreshSec,
     hideAmounts: !!s.hideAmounts, hideHistory: !!s.hideHistory};
 }
 function defaultState(){ return {version:2, txs:[], assets:{}, quotes:{}, manual:{}, fx:{rate:null,prev:null,updated:null,source:null}, settings:mergeSettings(null), lastRefresh:null, refreshErrors:0, hiddenClosed:[], removedSymbols:[], importMap:{}}; }
@@ -695,7 +641,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=26').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=27').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -820,17 +766,10 @@ function priceOf(sym){
   if(num(state.manual[sym])!=null) return {price:num(state.manual[sym]), prev:null, manual:true};
   const q = state.quotes[sym];
   if(!q || q.price==null) return {price:null, prev:null};
-  let p = q.price, pv = q.prev, ext = false;
-  if(state.settings.useExtended && q.ext && q.ext.price!=null && marketOf(sym)==='us'){
-    const ms = marketState('us').state;
-    if(ms==='pre' && q.ext.type==='PRE_MKT'){ pv = q.price; p = q.ext.price; ext = 'pre'; }      // pre-market: vs. last close
-    else if(ms==='post' && q.ext.type==='POST_MKT' && (!q.ext.date || !q.date || q.ext.date===q.date)){ p = q.ext.price; ext = 'post'; }   // after-hours (only today's, never an older day's)
-    // after 20:00 ET (overnight / weekend / holiday) the last after-hours trade is still the latest price we have – keep it
-    // (it used to fall back to the 16:00 close) as long as it belongs to the last regular session
-    else if((ms==='closed' || ms==='night') && q.ext.type==='POST_MKT' && (!q.ext.date || !q.date || q.ext.date===q.date)){ p = q.ext.price; ext = 'post'; }
-  }
+  // regular-session price only: last regular trade vs the prior regular close (pre-market / after-hours / overnight are not used)
+  const p = q.price, pv = q.prev;
   const c = q.cur||a.currency;
-  return {price:convertCur(p, c, a.currency), prev: pv!=null ? convertCur(pv, c, a.currency) : null, q, ext};
+  return {price:convertCur(p, c, a.currency), prev: pv!=null ? convertCur(pv, c, a.currency) : null, q};
 }
 function lastTxPrice(sym){ const t = sortedTxs().filter(t=>t.symbol===sym && (t.type==='buy'||t.type==='sell')).pop(); return t ? num(t.price) : null; }
 
@@ -869,7 +808,7 @@ function computeAll(){
     const costILS = LT.reduce((a,l)=>a + l.q*l.ils, 0);
     const row = Object.assign({}, P, {asset:a, price, prev:pr.prev, manual:!!pr.manual, est, mv, unreal, unrealPct: basis? unreal/basis*100 : null, taxGross:eP, shieldUse, taxILS, taxNow, refundP, costILS, taxableNow, hyp,
       day, dayPct: (day!=null && pr.prev)? (pr.price/pr.prev-1)*100*(P.qty<0?-1:1) : null,
-      closeFee, netIfSold, mvILS:toILS(mv,P.cur), unrealILS:toILS(unreal,P.cur), dayILS: dayILSx, quote:pr.q, ext:pr.ext});
+      closeFee, netIfSold, mvILS:toILS(mv,P.cur), unrealILS:toILS(unreal,P.cur), dayILS: dayILSx, quote:pr.q});
     mvILS += row.mvILS||0; unrealILS += row.unrealILS||0; dayILS += row.dayILS||0; closeFeesILS += toILS(closeFee,P.cur)||0;
     positions.push(row);
   });
@@ -900,7 +839,7 @@ async function cnbcQuotes(symbols){
   const out = {};
   for(let i=0;i<symbols.length;i+=40){
     const chunk = symbols.slice(i,i+40);
-    const url = 'https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols='+encodeURIComponent(chunk.map(cnbcSymbol).join('|'))+'&requestMethod=itv&noform=1&partnerId=2&fund=1&exthrs=1&output=json&events=1';
+    const url = 'https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols='+encodeURIComponent(chunk.map(cnbcSymbol).join('|'))+'&requestMethod=itv&noform=1&partnerId=2&fund=1&output=json&events=1';
     const j = await fetchJSON(url);
     let arr = j && j.FormattedQuoteResult && j.FormattedQuoteResult.FormattedQuote; if(arr && !Array.isArray(arr)) arr=[arr];
     (arr||[]).forEach(q=>{
@@ -913,9 +852,7 @@ async function cnbcQuotes(symbols){
       let cur = q.currencyCode==='ILS'||q.currencyCode==='USD' ? q.currencyCode : (isTaIndex(orig)?'ILS':'USD');
       const k = isTaseSec(orig) ? 100 : 1;
       if(k>1){ last/=k; if(prev!=null) prev/=k; cur='ILS'; }
-      let ext = null; const E = q.ExtendedMktQuote;
-      if(E && num(E.last)!=null && (E.type==='PRE_MKT'||E.type==='POST_MKT')) ext = {type:E.type, price:num(E.last)/k, pct:num(String(E.change_pct||'').replace('%','')), time:E.last_time||'', ts:parseTs(E.last_time), date:String(E.last_time||'').slice(0,10)};
-      out[String(orig).toUpperCase()] = {price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', ext, source:'CNBC'};
+      out[String(orig).toUpperCase()] = {price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', source:'CNBC'};
     });
   }
   return out;
@@ -1071,9 +1008,7 @@ function openSymbols(){ const L = computeLedger(); return Object.values(L.pos).f
 function applyQuotes(res, syms){
   const now = Date.now(); let errors = 0;
   syms.forEach(s=>{ const q = res.quotes[s];
-    if(q){ const sess = Object.assign({}, (state.quotes[s] && state.quotes[s].sess) || {}), E = q.ext;
-      if(E && E.date){ if(E.type==='PRE_MKT') sess.pre = {d:E.date, price:E.price, ts:E.ts||now}; else if(E.type==='POST_MKT') sess.post = {d:E.date, price:E.price, ts:E.ts||now}; }
-      state.quotes[s] = Object.assign(q, {updated:now, error:null, sess});
+    if(q){ state.quotes[s] = Object.assign(q, {updated:now, error:null});
       if(!state.assets[s]) state.assets[s] = assetOf(s);
       if(!state.assets[s].name && q.name) state.assets[s].name = q.name; }
     else { state.quotes[s] = Object.assign(state.quotes[s]||{}, {error:'לא נמצא מחיר'}); if(num(state.manual[s])==null) errors++; } });
@@ -1142,7 +1077,7 @@ function ageInfo(sym, p){
   if(p && p.manual) return {t:'מחיר ידני', c:''};
   const q = state.quotes[sym]; if(!q || q.price==null) return {t:'', c:''};
   const ms = marketState(marketOf(sym)).state;
-  const ts = (p && p.ext && q.ext && q.ext.ts) || q.ts;
+  const ts = q.ts;
   if(!ts) return {t: q.time ? 'סגירה '+fmtDate(String(q.time).slice(0,10)) : '', c:''};
   const age = Date.now()-ts;
   const hhmm = age > 20*3600e3 ? fmtTime(ts) : new Date(ts).toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
@@ -1150,10 +1085,6 @@ function ageInfo(sym, p){
   if(q.realTime===false) return {t:`⏱️ מעוכב${age>90000?' ~'+Math.round(age/60000)+' דק׳':''} · ${hhmm}`, c:'delay'};
   if(age <= 60000) return {t:'🟢 חי · '+hhmm, c:'live'};
   return {t:`⏱️ לפני ${Math.round(age/60000)} דק׳ · ${hhmm}`, c:'delay'};
-}
-function extLine(sym){
-  const q = state.quotes[sym]; if(!q || q.price==null || marketOf(sym)!=='us' || num(state.manual[sym])!=null) return '';
-  return sessHtml(sym);
 }
 
 // ====================== rendering ======================
@@ -1217,12 +1148,11 @@ function cardFields(p){
   return {
     colp:[colU ? fmtPct(p.unrealPct) : (p.dayPct!=null?fmtPct(p.dayPct):'—'), 'num '+cls(colU ? p.unreal : p.day)],
     cola:[colU ? fmtSigned(p.unreal,cur) : (p.day!=null?fmtSigned(p.day,cur):''), 'num '+cls(colU ? p.unreal : p.day)],
-    sb:sessBadge(p.sym),
     mv:[fmtMoney(p.mv,cur), 'v num'],
     mvils:[cur==='USD'&&p.mvILS!=null ? fmtMoney(p.mvILS,'ILS',0) : '', 'pname num'],
     day:[dayTxt, 'num '+cls(p.day)+(sk==='day'?' pri':'')],
     unreal:[unrTxt, 'num '+cls(p.unreal)+(sk==='unreal'?' pri':'')],
-    price:[fmtPrice(p.price,cur)+(p.ext ? ` \u2067(${p.ext==='pre' ? 'טרום' : usSession()==='post' ? 'אפטר' : 'אפטר אחרון'})\u2069` : ''), 'num'],   // RTL isolate keeps the label readable after the LTR price
+    price:[fmtPrice(p.price,cur), 'num'],
     age:[a.t, 'age '+a.c],
     dayp:[p.dayPct!=null?fmtPct(p.dayPct):'—', 'num '+cls(p.day)],
     daya:[p.day!=null?fmtSigned(p.day,cur):'', 'num '+cls(p.day)],
@@ -1296,7 +1226,7 @@ function renderPortfolio(S){
         <button class="pc-h" data-ctoggle aria-expanded="${open}">
           <div class="pc-n"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tag}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
           <div class="pc-v">${f('mvs','span')}${cur==='USD'?f('mvils','span'):''}</div>
-          <div class="pc-d">${posSort().k==='unreal'?'<span class="lbl">מעלות</span>':''}${f('colp')}${f('cola','span')}${f('sb','span')}</div>
+          <div class="pc-d">${posSort().k==='unreal'?'<span class="lbl">מעלות</span>':''}${f('colp')}${f('cola','span')}</div>
         </button>
         <div class="pc-b"><div class="pc-g">
           <div><span>${short?'כמות בשורט':'כמות'}</span><b class="num">${fmtQtyP(Math.abs(p.qty))}</b></div>
@@ -1309,7 +1239,7 @@ function renderPortfolio(S){
           <div><span>תשואה</span>${f('unrp')}</div>
           <div><span>עלות בשקלים למס</span>${f('costils')}</div>
           <div>${f('age','span')}</div>
-        </div><div class="ext" data-f="ext">${extLine(p.sym)}</div>
+        </div>
         <div class="btn-row"><button class="btn btn-light btn-sm" data-cact="open">📄 פרטים מלאים</button><button class="btn btn-light btn-sm" data-cact="buy">🛒 קנייה</button><button class="btn btn-light btn-sm" data-cact="sell">💰 מכירה</button></div></div></div>`;
     }).join('');
   } else {
@@ -1320,7 +1250,6 @@ function renderPortfolio(S){
       if(p.manual) tags.push('<span class="tag manual">מחיר ידני</span>'); else if(p.est) tags.push('<span class="tag err">אין מחיר</span>');
       shownPrice[p.sym] = p.price;
       const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0]}</b>`;
-      const ex = extLine(p.sym);
       return `<button class="pcard" data-sym="${esc(p.sym)}">
         <div class="prow"><div style="min-width:0"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tags.join('')}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
         <div class="pval"><div data-f="mv" class="${F.mv[1]}">${F.mv[0]}</div><div data-f="mvils" class="${F.mvils[1]}">${F.mvils[0]}</div></div></div>
@@ -1331,7 +1260,7 @@ function renderPortfolio(S){
           <span>${short?'כמות בשורט':'כמות'}: <b class="num">${fmtQtyP(Math.abs(p.qty))}</b></span>
           <span>${short?'מחיר שורט':'עלות ממוצעת'}: <b class="num">${fmtMoney(p.avg,cur)}</b></span>
           <span data-f="age" class="${F.age[1]}">${F.age[0]}</span>
-        </div><div class="ext" data-f="ext">${ex}</div></button>`;
+        </div></button>`;
     }).join('');
   }
   $('posList').classList.toggle('compact', posView()==='compact');
@@ -1421,7 +1350,6 @@ function patchPortfolio(S){
   S.positions.forEach((p,i)=>{
     const c = bySym.get(p.sym), F = cardFields(p);
     for(const k in F){ const el = c.querySelector(`[data-f="${k}"]`); if(!el) continue; if(el.textContent!==F[k][0]) el.textContent = F[k][0]; el.className = F[k][1]; }
-    const ex = c.querySelector('[data-f="ext"]'), eh = extLine(p.sym); if(ex && ex.innerHTML!==eh) ex.innerHTML = eh;
     const old = shownPrice[p.sym];
     if(old!=null && p.price!=null && Math.abs(p.price-old) > 1e-9){ flash(c.querySelector('[data-f="price"]'), p.price-old); if(!hidden()) flash(c.querySelector('[data-f="mv"]'), (p.price-old)*(p.qty<0?-1:1)); }
     shownPrice[p.sym] = p.price;
@@ -1448,7 +1376,7 @@ function reorderCards(want){
 }
 function updateAges(){
   $('posList').querySelectorAll('.pcard').forEach(c=>{ const el = c.querySelector('[data-f="age"]'); if(!el) return;
-    const sym = c.dataset.sym, a = ageInfo(sym, {manual: num(state.manual[sym])!=null, ext: priceOf(sym).ext}); el.textContent = a.t; el.className = 'age '+a.c; });
+    const sym = c.dataset.sym, a = ageInfo(sym, {manual: num(state.manual[sym])!=null}); el.textContent = a.t; el.className = 'age '+a.c; });
 }
 function livePatch(){
   const S = computeAll();
@@ -2037,7 +1965,6 @@ function openPosition(sym){
     <div class="rchg" id="posRchg"></div>
     <div class="note" id="posNote"></div>
     <div class="kv" style="margin-top:10px" id="posKv">${posKvHtml(p)}</div>
-    <div class="ext" id="posSess">${sessHtml(p.sym)}</div>
     <div class="note" id="posInfo">${posInfoHtml(p)}</div>
     <div class="btn-row" style="margin-top:12px">
       <button class="btn btn-primary" data-pact="buy">🛒 ${short?'קנייה לכיסוי':'קנייה'}</button>
@@ -2103,7 +2030,6 @@ function updatePosSheet(S){
   if(box.querySelectorAll('[data-k]').length !== rows.length) box.innerHTML = posKvHtml(p);
   else rows.forEach(([k,,v,c])=>{ const el = box.querySelector(`[data-k="${k}"]`); if(!el) return; if(el.textContent!==v) el.textContent = v; const cn = c==='nonum'?'':'num '+c; if(el.className.replace(/ ?flash-(up|down)/g,'')!==cn) el.className = cn; });
   const info = $('posInfo'), ih = posInfoHtml(p); if(info && info.innerHTML!==ih) info.innerHTML = ih;
-  const se = $('posSess'), sh = sessHtml(p.sym); if(se && se.innerHTML!==sh) se.innerHTML = sh;
   if(sheetPrice!=null && p.price!=null && Math.abs(p.price-sheetPrice)>1e-9){ const dir = p.price-sheetPrice;
     flash(box.querySelector('[data-k="price"]'), dir); if(!hidden()) flash(box.querySelector('[data-k="mv"]'), dir*(p.qty<0?-1:1)); }
   sheetPrice = p.price;
@@ -2173,7 +2099,7 @@ function renderSettings(){
   $('settingsCard').innerHTML = `
     <div class="set-sec"><h4>⚡ עדכון מחירים חי</h4><div class="fgrid">
       <label class="f"><span>תדירות בזמן מסחר</span><select id="setRefresh">${[[0,'כבוי'],[5,'כל 5 שניות'],[15,'כל 15 שניות'],[30,'כל 30 שניות'],[60,'כל דקה']].map(([v,l])=>`<option value="${v}" ${num(s.refreshSec)===v?'selected':''}>${l}</option>`).join('')}</select></label>
-      <label class="f"><span>מסחר מורחב (ארה״ב)</span><select id="setExt"><option value="1" ${s.useExtended?'selected':''}>כלול מחירי טרום/אפטר בשווי</option><option value="0" ${s.useExtended?'':'selected'}>רק מסחר רגיל</option></select></label></div>
+</div>
       <div class="note">כשהשווקים סגורים או שהאפליקציה ברקע – העדכון מואט/מושהה אוטומטית. מניות ארה״ב: זמן אמת (CNBC). ת״א: מעוכב (CNBC מסמן realTime=false). קריפטו: כמה שניות.</div></div>
     <div class="set-sec"><h4>💸 עמלת קנייה/מכירה – ניירות בדולר</h4>${comm('USD')}</div>
     <div class="set-sec"><h4>💸 עמלת קנייה/מכירה – ניירות בשקל</h4>${comm('ILS')}</div>
@@ -2192,7 +2118,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v26</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v27</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -2201,7 +2127,6 @@ function renderSettings(){
     renderHeader(computeAll());
   }));
   $('setRefresh').onchange = e=>{ state.settings.refreshSec = num(e.target.value)||0; save(); backoff = 0; schedulePoll(); };
-  $('setExt').onchange = e=>{ state.settings.useExtended = e.target.value==='1'; save(); renderAll(); };
   $('btnExport').onclick = exportData; $('btnImport').onclick = ()=>$('fileImport').click();
   $('btnBank').onclick = ()=>$('fileBank').click();
   $('btnReset').onclick = openDeleteAll;
@@ -2270,7 +2195,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 26;
+const SEC_DIR_V = 27;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
@@ -2858,7 +2783,7 @@ renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {get state(){ return state; }, livePatch, sessionsOf, usSession, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get state(){ return state; }, livePatch, usSession, marketState, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 })();
 </script>
 </body>
