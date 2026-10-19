@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=27">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=27">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=27">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=27">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=28">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=28">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=28">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=28">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -43,8 +43,6 @@ body{font-family:system-ui,"Segoe UI",Roboto,"Rubik","Heebo",Arial,sans-serif;ba
 .tot-pct{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
 .tot-pct .tp{background:rgba(255,255,255,.14);border-radius:12px;padding:6px 10px;display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;min-width:0}
 .tot-pct .tp-l{font-size:.74rem;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tot-pct .tp-v{font-size:1.25rem;font-weight:800}.tot-pct .tp-a{font-size:.8rem;opacity:.95}.tot-pct .tp-v,.tot-pct .tp-a{direction:ltr;text-align:right;unicode-bidi:isolate}
-.tot-sub{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.84rem;margin-top:4px}
-.tot-sub .chip{background:rgba(255,255,255,.14);border-radius:99px;padding:3px 10px}
 .top .pos{color:#6ee7b7}.top .neg{color:#fca5a5}
 .top .upd{font-size:.72rem;opacity:.75;margin-top:4px}
 .tot-row{display:flex;align-items:center;gap:8px;margin-top:2px}
@@ -201,11 +199,6 @@ input.ltr-in{direction:ltr;text-align:right}
 .set-sec h4{margin:0 0 8px;font-size:.92rem}
 .toast{position:fixed;bottom:calc(var(--nav-h) + var(--safe-b) + 86px);left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 16px;border-radius:12px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .25s;z-index:60;max-width:90vw;text-align:center}
 .toast.show{opacity:.95}
-.mkts{display:flex;flex-wrap:wrap;gap:4px 6px;margin-top:6px;font-size:.74rem}
-.mk{background:rgba(255,255,255,.12);border-radius:99px;padding:2px 9px;display:inline-flex;align-items:center;gap:5px}
-.mk i{width:7px;height:7px;border-radius:50%;background:#94a3b8;display:inline-block}
-.mk.open i{background:#34d399;box-shadow:0 0 0 3px rgba(52,211,153,.25)}.mk.pre i,.mk.post i{background:#fbbf24}
-.mk.live{background:rgba(52,211,153,.18)}
 @keyframes flashUp{0%{background:rgba(16,185,129,.45)}100%{background:transparent}}
 @keyframes flashDown{0%{background:rgba(239,68,68,.45)}100%{background:transparent}}
 .flash-up{animation:flashUp 1.3s ease-out;border-radius:6px}.flash-down{animation:flashDown 1.3s ease-out;border-radius:6px}
@@ -234,7 +227,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=27" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=28" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -242,11 +235,7 @@ input.ltr-in{direction:ltr;text-align:right}
       <div class="tp"><span class="tp-l">מתחילת התיק</span><b class="tp-v num" id="hPLPct">—</b><span class="tp-a num" id="hPL">—</span></div>
       <div class="tp"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-a num" id="hDay">—</span></div>
     </div>
-    <div class="tot-sub">
-      <span class="chip">נטו אחרי מס: <b class="num" id="hNet">—</b></span>
-    </div>
-    <div class="mkts" id="hMkts"></div>
-    <div class="upd" id="hUpd">טרם עודכנו מחירים</div>
+    <div class="upd"><span id="hUpd">טרם עודכנו מחירים</span><span id="hLive"></span></div>
   </div>
 </header>
 <main class="wrap">
@@ -374,8 +363,6 @@ const TASE_CLOSED = {
   '2027-10-01':'ערב ראש השנה','2027-10-08':'לפני יום כיפור','2027-10-11':'יום כיפור','2027-10-15':'ערב סוכות','2027-10-22':'ערב שמחת תורה'};
 // חול המועד: continuous trading until ~14:25 (closing auction 14:24–14:25); we treat the session as open until 14:30
 const TASE_SHORT = new Set(['2026-04-06','2026-09-28','2026-09-29','2026-09-30','2026-10-01','2027-04-26','2027-10-18','2027-10-19','2027-10-20','2027-10-21']);
-const MK_LABEL = {us:'ארה״ב', tase:'ת״א', crypto:'קריפטו'};
-const ST_LABEL = {open:'פתוח', pre:'טרום־מסחר', post:'אפטר', night:'לילה', closed:'סגור'};
 const tzFmt = {};
 function zoned(tz, now){
   const f = tzFmt[tz] || (tzFmt[tz] = new Intl.DateTimeFormat('en-US',{timeZone:tz, weekday:'short', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hour12:false}));
@@ -641,7 +628,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=27').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=28').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -1058,18 +1045,9 @@ function schedulePoll(){
 document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ clearTimeout(pollTimer); pollTimer = null; renderLiveStatus(); } else schedulePoll(); });
 window.addEventListener('focus', ()=>{ if(!pollTimer && !document.hidden) schedulePoll(); });
 function renderLiveStatus(){
-  const held = new Set(openSymbols().map(marketOf));
-  const chips = ['us','tase','crypto'].map(m=>{ const st = marketState(m); const lab = m==='crypto' ? '24/7' : ST_LABEL[st.state] + (st.holiday ? ` (${st.holiday})` : (st.short && st.state==='open' ? ` עד ${st.closeAt}` : ''));
-    return `<span class="mk ${st.state} ${held.has(m)?'held':''}" title="${held.has(m)?'יש לך נכסים בשוק זה':''}"><i></i>${MK_LABEL[m]}: ${lab}</span>`; });
   const iv = num(state.settings.refreshSec)||0, d = pollDelayMs();
-  let st;
-  if(!iv) st = '⏸ עדכון אוטומטי כבוי';
-  else if(document.hidden) st = '⏸ מושהה (הלשונית ברקע)';
-  else if(backoff) st = `⚠️ שגיאת רשת – ניסיון חוזר בעוד ${Math.round(d/1000)} ש׳`;
-  else if(liveMarkets().length) st = `⚡ חי · כל ${iv} ש׳`;
-  else st = '🐢 שווקים סגורים · כל 5 דק׳';
-  chips.push(`<span class="mk ${iv&&liveMarkets().length&&!backoff?'live':''}" id="liveChip">${st}</span>`);
-  $('hMkts').innerHTML = chips.join('');
+  const st = !iv ? 'עדכון אוטומטי כבוי' : backoff ? `שגיאת רשת – ניסיון חוזר בעוד ${Math.round(d/1000)} ש׳` : '';
+  const el = $('hLive'); if(el) el.textContent = st ? ' · '+st : '';
 }
 
 // ---- quote freshness ----
@@ -1119,7 +1097,6 @@ function renderHeader(S){
   $('hDayLbl').textContent = !hasDay || open ? 'שינוי יומי' : 'שינוי יומי · מסחר אחרון';
   const p = $('hPL'); p.textContent = has ? fmtSigned(V.pl,C,0) : '—'; p.className = 'tp-a num '+cls(V.pl);
   const pp = $('hPLPct'); pp.textContent = has && V.plPct!=null ? fmtPct(V.plPct) : '—'; pp.className = 'tp-v num '+cls(V.pl);
-  const n = $('hNet'); n.textContent = has ? fmtSigned(V.net,C,0) : '—'; n.className = 'num '+cls(V.net);
   renderEye();
   $('hUpd').textContent = state.lastRefresh ? `מחירים עודכנו ${new Date(state.lastRefresh).toLocaleTimeString('he-IL')}${state.refreshErrors?` · ${state.refreshErrors} לא עודכנו`:''}` : 'טרם עודכנו מחירים';
 }
@@ -2118,7 +2095,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v27</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v28</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -2195,7 +2172,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 27;
+const SEC_DIR_V = 28;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
@@ -2783,7 +2760,7 @@ renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {get state(){ return state; }, livePatch, usSession, marketState, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get state(){ return state; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 })();
 </script>
 </body>
