@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=23">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=23">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=23">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=23">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=24">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=24">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=24">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=24">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -234,7 +234,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=23" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=24" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -526,6 +526,19 @@ function taxRate(){ return (num(state.settings.taxRate)||0)/100; }
 // ====================== ledger engine ======================
 function sortedTxs(list){ return (list||state.txs).slice().sort((a,b)=> a.date<b.date?-1: a.date>b.date?1 : (a.ts||0)-(b.ts||0)); }
 function newLedger(){ return {cash:{ILS:0,USD:0}, pos:{}, netDepILS:0, netDepUSD:0, fees:{ILS:0,USD:0}, flows:{dividend:0, interest:0, bonus:0, tax:0, taxrefund:0, fee:0}, cgtILS:0}; }
+// ---- FIFO cost lots (long positions), like the bank ----
+// Average cost, cost and unrealized P/L of an open long position come from the lots that are still open, first-in first-out:
+// a sale closes the oldest lots first, so after a sale the average is the cost of what is actually left (the bank's "שער ממוצע"),
+// not a running weighted average of everything ever bought. A lot's cost per share includes its buy fee (c = price + fee/qty).
+// Splits / reverse splits / bonus shares rescale every lot (same total cost, more or fewer units); a conversion moves the lots.
+// Shorts keep the simple average of their proceeds (a short has no FIFO lots).
+function lotsQty(P){ return (P.lots||[]).reduce((a,l)=>a+l.q, 0); }
+function syncAvg(P){ const q = lotsQty(P); if(P.qty > 1e-9 && q > 1e-9) P.avg = P.lots.reduce((a,l)=>a+l.q*l.c, 0)/q; if(Math.abs(P.qty) < 1e-9){ P.qty = 0; P.avg = 0; P.lots = []; } }
+function takeLots(P, q){ let cost = 0, out = []; const LT = P.lots || (P.lots = []);   // removes q units FIFO; returns their cost and the pieces
+  while(q > 1e-9 && LT.length){ const l = LT[0], d = Math.min(l.q, q); cost += d*l.c; out.push({q:d, c:l.c, date:l.date}); l.q -= d; q -= d; if(l.q <= 1e-9) LT.shift(); }
+  if(q > 1e-9){ cost += q*(P.avg||0); out.push({q, c:P.avg||0, date:null}); }          // no lot left (data gap): fall back to the average
+  return {cost, out}; }
+function scaleLots(P, r){ if(r > 0) (P.lots||[]).forEach(l=>{ l.q *= r; l.c /= r; }); }
 function applyTx(L, t, fxForDeposit){
   if(t.type==='taxacct') return;                              // broker tax bookkeeping: informational, never moves cash
   const amt = num(t.amount)||0, fee = num(t.fee)||0;
@@ -554,27 +567,29 @@ function applyTx(L, t, fxForDeposit){
   // the fraction's tiny market value leaves the holdings and its cost moves from unrealized to realized. No tax sale is created
   // (the tax lots of the fraction are simply removed) – if the bank pays cash in lieu, that cash row is imported as usual.
   if(t.type==='fraczero'){ const P = L.pos[t.symbol]; if(!P || P.qty <= 1e-9) return; const q = Math.min(P.qty, num(t.qty) || P.qty);
-    P.realized -= q*P.avg; P.qty -= q; if(Math.abs(P.qty) < 1e-9){ P.qty = 0; P.avg = 0; } return; }
+    const tk = takeLots(P, q); P.realized -= tk.cost; P.qty -= q; syncAvg(P); return; }
   if(t.type==='symchange'){                                   // security converted into another (ticker change / merger): position + cost move, no cash
     const P = L.pos[t.symbol], r = num(t.ratio)||1; if(!P || P.qty <= 1e-9 || !t.toSymbol) return;
-    const mv = Math.min(P.qty, num(t.qty) || P.qty), cost = mv*P.avg;
-    const Q = L.pos[t.toSymbol] || (L.pos[t.toSymbol] = {sym:t.toSymbol, cur:P.cur, qty:0, avg:0, realized:0, fees:0, openDate:P.openDate});
+    const mv = Math.min(P.qty, num(t.qty) || P.qty), tk = takeLots(P, mv), cost = tk.cost;
+    const Q = L.pos[t.toSymbol] || (L.pos[t.toSymbol] = {sym:t.toSymbol, cur:P.cur, qty:0, avg:0, realized:0, fees:0, openDate:P.openDate, lots:[]});
     const nq = Q.qty + mv*r; Q.avg = nq > 1e-9 ? (Math.max(0,Q.qty)*Q.avg + cost)/nq : 0; Q.qty = nq; if(!Q.openDate) Q.openDate = P.openDate;
-    P.qty -= mv; if(Math.abs(P.qty) < 1e-9){ P.qty = 0; P.avg = 0; } return; }
+    if(!Q.lots) Q.lots = []; tk.out.forEach(l=>Q.lots.push({q:l.q*r, c:l.c/r, date:l.date})); syncAvg(Q);
+    P.qty -= mv; syncAvg(P); return; }
   if((t.type==='sharebonus' || t.type==='split') && t.voided) return;   // replaced by a corrected split (kept visible)
   if(t.type==='sharebonus' && num(t.qty) < 0){                // bank removed shares without cash (part of a reverse split): same total cost, fewer units
     const P = L.pos[t.symbol]; if(!P || P.qty <= 1e-9) return; const nq = Math.max(0, P.qty + num(t.qty));
-    if(nq > 1e-9){ P.avg = P.avg*P.qty/nq; P.qty = nq; } else P.qty = 0; return; }
+    if(nq > 1e-9){ scaleLots(P, nq/lotsQty(P) || nq/P.qty); P.avg = P.avg*P.qty/nq; P.qty = nq; syncAvg(P); } else { P.qty = 0; syncAvg(P); } return; }
   if(t.type==='sharebonus'){                                  // bonus shares at no cost (the bank books some splits this way): value unchanged
     const q = num(t.qty)||0; if(q<=0 || !t.symbol) return;
-    const P = L.pos[t.symbol] || (L.pos[t.symbol] = {sym:t.symbol, cur:t.currency||'USD', qty:0, avg:0, realized:0, fees:0, openDate:t.date});
-    if(P.qty > 1e-9){ P.avg = P.avg*P.qty/(P.qty+q); P.qty += q; } else if(Math.abs(P.qty) < 1e-9){ P.qty = q; P.avg = 0; P.openDate = t.date; }
+    const P = L.pos[t.symbol] || (L.pos[t.symbol] = {sym:t.symbol, cur:t.currency||'USD', qty:0, avg:0, realized:0, fees:0, openDate:t.date, lots:[]});
+    if(P.qty > 1e-9){ const h = lotsQty(P); if(h > 1e-9) scaleLots(P, (h+q)/h); P.avg = P.avg*P.qty/(P.qty+q); P.qty += q; syncAvg(P); }
+    else if(Math.abs(P.qty) < 1e-9){ P.qty = q; P.avg = 0; P.openDate = t.date; P.lots = [{q, c:0, date:t.date}]; }
     return;
   }
   if(t.type==='split'){                                       // stock split: qty × ratio, avg ÷ ratio, value unchanged
     if(t.dupSkip) return;                                     // duplicate of a bank bonus row / another split: not applied
     const P = L.pos[t.symbol], r = num(t.ratio);
-    if(P && r>0 && Math.abs(P.qty)>1e-9){ P.qty *= r; P.avg /= r; }
+    if(P && r>0 && Math.abs(P.qty)>1e-9){ P.qty *= r; P.avg /= r; scaleLots(P, r); syncAvg(P); }
     return;
   }
   if(t.type==='convert'){
@@ -586,7 +601,8 @@ function applyTx(L, t, fxForDeposit){
   }
   const sym = t.symbol, cur = t.currency, q = num(t.qty)||0, p = num(t.price)||0;
   if(!sym || q<=0) return;
-  const P = L.pos[sym] || (L.pos[sym] = {sym, cur, qty:0, avg:0, realized:0, fees:0, openDate:t.date});
+  const P = L.pos[sym] || (L.pos[sym] = {sym, cur, qty:0, avg:0, realized:0, fees:0, openDate:t.date, lots:[]});
+  if(!P.lots) P.lots = [];
   P.cur = cur; P.fees += fee; L.fees[cur] += fee;
   if(t.type==='buy'){
     L.cash[cur] -= q*p + fee;
@@ -595,17 +611,18 @@ function applyTx(L, t, fxForDeposit){
       P.realized += cover*(P.avg - p) - fee*cover/q;
       P.qty += cover; if(Math.abs(P.qty)<1e-9){ P.qty=0; P.avg=0; }
       const rem = q - cover;
-      if(rem > 1e-9){ P.qty = rem; P.avg = p + (fee*rem/q)/rem; P.openDate = t.date; }
+      if(rem > 1e-9){ P.qty = rem; P.avg = p + (fee*rem/q)/rem; P.openDate = t.date; P.lots = [{q:rem, c:p + fee/q, date:t.date}]; }
     } else {
-      if(P.qty===0) P.openDate = t.date;
-      const nq = P.qty + q; P.avg = (P.qty*P.avg + q*p + fee)/nq; P.qty = nq;
+      if(P.qty===0){ P.openDate = t.date; P.lots = []; }
+      P.lots.push({q, c:p + fee/q, date:t.date});              // new FIFO lot, cost incl. the buy fee
+      P.qty += q; syncAvg(P);
     }
   } else if(t.type==='sell'){
     L.cash[cur] += q*p - fee;
     if(P.qty > 0){
-      const close = Math.min(q, P.qty);
-      P.realized += close*(p - P.avg) - fee*close/q;
-      P.qty -= close; if(Math.abs(P.qty)<1e-9){ P.qty=0; P.avg=0; }
+      const close = Math.min(q, P.qty), tk = takeLots(P, close);   // FIFO: the oldest lots are sold first
+      P.realized += close*p - fee*close/q - tk.cost;
+      P.qty -= close; syncAvg(P);
       const rem = q - close;
       if(rem > 1e-9){ P.qty = -rem; P.avg = p - (fee*rem/q)/rem; P.openDate = t.date; }   // remainder opens a short
     } else {
@@ -619,7 +636,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=23').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=24').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -2106,7 +2123,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v23</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v24</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -2184,7 +2201,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 23;
+const SEC_DIR_V = 24;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
