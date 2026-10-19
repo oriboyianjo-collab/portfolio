@@ -164,14 +164,14 @@ button{font-family:inherit}
 .wl-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:2px 0 10px;padding-bottom:2px}.wl-chips::-webkit-scrollbar{display:none}
 .wl-chips button{flex:none;border:1px solid var(--border);background:var(--card);color:var(--muted);border-radius:99px;padding:5px 12px;font:inherit;font-size:.8rem;font-weight:600;min-height:34px;cursor:pointer;white-space:nowrap}.wl-chips button.on{background:var(--bg-dbeafe);border-color:var(--bd-93c5fd);color:var(--fg-1e40af)}
 .wl-add{margin-bottom:8px}.wl-editbar{margin:0 0 8px}
-.wgrid{display:grid;grid-template-columns:28px minmax(0,1fr) 56px 78px;align-items:center;column-gap:8px}.wgrid>*{min-width:0}
+.wgrid{display:grid;grid-template-columns:28px minmax(0,1fr) 48px 58px 76px;align-items:center;column-gap:7px}.pc-m{font-size:.78rem;font-weight:600;direction:ltr;unicode-bidi:isolate;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wgrid>*{min-width:0}
 .wl-cols{padding:0 13px 3px;font-size:.66rem;color:var(--muted);font-weight:600}.wl-cols .pcol{direction:rtl;text-align:center;line-height:1.2}.wl-cols small{display:block;font-size:.95em;font-weight:500;opacity:.85}
 .wr{width:100%;border:1px solid var(--border);background:var(--card);border-radius:14px;padding:9px 12px;margin-bottom:6px;font:inherit;color:inherit;text-align:inherit;cursor:pointer}
 .wr .psym{font-weight:700;font-size:.98rem}.wr .pname{font-size:.74rem}.wr .pc-s .spark{width:52px;height:24px}
 .wl-ed{display:none;gap:4px;justify-content:flex-end}.editing .wl-ed{display:flex}.editing .wr .wl-live{display:none}.editing .wr{cursor:default}
 .wl-empty{text-align:center;color:var(--muted);font-size:.86rem;padding:18px 6px}
 .inst-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.inst-stats div{background:var(--bg-f8fafc);border:1px solid var(--border);border-radius:12px;padding:8px 10px}.inst-stats span{display:block;font-size:.72rem;color:var(--muted)}.inst-stats b{direction:ltr;unicode-bidi:isolate;display:inline-block}
-@media (max-width:370px){.mc{padding:8px 8px 6px}.mc .mv{font-size:1rem}.wgrid{grid-template-columns:28px minmax(0,1fr) 50px 72px;column-gap:6px}}
+@media (max-width:370px){.mc{padding:8px 8px 6px}.mc .mv{font-size:1rem}.wgrid{grid-template-columns:28px minmax(0,1fr) 56px 72px;column-gap:6px}.wgrid .pc-s{display:none}}
 .mini{padding:10px 10px 6px}.mini-ret{display:flex;align-items:baseline;gap:6px}.mini-tgl{margin-inline-start:auto;align-self:center;border:1px solid var(--border);background:var(--bg-f8fafc);color:var(--fg-475569);border-radius:999px;width:34px;height:28px;font:inherit;font-size:.9rem;cursor:pointer;flex:none}
 .mini.collapsed{padding:8px 10px}.mini.collapsed .mini-h,.mini.collapsed .bmq,.mini.collapsed .bmleg,.mini.collapsed .mini-chart{display:none}.mini.collapsed .mini-ret{margin:0;cursor:pointer}.mini-rng{display:none;color:var(--muted);font-size:.85em}.mini.collapsed .mini-rng{display:inline}.mini .seg{margin-bottom:6px}.mini-ret{font-size:.8rem;color:var(--muted);margin:0 2px 2px}.mini-ret b{font-size:.95rem}.mini-chart{height:136px}
 .chart-msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.9rem;text-align:center;padding:10px;direction:rtl;z-index:3;background:var(--bg-w60)}
@@ -364,6 +364,7 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
     <div class="card"><div class="h2row"><h2>רשימות מעקב <small id="wlCount"></small></h2><button class="btn btn-light btn-sm" id="wlNew">+ רשימה חדשה</button></div>
       <div class="ac wl-add"><input id="wlSearch" placeholder="הוספת נייר – סימול או שם (ארה״ב ות״א)" autocomplete="off" enterkeyhint="search"><div class="ac-list" id="wlAc"></div></div>
       <label class="wl-to">יתווסף לרשימה: <select id="wlTo"></select></label>
+      <div class="sortbar" id="wlSort" role="group" aria-label="מיון רשימות המעקב"><span>מיון:</span><button data-ws-k="manual">ידני</button><button data-ws-k="price">מחיר</button><button data-ws-k="day">יומי %</button><button data-ws-k="cap">שווי שוק</button></div>
       <div id="wlLists"></div></div>
   </section>
   <section class="tab" id="tab-settings"><div class="card" id="settingsCard"></div></section>
@@ -955,6 +956,10 @@ function computeAll(){
 }
 
 // ====================== live quotes ======================
+// CNBC "mktcapView" like "5.005T" / "674.565B" (TASE in agorot: divided by 100 by the caller)
+function parseCap(v){ const m = String(v||'').replace(/,/g,'').match(/^\s*([\d.]+)\s*([KMBT])?\s*$/i); if(!m) return null; const n = parseFloat(m[1]); if(!isFinite(n) || n<=0) return null; return n*({K:1e3,M:1e6,B:1e9,T:1e12}[String(m[2]||'').toUpperCase()]||1); }
+function fmtCap(v, cur){ if(v==null || !isFinite(v) || v<=0) return '—'; const [d,u] = v>=1e12 ? [1e12,'T'] : v>=1e9 ? [1e9,'B'] : v>=1e6 ? [1e6,'M'] : [1e3,'K']; const x = v/d, t = x>=100 ? x.toFixed(0) : x>=10 ? x.toFixed(1) : x.toFixed(2);
+  return cur==='ILS' ? '₪'+t+u : t+u+'$'; }
 async function cnbcQuotes(symbols){
   const out = {};
   for(let i=0;i<symbols.length;i+=40){
@@ -972,7 +977,7 @@ async function cnbcQuotes(symbols){
       let cur = q.currencyCode==='ILS'||q.currencyCode==='USD' ? q.currencyCode : (isTaIndex(orig)?'ILS':'USD');
       const k = isTaseSec(orig) ? 100 : 1;
       if(k>1){ last/=k; if(prev!=null) prev/=k; cur='ILS'; }
-      out[String(orig).toUpperCase()] = {price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', source:'CNBC'};
+      const mc = parseCap(q.mktcapView); out[String(orig).toUpperCase()] = {mcap: mc!=null ? mc/k : null, price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', source:'CNBC'};
     });
   }
   return out;
@@ -2217,6 +2222,14 @@ attachAutocomplete($('mktSearch'), $('mktAc'), it=>{ $('mktSearch').value = ''; 
   const m = {sym:it.sym, name:it.name||it.sym, type:it.type||'stock', currency:it.currency||'USD'}, k = 'sec:'+m.sym.toUpperCase();
   if(mktCfg.keys.includes(k)){ toast('כבר במסך'); return; } mktCfg.meta[k] = m; mktCfg.keys.push(k); saveMkt(); renderMarket(); toast(`${m.sym} נוסף למסך השוק`); });
 // ---- watchlists (v45: stacked collapsible lists, collapsed by default) ----
+const WLS_KEY = 'portfolioTracker.watchSort.v1';
+let wlSort = (()=>{ try{ const o = JSON.parse(localStorage.getItem(WLS_KEY)||'null'); if(o && ['manual','price','day','cap'].includes(o.k)) return {k:o.k, dir:o.dir===1?1:-1}; }catch(e){} return {k:'manual', dir:-1}; })();
+// sorting is only a view: L.items keeps the manual order; ties/missing values keep manual order (stable on live updates); edit mode always shows manual
+function wlSorted(its, ed){ if(ed || wlSort.k==='manual') return its; const val = it=>{ const q = iq(it); if(!q) return null; const usd = v => v==null ? null : (it.cur==='ILS' ? convertCur(v, 'ILS', 'USD') : v);   // compare ₪ and $ in one currency
+    return wlSort.k==='price' ? usd(q.price) : wlSort.k==='cap' ? usd(q.mcap||null) : (q.prev ? q.price/q.prev - 1 : null); };
+  return its.map((it,i)=>({it, i, v:val(it)})).sort((a,b)=> (a.v==null) - (b.v==null) || (a.v!=null && b.v!=null && a.v!==b.v ? (a.v-b.v)*wlSort.dir : 0) || a.i-b.i).map(x=>x.it); }
+function drawWlSort(){ $('wlSort').querySelectorAll('button').forEach(b=>{ const on = b.dataset.wsK===wlSort.k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on));
+  const base = {manual:'ידני', price:'מחיר', day:'יומי %', cap:'שווי שוק'}[b.dataset.wsK]; b.innerHTML = esc(base) + (on && wlSort.k!=='manual' ? `<span class="ar">${wlSort.dir<0?'▼':'▲'}</span>` : ''); }); }
 const WLO_KEY = 'portfolioTracker.watchOpen.v1';
 let wlEditing = null, wlMenu = null, wlOpen = (()=>{ try{ return JSON.parse(localStorage.getItem(WLO_KEY)||'{}')||{}; }catch(e){ return {}; } })();
 const saveWlOpen = ()=>{ try{ localStorage.setItem(WLO_KEY, JSON.stringify(wlOpen)); }catch(e){} };
@@ -2227,16 +2240,16 @@ function wlOpenItems(){ const seen = new Set(), out = []; wlData.lists.filter(l=
 function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts = c ? withLive(it, '1D', c.pts) : null, up = q && q.prev ? q.price >= q.prev : true;
   const pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div></div>`+
-    `<div class="pcol pc-s wl-live">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, up, 52, 24) : ''}</div>`+
+    `<div class="pcol pc-s wl-live">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, up, 48, 24) : ''}</div><div class="pcol pc-m wl-live num">${fmtCap(q && q.mcap, it.cur)}</div>`+
     `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="wl-p v num">${q ? fmtPrice(q.price, it.cur) : '—'}</span></div>`+
-    `<div class="wl-ed" style="grid-column:3/5"><button data-wm="up" aria-label="הזזה למעלה" ${i===0?'disabled':''}>▲</button><button data-wm="down" aria-label="הזזה למטה" ${i===n-1?'disabled':''}>▼</button><button data-wm="del" class="del" aria-label="הסרה מהרשימה">✕</button></div></div>`; }
-function wlSecHtml(L, li, nL){ const open = !!wlOpen[L.id], ed = wlEditing===L.id, its = L.items.map(secInst);
+    `<div class="wl-ed" style="grid-column:3/-1"><button data-wm="up" aria-label="הזזה למעלה" ${i===0?'disabled':''}>▲</button><button data-wm="down" aria-label="הזזה למטה" ${i===n-1?'disabled':''}>▼</button><button data-wm="del" class="del" aria-label="הסרה מהרשימה">✕</button></div></div>`; }
+function wlSecHtml(L, li, nL){ const open = !!wlOpen[L.id], ed = wlEditing===L.id, its = wlSorted(L.items.map(secInst), ed);
   let up = 0, dn = 0; its.forEach(it=>{ const q = iq(it); if(q && q.prev){ const d = q.price/q.prev - 1; if(d > 0.00004) up++; else if(d < -0.00004) dn++; } });
   const menu = wlMenu===L.id ? `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button><button data-la="rename">🏷️ שינוי שם</button><button data-la="up" ${li===0?'disabled':''}>▲ למעלה</button><button data-la="down" ${li===nL-1?'disabled':''}>▼ למטה</button><button data-la="del" class="del">🗑️ מחיקה</button></div>` : '';
-  const body = open ? `<div class="wlb">${its.length ? `<div class="wl-cols wgrid" aria-hidden="true"${ed?' hidden':''}><span></span><span>נייר</span><span class="pcol">היום</span><span class="pcol"><span>יומי</span><small>מחיר</small></span></div><div class="wl-rows${ed?' editing':''}">${its.map((it,i)=>wlRowHtml(it, i, its.length)).join('')}</div>` : '<div class="wl-empty">הרשימה ריקה – חפשו נייר בשדה למעלה כדי להוסיף.</div>'}</div>` : '';
+  const body = open ? `<div class="wlb">${its.length ? `<div class="wl-cols wgrid" aria-hidden="true"${ed?' hidden':''}><span></span><span>נייר</span><span class="pcol pc-s">היום</span><span class="pcol">שווי שוק</span><span class="pcol"><span>יומי</span><small>מחיר</small></span></div><div class="wl-rows${ed?' editing':''}">${its.map((it,i)=>wlRowHtml(it, i, its.length)).join('')}</div>` : '<div class="wl-empty">הרשימה ריקה – חפשו נייר בשדה למעלה כדי להוסיף.</div>'}</div>` : '';
   return `<div class="wls${open?' open':''}" data-l="${esc(L.id)}"><div class="wlh"><button class="wlh-t" data-tog aria-expanded="${open}"><span class="wlh-n">${esc(L.name)}</span><small class="muted">${L.items.length}</small>`+
     `<span class="wlh-c">${up?`<b class="pos">▲${up}</b>`:''}${dn?`<b class="neg">▼${dn}</b>`:''}</span><span class="wlh-v" aria-hidden="true">${open?'▴':'▾'}</span></button><button class="wlh-m" data-menu aria-label="אפשרויות לרשימה" aria-expanded="${wlMenu===L.id}">⋯</button></div>${menu}${body}</div>`; }
-function drawWatch(){ const n = wlItems().length;
+function drawWatch(){ const n = wlItems().length; drawWlSort();
   $('wlCount').textContent = `· ${wlData.lists.length} רשימות · ${n} ניירות`;
   $('wlTo').innerHTML = wlData.lists.map(l=>`<option value="${esc(l.id)}"${l.id===wlCur().id?' selected':''}>${esc(l.name)}</option>`).join('');
   $('wlLists').innerHTML = wlData.lists.map((L,i)=>wlSecHtml(L, i, wlData.lists.length)).join(''); }
@@ -2245,6 +2258,8 @@ async function renderWatch(){ drawWatch(); const all = wlItems(); if(!all.length
 function wlNewList(){ const n = (prompt('שם הרשימה החדשה:', `רשימה ${wlData.lists.length+1}`)||'').trim(); if(!n) return; const id = 'w'+Date.now().toString(36);
   wlData.lists.push({id, name:n.slice(0,40), items:[]}); wlData.cur = id; wlOpen[id] = true; saveWlOpen(); saveWl(); renderWatch(); }
 $('wlNew').onclick = wlNewList;
+$('wlSort').addEventListener('click', e=>{ const b = e.target.closest('button[data-ws-k]'); if(!b) return; const k = b.dataset.wsK;
+  wlSort = k===wlSort.k && k!=='manual' ? {k, dir:-wlSort.dir} : {k, dir:-1}; try{ localStorage.setItem(WLS_KEY, JSON.stringify(wlSort)); }catch(e){} drawWatch(); });
 $('wlTo').onchange = e=>{ wlData.cur = e.target.value; saveWl(); };
 $('wlLists').addEventListener('click', e=>{ const sec = e.target.closest('.wls'); if(!sec) return; const L = wlList(sec.dataset.l); if(!L) return;
   if(e.target.closest('[data-tog]')){ wlOpen[L.id] = !wlOpen[L.id]; if(!wlOpen[L.id]) delete wlOpen[L.id]; saveWlOpen(); wlMenu = null; renderWatch(); return; }
@@ -2746,7 +2761,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v45</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v46</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
