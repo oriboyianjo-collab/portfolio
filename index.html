@@ -9,10 +9,10 @@
 <meta name="apple-mobile-web-app-title" content="Savage Tracker">
 <meta name="application-name" content="Savage Tracker">
 <title>Savage Tracker – מעקב השקעות</title>
-<link rel="icon" type="image/svg+xml" href="logo.svg?v=24">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=24">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=24">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=24">
+<link rel="icon" type="image/svg+xml" href="logo.svg?v=25">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=25">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=25">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=25">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{
@@ -212,7 +212,13 @@ input.ltr-in{direction:ltr;text-align:right}
 .top .flash-up{animation:none;text-shadow:0 0 12px #6ee7b7}.top .flash-down{animation:none;text-shadow:0 0 12px #fca5a5}
 .age{font-size:.72rem;padding:1px 7px;border-radius:99px;background:#f1f5f9;color:#475569;white-space:nowrap}
 .age.live{background:#d1fae5;color:#065f46}.age.delay{background:#fef3c7;color:#92400e}
-.ext{font-size:.75rem;color:var(--muted);margin-top:4px}
+.ext{font-size:.75rem;color:var(--muted);margin-top:4px}.ext:empty{display:none}
+.sessg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin-top:6px}
+.ss{border:1px solid var(--border);border-radius:9px;padding:4px 5px;text-align:center;line-height:1.2;min-width:0;background:#fff}
+.ss span{display:block;font-size:.66rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ss b{display:block;font-size:.8rem}.ss i{display:block;font-style:normal;font-size:.64rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ss.on{border-color:#93c5fd;background:#eff6ff}.ss.on span{color:#1e40af;font-weight:700}.ss.na b{font-weight:600;font-size:.72rem}
+.sesst{font-size:.72rem;color:var(--muted);margin-top:4px}
+.pc-d .sb{display:inline-block;margin-top:2px;font-size:.62rem;font-weight:700;border-radius:99px;padding:0 5px;background:#f1f5f9;white-space:nowrap}.pc-d .sb:empty{display:none}.pc-d .sb.live{background:#eff6ff}
 .closed-list{margin-top:12px;border-top:1px solid var(--border);padding-top:10px}
 .closed-list h4{margin:0 0 6px;font-size:.88rem;color:var(--muted);font-weight:600}
 .crow{display:flex;align-items:center;gap:6px 8px;padding:6px 0;border-bottom:1px solid #f1f5f9;flex-wrap:wrap}
@@ -234,7 +240,7 @@ input.ltr-in{direction:ltr;text-align:right}
 <header class="top">
   <div class="wrap">
     <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=24" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
+      <h1 class="brand"><img src="logo.svg?v=25" alt="" width="30" height="30"><span>Savage Tracker</span></h1>
       <button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button>
     </div>
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button></div>
@@ -381,6 +387,63 @@ function zoned(tz, now){
   const f = tzFmt[tz] || (tzFmt[tz] = new Intl.DateTimeFormat('en-US',{timeZone:tz, weekday:'short', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hour12:false}));
   const p = {}; f.formatToParts(now||new Date()).forEach(x=>p[x.type]=x.value);
   return {wd:p.weekday, date:`${p.year}-${p.month}-${p.day}`, min:(+p.hour%24)*60 + +p.minute};
+}
+// ---- US trading sessions (Eastern Time) ----
+// לילה 20:00–04:00 (24-hour/overnight venues, Sun–Thu nights) · טרום מסחר 04:00–09:30 · מסחר רציף 09:30–16:00 (13:00 on early-close days)
+// · אחרי המסחר 16:00–20:00. Weekends / holidays outside these = closed.
+function usSession(now){
+  const z = zoned('America/New_York', now), trading = d=>{ const w = new Date(d+'T12:00:00Z').getUTCDay(); return w>0 && w<6 && !US_HOLIDAYS.has(d); };
+  const close = US_EARLY.has(z.date) ? 13*60 : 16*60, td = trading(z.date);
+  if(z.min >= 20*60) return trading(addDays(z.date,1)) ? 'night' : 'closed';
+  if(z.min < 4*60) return td ? 'night' : 'closed';
+  if(!td) return 'closed';
+  if(z.min < 9*60+30) return 'pre';
+  if(z.min < close) return 'reg';
+  return z.min < close+4*60 ? 'post' : 'closed';
+}
+const SESS_LBL = {night:'לילה', pre:'טרום מסחר', reg:'מסחר רציף', post:'אחרי המסחר'}, SESS_SHORT = {night:'לילה', pre:'טרום', reg:'רציף', post:'אפטר'};
+// Per-session change for a US holding (CNBC restQuote is the only free keyless source a browser can read):
+//  · pre-market and overnight are measured vs the prior close (the close before that trading day);
+//  · the regular session = its last / closing price vs the prior close;
+//  · after-hours is measured vs that day's regular close;
+//  · total = the latest price (after-hours if there is one) vs the prior close – the same number as the row's daily change.
+// Overnight (Blue Ocean etc.) prices are NOT available from any free source a browser can reach (CNBC has no overnight field;
+// Robinhood/Webull/Nasdaq/Yahoo send no CORS headers), so that session is shown as unavailable, never estimated.
+// CNBC returns only the current extended quote, so a pre price seen earlier in the day is kept in q.sess to show it later.
+function sessionsOf(sym){
+  const q = state.quotes[sym]; if(!q || q.price==null || marketOf(sym)!=='us' || num(state.manual[sym])!=null) return null;
+  const cur = usSession(), E = q.ext, S = q.sess || {}, pct = (a,b)=> a!=null && b ? (a/b-1)*100 : null, R = {};
+  let P, cycle, total;
+  if(E && E.type==='PRE_MKT' && (!q.date || !E.date || E.date > q.date)){       // a new trading day has started (pre-market)
+    cycle = E.date || null; P = q.price;
+    R.pre = {price:E.price, pct:pct(E.price, P), st:'ok'}; R.reg = {st:'notyet'}; R.post = {st:'notyet'};
+    total = {price:E.price, pct:pct(E.price, P)};
+  } else {
+    cycle = q.date || null; P = q.prev;
+    const pre = S.pre && S.pre.d===cycle ? S.pre : null, post = E && E.type==='POST_MKT' && (!E.date || !cycle || E.date===cycle) ? {price:E.price} : (S.post && S.post.d===cycle ? S.post : null);
+    R.pre = pre ? {price:pre.price, pct:pct(pre.price, P), st:'ok'} : {st:'none'};
+    R.reg = {price:q.price, pct:pct(q.price, P), st:'ok'};
+    R.post = post ? {price:post.price, pct:pct(post.price, q.price), st:'ok'} : {st: cur==='reg' ? 'notyet' : 'none'};
+    const last = post ? post.price : q.price; total = {price:last, pct:pct(last, P)};
+  }
+  R.night = {st:'na'};
+  return {cur, cycle, prior:P, rows:R, total, cy:q.cur||'USD'};
+}
+// small badge for the compact row: the current session's change (overnight has no data → the latest after-hours, marked as such)
+function sessBadge(sym){
+  const X = sessionsOf(sym); if(!X || X.cur==='reg' || X.cur==='closed' && !(X.rows.post && X.rows.post.st==='ok')) return ['', 'sb'];
+  let k = X.cur; if(k==='night' || k==='closed') k = 'post';
+  const r = X.rows[k]; if(!r || r.st!=='ok' || r.pct==null) return ['', 'sb'];
+  return [`${SESS_SHORT[k]} \u2066${fmtPct(r.pct)}\u2069`, 'sb '+cls(r.pct)+(k===X.cur?' live':'')];   // LTR isolate keeps the sign with the number inside the RTL row
+}
+function sessHtml(sym){
+  const X = sessionsOf(sym); if(!X) return '';
+  const cell = k=>{ const r = X.rows[k], on = X.cur===k;
+    const v = r.st==='ok' ? `<b class="num ${cls(r.pct)}">${fmtPct(r.pct)}</b><i class="num">${fmtPrice(r.price, X.cy)}</i>`
+      : `<b class="muted">${r.st==='na' ? 'לא זמין' : r.st==='notyet' ? 'טרם החל' : '—'}</b><i>${r.st==='na' ? 'אין מקור חינמי' : r.st==='notyet' ? '' : 'לא נקלט'}</i>`;
+    return `<div class="ss${on?' on':''}${r.st==='na'?' na':''}"><span>${SESS_LBL[k]}${on?' ●':''}</span>${v}</div>`; };
+  return `<div class="sessg">${['night','pre','reg','post'].map(cell).join('')}</div>
+    <div class="sesst">סה״כ מול סגירה קודמת${X.prior!=null?` (<span class="num">${fmtPrice(X.prior, X.cy)}</span>)`:''}: <b class="num ${cls(X.total.pct)}">${fmtPct(X.total.pct)}</b>${X.cycle?` · יום מסחר ${fmtDate(X.cycle)}`:''}</div>`;
 }
 function marketOf(sym){ if(isCrypto(sym)) return 'crypto'; if(isTaseSec(sym) || isTaIndex(sym)) return 'tase'; return 'us'; }
 function marketState(m, now){
@@ -636,7 +699,7 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
-  return (taxDataP = fetch('tax-data.json?v=24').then(r=>r.ok ? r.json() : null).then(async j=>{
+  return (taxDataP = fetch('tax-data.json?v=25').then(r=>r.ok ? r.json() : null).then(async j=>{
     if(!j || !j.fx || !j.cpi) return null;
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
@@ -766,6 +829,9 @@ function priceOf(sym){
     const ms = marketState('us').state;
     if(ms==='pre' && q.ext.type==='PRE_MKT'){ pv = q.price; p = q.ext.price; ext = 'pre'; }      // pre-market: vs. last close
     else if(ms==='post' && q.ext.type==='POST_MKT'){ p = q.ext.price; ext = 'post'; }           // after-hours: vs. previous close
+    // after 20:00 ET (overnight / weekend / holiday) the last after-hours trade is still the latest price we have – keep it
+    // (it used to fall back to the 16:00 close) as long as it belongs to the last regular session
+    else if(ms==='closed' && q.ext.type==='POST_MKT' && (!q.ext.date || !q.date || q.ext.date===q.date)){ p = q.ext.price; ext = 'post'; }
   }
   const c = q.cur||a.currency;
   return {price:convertCur(p, c, a.currency), prev: pv!=null ? convertCur(pv, c, a.currency) : null, q, ext};
@@ -844,13 +910,16 @@ async function cnbcQuotes(symbols){
     (arr||[]).forEach(q=>{
       if(!q || String(q.code)!=='0') return;
       let last = num(q.last), prev = num(q.previous_day_closing); if(last==null) return;
+      // after the close CNBC rolls previous_day_closing to today's close (it then equals last), while "change" keeps the session's
+      // move vs the real prior close – so the prior close is last − change whenever CNBC gives a change
+      const chg = num(q.change); if(chg!=null && /^[+-]?[\d,.]+$/.test(String(q.change).trim())) prev = last - chg;
       const orig = chunk.find(s=>cnbcSymbol(s).toUpperCase()===String(q.symbol).toUpperCase()) || q.symbol;
       let cur = q.currencyCode==='ILS'||q.currencyCode==='USD' ? q.currencyCode : (isTaIndex(orig)?'ILS':'USD');
       const k = isTaseSec(orig) ? 100 : 1;
       if(k>1){ last/=k; if(prev!=null) prev/=k; cur='ILS'; }
       let ext = null; const E = q.ExtendedMktQuote;
-      if(E && num(E.last)!=null && (E.type==='PRE_MKT'||E.type==='POST_MKT')) ext = {type:E.type, price:num(E.last)/k, pct:num(String(E.change_pct||'').replace('%','')), time:E.last_time||'', ts:parseTs(E.last_time)};
-      out[String(orig).toUpperCase()] = {price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', ext, source:'CNBC'};
+      if(E && num(E.last)!=null && (E.type==='PRE_MKT'||E.type==='POST_MKT')) ext = {type:E.type, price:num(E.last)/k, pct:num(String(E.change_pct||'').replace('%','')), time:E.last_time||'', ts:parseTs(E.last_time), date:String(E.last_time||'').slice(0,10)};
+      out[String(orig).toUpperCase()] = {price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', ext, source:'CNBC'};
     });
   }
   return out;
@@ -1006,7 +1075,9 @@ function openSymbols(){ const L = computeLedger(); return Object.values(L.pos).f
 function applyQuotes(res, syms){
   const now = Date.now(); let errors = 0;
   syms.forEach(s=>{ const q = res.quotes[s];
-    if(q){ state.quotes[s] = Object.assign(q, {updated:now, error:null});
+    if(q){ const sess = Object.assign({}, (state.quotes[s] && state.quotes[s].sess) || {}), E = q.ext;
+      if(E && E.date){ if(E.type==='PRE_MKT') sess.pre = {d:E.date, price:E.price, ts:E.ts||now}; else if(E.type==='POST_MKT') sess.post = {d:E.date, price:E.price, ts:E.ts||now}; }
+      state.quotes[s] = Object.assign(q, {updated:now, error:null, sess});
       if(!state.assets[s]) state.assets[s] = assetOf(s);
       if(!state.assets[s].name && q.name) state.assets[s].name = q.name; }
     else { state.quotes[s] = Object.assign(state.quotes[s]||{}, {error:'לא נמצא מחיר'}); if(num(state.manual[s])==null) errors++; } });
@@ -1085,9 +1156,8 @@ function ageInfo(sym, p){
   return {t:`⏱️ לפני ${Math.round(age/60000)} דק׳ · ${hhmm}`, c:'delay'};
 }
 function extLine(sym){
-  const q = state.quotes[sym]; if(!q || !q.ext || marketOf(sym)!=='us' || num(state.manual[sym])!=null) return '';
-  const cur = q.cur||'USD';
-  return `${q.ext.type==='PRE_MKT'?'טרום־מסחר':'אפטר'}: <span class="num">${fmtPrice(q.ext.price,cur)}</span> <span class="num ${cls(q.ext.pct)}">${q.ext.pct!=null?'('+fmtPct(q.ext.pct)+')':''}</span>`;
+  const q = state.quotes[sym]; if(!q || q.price==null || marketOf(sym)!=='us' || num(state.manual[sym])!=null) return '';
+  return sessHtml(sym);
 }
 
 // ====================== rendering ======================
@@ -1151,6 +1221,7 @@ function cardFields(p){
   return {
     colp:[colU ? fmtPct(p.unrealPct) : (p.dayPct!=null?fmtPct(p.dayPct):'—'), 'num '+cls(colU ? p.unreal : p.day)],
     cola:[colU ? fmtSigned(p.unreal,cur) : (p.day!=null?fmtSigned(p.day,cur):''), 'num '+cls(colU ? p.unreal : p.day)],
+    sb:sessBadge(p.sym),
     mv:[fmtMoney(p.mv,cur), 'v num'],
     mvils:[cur==='USD'&&p.mvILS!=null ? fmtMoney(p.mvILS,'ILS',0) : '', 'pname num'],
     day:[dayTxt, 'num '+cls(p.day)+(sk==='day'?' pri':'')],
@@ -1229,7 +1300,7 @@ function renderPortfolio(S){
         <button class="pc-h" data-ctoggle aria-expanded="${open}">
           <div class="pc-n"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tag}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
           <div class="pc-v">${f('mvs','span')}${cur==='USD'?f('mvils','span'):''}</div>
-          <div class="pc-d">${posSort().k==='unreal'?'<span class="lbl">מעלות</span>':''}${f('colp')}${f('cola','span')}</div>
+          <div class="pc-d">${posSort().k==='unreal'?'<span class="lbl">מעלות</span>':''}${f('colp')}${f('cola','span')}${f('sb','span')}</div>
         </button>
         <div class="pc-b"><div class="pc-g">
           <div><span>${short?'כמות בשורט':'כמות'}</span><b class="num">${fmtQtyP(Math.abs(p.qty))}</b></div>
@@ -1970,6 +2041,7 @@ function openPosition(sym){
     <div class="rchg" id="posRchg"></div>
     <div class="note" id="posNote"></div>
     <div class="kv" style="margin-top:10px" id="posKv">${posKvHtml(p)}</div>
+    <div class="ext" id="posSess">${sessHtml(p.sym)}</div>
     <div class="note" id="posInfo">${posInfoHtml(p)}</div>
     <div class="btn-row" style="margin-top:12px">
       <button class="btn btn-primary" data-pact="buy">🛒 ${short?'קנייה לכיסוי':'קנייה'}</button>
@@ -2035,6 +2107,7 @@ function updatePosSheet(S){
   if(box.querySelectorAll('[data-k]').length !== rows.length) box.innerHTML = posKvHtml(p);
   else rows.forEach(([k,,v,c])=>{ const el = box.querySelector(`[data-k="${k}"]`); if(!el) return; if(el.textContent!==v) el.textContent = v; const cn = c==='nonum'?'':'num '+c; if(el.className.replace(/ ?flash-(up|down)/g,'')!==cn) el.className = cn; });
   const info = $('posInfo'), ih = posInfoHtml(p); if(info && info.innerHTML!==ih) info.innerHTML = ih;
+  const se = $('posSess'), sh = sessHtml(p.sym); if(se && se.innerHTML!==sh) se.innerHTML = sh;
   if(sheetPrice!=null && p.price!=null && Math.abs(p.price-sheetPrice)>1e-9){ const dir = p.price-sheetPrice;
     flash(box.querySelector('[data-k="price"]'), dir); if(!hidden()) flash(box.querySelector('[data-k="mv"]'), dir*(p.qty<0?-1:1)); }
   sheetPrice = p.price;
@@ -2123,7 +2196,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v24</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v25</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -2201,7 +2274,7 @@ function loadXLSX(){
   }));
 }
 // ---------- generic security directory: all US-listed stocks/ETFs + all TASE securities (built by build-securities.py; no personal data) ----------
-const SEC_DIR_V = 24;
+const SEC_DIR_V = 25;
 let secDirP = null, SECDIR = null;
 const NAME_STOP = new Set('inc incorporated corp corporation co company ltd limited plc the common stock shares share class ordinary etf etfs fund sa nv ag se lp llc adr ads and of'.split(' '));
 function nameTokens(s){
@@ -2789,7 +2862,7 @@ renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {get state(){ return state; }, livePatch, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get state(){ return state; }, livePatch, sessionsOf, usSession, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 })();
 </script>
 </body>
