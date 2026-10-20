@@ -222,7 +222,8 @@ html,body{overscroll-behavior-x:none}main .chart:not(.active){touch-action:pan-y
 .is-pre::before{content:'pre';display:inline-block;font-size:.62em;font-weight:700;letter-spacing:.2px;padding:0 4px;margin-inline-end:3px;border-radius:5px;background:var(--bg-eef2ff,#eef2ff);color:var(--fg-3730a3,#3730a3);vertical-align:middle;line-height:1.5;direction:ltr}
 html.dark .is-pre::before{background:#312e81;color:#c7d2fe}
 @media (max-width:370px){.is-pre::before{font-size:.55em;padding:0 2px;margin-inline-end:1px;letter-spacing:0}.wgrid .pc-d .is-pre,.pgrid .pc-d .is-pre{letter-spacing:-.2px}}
-.tot-pre{display:flex;align-items:baseline;gap:6px;font-size:.78rem;margin-top:1px;line-height:1.2}.tot-pre[hidden]{display:none}.tot-pre .pre-tag{font-size:.68rem;font-weight:800;padding:0 5px;border-radius:5px;background:rgba(255,255,255,.2);direction:ltr}.tot-pre b{font-weight:800}.tot-pre .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+#hDayLbl{white-space:nowrap}.upd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tot-pre{min-height:1.2em;display:flex;align-items:baseline;gap:6px;font-size:.78rem;margin-top:1px;line-height:1.2}.tot-pre[hidden]{display:none}.tot-pre .pre-tag{font-size:.68rem;font-weight:800;padding:0 5px;border-radius:5px;background:rgba(255,255,255,.2);direction:ltr}.tot-pre b{font-weight:800}.tot-pre .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
 @keyframes swl{from{transform:translateX(-28px);opacity:.4}to{transform:none;opacity:1}}@keyframes swr{from{transform:translateX(28px);opacity:.4}to{transform:none;opacity:1}}.tab.sw-l{animation:swl .22s ease-out}.tab.sw-r{animation:swr .22s ease-out}
 .sheet-bg{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
 .sheet-bg.open{opacity:1;pointer-events:auto}
@@ -1255,8 +1256,12 @@ function renderHeader(S){
   const dp = $('hDayPct'); dp.textContent = hasDay && V.dayPct!=null ? fmtPct(V.dayPct) : '—'; dp.className = 'tp-v num '+cls(V.day);
   const open = (S.dayMk||[]).some(m=>{ const st = marketState(m).state; return st==='open' || st==='pre' || st==='post'; });
   $('hDayLbl').textContent = !hasDay || open ? 'שינוי יומי' : 'שינוי יומי · מסחר אחרון';
-  const hp = $('hPre'), P = S.pre; hp.hidden = !P;
-  if(P){ const amt = C==='USD' ? P.usd : P.ils, pc = C==='USD' ? P.pctUSD : P.pct; hp.innerHTML = `<span class="pre-tag">pre</span><b class="num ${cls(amt)}">${pc!=null ? fmtPct(pc) : '—'}</b><span class="num ${cls(amt)}">${fmtSigned(amt, C, 0)}</span>`; }
+  // v52: the pre line's presence follows the session (US pre-market + US holdings), not each refresh's data – otherwise a refresh
+  // without a pre quote removes the line and the sticky header shrinks, which shifts the whole page by one line
+  const hp = $('hPre'), P = S.pre, preSlot = !!P || (usSession()==='pre' && S.positions.some(p=>!p.manual && Math.abs(p.qty)>1e-9 && marketOf(p.sym)==='us'));
+  if(hp.hidden !== !preSlot) hp.hidden = !preSlot;
+  if(preSlot){ const amt = P ? (C==='USD' ? P.usd : P.ils) : null, pc = P ? (C==='USD' ? P.pctUSD : P.pct) : null;
+    const html = `<span class="pre-tag">pre</span><b class="num ${cls(amt)}">${pc!=null ? fmtPct(pc) : '—'}</b><span class="num ${cls(amt)}">${amt!=null ? fmtSigned(amt, C, 0) : ''}</span>`; if(hp.innerHTML !== html) hp.innerHTML = html; }
   renderEye();
   $('hUpd').textContent = state.lastRefresh ? `מחירים עודכנו ${new Date(state.lastRefresh).toLocaleTimeString('he-IL')}${state.refreshErrors?` · ${state.refreshErrors} לא עודכנו`:''}` : 'טרם עודכנו מחירים';
 }
@@ -2792,7 +2797,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v51</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v52</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
