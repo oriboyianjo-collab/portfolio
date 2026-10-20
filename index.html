@@ -384,13 +384,13 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
 </main>
 <button class="fab" id="fab" aria-label="עסקה חדשה">+</button>
 <nav class="bottom"><div class="in">
+  <button data-tab="news"><span class="i">📰</span>חדשות</button>
   <button data-tab="market"><span class="i">🌐</span>שוק</button>
   <button data-tab="watch"><span class="i">👀</span><span class="nl">רשימת מעקב</span></button>
   <button data-tab="portfolio" class="on"><span class="i">💼</span>תיק</button>
   <button data-tab="perf"><span class="i">📊</span>ביצועים</button>
   <button data-tab="tx"><span class="i">🧾</span>עסקאות</button>
   <button data-tab="settings"><span class="i">⚙️</span>הגדרות</button>
-  <button data-tab="news"><span class="i">📰</span>חדשות</button>
 </div></nav>
 <div class="sheet-bg" id="sheetBg"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetBody"></div></div>
@@ -2804,7 +2804,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v53</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v54</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
