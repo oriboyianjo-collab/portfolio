@@ -242,6 +242,36 @@ html.imgv-on,html.imgv-on body{overflow:hidden}
 .news-sr input::-webkit-search-cancel-button{display:none}.news-sr button{position:absolute;left:6px;top:50%;transform:translateY(-50%);width:32px;height:32px;border:0;border-radius:50%;background:var(--border);color:inherit;font-size:.9rem}.news-sr button[hidden]{display:none}
 .news-cnt{font-size:.8rem;color:var(--muted);margin:0 2px 8px}.news-cnt[hidden]{display:none}
 .news-it mark{background:#fde047;color:#1f2937;border-radius:3px;padding:0 1px}html.dark .news-it mark{background:#facc15;color:#111827}
+/* ---- v57 header: design C (dark premium card) + pill toolbar ---- */
+.top{background:var(--bg);box-shadow:none;padding:8px 10px 6px;color:#fff}
+html.dark .top{background:var(--bg)}
+.top .wrap{padding:0}
+.hcard{background:radial-gradient(120% 140% at 100% 0%,#1f2a52 0%,#0d1430 45%,#070b1a 100%);border-radius:22px;box-shadow:0 14px 34px rgba(2,6,23,.32),inset 0 1px 0 rgba(255,255,255,.06);position:relative;overflow:hidden;padding:12px 14px 10px}
+html.dark .hcard{box-shadow:0 14px 34px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.06)}
+.hcard::before{content:'';position:absolute;top:0;right:0;left:0;height:3px;background:linear-gradient(90deg,#22d3ee,#6366f1,#a855f7)}
+.top-row{padding:2px 0 0}.brand{gap:11px}
+.brand img{width:44px;height:44px;border-radius:13px;margin:0;box-shadow:0 6px 18px rgba(34,211,238,.22),0 0 0 1px rgba(255,255,255,.08)}
+.brand span{font-size:1.45rem;font-weight:800;letter-spacing:-.3px;white-space:nowrap;background:linear-gradient(90deg,#e0e7ff,#a5b4fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hctl{display:flex;align-items:center;margin-top:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.hb{flex:1 1 0;height:36px;border:0;border-radius:999px;background:transparent;color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;min-width:0;-webkit-tap-highlight-color:transparent}
+.hb:active,.hb.on{background:rgba(255,255,255,.14)}.hb:disabled{opacity:.6}
+.hb .ic{width:20px;height:20px;display:block}
+.hdiv{width:1px;height:18px;background:rgba(255,255,255,.2);flex:none}
+#btnEye .ic-eyeoff,#btnEye[aria-pressed=true] .ic-eye{display:none}#btnEye[aria-pressed=true] .ic-eyeoff{display:block}
+#btnTheme .ic-sun,html.dark #btnTheme .ic-moon{display:none}html.dark #btnTheme .ic-sun{display:block}
+#btnRefresh.spin .ic{animation:spin 1s linear infinite}
+.hb.cur-btn{flex:0 0 auto;gap:0;padding:2px;background:rgba(255,255,255,.07);height:32px;margin-inline:2px}
+.cur-btn .cs{font-size:.84rem;font-weight:700;line-height:1;padding:6px 10px;border-radius:999px;color:rgba(255,255,255,.72);font-family:system-ui,sans-serif}
+.cur-btn[aria-pressed=false] .cs[data-c=ILS],.cur-btn[aria-pressed=true] .cs[data-c=USD]{background:rgba(255,255,255,.92);color:#1e1b4b}
+.tot-row{margin-top:10px;justify-content:flex-start}.tot-row .tot-val{flex:0 1 auto}
+.top .tot-val{font-size:2.25rem;letter-spacing:-.8px;line-height:1.1}
+.tot-day .tp-l{opacity:.6}
+.hstats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:10px}
+.hst{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:6px 8px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);min-width:0}
+.hst span{font-size:.64rem;opacity:.65;white-space:nowrap}.hst b{font-size:.78rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;direction:ltr;unicode-bidi:isolate}
+.top .upd{opacity:.55;margin-top:8px}
+.set-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 2px 10px}.set-bar h2{margin:0;font-size:1.1rem}.set-back{padding:6px 12px;border-radius:10px}
+@media (max-width:370px){.brand span{font-size:1.28rem}.brand img{width:40px;height:40px}.top .tot-val{font-size:2rem}.hst{padding:5px 6px}.hst b{font-size:.72rem}.hb .ic{width:19px;height:19px}}
 @keyframes swl{from{transform:translateX(-28px);opacity:.4}to{transform:none;opacity:1}}@keyframes swr{from{transform:translateX(28px);opacity:.4}to{transform:none;opacity:1}}.tab.sw-l{animation:swl .22s ease-out}.tab.sw-r{animation:swr .22s ease-out}
 .sheet-bg{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
 .sheet-bg.open{opacity:1;pointer-events:auto}
@@ -281,7 +311,8 @@ input.ltr-in{direction:ltr;text-align:right}
 @keyframes flashUp{0%{background:rgba(16,185,129,.45)}100%{background:transparent}}
 @keyframes flashDown{0%{background:rgba(239,68,68,.45)}100%{background:transparent}}
 .flash-up{animation:flashUp 1.3s ease-out;border-radius:6px}.flash-down{animation:flashDown 1.3s ease-out;border-radius:6px}
-.top .flash-up{animation:none;text-shadow:0 0 12px #6ee7b7}.top .flash-down{animation:none;text-shadow:0 0 12px #fca5a5}
+.top .flash-up,.top .flash-down{animation:none;text-shadow:none}.top .tot-val.flash-up{animation:totUp 1.2s ease-out}.top .tot-val.flash-down{animation:totDn 1.2s ease-out}
+@keyframes totUp{0%{color:#86efac}100%{color:inherit}}@keyframes totDn{0%{color:#fca5a5}100%{color:inherit}}
 .age{font-size:.72rem;padding:1px 7px;border-radius:99px;background:var(--bg-f1f5f9);color:var(--fg-475569);white-space:nowrap}
 .age.live{background:var(--bg-d1fae5);color:var(--fg-065f46)}.age.delay{background:var(--bg-fef3c7);color:var(--fg-92400e)}
 .ext{font-size:.75rem;color:var(--muted);margin-top:4px}.ext:empty{display:none}
@@ -330,15 +361,15 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
 </head>
 <body>
 <header class="top">
-  <div class="wrap">
-    <div class="top-row">
-      <h1 class="brand"><img src="logo.svg?v=33" alt="" width="40" height="40"><span>Savage Tracker</span></h1>
-    </div>
-    <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div><div class="tot-btns"><button class="icon-btn eye-btn cur-btn" id="btnCur" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים">₪</button><button class="icon-btn eye-btn" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים">👁</button><button class="icon-btn" id="btnRefresh" aria-label="רענון מחירים"><span>🔄</span></button><button class="icon-btn" id="btnTheme" aria-label="מצב כהה" title="מצב כהה / בהיר"><span>🌙</span></button></div></div>
+  <div class="wrap"><div class="hcard">
+    <div class="top-row"><h1 class="brand"><img src="logo.svg?v=33" alt="" width="40" height="40"><span>Savage Tracker</span></h1></div>
+    <div class="hctl" role="toolbar" aria-label="פעולות"><button class="hb cur-btn" id="btnCur" aria-pressed="false" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים"><span class="cs" data-c="ILS">₪</span><span class="cs" data-c="USD">$</span></button><i class="hdiv"></i><button class="hb" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים"><svg class="ic ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><svg class="ic ic-eyeoff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.9 4.24A9.1 9.1 0 0 1 12 4c6.5 0 10 8 10 8a17.6 17.6 0 0 1-2.16 3.19"/><path d="M6.61 6.61A17.4 17.4 0 0 0 2 12s3.5 8 10 8a9.7 9.7 0 0 0 5.39-1.61"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="2" y1="2" x2="22" y2="22"/></svg></button><i class="hdiv"></i><button class="hb" id="btnRefresh" aria-label="רענון מחירים"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></button><i class="hdiv"></i><button class="hb" id="btnTheme" aria-label="מצב כהה" title="מצב כהה / בהיר"><svg class="ic ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2M12 20.5v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1.5 12h2M20.5 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></button><i class="hdiv"></i><button class="hb" id="btnSet" aria-label="הגדרות" title="הגדרות" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></div>
+    <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div></div>
     <div class="tot-day"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-a num" id="hDay">—</span></div>
     <div class="tot-pre" id="hPre" hidden></div>
+    <div class="hstats" id="hStats"></div>
     <div class="upd"><span id="hUpd">טרם עודכנו מחירים</span><span id="hLive"></span></div>
-  </div>
+  </div></div>
 </header>
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
@@ -392,7 +423,7 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
       <div class="sortbar" id="wlSort" role="group" aria-label="מיון רשימות המעקב"><span>מיון:</span><button data-ws-k="manual">ידני</button><button data-ws-k="price">מחיר</button><button data-ws-k="day">יומי %</button><button data-ws-k="cap">שווי שוק</button></div>
       <div id="wlLists"></div></div>
   </section>
-  <section class="tab" id="tab-settings"><div class="card" id="settingsCard"></div></section>
+  <section class="tab" id="tab-settings"><div class="set-bar"><h2>הגדרות</h2><button class="btn set-back" id="setBack" aria-label="חזרה">חזרה ←</button></div><div class="card" id="settingsCard"></div></section>
   <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div class="news-sr"><input type="search" id="newsQ" placeholder="חיפוש בחדשות" autocomplete="off" enterkeyhint="search" aria-label="חיפוש בחדשות"><button id="newsQx" aria-label="ניקוי חיפוש" hidden>✕</button></div><div class="news-cnt" id="newsCnt" hidden></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div></section>
 </main>
 <button class="fab" id="fab" aria-label="עסקה חדשה">+</button>
@@ -403,7 +434,6 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
   <button data-tab="portfolio" class="on"><span class="i">💼</span>תיק</button>
   <button data-tab="perf"><span class="i">📊</span>ביצועים</button>
   <button data-tab="tx"><span class="i">🧾</span>עסקאות</button>
-  <button data-tab="settings"><span class="i">⚙️</span>הגדרות</button>
 </div></nav>
 <div class="sheet-bg" id="sheetBg"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetBody"></div></div>
@@ -1267,7 +1297,7 @@ function hdrVals(S){
 }
 function renderHeader(S){
   const has = state.txs.length>0, V = hdrVals(S), C = V.c;
-  const bc = $('btnCur'); bc.textContent = C==='USD' ? '$' : '₪'; bc.setAttribute('aria-pressed', C==='USD'); bc.setAttribute('aria-label', C==='USD' ? 'מוצג בדולרים – החלפה לשקלים' : 'מוצג בשקלים – החלפה לדולרים');
+  const bc = $('btnCur'); bc.setAttribute('aria-pressed', C==='USD'); bc.setAttribute('aria-label', C==='USD' ? 'מוצג בדולרים – החלפה לשקלים' : 'מוצג בשקלים – החלפה לדולרים');   // v57: segmented ₪ | $ (CSS highlights the active one)
   const t = $('hTotal'); t.textContent = fmtMoney(V.eq,C,0);
   if(lastEquity!=null && Math.abs(S.equity-lastEquity) >= 0.5 && !hidden()) flash(t, S.equity-lastEquity);
   lastEquity = S.equity;
@@ -1282,6 +1312,10 @@ function renderHeader(S){
   if(hp.hidden !== !preSlot) hp.hidden = !preSlot;
   if(preSlot){ const amt = P ? (C==='USD' ? P.usd : P.ils) : null, pc = P ? (C==='USD' ? P.pctUSD : P.pct) : null;
     const html = `<span class="pre-tag">pre</span><b class="num ${cls(amt)}">${pc!=null ? fmtPct(pc) : '—'}</b><span class="num ${cls(amt)}">${amt!=null ? fmtSigned(amt, C, 0) : ''}</span>`; if(hp.innerHTML !== html) hp.innerHTML = html; }
+  // v57: stat tiles – cost / unrealized / realized / cash in the display currency; amounts masked by the eye (fmtMoney / fmtSigned)
+  { const fx = fxNow(), cv = v=>v==null ? null : (C==='USD' && fx>0 ? v/fx : v), cost = S.mvILS - S.unrealILS;
+    const T = [['עלות', has ? fmtMoney(cv(cost), C, 0) : '—', ''], ['לא ממומש', has ? fmtSigned(cv(S.unrealILS), C, 0) : '—', cls(S.unrealILS)], ['ממומש', has ? fmtSigned(cv(S.realizedILS), C, 0) : '—', cls(S.realizedILS)], ['מזומן', has ? fmtMoney(cv(S.cashILS), C, 0) : '—', '']];
+    const html = T.map(([l,v,c])=>`<div class="hst"><span>${l}</span><b class="num ${c}">${v}</b></div>`).join(''); const hs = $('hStats'); if(hs.innerHTML !== html) hs.innerHTML = html; }
   renderEye();
   $('hUpd').textContent = state.lastRefresh ? `מחירים עודכנו ${new Date(state.lastRefresh).toLocaleTimeString('he-IL')}${state.refreshErrors?` · ${state.refreshErrors} לא עודכנו`:''}` : 'טרם עודכנו מחירים';
 }
@@ -1632,7 +1666,7 @@ function chartTheme(){ const d = isDark(); return {bg: d ? '#182235' : '#ffffff'
 const chartReg = new Set();
 function applyTheme(rerender){ const t = themePref(), d = t==='dark' || (t==='auto' && mqDark.matches), was = isDark();
   document.documentElement.classList.toggle('dark', d); const m = document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute('content', d ? '#0f1d45' : '#1e3a8a');
-  const b = $('btnTheme'); if(b){ b.firstChild.textContent = d ? '☀️' : '🌙'; b.setAttribute('aria-label', d ? 'מצב בהיר' : 'מצב כהה'); b.setAttribute('aria-pressed', String(d)); }
+  const b = $('btnTheme'); if(b){ b.setAttribute('aria-label', d ? 'מצב בהיר' : 'מצב כהה'); b.setAttribute('aria-pressed', String(d)); }
   const sel = $('setTheme'); if(sel) sel.value = t;
   if(rerender && was!==d){ const T = chartTheme(); chartReg.forEach(c=>{ try{ c.applyOptions({layout:{background:{color:T.bg}, textColor:T.text}, grid:{horzLines:{color:T.grid}}}); }catch(e){ chartReg.delete(c); } });
     destroyMini(); destroyPerf(); renderAll(); if(ui.tab==='perf') renderPerf(); } }
@@ -2817,7 +2851,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v56</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v57</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3431,11 +3465,19 @@ function bankApply(){
 }
 
 // ====================== navigation ======================
+let prevTab = 'portfolio';
+const TAB_KEY = 'portfolioTracker.tab';   // v57: current tab per session – a reload / pull-to-refresh comes back to it; a new app launch opens on תיק
+function openSettings(){ if(ui.tab==='settings') return; prevTab = ui.tab; try{ sessionStorage.setItem(TAB_KEY+'.prev', prevTab); }catch(e){} setTab('settings'); if(!(history.state && history.state.set)) history.pushState({set:1}, ''); }
+function closeSettings(){ if(history.state && history.state.set) history.back(); else if(ui.tab==='settings') setTab(prevTab||'portfolio'); }
+window.addEventListener('popstate', ()=>{ if(ui.tab==='settings' && !(history.state && history.state.set) && !(IV.el && !IV.el.hidden)) setTab(prevTab||'portfolio'); });
 function setTab(tab){
+  try{ sessionStorage.setItem(TAB_KEY, tab); }catch(e){}
+  if(ui.tab==='settings' && tab!=='settings' && history.state && history.state.set) history.replaceState(null, '');   // left via the nav: drop the settings entry
   if(tab==='market' && ui.tab!=='market') mktRange = '1D';   // v51: reset to daily on every entry
   ui.tab = tab;
   document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on', s.id==='tab-'+tab));
   document.querySelectorAll('nav.bottom button').forEach(b=>b.classList.toggle('on', b.dataset.tab===tab));
+  const gs = $('btnSet'); if(gs){ gs.classList.toggle('on', tab==='settings'); gs.setAttribute('aria-pressed', String(tab==='settings')); }
   $('fab').style.display = /^(settings|market|watch|news)$/.test(tab) ? 'none' : '';
   window.scrollTo({top:0});
   if(tab==='perf') renderPerf(); else destroyPerf();
@@ -3555,9 +3597,16 @@ document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='
   document.addEventListener('touchcancel', ()=>{ ok = false; }, {passive:true});
 })();
 document.querySelector('nav.bottom').addEventListener('click', e=>{ const b = e.target.closest('button[data-tab]'); if(b) setTab(b.dataset.tab); });
+// v57: restore the tab after a reload (sessionStorage survives reload, not a fresh launch)
+(()=>{ let t = null, pv = null; try{ t = sessionStorage.getItem(TAB_KEY); pv = sessionStorage.getItem(TAB_KEY+'.prev'); }catch(e){}
+  if(!t || t===ui.tab || !document.getElementById('tab-'+t)) return;
+  if(t==='settings'){ prevTab = pv && pv!=='settings' && document.getElementById('tab-'+pv) ? pv : 'portfolio'; if(!(history.state && history.state.set)) history.replaceState({set:1}, ''); }
+  setTab(t); })();
 $('fab').onclick = ()=>openTxForm(state.txs.length ? 'buy' : 'deposit');
 $('btnRefresh').onclick = ()=>refreshPrices(false);
-function renderEye(){ const h = hidden(), b = $('btnEye'); b.textContent = h ? '🙈' : '👁'; b.setAttribute('aria-pressed', h?'true':'false');
+$('btnSet').onclick = ()=>openSettings();   // tapping the gear in settings keeps it open; leave via the back button / Android back
+$('setBack').onclick = ()=>closeSettings();
+function renderEye(){ const h = hidden(), b = $('btnEye'); b.setAttribute('aria-pressed', h?'true':'false');   // v57: eye / eye-off icon follows aria-pressed (CSS)
   const l = h ? 'הצגת סכומים' : 'הסתרת סכומים'; b.setAttribute('aria-label', l); b.title = l; document.body.classList.toggle('privacy', h); }
 $('btnCur').onclick = ()=>{ const u = dispCur()!=='USD'; try{ localStorage.setItem(CUR_KEY, u ? 'USD' : 'ILS'); }catch(_){}
   if(u && !TAXD) loadTaxData().then(D=>{ if(D) renderAll(); }).catch(()=>{});   // dated rates for converting shekel deposits
