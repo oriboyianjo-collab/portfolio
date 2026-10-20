@@ -358,7 +358,7 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
   <section class="tab" id="tab-tx"><div class="card"><h2>היסטוריית עסקאות <small id="txCount"></small></h2><div class="hist-bar" id="txHistBar" style="margin-top:0"></div><div id="txList"></div></div></section>
   <section class="tab" id="tab-market">
     <div class="card mkt-card"><div class="h2row"><h2>שוק <small id="mktUpd"></small></h2><button class="btn btn-light btn-sm" id="mktEdit" aria-pressed="false">✏️ עריכה</button></div>
-      <div class="seg sm" id="mktRange"><button data-v="1D">יום</button><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="YTD" class="on">YTD</button><button data-v="1Y">שנה</button><button data-v="5Y">5 שנים</button></div>
+      <div class="seg sm" id="mktRange"><button data-v="1D" class="on">יום</button><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="YTD">YTD</button><button data-v="1Y">שנה</button><button data-v="5Y">5 שנים</button></div>
       <div class="mkt-editbar" id="mktEditBar" hidden>
         <div class="ac"><input id="mktSearch" placeholder="הוספה: מניה, תעודת סל, מדד (AAPL, TA-35…)" autocomplete="off" enterkeyhint="search"><div class="ac-list" id="mktAc"></div></div>
         <div class="mkt-cat" id="mktCat"></div>
@@ -2213,7 +2213,8 @@ function lineSvg(pts, base, up, W, H, dashed){ if(!pts || pts.length < 2) return
   const X = t=>((t-t0)/tr*W).toFixed(1), Y = v=>(H-2 - (v-lo)/r*(H-4)).toFixed(1), d = P.map((p,i)=>(i?'L':'M')+X(p[0])+' '+Y(p[1])).join(' '), col = up ? 'var(--green)' : 'var(--red)';
   return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${dashed && base!=null ? `<line x1="0" x2="${W}" y1="${Y(base)}" y2="${Y(base)}"/>` : ''}<path class="a" d="${d} L${W} ${H} L0 ${H} Z" fill="${col}"/><path class="l" d="${d}" stroke="${col}"/></svg>`; }
 // ---- market screen ----
-let mktRange = 'YTD', mktEditing = false, mktTimer = null, mktSeq = 0;
+let mktRange = '1D',   // v51: the market tab always opens on the daily range (a manual choice lasts for that visit only)
+    mktEditing = false, mktTimer = null, mktSeq = 0;
 function mktCardHtml(it){ const q = iq(it), last = q ? q.price : null, key = it.q+'|'+mktRange, c = instCache[key];
   const pts = c ? withLive(it, mktRange, c.pts) : null, base = pts ? instRangeBase(it, mktRange, pts) : (mktRange==='1D' && q ? q.prev : null);
   const ch = chgInst(it, last, mktRange==='1D' ? (q && q.prev) : base), chart = pts && pts.length > 1 ? lineSvg(pts, base, ch.c >= 0, 160, 48, mktRange==='1D') : `<div class="nod">${c ? 'אין נתונים לטווח' : 'טוען…'}</div>`;
@@ -2791,7 +2792,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v50</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v51</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3406,6 +3407,7 @@ function bankApply(){
 
 // ====================== navigation ======================
 function setTab(tab){
+  if(tab==='market' && ui.tab!=='market') mktRange = '1D';   // v51: reset to daily on every entry
   ui.tab = tab;
   document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on', s.id==='tab-'+tab));
   document.querySelectorAll('nav.bottom button').forEach(b=>b.classList.toggle('on', b.dataset.tab===tab));
