@@ -229,6 +229,15 @@ html.dark .is-pre::before{background:#312e81;color:#c7d2fe}
 .news-d{font-size:.75rem;color:var(--muted)}.news-co{float:left;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--bg-eef2ff,#eef2ff);color:#3730a3}html.dark .news-co{background:#312e81;color:#c7d2fe}
 .news-t{white-space:pre-wrap;font-size:.9rem;line-height:1.5;overflow-wrap:anywhere}.news-l{display:inline-block;margin-top:6px;font-weight:700;color:var(--primary);text-decoration:none}
 .news-empty{text-align:center;color:var(--muted);padding:28px 8px;line-height:1.7}
+.news-imgs{display:grid;gap:6px;margin-top:8px}.news-imgs.n1{grid-template-columns:1fr}.news-imgs.n2{grid-template-columns:1fr 1fr}.news-imgs.n3{grid-template-columns:repeat(3,1fr)}
+.news-img{padding:0;border:0;border-radius:10px;overflow:hidden;background:var(--border);cursor:zoom-in;display:block;width:100%}.news-img img{display:block;width:100%;height:auto;object-fit:cover}
+.news-imgs.n1 .news-img img{max-height:60vh;object-fit:contain;background:#0b1220}.news-imgs.n2 .news-img img,.news-imgs.n3 .news-img img{aspect-ratio:1/1}.news-img.bad{display:none}
+.imgv{position:fixed;inset:0;z-index:100;background:#000;touch-action:none;overscroll-behavior:contain;user-select:none}.imgv[hidden]{display:none}
+.imgv-st{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}.imgv-st img{max-width:100%;max-height:100%;object-fit:contain;transform-origin:50% 50%;will-change:transform;-webkit-user-drag:none}
+.imgv-x{position:absolute;top:calc(10px + env(safe-area-inset-top));left:10px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.18);color:#fff;font-size:1.3rem;z-index:2}
+.imgv-n{position:absolute;top:calc(20px + env(safe-area-inset-top));right:16px;color:#fff;font-size:.85rem;opacity:.85;direction:ltr}
+.imgv-p,.imgv-q{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:56px;border:0;border-radius:10px;background:rgba(255,255,255,.12);color:#fff;font-size:1.8rem;z-index:2}.imgv-p{right:6px}.imgv-q{left:6px}.imgv.zoomed .imgv-p,.imgv.zoomed .imgv-q{display:none}
+html.imgv-on,html.imgv-on body{overflow:hidden}
 @keyframes swl{from{transform:translateX(-28px);opacity:.4}to{transform:none;opacity:1}}@keyframes swr{from{transform:translateX(28px);opacity:.4}to{transform:none;opacity:1}}.tab.sw-l{animation:swl .22s ease-out}.tab.sw-r{animation:swr .22s ease-out}
 .sheet-bg{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
 .sheet-bg.open{opacity:1;pointer-events:auto}
@@ -2804,7 +2813,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v54</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v55</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3458,16 +3467,63 @@ async function loadNews(){ const el = $('newsList'); if(!el) return; const seq =
   try{ const j = JSON.parse(await get('news.json')); items = Array.isArray(j) ? j : (j && Array.isArray(j.items) ? j.items : []); }
   catch(e){ try{ items = newsFromMd(await get('news.md')); }catch(e2){ err = !(e instanceof SyntaxError) ? false : true; items = []; } }
   if(seq !== newsSeq) return;
-  const L = items.filter(o=>o && typeof o==='object').map((o,i)=>({i, title:newsPick(o,'title'), date:newsPick(o,'date'), text:newsPick(o,'text'), link:newsPick(o,'link'), company:newsPick(o,'company')})).filter(o=>o.title || o.text);
+  newsAll = [];
+  const L = items.filter(o=>o && typeof o==='object').map((o,i)=>({i, title:newsPick(o,'title'), date:newsPick(o,'date'), text:newsPick(o,'text'), link:newsPick(o,'link'), company:newsPick(o,'company'), imgs:newsImgs(o)})).filter(o=>o.title || o.text || o.imgs.length);
   L.forEach(o=>o.t = newsTime(o.date)); L.sort((a,b)=>(b.t??-Infinity)-(a.t??-Infinity) || a.i-b.i);
   if(!L.length){ el.innerHTML = `<div class="news-empty">${err ? 'קובץ החדשות (news.json) לא תקין – בדקו פסיקים ומירכאות.' : 'אין עדיין חדשות.<br><small>מוסיפים פריטים בקובץ news.json באתר GitHub.</small>'}</div>`; return; }
   const fd = o=>o.t!=null ? new Date(o.t).toLocaleString('he-IL',{day:'2-digit', month:'2-digit', year:'numeric', ...(/\d:\d/.test(o.date) ? {hour:'2-digit', minute:'2-digit'} : {})}) : esc(o.date);
-  el.innerHTML = L.map(o=>`<article class="news-it">${o.company ? `<span class="news-co">${esc(o.company)}</span>` : ''}<div class="news-d">${fd(o)}</div>${o.title ? `<h3>${esc(o.title)}</h3>` : ''}${o.text ? `<div class="news-t">${esc(o.text)}</div>` : ''}${/^https?:\/\//i.test(o.link) ? `<a class="news-l" href="${esc(o.link)}" target="_blank" rel="noopener">לפרטים ←</a>` : ''}</article>`).join('');
+  el.innerHTML = L.map(o=>`<article class="news-it">${o.company ? `<span class="news-co">${esc(o.company)}</span>` : ''}<div class="news-d">${fd(o)}</div>${o.title ? `<h3>${esc(o.title)}</h3>` : ''}${o.text ? `<div class="news-t">${esc(o.text)}</div>` : ''}${newsImgHtml(o)}${/^https?:\/\//i.test(o.link) ? `<a class="news-l" href="${esc(o.link)}" target="_blank" rel="noopener">לפרטים ←</a>` : ''}</article>`).join('');
 }
 $('newsRefresh').addEventListener('click', loadNews);
+// v55: images – "תמונות"/"images" (list) or "תמונה"/"image" (one); a repo path (news-images/x.jpg) or a full https URL
+let newsAll = [];
+function newsImgs(o){ const out = []; for(const k of ['images','תמונות','image','תמונה']){ let v = o[k]; if(v==null) continue; (Array.isArray(v) ? v : [v]).forEach(x=>{ x = String(x||'').trim(); if(!x) return;
+    try{ const u = new URL(x, location.href); if(u.protocol==='https:' || u.origin===location.origin) out.push(u.href); }catch(e){} }); }
+  return [...new Set(out)]; }
+function newsImgHtml(o){ if(!o.imgs.length) return ''; const base = newsAll.length; newsAll.push(o.imgs);
+  return `<div class="news-imgs n${Math.min(o.imgs.length,3)}">${o.imgs.map((u,i)=>`<button class="news-img" data-ng="${base}" data-ni="${i}" aria-label="הגדלת תמונה ${i+1}"><img src="${esc(u)}" alt="" loading="lazy" onerror="this.parentNode.classList.add('bad')"></button>`).join('')}</div>`; }
+$('newsList').addEventListener('click', e=>{ const b = e.target.closest('.news-img'); if(!b) return; imgvOpen(newsAll[+b.dataset.ng], +b.dataset.ni); });
+// full-screen viewer: pinch / double-tap zoom, pan while zoomed, swipe between images, ✕ or Android back closes (history entry)
+const IV = {el:null, list:[], i:0, s:1, x:0, y:0};
+function imgvEnsure(){ if(IV.el) return IV.el; const v = document.createElement('div'); v.className = 'imgv'; v.hidden = true; v.setAttribute('role','dialog'); v.setAttribute('aria-modal','true');
+  v.innerHTML = '<div class="imgv-st"><img alt=""></div><button class="imgv-x" aria-label="סגירה">✕</button><div class="imgv-n"></div><button class="imgv-p" data-d="-1" aria-label="הקודמת">›</button><button class="imgv-q" data-d="1" aria-label="הבאה">‹</button>';
+  document.body.appendChild(v); IV.el = v; IV.img = v.querySelector('img');
+  v.querySelector('.imgv-x').addEventListener('click', ()=>imgvClose());
+  v.querySelectorAll('[data-d]').forEach(b=>b.addEventListener('click', ev=>{ ev.stopPropagation(); imgvGo(IV.i + +b.dataset.d); }));
+  let t0 = null, pin = null, lastTap = 0, sw = null;
+  const pt = t=>({x:t.clientX, y:t.clientY}), dist = (a,b)=>Math.hypot(a.x-b.x, a.y-b.y);
+  let touchAt = 0;
+  v.addEventListener('touchstart', e=>{ e.stopPropagation(); touchAt = Date.now(); const T = [...e.touches].map(pt);
+    if(T.length===2){ pin = {d:dist(T[0],T[1]), s:IV.s, x:IV.x, y:IV.y, m:{x:(T[0].x+T[1].x)/2, y:(T[0].y+T[1].y)/2}}; sw = null; t0 = null; }
+    else if(T.length===1){ t0 = {p:T[0], x:IV.x, y:IV.y, t:Date.now()}; sw = IV.s<=1.01 ? {x:T[0].x, y:T[0].y} : null; } }, {passive:true});
+  v.addEventListener('touchmove', e=>{ e.stopPropagation(); e.preventDefault(); const T = [...e.touches].map(pt);
+    if(T.length===2 && pin){ const m = {x:(T[0].x+T[1].x)/2, y:(T[0].y+T[1].y)/2}, cx = innerWidth/2, cy = innerHeight/2;
+      const s = Math.min(5, Math.max(1, pin.s * dist(T[0],T[1]) / pin.d)), k = s/pin.s;
+      IV.s = s; IV.x = (pin.m.x-cx) - k*(pin.m.x-cx-pin.x) + (m.x-pin.m.x); IV.y = (pin.m.y-cy) - k*(pin.m.y-cy-pin.y) + (m.y-pin.m.y); imgvApply(); }
+    else if(T.length===1 && t0){ if(IV.s>1.01){ IV.x = t0.x + T[0].x-t0.p.x; IV.y = t0.y + T[0].y-t0.p.y; imgvApply(); }
+      else if(sw){ IV.img.style.transform = `translate(${T[0].x-sw.x}px,0)`; } } }, {passive:false});
+  v.addEventListener('touchend', e=>{ e.stopPropagation(); const ch = e.changedTouches[0];
+    if(e.touches.length===0 && pin){ pin = null; if(IV.s<1.05){ IV.s=1; IV.x=IV.y=0; } imgvApply(); return; }
+    if(e.touches.length || !t0) return; const dx = ch.clientX - t0.p.x, dy = ch.clientY - t0.p.y, now = Date.now();
+    if(sw && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)*1.5 && IV.list.length > 1){ imgvGo(IV.i + (dx < 0 ? -1 : 1)); t0 = null; return; }   // RTL: drag right = next
+    if(Math.abs(dx) < 10 && Math.abs(dy) < 10 && now - t0.t < 300){ if(now - lastTap < 320){ if(IV.s>1.01){ IV.s=1; IV.x=IV.y=0; } else { const cx = innerWidth/2, cy = innerHeight/2; IV.s = 2.5; IV.x = -(ch.clientX-cx)*1.5; IV.y = -(ch.clientY-cy)*1.5; } lastTap = 0; } else lastTap = now; }
+    imgvApply(); t0 = null; });
+  v.addEventListener('dblclick', e=>{ if(Date.now() - touchAt < 1000) return;   // touch double-taps are handled above (Chrome also fires a synthetic dblclick)
+    if(IV.s>1.01){ IV.s=1; IV.x=IV.y=0; } else { IV.s=2.5; IV.x=-(e.clientX-innerWidth/2)*1.5; IV.y=-(e.clientY-innerHeight/2)*1.5; } imgvApply(); });
+  return v; }
+function imgvApply(){ if(IV.s<=1.01){ IV.x = IV.y = 0; } else { const mx = innerWidth*(IV.s-1)/2, my = innerHeight*(IV.s-1)/2; IV.x = Math.max(-mx, Math.min(mx, IV.x)); IV.y = Math.max(-my, Math.min(my, IV.y)); }
+  IV.img.style.transform = `translate(${IV.x}px,${IV.y}px) scale(${IV.s})`; IV.el.classList.toggle('zoomed', IV.s>1.01); }
+function imgvGo(i){ const n = IV.list.length; if(!n) return; IV.i = (i+n)%n; IV.s = 1; IV.x = IV.y = 0; IV.img.src = IV.list[IV.i]; imgvApply();
+  const multi = n > 1; IV.el.querySelector('.imgv-n').textContent = multi ? `${IV.i+1} / ${n}` : ''; IV.el.querySelectorAll('[data-d]').forEach(b=>b.hidden = !multi); }
+function imgvOpen(list, i){ if(!list || !list.length) return; imgvEnsure(); IV.list = list; IV.el.hidden = false; document.documentElement.classList.add('imgv-on'); imgvGo(i||0);
+  if(!(history.state && history.state.imgv)) history.pushState({imgv:1}, ''); }
+function imgvHide(){ if(!IV.el || IV.el.hidden) return; IV.el.hidden = true; IV.img.removeAttribute('src'); document.documentElement.classList.remove('imgv-on'); }
+function imgvClose(){ if(history.state && history.state.imgv) history.back(); else imgvHide(); }
+window.addEventListener('popstate', ()=>imgvHide());
+document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='Escape') imgvClose(); });
 // ---- swipe between tabs (v42) ----
 (function(){ let sx=0, sy=0, st=0, ok=false;
-  const NOSW = 'input,textarea,select,[contenteditable],.editing,.sheet,.sheet-bg,main .chart.active';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
+  const NOSW = 'input,textarea,select,[contenteditable],.editing,.imgv,.sheet,.sheet-bg,main .chart.active';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
   function scrollsX(el){ for(; el && el !== document.body; el = el.parentElement){ if(el.scrollWidth > el.clientWidth + 2){ const o = getComputedStyle(el).overflowX; if(o==='auto' || o==='scroll') return true; } } return false; }
   function blocked(t){ if(!(t instanceof Element)) return true; if(t.closest(NOSW)) return true; if($('sheetBg').classList.contains('open') || document.querySelector('dialog[open],.modal.open,.modal-bg.open')) return true; return scrollsX(t); }
   document.addEventListener('touchstart', e=>{ ok = e.touches.length===1 && !blocked(e.target); if(!ok) return; sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now(); }, {passive:true});
