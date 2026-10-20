@@ -238,6 +238,10 @@ html.dark .is-pre::before{background:#312e81;color:#c7d2fe}
 .imgv-n{position:absolute;top:calc(20px + env(safe-area-inset-top));right:16px;color:#fff;font-size:.85rem;opacity:.85;direction:ltr}
 .imgv-p,.imgv-q{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:56px;border:0;border-radius:10px;background:rgba(255,255,255,.12);color:#fff;font-size:1.8rem;z-index:2}.imgv-p{right:6px}.imgv-q{left:6px}.imgv.zoomed .imgv-p,.imgv.zoomed .imgv-q{display:none}
 html.imgv-on,html.imgv-on body{overflow:hidden}
+.news-sr{position:relative;margin-bottom:8px}.news-sr input{width:100%;box-sizing:border-box;padding:10px 12px 10px 40px;border:1px solid var(--border);border-radius:12px;background:var(--bg-fff);color:inherit;font-size:1rem}
+.news-sr input::-webkit-search-cancel-button{display:none}.news-sr button{position:absolute;left:6px;top:50%;transform:translateY(-50%);width:32px;height:32px;border:0;border-radius:50%;background:var(--border);color:inherit;font-size:.9rem}.news-sr button[hidden]{display:none}
+.news-cnt{font-size:.8rem;color:var(--muted);margin:0 2px 8px}.news-cnt[hidden]{display:none}
+.news-it mark{background:#fde047;color:#1f2937;border-radius:3px;padding:0 1px}html.dark .news-it mark{background:#facc15;color:#111827}
 @keyframes swl{from{transform:translateX(-28px);opacity:.4}to{transform:none;opacity:1}}@keyframes swr{from{transform:translateX(28px);opacity:.4}to{transform:none;opacity:1}}.tab.sw-l{animation:swl .22s ease-out}.tab.sw-r{animation:swr .22s ease-out}
 .sheet-bg{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
 .sheet-bg.open{opacity:1;pointer-events:auto}
@@ -389,7 +393,7 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
       <div id="wlLists"></div></div>
   </section>
   <section class="tab" id="tab-settings"><div class="card" id="settingsCard"></div></section>
-  <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div></section>
+  <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div class="news-sr"><input type="search" id="newsQ" placeholder="חיפוש בחדשות" autocomplete="off" enterkeyhint="search" aria-label="חיפוש בחדשות"><button id="newsQx" aria-label="ניקוי חיפוש" hidden>✕</button></div><div class="news-cnt" id="newsCnt" hidden></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div></section>
 </main>
 <button class="fab" id="fab" aria-label="עסקה חדשה">+</button>
 <nav class="bottom"><div class="in">
@@ -2813,7 +2817,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v55</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v56</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3470,10 +3474,24 @@ async function loadNews(){ const el = $('newsList'); if(!el) return; const seq =
   newsAll = [];
   const L = items.filter(o=>o && typeof o==='object').map((o,i)=>({i, title:newsPick(o,'title'), date:newsPick(o,'date'), text:newsPick(o,'text'), link:newsPick(o,'link'), company:newsPick(o,'company'), imgs:newsImgs(o)})).filter(o=>o.title || o.text || o.imgs.length);
   L.forEach(o=>o.t = newsTime(o.date)); L.sort((a,b)=>(b.t??-Infinity)-(a.t??-Infinity) || a.i-b.i);
-  if(!L.length){ el.innerHTML = `<div class="news-empty">${err ? 'קובץ החדשות (news.json) לא תקין – בדקו פסיקים ומירכאות.' : 'אין עדיין חדשות.<br><small>מוסיפים פריטים בקובץ news.json באתר GitHub.</small>'}</div>`; return; }
-  const fd = o=>o.t!=null ? new Date(o.t).toLocaleString('he-IL',{day:'2-digit', month:'2-digit', year:'numeric', ...(/\d:\d/.test(o.date) ? {hour:'2-digit', minute:'2-digit'} : {})}) : esc(o.date);
-  el.innerHTML = L.map(o=>`<article class="news-it">${o.company ? `<span class="news-co">${esc(o.company)}</span>` : ''}<div class="news-d">${fd(o)}</div>${o.title ? `<h3>${esc(o.title)}</h3>` : ''}${o.text ? `<div class="news-t">${esc(o.text)}</div>` : ''}${newsImgHtml(o)}${/^https?:\/\//i.test(o.link) ? `<a class="news-l" href="${esc(o.link)}" target="_blank" rel="noopener">לפרטים ←</a>` : ''}</article>`).join('');
+  newsItems = L; newsErr = err; newsRender();
 }
+// v56: search – live filter over title/text/company/date (case-insensitive), every match wrapped in <mark>; text is escaped piece by piece
+let newsItems = [], newsErr = false;
+const newsFd = o=>o.t!=null ? new Date(o.t).toLocaleString('he-IL',{day:'2-digit', month:'2-digit', year:'numeric', ...(/\d:\d/.test(o.date) ? {hour:'2-digit', minute:'2-digit'} : {})}) : o.date;
+function newsHl(raw, q){ raw = String(raw||''); if(!q) return esc(raw); const lo = raw.toLocaleLowerCase(), ql = q.toLocaleLowerCase(); let out = '', at = 0, k;
+  while(ql && (k = lo.indexOf(ql, at)) !== -1){ out += esc(raw.slice(at, k)) + '<mark>' + esc(raw.slice(k, k+q.length)) + '</mark>'; at = k + q.length; }
+  return out + esc(raw.slice(at)); }
+function newsRender(){ const el = $('newsList'), cnt = $('newsCnt'); if(!el) return; const L = newsItems, q = ($('newsQ').value||'').trim(); $('newsQx').hidden = !$('newsQ').value;
+  newsAll = [];
+  if(!L.length){ cnt.hidden = true; el.innerHTML = `<div class="news-empty">${newsErr ? 'קובץ החדשות (news.json) לא תקין – בדקו פסיקים ומירכאות.' : 'אין עדיין חדשות.<br><small>מוסיפים פריטים בקובץ news.json באתר GitHub.</small>'}</div>`; return; }
+  const ql = q.toLocaleLowerCase(), M = q ? L.filter(o=>[o.title, o.text, o.company, o.date, newsFd(o)].some(v=>String(v||'').toLocaleLowerCase().includes(ql))) : L;
+  cnt.hidden = !q; cnt.textContent = q ? (M.length===1 ? 'תוצאה אחת' : `${M.length} תוצאות`) : '';
+  if(!M.length){ el.innerHTML = `<div class="news-empty">לא נמצאו חדשות עבור „${esc(q)}”</div>`; return; }
+  el.innerHTML = M.map(o=>`<article class="news-it">${o.company ? `<span class="news-co">${newsHl(o.company,q)}</span>` : ''}<div class="news-d">${newsHl(newsFd(o),q)}</div>${o.title ? `<h3>${newsHl(o.title,q)}</h3>` : ''}${o.text ? `<div class="news-t">${newsHl(o.text,q)}</div>` : ''}${newsImgHtml(o)}${/^https?:\/\//i.test(o.link) ? `<a class="news-l" href="${esc(o.link)}" target="_blank" rel="noopener">לפרטים ←</a>` : ''}</article>`).join('');
+}
+$('newsQ').addEventListener('input', newsRender);
+$('newsQx').addEventListener('click', ()=>{ $('newsQ').value = ''; newsRender(); $('newsQ').focus(); });
 $('newsRefresh').addEventListener('click', loadNews);
 // v55: images – "תמונות"/"images" (list) or "תמונה"/"image" (one); a repo path (news-images/x.jpg) or a full https URL
 let newsAll = [];
