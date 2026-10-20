@@ -224,6 +224,11 @@ html.dark .is-pre::before{background:#312e81;color:#c7d2fe}
 @media (max-width:370px){.is-pre::before{font-size:.55em;padding:0 2px;margin-inline-end:1px;letter-spacing:0}.wgrid .pc-d .is-pre,.pgrid .pc-d .is-pre{letter-spacing:-.2px}}
 #hDayLbl{white-space:nowrap}.upd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tot-pre{min-height:1.2em;display:flex;align-items:baseline;gap:6px;font-size:.78rem;margin-top:1px;line-height:1.2}.tot-pre[hidden]{display:none}.tot-pre .pre-tag{font-size:.68rem;font-weight:800;padding:0 5px;border-radius:5px;background:rgba(255,255,255,.2);direction:ltr}.tot-pre b{font-weight:800}.tot-pre .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+.news-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.news-h h2{margin:0;font-size:1.1rem}
+.news-it{border:1px solid var(--border);border-radius:14px;padding:10px 12px;margin-bottom:10px;background:var(--bg-fff)}.news-it h3{margin:2px 0 4px;font-size:1rem;line-height:1.35}
+.news-d{font-size:.75rem;color:var(--muted)}.news-co{float:left;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--bg-eef2ff,#eef2ff);color:#3730a3}html.dark .news-co{background:#312e81;color:#c7d2fe}
+.news-t{white-space:pre-wrap;font-size:.9rem;line-height:1.5;overflow-wrap:anywhere}.news-l{display:inline-block;margin-top:6px;font-weight:700;color:var(--primary);text-decoration:none}
+.news-empty{text-align:center;color:var(--muted);padding:28px 8px;line-height:1.7}
 @keyframes swl{from{transform:translateX(-28px);opacity:.4}to{transform:none;opacity:1}}@keyframes swr{from{transform:translateX(28px);opacity:.4}to{transform:none;opacity:1}}.tab.sw-l{animation:swl .22s ease-out}.tab.sw-r{animation:swr .22s ease-out}
 .sheet-bg{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
 .sheet-bg.open{opacity:1;pointer-events:auto}
@@ -375,6 +380,7 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
       <div id="wlLists"></div></div>
   </section>
   <section class="tab" id="tab-settings"><div class="card" id="settingsCard"></div></section>
+  <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div></section>
 </main>
 <button class="fab" id="fab" aria-label="עסקה חדשה">+</button>
 <nav class="bottom"><div class="in">
@@ -384,6 +390,7 @@ html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
   <button data-tab="perf"><span class="i">📊</span>ביצועים</button>
   <button data-tab="tx"><span class="i">🧾</span>עסקאות</button>
   <button data-tab="settings"><span class="i">⚙️</span>הגדרות</button>
+  <button data-tab="news"><span class="i">📰</span>חדשות</button>
 </div></nav>
 <div class="sheet-bg" id="sheetBg"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="grab"></div><div id="sheetBody"></div></div>
@@ -2797,7 +2804,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v52</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v53</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3416,12 +3423,12 @@ function setTab(tab){
   ui.tab = tab;
   document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on', s.id==='tab-'+tab));
   document.querySelectorAll('nav.bottom button').forEach(b=>b.classList.toggle('on', b.dataset.tab===tab));
-  $('fab').style.display = /^(settings|market|watch)$/.test(tab) ? 'none' : '';
+  $('fab').style.display = /^(settings|market|watch|news)$/.test(tab) ? 'none' : '';
   window.scrollTo({top:0});
   if(tab==='perf') renderPerf(); else destroyPerf();
   if(tab==='portfolio'){ renderMini(); heatKey = ''; renderHeat(computeAll()); } else destroyMini();
   if(tab==='settings') renderSettings();
-  if(tab==='market') renderMarket(); if(tab==='watch') renderWatch();
+  if(tab==='market') renderMarket(); if(tab==='watch') renderWatch(); if(tab==='news') loadNews();
   mktPoll();
 }
 // ---- inline charts (v44): inert until tapped / long-pressed, so a swipe over them switches tabs; sheets' charts stay live ----
@@ -3437,6 +3444,27 @@ function setTab(tab){
   document.addEventListener('touchend', ()=>clearTimeout(lp), {passive:true});
   window.__chartActive = ()=>act && act.id;
 })();
+// ---- News tab (v53): news.json (or news.md) uploaded by the owner to the same site; always fetched fresh ----
+const NEWS_K = {title:['title','כותרת'], date:['date','תאריך'], text:['text','טקסט','תוכן'], link:['link','קישור','url'], company:['company','חברה']};
+function newsPick(o, k){ for(const n of NEWS_K[k]){ if(o[n]!=null && String(o[n]).trim()!=='') return String(o[n]).trim(); } return ''; }
+function newsTime(d){ if(!d) return null; let m = d.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[ T](\d{1,2}):(\d{2}))?/); if(m) return new Date(+m[1], m[2]-1, +m[3], +(m[4]||0), +(m[5]||0)).getTime();
+  m = d.match(/^(\d{1,2})[./](\d{1,2})[./](\d{2,4})(?:\s+(\d{1,2}):(\d{2}))?/); if(m) return new Date(m[3].length===2 ? 2000 + +m[3] : +m[3], m[2]-1, +m[1], +(m[4]||0), +(m[5]||0)).getTime(); return null; }
+function newsFromMd(t){ return t.split(/^\s*---+\s*$/m).map(b=>{ const o = {}, body = []; b.split('\n').forEach(l=>{ let m;
+    if((m = l.match(/^\s*#+\s*(.+)/)) && !o.title) o.title = m[1]; else if((m = l.match(/^\s*(תאריך|חברה|קישור)\s*:\s*(.*)$/))) o[{'תאריך':'date','חברה':'company','קישור':'link'}[m[1]]] = m[2]; else body.push(l); });
+  o.text = body.join('\n').trim(); return o; }).filter(o=>o.title || o.text); }
+let newsSeq = 0;
+async function loadNews(){ const el = $('newsList'); if(!el) return; const seq = ++newsSeq; let items = null, err = false;
+  const get = async f=>{ const r = await fetch(f+'?t='+Date.now(), {cache:'no-store'}); if(!r.ok) throw new Error(r.status); return r.text(); };
+  try{ const j = JSON.parse(await get('news.json')); items = Array.isArray(j) ? j : (j && Array.isArray(j.items) ? j.items : []); }
+  catch(e){ try{ items = newsFromMd(await get('news.md')); }catch(e2){ err = !(e instanceof SyntaxError) ? false : true; items = []; } }
+  if(seq !== newsSeq) return;
+  const L = items.filter(o=>o && typeof o==='object').map((o,i)=>({i, title:newsPick(o,'title'), date:newsPick(o,'date'), text:newsPick(o,'text'), link:newsPick(o,'link'), company:newsPick(o,'company')})).filter(o=>o.title || o.text);
+  L.forEach(o=>o.t = newsTime(o.date)); L.sort((a,b)=>(b.t??-Infinity)-(a.t??-Infinity) || a.i-b.i);
+  if(!L.length){ el.innerHTML = `<div class="news-empty">${err ? 'קובץ החדשות (news.json) לא תקין – בדקו פסיקים ומירכאות.' : 'אין עדיין חדשות.<br><small>מוסיפים פריטים בקובץ news.json באתר GitHub.</small>'}</div>`; return; }
+  const fd = o=>o.t!=null ? new Date(o.t).toLocaleString('he-IL',{day:'2-digit', month:'2-digit', year:'numeric', ...(/\d:\d/.test(o.date) ? {hour:'2-digit', minute:'2-digit'} : {})}) : esc(o.date);
+  el.innerHTML = L.map(o=>`<article class="news-it">${o.company ? `<span class="news-co">${esc(o.company)}</span>` : ''}<div class="news-d">${fd(o)}</div>${o.title ? `<h3>${esc(o.title)}</h3>` : ''}${o.text ? `<div class="news-t">${esc(o.text)}</div>` : ''}${/^https?:\/\//i.test(o.link) ? `<a class="news-l" href="${esc(o.link)}" target="_blank" rel="noopener">לפרטים ←</a>` : ''}</article>`).join('');
+}
+$('newsRefresh').addEventListener('click', loadNews);
 // ---- swipe between tabs (v42) ----
 (function(){ let sx=0, sy=0, st=0, ok=false;
   const NOSW = 'input,textarea,select,[contenteditable],.editing,.sheet,.sheet-bg,main .chart.active';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
