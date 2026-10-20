@@ -1794,9 +1794,12 @@ function idxSave(){ try{ localStorage.setItem(IDX_KEY, JSON.stringify(idxData));
 const fmtLvl = v=>v==null ? '—' : v.toLocaleString('en-US',{minimumFractionDigits:2, maximumFractionDigits:2});
 async function idxApply(q){
   const miss = IDX.filter(x=>!(q[x.s] && q[x.s].price!=null && q[x.s].prev));
-  let alt = {}; if(miss.length){ try{ alt = await cnbcQuotes(miss.map(x=>x.alt)); }catch(e){} }
+  // v50: indices have no pre-market quote – during US pre-market the ETF's (SPY/QQQ) pre % vs its prior close is the proxy
+  const pre = usSession()==='pre', need = pre ? IDX : miss;
+  let alt = {}; if(need.length){ try{ alt = await cnbcQuotes(need.map(x=>x.alt)); }catch(e){} }
   IDX.forEach(x=>{ const a = q[x.s], b = alt[x.alt], u = a && a.price!=null && a.prev ? a : b && b.price!=null && b.prev ? b : null; if(!u) return;
-    idxData.q[x.k] = {last:u.price, prev:u.prev, sym: u===a ? x.s : x.alt, etf: u!==a, status:u.status||'', ts:u.ts||null, date:u.date||''}; });
+    const ep = b && b.pre && b.pre.pct!=null ? {price:b.pre.price, pct:b.pre.pct, ts:b.pre.ts, src:x.alt} : null;
+    idxData.q[x.k] = {last:u.price, prev:u.prev, sym: u===a ? x.s : x.alt, etf: u!==a, status:u.status||'', ts:u.ts||null, date:u.date||'', pre:ep}; });
   idxSave(); renderIdx(); idxSpark().catch(e=>console.warn('index sparkline', e.message));
 }
 async function idxSpark(){
@@ -1818,11 +1821,13 @@ function sparkSvg(pts, prev, up, W = 58, H = 30){
 function renderIdx(){
   const row = $('idxRow'); if(!row) return; const have = IDX.filter(x=>idxData.q[x.k]); row.hidden = !have.length; if(!have.length) return;
   row.innerHTML = IDX.map(x=>{ const q = idxData.q[x.k]; if(!q) return `<div class="idx" data-idx="${x.k}"><div class="idx-n">${x.n}</div><b class="idx-v num">—</b><div class="idx-c num"></div></div>`;
-    const c = q.last - q.prev, pc = c/q.prev*100, up = c >= 0, sp = idxData.sp[x.k], cl = q.status && q.status!=='REG_MKT';
-    let pts = sp && sp.sym===q.sym && sp.date===q.date ? sp.pts.slice() : null; if(pts && pts.length && !cl) pts.push(q.last);
+    const pr = preOf(q), sp = idxData.sp[x.k], cl = !pr && q.status && q.status!=='REG_MKT';
+    // pre-market: implied level = last close × (1 + ETF pre %), change vs that close (badge 'pre'); otherwise the regular session move
+    const lvl = pr ? (q.etf ? pr.price : q.last*(1+pr.pct/100)) : q.last, base = pr ? q.last : q.prev, c = lvl - base, pc = pr ? (q.etf ? c/base*100 : pr.pct) : c/q.prev*100, up = c >= 0;
+    let pts = sp && sp.sym===q.sym && sp.date===q.date ? sp.pts.slice() : null; if(pts && pts.length && !cl && !pr) pts.push(q.last);
     const name = q.etf ? `${x.n} <small>· ${x.alt}</small>` : x.n;
-    return `<div class="idx" data-idx="${x.k}" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}"><div class="idx-n">${name}${cl ? ' <small>· סגור</small>' : ''}</div>`+
-      `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(q.last)}</b><div class="idx-c num ${cls(c)}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${sparkSvg(pts, q.prev, up)}</div>`; }).join('');
+    return `<div class="idx" data-idx="${x.k}" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}${pr ? ' · טרום מסחר לפי '+esc(pr.src) : ''}"><div class="idx-n">${name}${cl ? ' <small>· סגור</small>' : ''}</div>`+
+      `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(lvl)}</b><div class="idx-c num ${cls(c)}${pr ? ' is-pre' : ''}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${sparkSvg(pts, pr ? null : q.prev, pr ? (q.last>=q.prev) : up)}</div>`; }).join('');
 }
 // ---------- per-holding intraday sparkline (collapsed row) ----------
 // Today's regular session only: CNBC 5-minute bars (same free keyless source as the index tiles), kept for 09:30–16:00 New York /
@@ -2786,7 +2791,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v49</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v50</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
