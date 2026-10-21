@@ -629,10 +629,12 @@ function sortPositions(list){ const {k,d} = effSort(), f = SORT_FIELDS[k], sg = 
     return (x-y)*sg || (a.sym<b.sym?-1:a.sym>b.sym?1:0); }); }
 function renderSortBar(n){ const bar = $('posSort'), {k,d} = effSort(); bar.hidden = n < 2;
   bar.querySelectorAll('[data-sort]').forEach(b=>{ const on = b.dataset.sort===k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
-    const ar = b.querySelector('.ar'); if(ar) ar.remove();
-    if(on){ const s = document.createElement('span'); s.className = 'ar'; s.textContent = d==='desc' ? '↓' : '↑'; s.setAttribute('aria-hidden','true'); b.appendChild(s);
+    let ar = b.querySelector('.ar'); if(ar && !on){ ar.remove(); ar = null; }   // v59: keep the arrow node on live polls (no detach under the finger)
+    if(on){ if(!ar){ ar = document.createElement('span'); ar.className = 'ar'; ar.setAttribute('aria-hidden','true'); b.appendChild(ar); } const t = d==='desc' ? '↓' : '↑'; if(ar.textContent!==t) ar.textContent = t;
       b.setAttribute('aria-label', `מיון לפי ${b.title||b.firstChild.textContent} – ${d==='desc'?'מהגבוה לנמוך':'מהנמוך לגבוה'}`); } else b.setAttribute('aria-label', `מיון לפי ${b.title||b.firstChild.textContent}`); });
-  const on = bar.querySelector('.on'); if(on && bar.scrollWidth > bar.clientWidth + 1) on.scrollIntoView({block:'nearest', inline:'nearest'}); }
+  // v59: scroll ONLY the chip bar horizontally – scrollIntoView also scrolled the page (sort bar above the viewport → jump up) and cancelled flings on every live poll
+  const on = bar.querySelector('.on'); if(on && bar.scrollWidth > bar.clientWidth + 1){ const br = bar.getBoundingClientRect(), r = on.getBoundingClientRect();
+    if(r.left < br.left) bar.scrollLeft -= br.left - r.left; else if(r.right > br.right) bar.scrollLeft += r.right - br.right; } }
 const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'YTD', posRange:'1Y', posStyle:'candle'};
 // A split must never be counted twice. The bank books some splits as bonus shares ('הטבה' rows → sharebonus), and the importer can
 // also add a split it detected in the price history. If the same security has a bonus row, or an earlier split, within ±5 days,
@@ -1315,7 +1317,7 @@ function renderHeader(S){
   // v57: stat tiles – cost / unrealized / realized (v58: cash tile removed) in the display currency; amounts masked by the eye (fmtMoney / fmtSigned)
   { const fx = fxNow(), cv = v=>v==null ? null : (C==='USD' && fx>0 ? v/fx : v), cost = S.mvILS - S.unrealILS;
     const T = [['עלות', has ? fmtMoney(cv(cost), C, 0) : '—', ''], ['לא ממומש', has ? fmtSigned(cv(S.unrealILS), C, 0) : '—', cls(S.unrealILS)], ['ממומש', has ? fmtSigned(cv(S.realizedILS), C, 0) : '—', cls(S.realizedILS)]];
-    const html = T.map(([l,v,c])=>`<div class="hst"><span>${l}</span><b class="num ${c}">${v}</b></div>`).join(''); const hs = $('hStats'); if(hs.innerHTML !== html) hs.innerHTML = html; }
+    const html = T.map(([l,v,c])=>`<div class="hst"><span>${l}</span><b class="num ${c}">${v}</b></div>`).join(''); const hs = $('hStats'); if(hs.innerHTML !== html) morph(hs, html); }
   renderEye();
   $('hUpd').textContent = state.lastRefresh ? `מחירים עודכנו ${new Date(state.lastRefresh).toLocaleTimeString('he-IL')}${state.refreshErrors?` · ${state.refreshErrors} לא עודכנו`:''}` : 'טרם עודכנו מחירים';
 }
@@ -1324,13 +1326,13 @@ function cashOpen(){ try{ return localStorage.getItem(CASH_KEY)==='1'; }catch(e)
 function renderCash(S){
   const c = S.L.cash, fx = fxNow();
   const C = dispCur()==='USD' && fx ? 'USD' : 'ILS', tot = C==='USD' ? c.USD + c.ILS/fx : c.ILS + c.USD*(fx||0);
-  $('fxSmall').innerHTML = `סה״כ <b class="num" id="cashTot">${fmtMoney(tot,C,0)}</b>` + (S.cashWeight!=null ? ` · <span class="cw" id="cashW">${fmtW(S.cashWeight)} מהתיק</span>` : '') + (fx ? `<span class="fxr"> · <span class="num">$1 = ₪${fx.toFixed(4)}</span></span>` : '');
+  M($('fxSmall')).h = `סה״כ <b class="num" id="cashTot">${fmtMoney(tot,C,0)}</b>` + (S.cashWeight!=null ? ` · <span class="cw" id="cashW">${fmtW(S.cashWeight)} מהתיק</span>` : '') + (fx ? `<span class="fxr"> · <span class="num">$1 = ₪${fx.toFixed(4)}</span></span>` : '');
   // compact view: the cash card folds to one slim row (total in the header currency); tap to open – remembered like the holdings view
   const card = $('cashCard'), compact = posView()==='compact', open = !compact || cashOpen();
   card.classList.toggle('collapsible', compact); card.classList.toggle('collapsed', !open);
   $('cashHead').setAttribute('role', compact ? 'button' : 'heading'); $('cashHead').setAttribute('aria-expanded', String(open));
   $('cashChev').textContent = compact ? ((!open && (c.ILS < -0.005 || c.USD < -0.005) ? '⚠️ ' : '') + (open ? '▴' : '▾')) : '';
-  $('cashRow').innerHTML = ['ILS','USD'].map(cur=>{ const neg = c[cur] < -0.005;
+  M($('cashRow')).h = ['ILS','USD'].map(cur=>{ const neg = c[cur] < -0.005;
     return `<div class="c ${neg?'negc':''}"><div class="l">${cur==='ILS'?'מזומן בשקלים':'מזומן בדולרים'}</div>
      <div class="v num ${neg?'neg':''}">${fmtMoney(c[cur],cur)}</div>
      ${cur==='USD'&&fx&&Math.abs(c.USD)>0.005?`<div class="l num">≈ ${fmtMoney(c.USD*fx,'ILS',0)}</div>`:''}${neg?'<div class="l neg">⚠️ יתרה שלילית</div>':''}</div>`; }).join('');
@@ -1879,7 +1881,7 @@ function sparkSvg(pts, prev, up, W = 58, H = 30){
 }
 function renderIdx(){
   const row = $('idxRow'); if(!row) return; const have = IDX.filter(x=>idxData.q[x.k]); row.hidden = !have.length; if(!have.length) return;
-  row.innerHTML = IDX.map(x=>{ const q = idxData.q[x.k]; if(!q) return `<div class="idx" data-idx="${x.k}"><div class="idx-n">${x.n}</div><b class="idx-v num">—</b><div class="idx-c num"></div></div>`;
+  M(row).h = IDX.map(x=>{ const q = idxData.q[x.k]; if(!q) return `<div class="idx" data-idx="${x.k}"><div class="idx-n">${x.n}</div><b class="idx-v num">—</b><div class="idx-c num"></div></div>`;
     const pr = preOf(q), sp = idxData.sp[x.k], cl = !pr && q.status && q.status!=='REG_MKT';
     // pre-market: implied level = last close × (1 + ETF pre %), change vs that close (badge 'pre'); otherwise the regular session move
     const lvl = pr ? (q.etf ? pr.price : q.last*(1+pr.pct/100)) : q.last, base = pr ? q.last : q.prev, c = lvl - base, pc = pr ? (q.etf ? c/base*100 : pr.pct) : c/q.prev*100, up = c >= 0;
@@ -1908,7 +1910,7 @@ async function spkFetch(sym){ const s = spkSession(sym); if(!s) return; const [t
 function sparkCell(p){ const e = spk[p.sym], s = spkSession(p.sym), q = state.quotes[p.sym]; if(!e || !s || e.d!==s.date || e.pts.length < 2 || !q || !q.prev) return '';
   const pts = e.pts.slice(); if(s.open && p.price!=null && !p.manual) pts.push(p.price); const last = pts[pts.length-1];
   return sparkSvg(pts, q.prev, last >= q.prev, 46, 24); }
-function spkPatch(sym){ const S = computeAll(); S.positions.forEach(p=>{ if(sym && p.sym!==sym) return; document.querySelectorAll(`#posList [data-spark="${CSS.escape(p.sym)}"]`).forEach(el=>{ const h = sparkCell(p); if(el.dataset.h!==h){ el.innerHTML = h; el.dataset.h = h; } }); }); }
+function spkPatch(sym){ const S = computeAll(); S.positions.forEach(p=>{ if(sym && p.sym!==sym) return; document.querySelectorAll(`#posList [data-spark="${CSS.escape(p.sym)}"]`).forEach(el=>{ const h = sparkCell(p); if(el.dataset.h!==h){ morph(el, h); el.dataset.h = h; } }); }); }
 async function spkRun(){ if(spkBusy) return; spkBusy = true;
   try{ const open = openSymbols(), todo = open.filter(spkNeed); let i = 0;
     await Promise.all([0,1,2].map(async()=>{ while(i < todo.length){ const sym = todo[i++]; await spkFetch(sym); spkPatch(sym); } }));
@@ -1942,21 +1944,34 @@ function heatTileInner(it){ const w = it.w, h = it.h, mn = Math.min(w, h), fs = 
   if(w < 46 || h < 30) return `<b style="font-size:${Math.min(fs,11)}px">${esc(it.sym)}</b>`;
   const sub = Math.max(9.5, Math.min(14, fs*0.72));
   return `<b style="font-size:${fs.toFixed(1)}px">${esc(it.sym)}</b><i style="font-size:${sub.toFixed(1)}px">${pct}</i>` + (h >= 58 && w >= 54 ? `<s style="font-size:${Math.max(9,sub*0.82).toFixed(1)}px">${fmtW(it.wt)}</s>` : ''); }
+// v59: patch DOM in place instead of innerHTML replacement – live polls must not detach the node under the user's finger
+// (Android cancels an active touch scroll/fling when its target is removed → the screen "jumps" on every auto refresh)
+function morph(el, html){ if(!el) return; const t = document.createElement(el.tagName.toLowerCase()==='svg' ? 'div' : el.tagName); t.innerHTML = html; morphKids(el, t); }
+function morphKids(a, b){ const A = [...a.childNodes], Bn = [...b.childNodes];
+  for(let i=0;i<Bn.length;i++){ const x = A[i], y = Bn[i];
+    if(!x){ a.appendChild(y); continue; }
+    if(x.nodeType!==y.nodeType || x.nodeName!==y.nodeName){ a.replaceChild(y, x); continue; }
+    if(x.nodeType===3 || x.nodeType===8){ if(x.nodeValue!==y.nodeValue) x.nodeValue = y.nodeValue; continue; }
+    for(const at of [...x.attributes]) if(!y.hasAttribute(at.name)) x.removeAttribute(at.name);
+    for(const at of [...y.attributes]) if(x.getAttribute(at.name)!==at.value) x.setAttribute(at.name, at.value);
+    morphKids(x, y); }
+  for(let i=A.length-1;i>=Bn.length;i--) a.removeChild(A[i]); }
+const M = el=>({ set h(v){ morph(el, v); } });
 function renderHeat(S){ const card = $('heatCard'), map = $('heatMap'); if(!card) return;
   const items = S.positions.filter(p=>p.qty > 0 && p.weight > 0).map(p=>({sym:p.sym, v:p.weight, wt:p.weight, p:p.dayPct, pre:!!p.pre})).sort((a,b)=>b.v-a.v);
   card.hidden = !items.length; if(!items.length){ heatKey = ''; return; }
   const open = heatOpen(), b = $('heatTgl'); card.classList.toggle('collapsed', !open);
   if(b){ b.textContent = open ? '▴' : '▾'; b.setAttribute('aria-expanded', String(open)); b.setAttribute('aria-label', open ? 'כיווץ מפת החום' : 'הצגת מפת החום'); }
-  const up = items.filter(x=>x.p > 0.004).length, dn = items.filter(x=>x.p < -0.004).length; $('heatSum').innerHTML = `· <b class="pos">${up} עולות</b> · <b class="neg">${dn} יורדות</b>`;
+  const up = items.filter(x=>x.p > 0.004).length, dn = items.filter(x=>x.p < -0.004).length; M($('heatSum')).h = `· <b class="pos">${up} עולות</b> · <b class="neg">${dn} יורדות</b>`;
   if(!open){ heatKey = ''; return; }
   const W = map.clientWidth, H = map.clientHeight; if(!W || !H) return;
   const key = W+'x'+H+'|'+items.map(x=>x.sym+':'+Math.round(x.v*4)).join(',');
   if(key !== heatKey){ heatKey = key; squarify(items, W, H);
-    map.innerHTML = items.map(it=>`<div class="ht" role="listitem" data-hsym="${esc(it.sym)}" title="${esc(it.sym)} · ${it.p!=null ? fmtPct(it.p) : '—'} · ${fmtW(it.wt)} מהתיק" style="right:${it.x.toFixed(1)}px;top:${it.y.toFixed(1)}px;width:${it.w.toFixed(1)}px;height:${it.h.toFixed(1)}px;background-color:${heatColor(it.p)}">${heatTileInner(it)}</div>`).join(''); return; }
+    M(map).h = items.map(it=>`<div class="ht" role="listitem" data-hsym="${esc(it.sym)}" title="${esc(it.sym)} · ${it.p!=null ? fmtPct(it.p) : '—'} · ${fmtW(it.wt)} מהתיק" style="right:${it.x.toFixed(1)}px;top:${it.y.toFixed(1)}px;width:${it.w.toFixed(1)}px;height:${it.h.toFixed(1)}px;background-color:${heatColor(it.p)}">${heatTileInner(it)}</div>`).join(''); return; }
   // same layout: recolour + relabel in place
   const geo = Object.fromEntries([...map.children].map(e=>[e.dataset.hsym, e]));
   items.forEach(it=>{ const e = geo[it.sym]; if(!e) return; it.w = parseFloat(e.style.width); it.h = parseFloat(e.style.height);
-    const bg = heatColor(it.p); if(e.style.backgroundColor !== bg) e.style.backgroundColor = bg; const html = heatTileInner(it); if(e.dataset.h !== html){ e.innerHTML = html; e.dataset.h = html; } }); }
+    const bg = heatColor(it.p); if(e.style.backgroundColor !== bg) e.style.backgroundColor = bg; const html = heatTileInner(it); if(e.dataset.h !== html){ morph(e, html); e.dataset.h = html; } }); }
 const QUICK_BM = [{k:'spx', s:'.SPX', alt:'SPY', n:'S&P 500', color:'#ea580c'}, {k:'ndx', s:'.NDX', alt:'QQQ', n:'נאסד"ק 100', color:'#9333ea'}];
 const BMQ_KEY = 'portfolioTracker.bmQuick';
 function bmQuick(){ try{ const v = (localStorage.getItem(BMQ_KEY)||'').split(',').filter(k=>QUICK_BM.some(q=>q.k===k)); return v; }catch(e){ return []; } }
@@ -2076,7 +2091,7 @@ function renderAlloc(S){
   items.sort((a,b)=>b.v-a.v);
   let acc = 0;
   const arcs = items.map((it,i)=>{ const pct = it.v/tot*100; const c = `<circle r="15.9155" cx="21" cy="21" fill="none" stroke="${COLORS[i%COLORS.length]}" stroke-width="6.5" stroke-dasharray="${pct.toFixed(3)} ${(100-pct).toFixed(3)}" stroke-dashoffset="${(25-acc).toFixed(3)}"></circle>`; acc += pct; return c; }).join('');
-  $('alloc').innerHTML = `<div class="donut-wrap"><svg viewBox="0 0 42 42">${arcs}<text x="21" y="22.4" text-anchor="middle" font-size="3.6" font-weight="700" style="fill:var(--text)">${fmtMoney(tot,'ILS',0)}</text></svg>
+  M($('alloc')).h = `<div class="donut-wrap"><svg viewBox="0 0 42 42">${arcs}<text x="21" y="22.4" text-anchor="middle" font-size="3.6" font-weight="700" style="fill:var(--text)">${fmtMoney(tot,'ILS',0)}</text></svg>
     <div class="donut-legend">${items.map((it,i)=>`<div><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${COLORS[i%COLORS.length]};margin-inline-end:6px"></i><span class="ltr">${esc(it.k)}</span></span><span class="num">${(it.v/tot*100).toFixed(1)}%</span></div>`).join('')}</div></div>
     ${shorts.length?`<div class="note">פוזיציות שורט (התחייבות, לא בעוגה): ${shorts.map(p=>`<span class="ltr">${esc(p.sym)}</span> <span class="num">${fmtMoney(p.mvILS,'ILS',0)}</span>`).join(' · ')}</div>`:''}`;
 }
@@ -2093,7 +2108,7 @@ function renderPL(S){
     ['נטו אם מוכרים הכול עכשיו', fmtSigned(S.netIfSoldAll,'ILS',0), S.netIfSoldAll],
     ['עמלות ששולמו', fmtMoney(S.feesILS,'ILS',0), 0],
     ['הפקדות נטו', fmtMoney(S.L.netDepILS,'ILS',0), 0]];
-  $('plKv').innerHTML = rows.map(([l,v,c])=>`<div><span>${l}</span><b class="num ${cls(c)}">${v}</b></div>`).join('');
+  M($('plKv')).h = rows.map(([l,v,c])=>`<div><span>${l}</span><b class="num ${cls(c)}">${v}</b></div>`).join('');
   renderTaxBox(S);
 }
 function renderTaxBox(S){
@@ -2851,7 +2866,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v58</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v59</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
