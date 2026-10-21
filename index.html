@@ -448,6 +448,12 @@ body{font-size:15px}
 .pc-d>b.is-pre:first-child::before,.pc-d>b.is-after:first-child::before{font-size:.66em;padding:0 3px;margin-inline-end:2px;letter-spacing:0}
 .wgrid{grid-template-columns:40px minmax(min-content,1fr) 64px 92px}
 @media (max-width:370px){.wgrid{grid-template-columns:38px minmax(min-content,1fr) 56px 84px}.wr .pc-s .spark{width:54px}}
+/* v65: extended-hours line under the price (slot reserved for the whole pre/after session → constant row height) */
+.xl{display:none;font-size:.68rem;font-weight:600;line-height:1.25;white-space:nowrap;direction:ltr;unicode-bidi:isolate;text-align:end}
+html.ext-sess .xl{display:block;min-height:1.25em}
+.xl.is-pre::before,.xl.is-after::before{font-size:.85em;padding:0 3px;margin-inline-end:3px;line-height:1.3}
+.pc-d .xl{align-self:flex-end}.idx .xl{text-align:start}.mc .xl{font-size:.66rem}
+.idx-n:has(.xl){display:flex;align-items:baseline;justify-content:space-between;gap:4px}.idx-n .idx-nt{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}html.ext-sess .idx-n .xl{display:inline-block;min-height:0;flex:none;font-size:.64rem}
 </style>
 </head>
 <body>
@@ -637,6 +643,10 @@ function preOf(q, now){ if(!q || !q.pre || !q.pre.ts) return null; const ss = us
   const kind = q.pre.kind || 'pre'; if((ss==='pre') !== (kind==='pre')) return null;
   const z = zoned('America/New_York', now), t = zoned('America/New_York', new Date(q.pre.ts)), close = US_EARLY.has(z.date) ? 13*60 : 16*60;
   return t.date===z.date && (ss==='pre' ? t.min >= 4*60 : t.min >= close) && q.pre.price > 0 ? Object.assign({kind}, q.pre) : null; }
+// v65: small extended-hours line under a row's price: 'after -0.34 (-0.10%)' (market data – never masked)
+function extLineHtml(e, cls0, full){ if(!e) return `<span class="xl${cls0?' '+cls0:''}"></span>`; const up = e.chg>=0;   // rows: tag + %; wide cards (full): tag + change (%)
+  return `<span class="xl num ${e.chg>0?'pos':e.chg<0?'neg':''} is-${e.kind}${cls0?' '+cls0:''}">${full ? (up?'+':'-')+Math.abs(e.chg).toFixed(2)+' ('+fmtPct(e.pct)+')' : fmtPct(e.pct)}</span>`; }
+function extSessMark(){ const on = !!extSess(); if(document.documentElement.classList.contains('ext-sess') !== on) document.documentElement.classList.toggle('ext-sess', on); }
 const extSess = now=>{ const ss = usSession(now); return ss==='pre' || ss==='post' ? ss : null; };   // US extended session (pre / after-hours)
 function marketOf(sym){ if(isCrypto(sym)) return 'crypto'; if(isTaseSec(sym) || isTaIndex(sym)) return 'tase'; return 'us'; }
 function marketState(m, now){
@@ -1106,7 +1116,7 @@ function computeAll(){
   // v49 pre-market: rows/heatmap/sort/detail show the pre-market move vs the prior close; header totals above stay on regular values
   let preILS = 0, preUSD = 0, preN = 0;
   positions.forEach(r=>{ if(r.manual || marketOf(r.sym)!=='us' || isCrypto(r.sym)) return; const pr = preOf(state.quotes[r.sym]); if(!pr) return;
-    r.pre = pr.kind; r.prePrice = pr.price; r.dayPct = pr.pct; r.day = r.qty*pr.chg; preUSD += r.qty*pr.chg; preILS += (toILS(r.qty*pr.chg, r.cur)||0); preN++; });
+    r.pre = pr.kind; r.prePrice = pr.price; r.ext = {kind:pr.kind, price:pr.price, chg:pr.chg, pct:pr.pct}; /* v65: day/dayPct stay regular-session (pill); extended move → its own line */ preUSD += r.qty*pr.chg; preILS += (toILS(r.qty*pr.chg, r.cur)||0); preN++; });
   const preInfo = preN ? {ils:preILS, usd:preUSD, pct: equity > 0 ? preILS/equity*100 : null, pctUSD: equity > 0 && fxNow() ? preUSD/(equity/fxNow())*100 : null, n:preN, kind:extSess()==='post' ? 'after' : 'pre'} : null;
   positions.sort((a,b)=>Math.abs(b.mvILS||0)-Math.abs(a.mvILS||0));
   // total return since the portfolio started = (current value − net deposits) / net deposits, in ILS.
@@ -1393,7 +1403,7 @@ function hdrVals(S){
   const eq = S.equity/fx, nd = S.L.netDepUSD, pl = eq - nd;
   return {c:'USD', eq, pl, plPct: nd>0 ? pl/nd*100 : null, day:S.dayUSD, dayPct:S.dayPctUSD, net:S.netIfSoldAll/fx};
 }
-function renderHeader(S){
+function renderHeader(S){ extSessMark();
   const has = state.txs.length>0, V = hdrVals(S), C = V.c;
   const bc = $('btnCur'); bc.setAttribute('aria-pressed', C==='USD'); bc.setAttribute('aria-label', C==='USD' ? 'מוצג בדולרים – החלפה לשקלים' : 'מוצג בשקלים – החלפה לדולרים');   // v57: segmented ₪ | $ (CSS highlights the active one)
   const t = $('hTotal'); t.textContent = fmtMoney(V.eq,C,0);
@@ -1465,7 +1475,7 @@ function cardFields(p){
   const cur = p.cur, a = ageInfo(p.sym, p);
   // collapsed row: share price + daily % (plus change-from-cost % while sorting by it); value, amounts and change-from-cost live in the details
   return {
-    hd:[p.dayPct!=null ? fmtPct(p.dayPct) : '—', 'num '+cls(p.dayPct)+(p.pre?' is-'+p.pre:'')],
+    hd:[p.dayPct!=null ? fmtPct(p.dayPct) : '—', 'num '+cls(p.dayPct)],
     hu:[p.unrealPct!=null ? fmtPct(p.unrealPct) : '—', 'num '+cls(p.unrealPct)],
     mv:[fmtMoney(p.mv,cur), 'v num'],
     mvr:[fmtMoney(p.mv,cur,0), 'v num'],   // v63: row line under the name – position value, masked by the eye
@@ -1477,7 +1487,8 @@ function cardFields(p){
     unreal:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
     price:[fmtPrice(p.pre ? p.prePrice : p.price,cur), 'num'+(p.pre?' is-'+p.pre:'')],
     age:[a.t, 'age '+a.c],
-    dayp:[p.dayPct!=null?fmtPct(p.dayPct):'—', 'num '+cls(p.day)+(p.pre?' is-'+p.pre:'')],
+    dayp:[p.dayPct!=null?fmtPct(p.dayPct):'—', 'num '+cls(p.day)],
+    he:[p.ext ? fmtPct(p.ext.pct) : '', 'xl'+(p.ext ? ' num '+cls(p.ext.chg)+' is-'+p.ext.kind : '')],   // v65: extended line under the price
     daya:[p.day!=null?fmtSigned(p.day,cur):'', 'num '+cls(p.day)],
     mvs:[fmtMoney(p.mv,cur,0), 'num'],
     unra:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
@@ -1556,7 +1567,7 @@ function renderPortfolio(S){
           <div class="pcol pc-s" data-spark="${esc(p.sym)}">${sparkCell(p)}</div>
           <div class="pcol pc-w">${f('hw','span')}</div>
           <div class="pcol pc-v"><span data-f="mvr" class="${F.mvr[1]}">${F.mvr[0]}</span></div><div class="pcol pc-m num" data-mcap>${capT(posCap(p), cur)}</div>
-          <div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}${f('hp','span')}</div>
+          <div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}${f('hp','span')}${f('he','span')}</div>
         </button>
         <div class="pc-b"><div class="pc-g">
           <div><span>${short?'כמות בשורט':'כמות'}</span><b class="num">${fmtQtyP(Math.abs(p.qty))}</b></div>
@@ -1584,7 +1595,7 @@ function renderPortfolio(S){
       return `<button class="pcard" data-sym="${esc(p.sym)}">
         <div class="pgrid">${logoHtml(p.sym)}<div class="pc-n" style="min-width:0"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tags.join('')}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
           <div class="pcol pc-s" data-spark="${esc(p.sym)}">${sparkCell(p)}</div><div class="pcol pc-w"><span data-f="hw" class="${F.hw[1]}">${F.hw[0]}</span></div><div class="pcol pc-v"><span data-f="mvr" class="${F.mvr[1]}">${F.mvr[0]}</span></div><div class="pcol pc-m num" data-mcap>${capT(posCap(p), cur)}</div>
-          <div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}<span data-f="hp" class="${F.hp[1]}">${F.hp[0]}</span></div></div>
+          <div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}<span data-f="hp" class="${F.hp[1]}">${F.hp[0]}</span><span data-f="he" class="${F.he[1]}">${F.he[0]}</span></div></div>
         <div class="pmeta">
           ${TYPE_LABELS[p.asset.type] ? `<span class="tag">${esc(TYPE_LABELS[p.asset.type])}</span>` : ''}
           <span>היום: ${f('day')}</span>
@@ -1982,11 +1993,12 @@ function renderIdx(){
   M(row).h = IDX.map(x=>{ const q = idxData.q[x.k]; if(!q) return `<div class="idx" data-idx="${x.k}"><div class="idx-n">${x.n}</div><b class="idx-v num">—</b><div class="idx-c num"></div></div>`;
     const pr = preOf(q), sp = idxData.sp[x.k], cl = !pr && q.status && q.status!=='REG_MKT';
     // pre-market: implied level = last close × (1 + ETF pre %), change vs that close (badge 'pre'); otherwise the regular session move
-    const lvl = pr ? (q.etf ? pr.price : q.last*(1+pr.pct/100)) : q.last, base = pr ? q.last : q.prev, c = lvl - base, pc = pr ? (q.etf ? c/base*100 : pr.pct) : c/q.prev*100, up = c >= 0;
-    let pts = sp && sp.sym===q.sym && sp.date===q.date ? sp.pts.slice() : null; if(pts && pts.length && !cl && !pr) pts.push(q.last);
+    const lvl = q.last, c = lvl - q.prev, pc = c/q.prev*100, up = c >= 0;   // v65: regular session level/change; extended move on its own line
+    const xe = pr ? (()=>{ const xl = q.etf ? pr.price : q.last*(1+pr.pct/100); return {kind:pr.kind, price:xl, chg:xl-q.last, pct:pr.pct}; })() : null;
+    let pts = sp && sp.sym===q.sym && sp.date===q.date ? sp.pts.slice() : null; if(pts && pts.length && !cl) pts.push(q.last);
     const name = q.etf ? `${x.n} <small>· ${x.alt}</small>` : x.n;
-    return `<div class="idx" data-idx="${x.k}" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}${pr ? ' · טרום מסחר לפי '+esc(pr.src) : ''}"><div class="idx-n">${name}${cl ? ' <small>· סגור</small>' : ''}</div>`+
-      `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(lvl)}</b><div class="idx-c num ${cls(c)}${pr ? ' is-'+pr.kind : ''}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${sparkSvg(pts, pr ? null : q.prev, pr ? (q.last>=q.prev) : up)}</div>`; }).join('');
+    return `<div class="idx" data-idx="${x.k}" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}${pr ? ' · טרום מסחר לפי '+esc(pr.src) : ''}"><div class="idx-n"><span class="idx-nt">${name}${cl ? ' <small>· סגור</small>' : ''}</span>${extLineHtml(xe, 'idx-e')}</div>`+
+      `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(lvl)}</b><div class="idx-c num ${cls(c)}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${sparkSvg(pts, q.prev, up)}</div>`; }).join('');
 }
 // ---------- per-holding intraday sparkline (collapsed row) ----------
 // Today's regular session only: CNBC 5-minute bars (same free keyless source as the index tiles), kept for 09:30–16:00 New York /
@@ -2056,7 +2068,7 @@ function morphKids(a, b){ const A = [...a.childNodes], Bn = [...b.childNodes];
   for(let i=A.length-1;i>=Bn.length;i--) a.removeChild(A[i]); }
 const M = el=>({ set h(v){ morph(el, v); } });
 function renderHeat(S){ const card = $('heatCard'), map = $('heatMap'); if(!card) return;
-  const items = S.positions.filter(p=>p.qty > 0 && p.weight > 0).map(p=>({sym:p.sym, v:p.weight, wt:p.weight, p:p.dayPct, pre:p.pre||null})).sort((a,b)=>b.v-a.v);
+  const items = S.positions.filter(p=>p.qty > 0 && p.weight > 0).map(p=>({sym:p.sym, v:p.weight, wt:p.weight, p:p.dayPct, pre:null})).sort((a,b)=>b.v-a.v);
   card.hidden = !items.length; if(!items.length){ heatKey = ''; return; }
   const open = heatOpen(), b = $('heatTgl'); card.classList.toggle('collapsed', !open);
   if(b){ b.textContent = open ? '▴' : '▾'; b.setAttribute('aria-expanded', String(open)); b.setAttribute('aria-label', open ? 'כיווץ מפת החום' : 'הצגת מפת החום'); }
@@ -2349,7 +2361,7 @@ const mq = {};   // live quotes keyed by the CNBC request symbol (upper-case)
 async function instQuotes(list){ const qs = [...new Set(list.map(i=>i.q))]; if(!qs.length) return;
   for(let i=0;i<qs.length;i+=40){ try{ Object.assign(mq, await cnbcQuotes(qs.slice(i,i+40))); }catch(e){ console.warn('market quotes', e.message); } } }
 function iq(it){ const q = mq[String(it.q).toUpperCase()] || null; if(!q || !it.sec || marketOf(it.sym)!=='us') return q;
-  const pr = preOf(q); return pr ? Object.assign({}, q, {price:pr.price, prev:q.price, isPre:pr.kind}) : q; }   // v49: US pre-market view (prev = prior close)
+  const pr = preOf(q); return pr ? Object.assign({}, q, {ext:{kind:pr.kind, price:pr.price, chg:pr.chg, pct:pr.pct}}) : q; }   // v65: regular quote kept (change pill); extended price/line from .ext   // v49: US pre-market view (prev = prior close)
 function fmtInst(it, v){ if(v==null || !isFinite(v)) return '—'; if(it.y) return v.toFixed(it.dp||3)+'%'; if(it.sec) return fmtPrice(v, it.cur);   // market price: never masked by the eye toggle
   return (it.u||'') + v.toLocaleString('en-US',{minimumFractionDigits:it.dp, maximumFractionDigits:it.dp}); }
 function chgInst(it, a, b){ if(a==null || b==null || !b) return {t:'—', c:0};
@@ -2390,8 +2402,8 @@ let mktRange = '1D',   // v51: the market tab always opens on the daily range (a
 function mktCardHtml(it){ const q = iq(it), last = q ? q.price : null, key = it.q+'|'+mktRange, c = instCache[key];
   const pts = c ? withLive(it, mktRange, c.pts) : null, base = pts ? instRangeBase(it, mktRange, pts) : (mktRange==='1D' && q ? q.prev : null);
   const ch = chgInst(it, last, mktRange==='1D' ? (q && q.prev) : base), chart = pts && pts.length > 1 ? lineSvg(pts, base, ch.c >= 0, 160, 48, mktRange==='1D') : `<div class="nod">${c ? 'אין נתונים לטווח' : 'טוען…'}</div>`;
-  return `<div class="mc" role="button" tabindex="0" data-mk="${esc(it.k)}" aria-label="${esc(it.n)}"><span class="mn">${esc(it.n)} <span class="ms">${esc(it.sec ? it.sym : it.s)}</span></span><span class="mv">${fmtInst(it, last)}</span>`+
-    `<span class="mch ${cls(ch.c)}">${ch.t}</span>${chart}<span class="ed"><button data-mv="up" aria-label="הזזה למעלה">▲</button><button data-mv="down" aria-label="הזזה למטה">▼</button><button data-mv="del" class="del" aria-label="הסרה">✕</button></span></div>`; }
+  return `<div class="mc" role="button" tabindex="0" data-mk="${esc(it.k)}" aria-label="${esc(it.n)}"><span class="mn">${esc(it.n)} <span class="ms">${esc(it.sec ? it.sym : it.s)}</span></span><span class="mv">${fmtInst(it, q && q.ext ? q.ext.price : last)}</span>`+
+    `<span class="mch ${cls(ch.c)}">${ch.t}</span>${it.sec ? extLineHtml(q && q.ext, 'mce', true) : ''}${chart}<span class="ed"><button data-mv="up" aria-label="הזזה למעלה">▲</button><button data-mv="down" aria-label="הזזה למטה">▼</button><button data-mv="del" class="del" aria-label="הסרה">✕</button></span></div>`; }
 function mktItems(){ return mktCfg.keys.map(mktInst).filter(Boolean); }
 function drawMarket(){ const g = $('mktGrid'); if(!g) return; const L = mktItems();
   g.innerHTML = L.length ? L.map(mktCardHtml).join('') : '<div class="wl-empty" style="grid-column:1/-1">המסך ריק – הוסיפו מדדים או ניירות בעריכה.</div>';
@@ -2444,7 +2456,7 @@ function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts =
   const pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div></div>`+
     `<div class="pcol pc-s wl-live">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, up, 48, 24) : ''}</div><div class="pcol pc-m wl-live num">${capT(q && q.mcap, it.cur)}</div>`+
-    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}${q && q.isPre ? ' is-'+q.isPre : ''}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="wl-p v num">${q ? fmtPrice(q.price, it.cur) : '—'}</span></div>`+
+    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="wl-p v num">${q ? fmtPrice(q.ext ? q.ext.price : q.price, it.cur) : '—'}</span>${extLineHtml(q && q.ext)}</div>`+
     `<div class="wl-ed" style="grid-column:3/-1"><button data-wm="up" aria-label="הזזה למעלה" ${i===0?'disabled':''}>▲</button><button data-wm="down" aria-label="הזזה למטה" ${i===n-1?'disabled':''}>▼</button><button data-wm="del" class="del" aria-label="הסרה מהרשימה">✕</button></div></div>`; }
 function wlSecHtml(L, li, nL){ const open = !!wlOpen[L.id], ed = wlEditing===L.id, its = wlSorted(L.items.map(secInst), ed);
   let up = 0, dn = 0; its.forEach(it=>{ const q = iq(it); if(q && q.prev){ const d = q.price/q.prev - 1; if(d > 0.00004) up++; else if(d < -0.00004) dn++; } });
@@ -2494,7 +2506,7 @@ function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p
     ${held ? `<div class="btn-row" style="margin-top:12px"><button class="btn btn-light" id="isPos">💼 פתיחת הפוזיציה בתיק</button></div>` : ''}
     ${it.stock ? '<div class="note">מניות ותעודות סל בארה״ב: מסחר רגיל בלבד (09:30–16:00 ניו יורק).</div>' : ''}`; }
 function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[it.q+'|'+S.range], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
-  const ch = chgInst(it, q ? q.price : null, base); $('isV').textContent = fmtInst(it, q ? q.price : null); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+(q && q.isPre && S.range==='1D' ? ' is-'+q.isPre : '');
+  const ch = chgInst(it, q ? q.price : null, base); $('isV').textContent = fmtInst(it, q ? q.price : null); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+'';
   const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [['סגירה קודמת', fmtInst(it, q && q.prev)], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
   if(S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
 async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S.it, el = $('isChart'), seq = ++S.seq;
@@ -2850,7 +2862,7 @@ function symTxHtml(sym){ const l = sortedTxs().filter(t=>t.symbol===sym || t.toS
 function posKvRows(p){
   const cur = p.cur, short = p.qty<0, open = Math.abs(p.qty)>1e-9, R = [];
   if(open) R.push(['mv','שווי', fmtMoney(p.mv,cur) + (cur==='USD' && p.mvILS!=null ? ' · ' + fmtMoney(p.mvILS,'ILS',0) : ''), '', 'hl'], ['unreal','שינוי מעלות (ברוטו)', `${fmtPct(p.unrealPct)} · ${fmtSigned(p.unreal,cur)}`, cls(p.unreal), 'hl'], ['weight','% מהתיק', fmtW(p.weight), ''], ['price',`מחיר נוכחי${p.manual?' (ידני)':''}${p.pre?' · pre':''}`, fmtPrice(p.pre ? p.prePrice : p.price,cur), ''],
-    ['day', p.pre ? 'שינוי היום · '+p.pre : 'שינוי היום', p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
+    ['day', 'שינוי היום', p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
     ['qty', short?'כמות בשורט':'כמות', fmtQtyP(Math.abs(p.qty)), ''], ['avg', short?'מחיר שורט ממוצע':'עלות ממוצעת', fmtMoney(p.avg,cur), ''],
     ['open','נפתחה', fmtDate(p.openDate), 'nonum'],
     ['costils','עלות בשקלים למס', p.qty>0 && p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', ''],
@@ -2964,7 +2976,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v64</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v65</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
