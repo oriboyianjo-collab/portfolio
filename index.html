@@ -357,6 +357,50 @@ html.dark input,html.dark select,html.dark textarea{background-color:#111b2e;col
 html.dark nav.bottom button.on{color:#60a5fa}html.dark nav.bottom{box-shadow:0 -2px 12px rgba(0,0,0,.35)}
 html.dark input::placeholder,html.dark textarea::placeholder{color:#6b778a}
 html.dark .top .pos{color:#6ee7b7}html.dark .top .neg{color:#fca5a5}
+/* ===== v60: wide / edge-to-edge rows ===== */
+body{font-size:15px}
+.wrap{padding:0 6px}
+.top{padding:6px 6px 4px}
+.card{padding:12px 8px;margin-bottom:8px;border-radius:14px}
+/* rows instead of boxed cards */
+.pcard,.wr{border:0;border-radius:0;background:transparent;box-shadow:none;margin:0;padding:12px 2px;border-bottom:1px solid var(--border)}
+#posList{display:block}#posList>.pcard+.pcard{margin-top:0}
+.wls{border:0;border-radius:0;margin-top:4px}.wlb{padding:0}.wls.open .wlh{border-bottom:1px solid var(--border)}
+/* bigger logo circle, larger text */
+.logo,.logo.lg{width:42px;height:42px;border-radius:50%;font-size:.82rem}
+.pcard .pgrid .psym,.wr .psym{font-size:1.1rem;font-weight:700}
+.pcard .pgrid .pname,.wr .pname{font-size:.84rem}
+/* grid: logo | name | sparkline | (weight) | change pill — market cap column hidden */
+.wgrid{grid-template-columns:42px minmax(0,1fr) 74px 98px;column-gap:10px}
+.pgrid,.pc-h.pgrid{grid-template-columns:42px minmax(0,1fr) 62px 46px 98px;column-gap:8px}
+
+.pc-s .spark,.wr .pc-s .spark{width:70px;height:30px}.pc-s{height:32px}
+/* prominent change pill + price under it */
+.pc-d{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.pc-d b.num{display:inline-block;min-width:84px;text-align:center;padding:5px 8px;border-radius:7px;font-size:1rem;font-weight:800;color:#fff!important;background:#6b7280}
+.pc-d b.num.pos{background:#10b981}.pc-d b.num.neg{background:#ef4444}
+.pc-d .v{font-size:.84rem;opacity:.85}
+.pw{font-size:.84rem}
+.pc-h.pgrid.pcols,.pcols{font-size:.72rem}
+.wl-cols,#posCols,.pos-cols,.pcols-h{display:none!important}
+
+/* ===== v60: compact header ===== */
+.top{padding:4px 6px 2px}
+.hcard{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:8px;align-items:center;padding:8px 10px 6px;border-radius:18px}
+.hcard>*{grid-column:1/-1}
+.hcard>.top-row{grid-column:1;padding:0}.hcard>.hctl{grid-column:2;margin-top:0}
+.brand{gap:7px}.brand img{width:32px;height:32px;border-radius:10px}.brand span{font-size:1.08rem}
+.hb{height:30px}.hb .ic{width:18px;height:18px}.hb.cur-btn{height:26px}.cur-btn .cs{padding:4px 8px;font-size:.78rem}.hdiv{height:14px}
+.tot-row{margin-top:6px}.top .tot-val{font-size:1.85rem;line-height:1.05}
+.tot-day{margin-top:1px;font-size:.9rem}
+.hstats{gap:5px;margin-top:6px}
+.hst{flex-direction:row;align-items:baseline;justify-content:space-between;gap:4px;padding:4px 7px;border-radius:9px}
+.hst span{font-size:.62rem}.hst b{font-size:.74rem}
+.top .upd{margin-top:4px;font-size:.68rem}
+/* v60: market cap back – small line under the name (row 2 of the name column) */
+.wgrid>*,.pgrid>*{grid-row:span 2}.wgrid>.pc-n,.pgrid>.pc-n{grid-row:1;grid-column:2}
+.wgrid>.pc-m,.pgrid>.pc-m{display:block;grid-row:2;grid-column:2;font-size:.72rem;font-weight:600;opacity:.62;text-align:start;justify-self:start;line-height:1.2}
+.wgrid>.wl-ed{grid-row:1/3}
 </style>
 </head>
 <body>
@@ -2866,7 +2910,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v59</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v60</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
