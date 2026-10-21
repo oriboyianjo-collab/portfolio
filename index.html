@@ -378,7 +378,7 @@ body{font-size:15px}
 .pc-d .v{font-size:.84rem;opacity:.85}
 .pw{font-size:.84rem}
 .pc-h.pgrid.pcols,.pcols{font-size:.72rem}
-.wl-cols,#posCols,.pos-cols,.pcols-h{display:none!important}
+.wl-cols,.pcols-h{display:none!important}
 
 /* ===== v60: compact header ===== */
 .top{padding:4px 6px 2px}
@@ -393,7 +393,7 @@ body{font-size:15px}
 .top .upd{margin-top:4px;font-size:.68rem}
 /* v60: market cap back – small line under the name (row 2 of the name column) */
 /* ===== v61: named grid areas – hidden columns (sparkline ≤370px) can no longer shift the cells ===== */
-.pgrid,.pc-h.pgrid{grid-template-columns:40px minmax(min-content,1fr) 64px 44px 84px;grid-template-areas:"lg nm sp w d" "lg cp sp w d";column-gap:8px;row-gap:1px;align-items:center}
+.pgrid,.pc-h.pgrid{grid-template-columns:40px minmax(min-content,1fr) 56px 60px 84px;grid-template-areas:"lg nm sp w d" "lg cp sp w d";column-gap:8px;row-gap:1px;align-items:center}
 .wgrid{grid-template-columns:40px minmax(min-content,1fr) 72px 84px;grid-template-areas:"lg nm sp d" "lg cp sp d";column-gap:10px;row-gap:1px;align-items:center}
 .pgrid>.logo,.wgrid>.logo{grid-area:lg}.pgrid>.pc-n,.wgrid>.pc-n{grid-area:nm;align-self:end;min-width:0}.pgrid>.pc-s,.wgrid>.pc-s{grid-area:sp}.pgrid>.pc-w{grid-area:w;text-align:center}
 .pgrid>.pc-m,.wgrid>.pc-m{grid-area:cp;align-self:start;display:block;font-size:.72rem;font-weight:600;opacity:.62;text-align:start;justify-self:start;line-height:1.25}
@@ -408,17 +408,23 @@ body{font-size:15px}
 .pc-d>b:first-child.pos{background:#10b981}.pc-d>b:first-child.neg{background:#ef4444}
 .pc-d>b+b{font-size:.74rem;text-align:end}.pc-d .v,.pc-d [data-f="hp"]{font-size:.82rem;text-align:end;white-space:nowrap}
 @media (max-width:370px){
- .pgrid,.pc-h.pgrid{grid-template-columns:38px minmax(min-content,1fr) 44px 80px;grid-template-areas:"lg nm w d" "lg cp w d";column-gap:7px}
+ .pgrid,.pc-h.pgrid{grid-template-columns:38px minmax(min-content,1fr) 60px 80px;grid-template-areas:"lg nm w d" "lg cp w d";column-gap:7px}
  .pgrid .pc-s,.pc-h.pgrid .pc-s{display:none}
  .wgrid{grid-template-columns:38px minmax(min-content,1fr) 60px 80px;column-gap:8px}.wgrid .pc-s{display:flex}.wr .pc-s .spark{width:58px}
  .pc-d>b:first-child{font-size:.9rem}.logo,.logo.lg{width:38px;height:38px}}
 @media (min-width:371px) and (max-width:399px){
- .pgrid,.pc-h.pgrid{grid-template-columns:40px minmax(min-content,1fr) 46px 84px;grid-template-areas:"lg nm w d" "lg cp w d"}
+ .pgrid,.pc-h.pgrid{grid-template-columns:40px minmax(min-content,1fr) 60px 84px;grid-template-areas:"lg nm w d" "lg cp w d"}
  .pgrid .pc-s,.pc-h.pgrid .pc-s{display:none}}
 .pcard.pc>.pc-h{padding:12px 2px}.pcard.pc{padding:0}
 /* header stat tiles: label over value so full amounts fit */
 .hst{flex-direction:column;align-items:flex-start;justify-content:center;gap:0;padding:3px 8px;border-radius:9px;line-height:1.2}
 .hst span{font-size:.6rem}.hst b{font-size:clamp(.7rem,3.3vw,.82rem);overflow:visible;text-overflow:clip}
+/* v62: holdings column-header row on the same grid slots as the rows */
+.pos-cols.pgrid{padding:2px 2px 6px;border-bottom:1px solid var(--border);grid-template-rows:auto;row-gap:0;font-size:.7rem;color:var(--muted);font-weight:600;align-items:end}
+.pos-cols>.hlg{grid-area:lg}.pos-cols>.pc-n{grid-area:nm;align-self:end;text-align:start}.pos-cols>.pc-s{grid-area:sp;height:auto;justify-content:center}.pos-cols>.pc-w{grid-area:w;text-align:center;white-space:nowrap;font-size:inherit}
+.pos-cols>.pc-d{grid-area:d;display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1.2}.pos-cols>.pc-d small{font-size:.92em;font-weight:500;opacity:.85}
+.pos-cols[hidden]{display:none}
+.pgrid>.pc-w{white-space:nowrap;font-size:.86rem}
 </style>
 </head>
 <body>
@@ -444,7 +450,7 @@ body{font-size:15px}
       <div class="heat-map" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי"></div></div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight" title="% מהתיק">% מהתיק</button><button data-sort="day" title="שינוי יומי %">יומי %</button><button data-sort="unreal" title="שינוי מעלות %">מעלות %</button><button data-sort="cap" title="שווי שוק">שווי שוק</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span></span><span>נייר</span><span class="pcol pc-s">היום</span><span class="pcol">% מהתיק</span><span class="pcol">שווי שוק</span><span class="pcol" id="posColD"><span>יומי</span><small>מחיר</small></span></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight" title="% מהתיק">% מהתיק</button><button data-sort="day" title="שינוי יומי %">יומי %</button><button data-sort="unreal" title="שינוי מעלות %">מעלות %</button><button data-sort="cap" title="שווי שוק">שווי שוק</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">היום</span><span class="pcol pc-w">% מהתיק</span><span class="pcol pc-d" id="posColD"><span>יומי</span><small>מחיר</small></span></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
@@ -2929,7 +2935,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v61</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v62</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
