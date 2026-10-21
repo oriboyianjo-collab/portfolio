@@ -222,6 +222,10 @@ html,body{overscroll-behavior-x:none}main .chart:not(.active){touch-action:pan-y
 .is-pre::before{content:'pre';display:inline-block;font-size:.62em;font-weight:700;letter-spacing:.2px;padding:0 4px;margin-inline-end:3px;border-radius:5px;background:var(--bg-eef2ff,#eef2ff);color:var(--fg-3730a3,#3730a3);vertical-align:middle;line-height:1.5;direction:ltr}
 html.dark .is-pre::before{background:#312e81;color:#c7d2fe}
 @media (max-width:370px){.is-pre::before{font-size:.55em;padding:0 2px;margin-inline-end:1px;letter-spacing:0}.wgrid .pc-d .is-pre,.pgrid .pc-d .is-pre{letter-spacing:-.2px}}
+/* v64: after-hours badge mirrors pre */
+.is-after::before{content:'after';display:inline-block;font-size:.62em;font-weight:700;letter-spacing:.2px;padding:0 4px;margin-inline-end:3px;border-radius:5px;background:#fff7ed;color:#9a3412;vertical-align:middle;line-height:1.5;direction:ltr}
+html.dark .is-after::before{background:#7c2d12;color:#fed7aa}
+@media (max-width:370px){.is-after::before{font-size:.55em;padding:0 2px;margin-inline-end:1px;letter-spacing:0}.wgrid .pc-d .is-after,.pgrid .pc-d .is-after{letter-spacing:-.2px}}
 #hDayLbl{white-space:nowrap}.upd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tot-pre{min-height:1.2em;display:flex;align-items:baseline;gap:6px;font-size:.78rem;margin-top:1px;line-height:1.2}.tot-pre[hidden]{display:none}.tot-pre .pre-tag{font-size:.68rem;font-weight:800;padding:0 5px;border-radius:5px;background:rgba(255,255,255,.2);direction:ltr}.tot-pre b{font-weight:800}.tot-pre .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
 .news-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.news-h h2{margin:0;font-size:1.1rem}
@@ -439,6 +443,11 @@ body{font-size:15px}
  .pgrid,.pc-h.pgrid{grid-template-columns:36px minmax(min-content,1fr) 46px 50px 78px;grid-template-areas:"lg nm w m d" "lg cp w m d";column-gap:6px}
  .pgrid>.pc-w,.pgrid>.pc-m{font-size:.76rem}.pgrid>.pc-v{font-size:.76rem}.logo,.logo.lg{width:36px;height:36px}}
 .pgrid>.pc-m:empty::after{content:'—';opacity:.45}
+/* v64: tagged pills (pre / after) – keep the badge + % inside the pill */
+.pc-d>b.is-pre:first-child,.pc-d>b.is-after:first-child{font-size:.84rem;padding-inline:2px;letter-spacing:-.3px}
+.pc-d>b.is-pre:first-child::before,.pc-d>b.is-after:first-child::before{font-size:.66em;padding:0 3px;margin-inline-end:2px;letter-spacing:0}
+.wgrid{grid-template-columns:40px minmax(min-content,1fr) 64px 92px}
+@media (max-width:370px){.wgrid{grid-template-columns:38px minmax(min-content,1fr) 56px 84px}.wr .pc-s .spark{width:54px}}
 </style>
 </head>
 <body>
@@ -623,12 +632,16 @@ function usSession(now){
   return z.min < close+4*60 ? 'post' : 'closed';
 }
 // usable pre-market quote: only while the US is in pre-market (04:00–09:30 ET, trading days) and stamped today ≥ 04:00 ET
-function preOf(q, now){ if(!q || !q.pre || !q.pre.ts || usSession(now)!=='pre') return null; const z = zoned('America/New_York', now), t = zoned('America/New_York', new Date(q.pre.ts));
-  return t.date===z.date && t.min >= 4*60 && q.pre.price > 0 ? q.pre : null; }
+// v64: also after-hours (close → close+4h ET, same day, stamped after the close). After 20:00 ET the session is night/closed → null → regular close.
+function preOf(q, now){ if(!q || !q.pre || !q.pre.ts) return null; const ss = usSession(now); if(ss!=='pre' && ss!=='post') return null;
+  const kind = q.pre.kind || 'pre'; if((ss==='pre') !== (kind==='pre')) return null;
+  const z = zoned('America/New_York', now), t = zoned('America/New_York', new Date(q.pre.ts)), close = US_EARLY.has(z.date) ? 13*60 : 16*60;
+  return t.date===z.date && (ss==='pre' ? t.min >= 4*60 : t.min >= close) && q.pre.price > 0 ? Object.assign({kind}, q.pre) : null; }
+const extSess = now=>{ const ss = usSession(now); return ss==='pre' || ss==='post' ? ss : null; };   // US extended session (pre / after-hours)
 function marketOf(sym){ if(isCrypto(sym)) return 'crypto'; if(isTaseSec(sym) || isTaIndex(sym)) return 'tase'; return 'us'; }
 function marketState(m, now){
   if(m==='crypto') return {state:'open', label:'24/7'};
-  if(m==='us'){ const ss = usSession(now); return {state: ss==='reg' ? 'open' : ss==='pre' ? 'pre' : 'closed'}; }   // v49: pre-market polls live too   // ET clock (DST-aware, holidays, early close): only the regular session counts
+  if(m==='us'){ const ss = usSession(now); return {state: ss==='reg' ? 'open' : ss==='pre' ? 'pre' : ss==='post' ? 'post' : 'closed'}; }   // v49: pre-market polls live too   // ET clock (DST-aware, holidays, early close): only the regular session counts
   // TASE (since 5.1.2026: Mon–Thu 09:59–17:25 + closing auction to ~17:35, Fri 09:59–13:50; no Sunday trading). Jewish holidays not modelled.
   const z = zoned('Asia/Jerusalem', now);
   if(z.wd==='Sat' || z.wd==='Sun') return {state:'closed'};
@@ -1093,8 +1106,8 @@ function computeAll(){
   // v49 pre-market: rows/heatmap/sort/detail show the pre-market move vs the prior close; header totals above stay on regular values
   let preILS = 0, preUSD = 0, preN = 0;
   positions.forEach(r=>{ if(r.manual || marketOf(r.sym)!=='us' || isCrypto(r.sym)) return; const pr = preOf(state.quotes[r.sym]); if(!pr) return;
-    r.pre = true; r.prePrice = pr.price; r.dayPct = pr.pct; r.day = r.qty*pr.chg; preUSD += r.qty*pr.chg; preILS += (toILS(r.qty*pr.chg, r.cur)||0); preN++; });
-  const preInfo = preN ? {ils:preILS, usd:preUSD, pct: equity > 0 ? preILS/equity*100 : null, pctUSD: equity > 0 && fxNow() ? preUSD/(equity/fxNow())*100 : null, n:preN} : null;
+    r.pre = pr.kind; r.prePrice = pr.price; r.dayPct = pr.pct; r.day = r.qty*pr.chg; preUSD += r.qty*pr.chg; preILS += (toILS(r.qty*pr.chg, r.cur)||0); preN++; });
+  const preInfo = preN ? {ils:preILS, usd:preUSD, pct: equity > 0 ? preILS/equity*100 : null, pctUSD: equity > 0 && fxNow() ? preUSD/(equity/fxNow())*100 : null, n:preN, kind:extSess()==='post' ? 'after' : 'pre'} : null;
   positions.sort((a,b)=>Math.abs(b.mvILS||0)-Math.abs(a.mvILS||0));
   // total return since the portfolio started = (current value − net deposits) / net deposits, in ILS.
   // current value = cash + market value, so realized + unrealized gains, dividends, interest, fees and tax are all inside it.
@@ -1132,7 +1145,7 @@ async function cnbcQuotes(symbols){
       if(k>1){ last/=k; if(prev!=null) prev/=k; cur='ILS'; }
       const mc = parseCap(q.mktcapView), E = q.ExtendedMktQuote; let pre = null;
       // v49: US pre-market only (after-hours / overnight are ignored): change vs the prior close = regular "last" before the open
-      if(k===1 && E && E.type==='PRE_MKT'){ const pl = num(E.last), ts = parseTs(E.last_time); if(pl!=null && pl>0 && ts){ const chg = pl - last; pre = {price:pl, chg, pct: last ? chg/last*100 : null, ts}; } }
+      if(k===1 && E && (E.type==='PRE_MKT' || E.type==='POST_MKT')){ const pl = num(E.last), ts = parseTs(E.last_time); if(pl!=null && pl>0 && ts){ const chg = pl - last; pre = {price:pl, chg, pct: last ? chg/last*100 : null, ts, kind: E.type==='POST_MKT' ? 'after' : 'pre'}; } }   // v64: + after-hours; both vs the regular 'last' (pre: prior close, after: today's close)
       out[String(orig).toUpperCase()] = {pre, mcap: mc!=null ? mc/k : null, price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', source:'CNBC'};
     });
   }
@@ -1393,10 +1406,10 @@ function renderHeader(S){
   $('hDayLbl').textContent = !hasDay || open ? 'שינוי יומי' : 'שינוי יומי · מסחר אחרון';
   // v52: the pre line's presence follows the session (US pre-market + US holdings), not each refresh's data – otherwise a refresh
   // without a pre quote removes the line and the sticky header shrinks, which shifts the whole page by one line
-  const hp = $('hPre'), P = S.pre, preSlot = !!P || (usSession()==='pre' && S.positions.some(p=>!p.manual && Math.abs(p.qty)>1e-9 && marketOf(p.sym)==='us'));
+  const hp = $('hPre'), P = S.pre, preSlot = !!P || (!!extSess() && S.positions.some(p=>!p.manual && Math.abs(p.qty)>1e-9 && marketOf(p.sym)==='us'));
   if(hp.hidden !== !preSlot) hp.hidden = !preSlot;
   if(preSlot){ const amt = P ? (C==='USD' ? P.usd : P.ils) : null, pc = P ? (C==='USD' ? P.pctUSD : P.pct) : null;
-    const html = `<span class="pre-tag">pre</span><b class="num ${cls(amt)}">${pc!=null ? fmtPct(pc) : '—'}</b><span class="num ${cls(amt)}">${amt!=null ? fmtSigned(amt, C, 0) : ''}</span>`; if(hp.innerHTML !== html) hp.innerHTML = html; }
+    const html = `<span class="pre-tag">${P ? P.kind : (extSess()==='post' ? 'after' : 'pre')}</span><b class="num ${cls(amt)}">${pc!=null ? fmtPct(pc) : '—'}</b><span class="num ${cls(amt)}">${amt!=null ? fmtSigned(amt, C, 0) : ''}</span>`; if(hp.innerHTML !== html) hp.innerHTML = html; }
   // v57: stat tiles – cost / unrealized / realized (v58: cash tile removed) in the display currency; amounts masked by the eye (fmtMoney / fmtSigned)
   { const fx = fxNow(), cv = v=>v==null ? null : (C==='USD' && fx>0 ? v/fx : v), cost = S.mvILS - S.unrealILS;
     const T = [['עלות', has ? fmtMoney(cv(cost), C, 0) : '—', ''], ['לא ממומש', has ? fmtSigned(cv(S.unrealILS), C, 0) : '—', cls(S.unrealILS)], ['ממומש', has ? fmtSigned(cv(S.realizedILS), C, 0) : '—', cls(S.realizedILS)]];
@@ -1452,7 +1465,7 @@ function cardFields(p){
   const cur = p.cur, a = ageInfo(p.sym, p);
   // collapsed row: share price + daily % (plus change-from-cost % while sorting by it); value, amounts and change-from-cost live in the details
   return {
-    hd:[p.dayPct!=null ? fmtPct(p.dayPct) : '—', 'num '+cls(p.dayPct)+(p.pre?' is-pre':'')],
+    hd:[p.dayPct!=null ? fmtPct(p.dayPct) : '—', 'num '+cls(p.dayPct)+(p.pre?' is-'+p.pre:'')],
     hu:[p.unrealPct!=null ? fmtPct(p.unrealPct) : '—', 'num '+cls(p.unrealPct)],
     mv:[fmtMoney(p.mv,cur), 'v num'],
     mvr:[fmtMoney(p.mv,cur,0), 'v num'],   // v63: row line under the name – position value, masked by the eye
@@ -1462,9 +1475,9 @@ function cardFields(p){
     mvils:[cur==='USD'&&p.mvILS!=null ? fmtMoney(p.mvILS,'ILS',0) : '', 'pname num'],
     day:[p.day!=null ? fmtSigned(p.day,cur) : '—', 'num '+cls(p.day)],
     unreal:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
-    price:[fmtPrice(p.pre ? p.prePrice : p.price,cur), 'num'+(p.pre?' is-pre':'')],
+    price:[fmtPrice(p.pre ? p.prePrice : p.price,cur), 'num'+(p.pre?' is-'+p.pre:'')],
     age:[a.t, 'age '+a.c],
-    dayp:[p.dayPct!=null?fmtPct(p.dayPct):'—', 'num '+cls(p.day)+(p.pre?' is-pre':'')],
+    dayp:[p.dayPct!=null?fmtPct(p.dayPct):'—', 'num '+cls(p.day)+(p.pre?' is-'+p.pre:'')],
     daya:[p.day!=null?fmtSigned(p.day,cur):'', 'num '+cls(p.day)],
     mvs:[fmtMoney(p.mv,cur,0), 'num'],
     unra:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
@@ -1941,10 +1954,10 @@ const fmtLvl = v=>v==null ? '—' : v.toLocaleString('en-US',{minimumFractionDig
 async function idxApply(q){
   const miss = IDX.filter(x=>!(q[x.s] && q[x.s].price!=null && q[x.s].prev));
   // v50: indices have no pre-market quote – during US pre-market the ETF's (SPY/QQQ) pre % vs its prior close is the proxy
-  const pre = usSession()==='pre', need = pre ? IDX : miss;
+  const pre = !!extSess(), need = pre ? IDX : miss;   // v64: pre + after-hours proxy
   let alt = {}; if(need.length){ try{ alt = await cnbcQuotes(need.map(x=>x.alt)); }catch(e){} }
   IDX.forEach(x=>{ const a = q[x.s], b = alt[x.alt], u = a && a.price!=null && a.prev ? a : b && b.price!=null && b.prev ? b : null; if(!u) return;
-    const ep = b && b.pre && b.pre.pct!=null ? {price:b.pre.price, pct:b.pre.pct, ts:b.pre.ts, src:x.alt} : null;
+    const ep = b && b.pre && b.pre.pct!=null ? {price:b.pre.price, pct:b.pre.pct, ts:b.pre.ts, kind:b.pre.kind||'pre', src:x.alt} : null;
     idxData.q[x.k] = {last:u.price, prev:u.prev, sym: u===a ? x.s : x.alt, etf: u!==a, status:u.status||'', ts:u.ts||null, date:u.date||'', pre:ep}; });
   idxSave(); renderIdx(); idxSpark().catch(e=>console.warn('index sparkline', e.message));
 }
@@ -1973,7 +1986,7 @@ function renderIdx(){
     let pts = sp && sp.sym===q.sym && sp.date===q.date ? sp.pts.slice() : null; if(pts && pts.length && !cl && !pr) pts.push(q.last);
     const name = q.etf ? `${x.n} <small>· ${x.alt}</small>` : x.n;
     return `<div class="idx" data-idx="${x.k}" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}${pr ? ' · טרום מסחר לפי '+esc(pr.src) : ''}"><div class="idx-n">${name}${cl ? ' <small>· סגור</small>' : ''}</div>`+
-      `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(lvl)}</b><div class="idx-c num ${cls(c)}${pr ? ' is-pre' : ''}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${sparkSvg(pts, pr ? null : q.prev, pr ? (q.last>=q.prev) : up)}</div>`; }).join('');
+      `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(lvl)}</b><div class="idx-c num ${cls(c)}${pr ? ' is-'+pr.kind : ''}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${sparkSvg(pts, pr ? null : q.prev, pr ? (q.last>=q.prev) : up)}</div>`; }).join('');
 }
 // ---------- per-holding intraday sparkline (collapsed row) ----------
 // Today's regular session only: CNBC 5-minute bars (same free keyless source as the index tiles), kept for 09:30–16:00 New York /
@@ -2025,7 +2038,7 @@ function heatColor(p){ if(p==null || !isFinite(p)) return 'rgb(71,85,105)';
   return `rgb(${n.map((v,i)=>Math.round(v + (c[i]-v)*k)).join(',')})`; }
 function heatTileInner(it){ const w = it.w, h = it.h, mn = Math.min(w, h), fs = Math.max(10, Math.min(19, mn/3.1, w/(it.sym.length*0.62+0.8)));
   if(w < 26 || h < 15) return '';
-  const pct = (it.pre ? 'pre ' : '') + (it.p!=null ? fmtPct(it.p) : '—');
+  const pct = (it.pre ? it.pre+' ' : '') + (it.p!=null ? fmtPct(it.p) : '—');
   if(w < 46 || h < 30) return `<b style="font-size:${Math.min(fs,11)}px">${esc(it.sym)}</b>`;
   const sub = Math.max(9.5, Math.min(14, fs*0.72));
   return `<b style="font-size:${fs.toFixed(1)}px">${esc(it.sym)}</b><i style="font-size:${sub.toFixed(1)}px">${pct}</i>` + (h >= 58 && w >= 54 ? `<s style="font-size:${Math.max(9,sub*0.82).toFixed(1)}px">${fmtW(it.wt)}</s>` : ''); }
@@ -2043,7 +2056,7 @@ function morphKids(a, b){ const A = [...a.childNodes], Bn = [...b.childNodes];
   for(let i=A.length-1;i>=Bn.length;i--) a.removeChild(A[i]); }
 const M = el=>({ set h(v){ morph(el, v); } });
 function renderHeat(S){ const card = $('heatCard'), map = $('heatMap'); if(!card) return;
-  const items = S.positions.filter(p=>p.qty > 0 && p.weight > 0).map(p=>({sym:p.sym, v:p.weight, wt:p.weight, p:p.dayPct, pre:!!p.pre})).sort((a,b)=>b.v-a.v);
+  const items = S.positions.filter(p=>p.qty > 0 && p.weight > 0).map(p=>({sym:p.sym, v:p.weight, wt:p.weight, p:p.dayPct, pre:p.pre||null})).sort((a,b)=>b.v-a.v);
   card.hidden = !items.length; if(!items.length){ heatKey = ''; return; }
   const open = heatOpen(), b = $('heatTgl'); card.classList.toggle('collapsed', !open);
   if(b){ b.textContent = open ? '▴' : '▾'; b.setAttribute('aria-expanded', String(open)); b.setAttribute('aria-label', open ? 'כיווץ מפת החום' : 'הצגת מפת החום'); }
@@ -2336,7 +2349,7 @@ const mq = {};   // live quotes keyed by the CNBC request symbol (upper-case)
 async function instQuotes(list){ const qs = [...new Set(list.map(i=>i.q))]; if(!qs.length) return;
   for(let i=0;i<qs.length;i+=40){ try{ Object.assign(mq, await cnbcQuotes(qs.slice(i,i+40))); }catch(e){ console.warn('market quotes', e.message); } } }
 function iq(it){ const q = mq[String(it.q).toUpperCase()] || null; if(!q || !it.sec || marketOf(it.sym)!=='us') return q;
-  const pr = preOf(q); return pr ? Object.assign({}, q, {price:pr.price, prev:q.price, isPre:true}) : q; }   // v49: US pre-market view (prev = prior close)
+  const pr = preOf(q); return pr ? Object.assign({}, q, {price:pr.price, prev:q.price, isPre:pr.kind}) : q; }   // v49: US pre-market view (prev = prior close)
 function fmtInst(it, v){ if(v==null || !isFinite(v)) return '—'; if(it.y) return v.toFixed(it.dp||3)+'%'; if(it.sec) return fmtPrice(v, it.cur);   // market price: never masked by the eye toggle
   return (it.u||'') + v.toLocaleString('en-US',{minimumFractionDigits:it.dp, maximumFractionDigits:it.dp}); }
 function chgInst(it, a, b){ if(a==null || b==null || !b) return {t:'—', c:0};
@@ -2431,7 +2444,7 @@ function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts =
   const pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div></div>`+
     `<div class="pcol pc-s wl-live">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, up, 48, 24) : ''}</div><div class="pcol pc-m wl-live num">${capT(q && q.mcap, it.cur)}</div>`+
-    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}${q && q.isPre ? ' is-pre' : ''}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="wl-p v num">${q ? fmtPrice(q.price, it.cur) : '—'}</span></div>`+
+    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}${q && q.isPre ? ' is-'+q.isPre : ''}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="wl-p v num">${q ? fmtPrice(q.price, it.cur) : '—'}</span></div>`+
     `<div class="wl-ed" style="grid-column:3/-1"><button data-wm="up" aria-label="הזזה למעלה" ${i===0?'disabled':''}>▲</button><button data-wm="down" aria-label="הזזה למטה" ${i===n-1?'disabled':''}>▼</button><button data-wm="del" class="del" aria-label="הסרה מהרשימה">✕</button></div></div>`; }
 function wlSecHtml(L, li, nL){ const open = !!wlOpen[L.id], ed = wlEditing===L.id, its = wlSorted(L.items.map(secInst), ed);
   let up = 0, dn = 0; its.forEach(it=>{ const q = iq(it); if(q && q.prev){ const d = q.price/q.prev - 1; if(d > 0.00004) up++; else if(d < -0.00004) dn++; } });
@@ -2481,7 +2494,7 @@ function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p
     ${held ? `<div class="btn-row" style="margin-top:12px"><button class="btn btn-light" id="isPos">💼 פתיחת הפוזיציה בתיק</button></div>` : ''}
     ${it.stock ? '<div class="note">מניות ותעודות סל בארה״ב: מסחר רגיל בלבד (09:30–16:00 ניו יורק).</div>' : ''}`; }
 function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[it.q+'|'+S.range], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
-  const ch = chgInst(it, q ? q.price : null, base); $('isV').textContent = fmtInst(it, q ? q.price : null); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+(q && q.isPre && S.range==='1D' ? ' is-pre' : '');
+  const ch = chgInst(it, q ? q.price : null, base); $('isV').textContent = fmtInst(it, q ? q.price : null); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+(q && q.isPre && S.range==='1D' ? ' is-'+q.isPre : '');
   const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [['סגירה קודמת', fmtInst(it, q && q.prev)], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
   if(S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
 async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S.it, el = $('isChart'), seq = ++S.seq;
@@ -2837,7 +2850,7 @@ function symTxHtml(sym){ const l = sortedTxs().filter(t=>t.symbol===sym || t.toS
 function posKvRows(p){
   const cur = p.cur, short = p.qty<0, open = Math.abs(p.qty)>1e-9, R = [];
   if(open) R.push(['mv','שווי', fmtMoney(p.mv,cur) + (cur==='USD' && p.mvILS!=null ? ' · ' + fmtMoney(p.mvILS,'ILS',0) : ''), '', 'hl'], ['unreal','שינוי מעלות (ברוטו)', `${fmtPct(p.unrealPct)} · ${fmtSigned(p.unreal,cur)}`, cls(p.unreal), 'hl'], ['weight','% מהתיק', fmtW(p.weight), ''], ['price',`מחיר נוכחי${p.manual?' (ידני)':''}${p.pre?' · pre':''}`, fmtPrice(p.pre ? p.prePrice : p.price,cur), ''],
-    ['day', p.pre ? 'שינוי היום · pre' : 'שינוי היום', p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
+    ['day', p.pre ? 'שינוי היום · '+p.pre : 'שינוי היום', p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
     ['qty', short?'כמות בשורט':'כמות', fmtQtyP(Math.abs(p.qty)), ''], ['avg', short?'מחיר שורט ממוצע':'עלות ממוצעת', fmtMoney(p.avg,cur), ''],
     ['open','נפתחה', fmtDate(p.openDate), 'nonum'],
     ['costils','עלות בשקלים למס', p.qty>0 && p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', ''],
@@ -2951,7 +2964,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v63</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v64</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
