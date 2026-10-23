@@ -1,5 +1,12 @@
 [
   {
+    "כותרת": "מיקרון (Micron, MU): לפי דיווחים, החברה מוותרת על ארכיטקטורת DRAM מסוג 4F² ומקדמת חלופה של חיבור פרוסות וערימה תלת-ממדית (לא מאומת)",
+    "תאריך": "2026-10-23 08:21",
+    "חברה": "MU",
+    "טקסט": "הפריט נשלח באיחור מהפרסום\n\nקשור לפריט שנשלח ב-22.10.2026, 18:02 (מפת הדרכים של מיקרון ל-NAND). מה חדש: פרטים מאותו סמינר על מפת הדרכים לזיכרון DRAM, שהוא תחום נפרד מזיכרון NAND לאחסון.\n\nלפי טומ'ס הארדוור (Tom's Hardware), מיקרון אינה מתכוונת לאמץ את ארכיטקטורת התא 4F², לאחר כשני עשורים של מחקר. מעבר מתא 6F² לתא 4F² מציע על הנייר צמצום של כשליש בשטח התא, אך לפי החברה כפי שצוטטה, היתרון אינו מתורגם ליתרון צפיפות משמעותי במוצר, והוא מלווה במורכבות ובעלויות ייצור גבוהות יותר.\n\nסקוט דבור (Scott DeBoer) אמר לפי הדיווח שאין לארכיטקטורה \"מסלול ישים להמשך מזעור\" (\"no viable scaling path\"). זו הערכת מיקרון לגבי הכיוון הטכנולוגי, לא הוכחה שכל המתחרות ינטשו אותו: לפי הסיקור, סמסונג ו-SK הייניקס עדיין כוללות אותו במפות הדרכים שלהן, וגם החברה הסינית CXMT מקדמת אותו.\n\nבחלופה של מיקרון, ארכיטקטורת 6F² תמשיך לשמש לצד חיבור פרוסות מוליכים למחצה (wafer bonding) ופיתוח DRAM תלת-ממדי. לפי הסיקור, ייצור המוני בדור 1-דלתא בבויס, איידהו, מתוכנן למחצית השנייה של 2027, וחיבור פרוסות בהיקף מלא מיועד לדור 1-אפסילון.\n\nעוד הוצג רעיון של זיכרון ברוחב פס גבוה בערימה אנכית (Vertical HBM): הנחת הזיכרון מעל המעבד וחיבורו בבונדינג היברידי, במקום הצבתו לצד המעבד על שכבת קישור. מדובר בכיוון פיתוח, לא בהכרזה שמוצר כזה כבר זמין מסחרית.\n\nמקור: Tom's Hardware\nhttps://www.tomshardware.com/pc-components/dram/micron-pulls-the-plug-on-future-4f2-dram-after-two-decades-of-research-in-dramatic-shift-company-says-architecture-offers-no-meaningful-density-advantages-increases-manufacturing-complexity-and-costs-and-has-fundamental-scaling-limitations\nמקור נוסף: Electronic Times\nhttps://en.etnews.com/20261023200002",
+    "קישור": "https://www.tomshardware.com/pc-components/dram/micron-pulls-the-plug-on-future-4f2-dram-after-two-decades-of-research-in-dramatic-shift-company-says-architecture-offers-no-meaningful-density-advantages-increases-manufacturing-complexity-and-costs-and-has-fundamental-scaling-limitations"
+  },
+  {
     "כותרת": "הבהרה לפריט מטא שנשלח ב-08:02",
     "תאריך": "2026-10-23 08:02",
     "חברה": "META",
