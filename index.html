@@ -270,7 +270,7 @@ html.dark .hcard{box-shadow:0 14px 34px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,2
 .tot-row{margin-top:10px;justify-content:flex-start}.tot-row .tot-val{flex:0 1 auto}
 .top .tot-val{font-size:2.25rem;letter-spacing:-.8px;line-height:1.1}
 .tot-day .tp-l{opacity:.6}
-.hstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:10px}
+.hstats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:10px}
 .hst{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:6px 8px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);min-width:0}
 .hst span{font-size:.64rem;opacity:.65;white-space:nowrap}.hst b{font-size:.78rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;direction:ltr;unicode-bidi:isolate}
 .top .upd{opacity:.55;margin-top:8px}
@@ -509,6 +509,10 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
 .crow .n{text-align:center;direction:ltr;font-size:.74rem;overflow-wrap:anywhere}.crow.hi{background:rgba(239,68,68,.06)}
 .imp{letter-spacing:1px;font-size:.6rem}.imp i{font-style:normal;opacity:.25}.imp b{font-weight:400}.imp.i3 b{color:#ef4444}.imp.i2 b{color:#f59e0b}.imp.i1 b{color:#94a3b8}
 @media (max-width:370px){.crow{grid-template-columns:38px minmax(0,1fr) 44px 44px 44px;column-gap:4px}}
+.rfil .cfil{margin-bottom:6px}.cfil button small{font-size:.66rem;opacity:.7;font-weight:600}.rcnt{font-size:.72rem;color:var(--muted);margin:2px 2px 0}
+.rix{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}.rix i{font-style:normal;font-size:.6rem;font-weight:700;border-radius:5px;padding:1px 5px;background:rgba(127,127,127,.14);color:var(--muted);direction:ltr;unicode-bidi:isolate}
+.rix .ix-sp500{background:rgba(234,88,12,.16);color:#ea580c}.rix .ix-ndx{background:rgba(147,51,234,.16);color:#a855f7}.rix .ix-dow{background:rgba(14,165,233,.16);color:#0ea5e9}.rix .ix-sp400{background:rgba(22,163,74,.16);color:#16a34a}.rix .ix-sp600{background:rgba(202,138,4,.16);color:#ca8a04}
+.rmore{width:100%;margin-top:6px}.rkv em{font-style:normal}.cst{flex:0 0 auto;margin-inline-start:auto;align-self:center}#idxRow .idx{cursor:pointer}.rix .ix-r2k{background:rgba(219,39,119,.16);color:#db2777}.rix .ix-ixic{background:rgba(99,102,241,.16);color:#818cf8}
 </style>
 </head>
 <body>
@@ -574,7 +578,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
       <div id="wlLists"></div></div>
   </section>
   <section class="tab" id="tab-settings"><div class="set-bar"><h2>הגדרות</h2><button class="btn set-back" id="setBack" aria-label="חזרה">חזרה ←</button></div><div class="card" id="settingsCard"></div></section>
-  <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div class="seg nseg" id="newsSeg" role="tablist" aria-label="סוג תוכן"><button data-nt="news" class="on">📰 חדשות</button><button data-nt="rep">📊 דוחות</button><button data-nt="cal">🗓️ יומן כלכלי</button></div><div id="ntNews"><div class="news-sr"><input type="search" id="newsQ" placeholder="חיפוש בחדשות" autocomplete="off" enterkeyhint="search" aria-label="חיפוש בחדשות"><button id="newsQx" aria-label="ניקוי חיפוש" hidden>✕</button></div><div class="news-cnt" id="newsCnt" hidden></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div><div id="ntRep" hidden><div class="cfil" id="repFil"></div><div id="repList"><div class="muted">טוען…</div></div></div><div id="ntCal" hidden><div class="cfil" id="calFil"></div><div id="calList"><div class="muted">טוען…</div></div></div></div></section>
+  <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div class="seg nseg" id="newsSeg" role="tablist" aria-label="סוג תוכן"><button data-nt="news" class="on">📰 חדשות</button><button data-nt="rep">📊 דוחות</button><button data-nt="cal">🗓️ יומן כלכלי</button></div><div id="ntNews"><div class="news-sr"><input type="search" id="newsQ" placeholder="חיפוש בחדשות" autocomplete="off" enterkeyhint="search" aria-label="חיפוש בחדשות"><button id="newsQx" aria-label="ניקוי חיפוש" hidden>✕</button></div><div class="news-cnt" id="newsCnt" hidden></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div><div id="ntRep" hidden><div class="rfil" id="repFil"></div><div id="repList"><div class="muted">טוען…</div></div></div><div id="ntCal" hidden><div class="cfil" id="calFil"></div><div id="calList"><div class="muted">טוען…</div></div></div></div></section>
 </main>
 <button class="fab" id="fab" aria-label="עסקה חדשה">+</button>
 <nav class="bottom"><div class="in">
@@ -808,7 +812,13 @@ function renderSortBar(n){ const bar = $('posSort'), {k,d} = effSort(); bar.hidd
   // v59: scroll ONLY the chip bar horizontally – scrollIntoView also scrolled the page (sort bar above the viewport → jump up) and cancelled flings on every live poll
   const on = bar.querySelector('.on'); if(on && bar.scrollWidth > bar.clientWidth + 1){ const br = bar.getBoundingClientRect(), r = on.getBoundingClientRect();
     if(r.left < br.left) bar.scrollLeft -= br.left - r.left; else if(r.right > br.right) bar.scrollLeft += r.right - br.right; } }
-const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'YTD', posRange:'1Y', posStyle:'candle'};
+// v67: line / candles choice for the price charts (instrument sheet and position sheet) – one remembered UI preference
+const CST_KEY = 'portfolioTracker.chartStyle.v1';
+const chartStyle = ()=>{ try{ return localStorage.getItem(CST_KEY)==='line' ? 'line' : localStorage.getItem(CST_KEY)==='candle' ? 'candle' : null; }catch(e){ return null; } };
+const setChartStyle = v=>{ try{ localStorage.setItem(CST_KEY, v); }catch(e){} };
+const styleSegHtml = (id, v)=>`<div class="seg sm cst" id="${id}"><button data-v="line" class="${v==='line'?'on':''}">קו</button><button data-v="candle" class="${v==='candle'?'on':''}">נרות</button></div>`;
+const candleOpts = ()=>{ const T = chartTheme(); return {upColor:T.up, downColor:T.down, borderVisible:false, wickUpColor:T.up, wickDownColor:T.down, priceLineVisible:false}; };
+const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'YTD', posRange:'1Y', posStyle:'candle'}; { const v = chartStyle(); if(v) ui.posStyle = v; };
 // A split must never be counted twice. The bank books some splits as bonus shares ('הטבה' rows → sharebonus), and the importer can
 // also add a split it detected in the price history. If the same security has a bonus row, or an earlier split, within ±5 days,
 // the later split is a duplicate: it stays in the list (visible, deletable) but is never applied (t.dupSkip).
@@ -2065,6 +2075,7 @@ function sparkSvg(pts, prev, up, W = 58, H = 30){
   const d = pts.map((v,i)=>(i?'L':'M')+(i/(pts.length-1)*W).toFixed(1)+' '+y(v)).join(' ');
   return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${prev ? `<line x1="0" x2="${W}" y1="${y(prev)}" y2="${y(prev)}"/>` : ''}<path d="${d}" stroke="${up ? 'var(--green)' : 'var(--red)'}"/></svg>`;
 }
+$('idxRow').addEventListener('click', e=>{ const t = e.target.closest('[data-idx]'); if(!t) return; const it = mktInst(t.dataset.idx); if(it) openInstSheet(it, '1D'); });
 function renderIdx(){
   const row = $('idxRow'); if(!row) return; const have = IDX.filter(x=>idxData.q[x.k]); row.hidden = !have.length; if(!have.length) return;
   M(row).h = IDX.map(x=>{ const q = idxData.q[x.k]; if(!q) return `<div class="idx" data-idx="${x.k}"><div class="idx-n">${x.n}</div><b class="idx-v num">—</b><div class="idx-c num"></div></div>`;
@@ -2074,7 +2085,7 @@ function renderIdx(){
     const xe = pr ? (()=>{ const xl = q.etf ? pr.price : q.last*(1+pr.pct/100); return {kind:pr.kind, price:xl, chg:xl-q.last, pct:pr.pct}; })() : null;
     let pts = sp && sp.sym===q.sym && sp.date===q.date ? sp.pts.slice() : null; if(pts && pts.length && !cl) pts.push(q.last);
     const name = q.etf ? `${x.n} <small>· ${x.alt}</small>` : x.n;
-    return `<div class="idx" data-idx="${x.k}" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}${pr ? ' · טרום מסחר לפי '+esc(pr.src) : ''}"><div class="idx-n"><span class="idx-nt">${name}${cl ? ' <small>· סגור</small>' : ''}</span>${extLineHtml(xe, 'idx-e')}</div>`+
+    return `<div class="idx" data-idx="${x.k}" role="button" tabindex="0" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}${pr ? ' · טרום מסחר לפי '+esc(pr.src) : ''}"><div class="idx-n"><span class="idx-nt">${name}${cl ? ' <small>· סגור</small>' : ''}</span>${extLineHtml(xe, 'idx-e')}</div>`+
       `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(lvl)}</b><div class="idx-c num ${cls(c)}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${sparkSvg(pts, q.prev, up)}</div>`; }).join('');
 }
 // ---------- per-holding intraday sparkline (collapsed row) ----------
@@ -2466,7 +2477,7 @@ async function instBars(it, range){
     let pts = [];
     try{ const j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/${spec[0]}/${ymd(spec[1])}/${ymd(spec[2])}/adjusted/EST5EDT.json`, 12000);
       const bars = (j && j.barData && j.barData.priceBars) || [];
-      pts = bars.map(b=>[+b.tradeTimeinMills, +b.close/k]).filter(p=>p[0] && p[1] > 0 || (it.y && p[0] && isFinite(p[1])));
+      pts = bars.map(b=>{ const c = +b.close/k, o = +b.open/k || c, h = +b.high/k || Math.max(o,c), l = +b.low/k || Math.min(o,c); return [+b.tradeTimeinMills, c, o, h, l]; }).filter(p=>p[0] && p[1] > 0 || (it.y && p[0] && isFinite(p[1])));
       if(spec[0]!=='1D' && it.stock) pts = pts.filter(p=>{ const x = nyParts(p[0]); return x.hm>=930 && x.hm<1600 && (range!=='1D' || x.d===day); });
       if(range==='YTD'){ const y0 = Date.parse(td.slice(0,4)+'-01-01T00:00:00Z'); const before = pts.filter(p=>p[0] < y0); pts = (before.length ? [before[before.length-1]] : []).concat(pts.filter(p=>p[0] >= y0)); }
     }catch(e){ console.warn('bars', it.q, range, e.message); if(c) return c.pts; }
@@ -2646,7 +2657,7 @@ let instSheet = null;
 function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p=>p.sym===it.sym);
   return `<h3><span>${it.sec ? logoHtml(it.sym, true) : ''}<span>${esc(it.sec ? it.sym : it.n)}</span></span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="muted" style="margin:-8px 0 8px;font-size:.85rem">${esc(it.sec ? it.n : it.s)}</div>
-    <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b></div>
+    <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b>${it.y ? '' : styleSegHtml('isStyle', chartStyle() || 'line')}</div>
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
     <div class="chart" id="isChart" style="height:280px;margin-top:8px"><div class="chart-msg" id="isMsg">טוען גרף…</div></div>
     <div class="inst-stats" id="isStats"></div>
@@ -2656,10 +2667,12 @@ function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p
 function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[it.q+'|'+S.range], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
   const ch = chgInst(it, q ? q.price : null, base); $('isV').textContent = fmtInst(it, q ? q.price : null); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+'';
   const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [['סגירה קודמת', fmtInst(it, q && q.prev)], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
-  if(S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
+  if(S.series && S.bar && q && q.price!=null){ const b = S.bar; b.close = q.price; b.high = Math.max(b.high, q.price); b.low = Math.min(b.low, q.price); try{ S.series.update(Object.assign({}, b)); }catch(e){} }
+  else if(S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
 async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S.it, el = $('isChart'), seq = ++S.seq;
   $('isRange').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===S.range));
-  if(posChart){ posChart.remove(); posChart = null; } S.series = null; el.querySelectorAll('.tv-lightweight-charts, table').forEach(x=>x.remove());
+  const cnd = !it.y && (chartStyle() || 'line')==='candle'; if($('isStyle')) $('isStyle').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===(cnd?'candle':'line')));
+  if(posChart){ posChart.remove(); posChart = null; } S.series = null; S.bar = null; el.querySelectorAll('.tv-lightweight-charts, table').forEach(x=>x.remove());
   const msg = $('isMsg'); msg.style.display = 'flex'; msg.textContent = 'טוען גרף…';
   if(!iq(it)) await instQuotes([it]);
   const pts = withLive(it, S.range, await instBars(it, S.range)); if(seq!==S.seq || instSheet!==S) return;
@@ -2667,14 +2680,18 @@ async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S
   const intr = S.range==='1D' || S.range==='1W', off = -new Date().getTimezoneOffset()*60;   // show Israel wall-clock times on the axis
   posChart = makeChart(el, false); posChart.applyOptions({timeScale:{timeVisible:intr, secondsVisible:false}, localization:{locale:'he-IL', priceFormatter:v=>it.y ? v.toFixed(3)+'%' : Math.abs(v)>=10000 ? v.toLocaleString('en-US',{maximumFractionDigits:0}) : v.toFixed(Math.abs(v)<10 ? 3 : 2)}});
   const up = pts[pts.length-1][1] >= (S.range==='1D' ? ((iq(it)||{}).prev || pts[0][1]) : pts[0][1]), T = chartTheme(), col = up ? T.up : T.down;
-  const s = posChart.addAreaSeries({lineColor:col, topColor:up ? 'rgba(16,185,129,.22)' : 'rgba(239,68,68,.22)', bottomColor:'rgba(0,0,0,0)', lineWidth:2, priceLineVisible:false});
-  const seen = new Set(), data = pts.map(p=>({time:Math.floor(p[0]/1000) + (intr ? off : 0), value:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time));
+  const seen = new Set(), raw = cnd ? instCache[it.q+'|'+S.range].pts : pts; let s, data;
+  if(cnd){ s = posChart.addCandlestickSeries(candleOpts()); data = raw.map(p=>({time:Math.floor(p[0]/1000) + (intr ? off : 0), open:p[2]!=null?p[2]:p[1], high:p[3]!=null?p[3]:p[1], low:p[4]!=null?p[4]:p[1], close:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time));
+    const lb = data[data.length-1], q0 = iq(it); S.bar = Object.assign({}, lb); if(q0 && q0.price!=null){ S.bar.close = q0.price; S.bar.high = Math.max(lb.high, q0.price); S.bar.low = Math.min(lb.low, q0.price); data[data.length-1] = Object.assign({}, S.bar); } }
+  else { s = posChart.addAreaSeries({lineColor:col, topColor:up ? 'rgba(16,185,129,.22)' : 'rgba(239,68,68,.22)', bottomColor:'rgba(0,0,0,0)', lineWidth:2, priceLineVisible:false});
+    data = pts.map(p=>({time:Math.floor(p[0]/1000) + (intr ? off : 0), value:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time)); }
   s.setData(data); S.series = s; S.off = intr ? off : 0; S.lastT = data[data.length-1].time;
   const q = iq(it); if(S.range==='1D' && q && q.prev) s.createPriceLine({price:q.prev, color:'#94a3b8', lineWidth:1, lineStyle:2, axisLabelVisible:false, title:'סגירה'});
   posChart.timeScale().fitContent(); }
 function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it, range:range||'1D', seq:0};
   $('isRange').addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b || !instSheet) return; instSheet.range = b.dataset.v; drawInstChart(); });
   const pb = $('isPos'); if(pb) pb.onclick = ()=>openPosition(it.sym);
+  const sb = $('isStyle'); if(sb) sb.addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b || !instSheet) return; setChartStyle(b.dataset.v); drawInstChart(); });
   drawInstChart(); }
 
 // ---- v66: "add to watchlist" in every instrument / position sheet – pick one of the existing lists (✓ = already there) ----
@@ -2998,7 +3015,7 @@ function openPosition(sym){
   openSheet(`<h3><span>${logoHtml(sym, true)}<span class="ltr">${esc(sym)}</span>${short?'<span class="tag short">שורט</span>':''}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="muted" style="margin:-8px 0 10px;font-size:.85rem">${esc(p.asset.name||'')}</div>
     <div class="ctrls"><div class="seg sm" id="posRange">${['1M','3M','YTD','1Y','5Y'].map(r=>`<button data-v="${r}" class="${r===ui.posRange?'on':''}">${{'1M':'חודש','3M':'3 ח׳','YTD':'YTD','1Y':'שנה','5Y':'5 שנים'}[r]}</button>`).join('')}</div>
-      <div class="seg sm" id="posStyle" style="flex:0 0 auto"><button data-v="candle" class="${ui.posStyle==='candle'?'on':''}">נרות</button><button data-v="line" class="${ui.posStyle==='line'?'on':''}">קו</button></div></div>
+      <div class="seg sm" id="posStyle" style="flex:0 0 auto"><button data-v="line" class="${ui.posStyle==='line'?'on':''}">קו</button><button data-v="candle" class="${ui.posStyle==='candle'?'on':''}">נרות</button></div></div>
     <div class="chart" id="posChartEl" style="height:260px"><div class="chart-msg" id="posMsg">טוען גרף…</div></div>
     <div class="rchg" id="posRchg"></div>
     <div class="note" id="posNote"></div>
@@ -3016,7 +3033,7 @@ function openPosition(sym){
     <div class="sym-tx"><h4>העסקאות שלך ב-<span class="ltr">${esc(sym)}</span> <small class="muted" style="font-weight:500">(לחיצה לעריכה או מחיקה)</small></h4><div id="symTx">${symTxHtml(sym)}</div></div>`);
   sheetSym = sym; sheetPrice = p.price;
   const body = $('sheetBody');
-  const segs = (id, key)=>body.querySelector(id).addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return; ui[key]=b.dataset.v; body.querySelectorAll(id+' button').forEach(x=>x.classList.toggle('on',x===b)); drawPosChart(sym); });
+  const segs = (id, key)=>body.querySelector(id).addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return; ui[key]=b.dataset.v; if(key==='posStyle') setChartStyle(b.dataset.v); body.querySelectorAll(id+' button').forEach(x=>x.classList.toggle('on',x===b)); drawPosChart(sym); });
   segs('#posRange','posRange'); segs('#posStyle','posStyle');
   body.querySelectorAll('[data-pact]').forEach(b=>b.onclick = ()=>{
     const act = b.dataset.pact;
@@ -3162,7 +3179,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v66</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v67</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3858,12 +3875,30 @@ $('newsRefresh').addEventListener('click', ()=>loadNewsTab());
 // ---- v66: news sub-tabs – חדשות (news.json) · דוחות (reports.json) · יומן כלכלי (calendar.json); same site, always fetched fresh ----
 // Keys (Hebrew or English) are documented in README-news.md. A missing / empty file → a friendly empty state.
 const REP_K = {company:['company','חברה'], symbol:['symbol','סימול'], quarter:['quarter','רבעון'], date:['date','תאריך'], time:['time','מועד','שעה'],
-  epsEst:['eps_est','צפי_eps','צפי EPS'], eps:['eps','eps_בפועל','EPS בפועל'], revEst:['rev_est','צפי_הכנסות','צפי הכנסות'], rev:['rev','הכנסות_בפועל','הכנסות בפועל'], note:['note','הערה'], link:['link','קישור']};
+  epsEst:['eps_est','צפי_eps','צפי EPS'], eps:['eps','eps_בפועל','EPS בפועל'], revEst:['revenueEst','revenue_est','rev_est','צפי_הכנסות','צפי הכנסות'], rev:['revenue','rev','הכנסות','הכנסות_בפועל','הכנסות בפועל'], note:['note','הערה'], link:['link','קישור']};
 const CAL_K = {date:['date','תאריך'], time:['time','שעה'], country:['country','מדינה'], event:['event','אירוע'], period:['period','תקופה'], imp:['importance','חשיבות'],
   forecast:['forecast','צפי'], previous:['previous','קודם'], actual:['actual','בפועל'], good:['good','טוב'], note:['note','הערה']};
 const pickK = (o, K, k)=>{ for(const n of K[k]){ for(const key of [n, n.toUpperCase()]) if(o[key]!=null && String(o[key]).trim()!=='') return String(o[key]).trim(); } return ''; };
 let newsTab = (()=>{ try{ const v = sessionStorage.getItem('portfolioTracker.newsTab'); return ['news','rep','cal'].includes(v) ? v : 'news'; }catch(e){ return 'news'; } })();
-const ntData = {rep:null, cal:null}, ntFil = {rep:'all', cal:'all'}; let ntSeq = 0;
+const ntData = {rep:null, cal:null}, ntFil = {rep:'all', cal:'all', day:'all', idx:'all'}; let ntSeq = 0, repShow = 60;
+// v67: index tags come only from the item itself – "מדד" / "index" (string, list, or comma-separated). No tag = "אחר".
+const IDX_AL = [['sp500',/^(s&?p ?500|spx|spy|אסאנדפי ?500|ס&?פ ?500)$/],['ndx',/^(nasdaq ?100|ndx|qqq|נאסד"?ק ?100|נאסדק ?100)$/],['dow',/^(dow( jones| 30)?|djia|dia|דאו( ג'ונס| 30)?)$/],
+  ['sp400',/^(s&?p ?400|s&?p midcap ?400|mdy)$/],['sp600',/^(s&?p ?600|s&?p smallcap ?600|ijr)$/],['r2k',/^(russell ?2000|r2k|iwm|ראסל ?2000)$/],['ixic',/^(nasdaq( composite)?|נאסד"?ק|נאסדק)$/]];
+const idxKey = n=>{ const t = String(n).trim().toLowerCase().replace(/[׳’`]/g,"'").replace(/״/g,'"').replace(/\s+/g,' '); const f = IDX_AL.find(x=>x[1].test(t)); return f ? f[0] : 'u:'+t; };
+const idxOf = o=>{ let v = null; for(const k of ['מדד','מדדים','index','indices','Index']) if(o[k]!=null && o[k]!==''){ v = o[k]; break; }
+  const A = (Array.isArray(v) ? v : v!=null ? String(v).split(/[,;|]/) : []).map(x=>String(x==null?'':x).trim()).filter(x=>x && !/^(אחר|other|none|-)$/i.test(x));
+  const seen = new Set(); return A.filter(x=>{ const k = idxKey(x); if(seen.has(k)) return false; seen.add(k); return true; }).map(x=>({k:idxKey(x), l:x})); };
+// Fallback when the item has no מדד/index: membership from the trackers' holdings (TickerInside, cached ~20h – market data).
+const IDXM = [['sp500','S&P 500','SPY'],['ndx','Nasdaq 100','QQQ'],['dow','Dow 30','DIA'],['sp400','S&P 400','MDY'],['sp600','S&P 600','IJR']], IDXM_KEY = 'portfolioTracker.idxMembers.v1';
+let idxMem = loadJ(IDXM_KEY), idxMemBusy = null;
+const memNorm = s=>String(s||'').toUpperCase().replace(/[.\-\/ ]/g,'');
+async function loadIdxMem(){ if(idxMem && idxMem.at && Date.now()-idxMem.at < 20*3600e3) return idxMem; if(idxMemBusy) return idxMemBusy;
+  return idxMemBusy = (async()=>{ const m = {at:Date.now(), asOf:'', s:{}}; let ok = 0;
+    await Promise.all(IDXM.map(async([k,,etf])=>{ try{ const j = await fetchJSON(`https://tickerinside.com/api/v1/fund/${etf.toLowerCase()}.json`, 15000); const h = j && j.holdings;
+      if(h && typeof h==='object'){ ok++; m.asOf = j.holdings_as_of || m.asOf; Object.keys(h).forEach(sym=>{ const n = memNorm(sym); (m.s[n] || (m.s[n] = [])).push(k); }); } }catch(e){} }));
+    idxMemBusy = null; if(!ok) return idxMem || null; idxMem = m; try{ localStorage.setItem(IDXM_KEY, JSON.stringify(m)); }catch(e){} return m; })(); }
+const memOf = sym=>{ const L = idxMem && idxMem.s[memNorm(sym)]; return L ? IDXM.filter(x=>L.includes(x[0])).map(x=>({k:x[0], l:x[1], auto:true})) : []; };
+const ixCls = k=>/^u:/.test(k) ? '' : ' ix-'+k;
 function applyNewsTab(){ $('newsSeg').querySelectorAll('[data-nt]').forEach(b=>{ const on = b.dataset.nt===newsTab; b.classList.toggle('on', on); b.setAttribute('aria-selected', String(on)); });
   $('ntNews').hidden = newsTab!=='news'; $('ntRep').hidden = newsTab!=='rep'; $('ntCal').hidden = newsTab!=='cal'; }
 async function loadNt(kind){ const seq = ++ntSeq, f = kind==='rep' ? 'reports.json' : 'calendar.json'; let items = [], err = false;
@@ -3879,19 +3914,37 @@ const numOf = v=>{ const m = String(v||'').replace(/,/g,'').match(/-?\d+(\.\d+)?
 const ntEmpty = (kind, err)=>`<div class="news-empty">${err ? `הקובץ ${kind==='rep'?'reports.json':'calendar.json'} לא תקין – בדקו פסיקים ומירכאות.` : kind==='rep' ? 'עדיין אין דוחות להצגה.<br><small>מוסיפים פריטים בקובץ reports.json באתר GitHub.</small>' : 'היומן הכלכלי ריק כרגע.<br><small>מוסיפים אירועים בקובץ calendar.json באתר GitHub.</small>'}</div>`;
 function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; if(!D.items.length){ $('repFil').innerHTML = ''; el.innerHTML = ntEmpty('rep', D.err); return; }
   const held = new Set(computeAll().positions.filter(p=>Math.abs(p.qty)>1e-9).map(p=>p.sym)), watched = new Set(wlData.lists.flatMap(l=>l.items.map(x=>x.sym)));
-  const L = D.items.map(o=>{ const r = {}; for(const k in REP_K) r[k] = pickK(o, REP_K, k); r.symbol = r.symbol.toUpperCase(); r.d = ntDate(r.date); r.tag = held.has(r.symbol) ? 'בתיק' : watched.has(r.symbol) ? 'במעקב' : ''; return r; }).filter(r=>r.company || r.symbol);
-  const fil = [['all','הכול'],['mine','בתיק ובמעקב'],['week','השבוע']];
-  $('repFil').innerHTML = fil.map(([k,l])=>`<button data-rf="${k}" class="${ntFil.rep===k?'on':''}">${l}</button>`).join('');
-  const t = today(), wk = addDays(t, 7), M = L.filter(r=>ntFil.rep==='mine' ? !!r.tag : ntFil.rep==='week' ? (r.d >= t && r.d <= wk) : true);
+  const L = D.items.map(o=>{ const r = {}; for(const k in REP_K) r[k] = pickK(o, REP_K, k); r.symbol = r.symbol.toUpperCase(); r.d = ntDate(r.date); r.tag = held.has(r.symbol) ? 'בתיק' : watched.has(r.symbol) ? 'במעקב' : ''; r.ixs = idxOf(o); return r; }).filter(r=>r.company || r.symbol);
+  if(L.some(r=>!r.ixs.length) && (!idxMem || Date.now()-idxMem.at > 20*3600e3)) loadIdxMem().then(m=>{ if(m && newsTab==='rep') drawReports(); });
+  L.forEach(r=>{ if(!r.ixs.length) r.ixs = memOf(r.symbol); });
+  const ixL = {}; L.forEach(r=>{ r.ixs.forEach(x=>{ if(!ixL[x.k]) ixL[x.k] = x.l; }); r.ix = r.ixs.length ? r.ixs.map(x=>x.k) : ['other']; });
+  const ixOrd = [...new Set(L.flatMap(r=>r.ixs.map(x=>x.k)))].sort((a,b)=>{ const i = k=>{ const j = IDX_AL.findIndex(x=>x[0]===k); return j<0 ? 99 : j; }; return i(a)-i(b) || (ixL[a]<ixL[b]?-1:1); });
+  if(ntFil.idx!=='all' && ntFil.idx!=='other' && !ixOrd.includes(ntFil.idx)) ntFil.idx = 'all';
+  const days = [...new Set(L.map(r=>r.d))].sort(), t = today();
+  if(ntFil.day!=='all' && !days.includes(ntFil.day)) ntFil.day = 'all';
+  const dShort = d=>{ if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return d; const l = dayLbl(d); const w = new Date(d+'T12:00:00Z').toLocaleDateString('he-IL',{weekday:'short', timeZone:'UTC'}).replace('יום ',''); return `${l || w} ${+d.slice(8)}.${+d.slice(5,7)}`; };
+  const cnt = (f)=>L.filter(f).length;
+  const dayRow = [['all','הכל', L.length], ...days.map(d=>[d, dShort(d), cnt(r=>r.d===d)])];
+  const inDay = r=>ntFil.day==='all' || r.d===ntFil.day, inMine = r=>ntFil.rep!=='mine' || !!r.tag;
+  const idxRow = [['all','הכל'], ...ixOrd.map(k=>[k, ixL[k]]), ['other','אחר']].map(([k,l])=>[k, l, cnt(r=>inDay(r) && inMine(r) && (k==='all' || r.ix.includes(k)))]).filter(x=>x[0]==='all' || x[2] || ntFil.idx===x[0]);
+  $('repFil').innerHTML = `<div class="cfil">${dayRow.map(([k,l,n])=>`<button data-rd="${k}" class="${ntFil.day===k?'on':''}">${esc(l)} <small>${n}</small></button>`).join('')}</div>`+
+    `<div class="cfil">${idxRow.map(([k,l,n])=>`<button data-ri="${esc(k)}" class="${ntFil.idx===k?'on':''}">${esc(l)} <small>${n}</small></button>`).join('')}<button data-rf="${ntFil.rep==='mine'?'all':'mine'}" class="${ntFil.rep==='mine'?'on':''}">⭐ בתיק ובמעקב</button></div>`+
+''; 
+  $('repFil').querySelectorAll('button.on').forEach(b=>{ const c = b.parentNode; c.scrollLeft = b.offsetLeft - c.clientWidth + b.offsetWidth + 40; });
+  const M = L.filter(r=>inDay(r) && inMine(r) && (ntFil.idx==='all' || r.ix.includes(ntFil.idx)))
+    .sort((a,b)=>(a.d<b.d?-1:a.d>b.d?1:0) || ((b.ixs.length?1:0)-(a.ixs.length?1:0)));
   if(!M.length){ el.innerHTML = '<div class="news-empty">אין דוחות בסינון הזה.</div>'; return; }
-  const up = M.filter(r=>r.d >= t).sort((a,b)=>a.d<b.d?-1:a.d>b.d?1:0), past = M.filter(r=>r.d < t).sort((a,b)=>a.d<b.d?1:a.d>b.d?-1:0);
+  const up = M.filter(r=>r.d >= t), past = M.filter(r=>r.d < t).reverse();
   const card = r=>{ const tm = /^(before|pre|bmo|לפני)/i.test(r.time) ? '☀️ לפני פתיחה' : /^(after|post|amc|אחרי)/i.test(r.time) ? '🌙 אחרי סגירה' : esc(r.time);
-    const e1 = numOf(r.epsEst), e2 = numOf(r.eps), beat = e1!=null && e2!=null ? (e2 >= e1 ? '<span class="beat pos">הכה ✓</span>' : '<span class="beat neg">החטיא ✗</span>') : '';
+    const e1 = numOf(r.epsEst), e2 = numOf(r.eps), r1 = numOf(r.revEst), r2 = numOf(r.rev), beat = e1!=null && e2!=null ? (e2 >= e1 ? '<span class="beat pos">הכה ✓</span>' : '<span class="beat neg">החטיא ✗</span>') : '';
     const v = x=>esc(x) || '—', link = /^https?:\/\//i.test(r.link) ? `<a class="news-l" href="${esc(r.link)}" target="_blank" rel="noopener">לפרטים ←</a>` : '';
-    return `<article class="rcard"><div class="rtop">${r.symbol ? logoHtml(r.symbol) : ''}<div class="t"><b class="ltr">${esc(r.symbol || r.company)}</b>${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<small>${esc(r.symbol ? r.company : '')}${r.symbol && r.company && tm ? ' · ' : ''}${tm}</small></div>${beat}${r.quarter ? `<span class="rq">${esc(r.quarter)}</span>` : ''}</div>`+
-      `<div class="rkv"><div><span>EPS צפי</span><b class="num">${v(r.epsEst)}</b></div><div><span>EPS בפועל</span><b class="num ${e1!=null && e2!=null ? (e2>=e1?'pos':'neg') : ''}">${v(r.eps)}</b></div><div><span>הכנסות צפי / בפועל</span><b class="num">${v(r.revEst)}${r.rev ? ' / '+esc(r.rev) : ''}</b></div></div>${r.note ? `<div class="rnote">${esc(r.note)}</div>` : ''}${link}</article>`; };
+    return `<article class="rcard"><div class="rtop">${r.symbol ? logoHtml(r.symbol) : ''}<div class="t"><b class="ltr">${esc(r.symbol || r.company)}</b>${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<small>${esc(r.symbol ? r.company : '')}${r.symbol && r.company && tm ? ' · ' : ''}${tm}</small><span class="rix">${r.ixs.length ? r.ixs.map(x=>`<i class="${ixCls(x.k).trim()}">${esc(x.l)}</i>`).join('') : '<i>אחר</i>'}</span></div>${beat}${r.quarter ? `<span class="rq">${esc(r.quarter)}</span>` : ''}</div>`+
+      (r.epsEst || r.eps || r.revEst || r.rev ? `<div class="rkv">`+
+        `<div><span>EPS ${r.eps ? 'צפי / בפועל' : 'צפי'}</span><b class="num">${v(r.epsEst)}${r.eps ? ` / <em class="${e1!=null && e2!=null ? (e2>=e1?'pos':'neg') : ''}">${esc(r.eps)}</em>` : ''}</b></div>`+
+        `<div><span>${r.rev ? 'הכנסות צפי / בפועל' : 'צפי הכנסות'}</span><b class="num">${v(r.revEst)}${r.rev ? ` / <em class="${r1!=null && r2!=null ? (r2>=r1?'pos':'neg') : ''}">${esc(r.rev)}</em>` : ''}</b></div></div>` : '') + `${r.note ? `<div class="rnote">${esc(r.note)}</div>` : ''}${link}</article>`; };
   const grp = (A)=>{ let h = '', last = null; A.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="rday">${dayHead(r.d)}</div>`; } h += card(r); }); return h; };
-  el.innerHTML = grp(up) + (past.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(past)}` : ''); }
+  const A = [...up, ...past], more = A.length - repShow, upS = up.slice(0, repShow), pastS = past.slice(0, Math.max(0, repShow - up.length));
+  el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' ? ' בסינון' : ''}</div>` + grp(upS) + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '') + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
 const FLAGS = {US:'🇺🇸', IL:'🇮🇱', EU:'🇪🇺', DE:'🇩🇪', GB:'🇬🇧', UK:'🇬🇧', FR:'🇫🇷', JP:'🇯🇵', CN:'🇨🇳', CA:'🇨🇦', CH:'🇨🇭', AU:'🇦🇺', 'ארה״ב':'🇺🇸', 'ארה"ב':'🇺🇸', 'ישראל':'🇮🇱', 'אירופה':'🇪🇺', 'גוש האירו':'🇪🇺', 'גרמניה':'🇩🇪', 'בריטניה':'🇬🇧', 'יפן':'🇯🇵', 'סין':'🇨🇳'};
 const CNAME = {US:'ארה״ב', IL:'ישראל', EU:'אירופה', DE:'גרמניה', GB:'בריטניה', UK:'בריטניה', FR:'צרפת', JP:'יפן', CN:'סין', CA:'קנדה', CH:'שווייץ', AU:'אוסטרליה'};
 function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; if(!D.items.length){ $('calFil').innerHTML = ''; el.innerHTML = ntEmpty('cal', D.err); return; }
@@ -3907,7 +3960,8 @@ function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; if(!
     const g = /^(true|yes|1|כן|טוב)$/i.test(r.good) ? 'pos' : /^(false|no|0|לא|רע)$/i.test(r.good) ? 'neg' : '';
     h += `<div class="crow${r.imp===3?' hi':''}"><span class="tm num">${esc(r.time)}</span><div class="ev"><b>${FLAGS[r.c] ? FLAGS[r.c]+' ' : ''}${esc(r.event)}</b><small>${imp(r.imp)}${r.period ? ' '+esc(r.period) : ''}${r.note ? ' · '+esc(r.note) : ''}</small></div><span class="n num">${esc(r.forecast)||'—'}</span><span class="n num muted">${esc(r.previous)||'—'}</span><span class="n num ${g}"><b>${esc(r.actual)||'—'}</b></span></div>`; });
   el.innerHTML = h; }
-$('repFil').addEventListener('click', e=>{ const b = e.target.closest('[data-rf]'); if(!b) return; ntFil.rep = b.dataset.rf; drawReports(); });
+$('repFil').addEventListener('click', e=>{ const b = e.target.closest('[data-rf],[data-rd],[data-ri]'); if(!b) return; if(b.dataset.rf) ntFil.rep = b.dataset.rf; if(b.dataset.rd) ntFil.day = b.dataset.rd; if(b.dataset.ri) ntFil.idx = b.dataset.ri; repShow = 60; drawReports(); });
+$('repList').addEventListener('click', e=>{ if(e.target.closest('[data-rmore]')){ repShow += 60; drawReports(); } });
 $('calFil').addEventListener('click', e=>{ const b = e.target.closest('[data-cf]'); if(!b) return; ntFil.cal = b.dataset.cf; drawCal(); });
 
 // v55: images – "תמונות"/"images" (list) or "תמונה"/"image" (one); a repo path (news-images/x.jpg) or a full https URL
