@@ -512,7 +512,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
 .rfil .cfil{margin-bottom:6px}.cfil button small{font-size:.66rem;opacity:.7;font-weight:600}.rcnt{font-size:.72rem;color:var(--muted);margin:2px 2px 0}
 .rix{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}.rix i{font-style:normal;font-size:.6rem;font-weight:700;border-radius:5px;padding:1px 5px;background:rgba(127,127,127,.14);color:var(--muted);direction:ltr;unicode-bidi:isolate}
 .rix .ix-sp500{background:rgba(234,88,12,.16);color:#ea580c}.rix .ix-ndx{background:rgba(147,51,234,.16);color:#a855f7}.rix .ix-dow{background:rgba(14,165,233,.16);color:#0ea5e9}.rix .ix-sp400{background:rgba(22,163,74,.16);color:#16a34a}.rix .ix-sp600{background:rgba(202,138,4,.16);color:#ca8a04}
-.rmore{width:100%;margin-top:6px}.rkv em{font-style:normal}.cst{flex:0 0 auto;margin-inline-start:auto;align-self:center}#idxRow .idx{cursor:pointer}.rcard[data-rsym]{cursor:pointer}.rix .ix-r2k{background:rgba(219,39,119,.16);color:#db2777}.rix .ix-ixic{background:rgba(99,102,241,.16);color:#818cf8}
+.rmore{width:100%;margin-top:6px}.rkv em{font-style:normal}.cst{flex:0 0 auto;margin-inline-start:auto;align-self:center}#idxRow .idx{cursor:pointer}.rcard[data-rsym]{cursor:pointer}.ivseg{margin-top:6px;width:fit-content;margin-inline-start:auto}.ivseg button{direction:ltr;min-width:38px;padding-inline:6px}.rix .ix-r2k{background:rgba(219,39,119,.16);color:#db2777}.rix .ix-ixic{background:rgba(99,102,241,.16);color:#818cf8}
 </style>
 </head>
 <body>
@@ -2468,17 +2468,24 @@ let barQ = [], barRunning = 0;
 function barSlot(fn){ return new Promise((res, rej)=>{ const go = async()=>{ barRunning++; try{ res(await fn()); }catch(e){ rej(e); } finally{ barRunning--; const n = barQ.shift(); if(n) n(); } }; if(barRunning < 4) go(); else barQ.push(go); }); }
 const nyFmt = new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hourCycle:'h23'});
 function nyParts(ms){ const o = Object.fromEntries(nyFmt.formatToParts(new Date(ms)).map(p=>[p.type, p.value])); return {d:`${o.year}-${o.month}-${o.day}`, hm:+(o.hour+o.minute)}; }
-async function instBars(it, range){
-  const key = it.q+'|'+range, c = instCache[key]; if(c && Date.now()-c.at < INST_TTL[range]) return c.pts;
+// v69: bar interval per range – only what CNBC serves (1M/5M/10M/30M/1H intraday ≈ last 3 months, 1D/1W/1MO) and sensible for the range
+const IV_OPT = {'1D':['1M','5M','10M','30M','1H'], '1W':['5M','10M','30M','1H','1D'], '1M':['30M','1H','1D'], 'YTD':['1D','1W'], '1Y':['1D','1W'], '5Y':['1D','1W','1MO']};
+const IV_DEF = {'1D':'5M', '1W':'1H', '1M':'1D', 'YTD':'1D', '1Y':'1D', '5Y':'1D'}, IV_LBL = {'1M':'1m','5M':'5m','10M':'10m','30M':'30m','1H':'1h','1D':'1D','1W':'1W','1MO':'1M'}, IV_KEY = 'portfolioTracker.chartIv.v1';
+const ivOf = range=>{ const m = loadJ(IV_KEY) || {}, v = m[range]; return IV_OPT[range].includes(v) ? v : IV_DEF[range]; };
+const ivSet = (range, v)=>{ const m = loadJ(IV_KEY) || {}; m[range] = v; try{ localStorage.setItem(IV_KEY, JSON.stringify(m)); }catch(e){} };
+const ivIntra = iv=>/M$|H$/.test(iv) && iv!=='1MO';
+const instKey = (it, range, iv)=>it.q+'|'+range+(iv && iv!==IV_DEF[range] ? '|'+iv : '');
+async function instBars(it, range, iv){
+  iv = iv || IV_DEF[range]; const key = instKey(it, range, iv), c = instCache[key]; if(c && Date.now()-c.at < INST_TTL[range]) return c.pts;
   return barSlot(async()=>{
     const q = iq(it), td = today(), day = q && q.date ? q.date : td, ymd = d=>d.replace(/-/g,'')+'000000';
-    const spec = range==='1D' ? ['5M', day, addDays(day,1)] : range==='1W' ? ['1H', addDays(td,-7), addDays(td,1)] : ['1D', range==='1M' ? addDays(td,-31) : range==='YTD' ? (td.slice(0,4)-1)+'-12-24' : range==='1Y' ? addDays(td,-366) : addDays(td,-1827), addDays(td,1)];
+    const spec = range==='1D' ? [iv, day, addDays(day,1)] : range==='1W' ? [iv, addDays(td,-7), addDays(td,1)] : [iv, range==='1M' ? addDays(td,-31) : range==='YTD' ? (td.slice(0,4)-1)+'-12-24' : range==='1Y' ? addDays(td,-366) : addDays(td,-1827), addDays(td,1)];
     const k = isTaseSec(it.q) ? 100 : 1;
     let pts = [];
     try{ const j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/${spec[0]}/${ymd(spec[1])}/${ymd(spec[2])}/adjusted/EST5EDT.json`, 12000);
       const bars = (j && j.barData && j.barData.priceBars) || [];
       pts = bars.map(b=>{ const c = +b.close/k, o = +b.open/k || c, h = +b.high/k || Math.max(o,c), l = +b.low/k || Math.min(o,c); return [+b.tradeTimeinMills, c, o, h, l]; }).filter(p=>p[0] && p[1] > 0 || (it.y && p[0] && isFinite(p[1])));
-      if(spec[0]!=='1D' && it.stock) pts = pts.filter(p=>{ const x = nyParts(p[0]); return x.hm>=930 && x.hm<1600 && (range!=='1D' || x.d===day); });
+      if(ivIntra(iv) && it.stock) pts = pts.filter(p=>{ const x = nyParts(p[0]); return x.hm>=930 && x.hm<1600 && (range!=='1D' || x.d===day); });
       if(range==='YTD'){ const y0 = Date.parse(td.slice(0,4)+'-01-01T00:00:00Z'); const before = pts.filter(p=>p[0] < y0); pts = (before.length ? [before[before.length-1]] : []).concat(pts.filter(p=>p[0] >= y0)); }
     }catch(e){ console.warn('bars', it.q, range, e.message); if(c) return c.pts; }
     instCache[key] = {at:Date.now(), pts}; return pts; }); }
@@ -2659,28 +2666,29 @@ function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p
     <div class="muted" style="margin:-8px 0 8px;font-size:.85rem">${esc(it.sec ? it.n : it.s)}</div>
     <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b>${it.y ? '' : styleSegHtml('isStyle', chartStyle() || 'line')}</div>
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
-    <div class="chart" id="isChart" style="height:280px;margin-top:8px"><div class="chart-msg" id="isMsg">טוען גרף…</div></div>
+    <div class="seg sm ivseg" id="isIv" aria-label="אינטרוול"></div><div class="chart" id="isChart" style="height:280px;margin-top:6px"><div class="chart-msg" id="isMsg">טוען גרף…</div></div>
     <div class="inst-stats" id="isStats"></div>
     ${it.sec ? wlAddHtml(it.sym, it.n, it.type, it.cur) : ''}
     ${held ? `<div class="btn-row" style="margin-top:8px"><button class="btn btn-light" id="isPos">💼 פתיחת הפוזיציה בתיק</button></div>` : ''}
     ${it.stock ? '<div class="note">מניות ותעודות סל בארה״ב: מסחר רגיל בלבד (09:30–16:00 ניו יורק).</div>' : ''}`; }
-function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[it.q+'|'+S.range], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
+function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[instKey(it, S.range, S.iv)], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
   const ch = chgInst(it, q ? q.price : null, base); $('isV').textContent = fmtInst(it, q ? q.price : null); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+'';
   const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [['סגירה קודמת', fmtInst(it, q && q.prev)], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
   if(S.series && S.bar && q && q.price!=null){ const b = S.bar; b.close = q.price; b.high = Math.max(b.high, q.price); b.low = Math.min(b.low, q.price); try{ S.series.update(Object.assign({}, b)); }catch(e){} }
   else if(S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
+function drawIvSeg(){ const S = instSheet, el = $('isIv'); if(!S || !el) return; el.innerHTML = IV_OPT[S.range].map(v=>`<button data-iv="${v}" class="${v===S.iv?'on':''}">${IV_LBL[v]}</button>`).join(''); }
 async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S.it, el = $('isChart'), seq = ++S.seq;
   $('isRange').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===S.range));
   const cnd = !it.y && (chartStyle() || 'line')==='candle'; if($('isStyle')) $('isStyle').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===(cnd?'candle':'line')));
   if(posChart){ posChart.remove(); posChart = null; } S.series = null; S.bar = null; el.querySelectorAll('.tv-lightweight-charts, table').forEach(x=>x.remove());
   const msg = $('isMsg'); msg.style.display = 'flex'; msg.textContent = 'טוען גרף…';
   if(!iq(it)) await instQuotes([it]);
-  const pts = withLive(it, S.range, await instBars(it, S.range)); if(seq!==S.seq || instSheet!==S) return;
+  S.iv = ivOf(S.range); drawIvSeg(); const pts = withLive(it, S.range, await instBars(it, S.range, S.iv)); if(seq!==S.seq || instSheet!==S) return;
   instSheetLive(); if(pts.length < 2 || !lwOk()){ msg.textContent = 'אין נתונים לטווח הזה'; return; } msg.style.display = 'none';
-  const intr = S.range==='1D' || S.range==='1W', off = -new Date().getTimezoneOffset()*60;   // show Israel wall-clock times on the axis
+  const intr = ivIntra(S.iv), off = -new Date().getTimezoneOffset()*60;   // show Israel wall-clock times on the axis
   posChart = makeChart(el, false); posChart.applyOptions({timeScale:{timeVisible:intr, secondsVisible:false}, localization:{locale:'he-IL', priceFormatter:v=>it.y ? v.toFixed(3)+'%' : Math.abs(v)>=10000 ? v.toLocaleString('en-US',{maximumFractionDigits:0}) : v.toFixed(Math.abs(v)<10 ? 3 : 2)}});
   const up = pts[pts.length-1][1] >= (S.range==='1D' ? ((iq(it)||{}).prev || pts[0][1]) : pts[0][1]), T = chartTheme(), col = up ? T.up : T.down;
-  const seen = new Set(), raw = cnd ? instCache[it.q+'|'+S.range].pts : pts; let s, data;
+  const seen = new Set(), raw = cnd ? instCache[instKey(it, S.range, S.iv)].pts : pts; let s, data;
   if(cnd){ s = posChart.addCandlestickSeries(candleOpts()); data = raw.map(p=>({time:Math.floor(p[0]/1000) + (intr ? off : 0), open:p[2]!=null?p[2]:p[1], high:p[3]!=null?p[3]:p[1], low:p[4]!=null?p[4]:p[1], close:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time));
     const lb = data[data.length-1], q0 = iq(it); S.bar = Object.assign({}, lb); if(q0 && q0.price!=null){ S.bar.close = q0.price; S.bar.high = Math.max(lb.high, q0.price); S.bar.low = Math.min(lb.low, q0.price); data[data.length-1] = Object.assign({}, S.bar); } }
   else { s = posChart.addAreaSeries({lineColor:col, topColor:up ? 'rgba(16,185,129,.22)' : 'rgba(239,68,68,.22)', bottomColor:'rgba(0,0,0,0)', lineWidth:2, priceLineVisible:false});
@@ -2691,6 +2699,7 @@ async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S
 function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it, range:range||'1D', seq:0};
   $('isRange').addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b || !instSheet) return; instSheet.range = b.dataset.v; drawInstChart(); });
   const pb = $('isPos'); if(pb) pb.onclick = ()=>openPosition(it.sym);
+  $('isIv').addEventListener('click', e=>{ const b = e.target.closest('button[data-iv]'); if(!b || !instSheet) return; ivSet(instSheet.range, b.dataset.iv); drawInstChart(); });
   const sb = $('isStyle'); if(sb) sb.addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b || !instSheet) return; setChartStyle(b.dataset.v); drawInstChart(); });
   drawInstChart(); }
 
@@ -3179,7 +3188,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v68</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v69</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
