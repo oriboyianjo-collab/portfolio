@@ -512,7 +512,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
 .rfil .cfil{margin-bottom:6px}.cfil button small{font-size:.66rem;opacity:.7;font-weight:600}.rcnt{font-size:.72rem;color:var(--muted);margin:2px 2px 0}
 .rix{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}.rix i{font-style:normal;font-size:.6rem;font-weight:700;border-radius:5px;padding:1px 5px;background:rgba(127,127,127,.14);color:var(--muted);direction:ltr;unicode-bidi:isolate}
 .rix .ix-sp500{background:rgba(234,88,12,.16);color:#ea580c}.rix .ix-ndx{background:rgba(147,51,234,.16);color:#a855f7}.rix .ix-dow{background:rgba(14,165,233,.16);color:#0ea5e9}.rix .ix-sp400{background:rgba(22,163,74,.16);color:#16a34a}.rix .ix-sp600{background:rgba(202,138,4,.16);color:#ca8a04}
-.rmore{width:100%;margin-top:6px}.rkv em{font-style:normal}.cst{flex:0 0 auto;margin-inline-start:auto;align-self:center}#idxRow .idx{cursor:pointer}.rix .ix-r2k{background:rgba(219,39,119,.16);color:#db2777}.rix .ix-ixic{background:rgba(99,102,241,.16);color:#818cf8}
+.rmore{width:100%;margin-top:6px}.rkv em{font-style:normal}.cst{flex:0 0 auto;margin-inline-start:auto;align-self:center}#idxRow .idx{cursor:pointer}.rcard[data-rsym]{cursor:pointer}.rix .ix-r2k{background:rgba(219,39,119,.16);color:#db2777}.rix .ix-ixic{background:rgba(99,102,241,.16);color:#818cf8}
 </style>
 </head>
 <body>
@@ -3179,7 +3179,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v67</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v68</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3938,7 +3938,7 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
   const card = r=>{ const tm = /^(before|pre|bmo|לפני)/i.test(r.time) ? '☀️ לפני פתיחה' : /^(after|post|amc|אחרי)/i.test(r.time) ? '🌙 אחרי סגירה' : esc(r.time);
     const e1 = numOf(r.epsEst), e2 = numOf(r.eps), r1 = numOf(r.revEst), r2 = numOf(r.rev), beat = e1!=null && e2!=null ? (e2 >= e1 ? '<span class="beat pos">הכה ✓</span>' : '<span class="beat neg">החטיא ✗</span>') : '';
     const v = x=>esc(x) || '—', link = /^https?:\/\//i.test(r.link) ? `<a class="news-l" href="${esc(r.link)}" target="_blank" rel="noopener">לפרטים ←</a>` : '';
-    return `<article class="rcard"><div class="rtop">${r.symbol ? logoHtml(r.symbol) : ''}<div class="t"><b class="ltr">${esc(r.symbol || r.company)}</b>${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<small>${esc(r.symbol ? r.company : '')}${r.symbol && r.company && tm ? ' · ' : ''}${tm}</small><span class="rix">${r.ixs.length ? r.ixs.map(x=>`<i class="${ixCls(x.k).trim()}">${esc(x.l)}</i>`).join('') : '<i>אחר</i>'}</span></div>${beat}${r.quarter ? `<span class="rq">${esc(r.quarter)}</span>` : ''}</div>`+
+    return `<article class="rcard"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}><div class="rtop">${r.symbol ? logoHtml(r.symbol) : ''}<div class="t"><b class="ltr">${esc(r.symbol || r.company)}</b>${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<small>${esc(r.symbol ? r.company : '')}${r.symbol && r.company && tm ? ' · ' : ''}${tm}</small><span class="rix">${r.ixs.length ? r.ixs.map(x=>`<i class="${ixCls(x.k).trim()}">${esc(x.l)}</i>`).join('') : '<i>אחר</i>'}</span></div>${beat}${r.quarter ? `<span class="rq">${esc(r.quarter)}</span>` : ''}</div>`+
       (r.epsEst || r.eps || r.revEst || r.rev ? `<div class="rkv">`+
         `<div><span>EPS ${r.eps ? 'צפי / בפועל' : 'צפי'}</span><b class="num">${v(r.epsEst)}${r.eps ? ` / <em class="${e1!=null && e2!=null ? (e2>=e1?'pos':'neg') : ''}">${esc(r.eps)}</em>` : ''}</b></div>`+
         `<div><span>${r.rev ? 'הכנסות צפי / בפועל' : 'צפי הכנסות'}</span><b class="num">${v(r.revEst)}${r.rev ? ` / <em class="${r1!=null && r2!=null ? (r2>=r1?'pos':'neg') : ''}">${esc(r.rev)}</em>` : ''}</b></div></div>` : '') + `${r.note ? `<div class="rnote">${esc(r.note)}</div>` : ''}${link}</article>`; };
@@ -3961,7 +3961,8 @@ function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; if(!
     h += `<div class="crow${r.imp===3?' hi':''}"><span class="tm num">${esc(r.time)}</span><div class="ev"><b>${FLAGS[r.c] ? FLAGS[r.c]+' ' : ''}${esc(r.event)}</b><small>${imp(r.imp)}${r.period ? ' '+esc(r.period) : ''}${r.note ? ' · '+esc(r.note) : ''}</small></div><span class="n num">${esc(r.forecast)||'—'}</span><span class="n num muted">${esc(r.previous)||'—'}</span><span class="n num ${g}"><b>${esc(r.actual)||'—'}</b></span></div>`; });
   el.innerHTML = h; }
 $('repFil').addEventListener('click', e=>{ const b = e.target.closest('[data-rf],[data-rd],[data-ri]'); if(!b) return; if(b.dataset.rf) ntFil.rep = b.dataset.rf; if(b.dataset.rd) ntFil.day = b.dataset.rd; if(b.dataset.ri) ntFil.idx = b.dataset.ri; repShow = 60; drawReports(); });
-$('repList').addEventListener('click', e=>{ if(e.target.closest('[data-rmore]')){ repShow += 60; drawReports(); } });
+$('repList').addEventListener('click', e=>{ if(e.target.closest('[data-rmore]')){ repShow += 60; drawReports(); return; } if(e.target.closest('a')) return;
+  const c = e.target.closest('[data-rsym]'); if(c) openInstSheet(srchInst({sym:c.dataset.rsym, name:c.dataset.rname||'', type:'stock'}), '1D'); });
 $('calFil').addEventListener('click', e=>{ const b = e.target.closest('[data-cf]'); if(!b) return; ntFil.cal = b.dataset.cf; drawCal(); });
 
 // v55: images – "תמונות"/"images" (list) or "תמונה"/"image" (one); a repo path (news-images/x.jpg) or a full https URL
