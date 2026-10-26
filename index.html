@@ -2551,7 +2551,7 @@ attachAutocomplete($('mktSearch'), $('mktAc'), it=>{ $('mktSearch').value = ''; 
 // Quotes for the selected ETF only, through the same batched CNBC restQuote (≤40 symbols a request); intraday sparklines for the
 // largest holdings only (bars ride the shared ≤4-at-a-time queue). SOX is an index – its tracker SOXX is used.
 const ETFS = ['XLI','XLY','XLF','XLE','XAR','XLU','XLB','XLV','IGV','XLC','XLP','PRAM','DRNZ','NECK','NUKZ','NCLD','DRAM','JEDI','SOXX'], ETF_LBL = {SOXX:'SOX/SOXX'};
-const ETF_UI_KEY = 'portfolioTracker.etfUi.v1', ETF_KEY = 'portfolioTracker.etfHold.v1', ETF_TTL = 20*3600e3, ETF_SPARK = 30;
+const ETF_UI_KEY = 'portfolioTracker.etfUi.v1', ETF_KEY = 'portfolioTracker.etfHold.v1', ETF_TTL = 3*3600e3, ETF_SPARK = 30;
 let etfUi = Object.assign({mode:'my', sel:'XLI', view:'list'}, loadJ(ETF_UI_KEY)||{}); if(!ETFS.includes(etfUi.sel)) etfUi.sel = 'XLI';
 let etfData = loadJ(ETF_KEY) || {}, etfErr = {}, etfSeq = 0, etfHeatKey = '';
 const saveEtfUi = ()=>{ try{ localStorage.setItem(ETF_UI_KEY, JSON.stringify(etfUi)); }catch(e){} };
@@ -2560,12 +2560,25 @@ function etfParseTI(j){ const h = j && j.holdings && typeof j.holdings==='object
 function etfParseEQ(j){ return {name:'', asOf:(j && j.asOf)||'', kind:(j && j.kind)||'', rows: j && Array.isArray(j.h) ? j.h.filter(r=>r && r[1]).map(r=>[String(r[1]).toUpperCase(), String(r[0]||''), +r[3]]) : [], src:'ETFIQ'}; }
 async function etfLoad(t){ const c = etfData[t]; if(c && Date.now()-c.at < ETF_TTL) return c;
   let d = null; const lo = t.toLowerCase();
-  try{ d = etfParseTI(await fetchJSON(`https://tickerinside.com/api/v1/fund/${lo}.json`, 12000)); }catch(e){}
-  if(!d || !d.rows.length){ try{ const e2 = etfParseEQ(await fetchJSON(`https://etfiq.com/data/books/${lo}.json`, 12000)); if(e2.rows.length || !d) d = Object.assign(e2, {name:(d && d.name)||''}); }catch(e){} }
+  try{ d = etfParseTI(await fetchJSON(`https://tickerinside.com/api/v1/fund/${lo}.json?h=${Math.floor(Date.now()/36e5)}`, 12000)); }catch(e){}
+  if(!d || !d.rows.length){ try{ const e2 = etfParseEQ(await fetchJSON(`https://etfiq.com/data/books/${lo}.json?h=${Math.floor(Date.now()/36e5)}`, 12000)); if(e2.rows.length || !d) d = Object.assign(e2, {name:(d && d.name)||''}); }catch(e){} }
   if(!d) return c || null;   // both sources unreachable: a stale copy beats nothing
   d.rows = d.rows.filter(r=>/^[A-Z0-9][A-Z0-9.\-]{0,11}$/.test(r[0]) && r[2] > 0).sort((a,b)=>b[2]-a[2]); d.at = Date.now(); etfData[t] = d;
   try{ localStorage.setItem(ETF_KEY, JSON.stringify(etfData)); }catch(e){ etfData = {[t]:d}; try{ localStorage.setItem(ETF_KEY, JSON.stringify(etfData)); }catch(e2){} }
   return d; }
+// v73: live weights between snapshots – w' = w·(P/P0) / Σ w·(P/P0) × Σw, P0 = the holding's daily close on the snapshot date
+// (CNBC daily bars, fetched once per ETF+snapshot, ≤4 at a time, top ETF_P0N holdings; cached – market data only). No P0 yet → ratio 1.
+const ETF_P0_KEY = 'portfolioTracker.etfP0.v1', ETF_P0N = 150;
+let etfP0 = loadJ(ETF_P0_KEY) || {}, etfP0Busy = {};
+async function etfLoadP0(t, d){ const ad = String(d.asOf||'').slice(0,10); if(!/^\d{4}-\d{2}-\d{2}$/.test(ad)) return; const key = t+'|'+ad;
+  if(etfP0[key] && etfP0[key].done) return; if(etfP0Busy[key]) return etfP0Busy[key];
+  return etfP0Busy[key] = (async()=>{ const m = (etfP0[key] && etfP0[key].p) || {}, todo = d.rows.slice(0, ETF_P0N).map(r=>r[0]).filter(s=>!(s in m)); let i = 0;
+    await Promise.all([0,1,2,3].map(async()=>{ while(i < todo.length){ const sym = todo[i++]; try{ const b = await cnbcBars(cnbcSymbol(sym), addDays(ad,-7)); const x = b.filter(z=>z[0] <= ad).pop(); m[sym] = x ? x[4] : 0; }catch(e){} } }));
+    Object.keys(etfP0).forEach(k=>{ if(k.startsWith(t+'|') && k!==key) delete etfP0[k]; });
+    etfP0[key] = {p:m, done: todo.every(s=>s in m)}; try{ localStorage.setItem(ETF_P0_KEY, JSON.stringify(etfP0)); }catch(e){} delete etfP0Busy[key]; })(); }
+function etfLiveW(t, d, its){ const ad = String(d.asOf||'').slice(0,10), P0 = (etfP0[t+'|'+ad] || {}).p || {}; let sw = 0, sr = 0; const r = d.rows.map((x,i)=>{ const q = iq(its[i]), p0 = P0[x[0]];
+    const k = q && q.price > 0 && p0 > 0 ? q.price/p0 : 1; sw += x[2]; sr += x[2]*k; return x[2]*k; });
+  return sr > 0 ? r.map(v=>v/sr*sw) : d.rows.map(x=>x[2]); }
 const etfInst = r=>secInst({sym:r[0], name:r[1]||'', type:'stock', currency:'USD'});
 function etfItems(d){ return d ? d.rows.map(etfInst) : []; }
 function etfRowHtml(it, w, mx){ const q = iq(it), c = instCache[it.q+'|1D'], pts = c ? withLive(it, '1D', c.pts) : null, pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
@@ -2582,23 +2595,24 @@ function drawEtf(){ const t = etfUi.sel, d = etfData[t], ei = secInst({sym:t, ty
   if(!d){ info.textContent = ''; note.textContent = ''; etfHeatKey = ''; body.innerHTML = `<div class="wl-empty">${etfErr[t] ? 'לא ניתן לטעון את הרכב הקרן כרגע – נסו שוב מאוחר יותר.' : 'טוען הרכב…'}</div>`; return; }
   const dt = d.asOf ? fmtDate(String(d.asOf).slice(0,10)) : '';
   if(!d.rows.length){ info.textContent = ''; etfHeatKey = ''; body.innerHTML = `<div class="wl-empty">אין נתוני הרכב זמינים לקרן זו.<br><small>${d.kind==='derivative' ? 'הקרן מחזיקה בעיקר נגזרים (חוזי החלף), לא מניות.' : 'המנפיק לא מפרסם רשימת החזקות זמינה.'}</small></div>`; note.textContent = d.src ? 'מקור: '+d.src : ''; return; }
-  const its = etfItems(d), mx = d.rows[0][2]; let up = 0, dn = 0; its.forEach(it=>{ const qq = iq(it); if(qq && qq.prev){ const x = qq.price/qq.prev-1; if(x > 0.00004) up++; else if(x < -0.00004) dn++; } });
+  const its = etfItems(d), LW = etfLiveW(t, d, its), mx = Math.max(...LW); let up = 0, dn = 0; its.forEach(it=>{ const qq = iq(it); if(qq && qq.prev){ const x = qq.price/qq.prev-1; if(x > 0.00004) up++; else if(x < -0.00004) dn++; } });
   info.innerHTML = `${d.rows.length} החזקות${dt ? ` · נכון ל-<span class="num">${dt}</span>` : ''} · <b class="pos">${up}▲</b> <b class="neg">${dn}▼</b>`;
-  note.textContent = `מקור ההרכב: ${d.src}${dt ? ' · '+dt : ''}${d.kind==='derivative' ? ` · חלק מהחשיפה בנגזרים${d.listed!=null ? ` (מניות ישירות ~${Math.round(d.listed)}%)` : ''}` : ''}. משקל = % מנכסי הקרן. מחירים: CNBC.`;
+  note.textContent = `מקור ההרכב: ${d.src}${dt ? ' · '+dt : ''}${d.kind==='derivative' ? ` · חלק מהחשיפה בנגזרים${d.listed!=null ? ` (מניות ישירות ~${Math.round(d.listed)}%)` : ''}` : ''}. משקל = % מנכסי הקרן, מעודכן חי לפי שינוי המחירים מאז תאריך ההרכב. מחירים: CNBC.`;
   if(etfUi.view==='heat'){ let map = body.querySelector('.heat-map.etf-heat'); if(!map){ body.innerHTML = '<div class="heat-map etf-heat" role="list" aria-label="מפת חום – גודל לפי משקל בקרן, צבע לפי השינוי היומי"></div>'; map = body.firstChild; etfHeatKey = ''; }
-    const items = d.rows.map((r,i)=>{ const qq = iq(its[i]); return {sym:r[0], v:r[2], wt:r[2], p: qq && qq.prev ? (qq.price/qq.prev-1)*100 : null, pre:null}; });
+    const items = d.rows.map((r,i)=>{ const qq = iq(its[i]); return {sym:r[0], v:r[2], wt:LW[i], p: qq && qq.prev ? (qq.price/qq.prev-1)*100 : null, pre:null}; });
     const W = map.clientWidth, H = map.clientHeight; if(!W || !H) return; const key = t+'|'+W+'x'+H;
     if(key!==etfHeatKey){ etfHeatKey = key; squarify(items, W, H); map.innerHTML = items.map(it=>`<div class="ht" role="listitem" data-es="${esc(it.sym)}" style="right:${it.x.toFixed(1)}px;top:${it.y.toFixed(1)}px;width:${it.w.toFixed(1)}px;height:${it.h.toFixed(1)}px;background-color:${heatColor(it.p)}">${heatTileInner(it)}</div>`).join(''); return; }
     const geo = Object.fromEntries([...map.children].map(e=>[e.dataset.es, e]));
     items.forEach(it=>{ const e = geo[it.sym]; if(!e) return; it.w = parseFloat(e.style.width); it.h = parseFloat(e.style.height); const bg = heatColor(it.p); if(e.style.backgroundColor!==bg) e.style.backgroundColor = bg; const h = heatTileInner(it); if(e.dataset.h!==h){ morph(e, h); e.dataset.h = h; } });
     return; }
   etfHeatKey = '';
-  const html = `<div class="ecols egrid" aria-hidden="true"><span></span><span>מניה</span><span class="pcol">היום</span><span class="pcol">משקל</span><span class="pcol"><span>יומי</span><small>מחיר</small></span></div><div class="etf-rows">${its.map((it,i)=>etfRowHtml(it, d.rows[i][2], mx)).join('')}</div>`;
+  const html = `<div class="ecols egrid" aria-hidden="true"><span></span><span>מניה</span><span class="pcol">היום</span><span class="pcol">משקל</span><span class="pcol"><span>יומי</span><small>מחיר</small></span></div><div class="etf-rows">${its.map((it,i)=>etfRowHtml(it, LW[i], mx)).join('')}</div>`;
   M(body).h = html; }
 async function renderEtf(){ const seq = ++etfSeq, t = etfUi.sel; drawEtf();
   const d = await etfLoad(t); if(seq!==etfSeq || ui.tab!=='market' || etfUi.mode!=='etf') return; if(!d) etfErr[t] = 1; else delete etfErr[t];
   drawEtf(); const its = [secInst({sym:t, type:'etf'}), ...etfItems(d)];
   await instQuotes(its); if(seq!==etfSeq) return; drawEtf();
+  if(d && d.rows.length) etfLoadP0(t, d).then(()=>{ if(seq===etfSeq && ui.tab==='market' && etfUi.mode==='etf') drawEtf(); }).catch(()=>{});
   if(etfUi.view==='list') await Promise.all(etfItems(d).slice(0, ETF_SPARK).map(it=>instBars(it, '1D').catch(()=>{})));
   if(seq===etfSeq) drawEtf(); }
 function applyMktMode(){ const etf = etfUi.mode==='etf'; $('mktMode').querySelectorAll('button').forEach(b=>{ const on = b.dataset.mm===etfUi.mode; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
@@ -3195,7 +3209,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v72</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v73</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
