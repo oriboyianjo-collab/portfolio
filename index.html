@@ -507,7 +507,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
 .crow{display:grid;grid-template-columns:40px minmax(0,1fr) 48px 48px 48px;column-gap:5px;align-items:center;padding:8px 2px;border-bottom:1px solid var(--border);font-size:.78rem}
 .crow.h{font-size:.64rem;color:var(--muted);padding:2px 2px 4px}.crow .tm{direction:ltr;color:var(--muted);font-size:.74rem}.crow .ev{min-width:0}.crow .ev b{font-weight:600;display:block;line-height:1.3;overflow-wrap:anywhere}.crow .ev small{font-size:.66rem;color:var(--muted)}
 .crow .n{text-align:center;direction:ltr;font-size:.74rem;overflow-wrap:anywhere}.crow.hi{background:rgba(239,68,68,.06)}
-.imp{letter-spacing:1px;font-size:.6rem}.imp i{font-style:normal;opacity:.25}.imp b{font-weight:400}.imp.i3 b{color:#ef4444}.imp.i2 b{color:#f59e0b}.imp.i1 b{color:#94a3b8}
+.imp{letter-spacing:1px;font-size:.6rem}.imp i{font-style:normal;opacity:.25}.imp b{font-weight:400}.imp.i3 b{color:#ef4444}.imp.i2 b{color:#f59e0b}.imp.i1 b{color:#94a3b8}.crow .ev .imp{display:inline-flex;gap:1px;white-space:nowrap;vertical-align:middle;line-height:1}.crow .ev .imp b,.crow .ev .imp i{display:inline;line-height:1}
 @media (max-width:370px){.crow{grid-template-columns:38px minmax(0,1fr) 44px 44px 44px;column-gap:4px}}
 .rfil .cfil{margin-bottom:6px}.cfil button small{font-size:.66rem;opacity:.7;font-weight:600}.rcnt{font-size:.72rem;color:var(--muted);margin:2px 2px 0}
 .rix{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}.rix i{font-style:normal;font-size:.6rem;font-weight:700;border-radius:5px;padding:1px 5px;background:rgba(127,127,127,.14);color:var(--muted);direction:ltr;unicode-bidi:isolate}
@@ -3195,7 +3195,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v71</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v72</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
