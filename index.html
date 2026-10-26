@@ -466,8 +466,8 @@ html.dark .bchip{filter:brightness(1.25)}
 
 /* v66: market mode toggle + ETF holdings */
 .mkt-mode{margin:0 0 10px}.etf-card{padding:12px}
-.etfchips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.etfchips::-webkit-scrollbar{display:none}
-.etfchips button{flex:0 0 auto;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);border-radius:999px;padding:6px 12px;min-height:34px;font:inherit;font-weight:700;font-size:.8rem;cursor:pointer;direction:ltr}
+.etfchips{display:flex;flex-wrap:wrap;gap:5px;padding:2px 0 8px}.etfchips::-webkit-scrollbar{display:none}
+.etfchips button{flex:0 0 auto;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);border-radius:999px;padding:4px 10px;min-height:30px;font:inherit;font-weight:700;font-size:.76rem;cursor:pointer;direction:ltr}
 .etfchips button.on{background:var(--primary);border-color:var(--primary);color:#fff}
 .etfhd{display:flex;align-items:center;gap:10px;padding:6px 2px 10px;border-bottom:1px solid var(--border);cursor:pointer}.etfhd .t{flex:1;min-width:0}.etfhd .t b{font-size:1rem;direction:ltr;unicode-bidi:isolate}
 .etfhd .t small{display:block;color:var(--muted);font-size:.74rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.etfhd .r{text-align:end;flex:none}.etfhd .r b{display:block;font-size:.95rem}.etfhd .r span{font-size:.8rem}
@@ -554,7 +554,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
   </section>
   <section class="tab" id="tab-tx"><div class="card"><h2>היסטוריית עסקאות <small id="txCount"></small></h2><div class="hist-bar" id="txHistBar" style="margin-top:0"></div><div id="txList"></div></div></section>
   <section class="tab" id="tab-market">
-    <div class="seg mkt-mode" id="mktMode" role="group" aria-label="תצוגת השוק"><button data-mm="my" class="on">🌐 השוק שלי</button><button data-mm="etf">🧩 הרכבי מדדים</button></div>
+    <div class="seg mkt-mode" id="mktMode" role="group" aria-label="תצוגת השוק"><button data-mm="my" class="on">🌐 השוק שלי</button><button data-mm="etf">🧩 מדדים</button></div>
     <div class="card etf-card" id="etfCard" hidden>
       <div class="etfchips" id="etfChips" role="group" aria-label="בחירת קרן"></div>
       <div id="etfHd"></div>
@@ -3195,7 +3195,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v70</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v71</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
