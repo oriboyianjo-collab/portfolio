@@ -505,6 +505,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
 .rkv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:8px}.rkv div{background:rgba(127,127,127,.08);border-radius:10px;padding:5px 7px;min-width:0}.rkv span{display:block;font-size:.62rem;color:var(--muted)}.rkv b{font-size:.8rem;direction:ltr;unicode-bidi:isolate;overflow-wrap:anywhere}
 .beat{font-size:.66rem;font-weight:700;border-radius:6px;padding:1px 6px;white-space:nowrap}.beat.pos{background:rgba(22,163,74,.16)}.beat.neg{background:rgba(220,38,38,.16)}.rnote{font-size:.78rem;color:var(--muted);margin-top:6px}
 .crow{display:grid;grid-template-columns:40px minmax(0,1fr) 48px 48px 48px;column-gap:5px;align-items:center;padding:8px 2px;border-bottom:1px solid var(--border);font-size:.78rem}
+.cday{margin:16px -4px 2px;padding:8px 12px;border-radius:10px;background:rgba(37,99,235,.12);border-inline-start:4px solid var(--primary);font-weight:800;font-size:.9rem;color:var(--text)}.cday.first{margin-top:4px}.cday .num{font-weight:700;color:var(--muted);margin-inline-start:4px}
 .crow.h{font-size:.64rem;color:var(--muted);padding:2px 2px 4px}.crow .tm{direction:ltr;color:var(--muted);font-size:.74rem}.crow .ev{min-width:0}.crow .ev b{font-weight:600;display:block;line-height:1.3;overflow-wrap:anywhere}.crow .ev small{font-size:.66rem;color:var(--muted)}
 .crow .n{text-align:center;direction:ltr;font-size:.74rem;overflow-wrap:anywhere}.crow.hi{background:rgba(239,68,68,.06)}
 .imp{letter-spacing:1px;font-size:.6rem}.imp i{font-style:normal;opacity:.25}.imp b{font-weight:400}.imp.i3 b{color:#ef4444}.imp.i2 b{color:#f59e0b}.imp.i1 b{color:#94a3b8}.crow .ev .imp{display:inline-flex;gap:1px;white-space:nowrap;vertical-align:middle;line-height:1}.crow .ev .imp b,.crow .ev .imp i{display:inline;line-height:1}
@@ -3209,7 +3210,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v73</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v74</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3926,7 +3927,7 @@ const CAL_K = {date:['date','תאריך'], time:['time','שעה'], country:['cou
   forecast:['forecast','צפי'], previous:['previous','קודם'], actual:['actual','בפועל'], good:['good','טוב'], note:['note','הערה']};
 const pickK = (o, K, k)=>{ for(const n of K[k]){ for(const key of [n, n.toUpperCase()]) if(o[key]!=null && String(o[key]).trim()!=='') return String(o[key]).trim(); } return ''; };
 let newsTab = (()=>{ try{ const v = sessionStorage.getItem('portfolioTracker.newsTab'); return ['news','rep','cal'].includes(v) ? v : 'news'; }catch(e){ return 'news'; } })();
-const ntData = {rep:null, cal:null}, ntFil = {rep:'all', cal:'all', day:'all', idx:'all'}; let ntSeq = 0, repShow = 60;
+const ntData = {rep:null, cal:null}, ntFil = {rep:'all', cal:'all', day:'all', idx:'all', tm:'all'}; let ntSeq = 0, repShow = 60;
 // v67: index tags come only from the item itself – "מדד" / "index" (string, list, or comma-separated). No tag = "אחר".
 const IDX_AL = [['sp500',/^(s&?p ?500|spx|spy|אסאנדפי ?500|ס&?פ ?500)$/],['ndx',/^(nasdaq ?100|ndx|qqq|נאסד"?ק ?100|נאסדק ?100)$/],['dow',/^(dow( jones| 30)?|djia|dia|דאו( ג'ונס| 30)?)$/],
   ['sp400',/^(s&?p ?400|s&?p midcap ?400|mdy)$/],['sp600',/^(s&?p ?600|s&?p smallcap ?600|ijr)$/],['r2k',/^(russell ?2000|r2k|iwm|ראסל ?2000)$/],['ixic',/^(nasdaq( composite)?|נאסד"?ק|נאסדק)$/]];
@@ -3971,13 +3972,16 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
   const dShort = d=>{ if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return d; const l = dayLbl(d); const w = new Date(d+'T12:00:00Z').toLocaleDateString('he-IL',{weekday:'short', timeZone:'UTC'}).replace('יום ',''); return `${l || w} ${+d.slice(8)}.${+d.slice(5,7)}`; };
   const cnt = (f)=>L.filter(f).length;
   const dayRow = [['all','הכל', L.length], ...days.map(d=>[d, dShort(d), cnt(r=>r.d===d)])];
-  const inDay = r=>ntFil.day==='all' || r.d===ntFil.day, inMine = r=>ntFil.rep!=='mine' || !!r.tag;
-  const idxRow = [['all','הכל'], ...ixOrd.map(k=>[k, ixL[k]]), ['other','אחר']].map(([k,l])=>[k, l, cnt(r=>inDay(r) && inMine(r) && (k==='all' || r.ix.includes(k)))]).filter(x=>x[0]==='all' || x[2] || ntFil.idx===x[0]);
+  const tmOf = r=>/^(before|pre|bmo|לפני)/i.test(r.time) ? 'bmo' : /^(after|post|amc|אחרי)/i.test(r.time) ? 'amc' : (m=>m ? (+m[1]*60 + +m[2] < 16*60+30 ? 'bmo' : 'amc') : 'na')(String(r.time).match(/^(\d{1,2}):(\d{2})/));
+  L.forEach(r=>{ r.tm = tmOf(r); });
+  const inDay = r=>ntFil.day==='all' || r.d===ntFil.day, inMine = r=>ntFil.rep!=='mine' || !!r.tag, inTm = r=>ntFil.tm==='all' || r.tm===ntFil.tm;
+  const idxRow = [['all','הכל'], ...ixOrd.map(k=>[k, ixL[k]]), ['other','אחר']].map(([k,l])=>[k, l, cnt(r=>inDay(r) && inMine(r) && inTm(r) && (k==='all' || r.ix.includes(k)))]).filter(x=>x[0]==='all' || x[2] || ntFil.idx===x[0]);
   $('repFil').innerHTML = `<div class="cfil">${dayRow.map(([k,l,n])=>`<button data-rd="${k}" class="${ntFil.day===k?'on':''}">${esc(l)} <small>${n}</small></button>`).join('')}</div>`+
+    `<div class="cfil">${[['all','הכל'],['bmo','☀️ לפני פתיחה'],['amc','🌙 אחרי סגירה'],['na','לא ידוע']].map(([k,l])=>[k, l, cnt(r=>inDay(r) && inMine(r) && (ntFil.idx==='all' || r.ix.includes(ntFil.idx)) && (k==='all' || r.tm===k))]).filter(x=>x[0]==='all' || x[2] || ntFil.tm===x[0]).map(([k,l,n])=>`<button data-rt="${k}" class="${ntFil.tm===k?'on':''}">${l} <small>${n}</small></button>`).join('')}</div>`+
     `<div class="cfil">${idxRow.map(([k,l,n])=>`<button data-ri="${esc(k)}" class="${ntFil.idx===k?'on':''}">${esc(l)} <small>${n}</small></button>`).join('')}<button data-rf="${ntFil.rep==='mine'?'all':'mine'}" class="${ntFil.rep==='mine'?'on':''}">⭐ בתיק ובמעקב</button></div>`+
 ''; 
   $('repFil').querySelectorAll('button.on').forEach(b=>{ const c = b.parentNode; c.scrollLeft = b.offsetLeft - c.clientWidth + b.offsetWidth + 40; });
-  const M = L.filter(r=>inDay(r) && inMine(r) && (ntFil.idx==='all' || r.ix.includes(ntFil.idx)))
+  const M = L.filter(r=>inDay(r) && inMine(r) && inTm(r) && (ntFil.idx==='all' || r.ix.includes(ntFil.idx)))
     .sort((a,b)=>(a.d<b.d?-1:a.d>b.d?1:0) || ((b.ixs.length?1:0)-(a.ixs.length?1:0)));
   if(!M.length){ el.innerHTML = '<div class="news-empty">אין דוחות בסינון הזה.</div>'; return; }
   const up = M.filter(r=>r.d >= t), past = M.filter(r=>r.d < t).reverse();
@@ -3990,7 +3994,7 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
         `<div><span>${r.rev ? 'הכנסות צפי / בפועל' : 'צפי הכנסות'}</span><b class="num">${v(r.revEst)}${r.rev ? ` / <em class="${r1!=null && r2!=null ? (r2>=r1?'pos':'neg') : ''}">${esc(r.rev)}</em>` : ''}</b></div></div>` : '') + `${r.note ? `<div class="rnote">${esc(r.note)}</div>` : ''}${link}</article>`; };
   const grp = (A)=>{ let h = '', last = null; A.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="rday">${dayHead(r.d)}</div>`; } h += card(r); }); return h; };
   const A = [...up, ...past], more = A.length - repShow, upS = up.slice(0, repShow), pastS = past.slice(0, Math.max(0, repShow - up.length));
-  el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' ? ' בסינון' : ''}</div>` + grp(upS) + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '') + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
+  el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' || ntFil.tm!=='all' ? ' בסינון' : ''}</div>` + grp(upS) + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '') + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
 const FLAGS = {US:'🇺🇸', IL:'🇮🇱', EU:'🇪🇺', DE:'🇩🇪', GB:'🇬🇧', UK:'🇬🇧', FR:'🇫🇷', JP:'🇯🇵', CN:'🇨🇳', CA:'🇨🇦', CH:'🇨🇭', AU:'🇦🇺', 'ארה״ב':'🇺🇸', 'ארה"ב':'🇺🇸', 'ישראל':'🇮🇱', 'אירופה':'🇪🇺', 'גוש האירו':'🇪🇺', 'גרמניה':'🇩🇪', 'בריטניה':'🇬🇧', 'יפן':'🇯🇵', 'סין':'🇨🇳'};
 const CNAME = {US:'ארה״ב', IL:'ישראל', EU:'אירופה', DE:'גרמניה', GB:'בריטניה', UK:'בריטניה', FR:'צרפת', JP:'יפן', CN:'סין', CA:'קנדה', CH:'שווייץ', AU:'אוסטרליה'};
 function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; if(!D.items.length){ $('calFil').innerHTML = ''; el.innerHTML = ntEmpty('cal', D.err); return; }
@@ -4002,11 +4006,11 @@ function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; if(!
   if(!M.length){ el.innerHTML = '<div class="news-empty">אין אירועים בסינון הזה.</div>'; return; }
   const imp = n=>`<span class="imp i${n}" aria-label="חשיבות ${n} מתוך 3">${[1,2,3].map(k=>k<=n ? '<b>●</b>' : '<i>●</i>').join('')}</span>`;
   let h = '', last = null;
-  M.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="rday">${dayHead(r.d)}</div><div class="crow h" aria-hidden="true"><span>שעה</span><span>אירוע</span><span class="n">צפי</span><span class="n">קודם</span><span class="n">בפועל</span></div>`; }
+  M.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="cday${last && h ? '' : ' first'}">${dayHead(r.d)}</div><div class="crow h" aria-hidden="true"><span>שעה</span><span>אירוע</span><span class="n">צפי</span><span class="n">קודם</span><span class="n">בפועל</span></div>`; }
     const g = /^(true|yes|1|כן|טוב)$/i.test(r.good) ? 'pos' : /^(false|no|0|לא|רע)$/i.test(r.good) ? 'neg' : '';
     h += `<div class="crow${r.imp===3?' hi':''}"><span class="tm num">${esc(r.time)}</span><div class="ev"><b>${FLAGS[r.c] ? FLAGS[r.c]+' ' : ''}${esc(r.event)}</b><small>${imp(r.imp)}${r.period ? ' '+esc(r.period) : ''}${r.note ? ' · '+esc(r.note) : ''}</small></div><span class="n num">${esc(r.forecast)||'—'}</span><span class="n num muted">${esc(r.previous)||'—'}</span><span class="n num ${g}"><b>${esc(r.actual)||'—'}</b></span></div>`; });
   el.innerHTML = h; }
-$('repFil').addEventListener('click', e=>{ const b = e.target.closest('[data-rf],[data-rd],[data-ri]'); if(!b) return; if(b.dataset.rf) ntFil.rep = b.dataset.rf; if(b.dataset.rd) ntFil.day = b.dataset.rd; if(b.dataset.ri) ntFil.idx = b.dataset.ri; repShow = 60; drawReports(); });
+$('repFil').addEventListener('click', e=>{ const b = e.target.closest('[data-rf],[data-rd],[data-ri],[data-rt]'); if(!b) return; if(b.dataset.rt) ntFil.tm = b.dataset.rt; if(b.dataset.rf) ntFil.rep = b.dataset.rf; if(b.dataset.rd) ntFil.day = b.dataset.rd; if(b.dataset.ri) ntFil.idx = b.dataset.ri; repShow = 60; drawReports(); });
 $('repList').addEventListener('click', e=>{ if(e.target.closest('[data-rmore]')){ repShow += 60; drawReports(); return; } if(e.target.closest('a')) return;
   const c = e.target.closest('[data-rsym]'); if(c) openInstSheet(srchInst({sym:c.dataset.rsym, name:c.dataset.rname||'', type:'stock'}), '1D'); });
 $('calFil').addEventListener('click', e=>{ const b = e.target.closest('[data-cf]'); if(!b) return; ntFil.cal = b.dataset.cf; drawCal(); });
