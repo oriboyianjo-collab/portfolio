@@ -117,3 +117,21 @@
 ]
 ```
 קובץ ריק (`[]`) או חסר – הלשונית מציגה הודעה ידידותית. שני הקבצים נקראים מחדש בכל פתיחה, כמו news.json.
+
+## Comparability of actual results (v81 – draft)
+Actual results (`בפועל_EPS`/`EPS_בפועל`, `הכנסות_בפועל`) are always shown next to the original forecast (`צפי_EPS`, `צפי_הכנסות`), so never overwrite the forecast. The beat/miss % is computed **separately** for EPS and for revenue, and only when comparability is verified. Leave missing values empty; never use 0.
+
+| Field | EPS | Revenue | Values |
+|---|---|---|---|
+| Forecast basis | `בסיס_צפי_EPS` | `בסיס_צפי_הכנסות` | `מתואם` (adjusted / non-GAAP) or `GAAP` |
+| Actual basis | `בסיס_בפועל_EPS` | `בסיס_בפועל_הכנסות` | same as above |
+| Currency (both) | `מטבע_EPS` | `מטבע_הכנסות` | `USD`, `EUR`… |
+| Separate currencies (optional) | `מטבע_צפי_EPS` / `מטבע_בפועל_EPS` | `מטבע_צפי_הכנסות` / `מטבע_בפועל_הכנסות` | |
+| Explicit confirmation (optional) | `השוואה_EPS` | `השוואה_הכנסות` | `true` / `false` |
+| Explanation (optional) | `הסבר_EPS` | `הסבר_הכנסות` | short free text |
+
+English aliases: eps_est_basis, eps_basis, eps_currency, eps_comparable, eps_explain; rev_est_basis, rev_basis, rev_currency, rev_comparable, rev_explain.
+
+**Rule:** if `השוואה_X` is `true`, the % is shown. If it is `false`, no %. Otherwise the % is shown only when both bases are filled in and equal, and the currencies are equal (or both absent). In every other case the numbers are shown with "ללא %" and a reason line: the `הסבר_X` text, or a default ("בסיס שונה – אין השוואה", "בסיס לא ידוע – אין השוואה", "מטבע שונה – אין השוואה"). The row's color stripe comes only from a comparable metric.
+
+**הערה:** long notes are shown in a 2-line preview. Tapping expands them, and the tap doesn't open the chart or the link. Put basis/currency details in the fields above, not in the note.
