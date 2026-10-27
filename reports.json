@@ -1942,7 +1942,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "141.36M",
-    "הערה": ""
+    "הערה": "EPS diluted; ההכנסות ממקור משני (StockStory, +5.5% שנה); בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.45",
+    "הכנסות_בפועל": "143.4M",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://in.investing.com/news/stock-market-news/first-commonwealth-financial-reports-q3-earnings-of-045-per-share-93CH-5658262",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Freeport-McMoran, Inc.",
@@ -2136,7 +2144,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "216.33M",
-    "הערה": ""
+    "הערה": "FFO למניה; המספרים ממקור משני (The Fly); בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.89",
+    "הכנסות_בפועל": "218.18M",
+    "בסיס_בפועל_EPS": "FFO",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389642/0/en/highwoods-announces-availability-of-third-quarter-2026-results.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Hilton Worldwide Holdings Inc.",
@@ -2926,7 +2942,15 @@
     "מועד": "after",
     "צפי_EPS": "0.06",
     "צפי_הכנסות": "245.57M",
-    "הערה": ""
+    "הערה": "EPS GAAP diluted; adjusted EBITDA 17.9M$; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.14",
+    "הכנסות_בפועל": "256.2M",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389606/9652/en/orion-group-holdings-reports-third-quarter-2026-results.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "PAMT CORP",
@@ -3329,7 +3353,14 @@
     "תאריך": "2026-10-27",
     "מועד": "after",
     "צפי_הכנסות": "8.76M",
-    "הערה": ""
+    "הערה": "EPS GAAP; המקור למספרים משני (Investing.com); בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.24",
+    "הכנסות_בפועל": "8.27M",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.businesswire.com/news/home/20261027849230/en/Seven-Hills-Realty-Trust-Announces-Third-Quarter-2026-Results",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Sound Financial Bancorp, Inc.",
