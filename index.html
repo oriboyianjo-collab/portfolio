@@ -44,14 +44,9 @@ body{font-family:system-ui,"Segoe UI",Roboto,"Rubik","Heebo",Arial,sans-serif;ba
 @keyframes spin{to{transform:rotate(360deg)}}
 .hcard{position:relative}.hmin{position:absolute;z-index:2;left:10px;bottom:8px;width:30px;height:26px;border:0;border-radius:8px;background:rgba(255,255,255,.12);color:inherit;font-size:1rem;line-height:1;cursor:pointer;padding:0}
 .top:not(.mini) .upd{padding-inline-end:38px}
-.top.mini .upd,.top.mini .tot-pre,.top.mini #hDayLbl,.top.mini #hDay{display:none}
-.top.mini .hcard{display:flex;align-items:center;gap:10px;padding-top:8px;padding-bottom:8px}.top.mini .top-row{margin:0}.top.mini .brand img{width:30px;height:30px}
-.top.mini .tot-row{margin:0;flex:0 1 auto}.top.mini .tot-val{font-size:1.35rem}.top.mini .tot-day{margin:0}.top.mini .tot-day .tp-v{font-size:.95rem}
-.top.mini .hmin{position:static;transform:rotate(180deg);flex:none;order:6;width:28px}
-/* v79: the slim line keeps the brand name and the settings button */
-.top.mini .top-row{flex:1 1 auto;min-width:0;overflow:hidden}.top.mini .brand{gap:7px;min-width:0}.top.mini .brand span{font-size:1rem;overflow:hidden;text-overflow:ellipsis;min-width:0}
-.top.mini .hctl{order:5;margin:0;flex:none;padding:2px}.top.mini .hctl .hb:not(#btnSet),.top.mini .hctl .hdiv{display:none}.top.mini .hctl #btnSet{width:32px;height:30px;flex:none}
-.top.mini .tot-row{flex:none}.top.mini .tot-val{font-size:1.15rem}.top.mini .tot-day{flex:none}.top.mini .tot-day .tp-v{font-size:.85rem}.top.mini .hcard{gap:7px}
+.top.mini .tot-pre,.top.mini .upd,.top.mini #hDayLbl{display:none}
+.top.mini .tot-wrap{display:flex;align-items:baseline;gap:12px;margin-top:6px;min-width:0}.top.mini .tot-row{margin:0;flex:none}.top.mini .tot-val{font-size:1.45rem}.top.mini .tot-day{display:flex;align-items:baseline;gap:6px;margin:0;padding:0;white-space:nowrap}.top.mini .tot-day .tp-v{font-size:.95rem}.top.mini .tot-day .tp-a{font-size:.85rem}
+.top.mini .hcard{padding-bottom:16px}.top.mini .hmin{left:50%;bottom:-1px;transform:translateX(-50%) rotate(180deg);width:44px;height:16px;font-size:.8rem;border-radius:8px 8px 0 0;background:rgba(255,255,255,.14)}
 .tot-val{font-size:1.6rem;font-weight:800;margin-top:0;letter-spacing:-.5px;line-height:1.15}
 .top .pos{color:#6ee7b7}.top .neg{color:#fca5a5}
 .top .upd{font-size:.7rem;opacity:.75;margin-top:1px}
@@ -537,8 +532,8 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
   <div class="wrap"><div class="hcard">
     <div class="top-row"><h1 class="brand"><img src="logo.svg?v=33" alt="" width="40" height="40"><span>Savage Tracker</span></h1></div>
     <div class="hctl" role="toolbar" aria-label="פעולות"><button class="hb cur-btn" id="btnCur" aria-pressed="false" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים"><span class="cs" data-c="ILS">₪</span><span class="cs" data-c="USD">$</span></button><i class="hdiv"></i><button class="hb" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים"><svg class="ic ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><svg class="ic ic-eyeoff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.9 4.24A9.1 9.1 0 0 1 12 4c6.5 0 10 8 10 8a17.6 17.6 0 0 1-2.16 3.19"/><path d="M6.61 6.61A17.4 17.4 0 0 0 2 12s3.5 8 10 8a9.7 9.7 0 0 0 5.39-1.61"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="2" y1="2" x2="22" y2="22"/></svg></button><i class="hdiv"></i><button class="hb" id="btnTheme" aria-label="מצב כהה" title="מצב כהה / בהיר"><svg class="ic ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2M12 20.5v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1.5 12h2M20.5 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></button><i class="hdiv"></i><button class="hb" id="btnSet" aria-label="הגדרות" title="הגדרות" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></div>
-    <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div></div>
-    <div class="tot-day"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-a num" id="hDay">—</span></div>
+    <div class="tot-wrap"><div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div></div>
+    <div class="tot-day"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-a num" id="hDay">—</span></div></div>
     <div class="tot-pre" id="hPre" hidden></div>
     <button class="hmin" id="hMin" aria-expanded="true" aria-label="כיווץ שורת השווי">⌃</button><div class="upd"><span id="hUpd">טרם עודכנו מחירים</span><span id="hLive"></span></div>
   </div></div>
@@ -3227,7 +3222,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v79</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v80</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
