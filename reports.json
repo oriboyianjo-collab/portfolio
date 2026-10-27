@@ -15,7 +15,8 @@
     "מועד": "after",
     "צפי_EPS": "0.16",
     "הערה": "תוצאה בפועל: EPS מותאם 0.30 (GAAP 0.08) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://www.prnewswire.com/news-releases/audioeye-reports-record-third-quarter-2026-results-302919827.html"
+    "קישור": "https://www.prnewswire.com/news-releases/audioeye-reports-record-third-quarter-2026-results-302919827.html",
+    "הכנסות_בפועל": "11M"
   },
   {
     "חברה": "Agilysys, Inc.",
@@ -27,7 +28,8 @@
       "S&P 600"
     ],
     "הערה": "תוצאה בפועל: EPS מותאם 0.67 (GAAP 0.46) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://www.businesswire.com/news/home/20261026081460/en/Agilysys-Announces-Record-Revenue-of-%2493.4M-in-Fiscal-2027-Second-Quarter"
+    "קישור": "https://www.businesswire.com/news/home/20261026081460/en/Agilysys-Announces-Record-Revenue-of-%2493.4M-in-Fiscal-2027-Second-Quarter",
+    "הכנסות_בפועל": "93.4M"
   },
   {
     "חברה": "Amkor Technology, Inc.",
@@ -60,7 +62,8 @@
     "מועד": "before",
     "צפי_EPS": "0.82",
     "הערה": "תוצאה בפועל: רווח GAAP ליחידה 1.08 — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://www.businesswire.com/news/home/20261026689938/en/Alliance-Resource-Partners-L.P.-Reports-Third-Quarter-2026-Financial-and-Operating-Results-Declares-Quarterly-Cash-Distribution-of-%240.60-Per-Unit-and-Updates-Guidance"
+    "קישור": "https://www.businesswire.com/news/home/20261026689938/en/Alliance-Resource-Partners-L.P.-Reports-Third-Quarter-2026-Financial-and-Operating-Results-Declares-Quarterly-Cash-Distribution-of-%240.60-Per-Unit-and-Updates-Guidance",
+    "הכנסות_בפועל": "603M"
   },
   {
     "חברה": "Avidbank Holdings, Inc.",
@@ -177,7 +180,8 @@
       "Nasdaq 100"
     ],
     "הערה": "תוצאה בפועל: EPS לא-GAAP 2.11 (GAAP 1.05) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://investor.cadence.com/news/news-details/2026/Cadence-Reports-Third-Quarter-2026-Financial-Results/"
+    "קישור": "https://investor.cadence.com/news/news-details/2026/Cadence-Reports-Third-Quarter-2026-Financial-Results/",
+    "הכנסות_בפועל": "1.633B"
   },
   {
     "חברה": "Cincinnati Financial Corporation",
@@ -205,7 +209,8 @@
     "מועד": "after",
     "צפי_EPS": "2.88",
     "הערה": "תוצאה בפועל: EPS מותאם 3.30 (GAAP 3.26) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388573/0/en/celestica-announces-third-quarter-2026-financial-results-and-will-hold-2026-investor-and-analyst-day.html"
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388573/0/en/celestica-announces-third-quarter-2026-financial-results-and-will-hold-2026-investor-and-analyst-day.html",
+    "הכנסות_בפועל": "5.83B"
   },
   {
     "חברה": "Clearwater Paper Corporation",
@@ -232,7 +237,8 @@
     "מועד": "after",
     "צפי_EPS": "0.01",
     "הערה": "תוצאה בפועל: EPS GAAP 0.01 (רווח נקי 2.3M) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://www.businesswire.com/news/home/20261026119739/en/Custom-Truck-One-Source-Inc.-Reports-Record-Third-Quarter-2026-Results-and-Increases-Full-Year-2026-Adjusted-EBITDA-and-SER-Revenue-Guidance"
+    "קישור": "https://www.businesswire.com/news/home/20261026119739/en/Custom-Truck-One-Source-Inc.-Reports-Record-Third-Quarter-2026-Results-and-Increases-Full-Year-2026-Adjusted-EBITDA-and-SER-Revenue-Guidance",
+    "הכנסות_בפועל": "495.2M"
   },
   {
     "חברה": "Cemex S.A.B. de C.V.",
@@ -274,7 +280,8 @@
       "S&P 600"
     ],
     "הערה": "תוצאה בפועל: EPS מותאם 2.08 (GAAP 1.98) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388582/0/en/dorman-products-inc-reports-third-quarter-2026-results-updates-2026-guidance.html"
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388582/0/en/dorman-products-inc-reports-third-quarter-2026-results-updates-2026-guidance.html",
+    "הכנסות_בפועל": "561.7M"
   },
   {
     "חברה": "Flexsteel Industries, Inc.",
@@ -399,7 +406,8 @@
     "מועד": "after",
     "צפי_EPS": "0.75",
     "הערה": "תוצאה בפועל: EPS GAAP 0.90 (0.78 ללא רווח COLI) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://investor.kforce.com/news-and-events/news/news-details/2026/Kforce-Reports-Third-Quarter-2026-Revenue-of-357-8-Million-Exceeding-High-End-of-Guidance-and-Improving-7-5-Year-Over-Year/default.aspx"
+    "קישור": "https://investor.kforce.com/news-and-events/news/news-details/2026/Kforce-Reports-Third-Quarter-2026-Revenue-of-357-8-Million-Exceeding-High-End-of-Guidance-and-Improving-7-5-Year-Over-Year/default.aspx",
+    "הכנסות_בפועל": "357.8M"
   },
   {
     "חברה": "Lakeland Financial Corporation",
@@ -440,7 +448,8 @@
     "מועד": "before",
     "צפי_EPS": "0.36",
     "הערה": "תוצאה בפועל: EPS מותאם 0.47 (GAAP 0.02) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://www.sec.gov/Archives/edgar/data/1495153/000119312526430976/mmyt-ex99_1.htm"
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1495153/000119312526430976/mmyt-ex99_1.htm",
+    "הכנסות_בפועל": "235.2M"
   },
   {
     "חברה": "MainStreet Bancshares, Inc.",
@@ -552,7 +561,8 @@
       "S&P 600"
     ],
     "הערה": "תוצאה בפועל: Core FFO 0.71 (Nareit 0.69) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://investors.phillipsedison.com/news-events/news-details/2026/Phillips-Edison--Company-Reports-Third-Quarter-2026-Results/default.aspx"
+    "קישור": "https://investors.phillipsedison.com/news-events/news-details/2026/Phillips-Edison--Company-Reports-Third-Quarter-2026-Results/default.aspx",
+    "הכנסות_בפועל": "193.1M"
   },
   {
     "חברה": "Principal Financial Group Inc",
@@ -616,7 +626,8 @@
       "S&P 400"
     ],
     "הערה": "תוצאה בפועל: EPS לא-GAAP 0.84 (GAAP 0.69) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://investor.rambus.com/press-releases/press-release-details/2026/Rambus-Reports-Third-Quarter-2026-Financial-Results/default.aspx"
+    "קישור": "https://investor.rambus.com/press-releases/press-release-details/2026/Rambus-Reports-Third-Quarter-2026-Financial-Results/default.aspx",
+    "הכנסות_בפועל": "218.3M"
   },
   {
     "חברה": "Summit Therapeutics Inc.",
@@ -663,7 +674,8 @@
     "מועד": "after",
     "צפי_EPS": "-0.63",
     "הערה": "תוצאה בפועל: הפסד GAAP למניה (ADS) -0.23 — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
-    "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388619/0/en/volaris-reports-financial-results-for-the-third-quarter-2026-1-billion-revenue-up-32-yoy.html"
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388619/0/en/volaris-reports-financial-results-for-the-third-quarter-2026-1-billion-revenue-up-32-yoy.html",
+    "הכנסות_בפועל": "1.038B"
   },
   {
     "חברה": "Verizon Communications Inc.",
@@ -2341,9 +2353,8 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "2.21B",
-    "בפועל_EPS": "3.77",
     "הכנסות_בפועל": "2.22B",
-    "הערה": "בסיס GAAP (מדווח); EPS ירד 5% לעומת 3.98 אשתקד",
+    "הערה": "תוצאה בפועל: EPS GAAP 3.77, הכנסות 2.22B (ראשוני) — בסיס הצפי 4.13 לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388876/0/en/watsco-reports-record-third-quarter-sales-strong-cash-flow-and-improving-demand.html"
   },
   {
