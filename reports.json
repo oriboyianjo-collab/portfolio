@@ -13,8 +13,7 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "0.16",
-    "בפועל_EPS": "0.3",
-    "הערה": "בסיס: adjusted diluted EPS",
+    "הערה": "תוצאה בפועל: EPS מותאם 0.30 (GAAP 0.08) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.prnewswire.com/news-releases/audioeye-reports-record-third-quarter-2026-results-302919827.html"
   },
   {
@@ -89,7 +88,6 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "בפועל_EPS": "1.48",
-    "הכנסות_בפועל": "99.1M",
     "קישור": "https://www.prnewswire.com/news-releases/bladex-announces-net-profit-of-63-2-million-for-the-third-quarter-2026--302919885.html"
   },
   {
@@ -104,7 +102,7 @@
   {
     "חברה": "BioMarin Pharmaceutical Inc.",
     "סימול": "BMRN",
-    "תאריך": "2026-10-26",
+    "תאריך": "2026-11-02",
     "צפי_EPS": "0.52",
     "מדד": [
       "S&P 400"
@@ -166,8 +164,7 @@
     "סימול": "CBNK",
     "תאריך": "2026-10-26",
     "צפי_EPS": "0.91",
-    "בפועל_EPS": "0.89",
-    "הערה": "בסיס: core (non-GAAP) diluted EPS",
+    "הערה": "תוצאה בפועל: EPS ליבה (לא-GAAP) 0.89 (GAAP 0.80) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388551/0/en/cbnk-delivers-strong-revenue-growth-and-positive-operating-leverage.html"
   },
   {
@@ -180,8 +177,7 @@
       "S&P 500",
       "Nasdaq 100"
     ],
-    "בפועל_EPS": "2.11",
-    "הערה": "בסיס: non-GAAP diluted EPS",
+    "הערה": "תוצאה בפועל: EPS לא-GAAP 2.11 (GAAP 1.05) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://investor.cadence.com/news/news-details/2026/Cadence-Reports-Third-Quarter-2026-Financial-Results/"
   },
   {
@@ -195,7 +191,8 @@
     ],
     "בפועל_EPS": "2.86",
     "הערה": "בסיס: non-GAAP operating income per share",
-    "קישור": "https://www.prnewswire.com/news-releases/cincinnati-financial-reports-third-quarter-2026-results-302919728.html"
+    "קישור": "https://www.prnewswire.com/news-releases/cincinnati-financial-reports-third-quarter-2026-results-302919728.html",
+    "הכנסות_בפועל": "3.047B"
   },
   {
     "חברה": "Columbia Financial, Inc.",
@@ -224,7 +221,7 @@
   {
     "חברה": "Carter's, Inc.",
     "סימול": "CRI",
-    "תאריך": "2026-10-26",
+    "תאריך": "2026-10-30",
     "צפי_EPS": "0.85",
     "מדד": [
       "S&P 600"
@@ -268,7 +265,8 @@
     ],
     "בפועל_EPS": "0.78",
     "הערה": "בסיס: FFO (לא EPS GAAP) - Core FFO per share fully diluted",
-    "קישור": "https://www.businesswire.com/news/home/20261026039429/en/Easterly-Government-Properties-Reports-Third-Quarter-2026-Results"
+    "קישור": "https://www.businesswire.com/news/home/20261026039429/en/Easterly-Government-Properties-Reports-Third-Quarter-2026-Results",
+    "הכנסות_בפועל": "93.6M"
   },
   {
     "חברה": "Dorman Products, Inc.",
@@ -335,9 +333,9 @@
     "מדד": [
       "S&P 600"
     ],
-    "בפועל_EPS": "0.39",
-    "הערה": "בסיס: core diluted EPS (excl. facility rationalization) (בסיס הצפי לא אומת - לא לחשב הפתעה אוטומטית)",
-    "קישור": "https://pressroom.gbrx.com/2026-10-26-Greenbrier-Reports-Fourth-Quarter-and-Fiscal-2026-Results"
+    "הערה": "תוצאה בפועל: EPS ליבה 0.39 (GAAP 0.27) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
+    "קישור": "https://pressroom.gbrx.com/2026-10-26-Greenbrier-Reports-Fourth-Quarter-and-Fiscal-2026-Results",
+    "הכנסות_בפועל": "591M"
   },
   {
     "חברה": "Gerdau S.A.",
@@ -405,8 +403,7 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "0.75",
-    "בפועל_EPS": "0.9",
-    "הערה": "בסיס GAAP",
+    "הערה": "תוצאה בפועל: EPS GAAP 0.90 (0.78 ללא רווח COLI) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://investor.kforce.com/news-and-events/news/news-details/2026/Kforce-Reports-Third-Quarter-2026-Revenue-of-357-8-Million-Exceeding-High-End-of-Guidance-and-Improving-7-5-Year-Over-Year/default.aspx"
   },
   {
@@ -559,8 +556,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "בפועל_EPS": "0.71",
-    "הערה": "בסיס: FFO (לא EPS GAAP) - Core FFO per diluted share",
+    "הערה": "תוצאה בפועל: Core FFO 0.71 (Nareit 0.69) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://investors.phillipsedison.com/news-events/news-details/2026/Phillips-Edison--Company-Reports-Third-Quarter-2026-Results/default.aspx"
   },
   {
@@ -590,8 +586,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "בפועל_EPS": "3.13",
-    "הערה": "בסיס GAAP (בסיס הצפי לא אומת - לא לחשב הפתעה אוטומטית)",
+    "הערה": "תוצאה בפועל: EPS GAAP 3.13 (כולל עלויות מיזוג ~0.30) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://investor.parknationalcorp.com/news/news-details/2026/Park-National-Corporation-reports-financial-results-for-third-quarter-and-first-nine-months-of-2026/default.aspx"
   },
   {
@@ -605,7 +600,8 @@
     ],
     "בפועל_EPS": "4.34",
     "הערה": "בסיס: Core FFO למניה (לא EPS GAAP 1.69)",
-    "קישור": "https://www.businesswire.com/news/home/20261026455248/en/Public-Storage-Reports-Third-Quarter-2026-Results-and-Raises-Guidance"
+    "קישור": "https://www.businesswire.com/news/home/20261026455248/en/Public-Storage-Reports-Third-Quarter-2026-Results-and-Raises-Guidance",
+    "הכנסות_בפועל": "1.02B"
   },
   {
     "חברה": "PriceSmart, Inc.",
@@ -632,7 +628,7 @@
   {
     "חברה": "Summit Therapeutics Inc.",
     "סימול": "SMMT",
-    "תאריך": "2026-10-26",
+    "תאריך": "2026-10-23",
     "צפי_EPS": "-0.28"
   },
   {
@@ -672,8 +668,7 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "-0.63",
-    "בפועל_EPS": "-0.23",
-    "הערה": "בסיס GAAP (בסיס הצפי לא אומת - לא לחשב הפתעה אוטומטית)",
+    "הערה": "תוצאה בפועל: הפסד GAAP למניה (ADS) -0.23 — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388619/0/en/volaris-reports-financial-results-for-the-third-quarter-2026-1-billion-revenue-up-32-yoy.html"
   },
   {
@@ -712,7 +707,8 @@
     ],
     "בפועל_EPS": "-0.21",
     "הערה": "בסיס: ongoing (לא-GAAP); GAAP Q3 = -3.80",
-    "קישור": "https://investors.whirlpoolcorp.com/news-and-events/news/news-details/2026/Whirlpool-Corporation-Announces-Third-Quarter-Results/default.aspx"
+    "קישור": "https://investors.whirlpoolcorp.com/news-and-events/news/news-details/2026/Whirlpool-Corporation-Announces-Third-Quarter-Results/default.aspx",
+    "הכנסות_בפועל": "3.677B"
   },
   {
     "חברה": "Zedge, Inc.",
