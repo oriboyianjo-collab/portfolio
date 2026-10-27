@@ -215,9 +215,7 @@ nav.bottom .in{max-width:820px;margin:0 auto;display:flex;height:var(--nav-h)}
 nav.bottom button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:.74rem;color:var(--muted);font-weight:600;cursor:pointer}
 nav.bottom button .i{font-size:1.35rem;line-height:1}nav.bottom button{min-width:0;padding:0 2px;font-size:.7rem;line-height:1.1;text-align:center}nav.bottom .nl{display:block;max-width:100%}
 nav.bottom button.on{color:var(--primary)}
-.fab{position:fixed;left:16px;bottom:calc(var(--nav-h) + var(--safe-b) + 16px);z-index:31;width:60px;height:60px;border-radius:20px;border:0;background:var(--primary);color:#fff;font-size:2rem;box-shadow:0 6px 18px rgba(37,99,235,.45);cursor:pointer;display:flex;align-items:center;justify-content:center}
-@media (min-width:860px){.fab{left:calc(50% - 410px + 16px)}}
-html,body{overscroll-behavior-x:none}main .chart:not(.active){touch-action:pan-y}main .chart:not(.active) *{pointer-events:none!important}main .chart{transition:box-shadow .15s}main .chart.active{box-shadow:0 0 0 2px var(--accent,#3b82f6);border-radius:10px}
+html,body{overscroll-behavior-x:none}.xh-ok{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.xh-ok.xh{touch-action:none}.xh-ok .tv-lightweight-charts,.xh-ok .tv-lightweight-charts *{pointer-events:none!important}main .chart{transition:box-shadow .15s}main .chart.active{box-shadow:0 0 0 2px var(--accent,#3b82f6);border-radius:10px}
 .wl-to{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted);margin:6px 0 4px}.wl-to select{font:inherit;font-size:.85rem;padding:4px 8px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);max-width:60%}
 .wls{border:1px solid var(--border);border-radius:12px;margin-top:8px;overflow:hidden}.wlh{display:flex;align-items:stretch}.wlh-t{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:none;border:0;color:var(--text);font:inherit;padding:11px 12px;cursor:pointer;text-align:right}
 .wlh-n{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}.wlh-c{display:flex;gap:6px;font-size:.82rem;margin-inline-start:auto;white-space:nowrap}.wlh-v{color:var(--muted);font-size:.9rem}
@@ -493,7 +491,7 @@ nav.bottom .nav-srch.on>span{background:linear-gradient(135deg,#2563eb,#4f46e5)}
 .sov-in input{font-size:1rem!important}.slbl{display:flex;justify-content:space-between;align-items:center;font-size:.74rem;color:var(--muted);margin:12px 2px 4px}.lnk{border:0;background:none;color:var(--primary);font:inherit;font-size:.74rem;cursor:pointer}
 .wr.srow{display:grid;grid-template-columns:38px minmax(0,1fr) 86px;column-gap:8px;align-items:center}.srow .sx{font-size:.6rem;font-weight:600;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:0 4px;margin-inline-start:6px;vertical-align:middle;white-space:nowrap}
 .srow .pc-d{display:flex;flex-direction:column;align-items:flex-end}.srow .psym{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-body.srch-on .fab{display:none!important}body.srch-on{overflow:hidden}
+body.srch-on{overflow:hidden}
 /* v66: add to watchlist */
 .wl-pick{display:flex;flex-direction:column;gap:6px;margin-top:8px;padding:8px;border:1px solid var(--border);border-radius:12px;background:var(--bg-f8fafc)}
 .wl-pick button{display:flex;align-items:center;gap:10px;border:1px solid var(--border);background:var(--bg-fff);color:inherit;border-radius:10px;padding:9px 12px;min-height:42px;font:inherit;font-weight:600;cursor:pointer;text-align:start}
@@ -543,6 +541,8 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
 .pc-b2 .pc-kv span{font-size:.74rem;color:var(--muted);white-space:nowrap}.pc-b2 .pc-kv b{font-size:.84rem;white-space:nowrap;background:none!important;padding:0!important}
 .pc-b2 .pc-kv em{font-style:normal;display:flex;align-items:baseline;gap:8px;direction:ltr}.pc-b2 .pc-kv .sep{font-style:normal;color:var(--muted)}
 .pc-btn{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.pc-btn .btn{white-space:nowrap;padding:0 4px;min-height:38px;font-size:.76rem;justify-content:center}
+.is-trade{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 2px}.is-trade .btn{min-height:42px;white-space:nowrap;justify-content:center}
+.tx-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.tx-h h2{margin:0}.tx-h .btn{white-space:nowrap}
 </style>
 </head>
 <body>
@@ -582,7 +582,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
     <div class="card"><h2>רווח והפסד</h2><div class="kv" id="plKv"></div><div class="taxbox" id="taxBox"></div>
       <div class="note">מס רווחי הון מוערך לפי השיעור בהגדרות, רק על רווח חיובי. החישוב משוער (ללא התאמה לאינפלציה/שער, ללא קיזוז הפסדים משנים קודמות) ואינו ייעוץ מס.</div></div>
   </section>
-  <section class="tab" id="tab-tx"><div class="card"><h2>היסטוריית עסקאות <small id="txCount"></small></h2><div class="hist-bar" id="txHistBar" style="margin-top:0"></div><div id="txList"></div></div></section>
+  <section class="tab" id="tab-tx"><div class="card"><div class="tx-h"><h2>היסטוריית עסקאות <small id="txCount"></small></h2><button class="btn btn-primary btn-sm" id="txNew">➕ עסקה חדשה</button></div><div class="hist-bar" id="txHistBar" style="margin-top:0"></div><div id="txList"></div></div></section>
   <section class="tab" id="tab-market">
     <div class="seg mkt-mode" id="mktMode" role="group" aria-label="תצוגת השוק"><button data-mm="my" class="on">🌐 השוק שלי</button><button data-mm="etf">🧩 מדדים</button></div>
     <div class="card etf-card" id="etfCard" hidden>
@@ -610,7 +610,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
   <section class="tab" id="tab-settings"><div class="set-bar"><h2>הגדרות</h2><button class="btn set-back" id="setBack" aria-label="חזרה">חזרה ←</button></div><div class="card" id="settingsCard"></div></section>
   <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div class="seg nseg" id="newsSeg" role="tablist" aria-label="סוג תוכן"><button data-nt="news" class="on">📰 חדשות</button><button data-nt="rep">📊 דוחות</button><button data-nt="cal">🗓️ יומן כלכלי</button></div><div id="ntNews"><div class="news-sr"><input type="search" id="newsQ" placeholder="חיפוש בחדשות" autocomplete="off" enterkeyhint="search" aria-label="חיפוש בחדשות"><button id="newsQx" aria-label="ניקוי חיפוש" hidden>✕</button></div><div class="news-cnt" id="newsCnt" hidden></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div><div id="ntRep" hidden><div class="rsrch"><input id="repQ" type="search" inputmode="search" autocomplete="off" placeholder="🔍 חיפוש סימול / חברה" aria-label="חיפוש דוחות"><select id="repSort" aria-label="מיון"><option value="date">מיון: תאריך</option><option value="az">א-ב</option><option value="cap">שווי שוק ↓</option></select></div><div class="rfil" id="repFil"></div><div id="repList"><div class="muted">טוען…</div></div></div><div id="ntCal" hidden><div class="cfil" id="calFil"></div><div id="calList"><div class="muted">טוען…</div></div></div></div></section>
 </main>
-<button class="fab" id="fab" aria-label="עסקה חדשה">+</button>
+
 <nav class="bottom"><div class="in">
   <button data-tab="news"><span class="i">📰</span>חדשות</button>
   <button data-tab="market"><span class="i">🌐</span>שוק</button>
@@ -1043,14 +1043,21 @@ function computeLedger(txs){ const L = newLedger(); sortedTxs(txs).forEach(t=>ap
 let TAXD = null, taxDataP = null;
 function loadTaxData(){
   if(taxDataP) return taxDataP;
+  taxTry++;
   return (taxDataP = fetch('tax-data.json?v=33').then(r=>r.ok ? r.json() : null).then(async j=>{
-    if(!j || !j.fx || !j.cpi) return null;
+    if(!j || !j.fx || !j.cpi) throw new Error('tax-data');
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
-    try{ await extendCPI(D); }catch(e){}
+    try{ await extendCPI(D); }catch(e){}            // CPI months published after the file first, so ILS real gains are final when shown
     TAXD = D; return D;
-  }).catch(()=>null));
+  }).catch(()=>{ taxDataP = null; const w = [3e3, 1e4, 3e4][taxTry-1] || 6e4;   // v84: a failed load used to be final (cost stayed at today's rate) – retry, then re-render
+    setTimeout(()=>{ if(!TAXD) loadTaxData().then(D=>{ if(D) renderAll(); }).catch(()=>{}); }, w); return null; }));
 }
+// v84: the ILS tax figures of USD trades need the Bank of Israel rate of each settlement date (tax-data.json). Until it has loaded
+// they are shown as "…" instead of a number computed at today's rate (which used to flash, or stick when the load failed).
+let taxTry = 0;
+function taxPend(){ return !TAXD && state.txs.some(t=>t.currency==='USD' && (t.type==='buy' || t.type==='sell')); }
+const TXP = '…';
 async function extendCPI(D){                       // months published after the static file (CBS allows browser requests)
   let [y,m] = D.cpiLast.split('-').map(Number); m++; if(m>12){ m=1; y++; }
   if(`${y}-${String(m).padStart(2,'0')}` > today().slice(0,7)) return;
@@ -1618,7 +1625,7 @@ function cardFields(p){
     unra:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
     unrp:[fmtPct(p.unrealPct), 'num '+cls(p.unreal)],
     cost:[fmtMoney(Math.abs(p.qty)*p.avg,cur), 'num'],
-    costils:[p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', 'num'],
+    costils:[taxPend() ? TXP : p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', 'num'],
     mvils2:[p.mvILS!=null ? fmtMoney(p.mvILS,'ILS',0) : '—', 'num']};
 }
 // ---------- splits the portfolio is missing (checked in each security's unadjusted price history, whole holding period) ----------
@@ -1911,11 +1918,36 @@ function applyTheme(rerender){ const t = themePref(), d = t==='dark' || (t==='au
     destroyMini(); destroyPerf(); renderAll(); if(ui.tab==='perf') renderPerf(); } }
 function setTheme(t){ try{ localStorage.setItem(THEME_KEY, t); }catch(e){} applyTheme(true); }
 mqDark.addEventListener && mqDark.addEventListener('change', ()=>{ if(themePref()==='auto') applyTheme(true); });
+// v84: every chart lets the page scroll – the library never sees the finger (pointer-events off, handleScroll/Scale off).
+// Holding still ~1s shows the crosshair (price + date) at the finger; dragging then moves it and the page doesn't scroll; lifting hides it.
+// Mouse: hover shows it as before.
+const XH_MS = 1000;
+function xhAttach(el, c){ el.classList.add('xh-ok'); c.applyOptions({handleScroll:false, handleScale:false});
+  const X = {c, S:null}; el.__xh = X;                       // listeners are bound once per element; a redrawn chart on it replaces X
+  ['addLineSeries','addAreaSeries','addCandlestickSeries','addBaselineSeries','addHistogramSeries','addBarSeries'].forEach(k=>{ const f = c[k] && c[k].bind(c); if(f) c[k] = (...a)=>{ const s = f(...a); if(!X.S) X.S = s; return s; }; });
+  const rmS = c.removeSeries.bind(c); c.removeSeries = s=>{ if(s===X.S) X.S = null; return rmS(s); };
+  const rm = c.remove.bind(c); c.remove = ()=>{ if(el.__xh===X){ el.__xh = null; el.classList.remove('xh'); } X.dead = true; return rm(); };
+  const ao = c.applyOptions.bind(c); c.applyOptions = o=>ao(Object.assign({}, o, o && ('handleScroll' in o || 'handleScale' in o) ? {handleScroll:false, handleScale:false} : {}));
+  if(el.__xhBound) return c; el.__xhBound = true;
+  let tm = 0, on = false, x0 = 0, y0 = 0;
+  const cur = ()=>{ const x = el.__xh; return x && !x.dead && x.S ? x : null; };
+  const at = cx=>{ const x = cur(); if(!x) return; try{ const l0 = x.c.timeScale().coordinateToLogical(cx - el.getBoundingClientRect().left); if(l0==null) return; const l = Math.round(l0);
+    const d = x.S.dataByIndex(l, -1) || x.S.dataByIndex(l, 1); if(!d) return; const p = d.value!=null ? d.value : d.close; if(p!=null) x.c.setCrosshairPosition(p, d.time, x.S); }catch(e){} };
+  const clr = ()=>{ const x = cur(); if(x) try{ x.c.clearCrosshairPosition(); }catch(e){} };
+  const stop = ()=>{ clearTimeout(tm); tm = 0; if(on){ on = false; el.classList.remove('xh'); clr(); } };
+  el.addEventListener('touchstart', e=>{ stop(); if(e.touches.length!==1) return; const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY;
+    tm = setTimeout(()=>{ tm = 0; if(!cur()) return; on = true; el.classList.add('xh'); try{ navigator.vibrate && navigator.vibrate(8); }catch(_){} at(x0); }, XH_MS); }, {passive:true});
+  el.addEventListener('touchmove', e=>{ const t = e.touches[0]; if(!t) return; if(on){ e.preventDefault(); at(t.clientX); return; }
+    if(Math.abs(t.clientX-x0) > 8 || Math.abs(t.clientY-y0) > 8){ clearTimeout(tm); tm = 0; } }, {passive:false});
+  el.addEventListener('touchend', stop, {passive:true}); el.addEventListener('touchcancel', stop, {passive:true});
+  el.addEventListener('contextmenu', e=>{ if(on || tm) e.preventDefault(); });
+  el.addEventListener('pointermove', e=>{ if(e.pointerType==='mouse') at(e.clientX); }); el.addEventListener('pointerleave', e=>{ if(e.pointerType==='mouse') clr(); });
+  return c; }
 function makeChart(el, pctMode, money){
   const mask = money && hidden();
-  const T = chartTheme(), c = LightweightCharts.createChart(el, {autoSize:true, layout:{background:{color:T.bg}, textColor:T.text, fontFamily:'system-ui, Roboto, Arial', fontSize:11},
+  const T = chartTheme(), c = xhAttach(el, LightweightCharts.createChart(el, {autoSize:true, layout:{background:{color:T.bg}, textColor:T.text, fontFamily:'system-ui, Roboto, Arial', fontSize:11},
     grid:{vertLines:{visible:false}, horzLines:{color:T.grid}}, rightPriceScale:{borderVisible:false, visible:!mask}, timeScale:{borderVisible:false, fixLeftEdge:true, fixRightEdge:true},
-    crosshair:{mode:0}, localization:{locale:'he-IL', priceFormatter: mask ? (()=>MASK) : pctMode ? (v=>v.toFixed(1)+'%') : (v=>Math.abs(v)>=10000 ? (v/1000).toFixed(1)+'K' : v.toFixed(Math.abs(v)<10?2:0))}}); chartReg.add(c); const rm = c.remove.bind(c); c.remove = ()=>{ chartReg.delete(c); return rm(); }; return c;   // removed charts leave the theme registry
+    crosshair:{mode:0}, localization:{locale:'he-IL', priceFormatter: mask ? (()=>MASK) : pctMode ? (v=>v.toFixed(1)+'%') : (v=>Math.abs(v)>=10000 ? (v/1000).toFixed(1)+'K' : v.toFixed(Math.abs(v)<10?2:0))}})); chartReg.add(c); const rm = c.remove.bind(c); c.remove = ()=>{ chartReg.delete(c); return rm(); }; return c;   // removed charts leave the theme registry
 }
 // ---- end-of-line return labels (shared by the ביצועים tab and the main-screen chart) ----
 // One colored label per line at its last point, showing that line's % return, drawn over the right price scale. Our own HTML
@@ -2337,14 +2369,14 @@ function renderPL(S){
       ['מסים שנוכו בפועל (נטו)', fmtMoney(-S.taxPaidILS,'ILS',0), -S.taxPaidILS]] : []),
     ...(Math.abs(S.cgtPaidILS)>0.005 ? [['מתוכם מס רווחי הון ששולם', fmtMoney(-S.cgtPaidILS,'ILS',0), -S.cgtPaidILS]] : []),
     ['רווח לא ממומש (ברוטו)', fmtSigned(S.unrealILS,'ILS',0), S.unrealILS],
-    ['נטו אם מוכרים הכול עכשיו', fmtSigned(S.netIfSoldAll,'ILS',0), S.netIfSoldAll],
+    ['נטו אם מוכרים הכול עכשיו', taxPend() ? TXP : fmtSigned(S.netIfSoldAll,'ILS',0), S.netIfSoldAll],
     ['עמלות ששולמו', fmtMoney(S.feesILS,'ILS',0), 0],
     ['הפקדות נטו', fmtMoney(S.L.netDepILS,'ILS',0), 0]];
   M($('plKv')).h = rows.map(([l,v,c])=>`<div><span>${l}</span><b class="num ${cls(c)}">${v}</b></div>`).join('');
   renderTaxBox(S);
 }
 function renderTaxBox(S){
-  const TM = S.TM, C = TM.cur, m = v => fmtMoney(v,'ILS',2), yrs = TM.years.filter(o=>o.sales || o.paid || o.refund || o.b.has);
+  const TM = S.TM, C = TM.cur, m = v => taxPend() ? TXP : fmtMoney(v,'ILS',2), yrs = TM.years.filter(o=>o.sales || o.paid || o.refund || o.b.has);
   const kv = [
     ['מגן מס זמין השנה', m(TM.shieldNow), 'hl'],
     ['מס רווחי הון ששולם השנה', m(C.paid), ''],
@@ -2720,6 +2752,7 @@ function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p
   return `<h3><span>${it.sec ? logoHtml(it.sym, true) : ''}<span>${esc(it.sec ? it.sym : it.n)}</span></span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="muted" style="margin:-8px 0 8px;font-size:.85rem">${esc(it.sec ? it.n : it.s)}</div>
     <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b>${it.y ? '' : styleSegHtml('isStyle', chartStyle() || 'line')}</div>
+    ${it.sec ? '<div class="is-trade"><button class="btn btn-primary" data-istx="buy">🛒 קנייה</button><button class="btn btn-light" data-istx="sell">💰 מכירה</button></div>' : ''}
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
     <div class="seg sm ivseg" id="isIv" aria-label="אינטרוול"></div><div class="chart" id="isChart" style="height:280px;margin-top:6px"><div class="chart-msg" id="isMsg">טוען גרף…</div></div>
     <div class="inst-stats" id="isStats"></div>
@@ -2752,6 +2785,9 @@ async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S
   const q = iq(it); if(S.range==='1D' && q && q.prev) s.createPriceLine({price:q.prev, color:'#94a3b8', lineWidth:1, lineStyle:2, axisLabelVisible:false, title:'סגירה'});
   posChart.timeScale().fitContent(); }
 function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it, range:range||'1D', seq:0};
+  // v84: buy / sell straight from any instrument screen (search, watchlist, market, news, reports) – pre-filled symbol, currency and live price
+  $('sheetBody').querySelectorAll('[data-istx]').forEach(b=>b.onclick = ()=>{ const q = iq(it), pr = q && q.price!=null ? q.price : null, ty = b.dataset.istx, h = computeAll().positions.find(p=>p.sym===it.sym);
+    openTxForm(ty, {symbol:it.sym, currency:it.cur, assetType:it.type, date:today(), ...(ty==='sell' && h && h.qty>0 ? {qty:h.qty} : {}), ...(pr!=null ? {price: pr<10 ? Math.round(pr*10000)/10000 : Math.round(pr*100)/100} : {})}, null, null); });
   $('isRange').addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b || !instSheet) return; instSheet.range = b.dataset.v; drawInstChart(); });
   const pb = $('isPos'); if(pb) pb.onclick = ()=>openPosition(it.sym);
   $('isIv').addEventListener('click', e=>{ const b = e.target.closest('button[data-iv]'); if(!b || !instSheet) return; ivSet(instSheet.range, b.dataset.iv); drawInstChart(); });
@@ -2967,7 +3003,7 @@ function openTxForm(type, preset, editId, backSym, after){
           const c = s.calc;
           sum.insertAdjacentHTML('beforeend', `<div><span>${s.plILS>=0?'רווח':'הפסד'} לצורכי מס (₪)</span><b class="num ${cls(s.plILS)}">${s.src==='app'?fmtSigned(s.plILS,'ILS'):'לפי אומדן הבנק'}</b></div>
             ${c && s.src==='app' ? `<div><span>${cur==='USD'?`נומינלי בשקלים / דולרי (שער ${c.Rs.toFixed(3)})`:'נומינלי / ריאלי (מדד)'}</span><b class="num">${fmtSigned(c.nominal,'ILS',0)} / ${fmtSigned(c.real,'ILS',0)}</b></div>
-            <div><span>עלות בשקלים למס</span><b class="num">${fmtMoney(c.costILS,'ILS')}</b></div>` : ''}
+            <div><span>עלות בשקלים למס</span><b class="num">${taxPend() ? TXP : fmtMoney(c.costILS,'ILS')}</b></div>` : ''}
             <div><span>מס משוער על המכירה</span><b class="num">${fmtMoney(g?s.e:0,'ILS')}</b></div>
             <div><span>מקוזז ממגן מס</span><b class="num">${fmtMoney(s.used,'ILS')}</b></div>
             <div><span>מס לתשלום אחרי קיזוז</span><b class="num">${fmtMoney(s.due,'ILS')}</b></div>
@@ -3133,10 +3169,10 @@ function posKvRows(p){
     ['day', 'שינוי היום', p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
     ['qty', short?'כמות בשורט':'כמות', fmtQtyP(Math.abs(p.qty)), ''], ['avg', short?'מחיר שורט ממוצע':'עלות ממוצעת', fmtMoney(p.avg,cur), ''],
     ['open','נפתחה', fmtDate(p.openDate), 'nonum'],
-    ['costils','עלות בשקלים למס', p.qty>0 && p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', ''],
-    ['taxable','רווח/הפסד לצורכי מס אם מוכרים', p.qty>0 && p.hyp ? fmtSigned(p.taxableNow,'ILS') : '—', p.qty>0 && p.hyp ? cls(p.taxableNow) : ''],
-    ['ptax','מס משוער אם מוכרים', p.taxGross>0 ? fmtMoney(p.taxILS,'ILS') + (p.shieldUse>0.005 ? ` (קוזזו ${fmtMoney(p.shieldUse,'ILS')} ממגן מס)` : '') : (p.taxGross<0 ? `אין · יוסיף ${fmtMoney(-p.taxGross,'ILS')} למגן המס${p.refundP>0.005?` · החזר צפוי ${fmtMoney(p.refundP,'ILS')} (הערכה)`:''}` : '—'), ''],
-    ['net',`נטו אם ${short?'מכסים':'מוכרים'} עכשיו`, fmtSigned(p.netIfSold,cur), cls(p.netIfSold)]);
+    ['costils','עלות בשקלים למס', taxPend() ? TXP : p.qty>0 && p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', ''],
+    ['taxable','רווח/הפסד לצורכי מס אם מוכרים', taxPend() ? TXP : p.qty>0 && p.hyp ? fmtSigned(p.taxableNow,'ILS') : '—', p.qty>0 && p.hyp ? cls(p.taxableNow) : ''],
+    ['ptax','מס משוער אם מוכרים', taxPend() ? TXP : p.taxGross>0 ? fmtMoney(p.taxILS,'ILS') + (p.shieldUse>0.005 ? ` (קוזזו ${fmtMoney(p.shieldUse,'ILS')} ממגן מס)` : '') : (p.taxGross<0 ? `אין · יוסיף ${fmtMoney(-p.taxGross,'ILS')} למגן המס${p.refundP>0.005?` · החזר צפוי ${fmtMoney(p.refundP,'ILS')} (הערכה)`:''}` : '—'), ''],
+    ['net',`נטו אם ${short?'מכסים':'מוכרים'} עכשיו`, taxPend() ? TXP : fmtSigned(p.netIfSold,cur), cls(p.netIfSold)]);
   R.push(['real','רווח ממומש', fmtSigned(p.realized,cur), cls(p.realized)], ['fees','עמלות ששולמו', fmtMoney(p.fees,cur), '']);
   return R;
 }
@@ -3244,7 +3280,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v83</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v84</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3889,7 +3925,6 @@ function setTab(tab){
   document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on', s.id==='tab-'+tab));
   document.querySelectorAll('nav.bottom button').forEach(b=>b.classList.toggle('on', b.dataset.tab===tab));
   const gs = $('btnSet'); if(gs){ gs.classList.toggle('on', tab==='settings'); gs.setAttribute('aria-pressed', String(tab==='settings')); }
-  $('fab').style.display = /^(settings|market|watch|news)$/.test(tab) ? 'none' : '';
   window.scrollTo({top:0});
   if(tab==='perf') renderPerf(); else destroyPerf();
   if(tab==='portfolio'){ renderMini(); heatKey = ''; renderHeat(computeAll()); } else destroyMini();
@@ -3897,19 +3932,6 @@ function setTab(tab){
   if(tab==='market') renderMarket(); if(tab==='watch') renderWatch(); if(tab==='news') loadNewsTab();
   mktPoll();
 }
-// ---- inline charts (v44): inert until tapped / long-pressed, so a swipe over them switches tabs; sheets' charts stay live ----
-(function(){ let act = null, idle = 0, lp = 0, lx = 0, ly = 0;
-  const off = ()=>{ if(act){ act.classList.remove('active'); act = null; } clearTimeout(idle); };
-  const bump = ()=>{ clearTimeout(idle); idle = setTimeout(off, 4000); };
-  const on = el=>{ if(act === el){ bump(); return; } off(); act = el; el.classList.add('active'); bump(); };
-  const inline = t => t instanceof Element ? t.closest('main .chart') : null;
-  document.addEventListener('click', e=>{ const c = inline(e.target); if(c) on(c); else if(act && !act.contains(e.target)) off(); }, true);
-  document.addEventListener('touchstart', e=>{ const c = inline(e.target); clearTimeout(lp); if(act && !(c===act)) off();
-    if(c && c!==act && e.touches.length===1){ lx = e.touches[0].clientX; ly = e.touches[0].clientY; lp = setTimeout(()=>on(c), 300); } else if(c===act) bump(); }, {passive:true});
-  document.addEventListener('touchmove', e=>{ if(act && act.contains(e.target)) bump(); const t = e.touches[0]; if(t && (Math.abs(t.clientX-lx) > 10 || Math.abs(t.clientY-ly) > 10)) clearTimeout(lp); }, {passive:true});
-  document.addEventListener('touchend', ()=>clearTimeout(lp), {passive:true});
-  window.__chartActive = ()=>act && act.id;
-})();
 // ---- News tab (v53): news.json (or news.md) uploaded by the owner to the same site; always fetched fresh ----
 const NEWS_K = {up:['uploaded','הועלה'], title:['title','כותרת'], date:['date','תאריך'], text:['text','טקסט','תוכן'], link:['link','קישור','url'], company:['company','חברה']};
 function newsPick(o, k){ for(const n of NEWS_K[k]){ if(o[n]!=null && String(o[n]).trim()!=='') return String(o[n]).trim(); } return ''; }
@@ -4146,7 +4168,7 @@ window.addEventListener('popstate', ()=>imgvHide());
 document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='Escape') imgvClose(); });
 // ---- swipe between tabs (v42) ----
 (function(){ let sx=0, sy=0, st=0, ok=false;
-  const NOSW = 'input,textarea,select,[contenteditable],.editing,.imgv,.sheet,.sheet-bg,main .chart.active';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
+  const NOSW = 'input,textarea,select,[contenteditable],.editing,.imgv,.sheet,.sheet-bg,.chart.xh';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
   function scrollsX(el){ for(; el && el !== document.body; el = el.parentElement){ if(el.scrollWidth > el.clientWidth + 2){ const o = getComputedStyle(el).overflowX; if(o==='auto' || o==='scroll') return true; } } return false; }
   function blocked(t){ if(!(t instanceof Element)) return true; if(t.closest(NOSW)) return true; if($('sheetBg').classList.contains('open') || document.querySelector('dialog[open],.modal.open,.modal-bg.open')) return true; return scrollsX(t); }
   document.addEventListener('touchstart', e=>{ ok = e.touches.length===1 && !blocked(e.target); if(!ok) return; sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now(); }, {passive:true});
@@ -4165,7 +4187,7 @@ document.querySelector('nav.bottom').addEventListener('click', e=>{ const b = e.
   if(!t || t===ui.tab || !document.getElementById('tab-'+t)) return;
   if(t==='settings'){ prevTab = pv && pv!=='settings' && document.getElementById('tab-'+pv) ? pv : 'portfolio'; if(!(history.state && history.state.set)) history.replaceState({set:1}, ''); }
   setTab(t); })();
-$('fab').onclick = ()=>openTxForm(state.txs.length ? 'buy' : 'deposit');
+$('txNew').onclick = ()=>openTxForm(state.txs.length ? 'buy' : 'deposit');   // v84: replaces the floating + (deposit / withdraw / convert / dividend… are in the form's type selector)
 $('btnSet').onclick = ()=>openSettings();   // tapping the gear in settings keeps it open; leave via the back button / Android back
 $('setBack').onclick = ()=>closeSettings();
 function renderEye(){ const h = hidden(), b = $('btnEye'); b.setAttribute('aria-pressed', h?'true':'false');   // v57: eye / eye-off icon follows aria-pressed (CSS)
