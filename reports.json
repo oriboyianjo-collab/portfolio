@@ -1209,14 +1209,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "46.95B",
-    "הערה": "GAAP -0.14; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP -0.14",
     "קישור": "https://investors.centene.com/2026-10-27-CENTENE-CORPORATION-REPORTS-THIRD-QUARTER-2026-RESULTS",
     "מטבע_הכנסות": "USD",
     "בסיס_בפועל_הכנסות": "GAAP",
     "הכנסות_בפועל": "50.65B",
     "בפועל_EPS": "0.58",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "CenterPoint Energy, Inc.",
@@ -1721,14 +1722,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "1.85B",
-    "הערה": "GAAP 4.94; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP 4.94",
     "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388868/0/en/hubbell-reports-third-quarter-2026-results.html",
     "מטבע_הכנסות": "USD",
     "בסיס_בפועל_הכנסות": "GAAP",
     "הכנסות_בפועל": "1.87B",
     "בפועל_EPS": "5.91",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "Hycroft Mining Holding Corporation",
@@ -2622,14 +2624,15 @@
     "מועד": "before",
     "צפי_EPS": "0.17",
     "צפי_הכנסות": "1.26B",
-    "הערה": "בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "",
     "קישור": "https://investors.sofi.com/news/news-details/2026/SoFi-Reports-Third-Quarter-2026-with-Record-Net-Revenue-of-1-4-Billion-Net-Income-of-241-Million-and-Raises-Full-Year-Guidance/default.aspx",
     "מטבע_הכנסות": "USD",
     "בסיס_בפועל_הכנסות": "מתואם",
     "הכנסות_בפועל": "1.37B",
     "בפועל_EPS": "0.18",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "S&P Global Inc.",
