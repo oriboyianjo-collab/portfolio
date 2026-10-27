@@ -1010,14 +1010,15 @@
       "Dow 30"
     ],
     "צפי_הכנסות": "24.37B",
-    "הערה": "GAAP -0.26; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP -0.26",
     "קישור": "https://investors.boeing.com/investors/news/press-release-details/2026/Boeing-Reports-Third-Quarter-Results/default.aspx",
     "מטבע_הכנסות": "USD",
     "בסיס_בפועל_הכנסות": "GAAP",
     "הכנסות_בפועל": "24.19B",
     "בפועל_EPS": "-0.34",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "Banc of California, Inc.",
@@ -1516,13 +1517,14 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "7.4B",
-    "הערה": "GAAP 0.81; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP 0.81",
     "קישור": "https://mms.businesswire.com/media/20261026570347/en/2947921/1/FCX_261027_3Q_2026_Earnings_Release.pdf",
     "מטבע_הכנסות": "USD",
     "הכנסות_בפועל": "7.55B",
     "בפועל_EPS": "0.88",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "FirstEnergy Corp.",
@@ -1585,14 +1587,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "5.03B",
-    "הערה": "GAAP 0.78; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP 0.78",
     "קישור": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Delivers-Outstanding-Third-Quarter-Results1/default.aspx",
     "מטבע_הכנסות": "USD",
     "בסיס_בפועל_הכנסות": "מתואם",
     "הכנסות_בפועל": "5.08B",
     "בפועל_EPS": "0.91",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "Galaxy Digital Inc.",
@@ -1628,13 +1631,14 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "19.33B",
-    "הערה": "GAAP 7.27; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP 7.27",
     "קישור": "https://investor.hcahealthcare.com/news/news-details/2026/HCA-Healthcare-Reports-Third-Quarter-2026-Results/default.aspx",
     "מטבע_הכנסות": "USD",
     "הכנסות_בפועל": "19.85B",
     "בפועל_EPS": "7.22",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "Highwoods Properties, Inc.",
@@ -1951,14 +1955,15 @@
       "Dow 30"
     ],
     "צפי_הכנסות": "12.93B",
-    "הערה": "GAAP 0.93; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP 0.93",
     "קישור": "https://investors.coca-colacompany.com/news-events/press-releases/detail/1176/coca-cola-reports-third-quarter-2026-results-and-raises-full-year-guidance",
     "מטבע_הכנסות": "USD",
     "בסיס_בפועל_הכנסות": "GAAP",
     "הכנסות_בפועל": "13.38B",
     "בפועל_EPS": "0.91",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "Coca Cola Femsa S.A.B. de C.V.",
@@ -2360,13 +2365,14 @@
       "Nasdaq 100"
     ],
     "צפי_הכנסות": "8.71B",
-    "הערה": "GAAP 1.25; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP 1.25",
     "קישור": "https://s205.q4cdn.com/875401827/files/content_files/PYPL-3Q-26-Earnings-Release.pdf",
     "מטבע_הכנסות": "USD",
     "הכנסות_בפועל": "8.58B",
     "בפועל_EPS": "1.45",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "QNB Corp.",
@@ -2555,14 +2561,15 @@
       "Dow 30"
     ],
     "צפי_הכנסות": "6.78B",
-    "הערה": "GAAP 3.38; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP 3.38",
     "קישור": "https://investors.sherwin-williams.com/press-releases/press-release-details/2026/The-Sherwin-Williams-Company-Reports-2026-Third-Quarter-Financial-Results/default.aspx",
     "מטבע_הכנסות": "USD",
     "בסיס_בפועל_הכנסות": "GAAP",
     "הכנסות_בפועל": "6.86B",
     "בפועל_EPS": "3.63",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "Grupo Simec, S.A. de C.V.",
