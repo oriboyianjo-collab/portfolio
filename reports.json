@@ -1320,7 +1320,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "894.3M",
-    "הערה": ""
+    "הערה": "FFO למניה; GAAP EPS 0.71; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "1.89",
+    "הכנסות_בפועל": "911.4M",
+    "בסיס_בפועל_EPS": "FFO",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.businesswire.com/news/home/20261027724245/en/BXP-Announces-Third-Quarter-2026-Results",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Camden National Corporation",
@@ -1417,7 +1425,15 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "685.04M",
-    "הערה": ""
+    "הערה": "EPS adjusted; GAAP 5.45; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "6.75",
+    "הכנסות_בפועל": "690.9M",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389637/0/en/chemed-reports-third-quarter-2026-results.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "CMS Energy Corporation",
@@ -1504,7 +1520,15 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "737.08M",
-    "הערה": ""
+    "הערה": "EPS adjusted (שיא); GAAP 1.66; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "2.05",
+    "הכנסות_בפועל": "754.6M",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.businesswire.com/news/home/20261027903493/en/Crane-Company-Reports-Third-Quarter-2026-Results-Raises-and-Narrows-Full-Year-Adjusted-EPS-Guidance",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "CoStar Group, Inc.",
@@ -1782,7 +1806,15 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "615.43M",
-    "הערה": ""
+    "הערה": "EPS adjusted; GAAP 0.45; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.62",
+    "הכנסות_בפועל": "634.0M",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389591/9060/en/exl-reports-2026-third-quarter-results.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Extra Space Storage Inc",
@@ -2123,7 +2155,15 @@
     "מועד": "after",
     "צפי_EPS": "2.40",
     "צפי_הכנסות": "2.01B",
-    "הערה": ""
+    "הערה": "EPS adjusted; GAAP 1.58; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "2.66",
+    "הכנסות_בפועל": "2.02B",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1060955/000162828026067629/q32026pressrelease.htm",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "INNIO N.V.",
@@ -2392,7 +2432,15 @@
     "מועד": "after",
     "צפי_EPS": "1.17",
     "צפי_הכנסות": "1.21B",
-    "הערה": ""
+    "הערה": "EPS non-GAAP; GAAP 1.25; רבעון Q2 FY27; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "1.51",
+    "הכנסות_בפועל": "1.22B",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.businesswire.com/news/home/20261027364169/en/Logitech-Announces-Q2-Fiscal-Year-2027-Results",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "LPL Financial Holdings Inc.",
@@ -2421,7 +2469,15 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "1.5B",
-    "הערה": ""
+    "הערה": "EPS GAAP (basic and diluted); בסיס הצפי לא ידוע",
+    "בפועל_EPS": "1.42",
+    "הכנסות_בפועל": "1.512B",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389612/0/en/landstar-system-reports-third-quarter-revenue-of-1-512b-and-earnings-per-share-of-1-42.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Lufax Holding Ltd",
@@ -2653,7 +2709,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "1.64B",
-    "הערה": ""
+    "הערה": "EPS adjusted -0.09; GAAP -0.08; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "-0.09",
+    "הכנסות_בפועל": "1.623B",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://ml.globenewswire.com/Resource/Download/64cbe4a7-e388-4ef7-8c62-e953e3b2aec3",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "ONEOK, Inc.",
@@ -2920,7 +2984,15 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "1.75B",
-    "הערה": ""
+    "הערה": "EPS תפעולי (operating); GAAP -4.02; ההכנסות 2.1B ממקור משני (Seeking Alpha); בסיס הצפי לא ידוע",
+    "בפועל_EPS": "12.71",
+    "הכנסות_בפועל": "2.1B",
+    "בסיס_בפועל_EPS": "תפעולי",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.stocktitan.net/news/RNR/renaissance-re-reports-161-4-million-of-net-loss-attributable-to-krr61fpnvtip.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Renasant Corporation",
@@ -2944,7 +3016,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "238M",
-    "הערה": ""
+    "הערה": "EPS adjusted; GAAP 1.26; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "1.39",
+    "הכנסות_בפועל": "236.1M",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.businesswire.com/news/home/20261027514530/en/Rogers-Corporation-Reports-Third-Quarter-2026-Results",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Range Resources Corporation",
@@ -2956,7 +3036,14 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "809.85M",
-    "הערה": ""
+    "הערה": "EPS adjusted (non-GAAP, comparable to analysts' estimates); GAAP 0.75 כולל רווח נגזרים mark-to-market 58M$; ההכנסות = GAAP revenues and other income; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.81",
+    "הכנסות_בפועל": "843M",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389652/0/en/range-announces-third-quarter-2026-results.html",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Rush Enterprises, Inc.",
@@ -3160,7 +3247,15 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "973.69M",
-    "הערה": ""
+    "הערה": "EPS adjusted; GAAP 0.78; ההכנסות כוללות תשלום סיום חד-פעמי של 24M$ (ללא התשלום: 979.6M ו-EPS adjusted 0.97); בסיס הצפי לא ידוע",
+    "בפועל_EPS": "1.13",
+    "הכנסות_בפועל": "1.004B",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.businesswire.com/news/home/20261027688283/en/Sensata-Technologies-Reports-Third-Quarter-2026-Financial-Results",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Stag Industrial, Inc.",
@@ -3329,7 +3424,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "727.55M",
-    "הערה": ""
+    "הערה": "EPS non-GAAP; GAAP 0.85; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "1.15",
+    "הכנסות_בפועל": "759M",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.prnewswire.com/news-releases/ultra-clean-reports-third-quarter-2026-financial-results-302921159.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Universal Health Services, Inc.",
@@ -3361,7 +3464,15 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "744.8M",
-    "הערה": ""
+    "הערה": "GAAP = net operating 3.56; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "3.56",
+    "הכנסות_בפועל": "772.4M",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.stocktitan.net/sec-filings/UMBF/8-k-umb-financial-corp-reports-material-event-162d563c08ba.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "United Parcel Service, Inc.",
