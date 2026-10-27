@@ -2634,7 +2634,13 @@
     "סימול": "LU",
     "תאריך": "2026-10-27",
     "מועד": "after",
-    "הערה": ""
+    "הערה": "הפסד למניה (ADS) RMB, basic ו-diluted זהים; ADS אחד = שתי מניות רגילות; אין צפי בשורה; ההפסד RMB1,494M בתוך טווח ההנחיה המוקדמת RMB1.3-1.7B מ-16.10",
+    "בפועל_EPS": "-1.78",
+    "בסיס_בפועל_EPS": "RMB ל-ADS",
+    "מטבע_EPS": "RMB",
+    "הכנסות_בפועל": "6,180M",
+    "מטבע_הכנסות": "RMB",
+    "קישור": "https://www.prnewswire.com/news-releases/lufax-reports-third-quarter-2026-financial-results-302920830.html"
   },
   {
     "חברה": "Pulmonx Corporation",
@@ -3002,7 +3008,14 @@
     "מועד": "after",
     "צפי_EPS": "1.24",
     "צפי_הכנסות": "529.54M CAD",
-    "הערה": ""
+    "הערה": "EPS ב-CAD, IFRS (net earnings למניה), basic ו-diluted זהים ברבעון; בסיס הצפי לא ידוע; Adjusted EBITDA 125M CAD (+6%)",
+    "בפועל_EPS": "1.65",
+    "בסיס_בפועל_EPS": "IFRS",
+    "מטבע_EPS": "CAD",
+    "הכנסות_בפועל": "531.652M",
+    "מטבע_הכנסות": "CAD",
+    "השוואה_הכנסות": "כן",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389799/0/en/precision-drilling-announces-2026-third-quarter-unaudited-financial-statements.html"
   },
   {
     "חברה": "Peapack-Gladstone Financial Corporation",
