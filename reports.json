@@ -58,8 +58,7 @@
     "תאריך": "2026-10-26",
     "מועד": "before",
     "צפי_EPS": "0.82",
-    "בפועל_EPS": "1.08",
-    "הערה": "בסיס GAAP",
+    "הערה": "תוצאה בפועל: רווח GAAP ליחידה 1.08 — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.businesswire.com/news/home/20261026689938/en/Alliance-Resource-Partners-L.P.-Reports-Third-Quarter-2026-Financial-and-Operating-Results-Declares-Quarterly-Cash-Distribution-of-%240.60-Per-Unit-and-Updates-Guidance"
   },
   {
@@ -229,8 +228,7 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "0.01",
-    "בפועל_EPS": "0.01",
-    "הערה": "בסיס GAAP",
+    "הערה": "תוצאה בפועל: EPS GAAP 0.01 (רווח נקי 2.3M) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.businesswire.com/news/home/20261026119739/en/Custom-Truck-One-Source-Inc.-Reports-Record-Third-Quarter-2026-Results-and-Increases-Full-Year-2026-Adjusted-EBITDA-and-SER-Revenue-Guidance"
   },
   {
@@ -697,8 +695,7 @@
     "מדד": [
       "S&P 400"
     ],
-    "בפועל_EPS": "-0.21",
-    "הערה": "בסיס: ongoing (לא-GAAP); GAAP Q3 = -3.80",
+    "הערה": "תוצאה בפועל: EPS ongoing (לא-GAAP) -0.21; GAAP Q3 = -3.80 — סתירה מול צפי 0.78 בשורה (ייתכן רבעון/בסיס אחר), לא מוצג חישוב הפתעה",
     "קישור": "https://investors.whirlpoolcorp.com/news-and-events/news/news-details/2026/Whirlpool-Corporation-Announces-Third-Quarter-Results/default.aspx",
     "הכנסות_בפועל": "3.677B"
   },
