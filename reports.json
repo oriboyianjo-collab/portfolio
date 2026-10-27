@@ -2691,7 +2691,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "148.05M",
-    "הערה": ""
+    "הערה": "EPS GAAP diluted; רבעון שיא לפי החברה אך מתחת לקונצנזוס; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "1.76",
+    "הכנסות_בפועל": "146.265M",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://markets.businessinsider.com/news/stocks/monarch-casino-resort-reports-record-third-quarter-2026-financial-results-1036672908",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Mirion Technologies, Inc.",
@@ -2813,7 +2821,15 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "2.19B",
-    "הערה": ""
+    "הערה": "EPS GAAP diluted (אין EPS adjusted בהודעה; adjusted EBITDA 281M$, 12.6% מהמכירות, כולל הטבת החזרי מכסים של כ-5M$); בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.25",
+    "הכנסות_בפועל": "2.226B",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389754/0/en/nov-reports-third-quarter-2026-earnings.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Bank of N.T. Butterfield & Son Limited (The)",
