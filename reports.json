@@ -25,8 +25,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "בפועל_EPS": "0.67",
-    "הערה": "בסיס: adjusted diluted EPS (non-GAAP)",
+    "הערה": "תוצאה בפועל: EPS מותאם 0.67 (GAAP 0.46) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.businesswire.com/news/home/20261026081460/en/Agilysys-Announces-Record-Revenue-of-%2493.4M-in-Fiscal-2027-Second-Quarter"
   },
   {
@@ -50,8 +49,7 @@
     "מדד": [
       "S&P 500"
     ],
-    "בפועל_EPS": "1.54",
-    "הערה": "בסיס: FFO (לא EPS GAAP) - FFO per share diluted, as adjusted",
+    "הערה": "תוצאה בפועל: FFO למניה מותאם 1.54 — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.prnewswire.com/news-releases/alexandria-real-estate-equities-inc-reports-3q26-and-ytd-3q26-net-loss-per-share--diluted-of-3-74-and-2-06--respectively-and-3q26-and-ytd-3q26-ffo-per-share--diluted-as-adjusted-of-1-54-and-5-00--respectively-302919655.html"
   },
   {
@@ -189,8 +187,7 @@
     "מדד": [
       "S&P 500"
     ],
-    "בפועל_EPS": "2.86",
-    "הערה": "בסיס: non-GAAP operating income per share",
+    "הערה": "תוצאה בפועל: EPS תפעולי (לא-GAAP) 2.86 (GAAP 2.96) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.prnewswire.com/news-releases/cincinnati-financial-reports-third-quarter-2026-results-302919728.html",
     "הכנסות_בפועל": "3.047B"
   },
@@ -206,8 +203,7 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "2.88",
-    "בפועל_EPS": "3.3",
-    "הערה": "בסיס: adjusted EPS (non-GAAP)",
+    "הערה": "תוצאה בפועל: EPS מותאם 3.30 (GAAP 3.26) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388573/0/en/celestica-announces-third-quarter-2026-financial-results-and-will-hold-2026-investor-and-analyst-day.html"
   },
   {
@@ -277,8 +273,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "בפועל_EPS": "2.08",
-    "הערה": "בסיס: adjusted diluted EPS",
+    "הערה": "תוצאה בפועל: EPS מותאם 2.08 (GAAP 1.98) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388582/0/en/dorman-products-inc-reports-third-quarter-2026-results-updates-2026-guidance.html"
   },
   {
@@ -362,8 +357,7 @@
     "מדד": [
       "S&P 500"
     ],
-    "בפועל_EPS": "3.5",
-    "הערה": "בסיס: core earnings per diluted share",
+    "הערה": "תוצאה בפועל: EPS ליבה 3.50 (GAAP 4.82) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.businesswire.com/news/home/20261026676351/en/The-Hartford-Reports-Strong-Third-Quarter-2026-Financial-Results"
   },
   {
@@ -444,8 +438,7 @@
     "תאריך": "2026-10-26",
     "מועד": "before",
     "צפי_EPS": "0.36",
-    "בפועל_EPS": "0.47",
-    "הערה": "בסיס: adjusted diluted EPS",
+    "הערה": "תוצאה בפועל: EPS מותאם 0.47 (GAAP 0.02) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.sec.gov/Archives/edgar/data/1495153/000119312526430976/mmyt-ex99_1.htm"
   },
   {
@@ -483,8 +476,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "בפועל_EPS": "-0.57",
-    "הערה": "בסיס: adjusted diluted EPS",
+    "הערה": "תוצאה בפועל: EPS מותאם -0.57 (GAAP -0.73) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.prnewswire.com/news-releases/noble-corporation-plc-announces-third-quarter-2026-results-302919891.html",
     "הכנסות_בפועל": "729M"
   },
@@ -569,8 +561,7 @@
     "מדד": [
       "S&P 500"
     ],
-    "בפועל_EPS": "2.49",
-    "הערה": "בסיס: non-GAAP operating EPS excl. significant variances",
+    "הערה": "תוצאה בפועל: EPS תפעולי (לא-GAAP) 2.49 — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://www.businesswire.com/news/home/20261026256025/en/Principal-Financial-Group-Announces-Third-Quarter-2026-Results"
   },
   {
@@ -622,14 +613,13 @@
     "מדד": [
       "S&P 400"
     ],
-    "בפועל_EPS": "0.84",
-    "הערה": "בסיס: non-GAAP diluted EPS",
+    "הערה": "תוצאה בפועל: EPS לא-GAAP 0.84 (GAAP 0.69) — בסיס הצפי לא אומת, לא מוצג חישוב הפתעה",
     "קישור": "https://investor.rambus.com/press-releases/press-release-details/2026/Rambus-Reports-Third-Quarter-2026-Financial-Results/default.aspx"
   },
   {
     "חברה": "Summit Therapeutics Inc.",
     "סימול": "SMMT",
-    "תאריך": "2026-10-23",
+    "תאריך": "2026-10-26",
     "צפי_EPS": "-0.28"
   },
   {
