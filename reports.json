@@ -951,13 +951,14 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "4.51B",
-    "הערה": "GAAP 5.84; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP 5.84",
     "קישור": "https://www.businesswire.com/news/home/20261027995137/en/Asbury-Automotive-Group-Reports-Third-Quarter-Results",
     "מטבע_הכנסות": "USD",
     "הכנסות_בפועל": "4.41B",
     "בפועל_EPS": "6.16",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "Arch Capital Group Ltd.",
@@ -1376,13 +1377,14 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "145.95M",
-    "הערה": "GAAP 0.61; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP 0.61",
     "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388903/0/en/cts-announces-third-quarter-2026-results.html",
     "מטבע_הכנסות": "USD",
     "הכנסות_בפועל": "149.6M",
     "בפועל_EPS": "0.77",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "Commvault Systems, Inc.",
@@ -2516,13 +2518,14 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "206.75M",
-    "הערה": "GAAP -0.68; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP -0.68",
     "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388843/24603/en/repligen-reports-third-quarter-2026-financial-results-and-updates-full-year-2026-financial-guidance.html",
     "מטבע_הכנסות": "USD",
     "הכנסות_בפועל": "209.3M",
     "בפועל_EPS": "0.53",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "RenaissanceRe Holdings Ltd.",
@@ -2828,13 +2831,14 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "1.08B",
-    "הערה": "GAAP 1.73; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP 1.73",
     "קישור": "https://investor.travelandleisureco.com/news-events/press-releases/detail/988/travel-leisure-co-reports-third-quarter-2026-results",
     "מטבע_הכנסות": "USD",
     "הכנסות_בפועל": "1.10B",
     "בפועל_EPS": "2.21",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "Trustmark Corporation",
