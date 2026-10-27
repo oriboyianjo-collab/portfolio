@@ -273,10 +273,14 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "בסיס הצפי לא אומת — EPS בפועל לא מוצג",
+    "הערה": "בסיס: FFO (לא EPS GAAP) — צפי Zacks מותאם; בפועל Core FFO למניה",
     "קישור": "https://www.businesswire.com/news/home/20261026039429/en/Easterly-Government-Properties-Reports-Third-Quarter-2026-Results",
     "הכנסות_בפועל": "93.6M",
-    "מטבע_הכנסות": "USD"
+    "מטבע_הכנסות": "USD",
+    "בפועל_EPS": "0.78",
+    "בסיס_צפי_EPS": "FFO",
+    "בסיס_בפועל_EPS": "FFO",
+    "מטבע_EPS": "USD"
   },
   {
     "חברה": "Dorman Products, Inc.",
