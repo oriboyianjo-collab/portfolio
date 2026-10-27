@@ -42,6 +42,12 @@ body{font-family:system-ui,"Segoe UI",Roboto,"Rubik","Heebo",Arial,sans-serif;ba
 .icon-btn:active{background:rgba(255,255,255,.28)}
 .icon-btn.spin span{display:inline-block;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+.hcard{position:relative}.hmin{position:absolute;z-index:2;left:10px;bottom:8px;width:30px;height:26px;border:0;border-radius:8px;background:rgba(255,255,255,.12);color:inherit;font-size:1rem;line-height:1;cursor:pointer;padding:0}
+.top:not(.mini) .upd{padding-inline-end:38px}
+.top.mini .brand span,.top.mini .hctl,.top.mini .upd,.top.mini .tot-pre,.top.mini #hDayLbl,.top.mini #hDay{display:none}
+.top.mini .hcard{display:flex;align-items:center;gap:10px;padding-top:8px;padding-bottom:8px}.top.mini .top-row{margin:0}.top.mini .brand img{width:30px;height:30px}
+.top.mini .tot-row{margin:0;flex:0 1 auto}.top.mini .tot-val{font-size:1.35rem}.top.mini .tot-day{margin:0}.top.mini .tot-day .tp-v{font-size:.95rem}
+.top.mini .hmin{position:static;margin-inline-start:auto;transform:rotate(180deg)}
 .tot-val{font-size:1.6rem;font-weight:800;margin-top:0;letter-spacing:-.5px;line-height:1.15}
 .top .pos{color:#6ee7b7}.top .neg{color:#fca5a5}
 .top .upd{font-size:.7rem;opacity:.75;margin-top:1px}
@@ -529,7 +535,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
     <div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div></div>
     <div class="tot-day"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-a num" id="hDay">—</span></div>
     <div class="tot-pre" id="hPre" hidden></div>
-    <div class="upd"><span id="hUpd">טרם עודכנו מחירים</span><span id="hLive"></span></div>
+    <button class="hmin" id="hMin" aria-expanded="true" aria-label="כיווץ שורת השווי">⌃</button><div class="upd"><span id="hUpd">טרם עודכנו מחירים</span><span id="hLive"></span></div>
   </div></div>
 </header>
 <main class="wrap">
@@ -3216,7 +3222,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v77</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v78</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -4170,5 +4176,10 @@ window.__portfolio = {refresh:(...a)=>refreshPrices(...a), get state(){ return s
 })();
 })();
 </script>
+<script>(()=>{ const K='portfolioTracker.hdrMini', top=document.querySelector('header.top'), b=document.getElementById('hMin');
+  const ap=v=>{ top.classList.toggle('mini', v); b.setAttribute('aria-expanded', String(!v)); b.setAttribute('aria-label', v?'הרחבת שורת השווי':'כיווץ שורת השווי'); };
+  let v=false; try{ v=localStorage.getItem(K)==='1'; }catch(e){} ap(v);
+  b.addEventListener('click', e=>{ e.stopPropagation(); v=!v; try{ localStorage.setItem(K, v?'1':'0'); }catch(_){} ap(v); });
+  top.addEventListener('click', e=>{ if(v && !e.target.closest('button')){ v=false; try{ localStorage.setItem(K,'0'); }catch(_){} ap(false); } }); })();</script>
 </body>
 </html>
