@@ -498,6 +498,11 @@ body.srch-on .fab{display:none!important}body.srch-on{overflow:hidden}
 .nseg{margin:0 0 10px}.cfil{display:flex;gap:6px;overflow-x:auto;margin:0 0 8px;scrollbar-width:none}.cfil::-webkit-scrollbar{display:none}.cfil:empty{display:none}
 .cfil button{flex:0 0 auto;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);border-radius:999px;padding:5px 11px;min-height:32px;font:inherit;font-size:.76rem;font-weight:600;cursor:pointer}.cfil button.on{border-color:var(--primary);color:var(--primary)}
 .rday{font-size:.78rem;font-weight:700;color:var(--muted);margin:12px 2px 6px}.rsec{font-size:.82rem;font-weight:800;margin:18px 2px 4px;padding-top:10px;border-top:1px dashed var(--border)}
+.rrow{display:grid;grid-template-columns:30px minmax(0,1fr) 58px 64px;align-items:center;gap:7px;padding:6px 4px;border-bottom:1px solid var(--border);cursor:pointer;position:relative}
+.rrow .logo{width:30px;height:30px;font-size:.62rem}.rrow .rn{min-width:0}.rrow .r1{display:flex;align-items:center;gap:4px;min-width:0;white-space:nowrap;overflow:hidden}.rrow .r1 b{font-size:.86rem}.rrow .rti{font-style:normal;font-size:.72rem}
+.rrow .rn small{display:block;direction:ltr;text-align:right;unicode-bidi:plaintext;color:var(--muted);font-size:.68rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.25}.rrow .rix{display:inline-flex;gap:2px;margin:0}.rrow .rix i{font-size:.56rem;padding:0 4px}
+.rrow .rtag{font-size:.58rem;padding:0 5px}.rrow .rv{text-align:center;line-height:1.15;min-width:0}.rrow .rv span{display:block;font-size:.56rem;color:var(--muted)}.rrow .rv b{display:block;font-size:.78rem;direction:ltr;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rrow .rv small{display:block;font-size:.58rem;color:var(--muted);direction:ltr;white-space:nowrap}
+.rrow.r-pos{box-shadow:inset -3px 0 0 var(--green)}.rrow.r-neg{box-shadow:inset -3px 0 0 var(--red)}.rrow .rlk{position:absolute;left:2px;top:2px;font-size:.7rem;text-decoration:none;color:var(--muted)}
 .rcard{border:1px solid var(--border);border-radius:14px;padding:10px;margin-bottom:8px;background:var(--bg-fff)}.rtop{display:flex;align-items:center;gap:8px}.rtop .t{flex:1;min-width:0}.rtop .t b{font-size:.94rem}
 .rtop .t small{display:block;color:var(--muted);font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rq{font-size:.72rem;font-weight:700;border-radius:8px;padding:2px 7px;background:rgba(99,102,241,.16);color:#6366f1;white-space:nowrap;direction:ltr}
 .rtag{font-size:.62rem;border-radius:6px;padding:1px 5px;background:rgba(59,130,246,.16);color:#2563eb;margin-inline-start:5px;font-weight:700;vertical-align:middle}
@@ -3210,7 +3215,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v74</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v75</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3985,13 +3990,16 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     .sort((a,b)=>(a.d<b.d?-1:a.d>b.d?1:0) || ((b.ixs.length?1:0)-(a.ixs.length?1:0)));
   if(!M.length){ el.innerHTML = '<div class="news-empty">אין דוחות בסינון הזה.</div>'; return; }
   const up = M.filter(r=>r.d >= t), past = M.filter(r=>r.d < t).reverse();
-  const card = r=>{ const tm = /^(before|pre|bmo|לפני)/i.test(r.time) ? '☀️ לפני פתיחה' : /^(after|post|amc|אחרי)/i.test(r.time) ? '🌙 אחרי סגירה' : esc(r.time);
-    const e1 = numOf(r.epsEst), e2 = numOf(r.eps), r1 = numOf(r.revEst), r2 = numOf(r.rev), beat = e1!=null && e2!=null ? (e2 >= e1 ? '<span class="beat pos">הכה ✓</span>' : '<span class="beat neg">החטיא ✗</span>') : '';
-    const v = x=>esc(x) || '—', link = /^https?:\/\//i.test(r.link) ? `<a class="news-l" href="${esc(r.link)}" target="_blank" rel="noopener">לפרטים ←</a>` : '';
-    return `<article class="rcard"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}><div class="rtop">${r.symbol ? logoHtml(r.symbol) : ''}<div class="t"><b class="ltr">${esc(r.symbol || r.company)}</b>${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<small>${esc(r.symbol ? r.company : '')}${r.symbol && r.company && tm ? ' · ' : ''}${tm}</small><span class="rix">${r.ixs.length ? r.ixs.map(x=>`<i class="${ixCls(x.k).trim()}">${esc(x.l)}</i>`).join('') : '<i>אחר</i>'}</span></div>${beat}${r.quarter ? `<span class="rq">${esc(r.quarter)}</span>` : ''}</div>`+
-      (r.epsEst || r.eps || r.revEst || r.rev ? `<div class="rkv">`+
-        `<div><span>EPS ${r.eps ? 'צפי / בפועל' : 'צפי'}</span><b class="num">${v(r.epsEst)}${r.eps ? ` / <em class="${e1!=null && e2!=null ? (e2>=e1?'pos':'neg') : ''}">${esc(r.eps)}</em>` : ''}</b></div>`+
-        `<div><span>${r.rev ? 'הכנסות צפי / בפועל' : 'צפי הכנסות'}</span><b class="num">${v(r.revEst)}${r.rev ? ` / <em class="${r1!=null && r2!=null ? (r2>=r1?'pos':'neg') : ''}">${esc(r.rev)}</em>` : ''}</b></div></div>` : '') + `${r.note ? `<div class="rnote">${esc(r.note)}</div>` : ''}${link}</article>`; };
+  const shortN = n=>String(n||'').replace(/,?\s*(Inc\.?|Incorporated|Corporation|Corp\.?|Company|Co\.|Ltd\.?|Limited|plc|PLC|Holdings?|Group|N\.V\.|S\.A\.|SE|AG|L\.P\.|LP|Class [A-C]|Ordinary Shares?|Common Stock)\b\.?/g,'').replace(/[\s,.-]+$/,'').trim();
+  const ixS = l=>String(l).replace(/^S&P\s*/i,'S&P').replace(/^Nasdaq\s*100$/i,'NDX').replace(/^נאסד"?ק\s*100$/,'NDX').replace(/^Dow( Jones| 30)?$/i,'DOW').replace(/^Russell\s*2000$/i,'R2K');
+  const card = r=>{ const ti = /^(before|pre|bmo|לפני)/i.test(r.time) ? '<i class="rti" title="לפני פתיחה">☀️</i>' : /^(after|post|amc|אחרי)/i.test(r.time) ? '<i class="rti" title="אחרי סגירה">🌙</i>' : r.time ? `<i class="rti num">${esc(r.time)}</i>` : '';
+    const e1 = numOf(r.epsEst), e2 = numOf(r.eps), r1 = numOf(r.revEst), r2 = numOf(r.rev), ec = e1!=null && e2!=null ? (e2>=e1?'pos':'neg') : '', rc = r1!=null && r2!=null ? (r2>=r1?'pos':'neg') : '';
+    const link = /^https?:\/\//i.test(r.link) ? `<a class="rlk" href="${esc(r.link)}" target="_blank" rel="noopener" aria-label="לפרטים">↗</a>` : '';
+    const ix = r.ixs.length ? r.ixs.slice(0,2).map(x=>`<i class="${ixCls(x.k).trim()}">${esc(ixS(x.l))}</i>`).join('') + (r.ixs.length>2 ? `<i>+${r.ixs.length-2}</i>` : '') : '<i>אחר</i>';
+    const val = (est, act, c)=> act ? `<b class="num ${c}">${esc(act)}</b><small class="num">צפי ${esc(est)||'—'}</small>` : `<b class="num">${esc(est)||'—'}</b><small>צפי</small>`;
+    return `<article class="rrow${ec ? ' r-'+ec : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
+      `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span></div><small>${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}${r.note ? ' · '+esc(r.note) : ''}</small></div>`+
+      `<div class="rv"><span>EPS</span>${val(r.epsEst, r.eps, ec)}</div><div class="rv"><span>הכנסות</span>${val(r.revEst, r.rev, rc)}</div>${link}</article>`; };
   const grp = (A)=>{ let h = '', last = null; A.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="rday">${dayHead(r.d)}</div>`; } h += card(r); }); return h; };
   const A = [...up, ...past], more = A.length - repShow, upS = up.slice(0, repShow), pastS = past.slice(0, Math.max(0, repShow - up.length));
   el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' || ntFil.tm!=='all' ? ' בסינון' : ''}</div>` + grp(upS) + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '') + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
