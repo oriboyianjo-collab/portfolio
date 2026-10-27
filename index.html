@@ -544,6 +544,11 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
 .is-trade{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 2px}.is-trade .btn{min-height:42px;white-space:nowrap;justify-content:center}
 .tx-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.tx-h h2{margin:0}.tx-h .btn{white-space:nowrap}
 .fxfl{flex:0 0 auto;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;font-size:.9rem;letter-spacing:-3px;border-radius:50%;background:var(--bg-fff);border:1px solid var(--border)}
+body.kb-on nav.bottom,body.kb-on .nav-srch{display:none!important}body.kb-on{--nav-h:0px}
+body.kb-on header.top .tot-pre,body.kb-on header.top .upd,body.kb-on header.top #hDayLbl,body.kb-on header.top .hmin,body.kb-on header.top .tot-row,body.kb-on header.top .tot-day,body.kb-on header.top .tot-wrap{display:none!important}
+body.kb-on main{padding-bottom:12px!important}
+.pc-ch{background:var(--bg-fff);border:1px solid var(--border);border-radius:12px;padding:6px}.pc-ch-t{display:flex;gap:6px;align-items:center;justify-content:space-between;margin-bottom:6px;overflow-x:auto;scrollbar-width:none}
+.pc-ch-t .seg{flex:0 0 auto}.pc-ch-t .seg button{padding:4px 8px;font-size:.72rem;min-height:28px}.pc-ch .chart{margin:0}
 </style>
 </head>
 <body>
@@ -1718,8 +1723,13 @@ function renderPortfolio(S){
           </div>
           <div class="pc-sec"><h4>מס</h4></div>
           <div class="pc-kv"><div class="w"><span>עלות בשקלים למס</span>${f('costils')}</div></div>
+          <div class="pc-sec"><h4>גרף</h4></div>
+          <div class="pc-ch" data-rch="${esc(p.sym)}"><div class="pc-ch-t"><div class="seg sm" data-rcr>${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div></div>
+            <div class="pc-ch-t"><div class="seg sm ivseg" data-rci></div><div class="seg sm cst" data-rcs><button data-v="line">קו</button><button data-v="candle">נרות</button></div></div>
+            <div class="chart pc-chart" style="height:180px"><div class="chart-msg">טוען גרף…</div></div></div>
           <div class="pc-btn"><button class="btn btn-light btn-sm" data-cact="open">📄 פרטים מלאים</button><button class="btn btn-light btn-sm" data-cact="buy">🛒 קנייה</button><button class="btn btn-light btn-sm" data-cact="sell">💰 מכירה</button></div></div></div>`;
     }).join('');
+    requestAnimationFrame(rowChartsSync);
   } else {
     $('posList').innerHTML = S.positions.map(p=>{
       const short = p.qty < 0, cur = p.cur, F = cardFields(p);
@@ -1964,6 +1974,27 @@ function xhAttach(el, c){ el.classList.add('xh-ok'); el.classList.remove('zoomed
   el.addEventListener('contextmenu', e=>{ if(on || tm) e.preventDefault(); });
   el.addEventListener('pointermove', e=>{ if(e.pointerType==='mouse') at(e.clientX); }); el.addEventListener('pointerleave', e=>{ if(e.pointerType==='mouse') clr(); });
   return c; }
+// v87: compact chart inside the expanded holding row – same chart as the stock screen (ranges, intervals, line/candle,
+// long-press crosshair, pinch-zoom); one live chart per open row, redrawn from the bar cache when the list is rebuilt
+const rowCharts = new Map(), rowRange = {};
+function rowChartsSync(){ rowCharts.forEach((c, el)=>{ if(!el.isConnected){ try{ c.remove(); }catch(e){} rowCharts.delete(el); } });
+  document.querySelectorAll('#posList .pcard.pc.open .pc-ch').forEach(b=>{ const el = b.querySelector('.pc-chart'); if(!rowCharts.has(el)) drawRowChart(b); }); }
+async function drawRowChart(box){ const sym = box.dataset.rch, a = assetOf(sym) || {}, it = secInst({sym, type:a.type||'stock', currency:a.currency}), R = rowRange[sym] || '1D', iv = ivOf(R), el = box.querySelector('.pc-chart');
+  const seq = (box.__seq = (box.__seq||0) + 1), cnd = (chartStyle() || 'line')==='candle';
+  box.querySelectorAll('[data-rcr] button').forEach(b=>b.classList.toggle('on', b.dataset.v===R)); box.querySelectorAll('[data-rcs] button').forEach(b=>b.classList.toggle('on', b.dataset.v===(cnd?'candle':'line')));
+  box.querySelector('[data-rci]').innerHTML = IV_OPT[R].map(v=>`<button data-v="${v}" class="${v===iv?'on':''}">${IV_LBL[v]}</button>`).join('');
+  const old = rowCharts.get(el); if(old){ try{ old.remove(); }catch(e){} rowCharts.delete(el); } el.querySelectorAll('.tv-lightweight-charts, table').forEach(x=>x.remove());
+  const msg = el.querySelector('.chart-msg'); msg.style.display = 'flex'; msg.textContent = 'טוען גרף…';
+  if(!iq(it)) await instQuotes([it]); const pts = withLive(it, R, await instBars(it, R, iv)); if(seq!==box.__seq || !el.isConnected) return;
+  if(pts.length < 2 || !lwOk()){ msg.textContent = 'אין נתונים לטווח הזה'; return; } msg.style.display = 'none';
+  const intr = ivIntra(iv), off = -new Date().getTimezoneOffset()*60, c = makeChart(el, false); rowCharts.set(el, c);
+  c.applyOptions({timeScale:{timeVisible:intr, secondsVisible:false}, localization:{locale:'he-IL', priceFormatter:v=>Math.abs(v)>=10000 ? v.toLocaleString('en-US',{maximumFractionDigits:0}) : v.toFixed(Math.abs(v)<10 ? 3 : 2)}});
+  const q = iq(it), up = pts[pts.length-1][1] >= (R==='1D' ? ((q||{}).prev || pts[0][1]) : pts[0][1]), T = chartTheme(), seen = new Set(), tt = p=>Math.floor(p[0]/1000) + (intr ? off : 0); let s;
+  if(cnd){ s = c.addCandlestickSeries(candleOpts()); s.setData(instCache[instKey(it, R, iv)].pts.map(p=>({time:tt(p), open:p[2]??p[1], high:p[3]??p[1], low:p[4]??p[1], close:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time))); }
+  else { s = c.addAreaSeries({lineColor:up ? T.up : T.down, topColor:up ? 'rgba(16,185,129,.22)' : 'rgba(239,68,68,.22)', bottomColor:'rgba(0,0,0,0)', lineWidth:2, priceLineVisible:false}); s.setData(pts.map(p=>({time:tt(p), value:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time))); }
+  if(R==='1D' && q && q.prev) s.createPriceLine({price:q.prev, color:'#94a3b8', lineWidth:1, lineStyle:2, axisLabelVisible:false, title:'סגירה'});
+  const pos = computeAll().positions.find(x=>x.sym===sym); if(pos && pos.avg > 0 && pos.qty > 0) s.createPriceLine({price:pos.avg, color:'#f59e0b', lineWidth:1, lineStyle:1, axisLabelVisible:true, title:'עלות'});
+  c.timeScale().fitContent(); }
 function makeChart(el, pctMode, money){
   const mask = money && hidden();
   const T = chartTheme(), c = xhAttach(el, LightweightCharts.createChart(el, {autoSize:true, layout:{background:{color:T.bg}, textColor:T.text, fontFamily:'system-ui, Roboto, Arial', fontSize:11},
@@ -2579,7 +2610,8 @@ async function instBars(it, range, iv){
     let j = 0; const pts = [];
     A.forEach(a=>{ while(j+1 < B.length && B[j+1][0] <= a[0]) j++; const b = B[j]; if(!b || b[0] > a[0] || (step && a[0]-b[0] > step*1.5)) return;
       const c0 = a[1]/b[1]*m, o0 = a[2]/b[2]*m, h0 = Math.max(o0, c0, a[3]/b[3]*m), l0 = Math.min(o0, c0, a[4]/b[4]*m); if(isFinite(c0) && c0 > 0) pts.push([a[0], c0, o0, h0, l0]); });
-    instCache[key] = {at:Date.now(), pts}; return pts; }
+    if(pts.length) instCache[key] = {at:Date.now(), pts};   // an empty result (a leg timed out) is not remembered
+    return pts; }
   return barSlot(async()=>{
     const q = iq(it), td = today(), day = q && q.date ? q.date : td, ymd = d=>d.replace(/-/g,'')+'000000';
     const spec = range==='1D' ? [iv, day, addDays(day,1)] : range==='1W' ? [iv, addDays(td,-7), addDays(td,1)] : [iv, range==='1M' ? addDays(td,-31) : range==='YTD' ? (td.slice(0,4)-1)+'-12-24' : range==='1Y' ? addDays(td,-366) : addDays(td,-1827), addDays(td,1)];
@@ -2591,7 +2623,7 @@ async function instBars(it, range, iv){
       if(ivIntra(iv) && it.stock) pts = pts.filter(p=>{ const x = nyParts(p[0]); return x.hm>=930 && x.hm<1600 && (range!=='1D' || x.d===day); });
       if(range==='YTD'){ const y0 = Date.parse(td.slice(0,4)+'-01-01T00:00:00Z'); const before = pts.filter(p=>p[0] < y0); pts = (before.length ? [before[before.length-1]] : []).concat(pts.filter(p=>p[0] >= y0)); }
     }catch(e){ console.warn('bars', it.q, range, e.message); if(c) return c.pts; }
-    instCache[key] = {at:Date.now(), pts}; return pts; }); }
+    if(pts.length || !it.sec) instCache[key] = {at:Date.now(), pts}; return pts; }); }   // v87: an empty answer for a security (feed hiccup) isn't remembered – the next try asks again
 function withLive(it, range, pts){ const q = iq(it); if(!pts || !pts.length || !q || q.price==null) return pts || [];
   const last = pts[pts.length-1], now = q.ts || Date.now(); if(now > last[0]) return pts.concat([[now, q.price]]); return pts; }
 function instRangeBase(it, range, pts){ const q = iq(it); return range==='1D' ? (q && q.prev) : (pts.length ? pts[0][1] : null); }
@@ -2869,11 +2901,9 @@ function drawSrch(){ const q = $('srchQ').value.trim(), el = $('srchRes'), R = s
   el.innerHTML = fxH + (srchItems.length ? `<div class="slbl">${FXH.length ? 'ניירות ערך' : 'תוצאות · לחיצה פותחת גרף'}</div><div class="srows">${srchItems.map(srchRowHtml).join('')}</div>` : FXH.length ? '' : `<div class="news-empty">${srchTimer ? 'מחפש…' : `לא נמצאו תוצאות עבור „${esc(q)}”`}</div>`); }
 let srchFx = [];
 function srchOpen(){ const o = $('srchOv'); if(!o.hidden) return; o.hidden = false; document.body.classList.add('srch-on'); $('navSearch').classList.add('on'); $('srchQ').value = ''; srchItems = []; drawSrch();
-  history.pushState({srch:1}, ''); setTimeout(()=>$('srchQ').focus(), 30); const R = srchRecent(); if(R.length) instQuotes(R.map(srchInst)).then(()=>{ if(!$('srchQ').value.trim() && !o.hidden) drawSrch(); }).catch(()=>{}); }
+  navPush({t:'srch'}); setTimeout(()=>$('srchQ').focus(), 30); const R = srchRecent(); if(R.length) instQuotes(R.map(srchInst)).then(()=>{ if(!$('srchQ').value.trim() && !o.hidden) drawSrch(); }).catch(()=>{}); }
 function srchHide(){ const o = $('srchOv'); if(o.hidden) return; o.hidden = true; document.body.classList.remove('srch-on'); $('navSearch').classList.remove('on'); $('srchQ').blur(); }
-let progBack = false;   // v77: an in-app close (✕ / חזרה) that pops its own history entry – not the Android back button
-function srchClose(){ if(history.state && history.state.srch){ progBack = true; history.back(); } else srchHide(); }
-window.addEventListener('popstate', ()=>{ if(!(history.state && history.state.srch)) srchHide(); });
+function srchClose(){ navDrop('srch'); srchHide(); }
 $('navSearch').addEventListener('click', ()=>$('srchOv').hidden ? srchOpen() : srchClose());
 $('srchClose').addEventListener('click', srchClose);
 $('srchQx').addEventListener('click', ()=>{ $('srchQ').value = ''; srchItems = []; drawSrch(); $('srchQ').focus(); });
@@ -2881,16 +2911,37 @@ $('srchQ').addEventListener('input', ()=>{ clearTimeout(srchTimer); const q = $(
   srchTimer = setTimeout(async()=>{ let r = []; try{ r = await searchSymbols(q); }catch(e){} if(seq!==srchSeq) return; srchTimer = null; srchItems = r; drawSrch();
     if(r.length){ await instQuotes(r.map(srchInst)).catch(()=>{}); if(seq===srchSeq) drawSrch(); } }, 300); drawSrch(); });
 $('srchQ').addEventListener('keydown', e=>{ if(e.key==='Enter' && srchItems[0]){ e.preventDefault(); srchPick(srchItems[0]); } else if(e.key==='Escape') srchClose(); });
-function srchPick(m){ const R = srchRecent().filter(x=>x.sym!==m.sym); R.unshift({sym:m.sym, name:m.name||'', type:m.type||'stock', currency:m.currency||'USD', ex:m.ex||''}); try{ localStorage.setItem(RS_KEY, JSON.stringify(R.slice(0,8))); }catch(e){}
+function srchPick(m){ srchRet = $('srchQ').value; const R = srchRecent().filter(x=>x.sym!==m.sym); R.unshift({sym:m.sym, name:m.name||'', type:m.type||'stock', currency:m.currency||'USD', ex:m.ex||''}); try{ localStorage.setItem(RS_KEY, JSON.stringify(R.slice(0,8))); }catch(e){}
   srchClose(); setTimeout(()=>openInstSheet(srchInst(m), '1D'), 60); }
-$('srchRes').addEventListener('click', e=>{ if(e.target.closest('#srchClr')){ try{ localStorage.removeItem(RS_KEY); }catch(_){} drawSrch(); return; } const fx = e.target.closest('[data-sfx]'); if(fx && srchFx[+fx.dataset.sfx]){ const it = fxInst(srchFx[+fx.dataset.sfx]); srchClose(); setTimeout(()=>openInstSheet(it, '1D'), 60); return; }
+$('srchRes').addEventListener('click', e=>{ if(e.target.closest('#srchClr')){ try{ localStorage.removeItem(RS_KEY); }catch(_){} drawSrch(); return; } const fx = e.target.closest('[data-sfx]'); if(fx && srchFx[+fx.dataset.sfx]){ const it = fxInst(srchFx[+fx.dataset.sfx]); srchRet = $('srchQ').value; srchClose(); setTimeout(()=>openInstSheet(it, '1D'), 60); return; }
   const r = e.target.closest('[data-si]'); if(r && srchItems[+r.dataset.si]) srchPick(srchItems[+r.dataset.si]); });
 
 // ====================== bottom sheet ======================
 let posChart = null, posLive = null;
 let sheetSym = null, sheetPrice = null;   // symbol of the open position sheet (for live updates)
+// ---- v87: screen stack for the back button ----
+const NAV = []; let navRestoring = false, sheetOpener = null, srchRet = null;
+function navPush(e){ NAV.push(e); if(NAV.length > 60) NAV.splice(0, NAV.length - 60); }
+function navDrop(t){ const e = NAV[NAV.length-1]; if(e && e.t===t) NAV.pop(); }
+function navBack(){ const e = NAV.pop(); if(!e) return false; navRestoring = true;
+  try{ if(e.t==='tab'){ if($('sheet').classList.contains('open')) closeSheet(); setTab(e.tab); }
+    else if(e.t==='srch') srchHide();
+    else if(e.t==='imgv') imgvHide();
+    else if(e.t==='sheet'){ if(e.reopen) e.reopen(); else closeSheet(); }
+    else if(e.t==='sheetClose'){ closeSheet(); if(e.srchQ!=null){ navRestoring = false; srchOpen(); $('srchQ').value = e.srchQ; $('srchQ').dispatchEvent(new Event('input')); } }
+  }finally{ navRestoring = false; } return true; }
+// every sheet opener: opening over another sheet = one step (back reopens the previous one); returning to the sheet just below (e.g. a
+// saved form going back to its stock) pops that step instead of adding one; ✕ closes the whole sheet stack
+function navSheet(name, f, keyOf){ return (...a)=>{ const was = $('sheet').classList.contains('open'), prev = sheetOpener, key = name+':'+(keyOf ? keyOf(...a) : Math.random());
+  const r = f(...a); sheetOpener = {key, open:()=>f(...a)};
+  if(!navRestoring){ const top = NAV[NAV.length-1];
+    if(was && prev && prev.key===key) {}                                   // the same screen redrawn – not a step
+    else if(was && top && top.t==='sheet' && top.key===key) NAV.pop();
+    else if(was && prev) navPush({t:'sheet', key:prev.key, reopen:prev.open});
+    else if(!was){ navPush({t:'sheetClose', srchQ:srchRet}); } }
+  srchRet = null; return r; }; }
 function openSheet(html){ sheetSym = null; instSheet = null; if(posChart){ posChart.remove(); posChart=null; } $('sheetBody').innerHTML = html; $('sheetBg').classList.add('open'); $('sheet').classList.add('open'); $('sheet').scrollTop = 0; }
-function closeSheet(){ sheetSym = null; instSheet = null; $('sheetBg').classList.remove('open'); $('sheet').classList.remove('open'); if(posChart){ posChart.remove(); posChart=null; } posLive = null; }
+function closeSheet(){ if(!navRestoring){ while(NAV.length && NAV[NAV.length-1].t==='sheet') NAV.pop(); navDrop('sheetClose'); } sheetOpener = null; sheetSym = null; instSheet = null; $('sheetBg').classList.remove('open'); $('sheet').classList.remove('open'); if(posChart){ posChart.remove(); posChart=null; } posLive = null; }
 $('sheetBg').onclick = closeSheet;
 $('sheetBody').addEventListener('click', e=>{ if(e.target.closest('[data-close]')) closeSheet(); });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $('sheet').classList.contains('open')) closeSheet(); });
@@ -3333,7 +3384,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v86</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v87</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3965,13 +4016,12 @@ function bankApply(){
 // ====================== navigation ======================
 let prevTab = 'portfolio';
 const TAB_KEY = 'portfolioTracker.tab';   // v57: current tab per session – a reload / pull-to-refresh comes back to it; a new app launch opens on תיק
-function openSettings(){ if(ui.tab==='settings') return; prevTab = ui.tab; try{ sessionStorage.setItem(TAB_KEY+'.prev', prevTab); }catch(e){} setTab('settings'); if(!(history.state && history.state.set)) history.pushState({set:1}, ''); }
-function closeSettings(){ if(history.state && history.state.set){ progBack = true; history.back(); } else if(ui.tab==='settings') setTab(prevTab||'portfolio'); }
-window.addEventListener('popstate', ()=>{ if(ui.tab==='settings' && !(history.state && history.state.set) && !(IV.el && !IV.el.hidden)) setTab(prevTab||'portfolio'); });
+function openSettings(){ if(ui.tab==='settings') return; prevTab = ui.tab; try{ sessionStorage.setItem(TAB_KEY+'.prev', prevTab); }catch(e){} setTab('settings'); }
+function closeSettings(){ const e = NAV[NAV.length-1]; if(e && e.t==='tab'){ navBack(); return; } if(ui.tab==='settings') setTab(prevTab||'portfolio'); }
 function setTab(tab){
   if(!$('srchOv').hidden) srchClose();   // v66: a tab tap closes the search overlay
   try{ sessionStorage.setItem(TAB_KEY, tab); }catch(e){}
-  if(ui.tab==='settings' && tab!=='settings' && history.state && history.state.set) history.replaceState(null, '');   // left via the nav: drop the settings entry
+  if(!navRestoring && tab!==ui.tab) navPush({t:'tab', tab:ui.tab});   // v87: tab switches are steps the back button retraces
   if(tab==='market' && ui.tab!=='market') mktRange = '1D';
   if(tab==='perf' && ui.tab!=='perf'){ ui.perfRange = 'YTD'; syncRangeChips(); }   // v66: the performance tab always opens on YTD   // v51: reset to daily on every entry
   ui.tab = tab;
@@ -4214,10 +4264,9 @@ function imgvApply(){ if(IV.s<=1.01){ IV.x = IV.y = 0; } else { const mx = inner
 function imgvGo(i){ const n = IV.list.length; if(!n) return; IV.i = (i+n)%n; IV.s = 1; IV.x = IV.y = 0; IV.img.src = IV.list[IV.i]; imgvApply();
   const multi = n > 1; IV.el.querySelector('.imgv-n').textContent = multi ? `${IV.i+1} / ${n}` : ''; IV.el.querySelectorAll('[data-d]').forEach(b=>b.hidden = !multi); }
 function imgvOpen(list, i){ if(!list || !list.length) return; imgvEnsure(); IV.list = list; IV.el.hidden = false; document.documentElement.classList.add('imgv-on'); imgvGo(i||0);
-  if(!(history.state && history.state.imgv)) history.pushState({imgv:1}, ''); }
-function imgvHide(){ if(!IV.el || IV.el.hidden) return; IV.el.hidden = true; IV.img.removeAttribute('src'); document.documentElement.classList.remove('imgv-on'); }
-function imgvClose(){ if(history.state && history.state.imgv){ progBack = true; history.back(); } else imgvHide(); }
-window.addEventListener('popstate', ()=>imgvHide());
+  if(!IV.inNav){ IV.inNav = true; navPush({t:'imgv'}); } }
+function imgvHide(){ if(!IV.el || IV.el.hidden) return; IV.inNav = false; IV.el.hidden = true; IV.img.removeAttribute('src'); document.documentElement.classList.remove('imgv-on'); }
+function imgvClose(){ navDrop('imgv'); imgvHide(); }
 document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='Escape') imgvClose(); });
 // ---- swipe between tabs (v42) ----
 (function(){ let sx=0, sy=0, st=0, ok=false;
@@ -4238,7 +4287,7 @@ document.querySelector('nav.bottom').addEventListener('click', e=>{ const b = e.
 // v57: restore the tab after a reload (sessionStorage survives reload, not a fresh launch)
 (()=>{ let t = null, pv = null; try{ t = sessionStorage.getItem(TAB_KEY); pv = sessionStorage.getItem(TAB_KEY+'.prev'); }catch(e){}
   if(!t || t===ui.tab || !document.getElementById('tab-'+t)) return;
-  if(t==='settings'){ prevTab = pv && pv!=='settings' && document.getElementById('tab-'+pv) ? pv : 'portfolio'; if(!(history.state && history.state.set)) history.replaceState({set:1}, ''); }
+  if(t==='settings'){ prevTab = pv && pv!=='settings' && document.getElementById('tab-'+pv) ? pv : 'portfolio'; }
   setTab(t); })();
 $('txNew').onclick = ()=>openTxForm(state.txs.length ? 'buy' : 'deposit');   // v84: replaces the floating + (deposit / withdraw / convert / dividend… are in the form's type selector)
 $('btnSet').onclick = ()=>openSettings();   // tapping the gear in settings keeps it open; leave via the back button / Android back
@@ -4260,7 +4309,9 @@ $('posList').addEventListener('pointerdown', ()=>{ listTouch = true; });
 $('posList').addEventListener('click', e=>{ const n = e.target.closest('[data-new]'); if(n) return openTxForm(n.dataset.new);
   const cm = e.target.closest('.pcard.pc');
   if(cm){ const sym = cm.dataset.sym;
-    if(e.target.closest('[data-ctoggle]')){ const o = !cm.classList.contains('open'); cm.classList.toggle('open', o); cm.querySelector('[data-ctoggle]').setAttribute('aria-expanded', o); if(o) ui.expanded.add(sym); else ui.expanded.delete(sym); return; }
+    if(e.target.closest('[data-ctoggle]')){ const o = !cm.classList.contains('open'); cm.classList.toggle('open', o); cm.querySelector('[data-ctoggle]').setAttribute('aria-expanded', o); if(o) ui.expanded.add(sym); else ui.expanded.delete(sym); rowChartsSync(); return; }
+    const rb = e.target.closest('.pc-ch button'); if(rb){ const box = rb.closest('.pc-ch'), g = rb.parentElement.dataset;
+      if('rcr' in g) rowRange[sym] = rb.dataset.v; else if('rci' in g) ivSet(rowRange[sym] || '1D', rb.dataset.v); else if('rcs' in g) setChartStyle(rb.dataset.v); drawRowChart(box); return; }
     const a = e.target.closest('[data-cact]'); if(!a) return;
     if(a.dataset.cact==='open') return openPosition(sym);
     const S = computeAll(), p = S.positions.find(x=>x.sym===sym); if(!p) return;
@@ -4294,6 +4345,25 @@ if(/^https?:$/.test(location.protocol)){
   });
 }
 
+// v87: on-screen keyboard. While a text field has focus on a touch device: the bottom nav and search button hide, the header
+// collapses to its slim line, and the field is scrolled to the top so its results get the space above the keyboard.
+// Off again on blur, or when the viewport grows back (Android's back key closes the keyboard but keeps the focus).
+(function(){ const coarse = matchMedia('(pointer:coarse)'), V = window.visualViewport; let maxH = 0, shrunk = false, on = false;
+  const H = ()=>V ? V.height : innerHeight, txt = el=>el && el.matches && el.matches('input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=button]):not([type=submit]):not([type=file]),textarea,[contenteditable="true"]');
+  const set = v=>{ if(on===v) return; on = v; document.body.classList.toggle('kb-on', v); };
+  const lift = el=>{ if(!el || !el.isConnected) return; const box = el.closest('.sheet') ? null : document.querySelector('header.top'), off = box ? box.getBoundingClientRect().bottom + 8 : 12;
+    const sc = el.closest('.sheet-body,#sheetBody,.sheet') || null; if(sc && sc.scrollHeight > sc.clientHeight){ sc.scrollTop += el.getBoundingClientRect().top - sc.getBoundingClientRect().top - 12; return; }
+    if(!el.closest('#srchOv')) window.scrollBy({top: el.getBoundingClientRect().top - off, behavior:'auto'}); };
+  addEventListener('resize', ()=>{ const h = H(); if(h > maxH) maxH = h; if(on){ if(h < maxH - 120) shrunk = true; else if(shrunk){ shrunk = false; set(false); } } }, {passive:true});
+  V && V.addEventListener('resize', ()=>dispatchEvent(new Event('resize')));
+  maxH = H();
+  document.addEventListener('focusin', e=>{ if(!coarse.matches || !txt(e.target)) return; set(true); shrunk = false; [60, 350].forEach(t=>setTimeout(()=>{ if(on && document.activeElement===e.target) lift(e.target); }, t)); });
+  document.addEventListener('focusout', ()=>setTimeout(()=>{ if(!txt(document.activeElement)) { set(false); shrunk = false; } }, 80));
+  document.addEventListener('pointerdown', e=>{ if(on && !shrunk && txt(document.activeElement) && e.target===document.activeElement) set(true); }, true);   // re-tap after Android back: keyboard returns
+})();
+openInstSheet = navSheet('inst', openInstSheet, it=>it.k); openPosition = navSheet('pos', openPosition, sym=>sym); openTxForm = navSheet('tx', openTxForm);
+openTaxAcct = navSheet('taxacct', openTaxAcct); openShareBonus = navSheet('bonus', openShareBonus); openFracZero = navSheet('frac', openFracZero);
+openDeleteAll = navSheet('delall', openDeleteAll); openBankPreview = navSheet('bank', openBankPreview);
 // ====================== init ======================
 renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
@@ -4301,20 +4371,20 @@ refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          //
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
 window.__portfolio = {refresh:(...a)=>refreshPrices(...a), get state(){ return state; }, openPosition:(...a)=>openPosition(...a), openTxForm:(...a)=>openTxForm(...a), lotsTM:(tx)=>taxModel(tx||state.txs), commission:(...a)=>commission(...a), inferFees:(...a)=>inferFees(...a), get mkt(){ return {cfg:mktCfg, q:mq, bars:instCache}; }, get wl(){ return wlData; }, mktTick, squarify, heatColor, spark(){ return spk; }, spkRun, setTheme, idx(){ return idxData; }, idxApply, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 // v77: Android back button – never leave the app on one press. History: [base, top(+ overlay entries)]. Popping back to 'base' =
-// a back press on the app's own screen: close whatever is open → תיק tab → re-arm; on תיק with nothing open the first press shows a
-// toast and stays on 'base' for 2 s, so a second press leaves the app (standalone PWA: no entry below 'base' = close); after 2 s it re-arms.
+// v87: the back button retraces the user's own steps. NAV is the app's screen stack (tab switches, the search, each sheet level, the image
+// viewer); the browser history only keeps 'base' + 'top' so a back press can be caught: each press undoes the latest step, and with nothing
+// left it goes to תיק; on תיק the first press shows a toast and stays on 'base' for 2 s, so a second press leaves the app.
+// An open keyboard is closed by Android itself first (no history event).
 (()=>{ const st = history.state; if(!(st && st.g)){ history.replaceState({g:'base'}, ''); history.pushState({g:'top'}, ''); }
   let armT = null;
   const rearm = ()=>{ if(!(history.state && history.state.g==='base')) return; history.pushState({g:'top'}, ''); };
-  const anyOpen = ()=>$('sheet').classList.contains('open') || !$('srchOv').hidden || !!(IV.el && !IV.el.hidden);
-  const closeAll = ()=>{ if($('sheet').classList.contains('open')) closeSheet(); if(!$('srchOv').hidden) srchHide(); if(IV.el && !IV.el.hidden) imgvHide(); };
-  window.addEventListener('popstate', ()=>{ const s = history.state; if(progBack){ progBack = false; return; }
+  window.addEventListener('popstate', ()=>{ const s = history.state;
     if(s && s.g==='base'){
       if(armT){ clearTimeout(armT); armT = null; history.back(); return; }   // second press within 2 s → leave
-      if(anyOpen() || ui.tab!=='portfolio'){ closeAll(); if(ui.tab!=='portfolio') setTab('portfolio'); rearm(); return; }
+      if(navBack()){ rearm(); return; }
+      if(ui.tab!=='portfolio'){ navRestoring = true; try{ setTab('portfolio'); }finally{ navRestoring = false; } rearm(); return; }
       toast('לחץ שוב כדי לצאת'); armT = setTimeout(()=>{ armT = null; rearm(); }, 2000); return; }
-    if(armT){ clearTimeout(armT); armT = null; }
-    if(!s || s.g==='top'){ closeAll(); if(ui.tab!=='portfolio') setTab('portfolio'); } });   // back out of an overlay / settings entry → תיק
+    if(armT){ clearTimeout(armT); armT = null; } });
 })();
 })();
 </script>
