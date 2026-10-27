@@ -87,7 +87,10 @@
     "חברה": "Bladex, Inc.",
     "סימול": "BLX",
     "תאריך": "2026-10-26",
-    "מועד": "after"
+    "מועד": "after",
+    "בפועל_EPS": "1.48",
+    "הכנסות_בפועל": "99.1M",
+    "קישור": "https://www.prnewswire.com/news-releases/bladex-announces-net-profit-of-63-2-million-for-the-third-quarter-2026--302919885.html"
   },
   {
     "חברה": "Bank of Marin Bancorp",
@@ -599,7 +602,10 @@
     "צפי_EPS": "4.27",
     "מדד": [
       "S&P 500"
-    ]
+    ],
+    "בפועל_EPS": "4.34",
+    "הערה": "בסיס: Core FFO למניה (לא EPS GAAP 1.69)",
+    "קישור": "https://www.businesswire.com/news/home/20261026455248/en/Public-Storage-Reports-Third-Quarter-2026-Results-and-Raises-Guidance"
   },
   {
     "חברה": "PriceSmart, Inc.",
