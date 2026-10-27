@@ -1073,7 +1073,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "3.79B",
-    "הערה": ""
+    "הערה": "בסיס: רווח תפעולי אחרי מס למניה; רווח נקי 3.00; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "2.67",
+    "הכנסות_בפועל": "4.66B",
+    "בסיס_בפועל_EPS": "תפעולי (non-GAAP)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/947484/000094748426000128/ex-992supplement93026.htm",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Acme United Corporation.",
@@ -1342,7 +1350,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "1B",
-    "הערה": ""
+    "הערה": "EPS adjusted; GAAP 1.19; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "1.02",
+    "הכנסות_בפועל": "1.03B",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/887596/000110465926119176/tm2628239d1_ex99-1.htm",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Central Bancompany, Inc.",
@@ -1500,7 +1516,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "959.39M",
-    "הערה": ""
+    "הערה": "EPS מתואם; מקורות משניים בלבד; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.38",
+    "הכנסות_בפועל": "952M",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.stocktitan.net/news/CSGP/co-star-group-reports-record-third-quarter-revenue-of-952-million-wkfyc76vu70e.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "CTO Realty Growth, Inc.",
@@ -1569,7 +1593,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "2.96B",
-    "הערה": ""
+    "הערה": "GAAP; הפסד למניה; Adjusted EBITDA 865M; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "-0.61",
+    "הכנסות_בפועל": "2.94B",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1590895/000159089526000032/ex991-2026q3ceiearningsrel.htm",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "DBV Technologies S.A.",
@@ -1675,7 +1707,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "1.81B",
-    "הערה": ""
+    "הערה": "EPS adjusted; GAAP 0.44; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.42",
+    "הכנסות_בפועל": "1.77B",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/33213/000003321326000054/eqt-ex991earningsreleasexl.htm",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Esquire Financial Holdings, Inc.",
@@ -1723,7 +1763,14 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "1.8B",
-    "הערה": ""
+    "הערה": "EPS adjusted; GAAP 2.24; ההכנסות: סה״כ הכנסות ואחר כולל נגזרים (הצפי כנראה בבסיס אחר); בסיס הצפי לא ידוע",
+    "בפועל_EPS": "1.46",
+    "הכנסות_בפועל": "3.29B",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/895126/000089512626000067/exe-ex_991x20260930x8kxpr.htm",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "ExlService Holdings, Inc.",
@@ -1747,7 +1794,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "750.53M",
-    "הערה": ""
+    "הערה": "בסיס: Core FFO למניה (לא EPS); FFO 2.12; GAAP 1.17; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "2.17",
+    "הכנסות_בפועל": "889.8M",
+    "בסיס_בפועל_EPS": "Core FFO",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1289490/000128949026000061/q32026ex991earningsrelease.htm",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "First Community Bankshares, Inc.",
@@ -1799,7 +1854,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "4.29B",
-    "הערה": ""
+    "הערה": "Core Earnings (non-GAAP); GAAP 0.96; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.98",
+    "הכנסות_בפועל": "4.6B",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.prnewswire.com/news-releases/firstenergy-delivers-strong-third-quarter-results-builds-momentum-for-long-term-growth-302921228.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "First Financial Bancorp.",
@@ -2338,7 +2401,15 @@
     "מועד": "after",
     "צפי_EPS": "5.69",
     "צפי_הכנסות": "5.35B",
-    "הערה": ""
+    "הערה": "EPS adjusted; GAAP diluted 4.52; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "5.97",
+    "הכנסות_בפועל": "5.34B",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389614/0/en/lpl-financial-announces-third-quarter-2026-results.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Landstar System, Inc.",
@@ -3152,7 +3223,15 @@
       "Nasdaq 100"
     ],
     "צפי_הכנסות": "1.27B",
-    "הערה": ""
+    "הערה": "EPS מתואם (מקור משני; GAAP 2.17 מהודעת החברה); בסיס הצפי לא ידוע",
+    "בפועל_EPS": "2.29",
+    "הכנסות_בפועל": "1.31B",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://investors.teradyne.com/news-events/press-releases/detail/455/teradyne-reports-third-quarter-2026-results",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "First Financial Corporation",
@@ -3262,7 +3341,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "4.71B",
-    "הערה": ""
+    "הערה": "ללא תיאומים ברבעון - מדווח=מותאם; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "5.22",
+    "הכנסות_בפועל": "4.73B",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389648/0/en/universal-health-services-inc-announces-financial-results-for-the-three-and-nine-month-periods-ended-september-30-2026.html",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "UMB Financial Corporation",
@@ -3327,7 +3414,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "1.78B",
-    "הערה": ""
+    "הערה": "בסיס: Normalized FFO למניה (לא EPS); GAAP 0.13; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.99",
+    "הכנסות_בפועל": "1.83B",
+    "בסיס_בפועל_EPS": "Normalized FFO",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/740260/000074026026000026/q32026earningsrelease.htm",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "West Coast Community Bancorp",
@@ -3378,7 +3473,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "6.81B",
-    "הערה": ""
+    "הערה": "EPS adjusted; GAAP 2.05; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "2.15",
+    "הכנסות_בפועל": "6.85B",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/823768/000110465926119188/tm2628322d1_ex99-1.htm",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Western New England Bancorp, Inc.",
