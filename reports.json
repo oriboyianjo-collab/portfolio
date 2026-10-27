@@ -743,7 +743,7 @@
     "צפי_EPS": "0.86",
     "צפי_הכנסות": "913.83M",
     "בפועל_EPS": "0.88",
-    "הכנסות_בפועל": "904.25M",
+    "הכנסות_בפועל": "904M",
     "הערה": "AB Holding: הכנסות נטו מותאמות 904M (GAAP 1.226B); EPS מותאם 0.88 ליחידה (GAAP 0.79)",
     "קישור": "https://www.prnewswire.com/news-releases/alliancebernstein-holding-lp-announces-third-quarter-results-302919823.html"
   },
@@ -958,7 +958,9 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "1.32",
-    "צפי_הכנסות": "67.65M"
+    "צפי_הכנסות": "67.65M",
+    "הערה": "תוצאות Q3 2026: EPS 1.34 [GAAP]; הכנסות 68.7M [נגזר מרכיבי GAAP: 55.4M + 13.2M]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.prnewswire.com/news-releases/camden-national-corporation-reports-third-quarter-2026-net-income-up-8-year-over-year-302919818.html"
   },
   {
     "חברה": "The Cheesecake Factory Incorporated",
@@ -977,7 +979,9 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "0.49",
-    "צפי_הכנסות": "288.93M"
+    "צפי_הכנסות": "288.93M",
+    "הערה": "תוצאות Q3 2026: EPS 0.48 [GAAP]; הכנסות 285.7M [Total revenue (GAAP)] (adjusted total revenue285.427M; adjusted FTE revenue287.046M); בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://investor.centralbank.net/static-files/f1745e24-aa5b-4e17-a748-28f77600aabb"
   },
   {
     "חברה": "Chain Bridge Bancorp, Inc.",
@@ -995,7 +999,9 @@
     "מדד": [
       "S&P 600"
     ],
-    "צפי_הכנסות": "227.15M"
+    "צפי_הכנסות": "227.15M",
+    "הערה": "תוצאות Q3 2026: EPS 1.27 [מותאם (לא-GAAP)]; GAAP 1.16; הכנסות 227.3M [Total revenues (GAAP)] (operating revenues FTE231.217M); בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://mms.businesswire.com/media/20261027404708/en/2947576/1/CBU_Q3_2026_Earnings_Release.pdf"
   },
   {
     "חברה": "Chemed Corp.",
@@ -1204,7 +1210,9 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "1.89",
-    "צפי_הכנסות": "52.16M"
+    "צפי_הכנסות": "52.16M",
+    "הערה": "תוצאות Q3 2026: EPS 2.12 [מותאם (לא-GAAP)]; GAAP 1.57; הכנסות 61.4M [נגזר מרכיבי GAAP: 53.5M + 7.9M]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.prnewswire.com/news-releases/esquire-financial-holdings-inc-reports-third-quarter-2026-results-302920050.html"
   },
   {
     "חברה": "Essex Property Trust, Inc.",
@@ -1356,7 +1364,9 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "0.21",
-    "צפי_הכנסות": "12.16B"
+    "צפי_הכנסות": "12.16B",
+    "הערה": "תוצאות Q3 2026: EPS 0.83 [מותאם (לא-GAAP)]; GAAP 0.66; הכנסות 8.06B בלבד; 8.69B כולל רווחים והכנסות דאטה-סנטר [Revenues and gains/losses from operations]; הגדרת ההכנסות מול הצפי לא נפתרה ובסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://investor.galaxy.com/static-files/55b15032-edcb-42e4-a9b0-687d9b0c91e6"
   },
   {
     "חברה": "Hanmi Financial Corporation",
@@ -1431,7 +1441,9 @@
     "סימול": "HSBC",
     "תאריך": "2026-10-27",
     "צפי_EPS": "2.13",
-    "צפי_הכנסות": "19.09B"
+    "צפי_הכנסות": "19.09B",
+    "הערה": "תוצאות Q3 2026: EPS 0.41 [IFRS למניה רגילה, לא ל-ADS — יחס ADR לא נקבע]; הכנסות 18.62B [Reported revenue; מטבע קבוע ללא פריטים חריגים 18.68B]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.hsbc.com/-/files/hsbc/investors/hsbc-results/2026/3q/pdfs/hsbc-holdings-plc/261027-3q-2026-earnings-release.pdf"
   },
   {
     "חברה": "Hubbell Inc",
@@ -1473,7 +1485,9 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "0.11",
-    "צפי_הכנסות": "1.04B"
+    "צפי_הכנסות": "1.04B",
+    "הערה": "תוצאות Q3 2026: EPS 0.15 [מותאם (לא-GAAP)]; הכנסות 1.17B [Net sales]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://investors.innio.com/news-releases/news-release-details/innio-reports-record-third-quarter-2026-financial-results-0"
   },
   {
     "חברה": "Intapp, Inc.",
@@ -1503,7 +1517,9 @@
     "מדד": [
       "S&P 600"
     ],
-    "צפי_הכנסות": "595.48M"
+    "צפי_הכנסות": "595.48M",
+    "הערה": "תוצאות Q3 2026: EPS 1.94 [מותאם (לא-GAAP)]; GAAP 1.61; הכנסות 599.3M [Total revenues]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388994/0/en/itron-announces-third-quarter-2026-financial-results.html"
   },
   {
     "חברה": "Illinois Tool Works Inc.",
@@ -1568,7 +1584,9 @@
     "מדד": [
       "S&P 500"
     ],
-    "צפי_הכנסות": "7.04B"
+    "צפי_הכנסות": "7.04B",
+    "הערה": "תוצאות Q4 FY2026: EPS 1.66 [מותאם (לא-GAAP)]; GAAP 1.6; הכנסות 7.11B [Net sales]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.prnewswire.com/news-releases/johnson-controls-reports-q4-and-fy26-results-initiates-fy27-guidance-302920073.html"
   },
   {
     "חברה": "Kadant Inc",
@@ -1593,7 +1611,9 @@
     "סימול": "KNSA",
     "תאריך": "2026-10-27",
     "צפי_EPS": "0.39",
-    "צפי_הכנסות": "260.61M"
+    "צפי_הכנסות": "260.61M",
+    "הערה": "תוצאות Q3 2026: EPS 0.56 [GAAP]; הכנסות 286.0M [Total revenue]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388879/0/en/kiniksa-pharmaceuticals-reports-third-quarter-2026-financial-results-and-recent-portfolio-execution.html"
   },
   {
     "חברה": "Coca-Cola Company (The)",
@@ -1794,7 +1814,9 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "0.94",
-    "צפי_הכנסות": "30M"
+    "צפי_הכנסות": "30M",
+    "הערה": "תוצאות Q3 2026: EPS 1.08 [GAAP]; הכנסות 30.9M [נגזר מרכיבי GAAP: 28.0M + 2.9M]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388869/0/en/norwood-financial-corp-announces-third-quarter-financial-results.html"
   },
   {
     "חברה": "NXP Semiconductors N.V.",
@@ -1927,7 +1949,9 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "0.32",
-    "צפי_הכנסות": "10.3M"
+    "צפי_הכנסות": "10.3M",
+    "הערה": "תוצאות Q1 FY2027: EPS 0.25 [GAAP]; הכנסות 10.6M [נגזר מרכיבי GAAP: 9.8M + 0.8M]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388765/8401/en/provident-financial-holdings-reports-first-quarter-of-fiscal-2027-results.html"
   },
   {
     "חברה": "PayPal Holdings, Inc.",
@@ -2096,7 +2120,9 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "0.25",
-    "צפי_הכנסות": "3.66B"
+    "צפי_הכנסות": "3.66B",
+    "הערה": "תוצאות Q3 2026: EPS 0.26 [מותאם (לא-GAAP)]; GAAP 0.23; הכנסות 3.44B [Consolidated sales]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://investors.smithfieldfoods.com/news-events/press-releases/detail/1461/smithfield-foods-reports-third-quarter-results"
   },
   {
     "חברה": "Sherwin-Williams Company (The)",
@@ -2234,7 +2260,9 @@
     "סימול": "THFF",
     "תאריך": "2026-10-27",
     "צפי_EPS": "2",
-    "צפי_הכנסות": "75.31M"
+    "צפי_הכנסות": "75.31M",
+    "הערה": "תוצאות Q3 2026: EPS 2.31 [GAAP]; הכנסות 75.0M [נגזר מרכיבי GAAP: 63.5M + 11.4M]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389069/0/en/first-financial-corporation-reports-third-quarter-results.html"
   },
   {
     "חברה": "Travel   Leisure Co.",
@@ -2278,7 +2306,9 @@
     "סימול": "TZOO",
     "תאריך": "2026-10-27",
     "צפי_EPS": "-0.09",
-    "צפי_הכנסות": "22.96M"
+    "צפי_הכנסות": "22.96M",
+    "הערה": "תוצאות Q3 2026: EPS -0.2 [GAAP]; הכנסות 22.9M [Total net revenues]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.prnewswire.com/news-releases/travelzoo-reports-third-quarter-2026-results-302920135.html"
   },
   {
     "חברה": "Ultra Clean Holdings, Inc.",
@@ -2354,7 +2384,9 @@
     "סימול": "WCCB",
     "תאריך": "2026-10-27",
     "צפי_EPS": "1.35",
-    "צפי_הכנסות": "37.8M"
+    "צפי_הכנסות": "37.8M",
+    "הערה": "תוצאות Q3 2026: EPS 1.59 [GAAP]; הכנסות 38.4M [נגזר מרכיבי GAAP: 37.1M + 1.3M]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389109/0/en/west-coast-community-bancorp-announces-earnings-for-the-third-quarter-of-2026.html"
   },
   {
     "חברה": "Werner Enterprises, Inc.",
@@ -2422,7 +2454,9 @@
     "סימול": "WSO.B",
     "תאריך": "2026-10-27",
     "מועד": "before",
-    "צפי_הכנסות": "2.21B"
+    "צפי_הכנסות": "2.21B",
+    "הערה": "תוצאות Q3 2026: EPS 3.77 [GAAP]; הכנסות 2.22B [Revenues]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388876/0/en/watsco-reports-record-third-quarter-sales-strong-cash-flow-and-improving-demand.html"
   },
   {
     "חברה": "Wave Life Sciences, Inc.",
@@ -2430,7 +2464,9 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "-0.34",
-    "צפי_הכנסות": "4.39M"
+    "צפי_הכנסות": "4.39M",
+    "הערה": "תוצאות Q3 2026: EPS -0.3 [GAAP]; הכנסות 13.2M [Revenue]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388867/0/en/wave-life-sciences-reports-third-quarter-2026-financial-results-and-provides-business-update.html"
   },
   {
     "חברה": "Xylem Inc.",
