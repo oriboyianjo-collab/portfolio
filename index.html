@@ -543,6 +543,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
 .pc-btn{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.pc-btn .btn{white-space:nowrap;padding:0 4px;min-height:38px;font-size:.76rem;justify-content:center}
 .is-trade{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 2px}.is-trade .btn{min-height:42px;white-space:nowrap;justify-content:center}
 .tx-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.tx-h h2{margin:0}.tx-h .btn{white-space:nowrap}
+.fxfl{flex:0 0 auto;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;font-size:.9rem;letter-spacing:-3px;border-radius:50%;background:var(--bg-fff);border:1px solid var(--border)}
 </style>
 </head>
 <body>
@@ -2542,12 +2543,13 @@ function saveMkt(){ try{ localStorage.setItem(MKT_KEY, JSON.stringify(mktCfg)); 
 function saveWl(){ try{ localStorage.setItem(WL_KEY, JSON.stringify(wlData)); }catch(e){} }
 function importExtras(j){ if(j && j.watchlists){ wlData = cleanWl(j.watchlists); saveWl(); } if(j && j.market){ mktCfg = cleanMkt(j.market); saveMkt(); } }
 // an instrument = a catalog entry or a security from the directory search
-function secInst(m){ const sym = m.sym.toUpperCase(), cr = m.type==='crypto'; return {k:'sec:'+sym, sec:true, sym, q: cr ? sym+'.CM=' : sym, n:m.name||sym, type:m.type||'stock', cur: euCur(sym) || m.currency || (isTaseSec(sym) || isTaIndex(sym) ? 'ILS' : 'USD'), stock: !cr && m.type!=='index' && marketOf(sym)==='us'}; }
+function secInst(m){ if(m.type==='fx' && FX_BY[String(m.sym).toUpperCase()]) return fxInst(FX_BY[String(m.sym).toUpperCase()]); const sym = m.sym.toUpperCase(), cr = m.type==='crypto'; return {k:'sec:'+sym, sec:true, sym, q: cr ? sym+'.CM=' : sym, n:m.name||sym, type:m.type||'stock', cur: euCur(sym) || m.currency || (isTaseSec(sym) || isTaIndex(sym) ? 'ILS' : 'USD'), stock: !cr && m.type!=='index' && marketOf(sym)==='us'}; }
 function mktInst(k){ if(MKT_BY[k]){ const c = MKT_BY[k]; return Object.assign({q:c.s}, c); } const m = mktCfg.meta[k]; return m ? secInst(m) : null; }
 const mq = {};   // live quotes keyed by the CNBC request symbol (upper-case)
-async function instQuotes(list){ const qs = [...new Set(list.map(i=>i.q))]; if(!qs.length) return;
+async function instQuotes(list){ const qs = [...new Set(list.flatMap(i=>i.der ? [i.der.a, i.der.b] : [i.q]))]; if(!qs.length) return;
   for(let i=0;i<qs.length;i+=40){ try{ Object.assign(mq, await cnbcQuotes(qs.slice(i,i+40))); }catch(e){ console.warn('market quotes', e.message); } } }
-function iq(it){ const q = mq[String(it.q).toUpperCase()] || null; if(!q || !it.sec || marketOf(it.sym)!=='us') return q;
+function iq(it){ if(it.der){ const a = mq[it.der.a], b = mq[it.der.b]; return a && b && a.price && b.price ? {price:a.price/b.price*it.der.m, prev: a.prev && b.prev ? a.prev/b.prev*it.der.m : null} : null; }
+  const q = mq[String(it.q).toUpperCase()] || null; if(!q || !it.sec || marketOf(it.sym)!=='us') return q;
   const pr = preOf(q); return pr ? Object.assign({}, q, {ext:{kind:pr.kind, price:pr.price, chg:pr.chg, pct:pr.pct}}) : q; }   // v65: regular quote kept (change pill); extended price/line from .ext   // v49: US pre-market view (prev = prior close)
 function fmtInst(it, v){ if(v==null || !isFinite(v)) return '—'; if(it.y) return v.toFixed(it.dp||3)+'%'; if(it.sec) return fmtPrice(v, it.cur);   // market price: never masked by the eye toggle
   return (it.u||'') + v.toLocaleString('en-US',{minimumFractionDigits:it.dp, maximumFractionDigits:it.dp}); }
@@ -2570,6 +2572,14 @@ const ivIntra = iv=>/M$|H$/.test(iv) && iv!=='1MO';
 const instKey = (it, range, iv)=>it.q+'|'+range+(iv && iv!==IV_DEF[range] ? '|'+iv : '');
 async function instBars(it, range, iv){
   iv = iv || IV_DEF[range]; const key = instKey(it, range, iv), c = instCache[key]; if(c && Date.now()-c.at < INST_TTL[range]) return c.pts;
+  if(it.der){ // v86: JPY/ILS, CHF/ILS – bar by bar from USD/ILS ÷ USD/JPY (or USD/CHF); each USD/ILS bar takes the latest other bar at or before its time
+    // (within one bar step), so gaps never pair far-apart prices. High/low: the ratio's open/close extremes widened by the legs' own ranges (approximate)
+    const mk = s=>({k:'fxleg:'+s, q:s, n:s, dp:4}), [A, B] = await Promise.all([instBars(mk(it.der.a), range, iv), instBars(mk(it.der.b), range, iv)]), m = it.der.m;
+    const step = A.length > 1 ? Math.max(...A.slice(1).map((p,i)=>p[0]-A[i][0]).sort((x,y)=>x-y).slice(0, Math.max(1, A.length>>1))) : 0;   // ~median spacing
+    let j = 0; const pts = [];
+    A.forEach(a=>{ while(j+1 < B.length && B[j+1][0] <= a[0]) j++; const b = B[j]; if(!b || b[0] > a[0] || (step && a[0]-b[0] > step*1.5)) return;
+      const c0 = a[1]/b[1]*m, o0 = a[2]/b[2]*m, h0 = Math.max(o0, c0, a[3]/b[3]*m), l0 = Math.min(o0, c0, a[4]/b[4]*m); if(isFinite(c0) && c0 > 0) pts.push([a[0], c0, o0, h0, l0]); });
+    instCache[key] = {at:Date.now(), pts}; return pts; }
   return barSlot(async()=>{
     const q = iq(it), td = today(), day = q && q.date ? q.date : td, ymd = d=>d.replace(/-/g,'')+'000000';
     const spec = range==='1D' ? [iv, day, addDays(day,1)] : range==='1W' ? [iv, addDays(td,-7), addDays(td,1)] : [iv, range==='1M' ? addDays(td,-31) : range==='YTD' ? (td.slice(0,4)-1)+'-12-24' : range==='1Y' ? addDays(td,-366) : addDays(td,-1827), addDays(td,1)];
@@ -2726,9 +2736,9 @@ function wlItems(){ const seen = new Set(), out = []; wlData.lists.forEach(l=>l.
 function wlOpenItems(){ const seen = new Set(), out = []; wlData.lists.filter(l=>wlOpen[l.id]).forEach(l=>l.items.forEach(x=>{ if(!seen.has(x.sym)){ seen.add(x.sym); out.push(secInst(x)); } })); return out; }
 function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts = c ? withLive(it, '1D', c.pts) : null, up = q && q.prev ? q.price >= q.prev : true;
   const pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
-  return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div></div>`+
+  return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${it.fx ? `<span class="fxfl" aria-hidden="true">${it.fl}</span>` : logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div></div>`+
     `<div class="pcol pc-s wl-live">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, up, 48, 24) : ''}</div><div class="pcol pc-m wl-live num">${capT(q && q.mcap, it.cur)}</div>`+
-    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="wl-p v num">${q ? fmtPrice(q.ext ? q.ext.price : q.price, it.cur) : '—'}</span>${extLineHtml(q && q.ext)}</div>`+
+    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="wl-p v num">${q ? (it.fx ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span>${extLineHtml(q && q.ext)}</div>`+
     `<div class="wl-ed" style="grid-column:3/-1"><button data-wm="up" aria-label="הזזה למעלה" ${i===0?'disabled':''}>▲</button><button data-wm="down" aria-label="הזזה למטה" ${i===n-1?'disabled':''}>▼</button><button data-wm="del" class="del" aria-label="הסרה מהרשימה">✕</button></div></div>`; }
 function wlSecHtml(L, li, nL){ const open = !!wlOpen[L.id], ed = wlEditing===L.id, its = wlSorted(L.items.map(secInst), ed);
   let up = 0, dn = 0; its.forEach(it=>{ const q = iq(it); if(q && q.prev){ const d = q.price/q.prev - 1; if(d > 0.00004) up++; else if(d < -0.00004) dn++; } });
@@ -2769,14 +2779,14 @@ attachAutocomplete($('wlSearch'), $('wlAc'), it=>{ $('wlSearch').value = ''; $('
 // ---- instrument sheet (market card / watchlist row) ----
 let instSheet = null;
 function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p=>p.sym===it.sym);
-  return `<h3><span>${it.sec ? logoHtml(it.sym, true) : ''}<span>${esc(it.sec ? it.sym : it.n)}</span></span><button class="x" data-close aria-label="סגירה">✕</button></h3>
+  return `<h3><span>${it.sec ? logoHtml(it.sym, true) : it.fl ? `<span class="fxfl">${it.fl}</span>` : ''}<span>${esc(it.sec ? it.sym : it.n)}</span></span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="muted" style="margin:-8px 0 8px;font-size:.85rem">${esc(it.sec ? it.n : it.s)}</div>
     <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b>${it.y ? '' : styleSegHtml('isStyle', chartStyle() || 'line')}</div>
     ${it.sec ? '<div class="is-trade"><button class="btn btn-primary" data-istx="buy">🛒 קנייה</button><button class="btn btn-light" data-istx="sell">💰 מכירה</button></div>' : ''}
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
     <div class="seg sm ivseg" id="isIv" aria-label="אינטרוול"></div><div class="chart" id="isChart" style="height:280px;margin-top:6px"><div class="chart-msg" id="isMsg">טוען גרף…</div></div>
     <div class="inst-stats" id="isStats"></div>
-    ${it.sec ? wlAddHtml(it.sym, it.n, it.type, it.cur) : ''}
+    ${it.sec ? wlAddHtml(it.sym, it.n, it.type, it.cur) : it.fx ? wlAddHtml(it.sym, it.n, 'fx', '') : ''}
     ${held ? `<div class="btn-row" style="margin-top:8px"><button class="btn btn-light" id="isPos">💼 פתיחת הפוזיציה בתיק</button></div>` : ''}
     ${it.stock ? '<div class="note">מניות ותעודות סל בארה״ב: מסחר רגיל בלבד (09:30–16:00 ניו יורק).</div>' : ''}`; }
 function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[instKey(it, S.range, S.iv)], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
@@ -2829,13 +2839,35 @@ $('sheetBody').addEventListener('click', e=>{ const box = e.target.closest('.wl-
 const RS_KEY = 'portfolioTracker.recentSearch.v1';
 let srchItems = [], srchTimer = null, srchSeq = 0;
 const srchRecent = ()=>{ const v = loadJ(RS_KEY); return Array.isArray(v) ? v.filter(x=>x && x.sym).slice(0,8) : []; };
+// v86: forex pairs in search + watchlists (CNBC quotes/bars, free). JPY/ILS and CHF/ILS have no CNBC symbol → computed from USD/ILS ÷ USD/JPY (per 100 yen) and USD/ILS ÷ USD/CHF
+const FX_DIR = [
+ ['USD/ILS','ILS=','דולר / שקל',['דולר','שקל','דולר שקל','דולר/שקל'],4,'🇺🇸🇮🇱'], ['EUR/ILS','EURILS=','אירו / שקל',['אירו','יורו','אירו שקל'],4,'🇪🇺🇮🇱'],
+ ['GBP/ILS','GBPILS=','לירה שטרלינג / שקל',['לירה','פאונד','שטרלינג'],4,'🇬🇧🇮🇱'], ['JPY/ILS',null,'ין יפני / שקל (100 ין)',['ין','יפני'],4,'🇯🇵🇮🇱',{a:'ILS=',b:'JPY=',m:100}],
+ ['CHF/ILS',null,'פרנק שוויצרי / שקל',['פרנק','שוויצרי'],4,'🇨🇭🇮🇱',{a:'ILS=',b:'CHF=',m:1}], ['EUR/USD','EUR=','אירו / דולר',['אירו','יורו','דולר'],4,'🇪🇺🇺🇸'],
+ ['GBP/USD','GBP=','לירה שטרלינג / דולר',['לירה','פאונד','שטרלינג','דולר'],4,'🇬🇧🇺🇸'], ['USD/JPY','JPY=','דולר / ין יפני',['ין','יפני','דולר'],2,'🇺🇸🇯🇵'],
+ ['USD/CHF','CHF=','דולר / פרנק שוויצרי',['פרנק','שוויצרי','דולר'],4,'🇺🇸🇨🇭'], ['AUD/USD','AUD=','דולר אוסטרלי / דולר',['אוסטרלי','אוסטרליה'],4,'🇦🇺🇺🇸'],
+ ['USD/CAD','CAD=','דולר / דולר קנדי',['קנדי','קנדה'],4,'🇺🇸🇨🇦'], ['USD/CNY','CNY=','דולר / יואן סיני',['יואן','סיני','רנמינבי'],4,'🇺🇸🇨🇳'],
+ ['NZD/USD','NZD=','דולר ניו זילנדי / דולר',['ניו זילנד'],4,'🇳🇿🇺🇸'], ['EUR/GBP','EURGBP=','אירו / לירה שטרלינג',['אירו','לירה'],4,'🇪🇺🇬🇧'],
+ ['EUR/JPY','EURJPY=','אירו / ין יפני',['אירו','ין'],2,'🇪🇺🇯🇵'], ['EUR/CHF','EURCHF=','אירו / פרנק שוויצרי',['אירו','פרנק'],4,'🇪🇺🇨🇭']]
+ .map(([code,q,n,al,dp,fl,der])=>({code,q,n,al,dp,fl,der}));
+function fxSearch(q){ const raw = String(q||'').trim().toLowerCase(), k = raw.replace(/[\s\/\-_.]/g,''); if(!k) return [];
+  if(/^(מט"?״?ח|מטבע|מטבעות|fx|forex)$/.test(raw.replace(/\s/g,''))) return FX_DIR;
+  return FX_DIR.filter(f=>{ const c = f.code.toLowerCase().replace('/',''); return (k.length>=3 && c.includes(k)) || (/^[a-z]{3}$/.test(k) && c.slice(0,3)===k) || f.n.includes(raw) || f.al.some(a=>a.includes(raw) || raw.includes(a) && raw.length>=a.length && a.length>=3); }); }
+const FX_BY = Object.fromEntries(FX_DIR.map(f=>[f.code, f]));
+function fxInst(f){ return {k:'fx:'+f.code, fx:true, type:'fx', sym:f.code, n:f.n, s:f.code+' · מט״ח'+(f.der ? ' · מחושב משערי הדולר' : ''), q: f.q || 'FX:'+f.code, der:f.der, dp:f.dp, g:'מט״ח', fl:f.fl}; }
 function srchInst(m){ return secInst({sym:m.sym, name:m.name||'', type:m.type||'stock', currency:m.currency}); }
 function srchRowHtml(m, i){ const it = srchInst(m), q = iq(it), pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   return `<div class="wr srow" role="button" tabindex="0" data-si="${i}">${logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span>${m.ex ? `<span class="sx">${esc(m.ex)}</span>` : ''}</div><div class="pname">${esc(m.name||(q && q.name)||'')}${m.type && TYPE_LABELS[m.type] && m.type!=='stock' ? ` · ${TYPE_LABELS[m.type]}` : ''}</div></div>`+
     `<div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : ''}</b><span class="wl-p v num">${q ? fmtPrice(q.price, q.cur||it.cur) : ''}</span></div></div>`; }
 function drawSrch(){ const q = $('srchQ').value.trim(), el = $('srchRes'), R = srchRecent(); $('srchQx').hidden = !$('srchQ').value;
   if(!q){ srchItems = R; el.innerHTML = R.length ? `<div class="slbl">חיפושים אחרונים <button class="lnk" id="srchClr">ניקוי</button></div><div class="srows">${R.map(srchRowHtml).join('')}</div>` : '<div class="news-empty">הקלידו סימול או שם – לחיצה על תוצאה פותחת את הגרף.</div>'; return; }
-  el.innerHTML = srchItems.length ? `<div class="slbl">תוצאות · לחיצה פותחת גרף</div><div class="srows">${srchItems.map(srchRowHtml).join('')}</div>` : `<div class="news-empty">${srchTimer ? 'מחפש…' : `לא נמצאו תוצאות עבור „${esc(q)}”`}</div>`; }
+  const FXH = srchFx = fxSearch(q), fxRow = (f, i)=>{ const it = fxInst(f), x = iq(it), pct = x && x.prev ? (x.price/x.prev-1)*100 : null;
+    return `<div class="wr srow" role="button" tabindex="0" data-sfx="${i}"><span class="fxfl" aria-hidden="true">${f.fl}</span><div class="pc-n"><div class="psym"><span class="ltr">${esc(f.code)}</span><span class="sx">מט״ח</span></div><div class="pname">${esc(f.n)}</div></div>`+
+      `<div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : ''}</b><span class="wl-p v num">${x ? x.price.toFixed(f.dp) : ''}</span></div></div>`; };
+  const fxH = FXH.length ? `<div class="slbl">מט״ח</div><div class="srows">${FXH.map(fxRow).join('')}</div>` : '';
+  if(FXH.length && !FXH.every(f=>iq(fxInst(f)))) instQuotes(FXH.map(fxInst)).then(()=>{ if($('srchQ').value.trim()===q) drawSrch(); }).catch(()=>{});
+  el.innerHTML = fxH + (srchItems.length ? `<div class="slbl">${FXH.length ? 'ניירות ערך' : 'תוצאות · לחיצה פותחת גרף'}</div><div class="srows">${srchItems.map(srchRowHtml).join('')}</div>` : FXH.length ? '' : `<div class="news-empty">${srchTimer ? 'מחפש…' : `לא נמצאו תוצאות עבור „${esc(q)}”`}</div>`); }
+let srchFx = [];
 function srchOpen(){ const o = $('srchOv'); if(!o.hidden) return; o.hidden = false; document.body.classList.add('srch-on'); $('navSearch').classList.add('on'); $('srchQ').value = ''; srchItems = []; drawSrch();
   history.pushState({srch:1}, ''); setTimeout(()=>$('srchQ').focus(), 30); const R = srchRecent(); if(R.length) instQuotes(R.map(srchInst)).then(()=>{ if(!$('srchQ').value.trim() && !o.hidden) drawSrch(); }).catch(()=>{}); }
 function srchHide(){ const o = $('srchOv'); if(o.hidden) return; o.hidden = true; document.body.classList.remove('srch-on'); $('navSearch').classList.remove('on'); $('srchQ').blur(); }
@@ -2851,7 +2883,8 @@ $('srchQ').addEventListener('input', ()=>{ clearTimeout(srchTimer); const q = $(
 $('srchQ').addEventListener('keydown', e=>{ if(e.key==='Enter' && srchItems[0]){ e.preventDefault(); srchPick(srchItems[0]); } else if(e.key==='Escape') srchClose(); });
 function srchPick(m){ const R = srchRecent().filter(x=>x.sym!==m.sym); R.unshift({sym:m.sym, name:m.name||'', type:m.type||'stock', currency:m.currency||'USD', ex:m.ex||''}); try{ localStorage.setItem(RS_KEY, JSON.stringify(R.slice(0,8))); }catch(e){}
   srchClose(); setTimeout(()=>openInstSheet(srchInst(m), '1D'), 60); }
-$('srchRes').addEventListener('click', e=>{ if(e.target.closest('#srchClr')){ try{ localStorage.removeItem(RS_KEY); }catch(_){} drawSrch(); return; } const r = e.target.closest('[data-si]'); if(r && srchItems[+r.dataset.si]) srchPick(srchItems[+r.dataset.si]); });
+$('srchRes').addEventListener('click', e=>{ if(e.target.closest('#srchClr')){ try{ localStorage.removeItem(RS_KEY); }catch(_){} drawSrch(); return; } const fx = e.target.closest('[data-sfx]'); if(fx && srchFx[+fx.dataset.sfx]){ const it = fxInst(srchFx[+fx.dataset.sfx]); srchClose(); setTimeout(()=>openInstSheet(it, '1D'), 60); return; }
+  const r = e.target.closest('[data-si]'); if(r && srchItems[+r.dataset.si]) srchPick(srchItems[+r.dataset.si]); });
 
 // ====================== bottom sheet ======================
 let posChart = null, posLive = null;
@@ -3300,7 +3333,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v85</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v86</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
