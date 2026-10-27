@@ -52,8 +52,15 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "בסיס הצפי לא אומת — EPS בפועל לא מוצג",
-    "קישור": "https://www.prnewswire.com/news-releases/alexandria-real-estate-equities-inc-reports-3q26-and-ytd-3q26-net-loss-per-share--diluted-of-3-74-and-2-06--respectively-and-3q26-and-ytd-3q26-ffo-per-share--diluted-as-adjusted-of-1-54-and-5-00--respectively-302919655.html"
+    "הערה": "בסיס: FFO מותאם (לא EPS GAAP)",
+    "קישור": "https://www.prnewswire.com/news-releases/alexandria-real-estate-equities-inc-reports-3q26-and-ytd-3q26-net-loss-per-share--diluted-of-3-74-and-2-06--respectively-and-3q26-and-ytd-3q26-ffo-per-share--diluted-as-adjusted-of-1-54-and-5-00--respectively-302919655.html",
+    "בפועל_EPS": "1.54",
+    "בסיס_צפי_EPS": "FFO",
+    "בסיס_בפועל_EPS": "FFO",
+    "מטבע_EPS": "USD",
+    "הכנסות_בפועל": "671.2M",
+    "מטבע_הכנסות": "USD",
+    "בסיס_בפועל_הכנסות": "GAAP"
   },
   {
     "חברה": "Alliance Resource Partners, L.P.",
@@ -137,10 +144,14 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "בסיס הצפי לא אומת — EPS בפועל לא מוצג",
+    "הערה": "בסיס: FFO (לא EPS GAAP) — צפי Zacks FFO מותאם; בפועל Nareit FFO למניה",
     "קישור": "https://www.prnewswire.com/news-releases/brixmor-property-group-announces-third-quarter-results-with-strong-leasing-demand-driving-occupancy-to-record-highs-increases-dividend-over-7-and-raises-outlook-302919608.html",
     "הכנסות_בפועל": "359.6M",
-    "מטבע_הכנסות": "USD"
+    "מטבע_הכנסות": "USD",
+    "בפועל_EPS": "0.6",
+    "בסיס_צפי_EPS": "FFO",
+    "בסיס_בפועל_EPS": "FFO",
+    "מטבע_EPS": "USD"
   },
   {
     "חברה": "Sierra Bancorp",
