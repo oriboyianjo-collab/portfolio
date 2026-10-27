@@ -532,6 +532,17 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
 .rix{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}.rix i{font-style:normal;font-size:.6rem;font-weight:700;border-radius:5px;padding:1px 5px;background:rgba(127,127,127,.14);color:var(--muted);direction:ltr;unicode-bidi:isolate}
 .rix .ix-sp500{background:rgba(234,88,12,.16);color:#ea580c}.rix .ix-ndx{background:rgba(147,51,234,.16);color:#a855f7}.rix .ix-dow{background:rgba(14,165,233,.16);color:#0ea5e9}.rix .ix-sp400{background:rgba(22,163,74,.16);color:#16a34a}.rix .ix-sp600{background:rgba(202,138,4,.16);color:#ca8a04}
 .rmore{width:100%;margin-top:6px}.rkv em{font-style:normal}.cst{flex:0 0 auto;margin-inline-start:auto;align-self:center}#idxRow .idx{cursor:pointer}.rcard[data-rsym]{cursor:pointer}.ivseg{margin-top:6px;width:fit-content;margin-inline-start:auto}.ivseg button{direction:ltr;min-width:38px;padding-inline:6px}.rix .ix-r2k{background:rgba(219,39,119,.16);color:#db2777}.rix .ix-ixic{background:rgba(99,102,241,.16);color:#818cf8}
+
+/* v83: expanded holding – two titled groups, one label/value line per item */
+.pc-b2{padding:6px 4px 10px}.pc-b2 .pc-sec{display:flex;align-items:center;justify-content:space-between;margin:7px 2px 3px;min-height:18px}
+.pc-b2 .pc-sec h4{margin:0;font-size:.68rem;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.pc-b2 .pc-sec>span{margin:0!important;position:static!important;transform:none!important;font-size:.64rem;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.pc-b2 .pc-kv{display:grid;grid-template-columns:1fr 1fr;column-gap:14px;background:var(--bg-fff);border:1px solid var(--border);border-radius:12px;padding:2px 10px}
+.pc-b2 .pc-kv>div{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent);min-width:0}
+.pc-b2 .pc-kv>div.w{grid-column:1/-1}.pc-b2 .pc-kv>div:last-child,.pc-b2 .pc-kv>div:nth-last-child(2):not(.w){border-bottom:0}
+.pc-b2 .pc-kv span{font-size:.74rem;color:var(--muted);white-space:nowrap}.pc-b2 .pc-kv b{font-size:.84rem;white-space:nowrap;background:none!important;padding:0!important}
+.pc-b2 .pc-kv em{font-style:normal;display:flex;align-items:baseline;gap:8px;direction:ltr}.pc-b2 .pc-kv .sep{font-style:normal;color:var(--muted)}
+.pc-btn{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.pc-btn .btn{white-space:nowrap;padding:0 4px;min-height:38px;font-size:.76rem;justify-content:center}
 </style>
 </head>
 <body>
@@ -1682,20 +1693,24 @@ function renderPortfolio(S){
           <div class="pcol pc-v"><span data-f="mvr" class="${F.mvr[1]}">${F.mvr[0]}</span></div><div class="pcol pc-m num" data-mcap>${capT(posCap(p), cur)}</div>
           <div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}${f('hp','span')}${f('he','span')}</div>
         </button>
-        <div class="pc-b"><div class="pc-g">
-          <div><span>${short?'כמות בשורט':'כמות'}</span><b class="num">${fmtQtyP(Math.abs(p.qty))}</b></div>
-          <div><span>מחיר</span>${f('price')}</div>
-          <div><span>${short?'מחיר שורט':'עלות ממוצעת'}</span><b class="num">${fmtMoney(p.avg,cur)}</b></div>
-          <div><span>עלות</span>${f('cost')}</div>
-          <div class="pc-u"><span>שווי</span>${f('mv')}${cur==='USD'?f('mvils2'):''}</div>
-          <div class="pc-wd"><span>% מהתיק</span>${f('hwd')}</div>
-          <div class="pc-u"><span>שינוי מעלות</span>${f('unrp')}${f('unra')}</div>
-          <div><span>שינוי יומי</span>${f('daya')}</div>
-          <div><span>שינוי יומי %</span>${f('dayp')}</div>
-          <div><span>עלות בשקלים למס</span>${f('costils')}</div>
-          <div>${f('age','span')}</div>
-        </div>
-        <div class="btn-row"><button class="btn btn-light btn-sm" data-cact="open">📄 פרטים מלאים</button><button class="btn btn-light btn-sm" data-cact="buy">🛒 קנייה</button><button class="btn btn-light btn-sm" data-cact="sell">💰 מכירה</button></div></div></div>`;
+        <div class="pc-b pc-b2">
+          <div class="pc-sec"><h4>פוזיציה</h4>${f('age','span')}</div>
+          <div class="pc-kv">
+            <div><span>${short?'כמות בשורט':'כמות'}</span><b class="num">${fmtQtyP(Math.abs(p.qty))}</b></div>
+            <div><span>מחיר</span>${f('price')}</div>
+            <div><span>${short?'מחיר שורט':'עלות ממוצעת'}</span><b class="num">${fmtMoney(p.avg,cur)}</b></div>
+            <div><span>עלות</span>${f('cost')}</div>
+            <div class="w"><span>שווי</span><em>${f('mv')}${cur==='USD'?'<i class="sep">·</i>'+f('mvils2'):''}</em></div>
+            <div class="w"><span>% מהתיק</span>${f('hwd')}</div>
+          </div>
+          <div class="pc-sec"><h4>ביצועים</h4></div>
+          <div class="pc-kv">
+            <div class="w"><span>שינוי מעלות</span><em>${f('unra')}${f('unrp')}</em></div>
+            <div class="w"><span>שינוי יומי</span><em>${f('daya')}${f('dayp')}</em></div>
+          </div>
+          <div class="pc-sec"><h4>מס</h4></div>
+          <div class="pc-kv"><div class="w"><span>עלות בשקלים למס</span>${f('costils')}</div></div>
+          <div class="pc-btn"><button class="btn btn-light btn-sm" data-cact="open">📄 פרטים מלאים</button><button class="btn btn-light btn-sm" data-cact="buy">🛒 קנייה</button><button class="btn btn-light btn-sm" data-cact="sell">💰 מכירה</button></div></div></div>`;
     }).join('');
   } else {
     $('posList').innerHTML = S.positions.map(p=>{
@@ -3229,7 +3244,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v82</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v83</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
