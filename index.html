@@ -215,7 +215,7 @@ nav.bottom .in{max-width:820px;margin:0 auto;display:flex;height:var(--nav-h)}
 nav.bottom button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:.74rem;color:var(--muted);font-weight:600;cursor:pointer}
 nav.bottom button .i{font-size:1.35rem;line-height:1}nav.bottom button{min-width:0;padding:0 2px;font-size:.7rem;line-height:1.1;text-align:center}nav.bottom .nl{display:block;max-width:100%}
 nav.bottom button.on{color:var(--primary)}
-html,body{overscroll-behavior-x:none}.xh-ok{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.xh-ok.xh{touch-action:none}.xh-ok .tv-lightweight-charts,.xh-ok .tv-lightweight-charts *{pointer-events:none!important}main .chart{transition:box-shadow .15s}main .chart.active{box-shadow:0 0 0 2px var(--accent,#3b82f6);border-radius:10px}
+html,body{overscroll-behavior-x:none}.xh-ok{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.xh-ok.xh{touch-action:none}.xh-ok.zoomed{touch-action:pan-y}.xh-ok .tv-lightweight-charts,.xh-ok .tv-lightweight-charts *{pointer-events:none!important}main .chart{transition:box-shadow .15s}main .chart.active{box-shadow:0 0 0 2px var(--accent,#3b82f6);border-radius:10px}
 .wl-to{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted);margin:6px 0 4px}.wl-to select{font:inherit;font-size:.85rem;padding:4px 8px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);max-width:60%}
 .wls{border:1px solid var(--border);border-radius:12px;margin-top:8px;overflow:hidden}.wlh{display:flex;align-items:stretch}.wlh-t{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:none;border:0;color:var(--text);font:inherit;padding:11px 12px;cursor:pointer;text-align:right}
 .wlh-n{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}.wlh-c{display:flex;gap:6px;font-size:.82rem;margin-inline-start:auto;white-space:nowrap}.wlh-v{color:var(--muted);font-size:.9rem}
@@ -1919,10 +1919,10 @@ function applyTheme(rerender){ const t = themePref(), d = t==='dark' || (t==='au
 function setTheme(t){ try{ localStorage.setItem(THEME_KEY, t); }catch(e){} applyTheme(true); }
 mqDark.addEventListener && mqDark.addEventListener('change', ()=>{ if(themePref()==='auto') applyTheme(true); });
 // v84: every chart lets the page scroll – the library never sees the finger (pointer-events off, handleScroll/Scale off).
-// Holding still ~1s shows the crosshair (price + date) at the finger; dragging then moves it and the page doesn't scroll; lifting hides it.
+// (v85: zoom / pan restored with own gestures – see below) Holding still ~1s shows the crosshair (price + date) at the finger; dragging then moves it and the page doesn't scroll; lifting hides it.
 // Mouse: hover shows it as before.
 const XH_MS = 1000;
-function xhAttach(el, c){ el.classList.add('xh-ok'); c.applyOptions({handleScroll:false, handleScale:false});
+function xhAttach(el, c){ el.classList.add('xh-ok'); el.classList.remove('zoomed'); c.applyOptions({handleScroll:false, handleScale:false});
   const X = {c, S:null}; el.__xh = X;                       // listeners are bound once per element; a redrawn chart on it replaces X
   ['addLineSeries','addAreaSeries','addCandlestickSeries','addBaselineSeries','addHistogramSeries','addBarSeries'].forEach(k=>{ const f = c[k] && c[k].bind(c); if(f) c[k] = (...a)=>{ const s = f(...a); if(!X.S) X.S = s; return s; }; });
   const rmS = c.removeSeries.bind(c); c.removeSeries = s=>{ if(s===X.S) X.S = null; return rmS(s); };
@@ -1935,11 +1935,31 @@ function xhAttach(el, c){ el.classList.add('xh-ok'); c.applyOptions({handleScrol
     const d = x.S.dataByIndex(l, -1) || x.S.dataByIndex(l, 1); if(!d) return; const p = d.value!=null ? d.value : d.close; if(p!=null) x.c.setCrosshairPosition(p, d.time, x.S); }catch(e){} };
   const clr = ()=>{ const x = cur(); if(x) try{ x.c.clearCrosshairPosition(); }catch(e){} };
   const stop = ()=>{ clearTimeout(tm); tm = 0; if(on){ on = false; el.classList.remove('xh'); clr(); } };
-  el.addEventListener('touchstart', e=>{ stop(); if(e.touches.length!==1) return; const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY;
-    tm = setTimeout(()=>{ tm = 0; if(!cur()) return; on = true; el.classList.add('xh'); try{ navigator.vibrate && navigator.vibrate(8); }catch(_){} at(x0); }, XH_MS); }, {passive:true});
-  el.addEventListener('touchmove', e=>{ const t = e.touches[0]; if(!t) return; if(on){ e.preventDefault(); at(t.clientX); return; }
-    if(Math.abs(t.clientX-x0) > 8 || Math.abs(t.clientY-y0) > 8){ clearTimeout(tm); tm = 0; } }, {passive:false});
-  el.addEventListener('touchend', stop, {passive:true}); el.addEventListener('touchcancel', stop, {passive:true});
+  // v85: zoom / pan (own handling, so the page still scrolls): two fingers = pinch to zoom + drag to pan; once zoomed in, one finger
+  // dragged sideways pans too (a zoomed chart also stops the tab swipe); double-tap = back to the full range
+  let G = null, lastTap = 0;
+  const vis = x=>{ try{ return x.c.timeScale().getVisibleLogicalRange(); }catch(e){ return null; } };
+  const nBars = x=>{ try{ return x.S.data().length; }catch(e){ return 0; } };
+  const lpx = x=>{ const r = vis(x), w = el.clientWidth - (x.c.priceScale('right').width() || 0); return r && w > 0 ? (r.to - r.from)/w : 0; };   // logical units per px
+  const setR = (x, from, to)=>{ const n = nBars(x); if(n < 2) return; let w = Math.max(Math.min(to - from, n - 1 + 0.6), Math.min(8, n - 1));
+    from = Math.max(-0.3, Math.min(from, n - 0.7 - w)); try{ x.c.timeScale().setVisibleLogicalRange({from, to: from + w}); }catch(e){}
+    el.classList.toggle('zoomed', w < n - 1.2); };
+  const pts = e=>{ const r = el.getBoundingClientRect(), a = e.touches[0], b = e.touches[1]; return {mx:(a.clientX+b.clientX)/2 - r.left, d:Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY) || 1}; };
+  el.addEventListener('touchstart', e=>{ stop(); const x = cur();
+    if(e.touches.length===2 && x){ const r = vis(x), q = pts(e); if(r){ e.preventDefault(); G = {k:2, r0:r, d0:q.d, m0:q.mx, u:lpx(x)}; } return; }
+    G = null; if(e.touches.length!==1) return; const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY;
+    const now = Date.now(); if(now - lastTap < 300 && x && el.classList.contains('zoomed')){ try{ x.c.timeScale().fitContent(); }catch(_){} el.classList.remove('zoomed'); lastTap = 0; return; } lastTap = now;
+    tm = setTimeout(()=>{ tm = 0; if(!cur() || G) return; on = true; el.classList.add('xh'); try{ navigator.vibrate && navigator.vibrate(8); }catch(_){} at(x0); }, XH_MS); }, {passive:false});
+  el.addEventListener('touchmove', e=>{ const x = cur(), t = e.touches[0]; if(!t) return;
+    if(G && G.k===2 && e.touches.length===2 && x){ e.preventDefault(); const q = pts(e), r = G.r0, w0 = r.to - r.from, w = w0*G.d0/q.d, a = r.from + G.m0*G.u;   // logical point under the fingers at start
+      const f = a - (a - r.from)*w/w0 - (q.mx - G.m0)*(w/el.clientWidth); setR(x, f, f + w); return; }
+    if(on){ e.preventDefault(); at(t.clientX); return; }
+    const dx = t.clientX - x0, dy = t.clientY - y0;
+    if(G && G.k===1){ e.preventDefault(); const r = G.r0; setR(x, r.from - dx*G.u, r.to - dx*G.u); return; }
+    if(Math.abs(dx) > 8 || Math.abs(dy) > 8){ clearTimeout(tm); tm = 0; lastTap = 0;
+      if(x && el.classList.contains('zoomed') && Math.abs(dx) > Math.abs(dy) && e.touches.length===1){ const r = vis(x); if(r){ e.preventDefault(); G = {k:1, r0:r, u:lpx(x)}; x0 = t.clientX; } } } }, {passive:false});
+  const end = e=>{ if(G && G.k===2 && e.touches && e.touches.length) { G = null; return; } G = null; stop(); };
+  el.addEventListener('touchend', end, {passive:true}); el.addEventListener('touchcancel', end, {passive:true});
   el.addEventListener('contextmenu', e=>{ if(on || tm) e.preventDefault(); });
   el.addEventListener('pointermove', e=>{ if(e.pointerType==='mouse') at(e.clientX); }); el.addEventListener('pointerleave', e=>{ if(e.pointerType==='mouse') clr(); });
   return c; }
@@ -3280,7 +3300,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v84</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v85</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -4168,7 +4188,7 @@ window.addEventListener('popstate', ()=>imgvHide());
 document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='Escape') imgvClose(); });
 // ---- swipe between tabs (v42) ----
 (function(){ let sx=0, sy=0, st=0, ok=false;
-  const NOSW = 'input,textarea,select,[contenteditable],.editing,.imgv,.sheet,.sheet-bg,.chart.xh';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
+  const NOSW = 'input,textarea,select,[contenteditable],.editing,.imgv,.sheet,.sheet-bg,.chart.xh,.chart.zoomed';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
   function scrollsX(el){ for(; el && el !== document.body; el = el.parentElement){ if(el.scrollWidth > el.clientWidth + 2){ const o = getComputedStyle(el).overflowX; if(o==='auto' || o==='scroll') return true; } } return false; }
   function blocked(t){ if(!(t instanceof Element)) return true; if(t.closest(NOSW)) return true; if($('sheetBg').classList.contains('open') || document.querySelector('dialog[open],.modal.open,.modal-bg.open')) return true; return scrollsX(t); }
   document.addEventListener('touchstart', e=>{ ok = e.touches.length===1 && !blocked(e.target); if(!ok) return; sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now(); }, {passive:true});
