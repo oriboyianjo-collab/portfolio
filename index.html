@@ -526,6 +526,8 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
 .crow .n{text-align:center;direction:ltr;font-size:.74rem;overflow-wrap:anywhere}.crow.hi{background:rgba(239,68,68,.06)}
 .imp{letter-spacing:1px;font-size:.6rem}.imp i{font-style:normal;opacity:.25}.imp b{font-weight:400}.imp.i3 b{color:#ef4444}.imp.i2 b{color:#f59e0b}.imp.i1 b{color:#94a3b8}.crow .ev .imp{display:inline-flex;gap:1px;white-space:nowrap;vertical-align:middle;line-height:1}.crow .ev .imp b,.crow .ev .imp i{display:inline;line-height:1}
 @media (max-width:370px){.crow{grid-template-columns:38px minmax(0,1fr) 44px 44px 44px;column-gap:4px}}
+.rsrch{display:flex;gap:6px;margin:0 0 8px}.rsrch input{flex:1 1 0;width:0;min-width:0;height:34px;border:1px solid var(--border);background:var(--bg-fff);color:var(--text);border-radius:999px;padding:0 12px;font:inherit;font-size:.8rem}
+.rsrch select{flex:0 0 auto;max-width:42%;height:34px;border:1px solid var(--border);background:var(--bg-fff);color:var(--text);border-radius:999px;padding:0 8px;font:inherit;font-size:.76rem}
 .rfil .cfil{margin-bottom:6px}.cfil button small{font-size:.66rem;opacity:.7;font-weight:600}.rcnt{font-size:.72rem;color:var(--muted);margin:2px 2px 0}
 .rix{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}.rix i{font-style:normal;font-size:.6rem;font-weight:700;border-radius:5px;padding:1px 5px;background:rgba(127,127,127,.14);color:var(--muted);direction:ltr;unicode-bidi:isolate}
 .rix .ix-sp500{background:rgba(234,88,12,.16);color:#ea580c}.rix .ix-ndx{background:rgba(147,51,234,.16);color:#a855f7}.rix .ix-dow{background:rgba(14,165,233,.16);color:#0ea5e9}.rix .ix-sp400{background:rgba(22,163,74,.16);color:#16a34a}.rix .ix-sp600{background:rgba(202,138,4,.16);color:#ca8a04}
@@ -595,7 +597,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
       <div id="wlLists"></div></div>
   </section>
   <section class="tab" id="tab-settings"><div class="set-bar"><h2>הגדרות</h2><button class="btn set-back" id="setBack" aria-label="חזרה">חזרה ←</button></div><div class="card" id="settingsCard"></div></section>
-  <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div class="seg nseg" id="newsSeg" role="tablist" aria-label="סוג תוכן"><button data-nt="news" class="on">📰 חדשות</button><button data-nt="rep">📊 דוחות</button><button data-nt="cal">🗓️ יומן כלכלי</button></div><div id="ntNews"><div class="news-sr"><input type="search" id="newsQ" placeholder="חיפוש בחדשות" autocomplete="off" enterkeyhint="search" aria-label="חיפוש בחדשות"><button id="newsQx" aria-label="ניקוי חיפוש" hidden>✕</button></div><div class="news-cnt" id="newsCnt" hidden></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div><div id="ntRep" hidden><div class="rfil" id="repFil"></div><div id="repList"><div class="muted">טוען…</div></div></div><div id="ntCal" hidden><div class="cfil" id="calFil"></div><div id="calList"><div class="muted">טוען…</div></div></div></div></section>
+  <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div class="seg nseg" id="newsSeg" role="tablist" aria-label="סוג תוכן"><button data-nt="news" class="on">📰 חדשות</button><button data-nt="rep">📊 דוחות</button><button data-nt="cal">🗓️ יומן כלכלי</button></div><div id="ntNews"><div class="news-sr"><input type="search" id="newsQ" placeholder="חיפוש בחדשות" autocomplete="off" enterkeyhint="search" aria-label="חיפוש בחדשות"><button id="newsQx" aria-label="ניקוי חיפוש" hidden>✕</button></div><div class="news-cnt" id="newsCnt" hidden></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div><div id="ntRep" hidden><div class="rsrch"><input id="repQ" type="search" inputmode="search" autocomplete="off" placeholder="🔍 חיפוש סימול / חברה" aria-label="חיפוש דוחות"><select id="repSort" aria-label="מיון"><option value="date">מיון: תאריך</option><option value="az">א-ב</option><option value="cap">שווי שוק ↓</option></select></div><div class="rfil" id="repFil"></div><div id="repList"><div class="muted">טוען…</div></div></div><div id="ntCal" hidden><div class="cfil" id="calFil"></div><div id="calList"><div class="muted">טוען…</div></div></div></div></section>
 </main>
 <button class="fab" id="fab" aria-label="עסקה חדשה">+</button>
 <nav class="bottom"><div class="in">
@@ -3227,7 +3229,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v81</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v82</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3942,12 +3944,22 @@ const REP_K = {company:['company','חברה'], symbol:['symbol','סימול'], q
   epsEst:['eps_est','epsEst','eps_estimate','EPS_צפי','EPS צפי','צפי רווח למניה','צפי_eps','צפי EPS'], eps:['eps','eps_actual','epsActual','actual_eps','eps_בפועל','EPS בפועל','EPS_בפועל_','רווח_למניה','רווח למניה','רווח למניה בפועל','בפועל_EPS'], revEst:['revenueEst','revenue_est','revenue_estimate','revEst','rev_est','צפי_הכנסות','צפי הכנסות'], rev:['revenue','rev','revenue_actual','revenueActual','actual_revenue','rev_actual','הכנסות','הכנסות_בפועל','הכנסות בפועל'], note:['note','הערה'], link:['link','קישור'],
   // v81: comparability (checked separately for EPS and revenue) – a surprise % is shown only when it is verified
   epsEstB:['בסיס_צפי_EPS','eps_est_basis'], epsB:['בסיס_בפועל_EPS','eps_basis'], epsCur:['מטבע_EPS','eps_currency'], epsEstCur:['מטבע_צפי_EPS','eps_est_currency'], epsActCur:['מטבע_בפועל_EPS','eps_actual_currency'], epsCmp:['השוואה_EPS','eps_comparable'], epsWhy:['הסבר_EPS','eps_explain'],
-  revEstB:['בסיס_צפי_הכנסות','rev_est_basis'], revB:['בסיס_בפועל_הכנסות','rev_basis'], revCur:['מטבע_הכנסות','rev_currency'], revEstCur:['מטבע_צפי_הכנסות','rev_est_currency'], revActCur:['מטבע_בפועל_הכנסות','rev_actual_currency'], revCmp:['השוואה_הכנסות','rev_comparable'], revWhy:['הסבר_הכנסות','rev_explain']};
+  revEstB:['בסיס_צפי_הכנסות','rev_est_basis'], revB:['בסיס_בפועל_הכנסות','rev_basis'], revCur:['מטבע_הכנסות','rev_currency'], revEstCur:['מטבע_צפי_הכנסות','rev_est_currency'], revActCur:['מטבע_בפועל_הכנסות','rev_actual_currency'], revCmp:['השוואה_הכנסות','rev_comparable'], cap:['שווי_שוק','market_cap','marketCap','mcap'], revWhy:['הסבר_הכנסות','rev_explain']};
 const CAL_K = {date:['date','תאריך'], time:['time','שעה'], country:['country','מדינה'], event:['event','אירוע'], period:['period','תקופה'], imp:['importance','חשיבות'],
   forecast:['forecast','צפי'], previous:['previous','קודם'], actual:['actual','בפועל'], good:['good','טוב'], note:['note','הערה']};
 const pickK = (o, K, k)=>{ for(const n of K[k]){ for(const key of [n, n.toUpperCase()]) if(o[key]!=null && String(o[key]).trim()!=='') return String(o[key]).trim(); } return ''; };
 let newsTab = (()=>{ try{ const v = sessionStorage.getItem('portfolioTracker.newsTab'); return ['news','rep','cal'].includes(v) ? v : 'news'; }catch(e){ return 'news'; } })();
-const ntData = {rep:null, cal:null}, ntFil = {rep:'all', cal:'all', day:'all', idx:'all', tm:'all'}; let ntSeq = 0, repShow = 60;
+const ntData = {rep:null, cal:null}, ntFil = {rep:'all', cal:'all', day:'all', idx:'all', tm:'all', q:'', sort:(()=>{ try{ return localStorage.getItem('portfolioTracker.repSort.v1') || 'date'; }catch(e){ return 'date'; } })()};
+// v82: report market caps – the file's שווי_שוק wins; otherwise CNBC quote mktcapView (same free source as the holdings), in USD, cached 24h.
+// Fetched only when the market-cap sort is chosen, only for the symbols in the current filter (≤400 → ≤10 batched requests). Unknown → sorted last, never guessed.
+const REPCAP_K = 'portfolioTracker.repCap.v1', REPCAP_TTL = 24*3600e3; let repCap = (()=>{ try{ return JSON.parse(localStorage.getItem(REPCAP_K)) || {}; }catch(e){ return {}; } })(), repCapBusy = false;
+// שווי_שוק in the file: "170B", "$1.2T", "950M", "170 מיליארד", "3.9 טריליון", "800 מיליון", or a plain number (USD)
+function repCapParse(v){ if(v==null || v==='') return null; if(typeof v==='number') return v>0 ? v : null; const m = String(v).replace(/[$,\s]/g,'').match(/^([\d.]+)(K|M|B|T|אלף|מיליון|מיליארד|טריליון)?$/i); if(!m) return null; const n = parseFloat(m[1]);
+  const k = {K:1e3,M:1e6,B:1e9,T:1e12,'אלף':1e3,'מיליון':1e6,'מיליארד':1e9,'טריליון':1e12}[/^[a-z]$/i.test(m[2]||'') ? m[2].toUpperCase() : m[2]||''] || 1; return isFinite(n) && n>0 ? n*k : null; }
+async function loadRepCaps(syms){ if(repCapBusy) return false; const need = syms.filter(s=>!repCap[s] || Date.now()-repCap[s].at > REPCAP_TTL).slice(0, 400); if(!need.length) return false; repCapBusy = true;
+  try{ const Q = await cnbcQuotes(need); need.forEach(s=>{ const q = Q[s]; let v = q && num(q.mcap) > 0 ? num(q.mcap) : null; if(v!=null && q.cur && q.cur!=='USD' && FXQ[q.cur]) v = convertCur(v, q.cur, 'USD');
+      repCap[s] = {v: v!=null && isFinite(v) ? v : null, at: Date.now()}; });
+    try{ localStorage.setItem(REPCAP_K, JSON.stringify(repCap)); }catch(e){} return true; }catch(e){ return false; } finally{ repCapBusy = false; } } let ntSeq = 0, repShow = 60;
 // v67: index tags come only from the item itself – "מדד" / "index" (string, list, or comma-separated). No tag = "אחר".
 const IDX_AL = [['sp500',/^(s&?p ?500|spx|spy|אסאנדפי ?500|ס&?פ ?500)$/],['ndx',/^(nasdaq ?100|ndx|qqq|נאסד"?ק ?100|נאסדק ?100)$/],['dow',/^(dow( jones| 30)?|djia|dia|דאו( ג'ונס| 30)?)$/],
   ['sp400',/^(s&?p ?400|s&?p midcap ?400|mdy)$/],['sp600',/^(s&?p ?600|s&?p smallcap ?600|ijr)$/],['r2k',/^(russell ?2000|r2k|iwm|ראסל ?2000)$/],['ixic',/^(nasdaq( composite)?|נאסד"?ק|נאסדק)$/]];
@@ -3990,8 +4002,10 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
   const days = [...new Set(L.map(r=>r.d))].sort(), t = today();
   if(ntFil.day!=='all' && !days.includes(ntFil.day)) ntFil.day = 'all';
   const dShort = d=>{ if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return d; const l = dayLbl(d); const w = new Date(d+'T12:00:00Z').toLocaleDateString('he-IL',{weekday:'short', timeZone:'UTC'}).replace('יום ',''); return `${l || w} ${+d.slice(8)}.${+d.slice(5,7)}`; };
-  const cnt = (f)=>L.filter(f).length;
-  const dayRow = [['all','הכל', L.length], ...days.map(d=>[d, dShort(d), cnt(r=>r.d===d)])];
+  const qn = ntFil.q.trim().toLowerCase(), inQ = r=>!qn || r.symbol.toLowerCase().includes(qn) || String(r.company||'').toLowerCase().includes(qn);
+  L.forEach(r=>{ const f = repCapParse(r.cap), c = repCap[r.symbol]; r.capV = f!=null && f>0 ? f : c && c.v ? c.v : null; });
+  const cnt = (f)=>L.filter(r=>inQ(r) && f(r)).length;
+  const dayRow = [['all','הכל', cnt(()=>true)], ...days.map(d=>[d, dShort(d), cnt(r=>r.d===d)])];
   const tmOf = r=>/^(before|pre|bmo|לפני)/i.test(r.time) ? 'bmo' : /^(after|post|amc|אחרי)/i.test(r.time) ? 'amc' : (m=>m ? (+m[1]*60 + +m[2] < 16*60+30 ? 'bmo' : 'amc') : 'na')(String(r.time).match(/^(\d{1,2}):(\d{2})/));
   L.forEach(r=>{ r.tm = tmOf(r); });
   const inDay = r=>ntFil.day==='all' || r.d===ntFil.day, inMine = r=>ntFil.rep!=='mine' || !!r.tag, inTm = r=>ntFil.tm==='all' || r.tm===ntFil.tm;
@@ -4001,10 +4015,15 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     `<div class="cfil">${idxRow.map(([k,l,n])=>`<button data-ri="${esc(k)}" class="${ntFil.idx===k?'on':''}">${esc(l)} <small>${n}</small></button>`).join('')}<button data-rf="${ntFil.rep==='mine'?'all':'mine'}" class="${ntFil.rep==='mine'?'on':''}">⭐ בתיק ובמעקב</button></div>`+
 ''; 
   $('repFil').querySelectorAll('button.on').forEach(b=>{ const c = b.parentNode; c.scrollLeft = b.offsetLeft - c.clientWidth + b.offsetWidth + 40; });
-  const M = L.filter(r=>inDay(r) && inMine(r) && inTm(r) && (ntFil.idx==='all' || r.ix.includes(ntFil.idx)))
-    .sort((a,b)=>(a.d<b.d?-1:a.d>b.d?1:0) || ((b.ixs.length?1:0)-(a.ixs.length?1:0)));
-  if(!M.length){ el.innerHTML = '<div class="news-empty">אין דוחות בסינון הזה.</div>'; return; }
-  const up = M.filter(r=>r.d >= t), past = M.filter(r=>r.d < t).reverse();
+  const M0 = L.filter(r=>inQ(r) && inDay(r) && inMine(r) && inTm(r) && (ntFil.idx==='all' || r.ix.includes(ntFil.idx)));
+  const nmK = r=>String(r.company || r.symbol).replace(/^the\s+/i,'');
+  const within = (a,b)=>ntFil.sort==='az' ? nmK(a).localeCompare(nmK(b), ['he','en'], {sensitivity:'base'}) || a.symbol.localeCompare(b.symbol)
+    : ntFil.sort==='cap' ? ((b.capV!=null)-(a.capV!=null)) || (b.capV||0)-(a.capV||0) || a.symbol.localeCompare(b.symbol)
+    : ((b.ixs.length?1:0)-(a.ixs.length?1:0));
+  const M = M0.slice().sort((a,b)=>(a.d<b.d?-1:a.d>b.d?1:0) || within(a,b));   // sorting is inside each day – the day groups stay
+  if(ntFil.sort==='cap'){ const miss = [...new Set(M.filter(r=>r.capV==null).map(r=>r.symbol))]; if(miss.length) loadRepCaps(miss).then(ch=>{ if(ch && newsTab==='rep') drawReports(); }); }
+  if(!M.length){ el.innerHTML = `<div class="news-empty">${qn ? 'לא נמצאו דוחות עבור „'+esc(ntFil.q.trim())+'”.' : 'אין דוחות בסינון הזה.'}</div>`; return; }
+  const up = M.filter(r=>r.d >= t), past = M.filter(r=>r.d < t).sort((a,b)=>(a.d>b.d?-1:a.d<b.d?1:0) || within(a,b));
   const shortN = n=>String(n||'').replace(/,?\s*(Inc\.?|Incorporated|Corporation|Corp\.?|Company|Co\.|Ltd\.?|Limited|plc|PLC|Holdings?|Group|N\.V\.|S\.A\.|SE|AG|L\.P\.|LP|Class [A-C]|Ordinary Shares?|Common Stock)\b\.?/g,'').replace(/[\s,.-]+$/,'').trim();
   const ixS = l=>String(l).replace(/^S&P\s*/i,'S&P').replace(/^Nasdaq\s*100$/i,'NDX').replace(/^נאסד"?ק\s*100$/,'NDX').replace(/^Dow( Jones| 30)?$/i,'DOW').replace(/^Russell\s*2000$/i,'R2K');
   const card = r=>{ const ti = /^(before|pre|bmo|לפני)/i.test(r.time) ? '<i class="rti" title="לפני פתיחה">☀️</i>' : /^(after|post|amc|אחרי)/i.test(r.time) ? '<i class="rti" title="אחרי סגירה">🌙</i>' : r.time ? `<i class="rti num">${esc(r.time)}</i>` : '';
@@ -4034,13 +4053,13 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     const val = (lbl, est, act, c, x, cm, tg)=> act ? `<span>${lbl} בפועל</span><b class="num ${c}">${fv(act)}</b><small>צפי <bdi class="num">${esc(est)||'—'}</bdi></small>${tg}${cm.ok ? sp(x) : '<em class="rs na">ללא %</em>'}` : `<span>${lbl} צפי</span><b class="num">${fv(est)}</b>${tg}`;
     const whyL = [r.eps && !E.ok ? 'EPS: '+E.why : '', r.rev && !R.ok ? 'הכנסות: '+R.why : ''].filter(Boolean);
     return `<article class="rrow${(ec||rc) ? ' r-'+(ec||rc) : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
-      `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span></div><small>${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}</small></div>`+
+      `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span></div><small>${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}${ntFil.sort==='cap' ? ' · <bdi class="num">'+(r.capV ? fmtCap(r.capV) : 'שווי לא ידוע')+'</bdi>' : ''}</small></div>`+
       `<div class="rv">${val('EPS', r.epsEst, r.eps, ec, surp(e2, e1), E, tagB(r.epsEstB, r.epsB, r.epsCur||r.epsActCur))}</div><div class="rv">${val('הכנסות', r.revEst, r.rev, rc, surp(r2, r1), R, tagB(r.revEstB, r.revB, r.revCur||r.revActCur))}</div>${link}`+
       (whyL.length ? `<div class="rwhy">ⓘ ${esc(whyL.join(' · '))}</div>` : '')+
       (r.note ? `<div class="rnote2" role="button" tabindex="0" aria-expanded="false" data-rnote><span>${esc(r.note)}</span>${r.note.length > 90 ? '<i class="rmore2">עוד ▾</i>' : ''}</div>` : '')+`</article>`; };
   const grp = (A)=>{ let h = '', last = null; A.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="rday">${dayHead(r.d)}</div>`; } h += card(r); }); return h; };
   const A = [...up, ...past], more = A.length - repShow, upS = up.slice(0, repShow), pastS = past.slice(0, Math.max(0, repShow - up.length));
-  el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' || ntFil.tm!=='all' ? ' בסינון' : ''}</div>` + grp(upS) + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '') + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
+  el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' || ntFil.tm!=='all' || qn ? ' בסינון' : ''}</div>` + grp(upS) + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '') + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
 const FLAGS = {US:'🇺🇸', IL:'🇮🇱', EU:'🇪🇺', DE:'🇩🇪', GB:'🇬🇧', UK:'🇬🇧', FR:'🇫🇷', JP:'🇯🇵', CN:'🇨🇳', CA:'🇨🇦', CH:'🇨🇭', AU:'🇦🇺', 'ארה״ב':'🇺🇸', 'ארה"ב':'🇺🇸', 'ישראל':'🇮🇱', 'אירופה':'🇪🇺', 'גוש האירו':'🇪🇺', 'גרמניה':'🇩🇪', 'בריטניה':'🇬🇧', 'יפן':'🇯🇵', 'סין':'🇨🇳'};
 const CNAME = {US:'ארה״ב', IL:'ישראל', EU:'אירופה', DE:'גרמניה', GB:'בריטניה', UK:'בריטניה', FR:'צרפת', JP:'יפן', CN:'סין', CA:'קנדה', CH:'שווייץ', AU:'אוסטרליה'};
 function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; if(!D.items.length){ $('calFil').innerHTML = ''; el.innerHTML = ntEmpty('cal', D.err); return; }
@@ -4056,6 +4075,8 @@ function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; if(!
     const g = /^(true|yes|1|כן|טוב)$/i.test(r.good) ? 'pos' : /^(false|no|0|לא|רע)$/i.test(r.good) ? 'neg' : '';
     h += `<div class="crow${r.imp===3?' hi':''}"><span class="tm num">${esc(r.time)}</span><div class="ev"><b>${FLAGS[r.c] ? FLAGS[r.c]+' ' : ''}${esc(r.event)}</b><small>${imp(r.imp)}${r.period ? ' '+esc(r.period) : ''}${r.note ? ' · '+esc(r.note) : ''}</small></div><span class="n num">${esc(r.forecast)||'—'}</span><span class="n num muted">${esc(r.previous)||'—'}</span><span class="n num ${g}"><b>${esc(r.actual)||'—'}</b></span></div>`; });
   el.innerHTML = h; }
+{ let qT; $('repQ').addEventListener('input', e=>{ clearTimeout(qT); qT = setTimeout(()=>{ ntFil.q = e.target.value; repShow = 60; drawReports(); }, 150); });
+  $('repSort').value = ntFil.sort; $('repSort').addEventListener('change', e=>{ ntFil.sort = e.target.value; try{ localStorage.setItem('portfolioTracker.repSort.v1', ntFil.sort); }catch(x){} repShow = 60; drawReports(); }); }
 $('repFil').addEventListener('click', e=>{ const b = e.target.closest('[data-rf],[data-rd],[data-ri],[data-rt]'); if(!b) return; if(b.dataset.rt) ntFil.tm = b.dataset.rt; if(b.dataset.rf) ntFil.rep = b.dataset.rf; if(b.dataset.rd) ntFil.day = b.dataset.rd; if(b.dataset.ri) ntFil.idx = b.dataset.ri; repShow = 60; drawReports(); });
 $('repList').addEventListener('click', e=>{ const n = e.target.closest('[data-rnote]'); if(n){ e.preventDefault(); e.stopPropagation(); const o = !n.classList.contains('open'); n.classList.toggle('open', o); n.setAttribute('aria-expanded', String(o)); n.querySelector('.rmore2').textContent = o ? 'פחות ▴' : 'עוד ▾'; return; } }, true);
 $('repList').addEventListener('click', e=>{ if(e.target.closest('[data-rnote]')) return; if(e.target.closest('[data-rmore]')){ repShow += 60; drawReports(); return; } if(e.target.closest('a')) return;

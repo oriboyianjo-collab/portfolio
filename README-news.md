@@ -135,3 +135,8 @@ English aliases: eps_est_basis, eps_basis, eps_currency, eps_comparable, eps_exp
 **Rule:** if `השוואה_X` is `true`, the % is shown. If it is `false`, no %. Otherwise the % is shown only when both bases are filled in and equal, and the currencies are equal (or both absent). In every other case the numbers are shown with "ללא %" and a reason line: the `הסבר_X` text, or a default ("בסיס שונה – אין השוואה", "בסיס לא ידוע – אין השוואה", "מטבע שונה – אין השוואה"). The row's color stripe comes only from a comparable metric.
 
 **הערה:** long notes are shown in a 2-line preview. Tapping expands them, and the tap doesn't open the chart or the link. Put basis/currency details in the fields above, not in the note.
+
+## Market cap (v82) – optional
+`שווי_שוק` (aliases: market_cap, marketCap, mcap) is the company's market cap in **USD**. It's used for the "שווי שוק ↓" sort in the reports tab and is shown on the row while that sort is on.
+Accepted formats: `170B`, `$1.2T`, `950M`, `170 מיליארד`, `3.9 טריליון`, `800 מיליון`, or a plain number (`170000000000`).
+If it's empty, the app takes the market cap from CNBC quote data (cached on the phone for 24h). If no source has it, the row shows "שווי לא ידוע" and sorts last. Never invent or estimate a value; leave it empty.
