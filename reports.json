@@ -1058,7 +1058,9 @@
     "חברה": "Cementos Pacasmayo S.A.A.",
     "סימול": "CPAC",
     "תאריך": "2026-10-27",
-    "צפי_הכנסות": "629M"
+    "צפי_הכנסות": "629M",
+    "הערה": "תוצאות Q3 2026: EPS 0.28 [IFRS למניה רגילה/השקעה, לא ל-ADS]; הכנסות 667.4M PEN [Sales of goods (IFRS)]; מטבע ובסיס שונים מהצפי — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.smv.gob.pe/ConsultasP8/temp/PRESS%20RELEASE%203Q26.pdf"
   },
   {
     "חברה": "Crane Company",
@@ -1139,7 +1141,9 @@
     "סימול": "DBVT",
     "תאריך": "2026-10-27",
     "צפי_EPS": "-0.60",
-    "צפי_הכנסות": "581.62k EUR"
+    "צפי_הכנסות": "581.62k EUR",
+    "הערה": "אירוע Q3 רשמי: 28.10.2026; תאריך פרסום התוצאות בפועל לא אומת",
+    "קישור": "https://dbv-technologies.com/events/q3-quarterly-update/"
   },
   {
     "חברה": "DAQO New Energy Corp.",
@@ -1463,7 +1467,9 @@
   {
     "חברה": "Hycroft Mining Holding Corporation",
     "סימול": "HYMC",
-    "תאריך": "2026-10-27"
+    "תאריך": "2026-10-27",
+    "הערה": "תוצאות Q3 2026 פורסמו; EPS והכנסות טרם חולצו מהפרסום הראשוני — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.prnewswire.com/news-releases/hycroft-reports-q3-2026-results-and-maintains-strong-balance-sheet-302920058.html"
   },
   {
     "חברה": "Independent Bank Corporation",
@@ -1471,7 +1477,9 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "0.86",
-    "צפי_הכנסות": "54.86M"
+    "צפי_הכנסות": "54.86M",
+    "הערה": "תוצאות Q3 2026: EPS 0.92 [מותאם (לא-GAAP)]; GAAP 0.8; הכנסות 71.1M [נגזר מרכיבי GAAP: 55.3M + 15.8M]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388747/36248/en/independent-bank-corporation-reports-2026-third-quarter-earnings-of-0-80-per-diluted-share.html"
   },
   {
     "חברה": "ICON plc",
@@ -1579,7 +1587,9 @@
     "מדד": [
       "S&P 600"
     ],
-    "צפי_הכנסות": "2.83B"
+    "צפי_הכנסות": "2.83B",
+    "הערה": "תוצאות Q3 2026: EPS -0.6 [מותאם (לא-GAAP), ללא פריטים מיוחדים]; GAAP -0.68; הכנסות 2.81B [Operating revenues]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://investor.jetblue.com/news/news-details/2026/JetBlue-Announces-Third-Quarter-2026-Results/default.aspx"
   },
   {
     "חברה": "Johnson Controls International plc",
@@ -1640,7 +1650,9 @@
     "סימול": "KOF",
     "תאריך": "2026-10-27",
     "מועד": "before",
-    "צפי_EPS": "1.89"
+    "צפי_EPS": "1.89",
+    "הערה": "תוצאות Q3 2026: EPS 29.62 MXN ל-ADS [לא USD]; הכנסות 79.72B MXN [Total revenues]; מטבע שונה מהצפי (USD) — לא מוצג חישוב הפתעה",
+    "קישור": "https://investors.coca-colafemsa.com/assets/files/reportes_trimestrales_esp/2026/coca-cola-femsa-results-3q26.pdf"
   },
   {
     "חברה": "Lincoln Electric Holdings, Inc.",
@@ -1891,7 +1903,9 @@
       "S&P 500",
       "Nasdaq 100"
     ],
-    "צפי_הכנסות": "7.5B"
+    "צפי_הכנסות": "7.5B",
+    "הערה": "תוצאות Q3 2026: EPS 1.61 [GAAP]; הכנסות 7.94B [Consolidated net sales and revenues (headline)]; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://investors.paccar.com/financial-news/news-details/2026/PACCAR-Achieves-Excellent-Quarterly-Revenues-and-Profits/default.aspx"
   },
   {
     "חברה": "Precision Drilling Corporation",
@@ -1914,7 +1928,9 @@
     "סימול": "PHAR",
     "תאריך": "2026-10-27",
     "מועד": "before",
-    "צפי_EPS": "0.32"
+    "צפי_EPS": "0.32",
+    "הערה": "תוצאות Q3 2026: הכנסות 117.6M [Total revenues]; EPS טרם חולץ ממקור ראשוני; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.pharming.com/our-news/pharming-reports-third-quarter-2026-financial-results"
   },
   {
     "חברה": "Polaris Inc.",
@@ -2182,7 +2198,9 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "-0.01",
-    "צפי_הכנסות": "233.78M CAD"
+    "צפי_הכנסות": "233.78M CAD",
+    "הערה": "תוצאות Q3 2026: הכנסות 238.0M CAD [Net revenue (IFRS)]; EPS לא נמצא בפרסום הראשוני ולא משוער; בסיס הצפי לא אומת — לא מוצג חישוב הפתעה",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3388807/0/en/sndl-reports-third-quarter-2026-financial-and-operational-results.html"
   },
   {
     "חברה": "SoFi Technologies, Inc.",
@@ -2418,7 +2436,9 @@
     "סימול": "WGS",
     "תאריך": "2026-10-27",
     "צפי_EPS": "0.07",
-    "צפי_הכנסות": "122.93M"
+    "צפי_הכנסות": "122.93M",
+    "הערה": "מועד רשמי לתוצאות: 9.11.2026 אחרי הסגירה (לפי דף החדשות של החברה) — לא פורסם היום",
+    "קישור": "https://genedx.gcs-web.com/news-events/news-releases/"
   },
   {
     "חברה": "Waste Management, Inc.",
