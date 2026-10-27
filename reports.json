@@ -2756,13 +2756,14 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "3.64B",
-    "הערה": "GAAP 4.45; בסיס הצפי לא אומת — ללא חישוב הפתעה",
+    "הערה": "GAAP 4.45",
     "קישור": "https://s29.q4cdn.com/690959130/files/doc_financials/2026/q3/S-P-Global-3Q-2026-Earnings-Release-Exhibits-10-27-2026.pdf",
     "מטבע_הכנסות": "USD",
     "הכנסות_בפועל": "3.68B",
     "בפועל_EPS": "4.58",
     "בסיס_בפועל_EPS": "מתואם",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "בסיס_צפי_EPS": "מתואם"
   },
   {
     "חברה": "SS Innovations International Inc.",
