@@ -2755,7 +2755,8 @@ function drawSrch(){ const q = $('srchQ').value.trim(), el = $('srchRes'), R = s
 function srchOpen(){ const o = $('srchOv'); if(!o.hidden) return; o.hidden = false; document.body.classList.add('srch-on'); $('navSearch').classList.add('on'); $('srchQ').value = ''; srchItems = []; drawSrch();
   history.pushState({srch:1}, ''); setTimeout(()=>$('srchQ').focus(), 30); const R = srchRecent(); if(R.length) instQuotes(R.map(srchInst)).then(()=>{ if(!$('srchQ').value.trim() && !o.hidden) drawSrch(); }).catch(()=>{}); }
 function srchHide(){ const o = $('srchOv'); if(o.hidden) return; o.hidden = true; document.body.classList.remove('srch-on'); $('navSearch').classList.remove('on'); $('srchQ').blur(); }
-function srchClose(){ if(history.state && history.state.srch) history.back(); else srchHide(); }
+let progBack = false;   // v77: an in-app close (✕ / חזרה) that pops its own history entry – not the Android back button
+function srchClose(){ if(history.state && history.state.srch){ progBack = true; history.back(); } else srchHide(); }
 window.addEventListener('popstate', ()=>{ if(!(history.state && history.state.srch)) srchHide(); });
 $('navSearch').addEventListener('click', ()=>$('srchOv').hidden ? srchOpen() : srchClose());
 $('srchClose').addEventListener('click', srchClose);
@@ -3215,7 +3216,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v76</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v77</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3848,7 +3849,7 @@ function bankApply(){
 let prevTab = 'portfolio';
 const TAB_KEY = 'portfolioTracker.tab';   // v57: current tab per session – a reload / pull-to-refresh comes back to it; a new app launch opens on תיק
 function openSettings(){ if(ui.tab==='settings') return; prevTab = ui.tab; try{ sessionStorage.setItem(TAB_KEY+'.prev', prevTab); }catch(e){} setTab('settings'); if(!(history.state && history.state.set)) history.pushState({set:1}, ''); }
-function closeSettings(){ if(history.state && history.state.set) history.back(); else if(ui.tab==='settings') setTab(prevTab||'portfolio'); }
+function closeSettings(){ if(history.state && history.state.set){ progBack = true; history.back(); } else if(ui.tab==='settings') setTab(prevTab||'portfolio'); }
 window.addEventListener('popstate', ()=>{ if(ui.tab==='settings' && !(history.state && history.state.set) && !(IV.el && !IV.el.hidden)) setTab(prevTab||'portfolio'); });
 function setTab(tab){
   if(!$('srchOv').hidden) srchClose();   // v66: a tab tap closes the search overlay
@@ -4067,7 +4068,7 @@ function imgvGo(i){ const n = IV.list.length; if(!n) return; IV.i = (i+n)%n; IV.
 function imgvOpen(list, i){ if(!list || !list.length) return; imgvEnsure(); IV.list = list; IV.el.hidden = false; document.documentElement.classList.add('imgv-on'); imgvGo(i||0);
   if(!(history.state && history.state.imgv)) history.pushState({imgv:1}, ''); }
 function imgvHide(){ if(!IV.el || IV.el.hidden) return; IV.el.hidden = true; IV.img.removeAttribute('src'); document.documentElement.classList.remove('imgv-on'); }
-function imgvClose(){ if(history.state && history.state.imgv) history.back(); else imgvHide(); }
+function imgvClose(){ if(history.state && history.state.imgv){ progBack = true; history.back(); } else imgvHide(); }
 window.addEventListener('popstate', ()=>imgvHide());
 document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='Escape') imgvClose(); });
 // ---- swipe between tabs (v42) ----
@@ -4151,6 +4152,22 @@ if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && 
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
 window.__portfolio = {refresh:(...a)=>refreshPrices(...a), get state(){ return state; }, openPosition:(...a)=>openPosition(...a), openTxForm:(...a)=>openTxForm(...a), lotsTM:(tx)=>taxModel(tx||state.txs), commission:(...a)=>commission(...a), inferFees:(...a)=>inferFees(...a), get mkt(){ return {cfg:mktCfg, q:mq, bars:instCache}; }, get wl(){ return wlData; }, mktTick, squarify, heatColor, spark(){ return spk; }, spkRun, setTheme, idx(){ return idxData; }, idxApply, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+// v77: Android back button – never leave the app on one press. History: [base, top(+ overlay entries)]. Popping back to 'base' =
+// a back press on the app's own screen: close whatever is open → תיק tab → re-arm; on תיק with nothing open the first press shows a
+// toast and stays on 'base' for 2 s, so a second press leaves the app (standalone PWA: no entry below 'base' = close); after 2 s it re-arms.
+(()=>{ const st = history.state; if(!(st && st.g)){ history.replaceState({g:'base'}, ''); history.pushState({g:'top'}, ''); }
+  let armT = null;
+  const rearm = ()=>{ if(!(history.state && history.state.g==='base')) return; history.pushState({g:'top'}, ''); };
+  const anyOpen = ()=>$('sheet').classList.contains('open') || !$('srchOv').hidden || !!(IV.el && !IV.el.hidden);
+  const closeAll = ()=>{ if($('sheet').classList.contains('open')) closeSheet(); if(!$('srchOv').hidden) srchHide(); if(IV.el && !IV.el.hidden) imgvHide(); };
+  window.addEventListener('popstate', ()=>{ const s = history.state; if(progBack){ progBack = false; return; }
+    if(s && s.g==='base'){
+      if(armT){ clearTimeout(armT); armT = null; history.back(); return; }   // second press within 2 s → leave
+      if(anyOpen() || ui.tab!=='portfolio'){ closeAll(); if(ui.tab!=='portfolio') setTab('portfolio'); rearm(); return; }
+      toast('לחץ שוב כדי לצאת'); armT = setTimeout(()=>{ armT = null; rearm(); }, 2000); return; }
+    if(armT){ clearTimeout(armT); armT = null; }
+    if(!s || s.g==='top'){ closeAll(); if(ui.tab!=='portfolio') setTab('portfolio'); } });   // back out of an overlay / settings entry → תיק
+})();
 })();
 </script>
 </body>
