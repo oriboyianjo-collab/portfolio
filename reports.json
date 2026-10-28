@@ -130,10 +130,12 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "קישור": "https://www.prnewswire.com/news-releases/bladex-announces-net-profit-of-63-2-million-for-the-third-quarter-2026--302919885.html",
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "סך הכנסות 99.1M$ (שורת מקור): NII שיא 79.8M + עמלות והכנסות שאינן מריבית 19.3M; EPS 1.48; בסיס הצפי לא ידוע",
     "בפועל_EPS": "1.48",
     "בסיס_בפועל_EPS": "GAAP",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "הכנסות_בפועל": "99.1M",
+    "מטבע_הכנסות": "USD"
   },
   {
     "חברה": "Bank of Marin Bancorp",
@@ -234,19 +236,24 @@
     "בפועל_EPS": "0.79",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "הערה": ""
+    "הערה": "הכנסות נגזרות: NII 22.49M + הכנסות שאינן מריבית 2.70M; בסיס הצפי לא ידוע",
+    "הכנסות_בפועל": "25.19M",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1981546/000121390026112550/ea030947201ex99-1.htm"
   },
   {
     "חברה": "Capital Bancorp, Inc.",
     "סימול": "CBNK",
     "תאריך": "2026-10-26",
     "צפי_EPS": "0.91",
-    "הערה": "בסיס הצפי לא ידוע",
-    "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388551/0/en/cbnk-delivers-strong-revenue-growth-and-positive-operating-leverage.html",
+    "הערה": "הכנסות נגזרות: NII 53.08M + הכנסות שאינן מריבית 15.04M; בסיס הצפי לא ידוע",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1419536/000141953626000166/earningsrelease9302026.htm",
     "בפועל_EPS": "0.89",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "68.12M",
+    "מטבע_הכנסות": "USD"
   },
   {
     "חברה": "Cadence Design Systems, Inc.",
@@ -313,8 +320,11 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "הכנסות_בפועל": "384.90M",
-    "הערה": "",
-    "קישור": "https://ir.clearwaterpaper.com/investors/press-releases/news-details/2026/Clearwater-Paper-Reports-Third-Quarter-2026-Results/default.aspx"
+    "הערה": "הפסד נקי 2M$ = ‎-0.10 דילול GAAP (סיכומים מסוימים מציגים \"0.10\" כחיובי — זהו ההפסד); Adjusted EBITDA מפעילות מתמשכת 24M$; מכירות 385M$; בסיס הצפי לא ידוע",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1441236/000162828026067280/clw-20260930x8kexhibit991.htm",
+    "בפועל_EPS": "-0.10",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD"
   },
   {
     "חברה": "Carter's, Inc.",
@@ -428,12 +438,14 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "0.86",
-    "הערה": "בסיס הצפי לא ידוע",
-    "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388632/0/en/five-star-bancorp-announces-third-quarter-2026-results.html",
+    "הערה": "הכנסות נגזרות: NII 50.93M + הכנסות שאינן מריבית 1.69M; בסיס הצפי לא ידוע",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1275168/000162828026067444/q32026earningsrelease.htm",
     "בפועל_EPS": "0.92",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "52.62M",
+    "מטבע_הכנסות": "USD"
   },
   {
     "חברה": "FIRSTSUN CAPITAL BANCORP",
@@ -455,12 +467,14 @@
     "סימול": "GABC",
     "תאריך": "2026-10-26",
     "צפי_EPS": "1.01",
-    "הערה": "בסיס הצפי לא ידוע",
-    "קישור": "https://www.businesswire.com/news/home/20261026073779/en/German-American-Bancorp-Inc.-GABC-Announces-Record-Earnings-for-Third-Quarter-2026",
+    "הערה": "הכנסות נגזרות: NII 83.52M (בסיס non-FTE) + הכנסות שאינן מריבית 18.70M; בסיס הצפי לא ידוע",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/714395/000071439526000041/exhibit991q32026final.htm",
     "בפועל_EPS": "1.03",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "102.22M",
+    "מטבע_הכנסות": "USD"
   },
   {
     "חברה": "Greenbrier Companies, Inc. (The)",
@@ -486,10 +500,13 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "0.18",
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "מכירות נטו R$18,691M (מול R$17,871M ב-2Q26), IFRS; EPS 0.79 R$ — הצפי במטבע/בסיס אחר, ללא %; בסיס הצפי לא ידוע",
     "בפועל_EPS": "0.79",
     "בסיס_בפועל_EPS": "GAAP",
-    "מטבע_EPS": "BRL"
+    "מטבע_EPS": "BRL",
+    "הכנסות_בפועל": "18.69B",
+    "מטבע_הכנסות": "BRL",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1073404/000110465926118862/tm2628297d1_ex99-1.htm"
   },
   {
     "חברה": "HBT Financial, Inc.",
@@ -515,12 +532,14 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "בסיס הצפי לא ידוע",
-    "קישור": "https://www.businesswire.com/news/home/20261026676351/en/The-Hartford-Reports-Strong-Third-Quarter-2026-Financial-Results",
+    "הערה": "סך הכנסות 7,220M$ (שורת סך מודפסת, סכום פלחים); GAAP 4.82; בסיס הצפי לא ידוע",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/874766/000087476626000079/ex991earningsnewsrelease93.htm",
     "בפועל_EPS": "3.5",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "7.22B",
+    "מטבע_הכנסות": "USD"
   },
   {
     "חברה": "H2O America",
@@ -646,7 +665,10 @@
     "בפועל_EPS": "0.43",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "הערה": ""
+    "הערה": "הכנסות נגזרות: NII 18.78M + הכנסות שאינן מריבית 0.67M (מתקשר ל-9M 1.97M); EPS 0.43; בסיס הצפי לא ידוע",
+    "הכנסות_בפועל": "19.45M",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1693577/000143774926033461/ex_990544.htm"
   },
   {
     "חברה": "Maison Solutions Inc.",
@@ -661,12 +683,14 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "3.41",
-    "הערה": "בסיס הצפי לא ידוע",
-    "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388572/0/en/northeast-bank-reports-first-quarter-results-and-declares-dividend.html",
+    "הערה": "רבעון פיסקלי Q1'27; הכנסות נגזרות: ריבית ודיבידנדים נטו לפני הפרשה 58.9M + הכנסות שאינן מריבית 5.35M; בסיס הצפי לא ידוע",
+    "קישור": "https://northeastbancorp.gcs-web.com/news-releases/news-release-details/northeast-bank-reports-first-quarter-results-and-declares-6",
     "בפועל_EPS": "3.42",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "64.25M",
+    "מטבע_הכנסות": "USD"
   },
   {
     "חברה": "Netcapital Inc.",
@@ -776,12 +800,14 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "0.39",
-    "הערה": "Nareit FFO 0.23; בסיס הצפי לא ידוע",
-    "קישור": "https://investor.piedmontreit.com/news-releases/news-release-details/piedmont-realty-trust-inc-releases-third-quarter-2026-results",
+    "הערה": "Nareit FFO 0.23; הכנסות 151.24M (שורת סך מודפסת בתוספת); בסיס הצפי לא ידוע",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1042776/000104277626000072/pdm93026ex991q32026ersuppl.htm",
     "בפועל_EPS": "0.39",
     "בסיס_בפועל_EPS": "Core FFO",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "151.24M",
+    "מטבע_הכנסות": "USD"
   },
   {
     "חברה": "Phillips Edison & Company, Inc.",
@@ -810,7 +836,7 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "אין שורת סך הכנסות בפרסום (פורמט פלחים) — יושלם מהתוספת/10-Q; GAAP 2.91; בסיס הצפי לא ידוע",
     "קישור": "https://www.businesswire.com/news/home/20261026256025/en/Principal-Financial-Group-Announces-Third-Quarter-2026-Results",
     "בפועל_EPS": "2.49",
     "בסיס_בפועל_EPS": "מתואם",
@@ -832,12 +858,14 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "בסיס הצפי לא ידוע",
-    "קישור": "https://investor.parknationalcorp.com/news/news-details/2026/Park-National-Corporation-reports-financial-results-for-third-quarter-and-first-nine-months-of-2026/default.aspx",
+    "הערה": "הכנסות נגזרות: NII 140.74M + הכנסות אחרות 36.64M; בסיס הצפי לא ידוע",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/805676/000080567626000069/exhibit991earningsrelease3.htm",
     "בפועל_EPS": "3.13",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "177.38M",
+    "מטבע_הכנסות": "USD"
   },
   {
     "חברה": "Public Storage",
@@ -907,12 +935,14 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "בסיס הצפי לא ידוע",
-    "קישור": "https://www.stocktitan.net/news/SSD/simpson-manufacturing-co-inc-announces-2026-third-quarter-financial-yuugedwq5cry.html",
+    "הערה": "מכירות נטו 638.13M$ (שורת מקור) מול 623.51M$ אשתקד; בסיס הצפי לא ידוע",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/920371/000162828026067288/q32026ex991earningsrelease.htm",
     "בפועל_EPS": "2.68",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "638.13M",
+    "מטבע_הכנסות": "USD"
   },
   {
     "חברה": "Sun Communities, Inc.",
@@ -936,12 +966,13 @@
     "חברה": "Universal Health Realty Income Trust",
     "סימול": "UHT",
     "תאריך": "2026-10-26",
-    "הערה": "EPS GAAP diluted; FFO 0.88; backfill לשורה מ-26.10; בסיס הצפי לא ידוע",
+    "הערה": "EPS GAAP diluted; FFO 0.88; הכנסות 25.35M (שורת סך מודפסת: שכירות UHS 8.42 + לא מסונכסנות 14.90 + אחר 0.69 + ריבית חכירה פיננסית 1.34); בסיס הצפי לא ידוע",
     "בפועל_EPS": "0.35",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
     "מטבע_הכנסות": "USD",
-    "קישור": "https://www.sec.gov/Archives/edgar/data/798783/000119312526434277/uht-ex99_1.htm"
+    "קישור": "https://www.sec.gov/Archives/edgar/data/798783/000119312526434277/uht-ex99_1.htm",
+    "הכנסות_בפועל": "25.35M"
   },
   {
     "חברה": "Controladora Vuela Compania de Aviacion, S.A.B. de C.V.",
@@ -1367,7 +1398,7 @@
     "מועד": "after",
     "צפי_EPS": "0.11",
     "צפי_הכנסות": "68.73M",
-    "הערה": "EPS = Adjusted Distributable למניה; GAAP 0.37; Distributable 0.08; הכנסות לא חולצו מהודעת mREIT; בסיס הצפי לא ידוע",
+    "הערה": "EPS = Adjusted Distributable למניה; GAAP 0.37; אין שורת סך הכנסות בפרסום (mREIT) — רכיב הכנסות מריבית 56.2M אינו בסיס להשוואה לצפי 68.73M; יושלם מה-10-Q; בסיס הצפי לא ידוע",
     "בפועל_EPS": "0.14",
     "בסיס_בפועל_EPS": "Adj. Distributable",
     "מטבע_EPS": "USD",
@@ -1382,13 +1413,15 @@
     "מועד": "after",
     "צפי_EPS": "0.67",
     "צפי_הכנסות": "195.77M",
-    "הערה": "EPS adjusted diluted; GAAP 0.62; הכנסות לא חולצו; בסיס הצפי לא ידוע",
+    "הערה": "EPS adjusted diluted; GAAP 0.62; הכנסות נגזרות: NII 153.15M + הכנסות שאינן מריבית 40.40M (Operating revenue non-GAAP לפי המנכ\"ל 194.3M); בסיס הצפי לא ידוע",
     "בפועל_EPS": "0.63",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
     "מטבע_הכנסות": "USD",
     "קישור": "https://www.sec.gov/Archives/edgar/data/314489/000031448926000066/buse_20261027x26q3xex991.htm",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "193.55M",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "BXP, Inc.",
@@ -2095,12 +2128,15 @@
     "מועד": "before",
     "צפי_EPS": "0.21",
     "צפי_הכנסות": "12.16B",
-    "הערה": "הכנסות 8.06B בלבד; 8.69B כולל רווחים והכנסות דאטה-סנטר — הגדרה לא נפתרה; GAAP 0.66; בסיס הצפי לא ידוע",
-    "קישור": "https://investor.galaxy.com/static-files/55b15032-edcb-42e4-a9b0-687d9b0c91e6",
+    "הערה": "Revenues (GAAP) 8.06B מול צפי 12.16B (אומת מול Yahoo Revenue Estimate); סך \"Revenues and gains\" 8.69B כולל רווחי פעילות 0.55B והשכרת דאטה-סנטר 0.08B (רבעון מלא ראשון של Helios פאזה I); GAAP 0.66; בסיס הצפי לא ידוע",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1859392/000185939226000108/glxy-20260930xpressrelease.htm",
     "בפועל_EPS": "0.83",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "8.06B",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Hanmi Financial Corporation",
@@ -2780,13 +2816,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "134.31M",
-    "הערה": "EPS GAAP diluted (הפסד, provision חריג של 40.6M$); הכנסות לא חולצו; בסיס הצפי לא ידוע",
+    "הערה": "EPS GAAP diluted (הפסד, provision חריג של 40.6M$); הכנסות נגזרות: NII 112.90M + הכנסות שאינן מריבית 13.54M; בסיס הצפי לא ידוע",
     "בפועל_EPS": "-0.20",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
     "מטבע_הכנסות": "USD",
-    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389654/0/en/national-bank-holdings-corporation-announces-third-quarter-2026-financial-results.html",
-    "השוואה_EPS": "כן"
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1475841/000110465926119174/nbhc-ex99d1.htm",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "126.44M",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Nabors Industries Ltd.",
@@ -3056,10 +3094,13 @@
     "תאריך": "2026-10-27",
     "מועד": "before",
     "צפי_EPS": "0.32",
-    "הערה": "EPS טרם חולץ ממקור ראשוני — לא מוצג חישוב הפתעה",
-    "קישור": "https://www.pharming.com/our-news/pharming-reports-third-quarter-2026-financial-results",
+    "הערה": "0.030 דילול (0.032 בסיסי) US$ למניה רגילה, IFRS; רווח נקי 22.4M$ מול 7.5M$ אשתקד; PHAR בנאסד\"ק = ADS של 10 מניות רגילות — בבסיס ADS 0.30 מול צפי 0.32, ההשוואה לא מוצגת בגלל חוסר ודאות בבסיס יחידת הצפי",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1828316/000182831626000049/a2026q3pressrelease.htm",
     "מטבע_הכנסות": "USD",
-    "הכנסות_בפועל": "117.6M"
+    "הכנסות_בפועל": "117.6M",
+    "בפועל_EPS": "0.03",
+    "בסיס_בפועל_EPS": "IFRS",
+    "מטבע_EPS": "USD"
   },
   {
     "חברה": "Polaris Inc.",
@@ -3276,13 +3317,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "282.34M",
-    "הערה": "EPS adjusted diluted (non-GAAP); GAAP 0.86; הכנסות לא אומתו מול ההודעה; בסיס הצפי לא ידוע",
+    "הערה": "EPS adjusted diluted (non-GAAP); GAAP 0.86; הכנסות נגזרות: NII 223.69M + הכנסות שאינן מריבית 49.28M; בסיס הצפי לא ידוע",
     "בפועל_EPS": "0.86",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
     "מטבע_הכנסות": "USD",
     "קישור": "https://www.sec.gov/Archives/edgar/data/715072/000071507226000084/exhibit991_rnstx3q2026earn.htm",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "272.96M",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Rogers Corporation",
