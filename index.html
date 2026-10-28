@@ -3384,7 +3384,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v87</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v88</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -4032,7 +4032,7 @@ function setTab(tab){
   if(tab==='perf') renderPerf(); else destroyPerf();
   if(tab==='portfolio'){ renderMini(); heatKey = ''; renderHeat(computeAll()); } else destroyMini();
   if(tab==='settings') renderSettings();
-  if(tab==='market') renderMarket(); if(tab==='watch') renderWatch(); if(tab==='news') loadNewsTab();
+  if(tab==='market') renderMarket(); if(tab==='watch') renderWatch(); if(tab==='news'){ if(newsTab==='rep') repEnter = true; loadNewsTab(); }
   mktPoll();
 }
 // ---- News tab (v53): news.json (or news.md) uploaded by the owner to the same site; always fetched fresh ----
@@ -4099,7 +4099,7 @@ function repCapParse(v){ if(v==null || v==='') return null; if(typeof v==='numbe
 async function loadRepCaps(syms){ if(repCapBusy) return false; const need = syms.filter(s=>!repCap[s] || Date.now()-repCap[s].at > REPCAP_TTL).slice(0, 400); if(!need.length) return false; repCapBusy = true;
   try{ const Q = await cnbcQuotes(need); need.forEach(s=>{ const q = Q[s]; let v = q && num(q.mcap) > 0 ? num(q.mcap) : null; if(v!=null && q.cur && q.cur!=='USD' && FXQ[q.cur]) v = convertCur(v, q.cur, 'USD');
       repCap[s] = {v: v!=null && isFinite(v) ? v : null, at: Date.now()}; });
-    try{ localStorage.setItem(REPCAP_K, JSON.stringify(repCap)); }catch(e){} return true; }catch(e){ return false; } finally{ repCapBusy = false; } } let ntSeq = 0, repShow = 60;
+    try{ localStorage.setItem(REPCAP_K, JSON.stringify(repCap)); }catch(e){} return true; }catch(e){ return false; } finally{ repCapBusy = false; } } let ntSeq = 0, repShow = 60, repEnter = false;
 // v67: index tags come only from the item itself – "מדד" / "index" (string, list, or comma-separated). No tag = "אחר".
 const IDX_AL = [['sp500',/^(s&?p ?500|spx|spy|אסאנדפי ?500|ס&?פ ?500)$/],['ndx',/^(nasdaq ?100|ndx|qqq|נאסד"?ק ?100|נאסדק ?100)$/],['dow',/^(dow( jones| 30)?|djia|dia|דאו( ג'ונס| 30)?)$/],
   ['sp400',/^(s&?p ?400|s&?p midcap ?400|mdy)$/],['sp600',/^(s&?p ?600|s&?p smallcap ?600|ijr)$/],['r2k',/^(russell ?2000|r2k|iwm|ראסל ?2000)$/],['ixic',/^(nasdaq( composite)?|נאסד"?ק|נאסדק)$/]];
@@ -4124,7 +4124,7 @@ async function loadNt(kind){ const seq = ++ntSeq, f = kind==='rep' ? 'reports.js
   try{ const r = await fetch(f+'?t='+Date.now(), {cache:'no-store'}); if(r.ok){ const t = (await r.text()).trim(); if(t){ try{ const j = JSON.parse(t); items = Array.isArray(j) ? j : (j && Array.isArray(j.items) ? j.items : []); }catch(e){ err = true; } } } }catch(e){}
   if(seq!==ntSeq) return; ntData[kind] = {items: items.filter(o=>o && typeof o==='object'), err}; kind==='rep' ? drawReports() : drawCal(); }
 function loadNewsTab(){ applyNewsTab(); if(newsTab==='news') loadNews(); else loadNt(newsTab); }
-$('newsSeg').addEventListener('click', e=>{ const b = e.target.closest('[data-nt]'); if(!b || b.dataset.nt===newsTab) return; newsTab = b.dataset.nt; try{ sessionStorage.setItem('portfolioTracker.newsTab', newsTab); }catch(_){} loadNewsTab(); });
+$('newsSeg').addEventListener('click', e=>{ const b = e.target.closest('[data-nt]'); if(!b || b.dataset.nt===newsTab) return; newsTab = b.dataset.nt; try{ sessionStorage.setItem('portfolioTracker.newsTab', newsTab); }catch(_){} if(newsTab==='rep') repEnter = true; loadNewsTab(); });
 const dayLbl = d=>{ const t = today(); if(d===t) return 'היום'; if(d===addDays(t,1)) return 'מחר'; if(d===addDays(t,-1)) return 'אתמול'; return ''; };
 function dayHead(d){ if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return esc(d || 'ללא תאריך'); const w = new Date(d+'T12:00:00Z').toLocaleDateString('he-IL',{weekday:'long', timeZone:'UTC'}), l = dayLbl(d);
   return `${l ? l+' · ' : ''}${w} <span class="num">${fmtDate(d)}</span>`; }
@@ -4140,6 +4140,10 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
   const ixOrd = [...new Set(L.flatMap(r=>r.ixs.map(x=>x.k)))].sort((a,b)=>{ const i = k=>{ const j = IDX_AL.findIndex(x=>x[0]===k); return j<0 ? 99 : j; }; return i(a)-i(b) || (ixL[a]<ixL[b]?-1:1); });
   if(ntFil.idx!=='all' && ntFil.idx!=='other' && !ixOrd.includes(ntFil.idx)) ntFil.idx = 'all';
   const days = [...new Set(L.map(r=>r.d))].sort(), t = today();
+  // v88: every entry to the reports sub-tab (opening it, coming back to the News tab, re-opening the app) starts on TODAY – or, with no report
+  // today, the nearest upcoming day (else the latest past one). The search text is cleared with it; the sort stays (it orders within the day).
+  if(repEnter){ repEnter = false; ntFil.q = ''; $('repQ').value = ''; repShow = 60;
+    const dated = days.filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)); ntFil.day = dated.includes(t) ? t : (dated.find(d=>d>t) || dated[dated.length-1] || 'all'); }
   if(ntFil.day!=='all' && !days.includes(ntFil.day)) ntFil.day = 'all';
   const dShort = d=>{ if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return d; const l = dayLbl(d); const w = new Date(d+'T12:00:00Z').toLocaleDateString('he-IL',{weekday:'short', timeZone:'UTC'}).replace('יום ',''); return `${l || w} ${+d.slice(8)}.${+d.slice(5,7)}`; };
   const qn = ntFil.q.trim().toLowerCase(), inQ = r=>!qn || r.symbol.toLowerCase().includes(qn) || String(r.company||'').toLowerCase().includes(qn);
