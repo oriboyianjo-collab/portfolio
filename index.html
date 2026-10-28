@@ -1493,7 +1493,7 @@ async function refreshPrices(silent, live){
   state.lastRefresh = Date.now(); state.refreshErrors = errors; lastPoll = Date.now();
   save(); refreshing = false; b.classList.remove('spin'); b.disabled = false;
   if(!live && ok) setTimeout(()=>scanHeldSplits().catch(e=>console.warn('split scan', e.message)), 1500);
-  if(live) livePatch(); else renderAll();
+  if(live || (ui.tab==='perf' && perfLive && perfChart)) livePatch(); else renderAll();   // v97: a manual refresh on the performance tab patches in place too (renderAll rebuilt the whole chart: flash + scroll jump)
   if(!silent || manualWaiting) toast(errors ? 'חלק מהמחירים לא עודכנו – אפשר להזין מחיר ידני' : 'המחירים עודכנו ✓');
   manualWaiting = false;
   return ok;
@@ -2105,6 +2105,9 @@ function updatePerfLive(S){
     const el = $('perfPortRet'); if(el && r){ el.textContent = r.pct!=null ? fmtPct(r.pct) : '—'; el.className = 'num '+cls(r.gain); }
     const lp = $('perfLegPort'); if(lp && r){ lp.textContent = r.pct!=null ? fmtPct(r.pct) : '—'; lp.className = 'num '+cls(r.pct); }
     const ea = $('perfPortAmt'); if(ea && r){ ea.textContent = fmtSigned(r.gain, L.cur, 0); ea.className = 'd num '+cls(r.gain); }
+    // v97: the 'change in value' tile and each benchmark's 'portfolio ahead / behind by x%' line follow the live value too (they were fixed at the moment the tab was built)
+    const cg = $('perfChg'); if(cg && L.V0!=null){ const ch = eq - L.V0; cg.textContent = fmtSigned(ch, L.cur, 0); cg.className = 'num '+cls(ch); }
+    if(r && r.pct!=null && L.diffs) L.diffs.forEach((bR,i)=>{ const e = $('perfDiff'+i); if(!e) return; const diff = r.pct - bR; e.textContent = `התיק ${diff>=0?'עדיף':'מפגר'} ב-${Math.abs(diff).toFixed(2)}%`; e.className = 'd num '+cls(diff); });
   }catch(e){ console.warn('live chart update', e.message); }
 }
 async function renderPerf(S){
@@ -2157,7 +2160,8 @@ async function renderPerf(S){
   const lblLines = perfLive ? [{series:perfLive.series, color:chartTheme().line}] : [];
   cmp.push(`<div>${ui.perfRange==='YTD' ? 'התיק מתחילת השנה' : isAll ? 'התיק מאז הפתיחה' : 'התיק בטווח'}<b id="perfPortRet" class="num ${cls(last.gain)}">${portRet!=null ? fmtPct(portRet) : '—'}</b><span id="perfPortAmt" class="d num ${cls(last.gain)}">${fmtSigned(last.gain,C,0)}</span></div>`);
   { const V0 = before ? vOf(before) : 0, ch = series[series.length-1].V - V0, dd = ndOf(lastP) - (before ? ndOf(before) : 0);
-    cmp.push(`<div>שינוי בשווי<b class="num ${cls(ch)}">${fmtSigned(ch,C,0)}</b><span class="d muted">מתוכו הפקדות נטו <span class="num">${fmtSigned(dd,C,0)}</span></span></div>`); }
+    perfLive.V0 = V0; perfLive.diffs = [];
+    cmp.push(`<div>שינוי בשווי<b id="perfChg" class="num ${cls(ch)}">${fmtSigned(ch,C,0)}</b><span class="d muted">מתוכו הפקדות נטו <span class="num">${fmtSigned(dd,C,0)}</span></span></div>`); }
   // index returns in the display currency (₪/$) from the same base day as the portfolio – see benchSeries
   const bmBase = {date:baseDate, fx: before ? before.fx : pts[0].fx};
   const bRet = {};
@@ -2168,7 +2172,8 @@ async function renderPerf(S){
     const data = bs.data, bR = bs.ret, diff = portRet - bR;
     if(pct){ const s = perfChart.addLineSeries({color, lineWidth:2, priceLineVisible:false, lastValueVisible:false}); s.setData(data); lblLines.push({series:s, color}); legend.push([color, q ? `${q.n} (${b})` : b+(assetOf(b).name?' · '+assetOf(b).name:'')]); }
     bRet[key] = bs.ret;
-    cmp.push(`<div><span class="ltr">${esc(name)}</span><b class="num ${cls(bR)}">${fmtPct(bR)}</b><span class="d num ${cls(diff)}">התיק ${diff>=0?'עדיף':'מפגר'} ב-${Math.abs(diff).toFixed(2)}%</span></div>`);
+    perfLive.diffs.push(bR);
+    cmp.push(`<div><span class="ltr">${esc(name)}</span><b class="num ${cls(bR)}">${fmtPct(bR)}</b><span id="perfDiff${perfLive.diffs.length-1}" class="d num ${cls(diff)}">התיק ${diff>=0?'עדיף':'מפגר'} ב-${Math.abs(diff).toFixed(2)}%</span></div>`);
   });
   bmRetLast = bRet; renderBenchUI();
   perfChart.timeScale().fitContent();
@@ -2905,7 +2910,13 @@ const FX_DIR = [
  ['NZD/USD','NZD=','דולר ניו זילנדי / דולר',['ניו זילנד'],4,'🇳🇿🇺🇸'], ['EUR/GBP','EURGBP=','אירו / לירה שטרלינג',['אירו','לירה'],4,'🇪🇺🇬🇧'],
  ['EUR/JPY','EURJPY=','אירו / ין יפני',['אירו','ין'],2,'🇪🇺🇯🇵'], ['EUR/CHF','EURCHF=','אירו / פרנק שוויצרי',['אירו','פרנק'],4,'🇪🇺🇨🇭']]
  .map(([code,q,n,al,dp,fl,der])=>({code,q,n,al,dp,fl,der}));
+// v97: currency words (Hebrew + English) → ISO code, so 'אירו/שקל', 'euro shekel', 'יורו שקל', 'pound nis' find the pair whatever the separator / wording
+const FX_WORDS = {EUR:['eur','euro','אירו','יורו','אירו'], ILS:['ils','nis','shekel','shekels','שקל','שקלים','שח','ש"ח','ש״ח'], USD:['usd','dollar','דולר','דולרים'], GBP:['gbp','pound','sterling','לירה','פאונד','שטרלינג'], JPY:['jpy','yen','ין','יפני'], CHF:['chf','franc','פרנק','שוויצרי'], AUD:['aud'], CAD:['cad'], CNY:['cny','yuan','יואן'], NZD:['nzd']};
+function fxWordCodes(raw){ const toks = raw.split(/[\s\/\-_.,+]+/).filter(Boolean); if(toks.length<2) return null; const out = new Set();
+  for(const t of toks){ const c = Object.keys(FX_WORDS).find(k=>FX_WORDS[k].includes(t)); if(!c) return null; out.add(c); } return out.size>=2 ? out : null; }
 function fxSearch(q){ const raw = String(q||'').trim().toLowerCase(), k = raw.replace(/[\s\/\-_.]/g,''); if(!k) return [];
+  { const one = Object.keys(FX_WORDS).find(c=>raw.length>=3 && /^[a-z]+$/.test(raw) && FX_WORDS[c].includes(raw)); if(one && !FX_DIR.some(f=>f.code.toLowerCase().replace('/','').includes(raw))) return FX_DIR.filter(f=>f.code.split('/').includes(one)); }
+  { const W = fxWordCodes(raw); if(W){ const hit = FX_DIR.filter(f=>{ const [x,y] = f.code.split('/'); return W.has(x) && W.has(y); }); if(hit.length) return hit; } }
   if(/^(מט"?״?ח|מטבע|מטבעות|fx|forex)$/.test(raw.replace(/\s/g,''))) return FX_DIR;
   return FX_DIR.filter(f=>{ const c = f.code.toLowerCase().replace('/',''); return (k.length>=3 && c.includes(k)) || (/^[a-z]{3}$/.test(k) && c.slice(0,3)===k) || f.n.includes(raw) || f.al.some(a=>a.includes(raw) || raw.includes(a) && raw.length>=a.length && a.length>=3); }); }
 const FX_BY = Object.fromEntries(FX_DIR.map(f=>[f.code, f]));
@@ -3408,7 +3419,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v96</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v97</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
