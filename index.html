@@ -566,6 +566,7 @@ body.kb-on main{padding-bottom:12px!important}
 .top:not(.mini) .tp-pre{display:none}
 .top.mini .tp-pre{margin-right:auto;flex:none}
 .top.mini .tot-wrap:has(.tp-pre:not([hidden])){gap:8px}.top.mini .tot-wrap:has(.tp-pre:not([hidden])) .tot-day{flex:none}
+.isx{display:inline-flex;align-items:baseline}.isx .xl{display:inline-block;font-size:.8rem;font-weight:700}.isx .xl.is-pre::before,.isx .xl.is-after::before{font-size:.8em;padding:0 4px}
 </style>
 </head>
 <body>
@@ -2835,7 +2836,7 @@ let instSheet = null;
 function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p=>p.sym===it.sym);
   return `<h3><span>${it.sec ? logoHtml(it.sym, true) : it.fl ? `<span class="fxfl">${it.fl}</span>` : ''}<span>${esc(it.sec ? it.sym : it.n)}</span></span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="muted" style="margin:-8px 0 8px;font-size:.85rem">${esc(it.sec ? it.n : it.s)}</div>
-    <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b>${it.y ? '' : styleSegHtml('isStyle', chartStyle() || 'line')}</div>
+    <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b><span id="isX" class="isx"></span>${it.y ? '' : styleSegHtml('isStyle', chartStyle() || 'line')}</div>
     ${it.sec ? '<div class="is-trade"><button class="btn btn-primary" data-istx="buy">🛒 קנייה</button><button class="btn btn-light" data-istx="sell">💰 מכירה</button></div>' : ''}
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
     <div class="seg sm ivseg" id="isIv" aria-label="אינטרוול"></div><div class="chart" id="isChart" style="height:280px;margin-top:6px"><div class="chart-msg" id="isMsg">טוען גרף…</div></div>
@@ -2844,7 +2845,7 @@ function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p
     ${held ? `<div class="btn-row" style="margin-top:8px"><button class="btn btn-light" id="isPos">💼 פתיחת הפוזיציה בתיק</button></div>` : ''}
     ${it.stock ? '<div class="note">מניות ותעודות סל בארה״ב: מסחר רגיל בלבד (09:30–16:00 ניו יורק).</div>' : ''}`; }
 function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[instKey(it, S.range, S.iv)], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
-  const ch = chgInst(it, q ? q.price : null, base); $('isV').textContent = fmtInst(it, q ? q.price : null); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+'';
+  const ch = chgInst(it, q ? q.price : null, base); $('isV').textContent = fmtInst(it, q ? q.price : null); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+''; { const e = it.sec && q && q.ext, x = $('isX'); if(x) x.innerHTML = e && S.range==='1D' ? extLineHtml(e) : ''; }
   const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [['סגירה קודמת', fmtInst(it, q && q.prev)], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
   if(S.series && S.bar && q && q.price!=null){ const b = S.bar; b.close = q.price; b.high = Math.max(b.high, q.price); b.low = Math.min(b.low, q.price); try{ S.series.update(Object.assign({}, b)); }catch(e){} }
   else if(S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
@@ -2912,7 +2913,7 @@ function fxInst(f){ return {k:'fx:'+f.code, fx:true, type:'fx', sym:f.code, n:f.
 function srchInst(m){ return secInst({sym:m.sym, name:m.name||'', type:m.type||'stock', currency:m.currency}); }
 function srchRowHtml(m, i){ const it = srchInst(m), q = iq(it), pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   return `<div class="wr srow" role="button" tabindex="0" data-si="${i}">${logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span>${m.ex ? `<span class="sx">${esc(m.ex)}</span>` : ''}</div><div class="pname">${esc(m.name||(q && q.name)||'')}${m.type && TYPE_LABELS[m.type] && m.type!=='stock' ? ` · ${TYPE_LABELS[m.type]}` : ''}</div></div>`+
-    `<div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : ''}</b><span class="wl-p v num">${q ? fmtPrice(q.price, q.cur||it.cur) : ''}</span></div></div>`; }
+    `<div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : ''}</b><span class="wl-p v num">${q ? fmtPrice(q.price, q.cur||it.cur) : ''}</span>${extLineHtml(q && q.ext)}</div></div>`; }
 function drawSrch(){ const q = $('srchQ').value.trim(), el = $('srchRes'), R = srchRecent(); $('srchQx').hidden = !$('srchQ').value;
   if(!q){ srchItems = R; el.innerHTML = R.length ? `<div class="slbl">חיפושים אחרונים <button class="lnk" id="srchClr">ניקוי</button></div><div class="srows">${R.map(srchRowHtml).join('')}</div>` : '<div class="news-empty">הקלידו סימול או שם – לחיצה על תוצאה פותחת את הגרף.</div>'; return; }
   const FXH = srchFx = fxSearch(q), fxRow = (f, i)=>{ const it = fxInst(f), x = iq(it), pct = x && x.prev ? (x.price/x.prev-1)*100 : null;
@@ -3407,7 +3408,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v95</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v96</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
