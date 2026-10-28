@@ -5396,7 +5396,15 @@
     "מועד": "after",
     "צפי_EPS": "0.61",
     "צפי_הכנסות": "552.97M",
-    "הערה": ""
+    "הערה": "מתואם 0.49; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.45",
+    "הכנסות_בפועל": "511.9M",
+    "בסיס_בפועל_EPS": "GAAP (בסיסי)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/28/3390820/0/en/eldorado-gold-reports-q3-2026-financial-and-operational-results-and-updates-2026-guidance-skouries-and-mcilvenna-bay-advancing-toward-commercial-production.html",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Encompass Health Corporation",
@@ -6827,7 +6835,15 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": ""
+    "הערה": "פורסם 27.10; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "13.50",
+    "הכנסות_בפועל": "",
+    "בסיס_בפועל_EPS": "GAAP (בסיסי ומדולל)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.businesswire.com/news/home/20261027176633/en/NewMarket-Corporation-Reports-Third-Quarter-and-First-Nine-Months-2026-Results",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "NewtekOne, Inc.",
@@ -6897,7 +6913,15 @@
     "מועד": "after",
     "צפי_EPS": "0.02",
     "צפי_הכנסות": "118.11M",
-    "הערה": ""
+    "הערה": "מתואם 0.07 (מדולל); הכנסות = Net sales; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "-0.13",
+    "הכנסות_בפועל": "131.1M",
+    "בסיס_בפועל_EPS": "GAAP (בסיסי ומדולל)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/28/3390774/0/en/nn-inc-reports-third-quarter-2026-results.html",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "ServiceNow, Inc.",
@@ -7832,7 +7856,15 @@
     "תאריך": "2026-10-28",
     "צפי_EPS": "0.81",
     "צפי_הכנסות": "255.5M",
-    "הערה": ""
+    "הערה": "הכנסות = Total revenues; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.88",
+    "הכנסות_בפועל": "257.9M",
+    "בסיס_בפועל_EPS": "GAAP (מדולל)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/28/3390789/10357/en/townebank-reports-third-quarter-2026-earnings.html",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Ticketplus Ltd.",
@@ -7977,7 +8009,15 @@
     "מועד": "after",
     "צפי_EPS": "0.98",
     "צפי_הכנסות": "90.55M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.78",
+    "הכנסות_בפועל": "",
+    "בסיס_בפועל_EPS": "GAAP (מדולל)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/28/3390770/8833/en/univest-financial-corporation-reports-third-quarter-results.html",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "V.F. Corporation",
