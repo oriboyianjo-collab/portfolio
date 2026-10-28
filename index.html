@@ -567,6 +567,44 @@ body.kb-on main{padding-bottom:12px!important}
 .top.mini .tp-pre{margin-right:auto;flex:none}
 .top.mini .tot-wrap:has(.tp-pre:not([hidden])){gap:8px}.top.mini .tot-wrap:has(.tp-pre:not([hidden])) .tot-day{flex:none}
 .isx{display:inline-flex;align-items:baseline}.isx .xl{display:inline-block;font-size:.8rem;font-weight:700}.isx .xl.is-pre::before,.isx .xl.is-after::before{font-size:.8em;padding:0 4px}
+/* v98: smaller stock rows (portfolio + watchlist); expanded header: smaller value/change + the cash line (the separate cash card is hidden); collapsed header untouched */
+.pcard .pgrid .psym,.wr .psym{font-size:.95rem;line-height:1.15}
+.pcard .pgrid .pname,.wr .pname{font-size:.72rem}
+.pgrid>.pc-m,.wgrid>.pc-m{font-size:.62rem;line-height:1.15}
+.pcard .pc-d>b:first-child,.wr .pc-d>b:first-child{font-size:.8rem;padding:2px 4px;border-radius:6px}.pcard .pc-d>b.is-pre:first-child,.wr .pc-d>b.is-pre:first-child,.pcard .pc-d>b.is-after:first-child{font-size:.76rem}.pcard .pc-d,.wr .pc-d{gap:1px}
+.pcard .pc-d [data-f="hp"],.wr .pc-d .wl-p,.wr .pc-d .v{font-size:.7rem;margin-top:0;line-height:1.2}
+.pcard .pc-d .xl,.wr .pc-d .xl{font-size:.62rem}
+.pc-v,.pc-v .v{font-size:.8rem}.pc-v .pw,.pc-w .pw{font-size:.64rem}
+.pcard .pc-h.pgrid{padding-top:8px;padding-bottom:8px}.wr{padding-top:8px;padding-bottom:8px}
+.pgrid>.logo,.wgrid>.logo,.pcard .logo,.wr .logo{width:32px;height:32px;font-size:.58rem}
+/* expanded header only: smaller value + change (collapsed header untouched) */
+.top:not(.mini) .tot-val{font-size:1.7rem}
+.top:not(.mini) .tot-day .tp-v{font-size:1.05rem}.top:not(.mini) .tot-day .tp-a{font-size:.9rem}.top:not(.mini) .tot-day .tp-l{font-size:.72rem}
+.top:not(.mini) .tot-row{margin-top:6px}
+/* cash inside the header (expanded only) */
+.hcash[hidden]{display:none}.hcash{display:flex;align-items:baseline;gap:0 9px;flex-wrap:wrap;margin-top:6px;padding-top:5px;padding-inline-end:38px;border-top:1px solid rgba(255,255,255,.1);font-size:.72rem;line-height:1.35}.hcash>*{white-space:nowrap}
+.hcash .hc-l{opacity:.6;font-weight:600}.hcash .hc-i{display:inline-flex;gap:5px;align-items:baseline}.hcash b{font-weight:700}.hcash .hc-t{opacity:.8}
+.top.mini .hcash{display:none}
+#cashCard{display:none!important}
+body.kb-on header.top .hcash{display:none!important}
+/* v98: stock rows mirrored (portfolio + watchlist): logo + ticker/name block on the LEFT edge, % pill / price / pre block on the RIGHT edge. Only the side order of the columns changes – the grid keeps its areas, the cells keep their own (RTL) text direction */
+.pgrid,.pc-h.pgrid,.pos-cols.pgrid,.wgrid{direction:ltr}
+.pgrid>:not(.pc-m),.wgrid>:not(.pc-m){direction:rtl}
+.pgrid>.pc-n,.wgrid>.pc-n,.pos-cols>.pc-n{direction:ltr;text-align:left}
+.pc-n .pname,.pos-cols>.pc-n{text-align:left}
+.pgrid:not(.pos-cols)>.pc-v,.pgrid:not(.pos-cols)>.pc-m{text-align:left}
+/* v98: portfolio rows only – market cap and position value swap places; each takes the styling of the spot it moves into */
+.pgrid:not(.pos-cols)>.pc-m{grid-area:cp;grid-row:auto;align-self:start;justify-self:start;text-align:left;display:block;font-size:.8rem;font-weight:600;opacity:.9;white-space:nowrap;line-height:1.25;color:var(--text)}
+.pgrid:not(.pos-cols)>.pc-v{grid-area:m;align-self:center;justify-self:center;text-align:center;font-size:.62rem;font-weight:600;opacity:.85;white-space:nowrap;line-height:1.15;color:inherit}
+.pgrid:not(.pos-cols)>.pc-v .v{font-size:inherit}
+.pos-cols>.pc-m{white-space:normal;line-height:1.15;text-align:center;direction:rtl;overflow:visible}
+@media (max-width:370px){.pgrid:not(.pos-cols)>.pc-m{font-size:.76rem}.pgrid:not(.pos-cols)>.pc-v{font-size:.62rem}}
+/* v98: the position value (now in the narrow middle column) must always show in full – the track is sized for $1,234,567 / ₪4,500,000; the name / market cap are the ones that truncate */
+.pgrid,.pc-h.pgrid{grid-template-columns:40px minmax(min-content,1fr) 50px 64px 84px}
+@media (max-width:370px){.pgrid,.pc-h.pgrid{grid-template-columns:36px minmax(min-content,1fr) 42px 60px 76px}}
+.pgrid:not(.pos-cols)>.pc-v{overflow:visible;text-overflow:clip;min-width:max-content}
+.pgrid:not(.pos-cols)>.pc-v>*{white-space:nowrap}
+html.ext-sess .pcard .pc-d .xl,html.ext-sess .wr .pc-d .xl{min-height:13px}
 </style>
 </head>
 <body>
@@ -577,6 +615,7 @@ body.kb-on main{padding-bottom:12px!important}
     <div class="tot-wrap"><div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div></div>
     <div class="tot-day"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-a num" id="hDay">—</span></div><span class="tp-pre" id="hDayPre" hidden></span></div>
     <div class="tot-pre" id="hPre" hidden></div>
+    <div class="hcash" id="hCash" hidden></div>
     <button class="hmin" id="hMin" aria-expanded="true" aria-label="כיווץ שורת השווי">⌃</button><div class="upd"><span id="hUpd">טרם עודכנו מחירים</span><span id="hLive"></span></div>
   </div></div>
 </header>
@@ -587,7 +626,7 @@ body.kb-on main{padding-bottom:12px!important}
       <div class="heat-map" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי"></div></div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight" title="% מהתיק">% מהתיק</button><button data-sort="day" title="שינוי יומי %">יומי %</button><button data-sort="unreal" title="שינוי מעלות %">מעלות %</button><button data-sort="cap" title="שווי שוק">שווי שוק</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">היום</span><span class="pcol pc-w">% מהתיק</span><span class="pcol pc-m">שווי שוק</span><span class="pcol pc-d" id="posColD"><span>יומי</span><small>מחיר</small></span></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight" title="% מהתיק">% מהתיק</button><button data-sort="day" title="שינוי יומי %">יומי %</button><button data-sort="unreal" title="שינוי מעלות %">מעלות %</button><button data-sort="cap" title="שווי שוק">שווי שוק</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">היום</span><span class="pcol pc-w">% מהתיק</span><span class="pcol pc-m">שווי פוזיציה</span><span class="pcol pc-d" id="posColD"><span>יומי</span><small>מחיר</small></span></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
@@ -1584,6 +1623,11 @@ function renderHeader(S){ extSessMark();
   { const fx = fxNow(), cv = v=>v==null ? null : (C==='USD' && fx>0 ? v/fx : v), cost = S.mvILS - S.unrealILS;
     const T = [['עלות', has ? fmtMoney(cv(cost), C, 0) : '—', ''], ['לא ממומש', has ? fmtSigned(cv(S.unrealILS), C, 0) : '—', cls(S.unrealILS)], ['ממומש', has ? fmtSigned(cv(S.realizedILS), C, 0) : '—', cls(S.realizedILS)]];
     const html = T.map(([l,v,c])=>`<div class="hst"><span>${l}</span><b class="num ${c}">${v}</b></div>`).join(''); const hs = $('hStats'); if(hs.innerHTML !== html) morph(hs, html); }
+  // v98: the cash balances live in the expanded header (one slim line; amounts masked by the eye through fmtMoney; hidden when collapsed by CSS)
+  { const hc = $('hCash'), c = S.L.cash, fx2 = fxNow(), tot = C==='USD' ? (fx2>0 ? c.USD + c.ILS/fx2 : null) : c.ILS + c.USD*(fx2||0);
+    const show = has, neg = c.ILS < -0.005 || c.USD < -0.005;
+    const html = show ? `<span class="hc-l">מזומן${neg ? ' ⚠️' : ''}</span><span class="hc-i"><b class="num ${c.ILS < -0.005 ? 'neg' : ''}">${fmtMoney(c.ILS,'ILS',0)}</b></span><span class="hc-i"><b class="num ${c.USD < -0.005 ? 'neg' : ''}">${fmtMoney(c.USD,'USD',0)}</b></span>${tot!=null ? `<span class="hc-t">(סה״כ <b class="num">${fmtMoney(tot,C,0)}</b>)</span>` : ''}` : '';
+    if(hc.hidden !== !show) hc.hidden = !show; if(hc.innerHTML !== html) hc.innerHTML = html; }
   renderEye();
   $('hUpd').textContent = state.lastRefresh ? `מחירים עודכנו ${new Date(state.lastRefresh).toLocaleTimeString('he-IL')}${state.refreshErrors?` · ${state.refreshErrors} לא עודכנו`:''}` : 'טרם עודכנו מחירים';
 }
@@ -3419,7 +3463,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v97</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v98</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
