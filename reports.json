@@ -1775,8 +1775,15 @@
     "תאריך": "2026-10-28",
     "צפי_EPS": "-0.60",
     "צפי_הכנסות": "581.62k EUR",
-    "הערה": "תוצאות Q3 ווובקאסט 28.10.2026 17:00 ET (מאומת ב-PR 27.10)",
-    "קישור": "https://www.globenewswire.com/news-release/2026/10/27/3389661/0/en/dbv-technologies-to-report-third-quarter-2026-financial-results-and-business-update-on-october-28-2026.html"
+    "הערה": "הדוח בדולר; צפי מסומן EUR, בסיס הצפי לא ידוע",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1613780/000119312526436411/d137106dex991.htm",
+    "בפועל_EPS": "-0.14",
+    "הכנסות_בפועל": "",
+    "בסיס_בפועל_EPS": "GAAP (הפסד למניה)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "DAQO New Energy Corp.",
