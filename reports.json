@@ -4269,7 +4269,16 @@
     "מועד": "before",
     "צפי_EPS": "4.45",
     "צפי_הכנסות": "2.16B",
-    "הערה": ""
+    "הערה": "רווח נקי מתואם שיא 1,009M$; GAAP 6.17; תחזית 2026 ל-EPS מתואם הועלתה לכ-20.70$ (לפני רווחי מכירה ברבעון 4); בסיס הצפי לא ידוע",
+    "קישור": "https://www.prnewswire.com/news-releases/aercap-holdings-nv-reports-another-record-quarter-for-the-third-quarter-2026-and-raises-2026-guidance-302921984.html",
+    "הכנסות_בפועל": "2.415B",
+    "מטבע_הכנסות": "USD",
+    "בסיס_בפועל_הכנסות": "GAAP (הכנסות והכנסות אחרות)",
+    "השוואה_הכנסות": "כן",
+    "בפועל_EPS": "6.56",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Alamos Gold Inc.",
@@ -4871,7 +4880,15 @@
     "מועד": "before",
     "צפי_EPS": "0.74",
     "צפי_הכנסות": "2.21B EUR",
-    "הערה": ""
+    "הערה": "רווח נקי 119M$ (+35%); EBITDA מתואם שיא רבעוני 276M$ (+17%, כולל פער מחיר מתכת לא-מזומן של 4M$-); משלוחים 368 אלף טון (1%-); תחזית 2026 הועלתה: EBITDA מתואם 1.03-1.06 מיליארד $; צפי ההכנסות מתוייג EUR מול דיווח USD - ללא השוואת הכנסות; בסיס צפי EPS לא ידוע",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/28/3389941/0/en/constellium-reports-strong-third-quarter-2026-results-raises-full-year-2026-guidance.html",
+    "הכנסות_בפועל": "2.639B",
+    "מטבע_הכנסות": "USD",
+    "בסיס_בפועל_הכנסות": "GAAP",
+    "בפועל_EPS": "0.84",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Carvana Co.",
@@ -6707,7 +6724,16 @@
     "מועד": "before",
     "צפי_EPS": "1.83",
     "צפי_הכנסות": "249M",
-    "הערה": ""
+    "הערה": "רווח נקי מתואם 127.4M$; GAAP (IFRS) 4.60; דיבידנד רבעוני הועלה ל-0.75$; TCE ליום 37,508$ מול 26,231$; בסיס הצפי לא ידוע",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/28/3389990/0/en/scorpio-tankers-inc-announces-financial-results-for-the-third-quarter-of-2026-and-an-increase-to-its-quarterly-dividend.html",
+    "הכנסות_בפועל": "249.1M",
+    "מטבע_הכנסות": "USD",
+    "בסיס_בפועל_הכנסות": "TCE",
+    "השוואה_הכנסות": "כן",
+    "בפועל_EPS": "2.49",
+    "בסיס_בפועל_EPS": "מתואם (לא-IFRS)",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Sterling Infrastructure, Inc.",
@@ -6890,7 +6916,12 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "106.44M",
-    "הערה": ""
+    "הערה": "FFO כמתואם +6%; NOI מאותם נכסים +4.5%; מרווחי שכירות מזומן על שכירויות חדשות +27%; אמצע תחזית FFO השנתית הועלה ב-0.01; הכנסות: לא אומתו בפרסום; הצפי ככל הנראה על בסיס FFO (קרן REIT)",
+    "קישור": "https://www.businesswire.com/news/home/20261028692216/en/Urban-Edge-Properties-Reports-Third-Quarter-2026-Results",
+    "בפועל_EPS": "0.38",
+    "בסיס_בפועל_EPS": "FFO כמתואם",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "UFP Industries, Inc.",
@@ -6911,7 +6942,15 @@
     "מועד": "before",
     "צפי_EPS": "-0.02",
     "צפי_הכנסות": "1.29B",
-    "הערה": ""
+    "הערה": "מעבר לרווח מתואם 0.18$ מול הפסד צפוי 0.02- (ללא % בהיפוך סימן); GAAP הפסד נקי 104M$-; RASM 11.87 סנט +30%; גורם תפוסה 79%; בסיס הצפי לא ידוע",
+    "קישור": "https://www.prnewswire.com/news-releases/frontier-airlines-delivers-record-third-quarter-2026-revenue-of-1-4-billion-up-53-percent-year-over-year-and-adjusted-eps-significantly-above-guidance-overcoming-high-fuel-prices-302921698.html",
+    "הכנסות_בפועל": "1.355B",
+    "מטבע_הכנסות": "USD",
+    "בסיס_בפועל_הכנסות": "GAAP",
+    "השוואה_הכנסות": "כן",
+    "בפועל_EPS": "0.18",
+    "בסיס_בפועל_EPS": "מתואם",
+    "מטבע_EPS": "USD"
   },
   {
     "חברה": "United Microelectronics Corporation",
