@@ -605,6 +605,41 @@ body.kb-on header.top .hcash{display:none!important}
 .pgrid:not(.pos-cols)>.pc-v{overflow:visible;text-overflow:clip;min-width:max-content}
 .pgrid:not(.pos-cols)>.pc-v>*{white-space:nowrap}
 html.ext-sess .pcard .pc-d .xl,html.ext-sess .wr .pc-d .xl{min-height:13px}
+/* v99: stabilised sparkline column + tidy pill/price block + tabular portfolio columns (header and rows share one set of tracks) */
+/* 1. sparklines: one fixed box (64×28), centred in its own column, uniform stroke, no stretching of line weight */
+.wgrid:not(.egrid) .pc-s{display:flex;align-items:center;justify-content:center;align-self:center;height:28px}
+.wgrid:not(.egrid) .pc-s .spark,.pc-s .spark{width:64px;height:28px;display:block;overflow:visible}
+.wgrid:not(.egrid) .pc-s .spark path,.idx .spark path{stroke-width:1.6;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision}
+.wgrid:not(.egrid) .pc-s .spark line,.idx .spark line{vector-effect:non-scaling-stroke;stroke-width:1;opacity:.55}
+.idx .spark{width:56px;height:30px;align-self:center;justify-self:end;overflow:visible}
+@media (max-width:370px){.idx .spark{width:48px}}
+/* watchlist: the sparkline sits at the horizontal CENTRE of the row (same x, y, size in every row) between the name block and the pill block;
+   the name block is capped so it ends before the sparkline (it truncates, the sparkline never moves) */
+.wr.wgrid:not(.egrid){position:relative;grid-template-columns:38px calc(50% - 86px) 1fr 76px;grid-template-areas:"lg nm . d" "lg cp . d";column-gap:8px}
+@media (min-width:371px){.wr.wgrid:not(.egrid){grid-template-columns:40px calc(50% - 90px) 1fr 84px}}
+.wr.wgrid:not(.egrid)>.pc-s{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);grid-area:auto;width:64px;height:28px;margin:0}
+/* 2. pill + price + pre line: one fixed-width block, one right edge, tabular numbers */
+.pgrid>.pc-d,.wgrid:not(.egrid)>.pc-d{width:100%;justify-self:stretch;align-items:stretch;gap:2px}
+.pcard .pc-d>b:first-child,.wgrid:not(.egrid) .pc-d>b:first-child{width:100%;text-align:center;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.pcard .pc-d [data-f="hp"],.wgrid:not(.egrid) .pc-d .wl-p{display:block;width:100%;text-align:center;direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;white-space:nowrap;padding-inline:1px}
+.pcard .pc-d .xl,.wgrid:not(.egrid) .pc-d .xl{width:100%;text-align:center;direction:ltr;font-variant-numeric:tabular-nums;align-self:stretch}
+/* 3. portfolio columns: % of portfolio + position value = right-aligned tabular numbers under right-aligned headers */
+.pgrid>.pc-w,.pos-cols>.pc-w{justify-self:stretch;text-align:right;direction:ltr;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.pos-cols>.pc-w{direction:rtl}
+.pgrid:not(.pos-cols)>.pc-v{justify-self:stretch;text-align:right;direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;min-width:0}
+.pos-cols>.pc-m{text-align:right;justify-self:stretch}
+/* uniform row rhythm */
+.pcard .pc-h.pgrid,.wr.wgrid:not(.egrid){min-height:62px;box-sizing:border-box}
+/* 4. portfolio header + rows share ONE set of column tracks (deterministic name track, so min-content of a long name can't push the columns);
+   header labels never wrap, and sit over their column with the same alignment as the cells below */
+.pgrid,.pc-h.pgrid,.pos-cols.pgrid{grid-template-columns:36px minmax(0,1fr) 46px 62px 76px;column-gap:6px;padding-inline:2px}
+@media (min-width:371px){.pgrid,.pc-h.pgrid,.pos-cols.pgrid{grid-template-columns:40px minmax(0,1fr) 52px 70px 84px;column-gap:7px}}
+.pos-cols>.pcol,.pos-cols>.pc-n{white-space:nowrap;font-size:.64rem;line-height:1.2;overflow:visible;min-width:0}
+.pos-cols>.pc-n{text-align:left;direction:ltr;justify-self:stretch}
+.pos-cols>.pc-w{text-align:right;justify-self:stretch;white-space:nowrap}
+.pos-cols>.pc-m{text-align:right;justify-self:stretch;white-space:nowrap;font-size:.64rem}
+.pos-cols>.pc-d{align-items:center;text-align:center;justify-self:stretch}
+.pos-cols>.pc-d small{font-size:.64rem}
 </style>
 </head>
 <body>
@@ -3463,7 +3498,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v98</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v99</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
