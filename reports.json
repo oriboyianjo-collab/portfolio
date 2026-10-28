@@ -4535,7 +4535,15 @@
     "מועד": "after",
     "צפי_EPS": "0.24",
     "צפי_הכנסות": "547.22M",
-    "הערה": ""
+    "הערה": "מתואם (Adjusted Net Income per share) 0.37; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.20",
+    "הכנסות_בפועל": "564M",
+    "בסיס_בפועל_EPS": "GAAP (מדולל)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.prnewswire.com/news-releases/arxis-reports-third-quarter-2026-results-raises-full-year-2026-guidance-and-introduces-2027-guidance-302922606.html",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Algoma Steel Group Inc.",
@@ -4544,7 +4552,15 @@
     "מועד": "after",
     "צפי_EPS": "-0.56",
     "צפי_הכנסות": "229.47M CAD",
-    "הערה": ""
+    "הערה": "הסכומים בדולר קנדי; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "-1.18",
+    "הכנסות_בפועל": "249.4M CAD",
+    "בסיס_בפועל_EPS": "GAAP (בסיסי ומדולל)",
+    "מטבע_EPS": "CAD",
+    "מטבע_הכנסות": "CAD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/28/3390834/0/en/algoma-steel-group-inc-reports-financial-results-for-the-three-months-ended-september-30-2026.html",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Aurora Innovation, Inc.",
@@ -6154,7 +6170,15 @@
     "מועד": "after",
     "צפי_EPS": "0.47",
     "צפי_הכנסות": "272.67M",
-    "הערה": ""
+    "הערה": "הכנסות = Total net revenue; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.50",
+    "הכנסות_בפועל": "263.2M",
+    "בסיס_בפועל_EPS": "GAAP (מדולל)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.prnewswire.com/news-releases/happen-inc-reports-third-quarter-2026-results-302922589.html",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Hayward Holdings, Inc.",
@@ -7503,7 +7527,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "1.31B",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.07",
+    "הכנסות_בפועל": "1.34B",
+    "בסיס_בפועל_EPS": "GAAP (מדולל)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.accessnewswire.com/newsroom/en/oil-gas-and-energy/patterson-uti-energy-reports-financial-results-for-the-quarter-ended-september-3-1243377",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "ProPetro Holding Corp.",
@@ -7778,7 +7810,15 @@
     "מועד": "after",
     "צפי_EPS": "3.14",
     "צפי_הכנסות": "529.1M",
-    "הערה": ""
+    "הערה": "Non-GAAP 4.35 ל־ADS; הדוח מה־29.10 (שעון טאיוואן); בסיס הצפי לא ידוע",
+    "בפועל_EPS": "1.91",
+    "הכנסות_בפועל": "560.2M",
+    "בסיס_בפועל_EPS": "GAAP (ל־ADS מדולל)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/28/3390847/0/en/silicon-motion-announces-results-for-the-quarterly-period-ended-september-30-2026.html",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "SiteOne Landscape Supply, Inc.",
