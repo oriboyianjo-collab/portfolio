@@ -4287,7 +4287,15 @@
     "מועד": "after",
     "צפי_EPS": "0.43",
     "צפי_הכנסות": "529.27M",
-    "הערה": ""
+    "הערה": "מתואם 0.44; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.40",
+    "הכנסות_בפועל": "510.4M",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/28/3390814/0/en/alamos-gold-reports-third-quarter-2026-results.html",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Albany International Corporation",
@@ -4357,7 +4365,15 @@
       "S&P 400"
     ],
     "צפי_הכנסות": "340.62M",
-    "הערה": ""
+    "הערה": "מתואם 0.28; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.82",
+    "הכנסות_בפועל": "327M",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.prnewswire.com/news-releases/antero-midstream-announces-third-quarter-2026-financial-and-operating-results-302922627.html",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Amarin Corporation plc",
