@@ -3398,7 +3398,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v91</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v92</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -4200,7 +4200,9 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     // v81: comparability per metric. Explicit השוואה_X wins (true / false); otherwise both bases must be known and equal and the
     // currencies equal (or both absent). Anything else → the numbers are shown, the surprise % is not, with a short reason.
     const BN = b=>{ const t = String(b||'').trim().toLowerCase(); return !t ? '' : /^(מתואם|מותאם|adj|adjusted|non[- ]?gaap|נון[- ]?גאפ)/.test(t) ? 'adj' : /^(gaap|חשבונאי|דיווחי|ifrs|reported)/.test(t) ? 'gaap' : t; };
-    const BL = b=>({adj:'מתואם', gaap:'GAAP'})[BN(b)] || String(b||'').trim();
+    // v92: the label is the metric's OWN basis field, verbatim (IFRS, GAAP, מתואם, "GAAP (נגזר)" …). BN stays a classifier for comparability ONLY – it used to
+    // double as the label source, which showed 'GAAP' for IFRS (and cut qualifiers like "(נגזר)" / "(ל-ADS)").
+    const BL = b=>String(b||'').trim();
     const YES = v=>/^(true|yes|1|כן|אומת)$/i.test(String(v).trim()), NO = v=>/^(false|no|0|לא)$/i.test(String(v).trim());
     const cmpOf = (estB, actB, cur, estCur, actCur, flag, why)=>{ const ec0 = (estCur||cur||'').toUpperCase(), ac0 = (actCur||cur||'').toUpperCase();
       if(YES(flag)) return {ok:true}; if(NO(flag)) return {ok:false, why: why || 'לא ניתן להשוואה'};
