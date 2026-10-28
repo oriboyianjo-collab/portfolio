@@ -4939,7 +4939,15 @@
       "S&P 500"
     ],
     "צפי_הכנסות": "7.67B",
-    "הערה": ""
+    "הערה": "GAAP מדולל למניית Class A (בסיסי 0.40); בסיס הצפי לא ידוע. רווח נקי 483M, 217,385 מכוניות קמעונאיות",
+    "בפועל_EPS": "0.39",
+    "הכנסות_בפועל": "8.040B",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1690820/000169082026000066/ex99_1q32026.htm",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Community Health Systems, Inc.",
@@ -7025,7 +7033,15 @@
       "Nasdaq 100"
     ],
     "צפי_הכנסות": "23.14B",
-    "הערה": ""
+    "הערה": "GAAP מדולל; בסיס הצפי לא ידוע. רווח נקי 3.455B",
+    "בפועל_EPS": "3.22",
+    "הכנסות_בפועל": "23.584B",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.businesswire.com/news/home/20261027455650/en/T-Mobile-Delivers-Strong-Account-and-ARPA-Growth-Translating-into-Industry-Leading-Service-Revenue-Profitability-and-EPS-Growth",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Towne Bank",
