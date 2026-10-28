@@ -7859,7 +7859,15 @@
     "מועד": "after",
     "צפי_EPS": "0.13",
     "צפי_הכנסות": "271.6M",
-    "הערה": ""
+    "הערה": "מתואם 0.63; בסיס הצפי לא ידוע",
+    "בפועל_EPS": "0.10",
+    "הכנסות_בפועל": "276.4M",
+    "בסיס_בפועל_EPS": "GAAP (מדולל)",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/28/3390740/0/en/tenable-announces-third-quarter-2026-financial-results.html",
+    "השוואה_הכנסות": "כן",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Terex Corporation",
