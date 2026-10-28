@@ -562,8 +562,10 @@ body.kb-on main{padding-bottom:12px!important}
 .cfil.dcards{gap:6px;margin:0 0 8px;align-items:stretch}.cfil.dcards .dcard{flex:0 0 auto;width:auto;height:auto;min-width:64px;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);border-radius:14px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;gap:1px;font:inherit;line-height:1.15}
 .dcard .dw{font-size:.66rem;font-weight:600}.dcard b{font-size:.98rem;color:var(--text)}.cfil.dcards .dcard small{font-size:.6rem;opacity:.75}.cfil.dcards .dcard.on{background:var(--primary);border-color:var(--primary);color:#fff}.cfil.dcards .dcard.on b,.cfil.dcards .dcard.on small{color:#fff;opacity:1}
 .cnone{margin:2px 2px 10px;padding:10px 12px;border:1px dashed var(--border);border-radius:12px;color:var(--muted);font-size:.8rem;text-align:center}
-.tp-pre{display:inline-flex;align-items:baseline;gap:4px;font-size:.78rem;white-space:nowrap}.tp-pre[hidden]{display:none}.tp-pre .pre-tag{font-size:.64rem;font-weight:800;padding:0 5px;border-radius:5px;background:rgba(255,255,255,.2);direction:ltr}.tp-pre b{font-weight:800;direction:ltr;unicode-bidi:isolate}
+.tp-pre{display:inline-flex;align-items:baseline;gap:3px;font-size:.72rem;white-space:nowrap;direction:ltr}.tp-pre[hidden]{display:none}.tp-pre .pre-tag{font-size:.58rem;font-weight:800;padding:0 4px;border-radius:5px;background:rgba(255,255,255,.2);direction:ltr}.tp-pre b{font-weight:800;direction:ltr;unicode-bidi:isolate}
 .top:not(.mini) .tp-pre{display:none}
+.top.mini .tp-pre{margin-right:auto;flex:none}
+.top.mini .tot-wrap:has(.tp-pre:not([hidden])){gap:8px}.top.mini .tot-wrap:has(.tp-pre:not([hidden])) .tot-day{flex:none}
 </style>
 </head>
 <body>
@@ -572,7 +574,7 @@ body.kb-on main{padding-bottom:12px!important}
     <div class="top-row"><h1 class="brand"><img src="logo.svg?v=33" alt="" width="40" height="40"><span>Savage Tracker</span></h1></div>
     <div class="hctl" role="toolbar" aria-label="פעולות"><button class="hb cur-btn" id="btnCur" aria-pressed="false" aria-label="מטבע התצוגה" title="הצגת התיק בשקלים או בדולרים"><span class="cs" data-c="ILS">₪</span><span class="cs" data-c="USD">$</span></button><i class="hdiv"></i><button class="hb" id="btnEye" aria-pressed="false" aria-label="הסתרת סכומים" title="הסתרת סכומים"><svg class="ic ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><svg class="ic ic-eyeoff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.9 4.24A9.1 9.1 0 0 1 12 4c6.5 0 10 8 10 8a17.6 17.6 0 0 1-2.16 3.19"/><path d="M6.61 6.61A17.4 17.4 0 0 0 2 12s3.5 8 10 8a9.7 9.7 0 0 0 5.39-1.61"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="2" y1="2" x2="22" y2="22"/></svg></button><i class="hdiv"></i><button class="hb" id="btnTheme" aria-label="מצב כהה" title="מצב כהה / בהיר"><svg class="ic ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2M12 20.5v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1.5 12h2M20.5 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></button><i class="hdiv"></i><button class="hb" id="btnSet" aria-label="הגדרות" title="הגדרות" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></div>
     <div class="tot-wrap"><div class="tot-row"><div class="tot-val num" id="hTotal">₪0</div></div>
-    <div class="tot-day"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-pre" id="hDayPre" hidden></span><span class="tp-a num" id="hDay">—</span></div></div>
+    <div class="tot-day"><span class="tp-l" id="hDayLbl">שינוי יומי</span><b class="tp-v num" id="hDayPct">—</b><span class="tp-a num" id="hDay">—</span></div><span class="tp-pre" id="hDayPre" hidden></span></div>
     <div class="tot-pre" id="hPre" hidden></div>
     <button class="hmin" id="hMin" aria-expanded="true" aria-label="כיווץ שורת השווי">⌃</button><div class="upd"><span id="hUpd">טרם עודכנו מחירים</span><span id="hLive"></span></div>
   </div></div>
@@ -1570,9 +1572,9 @@ function renderHeader(S){ extSessMark();
   // without a pre quote removes the line and the sticky header shrinks, which shifts the whole page by one line
   const hp = $('hPre'), P = S.pre, preSlot = !!P || (!!extSess() && S.positions.some(p=>!p.manual && Math.abs(p.qty)>1e-9 && marketOf(p.sym)==='us'));
   if(hp.hidden !== !preSlot) hp.hidden = !preSlot;
-  // v94: with the eye on the header shows only the daily %, so the pre / after-hours % of the portfolio also sits next to it as a small tag (only the %, never an amount).
-  // Collapsed header: this tag (the pre line below is hidden there). Expanded header: the pre line below already shows it, so the tag stays off.
-  { const el = $('hDayPre'), pcT = P ? (C==='USD' ? P.pctUSD : P.pct) : null, on = hidden() && P && pcT!=null;
+  // v94/v95: collapsed header – the portfolio's pre / after-hours % as a small tag at the far (left) end of the value row, with the eye on AND off (only the %, never an amount).
+  // Expanded header: the pre line below already shows it, so the tag stays off there (CSS).
+  { const el = $('hDayPre'), pcT = P ? (C==='USD' ? P.pctUSD : P.pct) : null, on = !!P && pcT!=null;
     const h2 = on ? `<span class="pre-tag">${P.kind}</span><b class="num ${cls(P ? (C==='USD' ? P.usd : P.ils) : 0)}">${fmtPct(pcT)}</b>` : '';
     if(el.hidden !== !on) el.hidden = !on; if(el.innerHTML !== h2) el.innerHTML = h2; }
   if(preSlot){ const amt = P ? (C==='USD' ? P.usd : P.ils) : null, pc = P ? (C==='USD' ? P.pctUSD : P.pct) : null;
@@ -3405,7 +3407,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v94</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v95</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
