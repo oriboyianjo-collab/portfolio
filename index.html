@@ -652,6 +652,34 @@ html.ext-sess .pcard .pc-d .xl,html.ext-sess .wr .pc-d .xl{min-height:13px}
 .pos-cols>.pc-m{text-align:right;justify-self:stretch;white-space:nowrap;font-size:.64rem}
 .pos-cols>.pc-d{align-items:center;text-align:center;justify-self:stretch}
 .pos-cols>.pc-d small{font-size:.64rem}
+
+/* v102: per-list sort chip in every watchlist group header + its small options row */
+.wlh-s{flex:none;display:flex;align-items:center;justify-content:center;gap:4px;min-width:44px;padding:0 8px;background:none;border:0;border-inline-start:1px solid var(--border);color:var(--muted);font:inherit;font-size:.7rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.wlh-s svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wlh-s.on,.wlh-s[aria-expanded="true"]{color:var(--fg-1e40af);background:var(--bg-dbeafe)}.wlh-s i{font-style:normal;font-size:.62rem;margin-inline-start:2px}.wlh-s:disabled{opacity:.35}
+.wl-smenu{align-items:center;gap:6px}.wl-smenu .wl-sl{font-size:.78rem;color:var(--muted);font-weight:600;margin-inline-end:2px}
+.wl-smenu button{min-height:34px;border-radius:99px;font-weight:600;color:var(--muted)}.wl-smenu button.on{background:var(--bg-dbeafe);border-color:var(--bd-93c5fd);color:var(--fg-1e40af)}.wl-smenu .ar{margin-inline-start:4px;font-size:.7em}
+
+/* v102: ETF holdings column headers – same LTR grid as the rows, so each header sits exactly above its column (weight was mirrored to the wrong side) */
+.ecols{direction:ltr}.ecols>*{direction:rtl}.ecols>:nth-child(2){text-align:left;direction:ltr}.ecols>.pcol{text-align:center;justify-self:stretch}
+
+/* v102: details (key stats) grid – 3 columns, label above value, like Webull */
+.det{margin-top:12px;border:1px solid var(--border);border-radius:14px;background:var(--bg-f8fafc);overflow:hidden}
+.det-t{width:100%;display:flex;align-items:center;justify-content:space-between;min-height:46px;padding:0 14px;background:none;border:0;color:var(--text);font:inherit;font-weight:800;cursor:pointer}.det-t i{font-style:normal;color:var(--muted)}
+.det-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:8px;row-gap:14px;padding:12px 14px 16px;border-top:1px solid var(--border)}.det-g[hidden]{display:none}
+.det-g>div{min-width:0}.det-g>div:nth-child(3n+1){text-align:start}.det-g>div:nth-child(3n+2){text-align:center}.det-g>div:nth-child(3n){text-align:end}
+.det-g span{display:block;font-size:.68rem;color:var(--muted);line-height:1.25;margin-bottom:3px;min-height:1.7em}
+.det-g b{display:block;font-size:.9rem;font-weight:700;direction:ltr;unicode-bidi:isolate;white-space:nowrap;font-variant-numeric:tabular-nums}.det-g>div:nth-child(3n+1) b{text-align:right}.det-g>div:nth-child(3n) b{text-align:left}.det-g>div:nth-child(3n+2) b{text-align:center}.det-g b.na{color:var(--muted);font-weight:600}
+
+/* v102: report link row under each company in the Reports sub-tab (links typed by the user, local to the device) */
+.rrow .rpl-row{grid-column:1/-1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-inline-start:37px;margin-top:2px}
+.rpl-add,.rpl-a,.rpl-e,.rpl-b{font:inherit;font-size:.74rem;font-weight:700;min-height:32px;border-radius:99px;padding:0 12px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;text-decoration:none}
+.rpl-add{background:none;border:1px dashed var(--border);color:var(--muted)}
+.rpl-a{background:var(--bg-dbeafe);border:1px solid var(--bd-93c5fd);color:var(--fg-1e40af)}.rpl-a i{font-style:normal;font-size:.8em}
+.rpl-e{background:none;border:0;color:var(--muted);font-weight:600;padding:0 6px}
+.rpl-in{flex:1 1 100%;min-width:0;box-sizing:border-box;min-height:40px;border-radius:10px;border:1px solid var(--border);background:var(--bg-fff);color:var(--text);padding:0 12px;font:inherit;font-size:.82rem;direction:ltr;text-align:left}
+.rpl-bt{display:flex;gap:8px;flex-wrap:wrap}.rpl-b{background:var(--card);border:1px solid var(--border);color:var(--text)}.rpl-b.pri{background:var(--primary);border-color:var(--primary);color:#fff}.rpl-b.del{color:var(--red);margin-inline-start:auto}
+.rpl-err{flex:1 1 100%;font-size:.72rem;color:var(--red)}.rrow:has(.rpl-row.editing){cursor:default}
 </style>
 </head>
 <body>
@@ -714,7 +742,6 @@ html.ext-sess .pcard .pc-d .xl,html.ext-sess .wr .pc-d .xl{min-height:13px}
     <div class="card"><div class="h2row"><h2>רשימות מעקב <small id="wlCount"></small></h2><button class="btn btn-light btn-sm" id="wlNew">+ רשימה חדשה</button></div>
       <div class="ac wl-add"><input id="wlSearch" placeholder="הוספת נייר – סימול או שם (ארה״ב ות״א)" autocomplete="off" enterkeyhint="search"><div class="ac-list" id="wlAc"></div></div>
       <label class="wl-to">יתווסף לרשימה: <select id="wlTo"></select></label>
-      <div class="sortbar" id="wlSort" role="group" aria-label="מיון רשימות המעקב"><span>מיון:</span><button data-ws-k="manual">ידני</button><button data-ws-k="price">מחיר</button><button data-ws-k="day">יומי %</button><button data-ws-k="cap">שווי שוק</button></div>
       <div class="wl-tools"><span>קבוצות:</span><button type="button" id="wlAll"></button></div>
       <div id="wlLists"></div></div>
   </section>
@@ -1393,7 +1420,9 @@ async function cnbcQuotes(symbols){
       const mc = parseCap(q.mktcapView), E = q.ExtendedMktQuote; let pre = null;
       // v49: US pre-market only (after-hours / overnight are ignored): change vs the prior close = regular "last" before the open
       if(k===1 && E && (E.type==='PRE_MKT' || E.type==='POST_MKT')){ const pl = num(E.last), ts = parseTs(E.last_time); if(pl!=null && pl>0 && ts){ const chg = pl - last; pre = {price:pl, chg, pct: last ? chg/last*100 : null, ts, kind: E.type==='POST_MKT' ? 'after' : 'pre'}; } }   // v64: + after-hours; both vs the regular 'last' (pre: prior close, after: today's close)
-      out[String(orig).toUpperCase()] = {pre, mcap: mc!=null ? (pence ? mc : mc/k) : null, price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', source:'CNBC'};
+      const ev = q.EventData || {}, px = v=>{ const n = num(v); return n==null ? null : n/k; }, pn = v=>{ const n = num(v); return n==null ? null : n; }, big = v=>parseCap(v);
+      const X = {open:px(q.open), high:px(q.high), low:px(q.low), yh:px(q.yrhiprice), yl:px(q.yrloprice), av10:big(q.tendayavgvol), eps:px(q.eps), pe:pn(q.pe), fpe:pn(q.fpe), ps:k>1 ? null : pn(q.psales), shs:big(q.sharesout), div:px(q.dividend)||px(ev.div_amount), dy:pn(String(q.dividendyield||'').replace('%','')), beta:pn(q.beta), exd:ev.div_ex_date||'', ne:ev.next_earnings_date||'', vol:big(q.volume)};   // v102: key-stats for the 'details' section (CNBC fields; TASE prices are in agorot -> /100)
+      out[String(orig).toUpperCase()] = {x:X, pre, mcap: mc!=null ? (pence ? mc : mc/k) : null, price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', source:'CNBC'};
     });
   }
   return out;
@@ -2871,14 +2900,17 @@ $('etfView').addEventListener('click', e=>{ const b = e.target.closest('[data-ev
 $('etfCard').addEventListener('click', e=>{ const r = e.target.closest('[data-es]'); if(!r) return; const sym = r.dataset.es, d = etfData[etfUi.sel], row = d && d.rows.find(x=>x[0]===sym);
   openInstSheet(sym===etfUi.sel ? secInst({sym, type:'etf'}) : etfInst(row || [sym, '', 0]), '1D'); });
 // ---- watchlists (v45: stacked collapsible lists, collapsed by default) ----
-const WLS_KEY = 'portfolioTracker.watchSort.v1';
-let wlSort = (()=>{ try{ const o = JSON.parse(localStorage.getItem(WLS_KEY)||'null'); if(o && ['manual','price','day','cap'].includes(o.k)) return {k:o.k, dir:o.dir===1?1:-1}; }catch(e){} return {k:'manual', dir:-1}; })();
+const WLS_KEY = 'portfolioTracker.watchSort.v2';   // v102: sort is chosen per list: {listId: {k, dir}}; the old global v1 choice is gone from the UI
+const WLS_NAME = {manual:'ידני', price:'מחיר', day:'יומי %', cap:'שווי שוק'}, WLS_SHORT = {manual:'ידני', price:'מחיר', day:'יומי', cap:'שו״ש'};
+let wlSortMap = (()=>{ try{ const o = JSON.parse(localStorage.getItem(WLS_KEY)||'{}')||{}, m = {}; Object.keys(o).forEach(id=>{ const v = o[id]; if(v && WLS_NAME[v.k] && v.k!=='manual') m[id] = {k:v.k, dir:v.dir===1?1:-1}; }); return m; }catch(e){ return {}; } })();
+const saveWlSort = ()=>{ try{ localStorage.setItem(WLS_KEY, JSON.stringify(wlSortMap)); }catch(e){} };
+const wlSortOf = id => wlSortMap[id] || {k:'manual', dir:-1};
+let wlSortMenu = null;
 // sorting is only a view: L.items keeps the manual order; ties/missing values keep manual order (stable on live updates); edit mode always shows manual
-function wlSorted(its, ed){ if(ed || wlSort.k==='manual') return its; const val = it=>{ const q = iq(it); if(!q) return null; const usd = v => v==null ? null : (it.cur==='ILS' ? convertCur(v, 'ILS', 'USD') : v);   // compare ₪ and $ in one currency
-    return wlSort.k==='price' ? usd(q.price) : wlSort.k==='cap' ? usd(q.mcap||null) : (q.prev ? q.price/q.prev - 1 : null); };
-  return its.map((it,i)=>({it, i, v:val(it)})).sort((a,b)=> (a.v==null) - (b.v==null) || (a.v!=null && b.v!=null && a.v!==b.v ? (a.v-b.v)*wlSort.dir : 0) || a.i-b.i).map(x=>x.it); }
-function drawWlSort(){ $('wlSort').querySelectorAll('button').forEach(b=>{ const on = b.dataset.wsK===wlSort.k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on));
-  const base = {manual:'ידני', price:'מחיר', day:'יומי %', cap:'שווי שוק'}[b.dataset.wsK]; b.innerHTML = esc(base) + (on && wlSort.k!=='manual' ? `<span class="ar">${wlSort.dir<0?'▼':'▲'}</span>` : ''); }); }
+function wlSorted(its, ed, so){ so = so || {k:'manual', dir:-1}; if(ed || so.k==='manual') return its; const val = it=>{ const q = iq(it); if(!q) return null; const usd = v => v==null ? null : (it.cur==='ILS' ? convertCur(v, 'ILS', 'USD') : v);   // compare ₪ and $ in one currency
+    return so.k==='price' ? usd(q.price) : so.k==='cap' ? usd(q.mcap||null) : (q.prev ? q.price/q.prev - 1 : null); };
+  return its.map((it,i)=>({it, i, v:val(it)})).sort((a,b)=> (a.v==null) - (b.v==null) || (a.v!=null && b.v!=null && a.v!==b.v ? (a.v-b.v)*so.dir : 0) || a.i-b.i).map(x=>x.it); }
+const WL_SORT_IC = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16"/><path d="m3 16 4 4 4-4"/><path d="M17 20V4"/><path d="m13 8 4-4 4 4"/></svg>';
 const WLO_KEY = 'portfolioTracker.watchOpen.v1';
 let wlEditing = null, wlMenu = null, wlOpen = (()=>{ try{ return JSON.parse(localStorage.getItem(WLO_KEY)||'{}')||{}; }catch(e){ return {}; } })();
 const saveWlOpen = ()=>{ try{ localStorage.setItem(WLO_KEY, JSON.stringify(wlOpen)); }catch(e){} };
@@ -2892,16 +2924,17 @@ function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts =
     `<div class="pcol pc-s wl-live">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, up, 48, 24) : ''}</div><div class="pcol pc-m wl-live num">${capT(q && q.mcap, it.cur)}</div>`+
     `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="wl-p v num">${q ? (it.fx ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span>${extLineHtml(q && q.ext)}</div>`+
     `<div class="wl-ed" style="grid-column:3/-1"><button data-wm="up" aria-label="הזזה למעלה" ${i===0?'disabled':''}>▲</button><button data-wm="down" aria-label="הזזה למטה" ${i===n-1?'disabled':''}>▼</button><button data-wm="del" class="del" aria-label="הסרה מהרשימה">✕</button></div></div>`; }
-function wlSecHtml(L, li, nL){ const open = !!wlOpen[L.id], ed = wlEditing===L.id, its = wlSorted(L.items.map(secInst), ed);
+function wlSecHtml(L, li, nL){ const open = !!wlOpen[L.id], ed = wlEditing===L.id, so = wlSortOf(L.id), its = wlSorted(L.items.map(secInst), ed, so), sOn = so.k!=='manual';
   let up = 0, dn = 0; its.forEach(it=>{ const q = iq(it); if(q && q.prev){ const d = q.price/q.prev - 1; if(d > 0.00004) up++; else if(d < -0.00004) dn++; } });
   const menu = wlMenu===L.id ? `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button><button data-la="rename">🏷️ שינוי שם</button><button data-la="up" ${li===0?'disabled':''}>▲ למעלה</button><button data-la="down" ${li===nL-1?'disabled':''}>▼ למטה</button><button data-la="del" class="del">🗑️ מחיקה</button></div>` : '';
+  const smenu = wlSortMenu===L.id ? `<div class="wl-menu wl-smenu" role="menu" aria-label="מיון הרשימה"><span class="wl-sl">מיון:</span>${Object.keys(WLS_NAME).map(k=>`<button data-ls="${k}" role="menuitemradio" aria-checked="${so.k===k}" class="${so.k===k?'on':''}">${WLS_NAME[k]}${so.k===k && k!=='manual' ? `<span class="ar">${so.dir<0?'▼':'▲'}</span>` : ''}</button>`).join('')}</div>` : '';
   const body = open ? `<div class="wlb">${its.length ? `<div class="wl-cols wgrid" aria-hidden="true"${ed?' hidden':''}><span></span><span>נייר</span><span class="pcol pc-s">היום</span><span class="pcol">שווי שוק</span><span class="pcol"><span>יומי</span><small>מחיר</small></span></div><div class="wl-rows${ed?' editing':''}">${its.map((it,i)=>wlRowHtml(it, i, its.length)).join('')}</div>` : '<div class="wl-empty">הרשימה ריקה – חפשו נייר בשדה למעלה כדי להוסיף.</div>'}</div>` : '';
   return `<div class="wls${open?' open':''}" data-l="${esc(L.id)}"><div class="wlh"><button class="wlh-t" data-tog aria-expanded="${open}"><span class="wlh-n">${esc(L.name)}</span><small class="muted">${L.items.length}</small>`+
-    `<span class="wlh-c">${up?`<b class="pos">▲${up}</b>`:''}${dn?`<b class="neg">▼${dn}</b>`:''}</span><span class="wlh-v" aria-hidden="true">${open?'▴':'▾'}</span></button><button class="wlh-m" data-menu aria-label="אפשרויות לרשימה" aria-expanded="${wlMenu===L.id}">⋯</button></div>${menu}${body}</div>`; }
+    `<span class="wlh-c">${up?`<b class="pos">▲${up}</b>`:''}${dn?`<b class="neg">▼${dn}</b>`:''}</span><span class="wlh-v" aria-hidden="true">${open?'▴':'▾'}</span></button><button class="wlh-s${sOn?' on':''}" data-sortm aria-label="מיון הרשימה: ${esc(WLS_NAME[so.k])}" aria-expanded="${wlSortMenu===L.id}"${ed?' disabled':''}>${WL_SORT_IC}${sOn ? `<span>${WLS_SHORT[so.k]}<i>${so.dir<0?'▼':'▲'}</i></span>` : ''}</button><button class="wlh-m" data-menu aria-label="אפשרויות לרשימה" aria-expanded="${wlMenu===L.id}">⋯</button></div>${menu}${smenu}${body}</div>`; }
 const WL_ALL_IC = {collapse:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 20 5-5 5 5"/><path d="m7 4 5 5 5-5"/></svg>', expand:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>'};   // v100: chevrons toward / away from each other
 function drawWlAll(){ const any = wlData.lists.some(l=>wlOpen[l.id]), b = $('wlAll'), t = any ? 'כווץ הכל' : 'הרחב הכל';
   b.innerHTML = WL_ALL_IC[any?'collapse':'expand'] + '<span>' + t + '</span>'; b.title = t; b.setAttribute('aria-label', t + ' – קבוצות רשימות המעקב'); }
-function drawWatch(){ const n = wlItems().length; drawWlSort(); drawWlAll();
+function drawWatch(){ const n = wlItems().length; drawWlAll();
   $('wlCount').textContent = `· ${wlData.lists.length} רשימות · ${n} ניירות`;
   $('wlTo').innerHTML = wlData.lists.map(l=>`<option value="${esc(l.id)}"${l.id===wlCur().id?' selected':''}>${esc(l.name)}</option>`).join('');
   $('wlLists').innerHTML = wlData.lists.map((L,i)=>wlSecHtml(L, i, wlData.lists.length)).join(''); }
@@ -2910,13 +2943,14 @@ async function renderWatch(){ drawWatch(); const all = wlItems(); if(!all.length
 function wlNewList(){ const n = (prompt('שם הרשימה החדשה:', `רשימה ${wlData.lists.length+1}`)||'').trim(); if(!n) return; const id = 'w'+Date.now().toString(36);
   wlData.lists.push({id, name:n.slice(0,40), items:[]}); wlData.cur = id; wlOpen[id] = true; saveWlOpen(); saveWl(); renderWatch(); }
 $('wlNew').onclick = wlNewList;
-$('wlSort').addEventListener('click', e=>{ const b = e.target.closest('button[data-ws-k]'); if(!b) return; const k = b.dataset.wsK;
-  wlSort = k===wlSort.k && k!=='manual' ? {k, dir:-wlSort.dir} : {k, dir:-1}; try{ localStorage.setItem(WLS_KEY, JSON.stringify(wlSort)); }catch(e){} drawWatch(); });
 $('wlAll').onclick = ()=>{ const any = wlData.lists.some(l=>wlOpen[l.id]); wlOpen = {}; if(!any) wlData.lists.forEach(l=>{ wlOpen[l.id] = true; }); saveWlOpen(); wlMenu = null; renderWatch(); };   // v100: any open -> collapse all, else expand all (same watchOpen storage as the per-group toggle)
 $('wlTo').onchange = e=>{ wlData.cur = e.target.value; saveWl(); };
 $('wlLists').addEventListener('click', e=>{ const sec = e.target.closest('.wls'); if(!sec) return; const L = wlList(sec.dataset.l); if(!L) return;
-  if(e.target.closest('[data-tog]')){ wlOpen[L.id] = !wlOpen[L.id]; if(!wlOpen[L.id]) delete wlOpen[L.id]; saveWlOpen(); wlMenu = null; renderWatch(); return; }
-  if(e.target.closest('[data-menu]')){ wlMenu = wlMenu===L.id ? null : L.id; drawWatch(); return; }
+  if(e.target.closest('[data-tog]')){ wlOpen[L.id] = !wlOpen[L.id]; if(!wlOpen[L.id]) delete wlOpen[L.id]; saveWlOpen(); wlMenu = null; wlSortMenu = null; renderWatch(); return; }
+  if(e.target.closest('[data-menu]')){ wlMenu = wlMenu===L.id ? null : L.id; wlSortMenu = null; drawWatch(); return; }
+  if(e.target.closest('[data-sortm]')){ wlSortMenu = wlSortMenu===L.id ? null : L.id; wlMenu = null; drawWatch(); return; }
+  const ls = e.target.closest('[data-ls]');
+  if(ls){ const k = ls.dataset.ls, cur = wlSortOf(L.id); if(k==='manual') delete wlSortMap[L.id]; else wlSortMap[L.id] = k===cur.k ? {k, dir:-cur.dir} : {k, dir:-1}; saveWlSort(); wlSortMenu = null; drawWatch(); return; }
   const a = e.target.closest('[data-la]');
   if(a){ const k = a.dataset.la, i = wlData.lists.indexOf(L);
     if(k==='add'){ wlData.cur = L.id; wlOpen[L.id] = true; saveWlOpen(); saveWl(); wlMenu = null; renderWatch(); $('wlSearch').focus(); return; }
@@ -2924,7 +2958,7 @@ $('wlLists').addEventListener('click', e=>{ const sec = e.target.closest('.wls')
     if(k==='rename'){ const n = (prompt('שם חדש לרשימה:', L.name)||'').trim(); if(n){ L.name = n.slice(0,40); saveWl(); } wlMenu = null; drawWatch(); return; }
     if(k==='up' || k==='down'){ const j = k==='up' ? i-1 : i+1; if(j<0 || j>=wlData.lists.length) return; [wlData.lists[i], wlData.lists[j]] = [wlData.lists[j], wlData.lists[i]]; saveWl(); drawWatch(); return; }
     if(k==='del'){ if(!confirm(`למחוק את הרשימה "${L.name}"${L.items.length ? ` (${L.items.length} ניירות)` : ''}?`)) return;
-      wlData.lists = wlData.lists.filter(l=>l.id!==L.id); delete wlOpen[L.id]; saveWlOpen(); wlData = cleanWl(wlData); wlMenu = null; if(wlEditing===L.id) wlEditing = null; saveWl(); renderWatch(); return; } }
+      wlData.lists = wlData.lists.filter(l=>l.id!==L.id); delete wlOpen[L.id]; saveWlOpen(); wlData = cleanWl(wlData); wlMenu = null; if(wlEditing===L.id) wlEditing = null; delete wlSortMap[L.id]; saveWlSort(); saveWl(); renderWatch(); return; } }
   const r = e.target.closest('[data-ws]'); if(!r) return; const i = L.items.findIndex(x=>x.sym===r.dataset.ws), m = e.target.closest('[data-wm]');
   if(wlEditing===L.id){ if(!m) return; const k = m.dataset.wm; if(k==='del') L.items.splice(i,1); else { const j = k==='up' ? i-1 : i+1; if(j<0 || j>=L.items.length) return; [L.items[i], L.items[j]] = [L.items[j], L.items[i]]; }
     saveWl(); drawWatch(); return; }
@@ -2942,12 +2976,39 @@ function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
     <div class="seg sm ivseg" id="isIv" aria-label="אינטרוול"></div><div class="chart" id="isChart" style="height:280px;margin-top:6px"><div class="chart-msg" id="isMsg">טוען גרף…</div></div>
     <div class="inst-stats" id="isStats"></div>
+    ${it.sec && it.type!=='crypto' ? detHtml() : ''}
     ${it.sec ? wlAddHtml(it.sym, it.n, it.type, it.cur) : it.fx ? wlAddHtml(it.sym, it.n, 'fx', '') : ''}
     ${held ? `<div class="btn-row" style="margin-top:8px"><button class="btn btn-light" id="isPos">💼 פתיחת הפוזיציה בתיק</button></div>` : ''}
     ${it.stock ? '<div class="note">מניות ותעודות סל בארה״ב: מסחר רגיל בלבד (09:30–16:00 ניו יורק).</div>' : ''}`; }
+
+// ---- v102: 'פרטים' – Webull-style key stats (3 columns, label above value). Only CNBC data the app already requests (+ 3M avg volume from the CNBC daily bars); '--' when missing ----
+const DET_KEY = 'portfolioTracker.detOpen.v1'; let detOpen = localStorage.getItem(DET_KEY)!=='0';
+const DET_DASH = '--', av3m = {};
+function detHtml(){ return `<div class="det" id="isDet"><button class="det-t" data-det aria-expanded="${detOpen}"><span>📊 פרטים</span><i aria-hidden="true">${detOpen?'▴':'▾'}</i></button><div class="det-g" id="isDetG"${detOpen?'':' hidden'}></div></div>`; }
+function detFmtN(v, d){ return v==null || !isFinite(v) ? DET_DASH : v.toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d}); }
+function detFmtBig(v){ if(v==null || !isFinite(v) || v<=0) return DET_DASH; const [d,u] = v>=1e12 ? [1e12,'T'] : v>=1e9 ? [1e9,'B'] : v>=1e6 ? [1e6,'M'] : v>=1e3 ? [1e3,'K'] : [1,'']; const x = v/d; return (x>=100 ? x.toFixed(0) : x>=10 ? x.toFixed(1) : x.toFixed(2)) + u; }
+function detFmtDate(v){ const m = String(v||'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/); return m ? `${m[2]}.${m[1]}.${m[3]}` : DET_DASH; }
+function detRows(it, q){ const X = (q && q.x) || {}, cur = it.cur, pr = v=>v==null || !isFinite(v) ? DET_DASH : fmtPrice(v, cur), pc = (X.high!=null && X.low!=null && q && q.prev) ? (X.high-X.low)/q.prev*100 : null;
+  const a3 = av3m[it.sym]; return [
+  ['פתיחה', pr(X.open)], ['סגירה קודמת', pr(q && q.prev)], ['טווח יומי %', pc!=null ? pc.toFixed(2)+'%' : DET_DASH],
+  ['שיא 52 שבועות', pr(X.yh)], ['שפל 52 שבועות', pr(X.yl)], ['נפח ממוצע (3 חו׳)', a3===undefined ? '…' : detFmtBig(a3)],
+  ['רווח למניה (EPS)', pr(X.eps)], ['מכפיל רווח (TTM)', detFmtN(X.pe, 2)], ['מכפיל רווח (צפוי)', detFmtN(X.fpe, 2)],
+  ['מכפיל הון (P/B)', DET_DASH], ['מכפיל מכירות (P/S)', detFmtN(X.ps, 3)], ['הון למניה (BVPS)', DET_DASH],
+  ['מניות במחזור', detFmtBig(X.shs)], ['שווי שוק', q && q.mcap ? fmtCap(q.mcap, cur) : DET_DASH], ['Free Float (מניות)', DET_DASH],
+  ['דיבידנד', pr(X.div)], ['תשואת דיבידנד', X.dy!=null ? X.dy.toFixed(2)+'%' : DET_DASH], ['תאריך אקס-דיבידנד', detFmtDate(X.exd)],
+  ['דוח הבא', detFmtDate(X.ne)], ['בטא', detFmtN(X.beta, 2)]]; }
+function drawDet(){ const S = instSheet, g = $('isDetG'); if(!S || !g) return; const it = S.it, q = iq(it);
+  g.innerHTML = detRows(it, q).map(([l,v])=>`<div><span>${l}</span><b class="num${v===DET_DASH||v==='…'?' na':''}">${v}</b></div>`).join(''); }
+async function loadAv3m(it){ const sym = it.sym; if(sym in av3m) return; av3m[sym] = undefined;
+  try{ const from = addDays(today(), -92), j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/1D/${cnbcStamp(from)}/${cnbcStamp(addDays(today(),1))}/unadjusted/EST5EDT.json`, 15000);
+    const v = ((j.barData||{}).priceBars||[]).map(b=>num(b.volume)).filter(x=>x>0); av3m[sym] = v.length >= 20 ? v.reduce((a,b)=>a+b,0)/v.length : null; }catch(e){ av3m[sym] = null; }
+  if(instSheet && instSheet.it.sym===sym) drawDet(); }
+document.addEventListener('click', e=>{ const b = e.target.closest('[data-det]'); if(!b) return; detOpen = !detOpen; try{ localStorage.setItem(DET_KEY, detOpen?'1':'0'); }catch(_){}
+  b.setAttribute('aria-expanded', String(detOpen)); b.querySelector('i').textContent = detOpen ? '▴' : '▾'; $('isDetG').hidden = !detOpen; if(detOpen) drawDet(); });
 function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[instKey(it, S.range, S.iv)], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
   const ch = chgInst(it, q ? q.price : null, base); $('isV').textContent = fmtInst(it, q ? q.price : null); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+''; { const e = it.sec && q && q.ext, x = $('isX'); if(x) x.innerHTML = e && S.range==='1D' ? extLineHtml(e) : ''; }
   const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [['סגירה קודמת', fmtInst(it, q && q.prev)], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
+  if($('isDetG') && detOpen){ drawDet(); loadAv3m(it); }
   if(S.series && S.bar && q && q.price!=null){ const b = S.bar; b.close = q.price; b.high = Math.max(b.high, q.price); b.low = Math.min(b.low, q.price); try{ S.series.update(Object.assign({}, b)); }catch(e){} }
   else if(S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
 function drawIvSeg(){ const S = instSheet, el = $('isIv'); if(!S || !el) return; el.innerHTML = IV_OPT[S.range].map(v=>`<button data-iv="${v}" class="${v===S.iv?'on':''}">${IV_LBL[v]}</button>`).join(''); }
@@ -3515,7 +3576,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v101</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v102</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -4262,6 +4323,18 @@ function dayHead(d){ if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return esc(d || 'ללא 
 const ntDate = v=>{ const t = newsTime(v); return t!=null ? isoDate(new Date(t)) : String(v||''); };
 const numOf = v=>{ const m = String(v||'').replace(/,/g,'').match(/-?\d+(\.\d+)?/); return m ? +m[0] : null; };
 const ntEmpty = (kind, err)=>`<div class="news-empty">${err ? `הקובץ ${kind==='rep'?'reports.json':'calendar.json'} לא תקין – בדקו פסיקים ומירכאות.` : kind==='rep' ? 'עדיין אין דוחות להצגה.<br><small>מוסיפים פריטים בקובץ reports.json באתר GitHub.</small>' : 'היומן הכלכלי ריק כרגע.<br><small>מוסיפים אירועים בקובץ calendar.json באתר GitHub.</small>'}</div>`;
+
+// ---- v102: 'קישור לדוח' – a report link per company, typed by the user, stored only in this device's localStorage (never in the repo) ----
+const REPLK_KEY = 'portfolioTracker.reportLinks.v1';
+let repLinks = (()=>{ try{ const o = JSON.parse(localStorage.getItem(REPLK_KEY)||'{}'); return o && typeof o==='object' && !Array.isArray(o) ? o : {}; }catch(e){ return {}; } })(), repLinkEdit = null, repLinkDraft = '', repLinkErr = '';
+const repLinkKey = r => String(r.symbol || r.company || '').trim().toUpperCase();
+const saveRepLinks = ()=>{ try{ localStorage.setItem(REPLK_KEY, JSON.stringify(repLinks)); }catch(e){} };
+function repLinkNorm(v){ let t = String(v||'').trim(); if(!t) return ''; if(!/^[a-z][a-z0-9+.-]*:/i.test(t)) t = 'https://' + t; try{ const u = new URL(t); return /^https?:$/.test(u.protocol) && u.hostname.includes('.') ? u.href : null; }catch(e){ return null; } }
+function repLinkHtml(r){ const k = repLinkKey(r); if(!k) return ''; const url = repLinks[k], ed = repLinkEdit===k;
+  if(ed) return `<div class="rpl-row editing" data-rpk="${esc(k)}"><input class="rpl-in" type="url" inputmode="url" dir="ltr" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="הדביקו כאן קישור לדוח (https://…)" aria-label="קישור לדוח – ${esc(k)}" value="${esc(repLinkDraft)}">`+
+    `<div class="rpl-bt"><button class="rpl-b pri" data-rps>שמירה</button><button class="rpl-b" data-rpc>ביטול</button>${url ? '<button class="rpl-b del" data-rpd>הסרה</button>' : ''}</div>${repLinkErr ? `<div class="rpl-err">${esc(repLinkErr)}</div>` : ''}</div>`;
+  return url ? `<div class="rpl-row" data-rpk="${esc(k)}"><a class="rpl-a" href="${esc(url)}" target="_blank" rel="noopener noreferrer">🔗 לדוח <i aria-hidden="true">↗</i></a><button class="rpl-e" data-rpe aria-label="עריכת קישור לדוח">✎ עריכה</button></div>`
+    : `<div class="rpl-row" data-rpk="${esc(k)}"><button class="rpl-add" data-rpe>＋ קישור לדוח</button></div>`; }
 function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; if(!D.items.length){ $('repFil').innerHTML = ''; el.innerHTML = ntEmpty('rep', D.err); return; }
   const held = new Set(computeAll().positions.filter(p=>Math.abs(p.qty)>1e-9).map(p=>p.sym)), watched = new Set(wlData.lists.flatMap(l=>l.items.map(x=>x.sym)));
   const L = D.items.map(o=>{ const r = {}; for(const k in REP_K) r[k] = pickK(o, REP_K, k); r.symbol = r.symbol.toUpperCase(); r.d = ntDate(r.date); r.tag = held.has(r.symbol) ? 'בתיק' : watched.has(r.symbol) ? 'במעקב' : ''; r.ixs = idxOf(o); return r; }).filter(r=>r.company || r.symbol);
@@ -4341,7 +4414,7 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     return `<article class="rrow${(ec||rc) ? ' r-'+(ec||rc) : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
       `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span></div><small>${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}${ntFil.sort==='cap' ? ' · <bdi class="num">'+(r.capV ? fmtCap(r.capV) : 'שווי לא ידוע')+'</bdi>' : ''}</small></div>`+
       `<div class="rv">${val('EPS', r.epsEst, r.eps, ec, surp(e2, e1), E, tagB(r.epsEstB, r.epsB, r.epsCur||r.epsActCur))}</div><div class="rv">${val('הכנסות', r.revEst, r.rev, rc, surp(r2, r1), R, tagB(r.revEstB, r.revB, r.revCur||r.revActCur))}</div>${link}`+
-      (whyL.length ? `<div class="rwhy">ⓘ ${esc(whyL.join(' · '))}</div>` : '')+
+      (whyL.length ? `<div class="rwhy">ⓘ ${esc(whyL.join(' · '))}</div>` : '')+repLinkHtml(r)+
       (r.note ? `<div class="rnote2" role="button" tabindex="0" aria-expanded="false" data-rnote><span>${esc(r.note)}</span>${r.note.length > 90 ? '<i class="rmore2">עוד ▾</i>' : ''}</div>` : '')+`</article>`; };
   const grp = (A)=>{ let h = '', last = null; A.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="rday">${dayHead(r.d)}</div>`; } h += card(r); }); return h; };
   const A = [...up, ...past], more = A.length - repShow, upS = up.slice(0, repShow), pastS = past.slice(0, Math.max(0, repShow - up.length));
@@ -4402,6 +4475,14 @@ $('repSi').addEventListener('click', ()=>{ repPopClose(); repSearchUi(true); set
 $('repQx').addEventListener('click', ()=>{ $('repQ').value = ''; ntFil.q = ''; repShow = 60; repSearchUi(false); drawReports(); });
 $('repFil').addEventListener('click', e=>{ const b = e.target.closest('[data-rf],[data-rd],[data-ri],[data-rt]'); if(!b) return; repPopClose(); if(b.dataset.rt) ntFil.tm = b.dataset.rt; if(b.dataset.rf) ntFil.rep = b.dataset.rf; if(b.dataset.rd) ntFil.day = b.dataset.rd; if(b.dataset.ri) ntFil.idx = b.dataset.ri; repShow = 60; drawReports(); });
 $('repList').addEventListener('click', e=>{ const n = e.target.closest('[data-rnote]'); if(n){ e.preventDefault(); e.stopPropagation(); const o = !n.classList.contains('open'); n.classList.toggle('open', o); n.setAttribute('aria-expanded', String(o)); n.querySelector('.rmore2').textContent = o ? 'פחות ▴' : 'עוד ▾'; return; } }, true);
+$('repList').addEventListener('input', e=>{ if(e.target.classList.contains('rpl-in')){ repLinkDraft = e.target.value; if(repLinkErr){ repLinkErr = ''; const x = e.target.closest('.rpl-row').querySelector('.rpl-err'); if(x) x.remove(); } } });
+$('repList').addEventListener('keydown', e=>{ if(e.target.classList.contains('rpl-in')){ if(e.key==='Enter'){ e.preventDefault(); e.target.closest('.rpl-row').querySelector('[data-rps]').click(); } else if(e.key==='Escape'){ e.stopPropagation(); e.target.closest('.rpl-row').querySelector('[data-rpc]').click(); } e.stopPropagation(); } }, true);
+$('repList').addEventListener('click', e=>{ const row = e.target.closest('.rpl-row'); if(!row) return; e.stopPropagation(); const k = row.dataset.rpk;
+  if(e.target.closest('[data-rpe]')){ repLinkEdit = k; repLinkDraft = repLinks[k] || ''; repLinkErr = ''; drawReports(); setTimeout(()=>{ const i = $('repList').querySelector('.rpl-in'); if(i) i.focus(); }, 30); return; }
+  if(e.target.closest('[data-rpc]')){ repLinkEdit = null; repLinkErr = ''; drawReports(); return; }
+  if(e.target.closest('[data-rpd]')){ delete repLinks[k]; saveRepLinks(); repLinkEdit = null; drawReports(); toast('הקישור הוסר'); return; }
+  if(e.target.closest('[data-rps]')){ const v = repLinkNorm(repLinkDraft); if(v===null){ repLinkErr = 'הקישור לא תקין – הדביקו כתובת שמתחילה ב-https://'; drawReports(); return; }
+    if(v) repLinks[k] = v; else delete repLinks[k]; saveRepLinks(); repLinkEdit = null; repLinkErr = ''; drawReports(); toast(v ? 'הקישור נשמר במכשיר ✓' : 'הקישור הוסר'); } }, true);
 $('repList').addEventListener('click', e=>{ if(e.target.closest('[data-rnote]')) return; if(e.target.closest('[data-rmore]')){ repShow += 60; drawReports(); return; } if(e.target.closest('a')) return;
   const c = e.target.closest('[data-rsym]'); if(c) openInstSheet(srchInst({sym:c.dataset.rsym, name:c.dataset.rname||'', type:'stock'}), '1D'); });
 $('calFil').addEventListener('click', e=>{ const b = e.target.closest('[data-cf]'); if(!b) return; ntFil.cal = b.dataset.cf; drawCal(); });
