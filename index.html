@@ -80,6 +80,7 @@ h2 small{font-weight:500;color:var(--muted);font-size:.78rem}
 /* sort chips: always one row; if it ever runs out of room (large system font) it scrolls sideways instead of wrapping */
 .sortbar button{border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);border-radius:99px;padding:5px 10px;font:inherit;font-weight:600;cursor:pointer;min-height:34px;flex:none;white-space:nowrap}
 .sortbar button.on{background:var(--bg-dbeafe);border-color:var(--bd-93c5fd);color:var(--fg-1e40af)}.sortbar .ar{display:inline-block;margin-inline-start:4px}
+.wl-tools{display:flex;align-items:center;gap:5px;margin:6px 0 2px;font-size:.78rem}.wl-tools>span{color:var(--muted)}.wl-tools button{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);border-radius:99px;padding:5px 10px;font:inherit;font-weight:600;cursor:pointer;min-height:34px;white-space:nowrap}.wl-tools svg{width:14px;height:14px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .pos-list .pcard.mv{transition:transform .32s ease}@media (prefers-reduced-motion:reduce){.pos-list .pcard.mv{transition:none}}
 .viewtgl button{border:0;background:var(--bg-fff);color:var(--muted);padding:5px 10px;font:inherit;cursor:pointer;white-space:nowrap}.viewtgl{flex:none}.h2row h2{min-width:0}.viewtgl button.on{background:#1e3a8a;color:#fff}
 .pcard.pc{padding:0;cursor:default}
@@ -703,6 +704,7 @@ html.ext-sess .pcard .pc-d .xl,html.ext-sess .wr .pc-d .xl{min-height:13px}
       <div class="ac wl-add"><input id="wlSearch" placeholder="הוספת נייר – סימול או שם (ארה״ב ות״א)" autocomplete="off" enterkeyhint="search"><div class="ac-list" id="wlAc"></div></div>
       <label class="wl-to">יתווסף לרשימה: <select id="wlTo"></select></label>
       <div class="sortbar" id="wlSort" role="group" aria-label="מיון רשימות המעקב"><span>מיון:</span><button data-ws-k="manual">ידני</button><button data-ws-k="price">מחיר</button><button data-ws-k="day">יומי %</button><button data-ws-k="cap">שווי שוק</button></div>
+      <div class="wl-tools"><span>קבוצות:</span><button type="button" id="wlAll"></button></div>
       <div id="wlLists"></div></div>
   </section>
   <section class="tab" id="tab-settings"><div class="set-bar"><h2>הגדרות</h2><button class="btn set-back" id="setBack" aria-label="חזרה">חזרה ←</button></div><div class="card" id="settingsCard"></div></section>
@@ -2885,7 +2887,10 @@ function wlSecHtml(L, li, nL){ const open = !!wlOpen[L.id], ed = wlEditing===L.i
   const body = open ? `<div class="wlb">${its.length ? `<div class="wl-cols wgrid" aria-hidden="true"${ed?' hidden':''}><span></span><span>נייר</span><span class="pcol pc-s">היום</span><span class="pcol">שווי שוק</span><span class="pcol"><span>יומי</span><small>מחיר</small></span></div><div class="wl-rows${ed?' editing':''}">${its.map((it,i)=>wlRowHtml(it, i, its.length)).join('')}</div>` : '<div class="wl-empty">הרשימה ריקה – חפשו נייר בשדה למעלה כדי להוסיף.</div>'}</div>` : '';
   return `<div class="wls${open?' open':''}" data-l="${esc(L.id)}"><div class="wlh"><button class="wlh-t" data-tog aria-expanded="${open}"><span class="wlh-n">${esc(L.name)}</span><small class="muted">${L.items.length}</small>`+
     `<span class="wlh-c">${up?`<b class="pos">▲${up}</b>`:''}${dn?`<b class="neg">▼${dn}</b>`:''}</span><span class="wlh-v" aria-hidden="true">${open?'▴':'▾'}</span></button><button class="wlh-m" data-menu aria-label="אפשרויות לרשימה" aria-expanded="${wlMenu===L.id}">⋯</button></div>${menu}${body}</div>`; }
-function drawWatch(){ const n = wlItems().length; drawWlSort();
+const WL_ALL_IC = {collapse:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 20 5-5 5 5"/><path d="m7 4 5 5 5-5"/></svg>', expand:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>'};   // v100: chevrons toward / away from each other
+function drawWlAll(){ const any = wlData.lists.some(l=>wlOpen[l.id]), b = $('wlAll'), t = any ? 'כווץ הכל' : 'הרחב הכל';
+  b.innerHTML = WL_ALL_IC[any?'collapse':'expand'] + '<span>' + t + '</span>'; b.title = t; b.setAttribute('aria-label', t + ' – קבוצות רשימות המעקב'); }
+function drawWatch(){ const n = wlItems().length; drawWlSort(); drawWlAll();
   $('wlCount').textContent = `· ${wlData.lists.length} רשימות · ${n} ניירות`;
   $('wlTo').innerHTML = wlData.lists.map(l=>`<option value="${esc(l.id)}"${l.id===wlCur().id?' selected':''}>${esc(l.name)}</option>`).join('');
   $('wlLists').innerHTML = wlData.lists.map((L,i)=>wlSecHtml(L, i, wlData.lists.length)).join(''); }
@@ -2896,6 +2901,7 @@ function wlNewList(){ const n = (prompt('שם הרשימה החדשה:', `רשי
 $('wlNew').onclick = wlNewList;
 $('wlSort').addEventListener('click', e=>{ const b = e.target.closest('button[data-ws-k]'); if(!b) return; const k = b.dataset.wsK;
   wlSort = k===wlSort.k && k!=='manual' ? {k, dir:-wlSort.dir} : {k, dir:-1}; try{ localStorage.setItem(WLS_KEY, JSON.stringify(wlSort)); }catch(e){} drawWatch(); });
+$('wlAll').onclick = ()=>{ const any = wlData.lists.some(l=>wlOpen[l.id]); wlOpen = {}; if(!any) wlData.lists.forEach(l=>{ wlOpen[l.id] = true; }); saveWlOpen(); wlMenu = null; renderWatch(); };   // v100: any open -> collapse all, else expand all (same watchOpen storage as the per-group toggle)
 $('wlTo').onchange = e=>{ wlData.cur = e.target.value; saveWl(); };
 $('wlLists').addEventListener('click', e=>{ const sec = e.target.closest('.wls'); if(!sec) return; const L = wlList(sec.dataset.l); if(!L) return;
   if(e.target.closest('[data-tog]')){ wlOpen[L.id] = !wlOpen[L.id]; if(!wlOpen[L.id]) delete wlOpen[L.id]; saveWlOpen(); wlMenu = null; renderWatch(); return; }
@@ -3498,7 +3504,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v99</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v100</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
