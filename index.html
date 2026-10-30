@@ -509,8 +509,8 @@ body.srch-on{overflow:hidden}
 .rrow .rv .rs{display:block;font-style:normal;font-size:.58rem;font-weight:700;white-space:nowrap;margin-top:1px}.rrow .rv .rs.pos{color:var(--green)}.rrow .rv .rs.neg{color:var(--red)}
 .rrow .rv .rb{display:block;font-size:.52rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr}.rrow .rv .rs.na{color:var(--muted);font-weight:600}
 .rrow .rwhy,.rrow .rnote2{grid-column:1/-1;font-size:.7rem;line-height:1.4;color:var(--muted);margin:2px 0 0;padding-inline-start:37px}
-.rrow .rwhy{color:#f59e0b}.rrow .rnote2{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.rrow .rnote2 span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--text);opacity:.85}.rrow .rnote2.open span{display:block;-webkit-line-clamp:unset}
+.rrow .rwhy{color:#f59e0b;white-space:pre-line}.rrow .rnote2{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.rrow .rnote2 span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--text);opacity:.85;white-space:pre-line;overflow-wrap:anywhere}.rrow .rnote2.open span{display:block;-webkit-line-clamp:unset}
 .rrow .rnote2 .rmore2{font-style:normal;font-weight:700;color:var(--primary);font-size:.66rem}
 .rrow.r-pos{box-shadow:inset -3px 0 0 var(--green)}.rrow.r-neg{box-shadow:inset -3px 0 0 var(--red)}.rrow .rlk{position:absolute;left:2px;top:2px;font-size:.7rem;text-decoration:none;color:var(--muted)}
 .rcard{border:1px solid var(--border);border-radius:14px;padding:10px;margin-bottom:8px;background:var(--bg-fff)}.rtop{display:flex;align-items:center;gap:8px}.rtop .t{flex:1;min-width:0}.rtop .t b{font-size:.94rem}
@@ -3613,7 +3613,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v104</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v105</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -4444,7 +4444,7 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
       `<div class="rv">${val('EPS', r.epsEst, r.eps, ec, surp(e2, e1), E, tagB(r.epsEstB, r.epsB, r.epsCur||r.epsActCur))}</div><div class="rv">${val('הכנסות', r.revEst, r.rev, rc, surp(r2, r1), R, tagB(r.revEstB, r.revB, r.revCur||r.revActCur))}</div>${link}`+
       (whyL.length ? `<div class="rwhy">ⓘ ${esc(whyL.join(' · '))}</div>` : '')+
       (/^https?:\/\//i.test(r.link) ? `<div class="rpl-row"><a class="news-l rpl-a" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">לדוח ↗</a></div>` : '')+
-      (r.note ? `<div class="rnote2" role="button" tabindex="0" aria-expanded="false" data-rnote><span>${esc(r.note)}</span>${r.note.length > 90 ? '<i class="rmore2">עוד ▾</i>' : ''}</div>` : '')+`</article>`; };
+      (r.note ? `<div class="rnote2" role="button" tabindex="0" aria-expanded="false" data-rnote><span>${esc(r.note)}</span>${r.note.length > 90 || (r.note.match(/\n/g)||[]).length >= 2 ? '<i class="rmore2">עוד ▾</i>' : ''}</div>` : '')+`</article>`; };
   const grp = (A)=>{ let h = '', last = null; A.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="rday">${dayHead(r.d)}</div>`; } h += card(r); }); return h; };
   const A = [...up, ...past], more = A.length - repShow, upS = up.slice(0, repShow), pastS = past.slice(0, Math.max(0, repShow - up.length));
   el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' || ntFil.tm!=='all' || qn ? ' בסינון' : ''}</div>` + grp(upS) + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '') + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
@@ -4503,7 +4503,7 @@ function repSearchUi(open){ $('repQw').hidden = !open; $('repPills').hidden = op
 $('repSi').addEventListener('click', ()=>{ repPopClose(); repSearchUi(true); setTimeout(()=>$('repQ').focus(), 30); });
 $('repQx').addEventListener('click', ()=>{ $('repQ').value = ''; ntFil.q = ''; repShow = 60; repSearchUi(false); drawReports(); });
 $('repFil').addEventListener('click', e=>{ const b = e.target.closest('[data-rf],[data-rd],[data-ri],[data-rt]'); if(!b) return; repPopClose(); if(b.dataset.rt) ntFil.tm = b.dataset.rt; if(b.dataset.rf) ntFil.rep = b.dataset.rf; if(b.dataset.rd) ntFil.day = b.dataset.rd; if(b.dataset.ri) ntFil.idx = b.dataset.ri; repShow = 60; drawReports(); });
-$('repList').addEventListener('click', e=>{ const n = e.target.closest('[data-rnote]'); if(n){ e.preventDefault(); e.stopPropagation(); const o = !n.classList.contains('open'); n.classList.toggle('open', o); n.setAttribute('aria-expanded', String(o)); n.querySelector('.rmore2').textContent = o ? 'פחות ▴' : 'עוד ▾'; return; } }, true);
+$('repList').addEventListener('click', e=>{ const n = e.target.closest('[data-rnote]'); if(n){ e.preventDefault(); e.stopPropagation(); const o = !n.classList.contains('open'); n.classList.toggle('open', o); n.setAttribute('aria-expanded', String(o)); const mo = n.querySelector('.rmore2'); if(mo) mo.textContent = o ? 'פחות ▴' : 'עוד ▾'; return; } }, true);
 $('repList').addEventListener('click', e=>{ if(e.target.closest('[data-rnote]')) return; if(e.target.closest('[data-rmore]')){ repShow += 60; drawReports(); return; } if(e.target.closest('a')) return;
   const c = e.target.closest('[data-rsym]'); if(c) openInstSheet(srchInst({sym:c.dataset.rsym, name:c.dataset.rname||'', type:'stock'}), '1D'); });
 $('calFil').addEventListener('click', e=>{ const b = e.target.closest('[data-cf]'); if(!b) return; ntFil.cal = b.dataset.cf; drawCal(); });
