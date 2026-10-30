@@ -690,7 +690,11 @@ html.ext-sess .pcard .pc-d .xl,html.ext-sess .wr .pc-d .xl{min-height:13px}
 .wl-sortchip svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;color:var(--muted)}
 .wl-sortchip span{color:var(--muted);font-weight:600}.wl-sortchip b{color:var(--text);font-weight:800}.wl-sortchip i{font-style:normal;font-size:.7em;margin-inline-start:4px;color:var(--fg-1e40af)}.wl-sortchip em{font-style:normal;color:var(--muted);font-size:.85em}
 .wl-sortchip.on{background:var(--bg-dbeafe);border-color:var(--bd-93c5fd)}.wl-sortchip.on span,.wl-sortchip.on b,.wl-sortchip.on svg{color:var(--fg-1e40af)}.wl-sortchip:disabled{opacity:.45}.wl-sortrow small{font-size:.7rem}
-.wls:not(.open) .wl-sortrow{border-bottom:0}
+/* v106: per-list sort lives in the ⋯ menu (section 'מיון', ✓ on the current one); the separate chip row is gone. A tiny dot on ⋯ marks a non-manual sort */
+.wl-menu .wl-msort{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 0;margin:2px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.wl-msl{flex:1 1 100%;display:flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;color:var(--muted)}.wl-msl svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.wl-msl small{font-weight:500;font-size:.7rem;margin-inline-start:4px}
+.wl-menu .wl-msort button{min-height:36px;border-radius:99px;font-weight:600;color:var(--muted)}.wl-menu .wl-msort button.on{background:var(--bg-dbeafe);border-color:var(--bd-93c5fd);color:var(--fg-1e40af);font-weight:800}.wl-msort .ck{margin-inline-end:5px;font-weight:800}.wl-msort .ar{margin-inline-start:4px;font-size:.7em}.wl-msort button:disabled{opacity:.45}
+.wlh-m{position:relative}.wlh-m.srt::after{content:"";position:absolute;top:11px;inset-inline-end:11px;width:6px;height:6px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 2px var(--card)}
 .etf-sortrow{background:none;border-bottom:0;padding:2px 0 8px}.etf-smenu{margin:-2px 0 8px;border:1px solid var(--border);border-radius:12px}
 </style>
 </head>
@@ -2961,12 +2965,11 @@ function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts =
     `<div class="wl-ed" style="grid-column:3/-1"><button data-wm="up" aria-label="הזזה למעלה" ${i===0?'disabled':''}>▲</button><button data-wm="down" aria-label="הזזה למטה" ${i===n-1?'disabled':''}>▼</button><button data-wm="del" class="del" aria-label="הסרה מהרשימה">✕</button></div></div>`; }
 function wlSecHtml(L, li, nL){ const open = !!wlOpen[L.id], ed = wlEditing===L.id, so = wlSortOf(L.id), its = wlSorted(L.items.map(secInst), ed, so), sOn = so.k!=='manual';
   let up = 0, dn = 0; its.forEach(it=>{ const q = iq(it); if(q && q.prev){ const d = q.price/q.prev - 1; if(d > 0.00004) up++; else if(d < -0.00004) dn++; } });
-  const menu = wlMenu===L.id ? `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button><button data-la="sort">↕️ מיון הרשימה</button><button data-la="rename">🏷️ שינוי שם</button><button data-la="up" ${li===0?'disabled':''}>▲ למעלה</button><button data-la="down" ${li===nL-1?'disabled':''}>▼ למטה</button><button data-la="del" class="del">🗑️ מחיקה</button></div>` : '';
-  const smenu = wlSortMenu===L.id ? `<div class="wl-menu wl-smenu" role="menu" aria-label="מיון הרשימה">${Object.keys(WLS_NAME).map(k=>`<button data-ls="${k}" role="menuitemradio" aria-checked="${so.k===k}" class="${so.k===k?'on':''}">${WLS_NAME[k]}${so.k===k && k!=='manual' ? `<span class="ar">${so.dir<0?'▼':'▲'}</span>` : ''}</button>`).join('')}</div>` : '';
-  const srow = `<div class="wl-sortrow"><button class="wl-sortchip${sOn?' on':''}" data-sortm aria-label="מיון הרשימה: ${esc(WLS_NAME[so.k])}" aria-expanded="${wlSortMenu===L.id}"${ed?' disabled':''}>${WL_SORT_IC}<span>מיון: <b>${esc(WLS_NAME[so.k])}</b>${sOn ? `<i>${so.dir<0?'▼':'▲'}</i>` : ''}</span><em aria-hidden="true">${wlSortMenu===L.id?'▴':'▾'}</em></button>${ed ? '<small class="muted">במצב עריכה – סדר ידני</small>' : ''}</div>`;
+  const msort = `<div class="wl-msort" role="group" aria-label="מיון"><div class="wl-msl">${WL_SORT_IC}<span>מיון</span>${ed ? '<small>במצב עריכה – סדר ידני</small>' : ''}</div>${Object.keys(WLS_NAME).map(k=>`<button data-ls="${k}" role="menuitemradio" aria-checked="${so.k===k}" class="${so.k===k?'on':''}"${ed?' disabled':''}>${so.k===k ? '<span class="ck" aria-hidden="true">✓</span>' : ''}${WLS_NAME[k]}${so.k===k && k!=='manual' ? `<span class="ar">${so.dir<0?'▼':'▲'}</span>` : ''}</button>`).join('')}</div>`;
+  const menu = wlMenu===L.id ? `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button>${msort}<button data-la="rename">🏷️ שינוי שם</button><button data-la="up" ${li===0?'disabled':''}>▲ למעלה</button><button data-la="down" ${li===nL-1?'disabled':''}>▼ למטה</button><button data-la="del" class="del">🗑️ מחיקה</button></div>` : '';
   const body = open ? `<div class="wlb">${its.length ? `<div class="wl-cols wgrid" aria-hidden="true"${ed?' hidden':''}><span></span><span>נייר</span><span class="pcol pc-s">היום</span><span class="pcol">שווי שוק</span><span class="pcol"><span>יומי</span><small>מחיר</small></span></div><div class="wl-rows${ed?' editing':''}">${its.map((it,i)=>wlRowHtml(it, i, its.length)).join('')}</div>` : '<div class="wl-empty">הרשימה ריקה – חפשו נייר בשדה למעלה כדי להוסיף.</div>'}</div>` : '';
   return `<div class="wls${open?' open':''}" data-l="${esc(L.id)}"><div class="wlh"><button class="wlh-t" data-tog aria-expanded="${open}"><span class="wlh-n">${esc(L.name)}</span><small class="muted">${L.items.length}</small>`+
-    `<span class="wlh-c">${up?`<b class="pos">▲${up}</b>`:''}${dn?`<b class="neg">▼${dn}</b>`:''}</span><span class="wlh-v" aria-hidden="true">${open?'▴':'▾'}</span></button><button class="wlh-m" data-menu aria-label="אפשרויות לרשימה" aria-expanded="${wlMenu===L.id}">⋯</button></div>${menu}${srow}${smenu}${body}</div>`; }
+    `<span class="wlh-c">${up?`<b class="pos">▲${up}</b>`:''}${dn?`<b class="neg">▼${dn}</b>`:''}</span><span class="wlh-v" aria-hidden="true">${open?'▴':'▾'}</span></button><button class="wlh-m${sOn?' srt':''}" data-menu aria-label="אפשרויות לרשימה${sOn ? ' – מיון: '+esc(WLS_NAME[so.k]) : ''}" aria-expanded="${wlMenu===L.id}"${sOn ? ' title="מיון: '+esc(WLS_NAME[so.k])+'"' : ''}>⋯</button></div>${menu}${body}</div>`; }
 const WL_ALL_IC = {collapse:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 20 5-5 5 5"/><path d="m7 4 5 5 5-5"/></svg>', expand:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>'};   // v100: chevrons toward / away from each other
 function drawWlAll(){ const any = wlData.lists.some(l=>wlOpen[l.id]), b = $('wlAll'), t = any ? 'כווץ הכל' : 'הרחב הכל';
   b.innerHTML = WL_ALL_IC[any?'collapse':'expand'] + '<span>' + t + '</span>'; b.title = t; b.setAttribute('aria-label', t + ' – קבוצות רשימות המעקב'); }
@@ -2984,14 +2987,12 @@ $('wlTo').onchange = e=>{ wlData.cur = e.target.value; saveWl(); };
 $('wlLists').addEventListener('click', e=>{ const sec = e.target.closest('.wls'); if(!sec) return; const L = wlList(sec.dataset.l); if(!L) return;
   if(e.target.closest('[data-tog]')){ wlOpen[L.id] = !wlOpen[L.id]; if(!wlOpen[L.id]) delete wlOpen[L.id]; saveWlOpen(); wlMenu = null; wlSortMenu = null; renderWatch(); return; }
   if(e.target.closest('[data-menu]')){ wlMenu = wlMenu===L.id ? null : L.id; wlSortMenu = null; drawWatch(); return; }
-  if(e.target.closest('[data-sortm]')){ wlSortMenu = wlSortMenu===L.id ? null : L.id; wlMenu = null; drawWatch(); return; }
   const ls = e.target.closest('[data-ls]');
-  if(ls){ const k = ls.dataset.ls, cur = wlSortOf(L.id); if(k==='manual') delete wlSortMap[L.id]; else wlSortMap[L.id] = k===cur.k ? {k, dir:-cur.dir} : {k, dir:-1}; saveWlSort(); wlSortMenu = null; drawWatch(); return; }
+  if(ls){ const k = ls.dataset.ls, cur = wlSortOf(L.id); if(k==='manual') delete wlSortMap[L.id]; else wlSortMap[L.id] = k===cur.k ? {k, dir:-cur.dir} : {k, dir:-1}; saveWlSort(); wlSortMenu = null; wlMenu = null; drawWatch(); return; }
   const a = e.target.closest('[data-la]');
   if(a){ const k = a.dataset.la, i = wlData.lists.indexOf(L);
     if(k==='add'){ wlData.cur = L.id; wlOpen[L.id] = true; saveWlOpen(); saveWl(); wlMenu = null; renderWatch(); $('wlSearch').focus(); return; }
     if(k==='edit'){ wlEditing = wlEditing===L.id ? null : L.id; wlOpen[L.id] = true; saveWlOpen(); wlMenu = null; renderWatch(); return; }
-    if(k==='sort'){ wlSortMenu = L.id; wlMenu = null; drawWatch(); return; }
     if(k==='rename'){ const n = (prompt('שם חדש לרשימה:', L.name)||'').trim(); if(n){ L.name = n.slice(0,40); saveWl(); } wlMenu = null; drawWatch(); return; }
     if(k==='up' || k==='down'){ const j = k==='up' ? i-1 : i+1; if(j<0 || j>=wlData.lists.length) return; [wlData.lists[i], wlData.lists[j]] = [wlData.lists[j], wlData.lists[i]]; saveWl(); drawWatch(); return; }
     if(k==='del'){ if(!confirm(`למחוק את הרשימה "${L.name}"${L.items.length ? ` (${L.items.length} ניירות)` : ''}?`)) return;
@@ -3613,7 +3614,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v105</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v106</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
