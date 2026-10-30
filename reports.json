@@ -14001,7 +14001,9 @@
     "מטבע_EPS": "USD",
     "הכנסות_בפועל": "17.404B",
     "מטבע_הכנסות": "USD",
-    "קישור": "https://news.abbvie.com/2026-10-30-AbbVie-Reports-Third-Quarter-2026-Financial-Results"
+    "קישור": "https://news.abbvie.com/2026-10-30-AbbVie-Reports-Third-Quarter-2026-Financial-Results",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Arbor Realty Trust",
@@ -14124,7 +14126,9 @@
     "מטבע_EPS": "USD",
     "הכנסות_בפועל": "1.6021B",
     "מטבע_הכנסות": "USD",
-    "קישור": "https://www.businesswire.com/news/home/20261030619081/en/Church-Dwight-Delivers-Strong-Third-Quarter-Results"
+    "קישור": "https://www.businesswire.com/news/home/20261030619081/en/Church-Dwight-Delivers-Strong-Third-Quarter-Results",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Colgate-Palmolive Company",
@@ -14142,7 +14146,9 @@
     "מטבע_EPS": "USD",
     "הכנסות_בפועל": "5.369B",
     "מטבע_הכנסות": "USD",
-    "קישור": "https://www.businesswire.com/news/home/20261030142821/en/Colgate-Palmolive-Announces-3rd-Quarter-2026-Results"
+    "קישור": "https://www.businesswire.com/news/home/20261030142821/en/Colgate-Palmolive-Announces-3rd-Quarter-2026-Results",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Canadian National Railway Company",
@@ -14474,7 +14480,9 @@
     "מטבע_EPS": "USD",
     "הכנסות_בפועל": "5.1158B",
     "מטבע_הכנסות": "USD",
-    "קישור": "https://investor.regeneron.com/news-releases/news-release-details/regeneron-reports-third-quarter-2026-financial-and-operating/"
+    "קישור": "https://investor.regeneron.com/news-releases/news-release-details/regeneron-reports-third-quarter-2026-financial-and-operating/",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Standard Motor Products, Inc.",
