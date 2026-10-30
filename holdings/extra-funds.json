@@ -1,0 +1,4 @@
+{
+  "tickers": [],
+  "help": "Add ETF tickers here (e.g. \"SMH\", \"ARKK\", \"SOXL\") to include them in the daily issuer-holdings fetch. Public data only."
+}

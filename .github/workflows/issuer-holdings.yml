@@ -1,0 +1,67 @@
+name: issuer-holdings
+# Public ETF holdings straight from each issuer's official daily file -> holdings/issuer.json (read by the app, same origin).
+# Free: GitHub Actions on a public repo, built-in GITHUB_TOKEN, no secrets. Never touches portfolio data / news / reports / calendar.
+on:
+  schedule:
+    - cron: '40 3 * * 2-6'    # after the US close + issuers' overnight publish (UTC; weekdays' files)
+    - cron: '40 16 * * 1-5'   # before the US open (Roundhill / Defiance / ARK post intraday-fresh files)
+  workflow_dispatch:
+    inputs:
+      add_ticker:
+        description: 'Optional: ETF ticker to add to holdings/extra-funds.json before fetching'
+        required: false
+        default: ''
+      dry_run:
+        description: 'true = only print (nothing is committed)'
+        required: false
+        default: 'false'
+  push:
+    paths: ['holdings/extra-funds.json', 'scripts/fetch-issuer-holdings.cjs']
+  issues:
+    types: [opened]
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: issuer-holdings
+  cancel-in-progress: false
+jobs:
+  fetch:
+    # issue trigger: only the repo owner, only titles like "ETF: SMH"
+    if: github.event_name != 'issues' || (github.actor == 'oriboyianjo-collab' && startsWith(github.event.issue.title, 'ETF: '))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: install xlsx (SPDR files)
+        run: npm install --no-save --no-audit --no-fund xlsx@0.18.5
+      - name: add ticker (issue title / manual input)
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          INPUT_TICKER: ${{ github.event.inputs.add_ticker }}
+        run: |
+          T=""
+          if [ "${{ github.event_name }}" = "issues" ]; then T="${ISSUE_TITLE#ETF: }"; fi
+          if [ -n "$INPUT_TICKER" ]; then T="$INPUT_TICKER"; fi
+          T=$(printf '%s' "$T" | head -n1 | tr -cd 'A-Za-z0-9.-' | tr a-z A-Z | cut -c1-10)
+          if [ -n "$T" ]; then node scripts/add-fund.cjs "$T" || true; echo "NEWT=$T" >> "$GITHUB_ENV"; fi
+      - name: fetch issuer holdings
+        run: node scripts/fetch-issuer-holdings.cjs | tee fetch.log
+      - name: commit
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add holdings/issuer.json holdings/extra-funds.json
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "issuer holdings update"
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break || sleep 5; done
+      - name: answer the issue
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if grep -q "^OK   $NEWT " fetch.log; then M="✅ $NEWT נוסף. ההחזקות המלאות נלקחות עכשיו ישירות מקובץ המנפיק ויתעדכנו אוטומטית בכל יום."; else M="⚠️ $NEWT נוסף לרשימה, אבל אין עדיין מקור מנפיק נתמך לקרן הזו (נתמכים: iShares, SPDR, Roundhill, Defiance, ARK, Direxion, First Trust, Range, xETFs). האפליקציה ממשיכה להשתמש ב-TickerInside/ETFIQ."; fi
+          gh issue comment ${{ github.event.issue.number }} --body "$M" && gh issue close ${{ github.event.issue.number }}
