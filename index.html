@@ -296,6 +296,21 @@ input,select{font:inherit;width:100%;min-height:48px;padding:10px 12px;border:1p
 input:focus,select:focus{outline:2px solid var(--bd-93c5fd);border-color:var(--primary)}
 input.ltr-in{direction:ltr;text-align:right}
 .hint{font-size:.74rem;color:var(--muted);margin-top:3px}
+/* v110 mock: ⓘ info buttons – calculation / methodology explanations live in a hidden .ib-src; a tap opens a small dark bottom sheet */
+.ib{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;position:relative;width:19px;height:19px;min-width:19px;margin-inline:6px 0;padding:0;border:1.5px solid var(--muted);border-radius:50%;background:transparent;color:var(--muted);font:italic 700 12px/1 Georgia,'Times New Roman',serif;cursor:pointer;-webkit-tap-highlight-color:transparent;opacity:.9}
+.ib::after{content:"";position:absolute;inset:-12px}
+.ib:active,.ib.on{color:var(--primary-d);border-color:var(--primary-d);background:rgba(96,165,250,.14)}
+.ib.warn{color:#f59e0b;border-color:#f59e0b}
+.ib-src{display:none!important}
+.ib-bg{position:fixed;inset:0;z-index:120;background:rgba(2,6,15,.55);opacity:0;transition:opacity .18s;display:flex;align-items:flex-end;justify-content:center}
+.ib-bg.open{opacity:1}
+.ib-card{box-sizing:border-box;width:100%;max-width:560px;max-height:62vh;max-height:62dvh;overflow:auto;direction:rtl;background:var(--bg-fff,#182235);color:var(--text);border:1px solid var(--border);border-bottom:0;border-radius:20px 20px 0 0;padding:8px 18px calc(18px + var(--safe-b,0px));box-shadow:0 -10px 30px rgba(0,0,0,.4);transform:translateY(24px);transition:transform .2s ease}
+.ib-bg.open .ib-card{transform:none}
+.ib-card .grab{width:40px;height:4px;border-radius:99px;background:var(--border);margin:2px auto 10px}
+.ib-card h4{margin:0 0 8px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.ib-card h4 i{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border:1.5px solid var(--primary-d);border-radius:50%;color:var(--primary-d);font:italic 700 12px/1 Georgia,serif}
+.ib-card .ib-b{font-size:.88rem;line-height:1.6;color:var(--text);opacity:.92}
+.ib-card .ib-b div+div{margin-top:8px}.ib-card .ib-b small{display:block;color:var(--muted);font-size:.8rem}
 .linkbtn{color:var(--primary);cursor:pointer;text-decoration:underline;background:none;border:0;padding:0;font:inherit}
 .sumbox{background:var(--bg-f8fafc);border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin-top:12px;font-size:.88rem}
 .sumbox div{display:flex;justify-content:space-between;gap:8px;padding:2px 0}
@@ -689,7 +704,7 @@ html.ext-sess .ft .xl.ftx{display:block;min-height:0}.ft .xl.ftx:empty{backgroun
 .etfhd{padding:10px 12px;margin-bottom:10px;border:1px solid var(--border);border-radius:14px;background:var(--bg-f8fafc);gap:12px}
 .etfhd .t b{font-size:1.05rem}.etfhd .t small{font-size:.74rem;direction:ltr;text-align:right}
 .etfhd .r{display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:end;min-width:76px}.etfhd .r b{font-size:1rem}.etfhd .r span{font-size:.8rem;direction:ltr}
-.vt2{margin:2px 0 6px;flex-wrap:nowrap}.vt2 small{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:.78rem}.etf-ud{display:inline-flex;gap:8px;font-weight:700}
+.vt2{margin:2px 0 6px;flex-wrap:nowrap}.vt2 small{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:.78rem}.vt2l{display:flex;align-items:center;min-width:0}.etf-ud{display:inline-flex;gap:8px;font-weight:700}
 
 /* v104: visible per-list sort chip row under every list header (collapsed or open, single or many lists) */
 .wl-sortrow{display:flex;align-items:center;gap:10px;padding:7px 12px;border-bottom:1px solid var(--border);background:var(--bg-f8fafc)}
@@ -738,6 +753,18 @@ html.ext-sess .ft .xl.ftx{display:block;min-height:0}.ft .xl.ftx:empty{backgroun
 .wl-cols.wgrid>.pc-p{text-align:right}
 @media (max-width:340px){:root{--k-lg:26px;--k-w:30px;--k-m:60px;--k-p:48px;--k-d:56px;--k-ew:36px;--k-sp:34px;--k-gap:3px}.pgrid .psym,.wr .psym{font-size:.8rem}.pgrid:not(.pos-cols)>.pc-v{font-size:.62rem;letter-spacing:-.25px}.pc-p>.v,.pc-p>.wl-p{font-size:.64rem;letter-spacing:-.3px}.pgrid>.pc-d>b:first-child,.wgrid .pc-d>b:first-child{font-size:.72rem}.pgrid>.logo,.wgrid>.logo{font-size:.48rem}.pos-cols>.pcol{font-size:.58rem}}
 .wl-rows.editing .wr .wl-live{display:none!important}   /* v108 (bonus): in edit mode the sparkline was left showing behind the ▲▼✕ buttons */
+
+/* v109 mock: full-view daily / since-cost lines (replaces the 'live · time' chip and the separate 'היום' field) */
+.pchg{display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-top:9px;direction:rtl;font-size:.82rem}
+.pchg .chg{flex:1 1 0;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:1px 4px;padding:5px 9px 6px;box-sizing:border-box;border-radius:10px;white-space:nowrap;background:rgba(148,163,184,.08);border:1px solid var(--border)}
+.pchg .chg:has(.pos){background:rgba(52,211,153,.09);border-color:rgba(52,211,153,.28)}
+.pchg .chg:has(.neg){background:rgba(248,113,113,.09);border-color:rgba(248,113,113,.28)}
+html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}html:not(.dark) .pchg .chg:has(.neg){background:#fef2f2;border-color:#fecaca}
+.pchg .chg-l{flex:0 0 100%;color:var(--muted);font-size:.68rem;font-weight:600;line-height:1.3}
+.pchg b{font-weight:700;font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+.pchg .chg-d{color:var(--muted);font-style:normal;opacity:.7}
+.pchg .chg-a{font-weight:600}
+@media (max-width:340px){.pchg{font-size:.72rem}.pchg .chg{padding-inline:7px}}
 </style>
 </head>
 <body>
@@ -763,7 +790,7 @@ html.ext-sess .ft .xl.ftx{display:block;min-height:0}.ft .xl.ftx:empty{backgroun
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
-      <h2>ביצועי התיק <small id="perfSrc"></small></h2>
+      <h2><span>ביצועי התיק <button type="button" class="ib" data-ib-for="perfNote" data-ib-t="איך מחושבת התשואה" aria-label="הסבר: איך מחושבת התשואה" aria-haspopup="dialog">i</button></span> <small id="perfSrc"></small></h2>
       <div class="hstats pstats" id="hStats"></div>
       <div class="ytd" id="perfYtd"></div>
       <div class="ctrls"><div class="seg sm" id="perfRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M">3 ח׳</button><button data-v="YTD" class="on">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
@@ -772,11 +799,11 @@ html.ext-sess .ft .xl.ftx{display:block;min-height:0}.ft .xl.ftx:empty{backgroun
       <div class="ac bm-ac"><input id="bmSearch" type="search" placeholder="🔍 הוספת מדד השוואה (SPY, ת״א 35, ביטקוין…)" autocomplete="off" enterkeyhint="search" aria-label="הוספת מדד השוואה"><div class="ac-list" id="bmList"></div></div>
       <div class="legend" id="perfLegend"></div>
       <div class="cmp" id="perfCmp"></div>
-      <div class="note" id="perfNote"></div>
+      <div class="ib-src" id="perfNote"></div>
     </div>
     <div class="card"><h2>פיזור התיק</h2><div id="alloc"></div></div>
-    <div class="card"><h2>רווח והפסד</h2><div class="kv" id="plKv"></div><div class="taxbox" id="taxBox"></div>
-      <div class="note">מס רווחי הון מוערך לפי השיעור בהגדרות, רק על רווח חיובי. החישוב משוער (ללא התאמה לאינפלציה/שער, ללא קיזוז הפסדים משנים קודמות) ואינו ייעוץ מס.</div></div>
+    <div class="card"><h2><span>רווח והפסד <button type="button" class="ib" data-ib-for="plInfoSrc" data-ib-t="איך מחושב המס המוערך" aria-label="הסבר: איך מחושב המס המוערך" aria-haspopup="dialog">i</button></span></h2><div class="kv" id="plKv"></div><div class="taxbox" id="taxBox"></div>
+      <div class="ib-src" id="plInfoSrc">מס רווחי הון מוערך לפי השיעור בהגדרות, רק על רווח חיובי. החישוב משוער (ללא התאמה לאינפלציה/שער, ללא קיזוז הפסדים משנים קודמות) ואינו ייעוץ מס.</div></div>
   </section>
   <section class="tab" id="tab-tx"><div class="card"><div class="tx-h"><h2>היסטוריית עסקאות <small id="txCount"></small></h2><button class="btn btn-primary btn-sm" id="txNew">➕ עסקה חדשה</button></div><div class="hist-bar" id="txHistBar" style="margin-top:0"></div><div id="txList"></div></div></section>
   <section class="tab" id="tab-market">
@@ -784,18 +811,18 @@ html.ext-sess .ft .xl.ftx{display:block;min-height:0}.ft .xl.ftx:empty{backgroun
     <div class="card etf-card" id="etfCard" hidden>
       <div class="fsel" id="etfPick"></div>
       <div id="etfHd"></div>
-      <div class="vt2"><small id="etfInfo"></small><div class="viewtgl" id="etfView" role="group" aria-label="תצוגה"><button data-ev="list">☰ רשימה</button><button data-ev="heat">▦ מפת חום</button></div></div>
+      <div class="vt2"><span class="vt2l"><small id="etfInfo"></small><button type="button" class="ib" data-ib-for="etfNote" data-ib-t="איך מחושב משקל כל החזקה" aria-label="הסבר: איך מחושב משקל כל החזקה" aria-haspopup="dialog">i</button></span><div class="viewtgl" id="etfView" role="group" aria-label="תצוגה"><button data-ev="list">☰ רשימה</button><button data-ev="heat">▦ מפת חום</button></div></div>
       <div id="etfSortWrap"></div>
       <div id="etfBody"></div>
-      <div class="note" id="etfNote"></div></div>
-    <div class="card mkt-card" id="mktCard"><div class="h2row"><h2>שוק <small id="mktUpd"></small></h2><button class="btn btn-light btn-sm" id="mktEdit" aria-pressed="false">✏️ עריכה</button></div>
+      <div class="ib-src" id="etfNote"></div></div>
+    <div class="card mkt-card" id="mktCard"><div class="h2row"><h2><span>שוק <button type="button" class="ib" data-ib-for="mktInfoSrc" data-ib-t="מקור הנתונים ושיטת התצוגה" aria-label="הסבר: מקור הנתונים ושיטת התצוגה" aria-haspopup="dialog">i</button></span> <small id="mktUpd"></small></h2><button class="btn btn-light btn-sm" id="mktEdit" aria-pressed="false">✏️ עריכה</button></div>
       <div class="seg sm" id="mktRange"><button data-v="1D" class="on">יום</button><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="YTD">YTD</button><button data-v="1Y">שנה</button><button data-v="5Y">5 שנים</button></div>
       <div class="mkt-editbar" id="mktEditBar" hidden>
         <div class="ac"><input id="mktSearch" placeholder="הוספה: מניה, תעודת סל, מדד (AAPL, TA-35…)" autocomplete="off" enterkeyhint="search"><div class="ac-list" id="mktAc"></div></div>
         <div class="mkt-cat" id="mktCat"></div>
         <div class="btn-row"><button class="btn btn-light btn-sm" id="mktReset">↺ איפוס לברירת המחדל</button><button class="btn btn-primary btn-sm" id="mktDone">סיום עריכה</button></div></div>
       <div class="mkt-grid" id="mktGrid"></div>
-      <div class="note">מקור: CNBC (זמן אמת / מעוכב לפי הנייר). מניות ארה״ב – מסחר רגיל בלבד. תשואות אג״ח: השינוי בנקודות בסיס (נ״ב).</div></div>
+      <div class="ib-src" id="mktInfoSrc">מקור: CNBC (זמן אמת / מעוכב לפי הנייר). מניות ארה״ב – מסחר רגיל בלבד. תשואות אג״ח: השינוי בנקודות בסיס (נ״ב).</div></div>
   </section>
   <section class="tab" id="tab-watch">
     <div class="card"><div class="h2row"><h2>רשימות מעקב <small id="wlCount"></small></h2><button class="btn btn-light btn-sm" id="wlNew">+ רשימה חדשה</button></div>
@@ -1811,6 +1838,12 @@ document.addEventListener('error', e=>{ const im = e.target; if(!im || im.tagNam
   const sym = im.dataset.lsym, n = +im.dataset.li + 1;
   if(n < LOGO_SRC.length){ im.dataset.li = n; im.className = n ? 'fmp' : ''; im.src = LOGO_SRC[n](sym); }
   else { im.remove(); logoSet(sym, -1); } }, true);
+function chgPct(v){ if(v==null||!isFinite(v)) return '—'; return (v>0.0000001?'+':'') + (Math.abs(v)>=100 ? v.toFixed(0) : v.toFixed(2)) + '%'; }
+function chgAmt(v, p, digits){ if(v==null||!isFinite(v)) return '—'; const toILSv = dispCur()==='ILS' && p.cur==='USD' && fxNow();
+  return fmtSigned(toILSv ? toILS(v,'USD') : v, toILSv ? 'ILS' : p.cur, digits); }
+function chgLines(F){ const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0]}</b>`;
+  const row = (lbl, p, a)=>`<div class="chg"><span class="chg-l">${lbl}</span>${f(p)}<i class="chg-d">·</i>${f(a)}</div>`;
+  return `<div class="pchg">${row('יומי','cdp','cda')}${row('מעלות','cup','cua')}</div>`; }
 function cardFields(p){
   const cur = p.cur, a = ageInfo(p.sym, p);
   // collapsed row: share price + daily % (plus change-from-cost % while sorting by it); value, amounts and change-from-cost live in the details
@@ -1827,6 +1860,11 @@ function cardFields(p){
     unreal:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
     price:[fmtPrice(p.pre ? p.prePrice : p.price,cur), 'num'+(p.pre?' is-'+p.pre:'')],
     age:[a.t, 'age '+a.c],
+    // v109 mock: full-view detail lines. Amounts follow the $/₪ toggle (US holdings converted to ₪ when ₪ is selected); % never changes; the eye masks amounts only
+    cdp:[p.dayPct!=null ? fmtPct(p.dayPct) : '—', 'chg-p num '+cls(p.day)],
+    cda:[chgAmt(p.day, p, 2), 'chg-a num '+cls(p.day)],
+    cup:[chgPct(p.unrealPct), 'chg-p num '+cls(p.unreal)],
+    cua:[chgAmt(p.unreal, p, 0), 'chg-a num '+cls(p.unreal)],
     dayp:[p.dayPct!=null?fmtPct(p.dayPct):'—', 'num '+cls(p.day)],
     he:[p.ext ? fmtPct(p.ext.pct) : '', 'xl'+(p.ext ? ' num '+cls(p.ext.chg)+' is-'+p.ext.kind : '')],   // v65: extended line under the price
     daya:[p.day!=null?fmtSigned(p.day,cur):'', 'num '+cls(p.day)],
@@ -1865,12 +1903,11 @@ async function scanHeldSplits(only){
 function splitSugHtml(sym){
   const L = splitSug.filter(x=>!sym || x.sym===sym); if(!L.length) return '';
   const q = v => hidden() ? MASK : fmtQtyP(v);
-  return `<div class="card splitsug"><h2>✂️ ${L.length===1 ? 'פיצול שלא נרשם בתיק' : 'פיצולים שלא נרשמו בתיק'}</h2>
+  return `<div class="card splitsug"><h2><span>✂️ ${L.length===1 ? 'פיצול שלא נרשם בתיק' : 'פיצולים שלא נרשמו בתיק'}${ib('זוהה בהיסטוריית המחירים הלא־מתואמת (CNBC): קפיצת מחיר בפתיחה ביום הפיצול. אפשר גם להוסיף או לתקן ידנית: לחיצה על הנייר ← ✂️ פיצול / איחוד.', 'איך זוהה הפיצול')}</span></h2>
     ${L.map(x=>`<div class="ss-row"><div><b class="ltr">${esc(x.sym)}</b> · <span class="num">${fmtDate(x.date)}</span> · <b>${splitLabel(x.ratio)}</b><div class="muted">${x.kind==='missing'
       ? `כמות <span class="num">${q(x.q0)} → ${q(x.q1)}</span> · העלות הממוצעת ×<span class="num">${fmtQty(Math.round(1/x.ratio*1e6)/1e6)}</span>, סך העלות לא משתנה`
       : `רשום בתיק כשינוי כמות שלא מתאים ליחס (<span class="num">${q(x.q0)} → ${q(x.got)}</span>, צריך <span class="num">${q(x.q1)}</span>) – החלה תבטל את הרישום הקיים ותרשום את הפיצול`}</div></div>
-      <div class="ss-b"><button class="btn btn-primary sm" data-ss-apply="${esc(x.key)}">החל</button><button class="btn btn-light sm" data-ss-no="${esc(x.key)}">לא נכון</button></div></div>`).join('')}
-    <div class="note">זוהה בהיסטוריית המחירים הלא־מתואמת (CNBC): קפיצת מחיר בפתיחה ביום הפיצול. אפשר גם להוסיף או לתקן ידנית: לחיצה על הנייר ← ✂️ פיצול / איחוד.</div></div>`;
+      <div class="ss-b"><button class="btn btn-primary sm" data-ss-apply="${esc(x.key)}">החל</button><button class="btn btn-light sm" data-ss-no="${esc(x.key)}">לא נכון</button></div></div>`).join('')}</div>`;
 }
 function renderSplitSug(){ const el = $('splitSug'); if(el) el.innerHTML = splitSugHtml(); const ps = $('posSplitSug'); if(ps && sheetSym) ps.innerHTML = splitSugHtml(sheetSym); }
 function splitSugClick(e){
@@ -1947,11 +1984,9 @@ function renderPortfolio(S){
           <div class="pcol pc-p"><span data-f="hp" class="${F.hp[1]}">${F.hp[0]}</span></div><div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}<span data-f="he" class="${F.he[1]}">${F.he[0]}</span></div></div>
         <div class="pmeta">
           ${TYPE_LABELS[p.asset.type] ? `<span class="tag">${esc(TYPE_LABELS[p.asset.type])}</span>` : ''}
-          <span>היום: ${f('day')}</span>
           <span>${short?'כמות בשורט':'כמות'}: <b class="num">${fmtQtyP(Math.abs(p.qty))}</b></span>
           <span>${short?'מחיר שורט':'עלות ממוצעת'}: <b class="num">${fmtMoney(p.avg,cur)}</b></span>
-          <span data-f="age" class="${F.age[1]}">${F.age[0]}</span>
-        </div></button>`;
+        </div>${chgLines(F)}</button>`;
     }).join('');
   }
   $('posList').classList.toggle('compact', posView()==='compact');
@@ -2270,7 +2305,7 @@ function renderYtd(S){
   S = S || computeAll(); const fx = fxNow(), C = dispCur()==='USD' && fx ? 'USD' : 'ILS';
   const r = ytdCalc(perfYtd, C==='USD' ? S.equity/fx : S.equity, C==='USD'); if(!r){ el.innerHTML = ''; return; }
   const y = today().slice(0,4);
-  el.innerHTML = `<div class="l">תשואה מתחילת השנה (${y})<small>${perfYtd.fromStart ? `מאז פתיחת התיק ב-<span class="num">${fmtDate(perfYtd.start)}</span>` : `מול שווי 31.12.${Number(y)-1}: <span class="num">${fmtMoney(r.V0,C,0)}</span>`} · הפקדות נטו השנה <span class="num">${fmtSigned(r.F,C,0)}</span>${C==='USD'?' · בדולרים':''}</small></div>
+  el.innerHTML = `<div class="l">תשואה מתחילת השנה (${y})${ib(`<div>תשואה = רווח ÷ (שווי פתיחה + הפקדות משוקללות לפי הזמן שהושקעו) – שיטת Modified Dietz.</div><div>${perfYtd.fromStart ? `מאז פתיחת התיק ב-<span class="num">${fmtDate(perfYtd.start)}</span>` : `מול שווי 31.12.${Number(y)-1}: <span class="num">${fmtMoney(r.V0,C,0)}</span>`} · הפקדות נטו השנה <span class="num">${fmtSigned(r.F,C,0)}</span>${C==='USD'?' · בדולרים':''}</div>`, 'איך מחושבת התשואה מתחילת השנה')}</div>
     <div class="v"><b id="ytdPct" class="num ${cls(r.gain)}">${r.pct!=null ? fmtPct(r.pct) : '—'}</b><span id="ytdAmt" class="num ${cls(r.gain)}">${fmtSigned(r.gain,C,0)}</span></div>`;
 }
 function updatePerfLive(S){
@@ -2334,7 +2369,7 @@ async function renderPerf(S){
   {
     const s = perfChart.addLineSeries({color:chartTheme().line, lineWidth:3, priceLineVisible:false, lastValueVisible:false});
     s.setData([{time:baseDate, value:0}, ...series.filter(x=>x.r && x.r.pct!=null).map(({p,r})=>({time:p.date, value:r.pct}))]);
-    legend.push(['#2563eb', isAll ? 'התיק (תשואה על ההפקדות נטו)' : 'התיק (תשואה מתחילת הטווח, Modified Dietz)']); perfLive = {mode:'ret', series:s};
+    legend.push(['#2563eb', isAll ? 'התיק (תשואה על ההפקדות נטו)' : 'התיק (תשואה מתחילת הטווח)']); perfLive = {mode:'ret', series:s};
   }
   if(perfLive) Object.assign(perfLive, {date:lastP.date, usd, cur:C, ret:liveRet});
   const lblLines = perfLive ? [{series:perfLive.series, color:chartTheme().line}] : [];
@@ -2648,7 +2683,7 @@ function renderTaxBox(S){
     ['מס אם מוכרים הכול עכשיו', m(S.hypoTax), ''],
     ['מתוכו מקוזז ממגן מס', m(S.hypoShieldUse), ''],
     ['החזר אם מוכרים הכול עכשיו (הערכה)', m(S.hypoRefund), '']];
-  $('taxBox').innerHTML = `<h3>🏛️ מס רווחי הון ומגן מס · ${C.y}</h3>
+  $('taxBox').innerHTML = `<h3>🏛️ מס רווחי הון ומגן מס · ${C.y}${ib(`מגן מס = ההפסד הממומש × שיעור המס (${state.settings.taxRate}%), בשקלים של מס – כמו אצל הבנק. מכירה ברווח משתמשת קודם במגן: מס = רווח × שיעור המס פחות המגן הזמין. הפסד אחרי שכבר שולם מס באותה שנה – הבנק מחזיר את המס מהמגן (החזר צפוי = הערכה). הרווח לצורכי מס: לפי FIFO; בנייר דולרי – עלות בשקלים לפי השער היציג ביום הסליקה של כל קנייה, והנמוך מבין הרווח הנומינלי בשקלים לרווח הדולרי; בנייר שקלי – רווח ריאלי לפי המדד הידוע.${TM.approx?' <b>נתוני שער יציג/מדד לא נטענו – חישוב משוער.</b>':''} המגן מתאפס ב-1 בינואר – הבנק מקזז רק בתוך שנת המס; כדי להעביר הפסד לשנה הבאה צריך להגיש דוח שנתי.`, 'איך מחושבים מס רווחי הון ומגן המס')}</h3>
     <div class="kv">${kv.map(([l,v,c])=>`<div class="${c}"><span>${l}</span><b class="num">${v}</b></div>`).join('')}</div>
     ${yrs.length ? `<h3 style="margin-top:12px">לפי שנות מס</h3>${yrs.slice().reverse().map(o=>`<div class="taxyr"><div class="yh">${o.y}${o.y===C.y?' · השנה':''}</div><div class="yg">
       <span>מס על רווחים</span><b class="num">${m(o.gainTax)}</b><span>מגן מס שנוצר</span><b class="num">${m(o.lossShield)}</b>
@@ -2657,7 +2692,7 @@ function renderTaxBox(S){
       ${o.refundEst>0.005?`<span>החזר צפוי (הערכה)</span><b class="num">${m(o.refundEst)}</b>`:''}
       <span>${o.y===C.y?'מגן מס זמין עכשיו':'מגן בסוף השנה (מתאפס)'}</span><b class="num">${m(o.shieldEnd)}</b>
       ${o.b.has?`<span>לפי רישומי הבנק: מגן / מס ממתין</span><b class="num">${m(o.b.shieldBal)} / ${m(o.b.pending)}</b>`:''}</div></div>`).join('')}` : ''}
-    <div class="note">מגן מס = ההפסד הממומש × שיעור המס (${state.settings.taxRate}%), בשקלים של מס – כמו אצל הבנק. מכירה ברווח משתמשת קודם במגן: מס = רווח × שיעור המס פחות המגן הזמין. הפסד אחרי שכבר שולם מס באותה שנה – הבנק מחזיר את המס מהמגן (החזר צפוי = הערכה). הרווח לצורכי מס: לפי FIFO; בנייר דולרי – עלות בשקלים לפי השער היציג ביום הסליקה של כל קנייה, והנמוך מבין הרווח הנומינלי בשקלים לרווח הדולרי; בנייר שקלי – רווח ריאלי לפי המדד הידוע.${TM.approx?' <b>נתוני שער יציג/מדד לא נטענו – חישוב משוער.</b>':''} המגן מתאפס ב-1 בינואר – הבנק מקזז רק בתוך שנת המס; כדי להעביר הפסד לשנה הבאה צריך להגיש דוח שנתי.</div>`;
+`;
 }
 
 // ---------- benchmarks ----------
@@ -2929,7 +2964,7 @@ const fsExt = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.ext
 function drawEtfSel(){ const el = $('etfPick'); if(!el) return; const t = etfUi.sel;
   const ord = [...ETFS].sort((a,b)=>{ const pa = fsPct(a), pb = fsPct(b); return (pa==null)-(pb==null) || (pb||0)-(pa||0); });
   const tile = x=>{ const p = fsPct(x), e = fsExt(x); return `<button class="ft${x===t?' on':''}" data-etf="${x}" aria-pressed="${x===t}" aria-label="${ETF_LBL[x]||x} ${p!=null ? fmtPct(p) : ''}${e ? ' '+e.kind+' '+fmtPct(e.pct) : ''}" style="background:${heatColor(p)}"><b class="ltr">${ETF_LBL[x]||x}</b><span class="num">${p!=null ? fmtPct(p) : '—'}</span>${extLineHtml(e, 'ftx')}</button>`; };
-  const h = `<div class="fs-bar"><b>מפת חום · הקרנות</b><small>${ETFS.length} קרנות</small></div><div class="ft-g">${ord.map(tile).join('')}</div><div class="ft-k">ממוין מהעולה ביותר ליורד ביותר · צבע = שינוי יומי</div>`;
+  const h = `<div class="fs-bar"><b>מפת חום · הקרנות</b>${ib('ממוין מהעולה ביותר ליורד ביותר · צבע = שינוי יומי', 'איך ממופה מפת החום')}<small>${ETFS.length} קרנות</small></div><div class="ft-g">${ord.map(tile).join('')}</div>`;
   if(el.innerHTML!==h) el.innerHTML = h; }
 function drawEtf(){ const t = etfUi.sel, d = etfData[t], ei = secInst({sym:t, type:'etf'}), q = iq(ei), pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   drawEtfSel(); $('etfView').querySelectorAll('button').forEach(b=>{ const on = b.dataset.ev===etfUi.view; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
@@ -3222,24 +3257,21 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $('sheet').clas
 // ---------- transaction form ----------
 function openTaxAcct(t, backSym){
   const l = (TAXACCT[t.acct]||{})[t.dir] || TX_LABELS.taxacct;
-  openSheet(`<h3>📒 ${l}<button class="x" data-close aria-label="סגירה">✕</button></h3>
+  openSheet(`<h3><span>📒 ${l}${ib(`רישום פנימי של הבנק בחשבון המס, <b>בלי תנועת מזומן</b>. רווח הון יוצר "מס עתידי" שעובר ל"מס לשלם" ונגבה כ"מס ששולם"; הפסד הון יוצר "מגן מס" שמקזז מס עתידי או מוחזר כ"זיכוי מס" באותה שנה. מוצג לצורך מעקב והשוואה – החישוב באפליקציה נעשה מהמכירות עצמן.`, 'מה זה רישום מס')}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="kv"><div><span>תאריך</span><b>${fmtDate(t.date)}</b></div><div><span>סכום</span><b class="num">${fmtMoney(num(t.amount)||0,'ILS')}</b></div>
       <div><span>חשבון</span><b>${t.acct==='shield'?'מגן מס':t.acct==='payable'?'מס לשלם':t.acct==='future'?'מס עתידי':'רישום מס'}</b></div><div><span>בקובץ</span><b>${esc(t.bankName||'')}</b></div></div>
-    <div class="note">רישום פנימי של הבנק בחשבון המס, <b>בלי תנועת מזומן</b>. רווח הון יוצר "מס עתידי" שעובר ל"מס לשלם" ונגבה כ"מס ששולם"; הפסד הון יוצר "מגן מס" שמקזז מס עתידי או מוחזר כ"זיכוי מס" באותה שנה. מוצג לצורך מעקב והשוואה – החישוב באפליקציה נעשה מהמכירות עצמן.</div>
     <div class="btn-row" style="margin-top:14px"><button class="btn btn-danger" id="taDel">🗑️ מחיקה</button><button class="btn btn-light" data-close>סגירה</button></div>`);
   $('taDel').onclick = ()=>{ if(!confirm('למחוק את הרישום?')) return; state.txs = state.txs.filter(x=>x.id!==t.id); save(); closeSheet(); renderAll(); toast('הרישום נמחק'); if(backSym) openPosition(backSym); };
 }
 function openShareBonus(t, backSym){
-  openSheet(`<h3>🎁 מניות הטבה <span class="ltr">${esc(t.symbol)}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
+  openSheet(`<h3><span>🎁 מניות הטבה <span class="ltr">${esc(t.symbol)}</span>${ib(`מניות שהתקבלו בלי תשלום (כך הבנק רושם חלק מהפיצולים). הכמות גדלה והעלות הכוללת לא משתנה – העלות הממוצעת למניה יורדת.`, 'איך מחושבת העלות')}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="kv"><div><span>תאריך</span><b>${fmtDate(t.date)}</b></div><div><span>כמות שנוספה</span><b class="num">${fmtQty(num(t.qty))}</b></div></div>
-    <div class="note">מניות שהתקבלו בלי תשלום (כך הבנק רושם חלק מהפיצולים). הכמות גדלה והעלות הכוללת לא משתנה – העלות הממוצעת למניה יורדת.</div>
     <div class="btn-row" style="margin-top:14px"><button class="btn btn-danger" id="sbDel">🗑️ מחיקה</button><button class="btn btn-light" data-close>סגירה</button></div>`);
   $('sbDel').onclick = ()=>{ if(!confirm('למחוק את הרישום?')) return; state.txs = state.txs.filter(x=>x.id!==t.id); save(); closeSheet(); renderAll(); toast('הרישום נמחק'); if(backSym) openPosition(backSym); };
 }
 function openFracZero(t, backSym){
-  openSheet(`<h3>🧹 סגירת שבר מניה <span class="ltr">${esc(t.symbol)}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
+  openSheet(`<h3><span>🧹 סגירת שבר מניה <span class="ltr">${esc(t.symbol)}</span>${ib(`נשאר שבר של מניה (פחות ממניה אחת) אחרי פיצול/איחוד או מכירה מלאה – שבר כזה לא נסחר, ולכן האפליקציה סגרה אותו אוטומטית בלי מזומן. אם הבנק שילם עליו כסף, שורת התשלום מיובאת כרגיל. ביטול יחזיר את השבר להחזקות ולא ייסגר שוב אוטומטית.`, 'למה נסגר שבר')}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="kv"><div><span>תאריך</span><b>${fmtDate(t.date)}</b></div><div><span>כמות שנסגרה</span><b class="num">${fmtQty(num(t.qty))}</b></div><div><span>עלות שנמחקה (הפסד ממומש)</span><b class="num">${fmtMoney(num(t.cost)||0, t.currency||'USD')}</b></div></div>
-    <div class="note">נשאר שבר של מניה (פחות ממניה אחת) אחרי פיצול/איחוד או מכירה מלאה – שבר כזה לא נסחר, ולכן האפליקציה סגרה אותו אוטומטית בלי מזומן. אם הבנק שילם עליו כסף, שורת התשלום מיובאת כרגיל. ביטול יחזיר את השבר להחזקות ולא ייסגר שוב אוטומטית.</div>
     <div class="btn-row" style="margin-top:14px"><button class="btn btn-danger" id="fzDel">↩️ ביטול הסגירה</button><button class="btn btn-light" data-close>סגירה</button></div>`);
   $('fzDel').onclick = ()=>{ (state.fracDismiss || (state.fracDismiss = {}))[t.ikey] = Date.now(); state.txs = state.txs.filter(x=>x.id!==t.id); save(); closeSheet(); renderAll(); toast('הסגירה בוטלה'); if(backSym) openPosition(backSym); };
 }
@@ -3268,8 +3300,8 @@ function openTxForm(type, preset, editId, backSym, after){
         <label class="f"><span>מחיר ליחידה *</span><input id="fPrice" inputmode="decimal" class="ltr-in" value="${d.price??''}" placeholder="0.00"><div class="hint" id="fPriceHint"></div></label>
         <label class="f"><span>עמלה</span><input id="fFee" inputmode="decimal" class="ltr-in" value="${d.fee??''}" placeholder="0">${feeHint}</label>
         <label class="f"><span>סוג נכס</span><select id="fAType">${['stock','etf','fund','bond','crypto'].map(k=>`<option value="${k}">${TYPE_LABELS[k]}</option>`).join('')}</select></label>
-        ${ty==='sell' ? `<div class="f full"><span>אילו מניות נמכרות</span><div class="seg sm" id="fLot" role="group" aria-label="שיטת מכירת שכבות"><button type="button" data-v="fifo" class="${st.lot!=='lifo'?'on':''}">FIFO · הישנות קודם</button><button type="button" data-v="lifo" class="${st.lot==='lifo'?'on':''}">LIFO · החדשות קודם</button></div><div class="hint">הבנק מחשב לפי FIFO – במכירה ב-LIFO המס שהבנק ינכה בפועל עשוי להיות שונה מהחישוב כאן.</div></div>` : ''}
-        ${ty==='sell' ? `<label class="f full"><span>אומדן מס רווחי הון מהבנק (₪, לא חובה)</span><input id="fCgt" inputmode="decimal" class="ltr-in" value="${d.cgtEst??''}" placeholder="ריק = חישוב לפי ${state.settings.taxRate}%"><div class="hint">חיובי = מס על רווח · שלילי = מגן מס מהפסד</div></label>` : ''}
+        ${ty==='sell' ? `<div class="f full"><span>אילו מניות נמכרות${ib('הבנק מחשב לפי FIFO – במכירה ב-LIFO המס שהבנק ינכה בפועל עשוי להיות שונה מהחישוב כאן.', 'שיטת מכירת שכבות')}</span><div class="seg sm" id="fLot" role="group" aria-label="שיטת מכירת שכבות"><button type="button" data-v="fifo" class="${st.lot!=='lifo'?'on':''}">FIFO · הישנות קודם</button><button type="button" data-v="lifo" class="${st.lot==='lifo'?'on':''}">LIFO · החדשות קודם</button></div></div>` : ''}
+        ${ty==='sell' ? `<label class="f full"><span>אומדן מס רווחי הון מהבנק (₪, לא חובה)${ib('חיובי = מס על רווח · שלילי = מגן מס מהפסד. ריק = חישוב לפי שיעור המס בהגדרות.', 'אומדן המס מהבנק')}</span><input id="fCgt" inputmode="decimal" class="ltr-in" value="${d.cgtEst??''}" placeholder="ריק = חישוב לפי ${state.settings.taxRate}%"></label>` : ''}
         <label class="f full"><span>הערה</span><input id="fNote" value="${esc(d.note||'')}" placeholder="לא חובה"></label></div>
         <div class="sumbox" id="fSum"></div><div id="fWarn"></div>`;
     if(ty==='deposit'||ty==='withdraw') return `<div class="fgrid">
@@ -3476,9 +3508,9 @@ function openTxForm(type, preset, editId, backSym, after){
 // lot layers still held (tax lots: cost incl. buy fee, ILS cost at the buy's settlement-date BOI rate)
 function lotsHtml(sym, cur){ const LT = (taxModel(state.txs).lots[sym]||[]).filter(l=>l.q > 1e-9); if(!LT.length) return '';
   const tq = LT.reduce((a,l)=>a+l.q,0), tc = LT.reduce((a,l)=>a+l.q*l.c,0), ti = LT.reduce((a,l)=>a+l.q*l.ils,0);
-  return `<div class="lots"><h4>שכבות מוחזקות <small class="muted">(${LT.length})</small></h4><div class="lt-row lt-h"><span>תאריך קנייה</span><span>כמות</span><span>עלות ליח׳</span><span>עלות ₪ למס</span></div>`+
+  return `<div class="lots"><h4>שכבות מוחזקות <small class="muted">(${LT.length})</small>${ib('מכירה רגילה (FIFO) מוכרת קודם את השכבה הישנה; במכירת LIFO – את החדשה. הממוצע לפי השכבות שנשארו.', 'איך נמכרות השכבות')}</h4><div class="lt-row lt-h"><span>תאריך קנייה</span><span>כמות</span><span>עלות ליח׳</span><span>עלות ₪ למס</span></div>`+
     LT.map(l=>`<div class="lt-row"><span class="num">${fmtDate(l.date)}</span><span class="num">${hidden()?MASK:fmtQty(l.q)}</span><span class="num">${fmtPrice(l.c,cur)}</span><span class="num">${hidden()?MASK:fmtMoney(l.q*l.ils,'ILS')}</span></div>`).join('')+
-    `<div class="lt-row lt-f"><span>סה״כ</span><span class="num">${hidden()?MASK:fmtQty(tq)}</span><span class="num">${fmtPrice(tc/tq,cur)}</span><span class="num">${hidden()?MASK:fmtMoney(ti,'ILS')}</span></div><div class="note">מכירה רגילה (FIFO) מוכרת קודם את השכבה הישנה; במכירת LIFO – את החדשה. הממוצע לפי השכבות שנשארו.</div></div>`; }
+    `<div class="lt-row lt-f"><span>סה״כ</span><span class="num">${hidden()?MASK:fmtQty(tq)}</span><span class="num">${fmtPrice(tc/tq,cur)}</span><span class="num">${hidden()?MASK:fmtMoney(ti,'ILS')}</span></div></div>`; }
 // sale form: which layers are sold, for FIFO and LIFO side by side
 function lotPreviewHtml(cand, editId, cur){ const base = state.txs.filter(x=>x.id!==editId), R = {};
   for(const m of ['fifo','lifo']){ const c = Object.assign({}, cand, {lotMethod: m==='lifo' ? 'lifo' : undefined}); const TM = taxModel(base.concat(c)), s = TM.sales['__new']; R[m] = s; }
@@ -3553,10 +3585,10 @@ function posKvRows(p){
   R.push(['real','רווח ממומש', fmtSigned(p.realized,cur), cls(p.realized)], ['fees','עמלות ששולמו', fmtMoney(p.fees,cur), '']);
   return R;
 }
-function posKvHtml(p){ return posKvRows(p).map(([k,l,v,c,rc])=>`<div${rc?` class="${rc}"`:''}><span>${l}</span><b data-k="${k}" class="${c==='nonum'?'':'num '+c}">${v}</b></div>`).join(''); }
+function posKvHtml(p){ return posKvRows(p).map(([k,l,v,c,rc])=>`<div${rc?` class="${rc}"`:''}><span>${l}${k==='net' ? `<button type="button" class="ib" data-ib-for="posNetSrc" data-ib-t="איך מחושב הנטו" aria-label="הסבר: איך מחושב הנטו">i</button>` : ''}</span><b data-k="${k}" class="${c==='nonum'?'':'num '+c}">${v}</b></div>`).join(''); }
 function posInfoHtml(p){
   const q = state.quotes[p.sym]||{}, cur = p.cur, open = Math.abs(p.qty)>1e-9;
-  return `${q.updated?`מחיר עודכן ${fmtTime(q.updated)} · ${esc(q.source||'')}${q.time?' · מסחר '+esc(String(q.time).slice(0,10)):''}`:''}${open?` · "נטו" = אחרי עמלת סגירה משוערת <span class="num">${fmtMoney(p.closeFee,cur)}</span> ומס ${state.settings.taxRate}% על רווח, אחרי קיזוז מגן המס של השנה`:''}`;
+  return `${q.updated?`מחיר עודכן ${fmtTime(q.updated)} · ${esc(q.source||'')}${q.time?' · מסחר '+esc(String(q.time).slice(0,10)):''}`:''}${open?`<span class="ib-src" id="posNetSrc">"נטו" = אחרי עמלת סגירה משוערת <span class="num">${fmtMoney(p.closeFee,cur)}</span> ומס ${state.settings.taxRate}% על רווח, אחרי קיזוז מגן המס של השנה.</span>`:''}`;
 }
 function updatePosSheet(S){
   const box = $('posKv'); if(!sheetSym || !box || !$('sheet').classList.contains('open')) return;
@@ -3617,6 +3649,23 @@ async function drawPosChart(sym){
   $('posNote').textContent = `מקור: ${h.source} · מחירים ב${h.cur==='USD'?'דולר':'שקל'}${ui.posStyle==='candle'&&!h.ohlc?' · אין נתוני OHLC – מוצג קו':''}${mks.length?' · B/S = הקניות והמכירות שלך':''}`;
 }
 
+// ---------- v110 mock: ⓘ info buttons ----------
+// ib(html, title, cls) -> the round "i" button + a hidden .ib-src holding the explanation (kept in the DOM so live-updated spans keep working).
+// Static markup uses <button class="ib" data-ib-for="idOfHiddenSrc">. A tap opens a small dark bottom sheet; a tap outside / ✕ / Esc closes it.
+function ib(html, title, cls){ return `<button type="button" class="ib${cls?' '+cls:''}" data-ib-t="${esc(title||'')}" aria-label="הסבר${title?': '+esc(title):''}" aria-haspopup="dialog">i</button><span class="ib-src">${html}</span>`; }
+(function(){ let bg = null;
+  const close = ()=>{ if(!bg) return; const b = bg; bg = null; b.classList.remove('open'); document.querySelectorAll('.ib.on').forEach(x=>x.classList.remove('on')); setTimeout(()=>b.remove(), 180); document.removeEventListener('keydown', onKey, true); };
+  const onKey = e=>{ if(e.key==='Escape') close(); };
+  function open(btn){ const f = btn.dataset.ibFor, src = f ? document.getElementById(f) : (btn.nextElementSibling && btn.nextElementSibling.classList.contains('ib-src') ? btn.nextElementSibling : null);
+    const body = src && src.innerHTML.trim() ? src.innerHTML : 'ההסבר יופיע כשיהיו נתונים להצגה.';
+    close(); btn.classList.add('on');
+    bg = document.createElement('div'); bg.className = 'ib-bg';
+    bg.innerHTML = `<div class="ib-card" role="dialog" aria-modal="true"><div class="grab"></div><h4><i>i</i><span>${esc(btn.dataset.ibT||'הסבר')}</span></h4><div class="ib-b">${body}</div></div>`;
+    bg.addEventListener('click', e=>{ if(!e.target.closest('.ib-card')) close(); });
+    document.body.appendChild(bg); requestAnimationFrame(()=>bg.classList.add('open')); document.addEventListener('keydown', onKey, true); }
+  document.addEventListener('click', e=>{ const b = e.target.closest && e.target.closest('.ib'); if(!b) return; e.preventDefault(); e.stopPropagation(); open(b); }, true);
+  window.closeIb = close; })();
+
 // ---------- settings ----------
 let deferredInstall = null;
 function renderSettings(){
@@ -3629,35 +3678,29 @@ function renderSettings(){
       <label class="f"><span>לכל מניה (${CUR_SYM[cur]})</span><input inputmode="decimal" class="ltr-in" data-set="commission.${cur}.perShare" value="${c[cur].perShare||0}"></label>
       <label class="f"><span>מינימום (${CUR_SYM[cur]})</span><input inputmode="decimal" class="ltr-in" data-set="commission.${cur}.min" value="${c[cur].min}"></label>
       <label class="f"><span>מקסימום (${CUR_SYM[cur]}, 0 = ללא)</span><input inputmode="decimal" class="ltr-in" data-set="commission.${cur}.max" value="${c[cur].max||0}"></label>
-      <div class="hint" style="align-self:center">עסקה של <span class="num">${fmtMoneyRaw(exAmt(cur),cur,0)}</span> (${EXQ} מניות) → עמלה <b class="num" data-ex="${cur}">${fmtMoneyRaw(commission(cur, exAmt(cur), EXQ),cur)}</b></div>
       <label class="f"><span>עסקה קטנה מתחת ל־ (${CUR_SYM[cur]})</span><input inputmode="decimal" class="ltr-in" data-set="commission.${cur}.smallBelow" value="${c[cur].smallBelow||0}" placeholder="0"></label>
       <label class="f"><span>עמלה קבועה לעסקה קטנה (${CUR_SYM[cur]})</span><input inputmode="decimal" class="ltr-in" data-set="commission.${cur}.smallFee" value="${c[cur].smallFee||0}" placeholder="0"></label>
-      <div class="hint full">${cur==='USD'?'לדוגמה: מתחת ל־2,000$ עמלה של 7$.':'לדוגמה: מתחת ל־5,000₪ עמלה של 25₪.'} השאירו 0 כדי לא להשתמש. עסקה קטנה של <span class="num">${fmtMoneyRaw(exSmall(cur),cur,0)}</span> → עמלה <b class="num" data-exs="${cur}">${fmtMoneyRaw(commission(cur, exSmall(cur)),cur)}</b></div></div>`;
+      </div>`;
+  const commInfo = cur => ib(`<div>עסקה של <span class="num">${fmtMoneyRaw(exAmt(cur),cur,0)}</span> (${EXQ} מניות) → עמלה <b class="num" data-ex="${cur}">${fmtMoneyRaw(commission(cur, exAmt(cur), EXQ),cur)}</b></div><div>${cur==='USD'?'לדוגמה: מתחת ל־2,000$ עמלה של 7$.':'לדוגמה: מתחת ל־5,000₪ עמלה של 25₪.'} השאירו 0 כדי לא להשתמש. עסקה קטנה של <span class="num">${fmtMoneyRaw(exSmall(cur),cur,0)}</span> → עמלה <b class="num" data-exs="${cur}">${fmtMoneyRaw(commission(cur, exSmall(cur)),cur)}</b></div><div>העמלה מחושבת אוטומטית בטופס העסקה ואפשר לשנות אותה בכל עסקה. שינוי כאן לא משנה עסקאות שכבר נשמרו.</div>`, 'איך מחושבת העמלה');
   $('settingsCard').innerHTML = `
-    <div class="set-sec"><h4>🎨 תצוגה</h4><div class="fgrid"><label class="f"><span>ערכת צבעים</span><select id="setTheme"><option value="light">בהיר</option><option value="dark">כהה</option><option value="auto">לפי הגדרות המכשיר</option></select></label></div></div>
-    <div class="set-sec"><h4>⚡ עדכון מחירים חי</h4><div class="fgrid">
+    <div class="set-sec"><h4>🎨 תצוגה${ib('👁 כפתור העין ליד שווי התיק מסתיר/מציג את כל הסכומים (למשל כשמראים את המסך למישהו).', 'הסתרת סכומים')}</h4><div class="fgrid"><label class="f"><span>ערכת צבעים</span><select id="setTheme"><option value="light">בהיר</option><option value="dark">כהה</option><option value="auto">לפי הגדרות המכשיר</option></select></label></div></div>
+    <div class="set-sec"><h4>⚡ עדכון מחירים חי${ib('כשהשווקים סגורים או שהאפליקציה ברקע – העדכון מואט/מושהה אוטומטית. מניות ארה״ב: זמן אמת (CNBC). ת״א: מעוכב (CNBC מסמן realTime=false). קריפטו: כמה שניות.', 'איך מתעדכנים המחירים')}</h4><div class="fgrid">
       <label class="f"><span>תדירות בזמן מסחר</span><select id="setRefresh">${[[0,'כבוי'],[5,'כל 5 שניות'],[15,'כל 15 שניות'],[30,'כל 30 שניות'],[60,'כל דקה']].map(([v,l])=>`<option value="${v}" ${num(s.refreshSec)===v?'selected':''}>${l}</option>`).join('')}</select></label>
-</div>
-      <div class="note">כשהשווקים סגורים או שהאפליקציה ברקע – העדכון מואט/מושהה אוטומטית. מניות ארה״ב: זמן אמת (CNBC). ת״א: מעוכב (CNBC מסמן realTime=false). קריפטו: כמה שניות.</div></div>
+</div></div>
     <div class="set-sec" id="feeInferSec" hidden></div>
-    <div class="set-sec"><h4>💸 עמלת קנייה/מכירה – ניירות בדולר</h4>${comm('USD')}</div>
-    <div class="set-sec"><h4>💸 עמלת קנייה/מכירה – ניירות בשקל</h4>${comm('ILS')}</div>
+    <div class="set-sec"><h4>💸 עמלת קנייה/מכירה – ניירות בדולר${commInfo('USD')}</h4>${comm('USD')}</div>
+    <div class="set-sec"><h4>💸 עמלת קנייה/מכירה – ניירות בשקל${commInfo('ILS')}</h4>${comm('ILS')}</div>
     <div class="set-sec"><h4>💱 עמלת המרת מט״ח</h4><div class="fgrid"><label class="f"><span>אחוז מסכום ההמרה (%)</span><input inputmode="decimal" class="ltr-in" data-set="fxFeePct" value="${s.fxFeePct}"></label></div></div>
-    <div class="set-sec"><h4>🏛️ מס רווחי הון</h4><div class="fgrid"><label class="f"><span>שיעור מס (%)</span><input inputmode="decimal" class="ltr-in" data-set="taxRate" value="${s.taxRate}"></label>
-      <div class="hint" style="align-self:center">ברירת מחדל: 25% (שיעור המס בישראל על רווחי הון). עדכנו אם חל עליכם שיעור אחר.</div></div>
-      <div class="note">👁 כפתור העין ליד שווי התיק מסתיר/מציג את כל הסכומים (למשל כשמראים את המסך למישהו).</div>
-      <div class="note">העמלה מחושבת אוטומטית בטופס העסקה ואפשר לשנות אותה בכל עסקה. שינוי כאן לא משנה עסקאות שכבר נשמרו.</div></div>
-    <div class="set-sec"><h4>🏦 ייבוא מהבנק / מבית ההשקעות</h4>
-      <button class="btn btn-primary btn-block" id="btnBank">📥 טעינת קובץ מהבנק (Excel)</button>
-      <div class="note">קובץ "טבלת תנועות" (xlsx, xls או csv). האפליקציה בונה ממנו את התיק – ואחר כך ממשיכים להוסיף עסקאות ידנית כרגיל. 🔒 הקובץ נקרא רק במכשיר הזה ולא נשלח לשום מקום.</div></div>
-    <div class="set-sec"><h4>💾 גיבוי ושחזור</h4>
-      <div class="btn-row"><button class="btn btn-light" id="btnExport">⬇️ ייצוא גיבוי</button><button class="btn btn-light" id="btnImport">⬆️ ייבוא גיבוי</button></div>
-      <div class="note">הגיבוי כולל עסקאות, הגדרות, מחירים ידניים, מדדי השוואה, רשימות מעקב ומסך השוק. הנתונים נשמרים רק בדפדפן הזה – מומלץ לגבות מדי פעם.</div></div>
+    <div class="set-sec"><h4>🏛️ מס רווחי הון${ib('ברירת מחדל: 25% (שיעור המס בישראל על רווחי הון). עדכנו אם חל עליכם שיעור אחר.', 'שיעור המס')}</h4><div class="fgrid"><label class="f"><span>שיעור מס (%)</span><input inputmode="decimal" class="ltr-in" data-set="taxRate" value="${s.taxRate}"></label></div></div>
+    <div class="set-sec"><h4>🏦 ייבוא מהבנק / מבית ההשקעות${ib('קובץ "טבלת תנועות" (xlsx, xls או csv). האפליקציה בונה ממנו את התיק – ואחר כך ממשיכים להוסיף עסקאות ידנית כרגיל. 🔒 הקובץ נקרא רק במכשיר הזה ולא נשלח לשום מקום.', 'איך עובד הייבוא')}</h4>
+      <button class="btn btn-primary btn-block" id="btnBank">📥 טעינת קובץ מהבנק (Excel)</button></div>
+    <div class="set-sec"><h4>💾 גיבוי ושחזור${ib('הגיבוי כולל עסקאות, הגדרות, מחירים ידניים, מדדי השוואה, רשימות מעקב ומסך השוק. הנתונים נשמרים רק בדפדפן הזה – מומלץ לגבות מדי פעם.', 'מה כולל הגיבוי')}</h4>
+      <div class="btn-row"><button class="btn btn-light" id="btnExport">⬇️ ייצוא גיבוי</button><button class="btn btn-light" id="btnImport">⬆️ ייבוא גיבוי</button></div></div>
     <div class="set-sec" id="installSec" style="display:none"><h4>📲 התקנה כאפליקציה</h4><button class="btn btn-primary btn-block" id="btnInstall">הוספה למסך הבית</button></div>
-    <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
+    <div class="set-sec"><h4>ℹ️ מקורות מחירים${ib('מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.', 'מקורות המחירים')}</h4></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v108</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v109</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
@@ -3677,9 +3720,9 @@ function renderFeeInfer(){ const sec = $('feeInferSec'); if(!sec) return; const 
   if(!curs.length){ sec.hidden = true; return; }
   const c = state.settings.commission, same = cur => ['fixed','pct','min','perShare','max','smallBelow','smallFee'].every(k=>Math.abs((num(c[cur][k])||0) - (num(I[cur].sched[k])||0)) < 1e-9);
   const allSame = curs.every(same), nm = {USD:'ניירות בדולר', ILS:'ניירות בשקל'};
-  sec.hidden = false; sec.innerHTML = `<h4>🔎 עמלות לפי העסקאות שיובאו</h4>` + curs.map(cur=>{ const x = I[cur];
+  sec.hidden = false; sec.innerHTML = `<h4>🔎 עמלות לפי העסקאות שיובאו${ib('משנה רק את הגדרות העמלה לעסקאות חדשות – לא עסקאות שכבר נשמרו.', 'החלת מבנה העמלות')}</h4>` + curs.map(cur=>{ const x = I[cur];
     return `<div class="note" style="margin-top:4px"><b>${nm[cur]}:</b> ${esc(feeSchedText(cur, x.sched))} <span class="muted">· ${x.n} עסקאות (${fmtDate(x.from)}–${fmtDate(x.to)}), ${x.nMin} במינימום${x.nAbove ? `, ${x.fitAbove}/${x.nAbove} מעליו תואמות` : ''}</span>${same(cur) ? ' ✓' : ''}</div>`; }).join('') +
-    (allSame ? `<div class="note">✓ ההגדרות למטה כבר תואמות.</div>` : `<button class="btn btn-light btn-block" id="btnFeeApply" style="margin-top:8px">החלת מבנה העמלות מקובץ הבנק</button><div class="note">משנה רק את הגדרות העמלה לעסקאות חדשות – לא עסקאות שכבר נשמרו.</div>`);
+    (allSame ? `<div class="note">✓ ההגדרות למטה כבר תואמות.</div>` : `<button class="btn btn-light btn-block" id="btnFeeApply" style="margin-top:8px">החלת מבנה העמלות מקובץ הבנק</button>`);
   const b = $('btnFeeApply'); if(b) b.onclick = ()=>{ curs.forEach(cur=>{ state.settings.commission[cur] = Object.assign({}, I[cur].sched); }); save(); renderSettings(); toast('מבנה העמלות עודכן'); }; }
 // ---- delete the whole portfolio: backup offer → type 'מחק' → wipe (settings kept unless checked) ----
 function openDeleteAll(){
@@ -4209,11 +4252,10 @@ function bankRefresh(){
   const scanList = scanSyms.map(s=>[s, IMP.scan[s]]).filter(x=>x[1]), running = scanList.filter(x=>x[1].st==='run').map(x=>x[0]), errs = scanList.filter(x=>x[1].st==='err').map(x=>x[0]);
   // splits (detected from each held ticker's price history after the file's last date)
   const SS = R.splitSum || [];
-  $('bankSplitSum').innerHTML = !SS.length ? '' : `<h4>✂️ פיצולים ומניות הטבה – לפי נייר</h4><div class="note" style="margin-top:0">כל פיצול נספר פעם אחת בלבד: אם הבנק כבר רשם את הפיצול כ"הטבה", פיצול שזוהה בנוסף לא יוחל.</div>
+  $('bankSplitSum').innerHTML = !SS.length ? '' : `<h4>✂️ פיצולים ומניות הטבה – לפי נייר${ib('כל פיצול נספר פעם אחת בלבד: אם הבנק כבר רשם את הפיצול כ&quot;הטבה&quot;, פיצול שזוהה בנוסף לא יוחל.', 'איך נספרים פיצולים')}</h4>
     ${SS.map(e=>`<div class="irow"><span><b class="ltr">${esc(e.sym)}</b> · <span class="num">${fmtDate(e.date)}</span> · ${e.type==='split' ? `${splitLabel(e.ratio)} · כל מניה ← <span class="num">${fmtQty(e.ratio)}</span>` : `<span class="num">${e.q<0?'':'+'}${fmtQty(e.q)}</span> מניות${e.q<0?' (הפחתה)':''}`}<br><span class="muted" style="font-size:.78rem">${e.src}${e.isNew?'':' · כבר בתיק'}${e.skip?` · ${esc(e.skip)}`:''}</span></span>
       <span class="r">${e.skip ? '<b class="neg">⛔ לא הוחל</b>' : `<span class="num">${fmtQty(e.before)} → ${fmtQty(e.after)}</span> <b class="pos">✓</b>`}</span></div>`).join('')}`;
-  $('bankSplitSec').innerHTML = !doScan ? '' : `<h4>✂️ פיצולים ואיחודים בתקופת ההחזקה</h4>
-    <div class="note" style="margin-top:0">בדיקה אוטומטית בהיסטוריית המחירים הלא־מתואמת (CNBC) של כל נייר שהוחזק, לאורך כל תקופת ההחזקה ועד היום – פיצולים ואיחודים (reverse split). פיצול שהבנק כבר רשם (הטבה / שורות פיצול־איחוד) לא נספר שוב.</div>
+  $('bankSplitSec').innerHTML = !doScan ? '' : `<h4>✂️ פיצולים ואיחודים בתקופת ההחזקה${ib('בדיקה אוטומטית בהיסטוריית המחירים הלא־מתואמת (CNBC) של כל נייר שהוחזק, לאורך כל תקופת ההחזקה ועד היום – פיצולים ואיחודים (reverse split). פיצול שהבנק כבר רשם (הטבה / שורות פיצול־איחוד) לא נספר שוב.', 'איך נבדקים פיצולים')}</h4>
     ${running.length ? `<div class="note">⏳ בודק פיצולים… (${scanSyms.length-running.length}/${scanSyms.length})</div>` : ''}
     ${R.splits.map(sp=>`<label class="chk"><input type="checkbox" data-split="${esc(sp.key)}" ${IMP.splitOff[sp.key]?'':'checked'}><span><b class="ltr">${esc(sp.sym)}</b> · <span class="num">${fmtDate(sp.date)}</span> · ${sp.ratio>=1?`כל מניה ← ${sp.ratio}`:`${splitLabel(sp.ratio)} (${Math.round(1/sp.ratio)} מניות לאחת)`} (<span class="num">${fmtQtyP(sp.qty)} → ${fmtQtyP(sp.qty*sp.ratio)}</span>)</span></label>`).join('')}
     ${!running.length && !R.splits.length ? '<div class="note">✓ לא נמצאו פיצולים.</div>' : ''}
@@ -4483,11 +4525,11 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     const sp = x=>x==null ? '' : `<em class="rs ${x>=0?'pos':'neg'}"><bdi>${x>=0?'+':''}${Math.abs(x)>=100 ? x.toFixed(0) : x.toFixed(1)}%</bdi> ${x>=0?'ביט':'מיס'}</em>`;
     const val = (lbl, est, act, c, x, cm, tg)=> act ? `<span>${lbl} בפועל</span><b class="num ${c}">${fv(act)}</b><small>צפי <bdi class="num">${esc(est)||'—'}</bdi></small>${tg}${cm.ok ? sp(x) : '<em class="rs na">ללא %</em>'}` : `<span>${lbl} צפי</span><b class="num">${fv(est)}</b>${tg}`;
     const whyL = [r.eps && !E.ok ? 'EPS: '+E.why : '', r.rev && !R.ok ? 'הכנסות: '+R.why : ''].filter(Boolean);
+    const whyHtml = ()=> whyL.length ? ib(whyL.map(x=>`<div>${esc(x)}</div>`).join(''), 'למה אין השוואה לצפי', 'warn') : '';
     return `<article class="rrow${(ec||rc) ? ' r-'+(ec||rc) : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
-      `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span></div><small>${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}${ntFil.sort==='cap' ? ' · <bdi class="num">'+(r.capV ? fmtCap(r.capV) : 'שווי לא ידוע')+'</bdi>' : ''}</small></div>`+
+      `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span>${whyHtml(r)}</div><small>${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}${ntFil.sort==='cap' ? ' · <bdi class="num">'+(r.capV ? fmtCap(r.capV) : 'שווי לא ידוע')+'</bdi>' : ''}</small></div>`+
       `<div class="rv">${val('EPS', r.epsEst, r.eps, ec, surp(e2, e1), E, tagB(r.epsEstB, r.epsB, r.epsCur||r.epsActCur))}</div><div class="rv">${val('הכנסות', r.revEst, r.rev, rc, surp(r2, r1), R, tagB(r.revEstB, r.revB, r.revCur||r.revActCur))}</div>${link}`+
-      (whyL.length ? `<div class="rwhy">ⓘ ${esc(whyL.join(' · '))}</div>` : '')+
-      (/^https?:\/\//i.test(r.link) ? `<div class="rpl-row"><a class="news-l rpl-a" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">לדוח ↗</a></div>` : '')+
+            (/^https?:\/\//i.test(r.link) ? `<div class="rpl-row"><a class="news-l rpl-a" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">לדוח ↗</a></div>` : '')+
       (r.note ? `<div class="rnote2" role="button" tabindex="0" aria-expanded="false" data-rnote><span>${esc(r.note)}</span>${r.note.length > 90 || (r.note.match(/\n/g)||[]).length >= 2 ? '<i class="rmore2">עוד ▾</i>' : ''}</div>` : '')+`</article>`; };
   const grp = (A)=>{ let h = '', last = null; A.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="rday">${dayHead(r.d)}</div>`; } h += card(r); }); return h; };
   const A = [...up, ...past], more = A.length - repShow, upS = up.slice(0, repShow), pastS = past.slice(0, Math.max(0, repShow - up.length));
