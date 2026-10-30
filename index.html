@@ -703,6 +703,41 @@ html.ext-sess .ft .xl.ftx{display:block;min-height:0}.ft .xl.ftx:empty{backgroun
 .wl-menu .wl-msort button{min-height:36px;border-radius:99px;font-weight:600;color:var(--muted)}.wl-menu .wl-msort button.on{background:var(--bg-dbeafe);border-color:var(--bd-93c5fd);color:var(--fg-1e40af);font-weight:800}.wl-msort .ck{margin-inline-end:5px;font-weight:800}.wl-msort .ar{margin-inline-start:4px;font-size:.7em}.wl-msort button:disabled{opacity:.45}
 .wlh-m{position:relative}.wlh-m.srt::after{content:"";position:absolute;top:11px;inset-inline-end:11px;width:6px;height:6px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 2px var(--card)}
 .etf-sortrow{background:none;border-bottom:0;padding:2px 0 8px}.etf-smenu{margin:-2px 0 8px;border:1px solid var(--border);border-radius:12px}
+
+/* v108: the share PRICE gets its own column (was stacked under the daily % pill). Visual order, left→right in the LTR grid (= right→left on screen):
+   logo | name + mcap | % of portfolio | position value | PRICE | daily % pill (+ pre/after chip under the pill).  Headers use the same tracks, so each sits exactly over its column.
+   Tracks are sized for $1,234,567 / ₪4,567,890 in the position-value column; the name / market-cap column is the flexible one and truncates. */
+:root{--k-lg:30px;--k-w:34px;--k-m:64px;--k-p:54px;--k-d:62px;--k-ew:40px;--k-sp:44px;--k-gap:4px;--k-bleed:4px}
+@media (min-width:371px){:root{--k-lg:34px;--k-w:44px;--k-m:68px;--k-p:56px;--k-d:74px;--k-ew:46px;--k-sp:52px;--k-gap:6px;--k-bleed:0px}}
+.pgrid,.pc-h.pgrid,.pos-cols.pgrid{grid-template-columns:var(--k-lg) minmax(0,1fr) var(--k-w) var(--k-m) var(--k-p) var(--k-d);grid-template-areas:"lg nm w m p d" "lg cp w m p d";column-gap:var(--k-gap)}
+.pos-list,.pos-cols.pgrid,.wl-rows,.etf-rows,.ecols{margin-inline:calc(var(--k-bleed)*-1)}
+.pgrid>.pc-p,.pos-cols>.pc-p{grid-area:p;min-width:0}
+.pgrid:not(.pos-cols)>.pc-p,.wgrid>.pc-p{align-self:center;justify-self:stretch;display:block;text-align:right;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+.pc-p>.v,.pc-p>.wl-p{display:block;font-size:.7rem;font-weight:600;color:var(--text);opacity:.92;line-height:1.2;text-align:right;direction:ltr;unicode-bidi:isolate;white-space:nowrap;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;letter-spacing:-.2px}
+.pos-cols>.pc-p{text-align:right;direction:rtl;white-space:nowrap;justify-self:stretch}
+.pos-cols>.pc-w{white-space:normal;line-height:1.1;text-align:right}
+.pgrid:not(.pos-cols)>.pc-v{font-size:.68rem;letter-spacing:-.15px}
+.pgrid>.pc-d{grid-area:d}.pgrid>.pc-d>b:first-child{padding-inline:2px}
+.pgrid>.logo,.wgrid>.logo{width:var(--k-lg);height:var(--k-lg);font-size:.54rem}
+.pgrid>.logo{align-self:center}
+.pgrid .psym,.wr .psym{font-size:.92rem}
+/* watchlist rows: logo | name | sparkline | price | change */
+.wr.wgrid:not(.egrid),.wl-cols.wgrid{grid-template-columns:var(--k-lg) minmax(0,1fr) var(--k-sp) var(--k-p) var(--k-d);grid-template-areas:"lg nm sp p d" "lg cp sp p d";column-gap:var(--k-gap)}
+.wr.wgrid:not(.egrid)>.pc-s{position:static;transform:none;grid-area:sp;width:auto;height:28px;margin:0;justify-self:stretch}
+.wr.wgrid:not(.egrid) .pc-s .spark{width:100%;max-width:var(--k-sp);height:26px}
+.wgrid>.pc-p{grid-area:p}
+.wgrid>.pc-d{grid-area:d}
+.wgrid>.wl-ed{grid-row:1/3;grid-column:3/-1}
+/* market / fund holdings rows: logo | name | sparkline | weight | price | change */
+.wr.egrid,.ecols{grid-template-columns:var(--k-lg) minmax(0,1fr) var(--k-sp) var(--k-ew) var(--k-p) var(--k-d);column-gap:var(--k-gap)}
+.wr.egrid{grid-template-areas:"lg nm sp ew p d" "lg cp sp ew p d"}
+.wr.egrid .pc-s .spark{width:100%;max-width:var(--k-sp)}
+.egrid>.ew b{font-size:.76rem}
+.ecols>.pcol:nth-last-child(2){text-align:right}
+.egrid>.pc-p{grid-area:p}
+.wl-cols.wgrid>.pc-p{text-align:right}
+@media (max-width:340px){:root{--k-lg:26px;--k-w:30px;--k-m:60px;--k-p:48px;--k-d:56px;--k-ew:36px;--k-sp:34px;--k-gap:3px}.pgrid .psym,.wr .psym{font-size:.8rem}.pgrid:not(.pos-cols)>.pc-v{font-size:.62rem;letter-spacing:-.25px}.pc-p>.v,.pc-p>.wl-p{font-size:.64rem;letter-spacing:-.3px}.pgrid>.pc-d>b:first-child,.wgrid .pc-d>b:first-child{font-size:.72rem}.pgrid>.logo,.wgrid>.logo{font-size:.48rem}.pos-cols>.pcol{font-size:.58rem}}
+.wl-rows.editing .wr .wl-live{display:none!important}   /* v108 (bonus): in edit mode the sparkline was left showing behind the ▲▼✕ buttons */
 </style>
 </head>
 <body>
@@ -724,7 +759,7 @@ html.ext-sess .ft .xl.ftx{display:block;min-height:0}.ft .xl.ftx:empty{backgroun
       <div class="heat-map" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי"></div></div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight" title="% מהתיק">% מהתיק</button><button data-sort="day" title="שינוי יומי %">יומי %</button><button data-sort="unreal" title="שינוי מעלות %">מעלות %</button><button data-sort="cap" title="שווי שוק">שווי שוק</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">היום</span><span class="pcol pc-w">% מהתיק</span><span class="pcol pc-m">שווי פוזיציה</span><span class="pcol pc-d" id="posColD"><span>יומי</span><small>מחיר</small></span></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight" title="% מהתיק">% מהתיק</button><button data-sort="day" title="שינוי יומי %">יומי %</button><button data-sort="unreal" title="שינוי מעלות %">מעלות %</button><button data-sort="cap" title="שווי שוק">שווי שוק</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">היום</span><span class="pcol pc-w">% מהתיק</span><span class="pcol pc-m">שווי פוזיציה</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d" id="posColD"><span>יומי</span></span></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
@@ -1872,7 +1907,7 @@ function renderPortfolio(S){
           <div class="pcol pc-s" data-spark="${esc(p.sym)}">${sparkCell(p)}</div>
           <div class="pcol pc-w">${f('hw','span')}</div>
           <div class="pcol pc-v"><span data-f="mvr" class="${F.mvr[1]}">${F.mvr[0]}</span></div><div class="pcol pc-m num" data-mcap>${capT(posCap(p), cur)}</div>
-          <div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}${f('hp','span')}${f('he','span')}</div>
+          <div class="pcol pc-p">${f('hp','span')}</div><div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}${f('he','span')}</div>
         </button>
         <div class="pc-b pc-b2">
           <div class="pc-sec"><h4>פוזיציה</h4>${f('age','span')}</div>
@@ -1909,7 +1944,7 @@ function renderPortfolio(S){
       return `<button class="pcard" data-sym="${esc(p.sym)}">
         <div class="pgrid">${logoHtml(p.sym)}<div class="pc-n" style="min-width:0"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tags.join('')}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
           <div class="pcol pc-s" data-spark="${esc(p.sym)}">${sparkCell(p)}</div><div class="pcol pc-w"><span data-f="hw" class="${F.hw[1]}">${F.hw[0]}</span></div><div class="pcol pc-v"><span data-f="mvr" class="${F.mvr[1]}">${F.mvr[0]}</span></div><div class="pcol pc-m num" data-mcap>${capT(posCap(p), cur)}</div>
-          <div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}<span data-f="hp" class="${F.hp[1]}">${F.hp[0]}</span><span data-f="he" class="${F.he[1]}">${F.he[0]}</span></div></div>
+          <div class="pcol pc-p"><span data-f="hp" class="${F.hp[1]}">${F.hp[0]}</span></div><div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}<span data-f="he" class="${F.he[1]}">${F.he[0]}</span></div></div>
         <div class="pmeta">
           ${TYPE_LABELS[p.asset.type] ? `<span class="tag">${esc(TYPE_LABELS[p.asset.type])}</span>` : ''}
           <span>היום: ${f('day')}</span>
@@ -2887,7 +2922,7 @@ function etfRowHtml(it, w, mx){ const q = iq(it), c = instCache[it.q+'|1D'], pts
   return `<div class="wr wgrid egrid" role="button" tabindex="0" data-es="${esc(it.sym)}">${logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(nm)}</div></div>`+
     `<div class="pcol pc-s">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, pct==null || pct >= 0, 48, 24) : ''}</div><div class="pcol pc-m num">${capT(q && q.mcap, it.cur)}</div>`+
     `<div class="ew"><b class="num">${w < 1 ? w.toFixed(2) : w.toFixed(1)}%</b><span class="wbar"><i style="width:${Math.max(4, w/mx*100).toFixed(0)}%"></i></span></div>`+
-    `<div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="wl-p v num">${q ? fmtPrice(q.ext ? q.ext.price : q.price, q.cur||it.cur) : '—'}</span>${extLineHtml(q && q.ext)}</div></div>`; }
+    `<div class="pcol pc-p"><span class="wl-p v num">${q ? fmtPrice(q.ext ? q.ext.price : q.price, q.cur||it.cur) : '—'}</span></div><div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${extLineHtml(q && q.ext)}</div></div>`; }
 // v103/v104: fund selector = heat tiles (equal size, best -> worst, colour = daily %); always open, the picked tile is marked, holdings + summary below
 const fsPct = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.prev ? (q.price/q.prev-1)*100 : null; };
 const fsExt = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.ext ? q.ext : null; };   // v107: same extended-hours source as rows (preOf → iq().ext); null outside the session / without a fresh quote
@@ -2915,7 +2950,7 @@ function drawEtf(){ const t = etfUi.sel, d = etfData[t], ei = secInst({sym:t, ty
     items.forEach(it=>{ const e = geo[it.sym]; if(!e) return; it.w = parseFloat(e.style.width); it.h = parseFloat(e.style.height); const bg = heatColor(it.p); if(e.style.backgroundColor!==bg) e.style.backgroundColor = bg; const h = heatTileInner(it); if(e.dataset.h!==h){ morph(e, h); e.dataset.h = h; } });
     return; }
   etfHeatKey = '';
-  const html = `<div class="ecols egrid" aria-hidden="true"><span></span><span>מניה</span><span class="pcol">היום</span><span class="pcol">משקל</span><span class="pcol"><span>יומי</span><small>מחיר</small></span></div><div class="etf-rows">${etfOrder(its, LW).map(i=>etfRowHtml(its[i], LW[i], mx)).join('')}</div>`;
+  const html = `<div class="ecols egrid" aria-hidden="true"><span></span><span>מניה</span><span class="pcol">היום</span><span class="pcol">משקל</span><span class="pcol">מחיר</span><span class="pcol">יומי</span></div><div class="etf-rows">${etfOrder(its, LW).map(i=>etfRowHtml(its[i], LW[i], mx)).join('')}</div>`;
   M(body).h = html; }
 
 // ---- v104: sort the holdings list of the selected fund (weight = default; tap the same option again to flip; saved) ----
@@ -2969,13 +3004,13 @@ function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts =
   const pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${it.fx ? `<span class="fxfl" aria-hidden="true">${it.fl}</span>` : logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div></div>`+
     `<div class="pcol pc-s wl-live">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, up, 48, 24) : ''}</div><div class="pcol pc-m wl-live num">${capT(q && q.mcap, it.cur)}</div>`+
-    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="wl-p v num">${q ? (it.fx ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span>${extLineHtml(q && q.ext)}</div>`+
+    `<div class="pcol pc-p wl-live"><span class="wl-p v num">${q ? (it.fx ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div><div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${extLineHtml(q && q.ext)}</div>`+
     `<div class="wl-ed" style="grid-column:3/-1"><button data-wm="up" aria-label="הזזה למעלה" ${i===0?'disabled':''}>▲</button><button data-wm="down" aria-label="הזזה למטה" ${i===n-1?'disabled':''}>▼</button><button data-wm="del" class="del" aria-label="הסרה מהרשימה">✕</button></div></div>`; }
 function wlSecHtml(L, li, nL){ const open = !!wlOpen[L.id], ed = wlEditing===L.id, so = wlSortOf(L.id), its = wlSorted(L.items.map(secInst), ed, so), sOn = so.k!=='manual';
   let up = 0, dn = 0; its.forEach(it=>{ const q = iq(it); if(q && q.prev){ const d = q.price/q.prev - 1; if(d > 0.00004) up++; else if(d < -0.00004) dn++; } });
   const msort = `<div class="wl-msort" role="group" aria-label="מיון"><div class="wl-msl">${WL_SORT_IC}<span>מיון</span>${ed ? '<small>במצב עריכה – סדר ידני</small>' : ''}</div>${Object.keys(WLS_NAME).map(k=>`<button data-ls="${k}" role="menuitemradio" aria-checked="${so.k===k}" class="${so.k===k?'on':''}"${ed?' disabled':''}>${so.k===k ? '<span class="ck" aria-hidden="true">✓</span>' : ''}${WLS_NAME[k]}${so.k===k && k!=='manual' ? `<span class="ar">${so.dir<0?'▼':'▲'}</span>` : ''}</button>`).join('')}</div>`;
   const menu = wlMenu===L.id ? `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button>${msort}<button data-la="rename">🏷️ שינוי שם</button><button data-la="up" ${li===0?'disabled':''}>▲ למעלה</button><button data-la="down" ${li===nL-1?'disabled':''}>▼ למטה</button><button data-la="del" class="del">🗑️ מחיקה</button></div>` : '';
-  const body = open ? `<div class="wlb">${its.length ? `<div class="wl-cols wgrid" aria-hidden="true"${ed?' hidden':''}><span></span><span>נייר</span><span class="pcol pc-s">היום</span><span class="pcol">שווי שוק</span><span class="pcol"><span>יומי</span><small>מחיר</small></span></div><div class="wl-rows${ed?' editing':''}">${its.map((it,i)=>wlRowHtml(it, i, its.length)).join('')}</div>` : '<div class="wl-empty">הרשימה ריקה – חפשו נייר בשדה למעלה כדי להוסיף.</div>'}</div>` : '';
+  const body = open ? `<div class="wlb">${its.length ? `<div class="wl-cols wgrid" aria-hidden="true"${ed?' hidden':''}><span></span><span>נייר</span><span class="pcol pc-s">היום</span><span class="pcol">שווי שוק</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d"><span>יומי</span></span></div><div class="wl-rows${ed?' editing':''}">${its.map((it,i)=>wlRowHtml(it, i, its.length)).join('')}</div>` : '<div class="wl-empty">הרשימה ריקה – חפשו נייר בשדה למעלה כדי להוסיף.</div>'}</div>` : '';
   return `<div class="wls${open?' open':''}" data-l="${esc(L.id)}"><div class="wlh"><button class="wlh-t" data-tog aria-expanded="${open}"><span class="wlh-n">${esc(L.name)}</span><small class="muted">${L.items.length}</small>`+
     `<span class="wlh-c">${up?`<b class="pos">▲${up}</b>`:''}${dn?`<b class="neg">▼${dn}</b>`:''}</span><span class="wlh-v" aria-hidden="true">${open?'▴':'▾'}</span></button><button class="wlh-m${sOn?' srt':''}" data-menu aria-label="אפשרויות לרשימה${sOn ? ' – מיון: '+esc(WLS_NAME[so.k]) : ''}" aria-expanded="${wlMenu===L.id}"${sOn ? ' title="מיון: '+esc(WLS_NAME[so.k])+'"' : ''}>⋯</button></div>${menu}${body}</div>`; }
 const WL_ALL_IC = {collapse:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 20 5-5 5 5"/><path d="m7 4 5 5 5-5"/></svg>', expand:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>'};   // v100: chevrons toward / away from each other
@@ -3622,7 +3657,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים</h4><div class="note" style="margin-top:0">מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.</div></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v107</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v108</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
