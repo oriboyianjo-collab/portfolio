@@ -28,7 +28,7 @@ concurrency:
 jobs:
   fetch:
     # issue trigger: only the repo owner, only titles like "ETF: SMH"
-    if: github.event_name != 'issues' || (github.actor == 'oriboyianjo-collab' && startsWith(github.event.issue.title, 'ETF: '))
+    if: "github.event_name != 'issues' || (github.actor == 'oriboyianjo-collab' && startsWith(github.event.issue.title, 'ETF: '))"
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
