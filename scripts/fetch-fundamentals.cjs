@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Daily PUBLIC company fundamentals for the app's stock sheet -> fundamentals.json (+ fundamentals/state.json = bookkeeping).
+/* Daily PUBLIC company fundamentals for the app's stock sheet -> fundamentals.json (+ fundamentals/progress.json = bookkeeping).
  * Public company data only – the universe is every US-listed (Nasdaq / NYSE / Cboe) ticker in SEC's company_tickers_exchange.json; it never
  * sees portfolio / watchlist data. Zero cost: runs in a scheduled GitHub Action, no keys.
  *  - BVPS  = (StockholdersEquity – PreferredStockValue) / shares outstanding, from the company's LATEST 10-Q / 10-K on SEC EDGAR (XBRL companyfacts).
@@ -7,12 +7,12 @@
  *            companyfacts (classes are dimensions) → the filing's XBRL instance is read and the classes are summed.
  *  - Float = Yahoo quoteSummary floatShares (no key, cookie+crumb) ; fallback = SEC cover EntityPublicFloat ÷ the close on that date.   Also Yahoo beta (5Y monthly).
  *  - Incremental: EDGAR daily-index (new 10-Q/10-K filers since the last run) first, then never-seen companies, then the oldest-checked. SEC limit: < 10 req/s (we use ~6/s).
- * Usage: node scripts/fetch-fundamentals.cjs [--only META,TSLA] [--out fundamentals.json] [--state fundamentals/state.json] [--sec-min 1500] [--yahoo-max 1500]
+ * Usage: node scripts/fetch-fundamentals.cjs [--only META,TSLA] [--out fundamentals.json] [--state fundamentals/progress.json] [--sec-min 1500] [--yahoo-max 1500]
  */
 const fs = require('fs'), path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
-const OUT = path.resolve(ROOT, arg('--out', 'fundamentals.json')), STATE = path.resolve(ROOT, arg('--state', 'fundamentals/state.json'));
+const OUT = path.resolve(ROOT, arg('--out', 'fundamentals.json')), STATE = path.resolve(ROOT, arg('--state', 'fundamentals/progress.json'));
 const ONLY = arg('--only', '').split(',').map(s => s.trim().toUpperCase()).filter(Boolean);
 const SEC_MIN = +arg('--sec-min', 38), YAHOO_MIN = +arg('--yahoo-min', 22), YAHOO_MAX = +arg('--yahoo-max', 1500);   // minutes of budget per source / max Yahoo calls
 const SEC_UA = process.env.SEC_UA || 'SavageTracker oriboyianjo-collab@example.org';   // SEC wants "Name contact"; set repo variable SEC_UA to a real contact
