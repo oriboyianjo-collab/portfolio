@@ -82,7 +82,7 @@ h2 small{font-weight:500;color:var(--muted);font-size:.78rem}
 .sortbar button.on{background:var(--bg-dbeafe);border-color:var(--bd-93c5fd);color:var(--fg-1e40af)}.sortbar .ar{display:inline-block;margin-inline-start:4px}
 .wl-tools{display:flex;align-items:center;gap:5px;margin:6px 0 2px;font-size:.78rem}.wl-tools>span{color:var(--muted)}.wl-tools button{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);border-radius:99px;padding:5px 10px;font:inherit;font-weight:600;cursor:pointer;min-height:34px;white-space:nowrap}.wl-tools svg{width:14px;height:14px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .pos-list .pcard.mv{transition:transform .32s ease}@media (prefers-reduced-motion:reduce){.pos-list .pcard.mv{transition:none}}
-.viewtgl button{border:0;background:var(--bg-fff);color:var(--muted);padding:5px 10px;font:inherit;cursor:pointer;white-space:nowrap}.viewtgl{flex:none}.h2row h2{min-width:0}.viewtgl button.on{background:#1e3a8a;color:#fff}
+.viewtgl button{border:0;background:var(--bg-fff);color:var(--muted);padding:5px 8px;font:inherit;cursor:pointer;white-space:nowrap}.viewtgl{flex:none}.h2row h2{min-width:0;white-space:nowrap;flex:0 1 auto}.h2row h2 small{white-space:nowrap}.h2row #posView{font-size:.74rem}.viewtgl button.on{background:#1e3a8a;color:#fff}
 .pcard.pc{padding:0;cursor:default}
 .pc-h{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;width:100%;padding:9px 12px;border:0;background:none;font:inherit;color:inherit;text-align:inherit;cursor:pointer;border-radius:14px}
 .pc-h:active{background:var(--bg-f8fafc)}
@@ -151,7 +151,7 @@ button{font-family:inherit}
 .idx .spark{grid-column:2;grid-row:1/4;width:58px;height:30px;display:block}.idx .spark path{fill:none;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}.idx .spark line{stroke:var(--fg-94a3b8);stroke-width:1;stroke-dasharray:2 2}
 @media (max-width:370px){.idx{padding:6px 8px}.idx .spark{width:44px}.idx-v{font-size:.92rem}}
 .heat{padding:10px}.heat-h{display:flex;align-items:center;gap:8px;min-height:30px}.heat-t{font-weight:700;font-size:.95rem}.heat-h small{color:var(--muted);font-size:.78rem}.heat-h small b{font-weight:700}.heat-h .mini-tgl{margin-inline-start:auto}
-.heat-map{position:relative;height:240px;margin-top:8px;border-radius:10px;overflow:hidden}.heat.collapsed{padding:8px 10px}.heat.collapsed .heat-map{display:none}.heat.collapsed .heat-h{cursor:pointer}
+.heat-map{position:relative;height:240px;margin-top:8px;border-radius:10px;overflow:hidden}.heat-map.pos-heat{height:360px}html.pv-heat #posList,html.pv-heat #posSort,html.pv-heat #posCols{display:none!important}.heat-sum{display:flex;justify-content:space-between;align-items:center;margin-top:8px;color:var(--muted);font-size:.76rem}.heat-sum .hs-ud b{font-weight:700}.heat.collapsed{padding:8px 10px}.heat.collapsed .heat-map{display:none}.heat.collapsed .heat-h{cursor:pointer}
 .heat-map .ht{position:absolute;box-sizing:border-box;border:1px solid var(--card);border-radius:4px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;cursor:pointer;padding:1px;line-height:1.12;transition:background-color .4s}
 .heat-map .ht b{font-weight:800;direction:ltr;unicode-bidi:isolate;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 1px rgba(0,0,0,.25)}.heat-map .ht i{font-style:normal;font-weight:700;direction:ltr;unicode-bidi:isolate;white-space:nowrap}.heat-map .ht s{text-decoration:none;opacity:.85;font-weight:600;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
 @media (max-width:370px){.heat-map{height:224px}}
@@ -296,6 +296,15 @@ input,select{font:inherit;width:100%;min-height:48px;padding:10px 12px;border:1p
 input:focus,select:focus{outline:2px solid var(--bd-93c5fd);border-color:var(--primary)}
 input.ltr-in{direction:ltr;text-align:right}
 .hint{font-size:.74rem;color:var(--muted);margin-top:3px}
+/* v112: BVPS / live P/B / Free Float / volume / beta live in the 'פרטים' grid; .fx cells carry an ⓘ and a small as-of line under the value */
+.det-g .fx small{display:block;font-size:.6rem;color:var(--muted);line-height:1.25;margin-top:2px;white-space:nowrap}
+.det-g .fx small .lv{color:var(--green);font-weight:800;font-style:normal}
+.det-g .fx>span .ib{width:17px;height:17px;min-width:17px;margin-inline-start:4px;font-size:11px;display:inline-flex}
+.det-g .fx>span{min-height:1.7em}
+.det-g>.fx:nth-child(3n+1) small{text-align:right}.det-g>.fx:nth-child(3n) small{text-align:left}.det-g>.fx:nth-child(3n+2) small{text-align:center}
+.det-g b.tick{animation:fundt .7s}
+@keyframes fundt{0%{color:var(--primary-d);transform:scale(1.08)}100%{transform:none}}
+.ib-f{font-size:.72rem;color:var(--muted)}
 /* v110 mock: ⓘ info buttons – calculation / methodology explanations live in a hidden .ib-src; a tap opens a small dark bottom sheet */
 .ib{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;position:relative;width:19px;height:19px;min-width:19px;margin-inline:6px 0;padding:0;border:1.5px solid var(--muted);border-radius:50%;background:transparent;color:var(--muted);font:italic 700 12px/1 Georgia,'Times New Roman',serif;cursor:pointer;-webkit-tap-highlight-color:transparent;opacity:.9}
 .ib::after{content:"";position:absolute;inset:-12px}
@@ -792,11 +801,9 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
     <div class="idxrow" id="idxRow" hidden></div>
-    <div class="card heat" id="heatCard" hidden><div class="heat-h" id="heatHead"><span class="heat-t">מפת חום</span><small id="heatSum"></small><button class="mini-tgl" id="heatTgl" aria-expanded="true" aria-label="כיווץ מפת החום">▴</button></div>
-      <div class="heat-map" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי"></div></div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button></div></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight" title="% מהתיק">% מהתיק</button><button data-sort="day" title="שינוי יומי %">יומי %</button><button data-sort="unreal" title="שינוי מעלות %">מעלות %</button><button data-sort="cap" title="שווי שוק">שווי שוק</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">היום</span><span class="pcol pc-w">% מהתיק</span><span class="pcol pc-m">שווי פוזיציה</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d" id="posColD"><span>יומי</span></span></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button><button data-view="heat">🔥 מפת חום</button></div></div><div class="heat-sum" id="heatSum" hidden></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight" title="% מהתיק">% מהתיק</button><button data-sort="day" title="שינוי יומי %">יומי %</button><button data-sort="unreal" title="שינוי מעלות %">מעלות %</button><button data-sort="cap" title="שווי שוק">שווי שוק</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">היום</span><span class="pcol pc-w">% מהתיק</span><span class="pcol pc-m">שווי פוזיציה</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d" id="posColD"><span>יומי</span></span></div><div class="heat-map pos-heat" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי" hidden></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
@@ -1057,7 +1064,7 @@ try{ if(markSplitDupes(state.txs)) localStorage.setItem(KEY, JSON.stringify(stat
 setTimeout(()=>{ try{ if(closeFractions()){ save(); renderAll(); } }catch(e){ console.warn('fraction check failed', e); } }, 0);   // closes leftover split fractions in existing portfolios (v21), after init
 let hist = (()=>{ try{ const h = JSON.parse(localStorage.getItem(HIST_KEY)||'{}')||{}; delete h['.IXIC']; return h; }catch(e){ return {}; } })();   // v48: Nasdaq benchmark is .NDX; drop the old Composite cache
 const VIEW_KEY = 'portfolioTracker.posView';
-function posView(){ try{ return localStorage.getItem(VIEW_KEY)==='full' ? 'full' : 'compact'; }catch(e){ return 'compact'; } }   // compact is the default
+function posView(){ try{ const v = localStorage.getItem(VIEW_KEY); return v==='full' ? 'full' : v==='heat' ? 'heat' : 'compact'; }catch(e){ return 'compact'; } }   // compact is the default
 // holdings sort (display only – S.positions keeps its value order for the other views)
 let sortPending = null, listTouch = false;   // see reorderCards
 const SORT_KEY = 'portfolioTracker.posSort', SORT_FIELDS = {weight:'mvILS', day:'dayPct', unreal:'unrealPct', cap:p=>posCapUSD(p)};
@@ -2001,6 +2008,7 @@ function renderPortfolio(S){
     }).join('');
   }
   $('posList').classList.toggle('compact', posView()==='compact');
+  document.documentElement.classList.toggle('pv-heat', posView()==='heat');
   $('posView').querySelectorAll('[data-view]').forEach(b=>{ const on = b.dataset.view===posView(); b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
   renderClosed(S);
 }
@@ -2534,13 +2542,11 @@ function morphKids(a, b){ const A = [...a.childNodes], Bn = [...b.childNodes];
     morphKids(x, y); }
   for(let i=A.length-1;i>=Bn.length;i--) a.removeChild(A[i]); }
 const M = el=>({ set h(v){ morph(el, v); } });
-function renderHeat(S){ const card = $('heatCard'), map = $('heatMap'); if(!card) return;
+function renderHeat(S){ const map = $('heatMap'), sum = $('heatSum'); if(!map) return; const on = posView()==='heat';
   const items = S.positions.filter(p=>p.qty > 0 && p.weight > 0).map(p=>({sym:p.sym, v:p.weight, wt:p.weight, p:p.dayPct, pre:null})).sort((a,b)=>b.v-a.v);
-  card.hidden = !items.length; if(!items.length){ heatKey = ''; return; }
-  const open = heatOpen(), b = $('heatTgl'); card.classList.toggle('collapsed', !open);
-  if(b){ b.textContent = open ? '▴' : '▾'; b.setAttribute('aria-expanded', String(open)); b.setAttribute('aria-label', open ? 'כיווץ מפת החום' : 'הצגת מפת החום'); }
-  const up = items.filter(x=>x.p > 0.004).length, dn = items.filter(x=>x.p < -0.004).length; M($('heatSum')).h = `· <b class="pos">${up} עולות</b> · <b class="neg">${dn} יורדות</b>`;
-  if(!open){ heatKey = ''; return; }
+  map.hidden = !on || !items.length; sum.hidden = map.hidden; $('posList').hidden = on; $('posSort').hidden = on || S.positions.length < 2; $('posCols').hidden = on || !S.positions.length;
+  if(map.hidden){ heatKey = ''; return; }
+  const up = items.filter(x=>x.p > 0.004).length, dn = items.filter(x=>x.p < -0.004).length; M(sum).h = `<span>גודל = % מהתיק · צבע = שינוי יומי</span><span class="hs-ud"><b class="pos">▲${up}</b> <b class="neg">▼${dn}</b></span>`;
   const W = map.clientWidth, H = map.clientHeight; if(!W || !H) return;
   const key = W+'x'+H+'|'+items.map(x=>x.sym+':'+Math.round(x.v*4)).join(',');
   if(key !== heatKey){ heatKey = key; squarify(items, W, H);
@@ -3196,17 +3202,43 @@ function detHtml(){ return `<div class="det" id="isDet"><button class="det-t" da
 function detFmtN(v, d){ return v==null || !isFinite(v) ? DET_DASH : v.toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d}); }
 function detFmtBig(v){ if(v==null || !isFinite(v) || v<=0) return DET_DASH; const [d,u] = v>=1e12 ? [1e12,'T'] : v>=1e9 ? [1e9,'B'] : v>=1e6 ? [1e6,'M'] : v>=1e3 ? [1e3,'K'] : [1,'']; const x = v/d; return (x>=100 ? x.toFixed(0) : x>=10 ? x.toFixed(1) : x.toFixed(2)) + u; }
 function detFmtDate(v){ const m = String(v||'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/); return m ? `${m[2]}.${m[1]}.${m[3]}` : DET_DASH; }
-function detRows(it, q){ const X = (q && q.x) || {}, cur = it.cur, pr = v=>v==null || !isFinite(v) ? DET_DASH : fmtPrice(v, cur), pc = (X.high!=null && X.low!=null && q && q.prev) ? (X.high-X.low)/q.prev*100 : null;
+
+// ---- v112: הון עצמי למניה (BVPS) / מכפיל הון (P/B, live) / Free Float / ווליום / בטא – cells of the 'פרטים' grid, each with ⓘ + as-of ----
+// fundamentals.json (same origin) is written daily by the GitHub Action scripts/fetch-fundamentals.cjs from PUBLIC data only (SEC EDGAR 10-Q/10-K equity + cover-page shares incl. multi-class,
+// Yahoo floatShares / 5Y beta, SEC-derived float fallback) for every US-listed ticker – never from this app's portfolio. Row = [BVPS, balance-sheet date, filing date, 1=10-K, shares, float, float as-of, float src Y|S, beta].
+const FUND_URL = 'fundamentals.json', FUND_STALE_DAYS = 135; let fundP = null, fundAt = 0, fundData = null;
+function fundLoad(){ if(fundP && Date.now()-fundAt < 30*60e3) return fundP; fundAt = Date.now();
+  return fundP = fetch(FUND_URL+'?h='+Math.floor(Date.now()/36e5), {cache:'no-store'}).then(r=>r.ok ? r.json() : null).then(j=>{ if(j && j.d && typeof j.d==='object'){ fundData = j; if(instSheet && $('isDetG') && detOpen) drawDet(); } return fundData; }).catch(()=>fundData); }
+const fundDate = d=>{ const m = String(d||'').match(/^(\d{4})-(\d{2})-(\d{2})/); return m ? `<bdi dir="ltr">${m[3]}.${m[2]}.${m[1]}</bdi>` : '--'; };
+function fundFor(it){ if(!fundData || !it.sec || marketOf(it.sym)!=='us') return null; const T = String(it.sym).toUpperCase(), r = fundData.d[T] || fundData.d[T.replace(/\./g, '-')];
+  return r ? {bv:r[0], asof:r[1], filed:r[2], k:r[3] ? '10-K' : '10-Q', sh:r[4], fl:r[5], fld:r[6], fls:r[7], beta:r[8], gen:fundData.generated||''} : null; }
+// each cell = [value, small line under it, {ttl, tip, warn}]; detRows runs on every price tick, so P/B is recomputed from the live price
+function fundCells(it, q){ const f = fundFor(it), px = q && q.price, X = (q && q.x) || {}, B = s=>`<bdi dir="ltr">${s}</bdi>`, NA = ['--', '', null];
+  const gen = f && f.gen ? `<p class="ib-f">הקובץ עודכן ${fundDate(f.gen)} · מקור: ${B('SEC EDGAR')}${f.fls ? ' · '+B('Yahoo Finance') : ''}</p>` : '';
+  const out = {bv:NA, pb:NA, fl:NA};
+  if(f){ const pb = px && f.bv>0 ? px/f.bv : null, stale = (Date.now()-Date.parse(f.asof))/864e5 > FUND_STALE_DAYS, bvTxt = (f.bv<0 ? '-' : '')+'$'+Math.abs(f.bv).toFixed(2), pct = f.fl && f.sh ? f.fl/f.sh*100 : null;
+    out.bv = [bvTxt, `נכון ל־${fundDate(f.asof)}`, {ttl:'הון עצמי למניה (BVPS)', warn:stale, tip:`<p><b>הון עצמי למניה (BVPS)</b> = הון בעלי המניות (Stockholders' Equity) פחות מניות בכורה, חלקי מספר המניות במחזור (עמוד השער של הדוח; בחברות עם כמה סוגי מניות – סכום כולן).</p><p>מקור: הדוח האחרון שהוגש ל־SEC (${B(f.k)}, הוגש ${fundDate(f.filed)}), נכון לתאריך המאזן – <b>${fundDate(f.asof)}</b>. נבדק אוטומטית כל יום ומתעדכן כשמוגש דוח חדש.</p><p>זה ערך חשבונאי (עלות היסטורית), לא שווי שוק.${f.bv<0?' כאן ההון העצמי שלילי.':''}</p>${stale?'<p>⚠️ הדוח האחרון ישן יחסית – ייתכן שדוח חדש בדרך.</p>':''}${gen}`}];
+    out.pb = [pb==null ? '--' : pb.toFixed(2)+'x', pb==null ? (f.bv<=0 ? 'הון שלילי' : '') : '<em class="lv">● חי</em> · '+fundDate(f.asof), {ttl:'מכפיל הון (P/B)', tip:`<p><b>P/B</b> = מחיר המניה הנוכחי ÷ הון עצמי למניה.</p><p>המחיר <b>חי</b> – המכפיל מחושב מחדש בכל עדכון מחיר. ההון העצמי הוא מהדוח האחרון (${fundDate(f.asof)}) ומשתנה רק עם דוח חדש.</p>${pb==null ? '' : `<p>${B(fmtInst(it, px)+' ÷ $'+f.bv.toFixed(2)+' = '+pb.toFixed(2)+'x')}</p>`}<p>P/B נמוך מ־1 = המניה נסחרת מתחת להון החשבונאי; גבוה = השוק מתמחר נכסים בלתי מוחשיים וצמיחה. לא מוצג כשההון העצמי שלילי או אפסי.</p>${gen}`}];
+    out.fl = f.fl ? [detFmtBig(f.fl), `${B('≈'+pct.toFixed(1)+'%')} · הערכה`, {ttl:'מניות במסחר חופשי (Free Float)', tip:`<p><b>Free Float</b> = מניות שזמינות בפועל למסחר בציבור: סך המניות במחזור פחות החזקות של בעלי עניין (מייסדים, דירקטורים, בעלי שליטה).</p><p>מוצג כמספר מניות וכאחוז מכלל המניות במחזור (${B(f.sh.toLocaleString('en-US'))} לפי עמוד השער של הדוח). נכון ל־${fundDate(f.fld)}.</p><p><b>הערכה בלבד</b> – ההגדרה משתנה בין ספקי נתונים. ${f.fls==='S' ? 'כאן החישוב מנתוני SEC: שווי המניות של מי שאינם בעלי עניין (עמוד השער של הדוח השנתי) ÷ שער הסגירה באותו תאריך – מתעדכן פעם בשנה.' : 'מקור: Yahoo Finance, מתעדכן בסבב יומי.'}</p><p>float קטן = סחירות נמוכה ותנודתיות גבוהה יותר.</p>${gen}`}] : NA; }
+  const avg = av3m[it.sym] || X.av10 || null;
+  out.vol = [X.vol ? detFmtBig(X.vol) : '--', avg ? 'ממוצע '+B(detFmtBig(avg)) : '', {ttl:'ווליום', tip:`<p><b>ווליום</b> = מספר המניות שנסחרו היום. מתעדכן <b>בזמן אמת</b> יחד עם המחיר; מחוץ לשעות המסחר מוצג הווליום של המושב האחרון.</p><p><b>ממוצע</b> = ממוצע יומי של כ־3 חודשים (CNBC). ווליום גבוה בהרבה מהממוצע מעיד על עניין חריג במניה.</p><p class="ib-f">מקור: ${B('CNBC')}</p>`}];
+  const bt = f && f.beta!=null ? f.beta : X.beta!=null ? X.beta : null;
+  out.beta = [bt==null ? '--' : bt.toFixed(2), bt==null ? '' : (f && f.beta!=null ? '5 שנים · חודשי' : 'CNBC'), {ttl:'בטא', tip:`<p><b>בטא</b> = רגישות המניה לשוק (S&amp;P 500). 1.0 = זזה כמו השוק; מעל 1 = תנודתית יותר; מתחת ל־1 = רגועה יותר; שלילי = נעה נגד השוק.</p><p>${f && f.beta!=null ? 'מחושבת על 5 שנים של תשואות חודשיות (מקור: '+B('Yahoo Finance')+', מתעדכן בסבב יומי).' : 'מקור: '+B('CNBC')+' (אין חישוב 5 שנים זמין לנייר הזה).'}</p>`}];
+  return out; }
+function detRows(it, q){ const X = (q && q.x) || {}, FC = fundCells(it, q), cur = it.cur, pr = v=>v==null || !isFinite(v) ? DET_DASH : fmtPrice(v, cur), pc = (X.high!=null && X.low!=null && q && q.prev) ? (X.high-X.low)/q.prev*100 : null;
   const a3 = av3m[it.sym]; return [
   ['פתיחה', pr(X.open)], ['סגירה קודמת', pr(q && q.prev)], ['טווח יומי %', pc!=null ? pc.toFixed(2)+'%' : DET_DASH],
-  ['שיא 52 שבועות', pr(X.yh)], ['שפל 52 שבועות', pr(X.yl)], ['נפח ממוצע (3 חו׳)', a3===undefined ? '…' : detFmtBig(a3)],
+  ['שיא 52 שבועות', pr(X.yh)], ['שפל 52 שבועות', pr(X.yl)], ['ווליום', FC.vol],
   ['רווח למניה (EPS)', pr(X.eps)], ['מכפיל רווח (TTM)', detFmtN(X.pe, 2)], ['מכפיל רווח (צפוי)', detFmtN(X.fpe, 2)],
-  ['מכפיל הון (P/B)', DET_DASH], ['מכפיל מכירות (P/S)', detFmtN(X.ps, 3)], ['הון למניה (BVPS)', DET_DASH],
-  ['מניות במחזור', detFmtBig(X.shs)], ['שווי שוק', q && q.mcap ? fmtCap(q.mcap, cur) : DET_DASH], ['Free Float (מניות)', DET_DASH],
+  ['מכפיל הון (P/B)', FC.pb], ['מכפיל מכירות (P/S)', detFmtN(X.ps, 3)], ['הון עצמי למניה', FC.bv],
+  ['מניות במחזור', detFmtBig(X.shs)], ['שווי שוק', q && q.mcap ? fmtCap(q.mcap, cur) : DET_DASH], ['Free Float', FC.fl],
   ['דיבידנד', pr(X.div)], ['תשואת דיבידנד', X.dy!=null ? X.dy.toFixed(2)+'%' : DET_DASH], ['תאריך אקס-דיבידנד', detFmtDate(X.exd)],
-  ['דוח הבא', detFmtDate(X.ne)], ['בטא', detFmtN(X.beta, 2)]]; }
+  ['דוח הבא', detFmtDate(X.ne)], ['בטא', FC.beta]]; }
 function drawDet(){ const S = instSheet, g = $('isDetG'); if(!S || !g) return; const it = S.it, q = iq(it);
-  g.innerHTML = detRows(it, q).map(([l,v])=>`<div><span>${l}</span><b class="num${v===DET_DASH||v==='…'?' na':''}">${v}</b></div>`).join(''); }
+  g.innerHTML = detRows(it, q).map(([l,v])=>{ if(Array.isArray(v)){ const [val, sub, t] = v, na = val==='--';
+      return `<div class="fx"><span>${l}${t ? ib(t.tip, t.ttl, t.warn?'warn':'') : ''}</span><b class="num${na?' na':''}${l==='מכפיל הון (P/B)' && val!==g.dataset.pbv ? ' tick' : ''}">${val}</b>${sub ? `<small>${sub}</small>` : ''}</div>`; }
+    return `<div><span>${l}</span><b class="num${v===DET_DASH||v==='…'?' na':''}">${v}</b></div>`; }).join('');
+  { const pb = detRows(it, q).find(r=>r[0]==='מכפיל הון (P/B)'); g.dataset.pbv = pb ? pb[1][0] : ''; } }
 async function loadAv3m(it){ const sym = it.sym; if(sym in av3m) return; av3m[sym] = undefined;
   try{ const from = addDays(today(), -92), j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/1D/${cnbcStamp(from)}/${cnbcStamp(addDays(today(),1))}/unadjusted/EST5EDT.json`, 15000);
     const v = ((j.barData||{}).priceBars||[]).map(b=>num(b.volume)).filter(x=>x>0); av3m[sym] = v.length >= 20 ? v.reduce((a,b)=>a+b,0)/v.length : null; }catch(e){ av3m[sym] = null; }
@@ -3216,7 +3248,7 @@ document.addEventListener('click', e=>{ const b = e.target.closest('[data-det]')
 function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[instKey(it, S.range, S.iv)], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
   const ch = chgInst(it, q ? q.price : null, base); $('isV').textContent = fmtInst(it, q ? q.price : null); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+''; { const e = it.sec && q && q.ext, x = $('isX'); if(x) x.innerHTML = e && S.range==='1D' ? extLineHtml(e) : ''; }
   const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [['סגירה קודמת', fmtInst(it, q && q.prev)], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
-  if($('isDetG') && detOpen){ drawDet(); loadAv3m(it); }
+  if($('isDetG') && detOpen){ drawDet(); loadAv3m(it); fundLoad(); }
   if(S.series && S.bar && q && q.price!=null){ const b = S.bar; b.close = q.price; b.high = Math.max(b.high, q.price); b.low = Math.min(b.low, q.price); try{ S.series.update(Object.assign({}, b)); }catch(e){} }
   else if(S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
 function drawIvSeg(){ const S = instSheet, el = $('isIv'); if(!S || !el) return; el.innerHTML = IV_OPT[S.range].map(v=>`<button data-iv="${v}" class="${v===S.iv?'on':''}">${IV_LBL[v]}</button>`).join(''); }
@@ -4762,7 +4794,7 @@ $('btnCur').onclick = ()=>{ const u = dispCur()!=='USD'; try{ localStorage.setIt
   renderAll(); toast(u ? 'התיק מוצג בדולרים 💵' : 'התיק מוצג בשקלים'); };
 $('btnEye').onclick = ()=>{ state.settings.hideAmounts = !hidden(); save(); renderAll(); toast(hidden() ? 'הסכומים מוסתרים 🙈' : 'הסכומים מוצגים 👁'); };
 $('cashHead').addEventListener('click', ()=>{ if(posView()!=='compact') return; try{ localStorage.setItem(CASH_KEY, cashOpen() ? '0' : '1'); }catch(_){} renderCash(computeAll()); });
-$('posView').addEventListener('click', e=>{ const b = e.target.closest('[data-view]'); if(!b) return; try{ localStorage.setItem(VIEW_KEY, b.dataset.view); }catch(_){} renderPortfolio(computeAll()); });
+$('posView').addEventListener('click', e=>{ const b = e.target.closest('[data-view]'); if(!b) return; try{ localStorage.setItem(VIEW_KEY, b.dataset.view); }catch(_){} heatKey = ''; const S = computeAll(); renderPortfolio(S); renderHeat(S); });
 $('splitSug').addEventListener('click', splitSugClick);
 $('posSort').addEventListener('click', e=>{ const b = e.target.closest('[data-sort]'); if(!b) return; const cur = effSort();
   const d = cur.k===b.dataset.sort ? (cur.d==='desc' ? 'asc' : 'desc') : 'desc';
@@ -4785,10 +4817,10 @@ $('txList').addEventListener('click', e=>{ const b = e.target.closest('[data-tx]
 $('btnTheme').addEventListener('click', ()=>setTheme(isDark() ? 'light' : 'dark'));
 applyTheme(false);
 setTimeout(()=>spkRun().catch(()=>{}), 1500);
-$('heatTgl').addEventListener('click', e=>{ e.stopPropagation(); try{ localStorage.setItem(HEAT_KEY, heatOpen() ? '0' : '1'); }catch(_){} heatKey = ''; renderHeat(computeAll()); });
-$('heatHead').addEventListener('click', e=>{ if(!heatOpen() && !e.target.closest('#heatTgl')) $('heatTgl').click(); });
+if($('heatTgl')) $('heatTgl').addEventListener('click', e=>{ e.stopPropagation(); try{ localStorage.setItem(HEAT_KEY, heatOpen() ? '0' : '1'); }catch(_){} heatKey = ''; renderHeat(computeAll()); });
+if($('heatHead')) $('heatHead').addEventListener('click', e=>{ if(!heatOpen() && !e.target.closest('#heatTgl')) $('heatTgl').click(); });
 $('heatMap').addEventListener('click', e=>{ const t = e.target.closest('[data-hsym]'); if(t) openPosition(t.dataset.hsym); });
-window.addEventListener('resize', ()=>{ if(heatOpen() && ui.tab==='portfolio'){ heatKey = ''; renderHeat(computeAll()); } });
+window.addEventListener('resize', ()=>{ if(posView()==='heat' && ui.tab==='portfolio'){ heatKey = ''; renderHeat(computeAll()); } });
 
 // PWA: manifest + service worker only when served over http(s); as a plain file:// page everything else still works
 window.addEventListener('beforeinstallprompt', e=>{ e.preventDefault(); deferredInstall = e; if(ui.tab==='settings') renderSettings(); });

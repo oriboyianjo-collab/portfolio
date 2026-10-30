@@ -1,7 +1,7 @@
 // Simple service worker: caches the app shell for offline use. Price APIs are never cached.
 // Company logos (Parqet / FMP image URLs – only a ticker in the URL) go to their own runtime cache, cache-first, capped at
 // LOGO_MAX entries (oldest dropped). It survives app updates (not tied to the shell version).
-const CACHE = 'portfolio-shell-v111';
+const CACHE = 'portfolio-shell-v112';
 const LOGO_CACHE = 'portfolio-logos-v1', LOGO_MAX = 120;
 const SHELL = ['./', './index.html', './manifest.json', './icon-192.png?v=33', './icon-512.png?v=33', './icon-maskable-512.png?v=33', './apple-touch-icon.png?v=33', './logo.svg?v=33', './favicon-32.png?v=33', './tax-data.json?v=33',
   'https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js',
@@ -28,6 +28,7 @@ self.addEventListener('fetch', e => {
   if (!isShell) return; // live data (prices/FX): straight to network
   if (/\/news\.(json|md)$/.test(url.pathname)) return; // v53: owner-edited news – always from the network, never cached
   if (/\/holdings\/[^/]+\.json$/.test(url.pathname)) return; // v111: daily issuer-holdings file (public ETF data) – always from the network, never cached
+  if (/\/fundamentals\.json$/.test(url.pathname)) return; // v112: daily public fundamentals file (SEC / Yahoo company data) – always from the network, never cached
   if (url.pathname.includes('/news-images/')) {   // v55: owner-uploaded images – network-first (a replaced file shows), cache as offline fallback
     e.respondWith(fetch(req).then(r => { if (r.ok) { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); } return r; }).catch(() => caches.match(req)));
     return;

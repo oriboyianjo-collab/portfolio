@@ -1,0 +1,46 @@
+name: fundamentals
+# Public company data for the stock sheet (הון עצמי למניה / P/B / Free Float / beta) -> fundamentals.json (read by the app, same origin).
+# Universe = every Nasdaq / NYSE / Cboe ticker in SEC's public list – NOT the app user's portfolio or watchlist (the repo never sees those).
+# Free: GitHub Actions on a public repo, built-in GITHUB_TOKEN, no secrets. Optional repo variable SEC_UA = "YourName your@email" (SEC asks for a contact).
+# Never touches portfolio data / news / reports / calendar.
+on:
+  schedule:
+    - cron: '25 5 * * 2-6'    # morning UTC: previous US day's 10-Q / 10-K filings are in EDGAR's daily index; floats refreshed in rotation
+    - cron: '55 21 * * 1-5'   # evening UTC: filings from the US day (after-close earnings season)
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Optional: comma-separated tickers to test (e.g. META,TSLA) – no state / universe progress is recorded'
+        required: false
+        default: ''
+  push:
+    paths: ['scripts/fetch-fundamentals.cjs']
+permissions:
+  contents: write
+concurrency:
+  group: fundamentals
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: fetch fundamentals
+        env:
+          SEC_UA: ${{ vars.SEC_UA }}
+          ONLY: ${{ github.event.inputs.only }}
+        run: |
+          if [ -n "$ONLY" ]; then node scripts/fetch-fundamentals.cjs --only "$ONLY" --out /tmp/fund-test.json --state /tmp/fund-test-state.json | tee fetch.log; cat /tmp/fund-test.json | head -c 3000; exit 0; fi
+          node scripts/fetch-fundamentals.cjs | tee fetch.log
+      - name: commit
+        if: github.event.inputs.only == ''
+        run: |
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add fundamentals.json fundamentals/state.json
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "fundamentals update"
+          for i in 1 2 3; do git pull --rebase -X theirs origin main && git push && break || sleep 5; done
