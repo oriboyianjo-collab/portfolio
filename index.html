@@ -707,6 +707,7 @@ html.ext-sess .ft .xl.ftx{display:block;min-height:0}.ft .xl.ftx:empty{backgroun
 .etfrow{display:flex;gap:8px;align-items:stretch;margin-bottom:10px}.etfrow .etfhd{flex:1;min-width:0;margin-bottom:0}
 .etf-more{flex:none;width:44px;border:1px solid var(--border);border-radius:14px;background:var(--bg-f8fafc);color:var(--text);font:inherit;font-size:1.3rem;line-height:1;cursor:pointer}
 .etf-cmenu{border:1px solid var(--border);border-radius:12px;margin:-4px 0 10px}
+.etf-iss{align-self:center;font-size:.76rem;color:var(--muted)}.etf-iss.ok{color:var(--green,#4ade80)}
 .etf-nq .psym span{display:block;font-weight:600;font-size:.84rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.etf-nq .pname{color:var(--muted)}
 @media (max-width:340px){.ft .xl.ftx{font-size:.54rem;padding:0 2px;letter-spacing:-.2px}.ft .xl.ftx.is-pre::before,.ft .xl.ftx.is-after::before{margin-inline-end:2px}}
 .ft.on{border-color:#fff;box-shadow:0 0 0 2px var(--primary)}.ft-k{margin-top:7px;font-size:.68rem;color:var(--muted);text-align:center}
@@ -2942,7 +2943,7 @@ const ETF_CUST_KEY = 'portfolioTracker.etfCustom.v1', ETF_CUST_MAX = 30, ETF_SYM
 let etfCust = (()=>{ try{ const a = JSON.parse(localStorage.getItem(ETF_CUST_KEY)||'[]'); return Array.isArray(a) ? a.filter(x=>x && typeof x.t==='string' && ETF_SYM_RE.test(x.t) && !ETFS_BASE.includes(x.t)).slice(0, ETF_CUST_MAX).map(x=>({t:x.t, name:String(x.name||'').slice(0,80)})) : []; }catch(e){ return []; } })();
 let ETFS = [...ETFS_BASE, ...etfCust.map(x=>x.t)];
 const saveEtfCust = ()=>{ try{ localStorage.setItem(ETF_CUST_KEY, JSON.stringify(etfCust)); }catch(e){} ETFS = [...ETFS_BASE, ...etfCust.map(x=>x.t)]; };
-const ETF_UI_KEY = 'portfolioTracker.etfUi.v1', ETF_KEY = 'portfolioTracker.etfHold.v1', ETF_TTL = 6*3600e3, ETF_SPARK = 30, ETF_SCHEMA = 2;
+const ETF_UI_KEY = 'portfolioTracker.etfUi.v1', ETF_KEY = 'portfolioTracker.etfHold.v1', ETF_TTL = 6*3600e3, ETF_SPARK = 30, ETF_SCHEMA = 3;
 let etfUi = Object.assign({mode:'my', sel:'XLI', view:'list'}, loadJ(ETF_UI_KEY)||{}); if(!ETFS.includes(etfUi.sel)) etfUi.sel = 'XLI';
 let etfData = loadJ(ETF_KEY) || {}, etfErr = {}, etfSeq = 0, etfHeatKey = '';
 const saveEtfUi = ()=>{ try{ localStorage.setItem(ETF_UI_KEY, JSON.stringify(etfUi)); }catch(e){} };
@@ -2966,22 +2967,31 @@ function etfFinish(rows){ const by = new Map(); let nq = 0;
   rows.forEach(r=>{ const w = +r[2]; if(!(w > 0)) return; let s = r[0]; if(!s || !/^[A-Z0-9][A-Z0-9.\-]{0,11}$/.test(s)){ by.set('~'+(++nq), ['~'+nq, String(r[1]||s||'').trim().slice(0,60), w, 1]); return; }
     const o = by.get(s); if(o){ o[2] += w; if(!o[1] && r[1]) o[1] = r[1]; } else by.set(s, [s, r[1]||'', w]); });
   return [...by.values()].sort((a,b)=>b[2]-a[2]); }
+// v111: issuer file (holdings/issuer.json, same origin) – written daily by the GitHub Action scripts/fetch-issuer-holdings.cjs from each issuer's own file / fund page
+// (browsers cannot read those sites directly: no CORS). Used when it is as new as the other sources; public fund data only.
+const ISS_URL = 'holdings/issuer.json', ISS_REPO = 'oriboyianjo-collab/portfolio'; let issP = null, issAt = 0, issData = null;
+function etfIssuer(force){ if(issP && !force && Date.now()-issAt < 20*60e3) return issP; issAt = Date.now();
+  return issP = fetch(ISS_URL+'?h='+Math.floor(Date.now()/6e5), {cache:'no-store'}).then(r=>r.ok ? r.json() : null).then(j=>{ if(j && j.funds && typeof j.funds==='object') issData = j; return issData; }).catch(()=>issData); }
 async function etfLoad(t, force){ const c = etfData[t]; if(!force && c && c.v===ETF_SCHEMA && Date.now()-c.at < ETF_TTL) return c;
   const lo = encodeURIComponent(t.toLowerCase()), h = Math.floor(Date.now()/36e5);
-  const [a, b] = await Promise.all([etfFetch(`https://tickerinside.com/api/v1/fund/${lo}.json?h=${h}`), etfFetch(`https://etfiq.com/data/books/${lo}.json?h=${h}`)]);
+  const [a, b, iss] = await Promise.all([etfFetch(`https://tickerinside.com/api/v1/fund/${lo}.json?h=${h}`), etfFetch(`https://etfiq.com/data/books/${lo}.json?h=${h}`), etfIssuer(!!force).catch(()=>null)]);
+  const I = iss && iss.funds && iss.funds[t] && Array.isArray(iss.funds[t].rows) && iss.funds[t].rows.length && /^\d{4}-\d{2}-\d{2}$/.test(iss.funds[t].asOf||'') && (Date.now()-Date.parse(iss.funds[t].asOf)) < 12*864e5 ? iss.funds[t] : null;
   const ti = a.j && typeof a.j==='object' ? etfParseTI(a.j) : null, eq = b.j && Array.isArray(b.j.h) ? etfParseEQ(b.j) : null;
-  if(!ti && !eq){ etfLoad.err = a.err==='net' || b.err==='net' ? 'net' : 'nf'; return c || null; }
+  if(!ti && !eq && !I){ etfLoad.err = a.err==='net' || b.err==='net' ? 'net' : 'nf'; return c || null; }
   etfLoad.err = '';
-  let d = ti || eq;
+  let d = ti || eq || {name:'', asOf:'', kind:'', rows:[], src:''};
   if(ti && eq && eq.rows.length){   // ETFIQ wins only when clearly newer AND (almost) fully ticker-labelled; otherwise TickerInside (cleaner tickers)
     const tot = eq.rows.reduce((s,r)=>s+r[2],0), lab = eq.rows.reduce((s,r)=>s+(r[0] ? r[2] : 0),0);
     if(!ti.rows.length || (etfDays(eq.asOf, ti.asOf) >= 3 && lab >= 0.8*tot)) d = Object.assign(eq, {name: ti.name || eq.name, kind: ti.kind || eq.kind});
     else if(ti.rows.length){ const nmap = {}; eq.rows.forEach(r=>{ if(r[0] && r[1]) nmap[r[0]] = r[1]; }); ti.rows.forEach(r=>{ if(!r[1] && nmap[r[0]]) r[1] = nmap[r[0]]; }); } }
+  let useIss = false;
+  if(I && (!d.asOf || etfDays(I.asOf, d.asOf) >= 0 || !d.rows.length)){   // the issuer's own file wins when it is at least as new as TickerInside / ETFIQ
+    d = {name: d.name || I.name || '', asOf: I.asOf, kind: d.kind || '', listed: d.listed, src: I.issuer + ' (קובץ המנפיק)', rows: I.rows.map(r=>[etfSymFix(r[0]), r[1], +r[2]])}; useIss = true; }
   let rows = d.rows.slice(), partial = 0;
-  if(d.src==='TickerInside' && a.j && d.layer==='sponsor_files' && d.unm > 0){   // sponsor-file fund (e.g. NCLD): add the stock lines that have no ticker in the file
+  if(!useIss && d.src==='TickerInside' && a.j && d.layer==='sponsor_files' && d.unm > 0){   // sponsor-file fund (e.g. NCLD): add the stock lines that have no ticker in the file
     const e = await etfFetch(`https://tickerinside.com/api/v1/etf/${lo}.json?h=${h}`); const lines = e.j && Array.isArray(e.j.lines) ? e.j.lines.filter(l=>l && l.kind==='stock' && l.pct > 0) : [];
     if(lines.length) rows = rows.concat(await etfNameLines(lines)); else partial = d.unm; }
-  d = {name:d.name||'', asOf:d.asOf||'', kind:d.kind||'', listed:d.listed, src:d.src, rows: etfFinish(rows), v:ETF_SCHEMA, at:Date.now()};
+  d = {name:d.name||'', asOf:d.asOf||'', kind:d.kind||'', listed:d.listed, src:d.src, rows: etfFinish(rows), v:ETF_SCHEMA, at:Date.now()}; if(useIss) d.iss = 1;
   if(partial) d.partial = partial; if(d.kind==='derivative') d.listed = d.rows.reduce((s,r)=>s+r[2],0);
   etfData[t] = d;
   try{ localStorage.setItem(ETF_KEY, JSON.stringify(etfData)); }catch(e){ etfData = {[t]:d}; try{ localStorage.setItem(ETF_KEY, JSON.stringify(etfData)); }catch(e2){} }
@@ -3046,7 +3056,7 @@ function drawEtfSel(){ const el = $('etfPick'); if(!el) return; const t = etfUi.
 function drawEtf(){ const t = etfUi.sel, d = etfData[t], ei = secInst({sym:t, type:'etf'}), q = iq(ei), pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   drawEtfSel(); $('etfView').querySelectorAll('button').forEach(b=>{ const on = b.dataset.ev===etfUi.view; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
   const isCust = etfCust.some(x=>x.t===t), hdH = `<div class="etfhd" role="button" tabindex="0" data-es="${t}">${logoHtml(t)}<div class="t"><b class="ltr">${ETF_LBL[t]||t}</b><small>${esc((d && d.name) || (q && q.name) || '')}</small></div><div class="r"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="num muted">${q ? fmtPrice(q.ext ? q.ext.price : q.price, q.cur||'USD') : ''}</span>${extLineHtml(q && q.ext, 'etfx')}</div></div>`;
-  M($('etfHd')).h = isCust ? `<div class="etfrow">${hdH}<button type="button" class="etf-more" data-ecm aria-label="תפריט הקרן" aria-haspopup="menu" aria-expanded="${etfMenuOpen}">⋯</button></div>` + (etfMenuOpen ? `<div class="wl-menu etf-cmenu" role="menu" aria-label="תפריט הקרן"><button type="button" role="menuitem" class="del" data-ecdel>🗑 הסר את <span class="ltr">${esc(t)}</span> מהרשימה</button><button type="button" role="menuitem" data-ecm>סגור</button></div>` : '') : hdH;;   // v107: pre/after line like the rows below (price = extended price, % above = regular session)
+  M($('etfHd')).h = isCust ? `<div class="etfrow">${hdH}<button type="button" class="etf-more" data-ecm aria-label="תפריט הקרן" aria-haspopup="menu" aria-expanded="${etfMenuOpen}">⋯</button></div>` + (etfMenuOpen ? `<div class="wl-menu etf-cmenu" role="menu" aria-label="תפריט הקרן">${issData && issData.funds && issData.funds[t] ? '<span class="etf-iss ok">✓ ההחזקות נלקחות מקובץ המנפיק ומתעדכנות יומית</span>' : '<button type="button" role="menuitem" data-ecissue>📥 הוסף לעדכון היומי מהמנפיק</button>'}<button type="button" role="menuitem" class="del" data-ecdel>🗑 הסר את <span class="ltr">${esc(t)}</span> מהרשימה</button><button type="button" role="menuitem" data-ecm>סגור</button></div>` : '') : hdH;;   // v107: pre/after line like the rows below (price = extended price, % above = regular session)
   const body = $('etfBody'), info = $('etfInfo'), note = $('etfNote');
   if(!d){ drawEtfSort(false); info.textContent = ''; note.textContent = ''; etfHeatKey = ''; body.innerHTML = `<div class="wl-empty">${etfErr[t] ? 'לא ניתן לטעון את הרכב הקרן כרגע – נסו שוב מאוחר יותר.' : 'טוען הרכב…'}</div>`; return; }
   const dt = d.asOf ? fmtDate(String(d.asOf).slice(0,10)) : '';
@@ -3082,7 +3092,7 @@ function drawEtfSort(show, its){ const el = $('etfSortWrap'); if(!el) return; if
   if(el.innerHTML!==h) el.innerHTML = h; }
 $('etfSortWrap').addEventListener('click', e=>{ if(e.target.closest('[data-esort]')){ etfSortMenu = !etfSortMenu; drawEtf(); return; }
   const o = e.target.closest('[data-eso]'); if(!o) return; const k = o.dataset.eso; etfSort = k===etfSort.k ? {k, dir:-etfSort.dir} : {k, dir:-1}; saveEtfSort(); etfSortMenu = false; drawEtf(); });
-async function renderEtf(){ const seq = ++etfSeq, t = etfUi.sel; drawEtf();
+async function renderEtf(){ const seq = ++etfSeq, t = etfUi.sel; drawEtf(); etfIssuer().catch(()=>{});
   const d = await etfLoad(t); if(seq!==etfSeq || ui.tab!=='market' || etfUi.mode!=='etf') return; if(!d) etfErr[t] = 1; else delete etfErr[t];
   drawEtf(); const its = [secInst({sym:t, type:'etf'}), ...etfItems(d).filter(it=>!it.nq)];
   instQuotes(ETFS.map(x=>secInst({sym:x, type:'etf'}))).then(()=>{ if(seq===etfSeq) drawEtf(); });
@@ -3094,7 +3104,7 @@ function applyMktMode(){ const etf = etfUi.mode==='etf'; $('mktMode').querySelec
   $('etfCard').hidden = !etf; $('mktCard').hidden = etf; }
 $('mktMode').addEventListener('click', e=>{ const b = e.target.closest('[data-mm]'); if(!b || b.dataset.mm===etfUi.mode) return; etfUi.mode = b.dataset.mm; saveEtfUi(); applyMktMode(); renderMarket(); });
 $('etfPick').addEventListener('click', e=>{ if(e.target.closest('[data-eadd]')){ etfAddOpen = !etfAddOpen; drawEtfAdd(true); drawEtfSel(); return; } const b = e.target.closest('[data-etf]'); if(!b || b.dataset.etf===etfUi.sel) return; etfUi.sel = b.dataset.etf; etfMenuOpen = false; saveEtfUi(); etfHeatKey = ''; renderEtf(); });   // v104: the tile map always stays open; the picked tile is marked and the holdings are below it
-$('etfHd').addEventListener('click', e=>{ if(e.target.closest('[data-ecdel]')){ etfRemoveCust(etfUi.sel); return; } if(e.target.closest('[data-ecm]')){ etfMenuOpen = !etfMenuOpen; drawEtf(); } });
+$('etfHd').addEventListener('click', e=>{ if(e.target.closest('[data-ecissue]')){ const t = etfUi.sel; window.open(`https://github.com/${ISS_REPO}/issues/new?title=${encodeURIComponent('ETF: '+t)}&body=${encodeURIComponent('נוצר מהאפליקציה – לחצו Submit new issue. הקרן תתווסף לעדכון היומי מקובץ המנפיק.')}`, '_blank', 'noopener'); toast('נפתח GitHub – לחצו Submit new issue'); return; } if(e.target.closest('[data-ecdel]')){ etfRemoveCust(etfUi.sel); return; } if(e.target.closest('[data-ecm]')){ etfMenuOpen = !etfMenuOpen; drawEtf(); } });
 $('etfView').addEventListener('click', e=>{ const b = e.target.closest('[data-ev]'); if(!b || b.dataset.ev===etfUi.view) return; etfUi.view = b.dataset.ev; saveEtfUi(); etfHeatKey = ''; renderEtf(); });
 $('etfCard').addEventListener('click', e=>{ const r = e.target.closest('[data-es]'); if(!r || r.dataset.es.charAt(0)==='~') return; const sym = r.dataset.es, d = etfData[etfUi.sel], row = d && d.rows.find(x=>x[0]===sym);
   openInstSheet(sym===etfUi.sel ? secInst({sym, type:'etf'}) : etfInst(row || [sym, '', 0]), '1D'); });
@@ -3782,7 +3792,7 @@ function renderSettings(){
     <div class="set-sec"><h4>ℹ️ מקורות מחירים${ib('מניות, תעודות סל, מדדים ובורסת ת״א (למשל TEVA.TA): CNBC. קריפטו: CoinGecko (גיבוי CNBC). שער דולר: CNBC ← open.er-api.com ← Frankfurter. היסטוריה ונרות: CNBC. חיפוש ניירות: CNBC + CoinGecko. המחירים עשויים להיות מעוכבים. לקרנות נאמנות ישראליות יש להזין מחיר ידני.', 'מקורות המחירים')}</h4></div>
     <div class="set-sec"><h4>⚠️ אזור מסוכן</h4><button class="btn btn-danger btn-block" id="btnReset">🗑️ מחק את כל התיק</button>
       <div class="note">מוחק את כל העסקאות והפוזיציות מהמכשיר. לפני המחיקה תוצע הורדת גיבוי.</div></div>
-    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v110</b></div>`;
+    <div class="note" style="text-align:center">גרסת האפליקציה: <b class="ltr">v111</b></div>`;
   $('settingsCard').querySelectorAll('[data-set]').forEach(inp=>inp.addEventListener('input', ()=>{
     const path = inp.dataset.set.split('.'); let o = state.settings; for(let i=0;i<path.length-1;i++) o = o[path[i]];
     const v = num(inp.value); o[path[path.length-1]] = (v==null||v<0) ? 0 : v; save();
