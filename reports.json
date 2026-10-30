@@ -8762,7 +8762,12 @@
     "מועד": "after",
     "צפי_EPS": "0.44",
     "צפי_הכנסות": "96.85M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS מדולל GAAP 0.45, מתואם 0.46; אין סך הכנסות מאוחד מפורש במקור שנבדק, לא חוברו רכיבי הכנסות",
+    "קישור": "https://www.businesswire.com/news/home/20261029366809/en/American-Savings-Bank-Reports-Third-Quarter-2026-Net-Income-of-%2429.0-million-or-%240.45-per-Diluted-Share-and-Declares-Dividend",
+    "בפועל_EPS": "0.45",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Altisource Portfolio Solutions S.A.",
@@ -9279,7 +9284,12 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "76.7M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; הסימול שייך ל-Blackstone Mortgage Trust, שם החברה הישן ברשומה נשמר; EPS GAAP -1.95; רווח לחלוקה 0.38, ולפני רווחים והפסדים ממומשים 0.42, אינם EPS GAAP; אין הכנסות מפורשות במקור שנבדק",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1061630/000106163026000099/a8-kexhibit9913q2026.htm",
+    "בפועל_EPS": "-1.95",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "Credit Acceptance Corporation",
@@ -9943,7 +9953,8 @@
     "סימול": "DMRC",
     "תאריך": "2026-10-29",
     "צפי_הכנסות": "6.23M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; המנפיק הודיע על שיחת תוצאות Q3 ב-12.11.2026; אין נתון בפועל במקור שנבדק",
+    "קישור": "https://www.digimarc.com/press-releases/2026/10/27/digimarc-sets-third-quarter-2026-conference-call-thursday-november-12"
   },
   {
     "חברה": "Leonardo DRS, Inc.",
@@ -10058,7 +10069,16 @@
     "תאריך": "2026-10-29",
     "מועד": "before",
     "צפי_הכנסות": "894.21M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS בסיסי IFRS 0.45; הנתונים בדולר אמריקאי לפי החברה, מטבע צפי ההכנסות לא אומת; הכנסות כ-623M, השוואה מקורבת רק אם המטבע תואם",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/29/3391032/0/en/enerflex-ltd-announces-third-quarter-2026-financial-and-operational-results-and-increased-dividend.html",
+    "בפועל_EPS": "0.45",
+    "בסיס_בפועל_EPS": "IFRS בסיסי",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "623M",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "מטבע הצפי לא אומת מול USD"
   },
   {
     "חברה": "Edison International",
@@ -10272,7 +10292,12 @@
     "תאריך": "2026-10-29",
     "צפי_EPS": "0.24",
     "צפי_הכנסות": "36.03M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS מדולל GAAP 0.26 מותאם לפיצול 2 ל-1; פורסם 27.10.2026, תאריך הרשומה נשמר; אין סך הכנסות מפורש, לא חוברו רכיבי הכנסות",
+    "קישור": "https://www.businesswire.com/news/home/20261027510023/en/First-Carolina-Financial-Services-Reports-Net-Income-of-%247.9-Million-or-%240.26-Per-Diluted-Share-for-the-Third-Quarter-of-2026",
+    "בפועל_EPS": "0.26",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן"
   },
   {
     "חברה": "FTI Consulting, Inc.",
@@ -10705,7 +10730,8 @@
     "תאריך": "2026-10-29",
     "צפי_EPS": "0.66",
     "צפי_הכנסות": "157M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; לפי הודעת המנפיק תוצאות Q3 נקבעו ל-5.11.2026 אחרי סגירת המסחר; אין נתון בפועל",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/29/3391943/0/en/gran-tierra-energy-inc-provides-release-date-for-its-2026-third-quarter-results.html"
   },
   {
     "חברה": "Garrett Motion Inc.",
@@ -10827,7 +10853,15 @@
     "מועד": "before",
     "צפי_EPS": "0.25",
     "צפי_הכנסות": "153.2M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS מדולל GAAP 0.33, מתואם 0.74; הכנסות כ-156M, השוואה מקורבת",
+    "קישור": "https://www.prnewswire.com/news-releases/hippo-reports-third-quarter-2026-financial-results-302922863.html",
+    "בפועל_EPS": "0.33",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "156M",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Haleon plc",
@@ -11137,7 +11171,8 @@
     "חברה": "INmune Bio Inc.",
     "סימול": "INMB",
     "תאריך": "2026-10-29",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; המנפיק הודיע על שיחת תוצאות Q3 ב-5.11.2026; אין נתון בפועל במקור שנבדק",
+    "קישור": "https://inmunebio.com/index.php/newsroom/2026-news/muneionctoeporthirduarter2026inancialesul20261029062003"
   },
   {
     "חברה": "Insmed Incorporated",
@@ -11351,7 +11386,15 @@
     "מועד": "before",
     "צפי_EPS": "-0.97",
     "צפי_הכנסות": "4.2M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS בסיסי ומדולל GAAP -0.99; סך הכנסות 3.384M כולל מכירות מוצר ורישוי; פורסם 28.10.2026, תאריך הרשומה נשמר",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/28/3390779/0/en/lenz-therapeutics-reports-third-quarter-2026-financial-results-announces-strategic-consumer-marketing-focused-reorganization-and-ceo-succession.html",
+    "בפועל_EPS": "-0.99",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "3.384M",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Ligand Pharmaceuticals Incorporated",
@@ -11497,7 +11540,8 @@
     "תאריך": "2026-10-29",
     "צפי_EPS": "0.06",
     "צפי_הכנסות": "2.38M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; המנפיק הודיע על סקירת תוצאות Q3 ועדכון עסקי ב-4.11.2026; אין נתון בפועל במקור שנבדק",
+    "קישור": "https://comstock.inc/press-release/comstock-inc-to-host-q3-2026-earnings-call-and-business-update/"
   },
   {
     "חברה": "Life Time Group Holdings, Inc.",
@@ -11528,7 +11572,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "89.08M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS מדולל GAAP 1.54, בסיסי 1.55; אינו FFO; הכנסות ברוטו מאוחדות 90.784M לפי 10Q; הדוח הוגש 27.10.2026, תאריך הרשומה נשמר",
+    "קישור": "https://www.stocktitan.net/sec-filings/LXP/10-q-lxp-industrial-trust-quarterly-earnings-report-9c208a802d25.html",
+    "בפועל_EPS": "1.54",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "90.784M",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Lloyds Banking Group Plc",
@@ -11646,7 +11698,15 @@
     "מועד": "after",
     "צפי_EPS": "3.10",
     "צפי_הכנסות": "1.3B",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS מדולל IFRS 3.42, בסיסי 3.43, מתואם 3.69; הכנסות כוללות כ-1.388B בדולר אמריקאי, השוואה מקורבת",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/29/3391916/0/en/methanex-reports-higher-earnings-and-cash-flows-in-third-quarter-2026.html",
+    "בפועל_EPS": "3.42",
+    "בסיס_בפועל_EPS": "IFRS",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "1.388B",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Medallion Financial Corp.",
@@ -11775,7 +11835,8 @@
     "תאריך": "2026-10-29",
     "מועד": "before",
     "צפי_EPS": "-0.46",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; עדכון Q3 2026 פורסם 29.10; המקור שנבדק מציג יתרת מזומן ותחזית הוצאות, ללא EPS או הכנסות רבעוניים; אין להחליף נתון חסר באפס",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/29/3390914/0/en/molecular-partners-reports-q3-2026-financial-results-deepens-focus-on-targeted-radiotherapy.html"
   },
   {
     "חברה": "Medical Properties Trust, Inc.",
@@ -11992,7 +12053,15 @@
     "מועד": "after",
     "צפי_EPS": "0.60",
     "צפי_הכנסות": "969.46M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS בסיסי ומדולל IFRS -0.47 USD לפי טבלת 6K המלאה; הכנסות נטו מאוחדות 937.131M; הפסד מיוחס לבעלי מניות 62.743M לעומת הפסד כולל 47.315M",
+    "קישור": "https://www.stocktitan.net/sec-filings/NEXA/6-k-nexa-resources-s-a-current-report-foreign-issuer-896119386791.html",
+    "בפועל_EPS": "-0.47",
+    "בסיס_בפועל_EPS": "IFRS",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "937.131M",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "NextDecade Corporation",
@@ -12000,7 +12069,15 @@
     "תאריך": "2026-10-29",
     "מועד": "before",
     "צפי_EPS": "-0.35",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS מדולל GAAP 0.54, בסיסי 0.58; הכנסות אפס לפי הדוח המאוחד; רווח נגזרים נטו 851.229M משפיע על הרווח; 10Q הוגש 29.10.2026",
+    "קישור": "https://www.stocktitan.net/sec-filings/NEXT/10-q-next-decade-corp-quarterly-earnings-report-fb6bb83fe5e5.html",
+    "בפועל_EPS": "0.54",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "0",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Newmark Group, Inc.",
@@ -12185,7 +12262,15 @@
     "מועד": "after",
     "צפי_EPS": "0.18",
     "צפי_הכנסות": "57.43M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS מדולל GAAP 0.20, Non-GAAP 0.35; הכנסות מאוחדות כ-63.9M, השוואה מקורבת",
+    "קישור": "https://www.businesswire.com/news/home/20261029817284/en/OneSpan-Reports-Third-Quarter-2026-Financial-Results",
+    "בפועל_EPS": "0.20",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "63.9M",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Blue Owl Capital Inc.",
@@ -12877,7 +12962,15 @@
     "תאריך": "2026-10-29",
     "מועד": "before",
     "צפי_הכנסות": "25.45M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS בסיסי ומדולל GAAP -0.06, Non-GAAP 0.04; הכנסות מאוחדות כ-26.7M, השוואה מקורבת",
+    "קישור": "https://www.prnewswire.com/news-releases/silicom-reports-q3-2026-results-302923546.html",
+    "בפועל_EPS": "-0.06",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "26.7M",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "SiriusXM Holdings Inc.",
@@ -12904,7 +12997,8 @@
     "סימול": "SKM",
     "תאריך": "2026-10-29",
     "צפי_הכנסות": "4.46T",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; לפי דיווח 6K שיחת תוצאות Q3 וחומרי המשקיעים נקבעו ל-4.11.2026 בשעה 16:00 סיאול; אין נתון בפועל במקור שנבדק",
+    "קישור": "https://www.stocktitan.net/sec-filings/SKM/6-k-sk-telecom-co-ltd-current-report-foreign-issuer-0f0ee0d241bb.html"
   },
   {
     "חברה": "SkyWest, Inc.",
@@ -13150,7 +13244,15 @@
       "S&P 600"
     ],
     "צפי_הכנסות": "229.5M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q1 FY2027 שהסתיים 30.9.2026; EPS מדולל GAAP כולל 1.98; מפעילות נמשכת 1.99 ומתואם מפעילות נמשכת 2.41; מכירות נטו מאוחדות 232.575M",
+    "קישור": "https://www.prnewswire.com/news-releases/standex-reports-fiscal-first-quarter-2027-financial-results-302924142.html",
+    "בפועל_EPS": "1.98",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "232.575M",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Stryker Corporation",
@@ -13395,7 +13497,17 @@
     "מועד": "before",
     "צפי_EPS": "-0.91",
     "צפי_הכנסות": "77.28M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS בסיסי ומדולל IFRS -3.09 CAD מיוחס לבעלי מניות Telesat; הכנסות 80.631M CAD; מטבע ויחידת הצפי לא אומתו, ללא המרה",
+    "קישור": "https://www.globenewswire.com/news-release/2026/10/29/3391128/0/en/telesat-reports-results-for-the-three-and-nine-months-ended-september-30-2026.html",
+    "בפועל_EPS": "-3.09 CAD",
+    "בסיס_בפועל_EPS": "IFRS",
+    "מטבע_EPS": "CAD",
+    "השוואה_EPS": "לא",
+    "הכנסות_בפועל": "80.631M CAD",
+    "מטבע_הכנסות": "CAD",
+    "השוואה_הכנסות": "לא",
+    "הסבר_EPS": "מטבע ויחידת הצפי לא אומתו מול CAD",
+    "הסבר_הכנסות": "מטבע הצפי לא אומת מול CAD"
   },
   {
     "חברה": "Timberland Bancorp, Inc.",
@@ -13449,7 +13561,8 @@
     "תאריך": "2026-10-29",
     "צפי_EPS": "-0.25",
     "צפי_הכנסות": "198.32M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; לפי הודעת המנפיק תוצאות Q3 נקבעו ל-2.11.2026 אחרי סגירת המסחר; אין נתון בפועל",
+    "קישור": "https://ir.travere.com/press-releases/news-details/2026/Travere-Therapeutics-to-Report-Third-Quarter-2026-Financial-Results/default.aspx"
   },
   {
     "חברה": "Tradeweb Markets Inc.",
@@ -13475,7 +13588,16 @@
     "מועד": "before",
     "צפי_EPS": "-0.05",
     "צפי_הכנסות": "448.82M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; Q3 2026; EPS מדולל GAAP כולל -0.66, מפעילות נמשכת -0.14; הכנסות בדוח המאוחד מפעילות נמשכת 335.177M, לעומת כ-454M כולל פעילות ITM המופסקת; היקף צפי ההכנסות לא אומת",
+    "קישור": "https://www.stocktitan.net/sec-filings/TWI/10-q-titan-international-inc-quarterly-earnings-report-375db4136098.html",
+    "בפועל_EPS": "-0.66",
+    "בסיס_בפועל_EPS": "GAAP",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הכנסות_בפועל": "335.177M",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "היקף הצפי לא אומת מול הכנסות מפעילות נמשכת; כולל הפעילות המופסקת כ-454M"
   },
   {
     "חברה": "Twilio Inc.",
@@ -13616,7 +13738,8 @@
     "תאריך": "2026-10-29",
     "צפי_EPS": "-0.06",
     "צפי_הכנסות": "69M",
-    "הערה": ""
+    "הערה": "בסיס הצפי לא ידוע; לפי הודעת החברה הרכישה בידי Francisco Partners הושלמה 26.10.2026 והמסחר והמניה בניו יורק הופסקו; לא אותרו תוצאות Q3; התחזיות נשמרו",
+    "קישור": "https://investors.getweave.com/news/news-details/2026/Francisco-Partners-Completes-Acquisition-of-Weave/default.aspx"
   },
   {
     "חברה": "WEC Energy Group, Inc.",
