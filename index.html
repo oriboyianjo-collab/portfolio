@@ -523,7 +523,7 @@ body.srch-on{overflow:hidden}
 .wl-pick .ck{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(127,127,127,.15);flex:none}.wl-pick .ln{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wl-pick button.has{border-color:var(--green)}.wl-pick button.has .ck{background:var(--green);color:#fff}.wl-pick .nw{color:var(--primary)}
 /* v66: news sub-tabs */
-.nseg{margin:0 0 10px}.cfil{display:flex;gap:6px;overflow-x:auto;margin:0 0 8px;scrollbar-width:none}.cfil::-webkit-scrollbar{display:none}.cfil:empty{display:none}
+.nseg{margin:0 0 10px}/* v110: news category sub-tabs row */.nsub{margin:8px 0 10px}.cfil{display:flex;gap:6px;overflow-x:auto;margin:0 0 8px;scrollbar-width:none}.cfil::-webkit-scrollbar{display:none}.cfil:empty{display:none}
 .cfil button{flex:0 0 auto;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);border-radius:999px;padding:5px 11px;min-height:32px;font:inherit;font-size:.76rem;font-weight:600;cursor:pointer}.cfil button.on{border-color:var(--primary);color:var(--primary)}
 .rday{font-size:.78rem;font-weight:700;color:var(--muted);margin:12px 2px 6px}.rsec{font-size:.82rem;font-weight:800;margin:18px 2px 4px;padding-top:10px;border-top:1px dashed var(--border)}
 .rrow{display:grid;grid-template-columns:30px minmax(0,1fr) 62px 68px;align-items:center;gap:7px;padding:6px 4px;border-bottom:1px solid var(--border);cursor:pointer;position:relative}
@@ -850,7 +850,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
       <div id="wlLists"></div></div>
   </section>
   <section class="tab" id="tab-settings"><div class="set-bar"><h2>הגדרות</h2><button class="btn set-back" id="setBack" aria-label="חזרה">חזרה ←</button></div><div class="card" id="settingsCard"></div></section>
-  <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div class="seg nseg" id="newsSeg" role="tablist" aria-label="סוג תוכן"><button data-nt="news" class="on">📰 חדשות</button><button data-nt="rep">📊 דוחות</button><button data-nt="cal">🗓️ יומן כלכלי</button></div><div id="ntNews"><div class="news-sr"><input type="search" id="newsQ" placeholder="חיפוש בחדשות" autocomplete="off" enterkeyhint="search" aria-label="חיפוש בחדשות"><button id="newsQx" aria-label="ניקוי חיפוש" hidden>✕</button></div><div class="news-cnt" id="newsCnt" hidden></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div><div id="ntRep" hidden><div class="rbar"><button class="rsi" id="repSi" aria-label="חיפוש דוחות">🔍</button><div class="rqw" id="repQw" hidden><input id="repQ" type="text" inputmode="search" autocomplete="off" enterkeyhint="search" placeholder="חיפוש סימול / חברה" aria-label="חיפוש דוחות"><button id="repQx" aria-label="סגירת חיפוש">✕</button></div><div class="rpills" id="repPills" role="toolbar" aria-label="סינון ומיון דוחות"></div></div><div class="rpop" id="repPop" hidden role="menu"></div><div class="rfil" id="repFil"></div><div id="repList"><div class="muted">טוען…</div></div></div><div id="ntCal" hidden><div class="cfil" id="calFil"></div><div id="calList"><div class="muted">טוען…</div></div></div></div></section>
+  <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div class="seg nseg" id="newsSeg" role="tablist" aria-label="סוג תוכן"><button data-nt="news" class="on">📰 חדשות</button><button data-nt="rep">📊 דוחות</button><button data-nt="cal">🗓️ יומן כלכלי</button></div><div id="ntNews"><div class="seg nsub" id="newsCatSeg" role="tablist" aria-label="סינון סוג חדשות"><button data-nc="all" class="on">📰 הכל</button><button data-nc="micro">🏢 מיקרו</button><button data-nc="macro">🌍 מאקרו</button></div><div class="news-sr"><input type="search" id="newsQ" placeholder="חיפוש בחדשות" autocomplete="off" enterkeyhint="search" aria-label="חיפוש בחדשות"><button id="newsQx" aria-label="ניקוי חיפוש" hidden>✕</button></div><div class="news-cnt" id="newsCnt" hidden></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div><div id="ntRep" hidden><div class="rbar"><button class="rsi" id="repSi" aria-label="חיפוש דוחות">🔍</button><div class="rqw" id="repQw" hidden><input id="repQ" type="text" inputmode="search" autocomplete="off" enterkeyhint="search" placeholder="חיפוש סימול / חברה" aria-label="חיפוש דוחות"><button id="repQx" aria-label="סגירת חיפוש">✕</button></div><div class="rpills" id="repPills" role="toolbar" aria-label="סינון ומיון דוחות"></div></div><div class="rpop" id="repPop" hidden role="menu"></div><div class="rfil" id="repFil"></div><div id="repList"><div class="muted">טוען…</div></div></div><div id="ntCal" hidden><div class="cfil" id="calFil"></div><div id="calList"><div class="muted">טוען…</div></div></div></div></section>
 </main>
 
 <nav class="bottom"><div class="in">
@@ -4475,7 +4475,8 @@ function setTab(tab){ try{ repPopClose(); }catch(_){}
   mktPoll();
 }
 // ---- News tab (v53): news.json (or news.md) uploaded by the owner to the same site; always fetched fresh ----
-const NEWS_K = {up:['uploaded','הועלה'], title:['title','כותרת'], date:['date','תאריך'], text:['text','טקסט','תוכן'], link:['link','קישור','url'], company:['company','חברה']};
+const NEWS_K = {up:['uploaded','הועלה'], title:['title','כותרת'], date:['date','תאריך'], text:['text','טקסט','תוכן'], link:['link','קישור','url'], company:['company','חברה'], cat:['category','סוג','קטגוריה']}; /* v110: cat = micro (company news) / macro (economics); missing = shows under הכל only */
+const newsCatOf = o=>{ const v = newsPick(o,'cat').toLowerCase(); return v==='micro'||v==='מיקרו' ? 'micro' : v==='macro'||v==='מאקרו' ? 'macro' : ''; };
 function newsPick(o, k){ for(const n of NEWS_K[k]){ if(o[n]!=null && String(o[n]).trim()!=='') return String(o[n]).trim(); } return ''; }
 function newsTime(d){ if(!d) return null; let m = d.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[ T](\d{1,2}):(\d{2}))?/); if(m) return new Date(+m[1], m[2]-1, +m[3], +(m[4]||0), +(m[5]||0)).getTime();
   m = d.match(/^(\d{1,2})[./](\d{1,2})[./](\d{2,4})(?:\s+(\d{1,2}):(\d{2}))?/); if(m) return new Date(m[3].length===2 ? 2000 + +m[3] : +m[3], m[2]-1, +m[1], +(m[4]||0), +(m[5]||0)).getTime(); return null; }
@@ -4489,7 +4490,7 @@ async function loadNews(){ const el = $('newsList'); if(!el) return; const seq =
   catch(e){ try{ items = newsFromMd(await get('news.md')); }catch(e2){ err = !(e instanceof SyntaxError) ? false : true; items = []; } }
   if(seq !== newsSeq) return;
   newsAll = [];
-  const L = items.filter(o=>o && typeof o==='object').map((o,i)=>({i, title:newsPick(o,'title'), date:newsPick(o,'date'), text:newsPick(o,'text'), link:newsPick(o,'link'), company:newsPick(o,'company'), up:newsPick(o,'up'), imgs:newsImgs(o)})).filter(o=>o.title || o.text || o.imgs.length);
+  const L = items.filter(o=>o && typeof o==='object').map((o,i)=>({i, title:newsPick(o,'title'), date:newsPick(o,'date'), text:newsPick(o,'text'), link:newsPick(o,'link'), company:newsPick(o,'company'), up:newsPick(o,'up'), cat:newsCatOf(o), imgs:newsImgs(o)})).filter(o=>o.title || o.text || o.imgs.length);
   // v66: order by UPLOAD time, not the publish date. The file's order is not reliable (items have been added both at the top and at
   // the bottom), so: an explicit "הועלה"/"uploaded" time wins; otherwise the time this device first saw the item (remembered in
   // localStorage – not portfolio data). On a device's very first load the publish date seeds the order.
@@ -4509,7 +4510,9 @@ function newsHl(raw, q){ raw = String(raw||''); if(!q) return esc(raw); const lo
 function newsRender(){ const el = $('newsList'), cnt = $('newsCnt'); if(!el) return; const L = newsItems, q = ($('newsQ').value||'').trim(); $('newsQx').hidden = !$('newsQ').value;
   newsAll = [];
   if(!L.length){ cnt.hidden = true; el.innerHTML = `<div class="news-empty">${newsErr ? 'קובץ החדשות (news.json) לא תקין – בדקו פסיקים ומירכאות.' : 'אין עדיין חדשות.<br><small>מוסיפים פריטים בקובץ news.json באתר GitHub.</small>'}</div>`; return; }
-  const ql = q.toLocaleLowerCase(), M = q ? L.filter(o=>[o.title, o.text, o.company, o.date, newsFd(o)].some(v=>String(v||'').toLocaleLowerCase().includes(ql))) : L;
+  const B = newsCat==='all' ? L : L.filter(o=>o.cat===newsCat); // v110
+  if(!B.length){ cnt.hidden = true; el.innerHTML = `<div class="news-empty">אין עדיין חדשות בלשונית זו.</div>`; return; }
+  const ql = q.toLocaleLowerCase(), M = q ? B.filter(o=>[o.title, o.text, o.company, o.date, newsFd(o)].some(v=>String(v||'').toLocaleLowerCase().includes(ql))) : B;
   cnt.hidden = !q; cnt.textContent = q ? (M.length===1 ? 'תוצאה אחת' : `${M.length} תוצאות`) : '';
   if(!M.length){ el.innerHTML = `<div class="news-empty">לא נמצאו חדשות עבור „${esc(q)}”</div>`; return; }
   el.innerHTML = M.map(o=>`<article class="news-it">${o.company ? `<span class="news-co">${newsHl(o.company,q)}</span>` : ''}<div class="news-d">${newsHl(newsFd(o),q)}</div>${o.title ? `<h3>${newsHl(o.title,q)}</h3>` : ''}${o.text ? `<div class="news-t">${newsHl(o.text,q)}</div>` : ''}${newsImgHtml(o)}${/^https?:\/\//i.test(o.link) ? `<a class="news-l" href="${esc(o.link)}" target="_blank" rel="noopener">לפרטים ←</a>` : ''}</article>`).join('');
@@ -4528,6 +4531,7 @@ const CAL_K = {date:['date','תאריך'], time:['time','שעה'], country:['cou
   forecast:['forecast','צפי'], previous:['previous','קודם'], actual:['actual','בפועל'], good:['good','טוב'], note:['note','הערה']};
 const pickK = (o, K, k)=>{ for(const n of K[k]){ for(const key of [n, n.toUpperCase()]) if(o[key]!=null && String(o[key]).trim()!=='') return String(o[key]).trim(); } return ''; };
 let newsTab = (()=>{ try{ const v = sessionStorage.getItem('portfolioTracker.newsTab'); return ['news','rep','cal'].includes(v) ? v : 'news'; }catch(e){ return 'news'; } })();
+let newsCat = (()=>{ try{ const v = sessionStorage.getItem('portfolioTracker.newsCat'); return ['all','micro','macro'].includes(v) ? v : 'all'; }catch(e){ return 'all'; } })(); // v110
 const ntData = {rep:null, cal:null}, ntFil = {rep:'all', cal:'all', day:'all', idx:'all', tm:'all', q:'', sort:(()=>{ try{ return localStorage.getItem('portfolioTracker.repSort.v1') || 'date'; }catch(e){ return 'date'; } })()};
 // v82: report market caps – the file's שווי_שוק wins; otherwise CNBC quote mktcapView (same free source as the holdings), in USD, cached 24h.
 // Fetched only when the market-cap sort is chosen, only for the symbols in the current filter (≤400 → ≤10 batched requests). Unknown → sorted last, never guessed.
@@ -4543,6 +4547,8 @@ async function loadRepCaps(syms){ if(repCapBusy) return false; const need = syms
 const IDX_AL = [['sp500',/^(s&?p ?500|spx|spy|אסאנדפי ?500|ס&?פ ?500)$/],['ndx',/^(nasdaq ?100|ndx|qqq|נאסד"?ק ?100|נאסדק ?100)$/],['dow',/^(dow( jones| 30)?|djia|dia|דאו( ג'ונס| 30)?)$/],
   ['sp400',/^(s&?p ?400|s&?p midcap ?400|mdy)$/],['sp600',/^(s&?p ?600|s&?p smallcap ?600|ijr)$/],['r2k',/^(russell ?2000|r2k|iwm|ראסל ?2000)$/],['ixic',/^(nasdaq( composite)?|נאסד"?ק|נאסדק)$/]];
 const idxKey = n=>{ const t = String(n).trim().toLowerCase().replace(/[׳’`]/g,"'").replace(/״/g,'"').replace(/\s+/g,' '); const f = IDX_AL.find(x=>x[1].test(t)); return f ? f[0] : 'u:'+t; };
+// v110: a report row that explicitly carries a מדד/index key (even an empty list) states its own membership – no ETF-holdings fallback
+const hasIdxKey = o=>['מדד','מדדים','index','indices','Index'].some(k=>Object.prototype.hasOwnProperty.call(o,k));
 const idxOf = o=>{ let v = null; for(const k of ['מדד','מדדים','index','indices','Index']) if(o[k]!=null && o[k]!==''){ v = o[k]; break; }
   const A = (Array.isArray(v) ? v : v!=null ? String(v).split(/[,;|]/) : []).map(x=>String(x==null?'':x).trim()).filter(x=>x && !/^(אחר|other|none|-)$/i.test(x));
   const seen = new Set(); return A.filter(x=>{ const k = idxKey(x); if(seen.has(k)) return false; seen.add(k); return true; }).map(x=>({k:idxKey(x), l:x})); };
@@ -4558,12 +4564,15 @@ async function loadIdxMem(){ if(idxMem && idxMem.at && Date.now()-idxMem.at < 20
 const memOf = sym=>{ const L = idxMem && idxMem.s[memNorm(sym)]; return L ? IDXM.filter(x=>L.includes(x[0])).map(x=>({k:x[0], l:x[1], auto:true})) : []; };
 const ixCls = k=>/^u:/.test(k) ? '' : ' ix-'+k;
 function applyNewsTab(){ try{ repPopClose(); }catch(_){} $('newsSeg').querySelectorAll('[data-nt]').forEach(b=>{ const on = b.dataset.nt===newsTab; b.classList.toggle('on', on); b.setAttribute('aria-selected', String(on)); });
-  $('ntNews').hidden = newsTab!=='news'; $('ntRep').hidden = newsTab!=='rep'; $('ntCal').hidden = newsTab!=='cal'; }
+  $('ntNews').hidden = newsTab!=='news'; $('ntRep').hidden = newsTab!=='rep'; $('ntCal').hidden = newsTab!=='cal'; applyNewsCat(); }
 async function loadNt(kind){ const seq = ++ntSeq, f = kind==='rep' ? 'reports.json' : 'calendar.json'; let items = [], err = false;
   try{ const r = await fetch(f+'?t='+Date.now(), {cache:'no-store'}); if(r.ok){ const t = (await r.text()).trim(); if(t){ try{ const j = JSON.parse(t); items = Array.isArray(j) ? j : (j && Array.isArray(j.items) ? j.items : []); }catch(e){ err = true; } } } }catch(e){}
   if(seq!==ntSeq) return; ntData[kind] = {items: items.filter(o=>o && typeof o==='object'), err}; kind==='rep' ? drawReports() : drawCal(); }
 function loadNewsTab(){ applyNewsTab(); if(newsTab==='news') loadNews(); else loadNt(newsTab); }
 $('newsSeg').addEventListener('click', e=>{ const b = e.target.closest('[data-nt]'); if(!b || b.dataset.nt===newsTab) return; newsTab = b.dataset.nt; try{ sessionStorage.setItem('portfolioTracker.newsTab', newsTab); }catch(_){} if(newsTab==='rep') repEnter = true; if(newsTab==='cal') calEnter = true; loadNewsTab(); });
+// v110: news category sub-tabs – הכל / מיקרו / מאקרו; filters only the news list, never reports/calendar
+const applyNewsCat = ()=>{ const s = $('newsCatSeg'); if(!s) return; s.querySelectorAll('[data-nc]').forEach(b=>{ const on = b.dataset.nc===newsCat; b.classList.toggle('on', on); b.setAttribute('aria-selected', String(on)); }); };
+$('newsCatSeg').addEventListener('click', e=>{ const b = e.target.closest('[data-nc]'); if(!b || b.dataset.nc===newsCat) return; newsCat = b.dataset.nc; try{ sessionStorage.setItem('portfolioTracker.newsCat', newsCat); }catch(_){} applyNewsCat(); newsRender(); });
 const dayLbl = d=>{ const t = today(); if(d===t) return 'היום'; if(d===addDays(t,1)) return 'מחר'; if(d===addDays(t,-1)) return 'אתמול'; return ''; };
 function dayHead(d){ if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return esc(d || 'ללא תאריך'); const w = new Date(d+'T12:00:00Z').toLocaleDateString('he-IL',{weekday:'long', timeZone:'UTC'}), l = dayLbl(d);
   return `${l ? l+' · ' : ''}${w} <span class="num">${fmtDate(d)}</span>`; }
@@ -4575,9 +4584,9 @@ const ntEmpty = (kind, err)=>`<div class="news-empty">${err ? `הקובץ ${kind
 try{ localStorage.removeItem('portfolioTracker.reportLinks.v1'); }catch(e){}
 function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; if(!D.items.length){ $('repFil').innerHTML = ''; el.innerHTML = ntEmpty('rep', D.err); return; }
   const held = new Set(computeAll().positions.filter(p=>Math.abs(p.qty)>1e-9).map(p=>p.sym)), watched = new Set(wlData.lists.flatMap(l=>l.items.map(x=>x.sym)));
-  const L = D.items.map(o=>{ const r = {}; for(const k in REP_K) r[k] = pickK(o, REP_K, k); r.symbol = r.symbol.toUpperCase(); r.d = ntDate(r.date); r.tag = held.has(r.symbol) ? 'בתיק' : watched.has(r.symbol) ? 'במעקב' : ''; r.ixs = idxOf(o); return r; }).filter(r=>r.company || r.symbol);
-  if(L.some(r=>!r.ixs.length) && (!idxMem || Date.now()-idxMem.at > 20*3600e3)) loadIdxMem().then(m=>{ if(m && newsTab==='rep') drawReports(); });
-  L.forEach(r=>{ if(!r.ixs.length) r.ixs = memOf(r.symbol); });
+  const L = D.items.map(o=>{ const r = {}; for(const k in REP_K) r[k] = pickK(o, REP_K, k); r.symbol = r.symbol.toUpperCase(); r.d = ntDate(r.date); r.tag = held.has(r.symbol) ? 'בתיק' : watched.has(r.symbol) ? 'במעקב' : ''; r.ixs = idxOf(o); r.hasIdx = hasIdxKey(o); return r; }).filter(r=>r.company || r.symbol);
+  if(L.some(r=>!r.ixs.length && !r.hasIdx) && (!idxMem || Date.now()-idxMem.at > 20*3600e3)) loadIdxMem().then(m=>{ if(m && newsTab==='rep') drawReports(); });
+  L.forEach(r=>{ if(!r.ixs.length && !r.hasIdx) r.ixs = memOf(r.symbol); });
   const ixL = {}; L.forEach(r=>{ r.ixs.forEach(x=>{ if(!ixL[x.k]) ixL[x.k] = x.l; }); r.ix = r.ixs.length ? r.ixs.map(x=>x.k) : ['other']; });
   const ixOrd = [...new Set(L.flatMap(r=>r.ixs.map(x=>x.k)))].sort((a,b)=>{ const i = k=>{ const j = IDX_AL.findIndex(x=>x[0]===k); return j<0 ? 99 : j; }; return i(a)-i(b) || (ixL[a]<ixL[b]?-1:1); });
   if(ntFil.idx!=='all' && ntFil.idx!=='other' && !ixOrd.includes(ntFil.idx)) ntFil.idx = 'all';
@@ -4890,3 +4899,4 @@ window.__portfolio = {refresh:(...a)=>refreshPrices(...a), get state(){ return s
   top.addEventListener('click', e=>{ if(v && !e.target.closest('button')){ v=false; try{ localStorage.setItem(K,'0'); }catch(_){} ap(false); } }); })();</script>
 </body>
 </html>
+
