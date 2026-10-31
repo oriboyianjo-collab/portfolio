@@ -710,6 +710,16 @@ html.ext-sess .ft .xl.ftx{display:block;min-height:0}.ft .xl.ftx:empty{backgroun
 .etfhd .r .xl.etfx{font-size:.68rem;align-self:flex-end}
 /* v110: add any ETF (+ הוסף קרן), own funds removable from the header's ⋯ menu, name-only positions */
 .fs-add{flex:none;border:1px dashed var(--bd-cbd5e1);background:transparent;color:var(--primary);border-radius:10px;font:inherit;font-size:.78rem;font-weight:700;padding:4px 10px;min-height:32px;cursor:pointer;white-space:nowrap}.fs-add[aria-expanded="true"]{background:var(--bg-eff6ff);border-style:solid}
+/* v111: calendar note collapse (עוד/פחות like report notes) + ETF tile edit mode (any tile removable) + add-fund autocomplete */
+#calList .crow .ev small .cnote{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-line;overflow-wrap:anywhere;cursor:pointer}
+#calList .crow .ev small .cnote.open{display:block;-webkit-line-clamp:unset}
+#calList .cmore{font-style:normal;font-weight:700;color:var(--primary);font-size:.66rem;cursor:pointer;white-space:nowrap;margin-inline-start:2px}
+.fs-add.on{background:var(--primary);color:#fff;border-color:var(--primary);border-style:solid}
+.ft{position:relative}
+.ft .ft-del{position:absolute;top:-7px;inset-inline-start:-7px;width:22px;height:22px;border-radius:50%;background:#ef4444;color:#fff;font-size:13px;font-weight:800;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 5px rgba(0,0,0,.45);border:2px solid var(--bg-fff);z-index:2;padding:0;cursor:pointer}
+.ea-r .ac{flex:1;min-width:0;position:static}.ea-r .ac input{width:100%;box-sizing:border-box}
+.etf-add .ea-r{position:relative}
+.etf-add .ac-item .s{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .etf-add-w:empty{display:none}.etf-add{margin:0 0 10px;padding:10px;border:1px solid var(--border);border-radius:14px;background:var(--bg-f8fafc)}
 .ea-r{display:flex;gap:8px;align-items:center}.ea-r input{flex:1;min-width:0;direction:ltr;text-align:left;text-transform:uppercase;font-weight:700;letter-spacing:.5px}.ea-r .btn{flex:none}
 .ea-m{font-size:.76rem;color:var(--muted);margin-top:6px;min-height:1.1em;line-height:1.35}.ea-m.bad{color:var(--red)}
@@ -2773,7 +2783,7 @@ async function searchSymbols(q){
   const seen = new Set();
   return (searchCache[q] = out.filter(o=>{ const k=o.sym+'|'+(o.type==='crypto'?'c':'s'); if(seen.has(k)) return false; seen.add(k); return true; }).slice(0,12));
 }
-function attachAutocomplete(input, list, onPick){
+function attachAutocomplete(input, list, onPick, typeFilter){
   let timer, items = [], hl = -1;
   const close = ()=>{ list.classList.remove('open'); hl=-1; };
   const draw = ()=>{
@@ -2787,7 +2797,7 @@ function attachAutocomplete(input, list, onPick){
     clearTimeout(timer); const q = input.value;
     if(!q.trim()){ items=[]; close(); return; }
     items = items.filter(it=>it.sym.startsWith(q.trim().toUpperCase())); draw();
-    timer = setTimeout(async()=>{ const r = await searchSymbols(q); if(input.value===q && document.activeElement===input){ items = r; draw(); } }, 280);
+    timer = setTimeout(async()=>{ let r = await searchSymbols(q); if(typeFilter) r = r.filter(typeFilter); if(input.value===q && document.activeElement===input){ items = r; draw(); } }, 280);
   });
   input.addEventListener('keydown', e=>{
     if(e.key==='Enter'){ e.preventDefault(); if(hl>=0 && items[hl]) pick(items[hl]); else if(input.value.trim()) pick(items.find(i=>i.sym===input.value.trim().toUpperCase())||null); return; }
@@ -2945,12 +2955,15 @@ attachAutocomplete($('mktSearch'), $('mktAc'), it=>{ $('mktSearch').value = ''; 
 // largest holdings only (bars ride the shared ≤4-at-a-time queue). SOX is an index – its tracker SOXX is used.
 // v110: the list = the 19 built-in funds + the user's own (localStorage, removable from the fund header's ⋯ menu).
 const ETFS_BASE = ['XLI','XLY','XLF','XLE','XAR','XLU','XLB','XLV','IGV','XLC','XLP','PRAM','DRNZ','NECK','NUKZ','NCLD','DRAM','JEDI','SOXX'], ETF_LBL = {SOXX:'SOX/SOXX'};
-const ETF_CUST_KEY = 'portfolioTracker.etfCustom.v1', ETF_CUST_MAX = 30, ETF_SYM_RE = /^[A-Z][A-Z0-9.\-]{0,9}$/;
+const ETF_CUST_KEY = 'portfolioTracker.etfCustom.v1', ETF_CUST_MAX = 30, ETF_SYM_RE = /^[A-Z][A-Z0-9.\-]{0,9}$/, ETF_HIDE_KEY = 'portfolioTracker.etfHidden.v1';
 let etfCust = (()=>{ try{ const a = JSON.parse(localStorage.getItem(ETF_CUST_KEY)||'[]'); return Array.isArray(a) ? a.filter(x=>x && typeof x.t==='string' && ETF_SYM_RE.test(x.t) && !ETFS_BASE.includes(x.t)).slice(0, ETF_CUST_MAX).map(x=>({t:x.t, name:String(x.name||'').slice(0,80)})) : []; }catch(e){ return []; } })();
-let ETFS = [...ETFS_BASE, ...etfCust.map(x=>x.t)];
-const saveEtfCust = ()=>{ try{ localStorage.setItem(ETF_CUST_KEY, JSON.stringify(etfCust)); }catch(e){} ETFS = [...ETFS_BASE, ...etfCust.map(x=>x.t)]; };
+let etfHidden = (()=>{ try{ const a = JSON.parse(localStorage.getItem(ETF_HIDE_KEY)||'[]'); return Array.isArray(a) ? a.filter(t=>typeof t==='string' && ETFS_BASE.includes(t)) : []; }catch(e){ return []; } })();
+const etfRebuild = ()=>{ ETFS = [...ETFS_BASE.filter(t=>!etfHidden.includes(t)), ...etfCust.map(x=>x.t)]; };
+let ETFS; etfRebuild();
+const saveEtfCust = ()=>{ try{ localStorage.setItem(ETF_CUST_KEY, JSON.stringify(etfCust)); }catch(e){} etfRebuild(); };
+const saveEtfHidden = ()=>{ try{ localStorage.setItem(ETF_HIDE_KEY, JSON.stringify(etfHidden)); }catch(e){} etfRebuild(); };
 const ETF_UI_KEY = 'portfolioTracker.etfUi.v1', ETF_KEY = 'portfolioTracker.etfHold.v1', ETF_TTL = 6*3600e3, ETF_SPARK = 30, ETF_SCHEMA = 3;
-let etfUi = Object.assign({mode:'my', sel:'XLI', view:'list'}, loadJ(ETF_UI_KEY)||{}); if(!ETFS.includes(etfUi.sel)) etfUi.sel = 'XLI';
+let etfUi = Object.assign({mode:'my', sel:'XLI', view:'list'}, loadJ(ETF_UI_KEY)||{}); if(!ETFS.includes(etfUi.sel)) etfUi.sel = ETFS[0];   // v111: first visible fund, not a possibly-hidden one
 let etfData = loadJ(ETF_KEY) || {}, etfErr = {}, etfSeq = 0, etfHeatKey = '';
 const saveEtfUi = ()=>{ try{ localStorage.setItem(ETF_UI_KEY, JSON.stringify(etfUi)); }catch(e){} };
 // row = [symbol, name, weight%, nq]; nq=1 → a position with no tradable ticker (private fund, line not matched): shown by name, no quote
@@ -3031,7 +3044,8 @@ const etfSaveData = ()=>{ try{ localStorage.setItem(ETF_KEY, JSON.stringify(etfD
 function drawEtfAdd(focus){ const el = $('etfAdd'); if(!el) return;
   if(!etfAddOpen){ if(el.innerHTML) el.innerHTML = ''; return; }
   if(el.querySelector('input')) return;
-  el.innerHTML = `<div class="etf-add"><div class="ea-r"><input id="etfAddIn" type="text" dir="ltr" inputmode="text" maxlength="10" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="סימול הקרן, למשל SMH" aria-label="סימול קרן להוספה"><button type="submit" class="btn btn-primary btn-sm" id="etfAddGo">הוסף</button><button type="button" class="btn btn-light btn-sm" data-eaclose aria-label="סגירה">✕</button></div><div class="ea-m" role="status" aria-live="polite">הקלידו סימול של קרן סל אמריקאית (ETF). נבדק שיש לה רשימת החזקות מלאה, והיא נשמרת במכשיר.</div></div>`;
+  el.innerHTML = `<div class="etf-add"><div class="ea-r"><div class="ac"><input id="etfAddIn" type="text" dir="ltr" inputmode="text" maxlength="10" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="סימול או שם הקרן, למשל SMH" aria-label="סימול קרן להוספה"><div class="ac-list" id="etfAddAc"></div></div><button type="submit" class="btn btn-primary btn-sm" id="etfAddGo">הוסף</button><button type="button" class="btn btn-light btn-sm" data-eaclose aria-label="סגירה">✕</button></div><div class="ea-m" role="status" aria-live="polite">הקלידו סימול של קרן סל אמריקאית (ETF) או בחרו מההצעות. נבדק שיש לה רשימת החזקות מלאה, והיא נשמרת במכשיר.</div></div>`;
+  attachAutocomplete($('etfAddIn'), $('etfAddAc'), ()=>{ const f = $('etfAdd'); if(f && f.requestSubmit) f.requestSubmit(); }, it=>it.type==='etf' || it.type==='fund');
   if(focus) setTimeout(()=>{ const i = $('etfAddIn'); if(i) i.focus(); }, 30); }
 const etfSay = (m, bad)=>{ const x = document.querySelector('#etfAdd .ea-m'); if(x){ x.textContent = m; x.classList.toggle('bad', !!bad); } };
 $('etfAdd').addEventListener('click', e=>{ if(e.target.closest('[data-eaclose]')){ etfAddOpen = false; drawEtfAdd(); drawEtfSel(); } });
@@ -3040,24 +3054,32 @@ $('etfAdd').addEventListener('submit', async e=>{ e.preventDefault(); if(etfAddB
   if(!t){ etfSay('הקלידו סימול של קרן, למשל SMH.', 1); return; }
   if(!ETF_SYM_RE.test(t)){ etfSay('סימול לא תקין – אותיות באנגלית ומספרים בלבד.', 1); return; }
   if(ETFS.includes(t)){ etfSay(`${t} כבר ברשימה.`, 1); return; }
-  if(etfCust.length >= ETF_CUST_MAX){ etfSay(`אפשר להוסיף עד ${ETF_CUST_MAX} קרנות – הסירו אחת קודם.`, 1); return; }
+  if(etfCust.length >= ETF_CUST_MAX && !etfHidden.includes(t)){ etfSay(`אפשר להוסיף עד ${ETF_CUST_MAX} קרנות – הסירו אחת קודם.`, 1); return; }   // v111: restoring a hidden built-in consumes no custom slot
   etfAddBusy = true; $('etfAddGo').disabled = true; etfSay(`בודק את ${t}…`);
   let d = null; try{ d = await etfLoad(t, true); }catch(err){}
   etfAddBusy = false; const go = $('etfAddGo'); if(go) go.disabled = false;
   if(!d){ etfSay(etfLoad.err==='nf' ? `לא נמצאה קרן בשם ${t}. ודאו שזה סימול של קרן סל (ETF) אמריקאית ולא של מניה.` : 'לא ניתן לבדוק כרגע (בעיית רשת) – נסו שוב בעוד רגע.', 1); return; }
   if(!d.rows.length){ delete etfData[t]; etfSaveData(); etfSay(`ל-${t}${d.name ? ' ('+d.name+')' : ''} אין רשימת החזקות במניות זמינה (קרן חדשה, נגזרים או סחורה), ולכן אי אפשר להוסיף אותה.`, 1); return; }
-  etfCust.push({t, name:String(d.name||'').slice(0,80)}); saveEtfCust(); etfUi.sel = t; saveEtfUi(); etfAddOpen = false; etfMenuOpen = false; drawEtfAdd(); etfHeatKey = '';
+  const hi = etfHidden.indexOf(t); if(hi>=0){ etfHidden.splice(hi,1); saveEtfHidden(); } else { etfCust.push({t, name:String(d.name||'').slice(0,80)}); saveEtfCust(); }   // v111: re-adding a hidden built-in restores it (startup drops base symbols from custom)
+  etfUi.sel = t; saveEtfUi(); etfAddOpen = false; etfMenuOpen = false; drawEtfAdd(); etfHeatKey = '';
   toast(`${t} נוספה – ${d.rows.length} החזקות`); renderEtf(); });
-function etfRemoveCust(t){ etfCust = etfCust.filter(x=>x.t!==t); saveEtfCust(); delete etfData[t]; etfSaveData();
+function etfRemoveCust(t){ if(ETFS.length <= 1){ toast('חייבת להישאר לפחות קרן אחת'); return; } etfCust = etfCust.filter(x=>x.t!==t); saveEtfCust(); delete etfData[t]; etfSaveData();
   Object.keys(etfP0).forEach(k=>{ if(k.startsWith(t+'|')) delete etfP0[k]; }); try{ localStorage.setItem(ETF_P0_KEY, JSON.stringify(etfP0)); }catch(e){}
-  if(etfUi.sel===t){ etfUi.sel = 'XLI'; saveEtfUi(); } etfMenuOpen = false; etfHeatKey = ''; toast(`${t} הוסרה מהרשימה`); renderEtf(); }
+  if(etfUi.sel===t){ etfUi.sel = ETFS[0]; saveEtfUi(); } etfMenuOpen = false; etfHeatKey = ''; toast(`${t} הוסרה מהרשימה`); renderEtf(); }
+// v111: edit mode – any tile (built-in or custom) can be removed from the fund selector; a hidden built-in can be re-added via + הוסף קרן
+let etfEditOpen = false;
+function etfRemoveAny(t){ if(ETFS.length <= 1){ toast('חייבת להישאר לפחות קרן אחת'); return; }
+  if(etfCust.some(x=>x.t===t)){ etfRemoveCust(t); return; }
+  etfHidden.push(t); saveEtfHidden();
+  if(etfUi.sel===t){ etfUi.sel = ETFS[0]; saveEtfUi(); }
+  etfMenuOpen = false; etfHeatKey = ''; toast(`${t} הוסרה מהרשימה – אפשר להוסיף אותה שוב ב״הוסף קרן״`); renderEtf(); }
 // v103/v104: fund selector = heat tiles (equal size, best -> worst, colour = daily %); always open, the picked tile is marked, holdings + summary below
 const fsPct = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.prev ? (q.price/q.prev-1)*100 : null; };
 const fsExt = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.ext ? q.ext : null; };   // v107: same extended-hours source as rows (preOf → iq().ext); null outside the session / without a fresh quote
 function drawEtfSel(){ const el = $('etfPick'); if(!el) return; const t = etfUi.sel;
   const ord = [...ETFS].sort((a,b)=>{ const pa = fsPct(a), pb = fsPct(b); return (pa==null)-(pb==null) || (pb||0)-(pa||0); });
-  const tile = x=>{ const p = fsPct(x), e = fsExt(x); return `<button class="ft${x===t?' on':''}" data-etf="${x}" aria-pressed="${x===t}" aria-label="${ETF_LBL[x]||x} ${p!=null ? fmtPct(p) : ''}${e ? ' '+e.kind+' '+fmtPct(e.pct) : ''}" style="background:${heatColor(p)}"><b class="ltr">${ETF_LBL[x]||x}</b><span class="num">${p!=null ? fmtPct(p) : '—'}</span>${extLineHtml(e, 'ftx')}</button>`; };
-  const h = `<div class="fs-bar"><b>מפת חום · הקרנות</b>${ib('ממוין מהעולה ביותר ליורד ביותר · צבע = שינוי יומי', 'איך ממופה מפת החום')}<small>${ETFS.length} קרנות</small><button type="button" class="fs-add" data-eadd aria-expanded="${etfAddOpen}" aria-controls="etfAdd">＋ הוסף קרן</button></div><div class="ft-g">${ord.map(tile).join('')}</div>`;
+  const tile = x=>{ const p = fsPct(x), e = fsExt(x); return `<button class="ft${x===t?' on':''}" data-etf="${x}" aria-pressed="${x===t}" aria-label="${ETF_LBL[x]||x} ${p!=null ? fmtPct(p) : ''}${e ? ' '+e.kind+' '+fmtPct(e.pct) : ''}" style="background:${heatColor(p)}"><b class="ltr">${ETF_LBL[x]||x}</b><span class="num">${p!=null ? fmtPct(p) : '—'}</span>${extLineHtml(e, 'ftx')}${etfEditOpen ? `<span class="ft-del" data-edel="${x}" role="button" aria-label="הסרת ${ETF_LBL[x]||x} מהרשימה">✕</span>` : ''}</button>`; };
+  const h = `<div class="fs-bar"><b>מפת חום · הקרנות</b>${ib('ממוין מהעולה ביותר ליורד ביותר · צבע = שינוי יומי', 'איך ממופה מפת החום')}<small>${ETFS.length} קרנות</small><button type="button" class="fs-add${etfEditOpen ? ' on' : ''}" data-eedit aria-expanded="${etfEditOpen}">${etfEditOpen ? '✓ סיום עריכה' : '✏️ עריכה'}</button><button type="button" class="fs-add" data-eadd aria-expanded="${etfAddOpen}" aria-controls="etfAdd">＋ הוסף קרן</button></div><div class="ft-g">${ord.map(tile).join('')}</div>`;
   if(el.innerHTML!==h) el.innerHTML = h; }
 function drawEtf(){ const t = etfUi.sel, d = etfData[t], ei = secInst({sym:t, type:'etf'}), q = iq(ei), pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   drawEtfSel(); $('etfView').querySelectorAll('button').forEach(b=>{ const on = b.dataset.ev===etfUi.view; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
@@ -3109,7 +3131,7 @@ async function renderEtf(){ const seq = ++etfSeq, t = etfUi.sel; drawEtf(); etfI
 function applyMktMode(){ const etf = etfUi.mode==='etf'; $('mktMode').querySelectorAll('button').forEach(b=>{ const on = b.dataset.mm===etfUi.mode; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
   $('etfCard').hidden = !etf; $('mktCard').hidden = etf; }
 $('mktMode').addEventListener('click', e=>{ const b = e.target.closest('[data-mm]'); if(!b || b.dataset.mm===etfUi.mode) return; etfUi.mode = b.dataset.mm; saveEtfUi(); applyMktMode(); renderMarket(); });
-$('etfPick').addEventListener('click', e=>{ if(e.target.closest('[data-eadd]')){ etfAddOpen = !etfAddOpen; drawEtfAdd(true); drawEtfSel(); return; } const b = e.target.closest('[data-etf]'); if(!b || b.dataset.etf===etfUi.sel) return; etfUi.sel = b.dataset.etf; etfMenuOpen = false; saveEtfUi(); etfHeatKey = ''; renderEtf(); });   // v104: the tile map always stays open; the picked tile is marked and the holdings are below it
+$('etfPick').addEventListener('click', e=>{ if(e.target.closest('[data-eadd]')){ etfAddOpen = !etfAddOpen; drawEtfAdd(true); drawEtfSel(); return; } if(e.target.closest('[data-eedit]')){ etfEditOpen = !etfEditOpen; drawEtfSel(); return; } const d = e.target.closest('[data-edel]'); if(d){ e.preventDefault(); e.stopPropagation(); etfRemoveAny(d.dataset.edel); return; } if(etfEditOpen) return; const b = e.target.closest('[data-etf]'); if(!b || b.dataset.etf===etfUi.sel) return; etfUi.sel = b.dataset.etf; etfMenuOpen = false; saveEtfUi(); etfHeatKey = ''; renderEtf(); });   // v104: the tile map always stays open; the picked tile is marked and the holdings are below it
 $('etfHd').addEventListener('click', e=>{ if(e.target.closest('[data-ecissue]')){ const t = etfUi.sel; window.open(`https://github.com/${ISS_REPO}/issues/new?title=${encodeURIComponent('ETF: '+t)}&body=${encodeURIComponent('נוצר מהאפליקציה – לחצו Submit new issue. הקרן תתווסף לעדכון היומי מקובץ המנפיק.')}`, '_blank', 'noopener'); toast('נפתח GitHub – לחצו Submit new issue'); return; } if(e.target.closest('[data-ecdel]')){ etfRemoveCust(etfUi.sel); return; } if(e.target.closest('[data-ecm]')){ etfMenuOpen = !etfMenuOpen; drawEtf(); } });
 $('etfView').addEventListener('click', e=>{ const b = e.target.closest('[data-ev]'); if(!b || b.dataset.ev===etfUi.view) return; etfUi.view = b.dataset.ev; saveEtfUi(); etfHeatKey = ''; renderEtf(); });
 $('etfCard').addEventListener('click', e=>{ const r = e.target.closest('[data-es]'); if(!r || r.dataset.es.charAt(0)==='~') return; const sym = r.dataset.es, d = etfData[etfUi.sel], row = d && d.rows.find(x=>x[0]===sym);
@@ -4683,7 +4705,7 @@ function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; cons
   M.forEach(r=>{ if(!tIns && isoD(r.d) && r.d>tdy){ tIns = true; h += tdyHtml(); last = tdy; }
     if(r.d!==last){ last = r.d; h += `<div class="cday${last && h ? '' : ' first'}"${r.d===tdy ? ` data-cd="${tdy}"` : ''}>${dayHead(r.d)}</div><div class="crow h" aria-hidden="true"><span>שעה</span><span>אירוע</span><span class="n">צפי</span><span class="n">קודם</span><span class="n">בפועל</span></div>`; }
     const g = /^(true|yes|1|כן|טוב)$/i.test(r.good) ? 'pos' : /^(false|no|0|לא|רע)$/i.test(r.good) ? 'neg' : '';
-    h += `<div class="crow${r.imp===3?' hi':''}"><span class="tm num">${esc(r.time)}</span><div class="ev"><b>${FLAGS[r.c] ? FLAGS[r.c]+' ' : ''}${esc(r.event)}</b><small>${imp(r.imp)}${r.period ? ' '+esc(r.period) : ''}${r.note ? ' · '+esc(r.note) : ''}</small></div><span class="n num">${esc(r.forecast)||'—'}</span><span class="n num muted">${esc(r.previous)||'—'}</span><span class="n num ${g}"><b>${esc(r.actual)||'—'}</b></span></div>`; });
+    h += `<div class="crow${r.imp===3?' hi':''}"><span class="tm num">${esc(r.time)}</span><div class="ev"><b>${FLAGS[r.c] ? FLAGS[r.c]+' ' : ''}${esc(r.event)}</b><small>${imp(r.imp)}${r.period ? ' '+esc(r.period) : ''}${r.note ? (r.note.length>32 || /\n/.test(r.note) ? ` · <span class="cnote" role="button" tabindex="0" aria-expanded="false">${esc(r.note)}</span><i class="cmore">עוד ▾</i>` : ' · '+esc(r.note)) : ''}</small></div><span class="n num">${esc(r.forecast)||'—'}</span><span class="n num muted">${esc(r.previous)||'—'}</span><span class="n num ${g}"><b>${esc(r.actual)||'—'}</b></span></div>`; });
   if(!tIns) h += tdyHtml();
   if(!M.length) h += '<div class="news-empty">אין אירועים בסינון הזה.</div>';
   el.innerHTML = h;
@@ -4726,6 +4748,8 @@ $('repList').addEventListener('click', e=>{ const n = e.target.closest('[data-rn
 $('repList').addEventListener('click', e=>{ if(e.target.closest('[data-rnote]')) return; if(e.target.closest('[data-rmore]')){ repShow += 60; drawReports(); return; } if(e.target.closest('a')) return;
   const c = e.target.closest('[data-rsym]'); if(c) openInstSheet(srchInst({sym:c.dataset.rsym, name:c.dataset.rname||'', type:'stock'}), '1D'); });
 $('calFil').addEventListener('click', e=>{ const b = e.target.closest('[data-cf]'); if(!b) return; ntFil.cal = b.dataset.cf; drawCal(); });
+// v111: calendar note collapse – tap the note or עוד ▾ to expand, פחות ▴ to collapse (same pattern as report notes)
+$('calList').addEventListener('click', e=>{ const hit = e.target.closest('.cnote, .cmore'); if(!hit) return; const small = hit.closest('small'), cn = small && small.querySelector('.cnote'); if(!cn) return; e.preventDefault(); e.stopPropagation(); const o = !cn.classList.contains('open'); cn.classList.toggle('open', o); cn.setAttribute('aria-expanded', String(o)); const mo = small.querySelector('.cmore'); if(mo) mo.textContent = o ? 'פחות ▴' : 'עוד ▾'; });
 
 // v55: images – "תמונות"/"images" (list) or "תמונה"/"image" (one); a repo path (news-images/x.jpg) or a full https URL
 let newsAll = [];
