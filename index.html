@@ -795,7 +795,10 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pchg .chg-a{font-weight:600}
 @media (max-width:340px){.pchg{font-size:.72rem}.pchg .chg{padding-inline:7px}}
 /* ---- v112: watchlists as top tabs (flat, blue underline on active) + swipe between lists ---- */
+#tab-watch{overflow-x:clip}   /* v113: transition transforms must not widen the page's horizontal scroll area - in RTL that scrolled the whole shell (header/nav) sideways */
 #tab-watch .wl-tools{display:none}
+#wlLists.wl-sw-l{animation:swl .22s ease-out}#wlLists.wl-sw-r{animation:swr .22s ease-out}   /* v113: a list switch animates the list body only - the strip glides on its own, header/nav stay put */
+#wlLists.wl-pending{pointer-events:none}   /* v114: while a glide-up swap is staged the old rows stay visible but inert - the tabs already point at the new list, so row actions must not fire on the old one */
 #tab-watch .wltabs-w{display:flex;align-items:stretch;border-bottom:1px solid var(--border);margin:2px 0 10px}
 #tab-watch .wltabs{display:flex;gap:2px;overflow-x:auto;flex:1 1 auto;min-width:0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 #tab-watch .wltabs::-webkit-scrollbar{display:none}
@@ -3176,9 +3179,41 @@ function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts =
 // v112: lists are horizontal tabs at the top; only the active list renders, without the old collapsible header
 function wlTabsHtml(){ const cur = wlCur().id;
   return `<div class="wltabs-w"><div class="wltabs" role="tablist" aria-label="רשימות מעקב">${wlData.lists.map(l=>`<button role="tab" data-wlt="${esc(l.id)}" aria-selected="${l.id===cur}" class="${l.id===cur?'on':''}">${esc(l.name)}<small>${l.items.length}</small></button>`).join('')}</div><button class="wlopts" data-wlopts aria-label="אפשרויות הרשימה" title="אפשרויות הרשימה" aria-expanded="${wlMenu===cur}">⋯</button></div>`; }
-function wlTabsScroll(){ const w = $('wlTabs'), bar = w && w.querySelector('.wltabs'), act = bar && bar.querySelector('button.on'); if(!act) return;   // v112: redraws rebuild the strip and reset its scroll - keep the active tab visible (horizontal only, page scroll untouched)
-  const d = act.getBoundingClientRect(), b = bar.getBoundingClientRect();
-  if(d.left < b.left) bar.scrollLeft -= (b.left - d.left); else if(d.right > b.right) bar.scrollLeft += (d.right - b.right); }
+let wlLastCur = null, wlGlide = null, wlGesture = false, wlDrawPending = false, wlSwapT = null, wlPendingHtml = null, wlPendingDir = 0, wlSwapGive = 0, wlPendingTop = null;   // v113
+const wlReduced = ()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+function wlListsSw(dir){ const el = $('wlLists'); if(!el || !dir || wlReduced()) return; el.classList.remove('wl-sw-l','wl-sw-r'); void el.offsetWidth; el.classList.add(dir>0 ? 'wl-sw-l' : 'wl-sw-r'); setTimeout(()=>el.classList.remove('wl-sw-l','wl-sw-r'), 260); }   // v113: list-body slide, direction follows the tab order delta
+function wlStripLand(){ const tabsEl = $('wlTabs'); if(!tabsEl) return 0; const hdr = document.querySelector('header.top'), hb = hdr ? hdr.getBoundingClientRect().bottom : 0; return Math.max(0, tabsEl.getBoundingClientRect().top + window.scrollY - hb - 6); }   // v114: land with the strip just below the sticky header - never hidden under it
+function wlSwapCancel(){ if(wlSwapT){ clearTimeout(wlSwapT); wlSwapT = null; } wlPendingHtml = null; wlSwapGive = 0; wlPendingTop = null; const el = $('wlLists'); if(el) el.classList.remove('wl-pending'); }   // v114: drop a staged swap without touching the screen
+function wlStripLandFor(stagedHtml){ const land = wlStripLand(), el = $('wlLists'); if(!el || stagedHtml==null) return land;   // v116: glide only to a scroll position the page can still hold AFTER the shorter list swaps in - the swap then lands with no clamp at all
+  const probe = el.cloneNode(false); probe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;top:0;inset-inline-start:0;width:' + el.offsetWidth + 'px';
+  probe.innerHTML = stagedHtml; document.body.appendChild(probe);
+  const newH = probe.offsetHeight; probe.remove();
+  const maxAfter = Math.max(0, document.documentElement.scrollHeight - el.offsetHeight + newH - window.innerHeight);
+  return Math.min(land, maxAfter); }
+function wlSwapAbort(){   // v114: the user took the page deep into the old list - revert the selection to what is actually on screen; no scroll, no clamp, no mismatch
+  const vis = document.querySelector('#wlLists .wls'), back = vis && vis.dataset.l;
+  wlSwapCancel();
+  if(back && wlList(back) && wlData.cur!==back){ wlData.cur = back; wlLastCur = back; saveWl(); drawWatch(); } }   // wlLastCur set so drawWatch treats it as a plain redraw, never a new staged glide
+function wlSwapSettle(){   // v114: a watch control (menu, sort, add, new list, collapse) needs the new list NOW - finish the staged swap in the same task. The controls sit by the strip, so the page is already there; too far means the user moved on - abort instead. Returns false on abort: the selection reverted, so the caller must NOT act on any pre-abort target.
+  if(wlPendingHtml==null) return true;
+  const top = wlPendingTop!=null ? wlPendingTop : wlStripLand(), dy = Math.abs(window.scrollY - top);
+  if(dy > 40){ wlSwapAbort(); return false; }
+  if(wlSwapT){ clearTimeout(wlSwapT); wlSwapT = null; }
+  const html = wlPendingHtml, dir = wlPendingDir; wlPendingHtml = null; wlSwapGive = 0;
+  if(dy > 2) window.scrollTo({top, behavior:'smooth'});   // <=40px smooth settle at most - never an instant jump
+  const el = $('wlLists'); el.innerHTML = html; el.classList.remove('wl-pending'); wlListsSw(dir); wlPendingTop = null; return true; }
+function wlSwapIn(){ wlSwapT = null; if(wlPendingHtml==null) return;
+  if(ui.tab!=='watch'){ wlSwapCancel(); return; }   // v114: the user left watch mid-glide - never scroll or rewrite under another tab
+  if(wlGesture){ wlSwapT = setTimeout(wlSwapIn, 250); return; }   // a fresh touch is down - swap when it lifts
+  const top = wlPendingTop!=null ? wlPendingTop : wlStripLand(), dy = Math.abs(window.scrollY - top);
+  if(dy > 40){ if(Date.now() < wlSwapGive){ wlSwapT = setTimeout(wlSwapIn, 250); return; }   // interrupted glide - wait for the user to settle near the strip; no instant reset, no swap that clamps under their finger
+    wlSwapAbort(); return; }   // give-up: they stayed with the old list - make the UI agree with the screen again
+  wlSwapSettle(); }
+function wlTabsScroll(glide){ const w = $('wlTabs'), bar = w && w.querySelector('.wltabs'), act = bar && bar.querySelector('button.on'); if(!act) return;   // v113: glide (never snap) the strip so the active tab is visible; called only when the active list changed or on first draw - redraws restore the strip's own scroll instead
+  const d = act.getBoundingClientRect(), b = bar.getBoundingClientRect(), bh = glide && !wlReduced() ? 'smooth' : 'auto';
+  const t = d.left < b.left ? bar.scrollLeft - (b.left - d.left) : d.right > b.right ? bar.scrollLeft + (d.right - b.right) : null;
+  if(t==null){ wlGlide = null; return; }
+  wlGlide = bh==='smooth' ? t : null; bar.scrollTo({left: t, behavior: bh}); }
 function wlMenuHtml(L, li, nL){ if(wlMenu!==L.id) return ''; const ed = wlEditing===L.id, so = wlSortOf(L.id);
   const msort = `<div class="wl-msort" role="group" aria-label="מיון"><div class="wl-msl">${WL_SORT_IC}<span>מיון</span>${ed ? '<small>במצב עריכה – סדר ידני</small>' : ''}</div>${Object.keys(WLS_NAME).map(k=>`<button data-ls="${k}" role="menuitemradio" aria-checked="${so.k===k}" class="${so.k===k?'on':''}"${ed?' disabled':''}>${so.k===k ? '<span class="ck" aria-hidden="true">✓</span>' : ''}${WLS_NAME[k]}${so.k===k && k!=='manual' ? `<span class="ar">${so.dir<0?'▼':'▲'}</span>` : ''}</button>`).join('')}</div>`;
   return `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button>${msort}<button data-la="rename">🏷️ שינוי שם</button><button data-la="up" ${li===0?'disabled':''}>▶ ימינה</button><button data-la="down" ${li===nL-1?'disabled':''}>◀ שמאלה</button><button data-la="del" class="del">🗑️ מחיקה</button></div>`; }
@@ -3187,20 +3222,41 @@ function wlSecHtml(L){ const ed = wlEditing===L.id, so = wlSortOf(L.id), its = w
 const WL_ALL_IC = {collapse:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 20 5-5 5 5"/><path d="m7 4 5 5 5-5"/></svg>', expand:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>'};   // v100: chevrons toward / away from each other
 function drawWlAll(){ const any = wlData.lists.some(l=>wlOpen[l.id]), b = $('wlAll'), t = any ? 'כווץ הכל' : 'הרחב הכל';
   b.innerHTML = WL_ALL_IC[any?'collapse':'expand'] + '<span>' + t + '</span>'; b.title = t; b.setAttribute('aria-label', t + ' – קבוצות רשימות המעקב'); }
-function drawWatch(){ const n = wlItems().length; drawWlAll();
+function drawWatch(){ if(wlGesture){ wlDrawPending = true; return; }   // v113: never rebuild the rows under an active touch - a poll redraw mid-swipe ate the gesture
+  const n = wlItems().length; drawWlAll();
   $('wlCount').textContent = `· ${wlData.lists.length} רשימות · ${n} ניירות`;
   $('wlTo').innerHTML = wlData.lists.map(l=>`<option value="${esc(l.id)}"${l.id===wlCur().id?' selected':''}>${esc(l.name)}</option>`).join('');
   const cur = wlCur(), ci = wlData.lists.indexOf(cur);
-  $('wlTabs').innerHTML = wlTabsHtml() + wlMenuHtml(cur, ci, wlData.lists.length);
-  $('wlLists').innerHTML = wlSecHtml(cur); wlTabsScroll(); }
+  const prevIdx = wlLastCur ? wlData.lists.findIndex(l=>l.id===wlLastCur) : -1, dir = prevIdx < 0 ? 0 : ci - prevIdx;
+  const switched = wlLastCur!==null && wlLastCur!==cur.id; wlLastCur = cur.id;
+  const tabsEl = $('wlTabs'), bar0 = tabsEl.querySelector('.wltabs'), sl = bar0 ? bar0.scrollLeft : null;   // v113: carry the strip's scroll across the rebuild (poll redraws stay exactly where the user left it)
+  tabsEl.innerHTML = wlTabsHtml() + wlMenuHtml(cur, ci, wlData.lists.length);
+  const bar1 = tabsEl.querySelector('.wltabs'); if(bar1 && sl!=null) bar1.scrollLeft = sl;
+  const stripTop = tabsEl.getBoundingClientRect().top + window.scrollY;
+  const pastStrip = switched && window.scrollY > stripTop + 2;   // switching while the strip is scrolled out of view
+  if(switched) wlSwapCancel();   // v114: a new switch supersedes any staged swap (timer, staged html, inert class)
+  if(wlPendingHtml!=null) wlPendingHtml = wlSecHtml(cur);   // glide-up still running: keep the old list on screen, refresh the staged content
+  else if(pastStrip && !wlReduced()){   // v113: glide the page up with the current list still showing, then swap the new list in at the top - no clamp jolt, no blank frame
+    wlPendingHtml = wlSecHtml(cur); wlPendingDir = dir; wlSwapGive = Date.now() + 4500;
+    const el0 = $('wlLists'); if(el0) el0.classList.add('wl-pending');   // v114: old rows stay visible for the glide but inert
+    wlPendingTop = wlStripLandFor(wlPendingHtml);   // v116: for a very short/empty destination this is the post-swap maximum, so the swap never clamps
+    window.scrollTo({top: wlPendingTop, behavior: 'smooth'});
+    wlSwapT = setTimeout(wlSwapIn, 650);
+  } else { $('wlLists').innerHTML = wlSecHtml(cur); if(pastStrip) window.scrollTo(0, wlStripLand());   // reduced motion: correct the clamp in the same task, so nothing paints mid-jump
+    if(switched) wlListsSw(dir); }
+  if(switched || sl==null) wlTabsScroll(switched && sl!=null);   // v113: glide to the newly active tab (instant on first draw); same-list redraws leave the strip where the user put it
+  else if(wlGlide!=null && bar1){ if(Math.abs(bar1.scrollLeft - wlGlide) > 2) bar1.scrollTo({left: wlGlide, behavior: wlReduced() ? 'auto' : 'smooth'}); else wlGlide = null; }   // v113: a rebuild cancelled the in-flight glide - resume it
+}
 async function renderWatch(){ drawWatch(); const all = wlItems(); if(!all.length) return; await instQuotes(all); if(ui.tab==='watch') drawWatch();
   const its = wlCur().items.map(secInst); await Promise.all(its.map(it=>instBars(it, '1D').catch(()=>{}))); if(ui.tab==='watch') drawWatch(); }   // v112: bars for the visible list
 function wlNewList(){ const n = (prompt('שם הרשימה החדשה:', `רשימה ${wlData.lists.length+1}`)||'').trim(); if(!n) return; const id = 'w'+Date.now().toString(36);
   wlData.lists.push({id, name:n.slice(0,40), items:[]}); wlData.cur = id; wlOpen[id] = true; saveWlOpen(); saveWl(); renderWatch(); }
-$('wlNew').onclick = wlNewList;
-$('wlAll').onclick = ()=>{ const any = wlData.lists.some(l=>wlOpen[l.id]); wlOpen = {}; if(!any) wlData.lists.forEach(l=>{ wlOpen[l.id] = true; }); saveWlOpen(); wlMenu = null; renderWatch(); };   // v100: any open -> collapse all, else expand all (same watchOpen storage as the per-group toggle)
+$('wlNew').onclick = ()=>{ if(!wlSwapSettle()) return; wlNewList(); };   // v114: settle any staged swap before acting
+$('wlAll').onclick = ()=>{ if(!wlSwapSettle()) return;   // v114
+  const any = wlData.lists.some(l=>wlOpen[l.id]); wlOpen = {}; if(!any) wlData.lists.forEach(l=>{ wlOpen[l.id] = true; }); saveWlOpen(); wlMenu = null; renderWatch(); };   // v100: any open -> collapse all, else expand all (same watchOpen storage as the per-group toggle)
 $('wlTo').onchange = e=>{ wlData.cur = e.target.value; saveWl(); wlMenu = null; renderWatch(); };   // v112: select follows/drives the active tab
-$('wlLists').addEventListener('click', e=>{ const sec = e.target.closest('.wls'); if(!sec) return; const L = wlList(sec.dataset.l); if(!L) return;
+$('wlLists').addEventListener('click', e=>{ if(wlPendingHtml!=null) return;   // v114: staged swap - old rows inert; pointer-events:none covers touches, this covers keyboard/programmatic activation
+  const sec = e.target.closest('.wls'); if(!sec) return; const L = wlList(sec.dataset.l); if(!L) return;
   if(e.target.closest('[data-tog]')){ wlOpen[L.id] = !wlOpen[L.id]; if(!wlOpen[L.id]) delete wlOpen[L.id]; saveWlOpen(); wlMenu = null; wlSortMenu = null; renderWatch(); return; }
   if(e.target.closest('[data-menu]')){ wlMenu = wlMenu===L.id ? null : L.id; wlSortMenu = null; drawWatch(); return; }
   const ls = e.target.closest('[data-ls]');
@@ -3217,8 +3273,15 @@ $('wlLists').addEventListener('click', e=>{ const sec = e.target.closest('.wls')
   if(wlEditing===L.id){ if(!m) return; const k = m.dataset.wm; if(k==='del') L.items.splice(i,1); else { const j = k==='up' ? i-1 : i+1; if(j<0 || j>=L.items.length) return; [L.items[i], L.items[j]] = [L.items[j], L.items[i]]; }
     saveWl(); drawWatch(); return; }
   openInstSheet(secInst(L.items[i]), '1D'); });
-$('wlTabs').addEventListener('click', e=>{ const L = wlCur();   // v112: tab strip + active-list menu above the add box
-  const wt = e.target.closest('[data-wlt]'); if(wt){ if(wlData.cur!==wt.dataset.wlt){ wlData.cur = wt.dataset.wlt; saveWl(); wlMenu = null; renderWatch(); } return; }
+document.addEventListener('touchstart', ()=>{ wlGesture = true; }, {capture:true, passive:true});   // v113: gesture guard for drawWatch
+const wlGestureEnd = ()=>{ wlGesture = false; if(wlDrawPending){ wlDrawPending = false; setTimeout(()=>drawWatch(), 0); } };
+document.addEventListener('touchend', wlGestureEnd, {capture:true, passive:true});
+document.addEventListener('touchcancel', wlGestureEnd, {capture:true, passive:true});
+$('wlTabs').addEventListener('pointerdown', e=>{ if(e.target.closest('.wltabs')) wlGlide = null; }, {capture:true, passive:true});   // v113: the user's own strip drag wins over a pending glide
+$('wlTabs').addEventListener('click', e=>{   // v112: tab strip + active-list menu above the add box
+  const wt = e.target.closest('[data-wlt]'); if(wt){ if(wlData.cur!==wt.dataset.wlt){ wlData.cur = wt.dataset.wlt; saveWl(); wlMenu = null; renderWatch(); } return; }   // tab taps coalesce: drawWatch cancels/re-stages the pending swap
+  if(!wlSwapSettle()) return;   // v114: settle any staged swap first; if it aborted, the pre-abort target list is gone - this click must not act on it
+  const L = wlCur();   // captured after settling, never the stale pre-abort list
   const wo = e.target.closest('[data-wlopts]'); if(wo){ wlMenu = wlMenu===L.id ? null : L.id; drawWatch(); return; }
   const ls = e.target.closest('[data-ls]');
   if(ls){ const k = ls.dataset.ls, cur = wlSortOf(L.id); if(k==='manual') delete wlSortMap[L.id]; else wlSortMap[L.id] = k===cur.k ? {k, dir:-cur.dir} : {k, dir:-1}; saveWlSort(); wlSortMenu = null; wlMenu = null; drawWatch(); return; }
@@ -3229,7 +3292,8 @@ $('wlTabs').addEventListener('click', e=>{ const L = wlCur();   // v112: tab str
   if(k==='up' || k==='down'){ const j = k==='up' ? i-1 : i+1; if(j<0 || j>=wlData.lists.length) return; [wlData.lists[i], wlData.lists[j]] = [wlData.lists[j], wlData.lists[i]]; saveWl(); drawWatch(); return; }   // v112: up = ימינה (earlier in RTL order), down = שמאלה
   if(k==='del'){ if(!confirm(`למחוק את הרשימה "${L.name}"${L.items.length ? ` (${L.items.length} ניירות)` : ''}?`)) return;
     wlData.lists = wlData.lists.filter(l=>l.id!==L.id); delete wlOpen[L.id]; saveWlOpen(); wlData = cleanWl(wlData); wlMenu = null; if(wlEditing===L.id) wlEditing = null; delete wlSortMap[L.id]; saveWlSort(); saveWl(); renderWatch(); return; } });
-attachAutocomplete($('wlSearch'), $('wlAc'), it=>{ $('wlSearch').value = ''; $('wlSearch').blur(); const sym = String(it.sym||'').toUpperCase(); if(!sym) return; const L = wlCur();
+$('wlSearch').addEventListener('focus', ()=>wlSwapSettle());   // v114: typing an add targets the settled current list
+attachAutocomplete($('wlSearch'), $('wlAc'), it=>{ if(!wlSwapSettle()) return; $('wlSearch').value = ''; $('wlSearch').blur(); const sym = String(it.sym||'').toUpperCase(); if(!sym) return; const L = wlCur();
   if(L.items.some(x=>x.sym===sym)){ toast('כבר ברשימה'); return; }
   L.items.push({sym, name:it.name||'', type:it.type||'stock', currency:it.currency || (isTaseSec(sym)||isTaIndex(sym) ? 'ILS' : 'USD')}); wlOpen[L.id] = true; saveWlOpen(); saveWl(); renderWatch(); toast(`${sym} נוסף ל"${L.name}"`); });
 // ---- instrument sheet (market card / watchlist row) ----
@@ -4516,6 +4580,7 @@ function setTab(tab){ try{ repPopClose(); }catch(_){}
   if(tab==='market' && ui.tab!=='market') mktRange = '1D';
   if(tab==='perf' && ui.tab!=='perf'){ ui.perfRange = 'YTD'; syncRangeChips(); }   // v66: the performance tab always opens on YTD   // v51: reset to daily on every entry
   ui.tab = tab;
+  if(tab!=='watch' && typeof wlSwapCancel==='function') wlSwapCancel();   // v114: never let a staged watchlist swap scroll or rewrite after leaving watch
   document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on', s.id==='tab-'+tab));
   document.querySelectorAll('nav.bottom button').forEach(b=>b.classList.toggle('on', b.dataset.tab===tab));
   const gs = $('btnSet'); if(gs){ gs.classList.toggle('on', tab==='settings'); gs.setAttribute('aria-pressed', String(tab==='settings')); }
@@ -4836,7 +4901,7 @@ document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='
   document.addEventListener('touchend', e=>{ if(!ok) return; ok = false; const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
     if(Math.abs(dx) < 60 || Math.abs(dx) < 1.5*Math.abs(dy) || Date.now() - st > 900) return;
     if(ui.tab==='watch'){ const wl = wlData.lists, wi = wl.findIndex(l=>l.id===wlCur().id), wj = wi + (dx > 0 ? 1 : -1);   // v112: on the watch screen a horizontal swipe moves between lists only, stops at the ends (no wrap, no main-tab change)
-      if(wl.length > 1 && wi >= 0 && wj >= 0 && wj < wl.length){ wlData.cur = wl[wj].id; saveWl(); wlMenu = null; renderWatch(); const sec = $('tab-watch'); if(sec && !matchMedia('(prefers-reduced-motion: reduce)').matches){ sec.classList.remove('sw-l','sw-r'); void sec.offsetWidth; sec.classList.add(dx > 0 ? 'sw-l' : 'sw-r'); setTimeout(()=>sec.classList.remove('sw-l','sw-r'), 260); } }
+      if(wl.length > 1 && wi >= 0 && wj >= 0 && wj < wl.length){ wlData.cur = wl[wj].id; saveWl(); wlMenu = null; renderWatch(); }   // v113: drawWatch animates the list body only - the section no longer translates (in RTL it scrolled the whole shell sideways)
       return; }
     const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab);
     const j = i + (dx > 0 ? 1 : -1); if(i < 0 || j < 0 || j >= tabs.length) return;   // swipe right -> next tab in RTL order, left -> back; no wrap
@@ -4956,4 +5021,5 @@ window.__portfolio = {refresh:(...a)=>refreshPrices(...a), get state(){ return s
   top.addEventListener('click', e=>{ if(v && !e.target.closest('button')){ v=false; try{ localStorage.setItem(K,'0'); }catch(_){} ap(false); } }); })();</script>
 </body>
 </html>
+
 
