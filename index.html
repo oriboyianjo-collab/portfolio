@@ -151,7 +151,7 @@ button{font-family:inherit}
 .idx .spark{grid-column:2;grid-row:1/4;width:58px;height:30px;display:block}.idx .spark path{fill:none;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}.idx .spark line{stroke:var(--fg-94a3b8);stroke-width:1;stroke-dasharray:2 2}
 @media (max-width:370px){.idx{padding:6px 8px}.idx .spark{width:44px}.idx-v{font-size:.92rem}}
 .heat{padding:10px}.heat-h{display:flex;align-items:center;gap:8px;min-height:30px}.heat-t{font-weight:700;font-size:.95rem}.heat-h small{color:var(--muted);font-size:.78rem}.heat-h small b{font-weight:700}.heat-h .mini-tgl{margin-inline-start:auto}
-.heat-map{position:relative;height:240px;margin-top:8px;border-radius:10px;overflow:hidden}.heat-map.pos-heat{height:360px}html.pv-heat #posList,html.pv-heat #posSort,html.pv-heat #posCols{display:none!important}.heat-sum{display:flex;justify-content:space-between;align-items:center;margin-top:8px;color:var(--muted);font-size:.76rem}.heat-sum .hs-ud b{font-weight:700}.heat.collapsed{padding:8px 10px}.heat.collapsed .heat-map{display:none}.heat.collapsed .heat-h{cursor:pointer}
+.heat-map{position:relative;height:240px;margin-top:8px;border-radius:10px;overflow:hidden}.heat-map.pos-heat{height:360px}html.pv-heat #posList,html.pv-heat #posSort,html.pv-heat #posCols{display:none!important}.heat-sum[hidden]{display:none}.heat-sum{display:flex;justify-content:flex-start;align-items:center;margin-top:6px;color:var(--muted);font-size:.76rem}.heat-sum .hs-ud b{font-weight:700}.heat.collapsed{padding:8px 10px}.heat.collapsed .heat-map{display:none}.heat.collapsed .heat-h{cursor:pointer}
 .heat-map .ht{position:absolute;box-sizing:border-box;border:1px solid var(--card);border-radius:4px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;cursor:pointer;padding:1px;line-height:1.12;transition:background-color .4s}
 .heat-map .ht b{font-weight:800;direction:ltr;unicode-bidi:isolate;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 1px rgba(0,0,0,.25)}.heat-map .ht i{font-style:normal;font-weight:700;direction:ltr;unicode-bidi:isolate;white-space:nowrap}.heat-map .ht s{text-decoration:none;opacity:.85;font-weight:600;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
 @media (max-width:370px){.heat-map{height:224px}}
@@ -2544,9 +2544,9 @@ function morphKids(a, b){ const A = [...a.childNodes], Bn = [...b.childNodes];
 const M = el=>({ set h(v){ morph(el, v); } });
 function renderHeat(S){ const map = $('heatMap'), sum = $('heatSum'); if(!map) return; const on = posView()==='heat';
   const items = S.positions.filter(p=>p.qty > 0 && p.weight > 0).map(p=>({sym:p.sym, v:p.weight, wt:p.weight, p:p.dayPct, pre:null})).sort((a,b)=>b.v-a.v);
-  map.hidden = !on || !items.length; sum.hidden = map.hidden; $('posList').hidden = on; $('posSort').hidden = on || S.positions.length < 2; $('posCols').hidden = on || !S.positions.length;
+  map.hidden = !on || !items.length; sum.hidden = !items.length; $('posList').hidden = on; $('posSort').hidden = on || S.positions.length < 2; $('posCols').hidden = on || !S.positions.length;
+  const up = items.filter(x=>x.p > 0.004).length, dn = items.filter(x=>x.p < -0.004).length; M(sum).h = `<span class="hs-ud"><b class="pos">▲${up}</b> <b class="neg">▼${dn}</b></span>`;   // v113: the 'גודל = % מהתיק · צבע = שינוי יומי' hint is gone; counts stay, in both views
   if(map.hidden){ heatKey = ''; return; }
-  const up = items.filter(x=>x.p > 0.004).length, dn = items.filter(x=>x.p < -0.004).length; M(sum).h = `<span>גודל = % מהתיק · צבע = שינוי יומי</span><span class="hs-ud"><b class="pos">▲${up}</b> <b class="neg">▼${dn}</b></span>`;
   const W = map.clientWidth, H = map.clientHeight; if(!W || !H) return;
   const key = W+'x'+H+'|'+items.map(x=>x.sym+':'+Math.round(x.v*4)).join(',');
   if(key !== heatKey){ heatKey = key; squarify(items, W, H);
