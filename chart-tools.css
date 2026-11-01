@@ -42,3 +42,14 @@
 .ct-head button{font-size:11px;padding:4px 6px}.ct-head{gap:5px}.ct-head strong{font-size:12px}.ct-work.ct-upright .ct-head{flex-wrap:wrap}.ct-work.ct-upright .ct-head strong{max-width:none;flex:1 1 100%}.ct-work.ct-upright .ct-settings{top:110px;max-height:calc(100% - 126px)}
 
 .ct-studies{flex:0 0 40%;min-height:0;overflow-y:auto;overscroll-behavior:contain;border-top:1px solid var(--border)}.ct-studies[hidden]{display:none}.ct-work .ct-studies .ct-pane,.ct-work.ct-rotated .ct-studies .ct-pane{height:105px;min-height:105px;flex:none}.ct-work .ct-studies .ct-pane[hidden]{display:none}.ct-studies:has(.ct-pane:not([hidden]))::before{content:'RSI / MACD / Volume · גללו בתוך אזור האינדיקטורים';display:block;position:sticky;top:0;z-index:12;background:var(--bg);color:var(--muted);font:10px system-ui;padding:2px 6px;direction:rtl}.ct-studies .ct-pane label{font-size:10px}
+
+/* v147: every chart range label fits without sideways scrolling, including Maximum. */
+:is(#mktRange,#isRange,#posRange,#perfRange,#miniRange,[data-rcr]){display:flex;flex-wrap:wrap;overflow:visible;min-width:0;max-width:100%;box-sizing:border-box}
+:is(#mktRange,#isRange,#posRange,#perfRange,#miniRange,[data-rcr]) button{flex:1 1 60px;min-width:0;white-space:nowrap;box-sizing:border-box;padding-inline:6px}
+.pc-ch-t{flex-wrap:wrap;overflow-x:visible;min-width:0}
+.pc-ch-t [data-rcr]{flex:1 1 100%;width:100%}
+.ct-work .ct-time,.ct-work.ct-rotated .ct-time,.ct-work.ct-upright .ct-time{flex-wrap:wrap;height:auto;min-height:40px;overflow:visible}
+.ct-work .ct-time label{min-width:0;flex:0 1 auto}
+.ct-work .ct-time select{min-width:86px;max-width:100%;box-sizing:border-box}
+.ct-work.ct-upright .ct-time select{max-width:100%}
+.ct-work .ct-time button{flex-shrink:0}
