@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=154">
+<link rel="stylesheet" href="chart-tools.css?v=155">
 
 </head>
 <body>
@@ -5143,7 +5143,7 @@ window.addEventListener('resize', ()=>{ if(posView()==='heat' && ui.tab==='portf
 // PWA: manifest + service worker only when served over http(s); as a plain file:// page everything else still works
 window.addEventListener('beforeinstallprompt', e=>{ e.preventDefault(); deferredInstall = e; if(ui.tab==='settings') renderSettings(); });
 if(/^https?:$/.test(location.protocol)){
-  const l = document.createElement('link'); l.rel='manifest'; l.href='manifest.json?v=154'; document.head.appendChild(l);
+  const l = document.createElement('link'); l.rel='manifest'; l.href='manifest.json'; document.head.appendChild(l);
   if('serviceWorker' in navigator) window.addEventListener('load', ()=>{
     const had = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.register('sw.js', {updateViaCache:'none'}).then(reg=>{
