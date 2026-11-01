@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=131">
+<link rel="stylesheet" href="chart-tools.css?v=132">
 
 </head>
 <body>
@@ -2993,9 +2993,14 @@ async function instBars(it, range, iv){
     }catch(e){ console.warn('bars', it.q, range, e.message); if(c) return c.pts; }
     if(pts.length || !it.sec) instCache[key] = {at:Date.now(), pts}; return pts; }); }   // v87: an empty answer for a security (feed hiccup) isn't remembered – the next try asks again
 // MAX means all records available from this feed, never a claim of complete IPO history.
+function rangeBasisPending(it,range,pts){
+ if(range==='1D'||!pts?.length)return false;
+ const cutoff={IBM:'2021-11-04',GE:'2024-04-02',F:'2023-02-10'}[it?.q];
+ return !!cutoff&&new Date(pts[0][0]).toISOString().slice(0,10)<cutoff;
+}
 function historyCoverage(el,note,range,pts,it){
  const verified=historyReturnVerified(it,pts);
- const text=range==='MAX'&&pts.length ? 'היסטוריה זמינה במקור: '+new Date(pts[0][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' עד '+new Date(pts[pts.length-1][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' · CNBC · '+(verified?'תשואת מחיר בקירוב, מותאמת לספליטים ישירים והפוכים, ללא השקעת דיבידנדים מחדש; בסיס הספליטים ונקודות הקצה נבדקו, לא כל מחיר היסטורי.':'תשואה מוסתרת: בסיס ההתאמות טרם אומת לנייר זה.')+' · לא בהכרח מתחילת המסחר; ייתכנו חוסרים. בנרות שבועיים/חודשיים התאריך הוא תחילת התקופה.' : '';
+ const text=rangeBasisPending(it,range,pts)?'תשואה מוסתרת בטווח שנבחר: המחירים כוללים התאמות לאירועי חברה שאינם ספליטים; בסיס ההשוואה עדיין בבדיקה.':range==='MAX'&&pts.length ? 'היסטוריה זמינה במקור: '+new Date(pts[0][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' עד '+new Date(pts[pts.length-1][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' · CNBC · '+(verified?'תשואת מחיר בקירוב, מותאמת לספליטים ישירים והפוכים, ללא השקעת דיבידנדים מחדש; בסיס הספליטים ונקודות הקצה נבדקו, לא כל מחיר היסטורי.':'תשואה מוסתרת: בסיס ההתאמות טרם אומת לנייר זה.')+' · לא בהכרח מתחילת המסחר; ייתכנו חוסרים. בנרות שבועיים/חודשיים התאריך הוא תחילת התקופה.' : '';
  el.dataset.coverage=text;if(note){note.textContent=text;note.hidden=!text}
 }
 function withLive(it, range, pts){ const q = iq(it); if(!pts || !pts.length || !q || q.price==null) return pts || [];
@@ -3012,7 +3017,7 @@ function historyReturnVerified(it,pts){
  }
  return false;
 }
-function instRangeBase(it, range, pts){ const q = iq(it); if(range==='MAX'&&!historyReturnVerified(it,pts))return null; return range==='1D' ? (q && q.prev) : (pts.length ? pts[0][1] : null); }
+function instRangeBase(it, range, pts){ const q = iq(it); if(rangeBasisPending(it,range,pts)||(range==='MAX'&&!historyReturnVerified(it,pts)))return null; return range==='1D' ? (q && q.prev) : (pts.length ? pts[0][1] : null); }
 function lineSvg(pts, base, up, W, H, dashed){ if(!pts || pts.length < 2) return '';
   const step = Math.max(1, Math.ceil(pts.length/160)), P = pts.filter((p,i)=>i%step===0 || i===pts.length-1), vals = P.map(p=>p[1]).concat(dashed && base!=null ? [base] : []);
   const lo = Math.min(...vals), hi = Math.max(...vals), r = hi-lo || 1, t0 = P[0][0], t1 = P[P.length-1][0], tr = t1-t0 || 1;
