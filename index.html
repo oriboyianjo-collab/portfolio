@@ -794,7 +794,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pchg .chg-d{color:var(--muted);font-style:normal;opacity:.7}
 .pchg .chg-a{font-weight:600}
 @media (max-width:340px){.pchg{font-size:.72rem}.pchg .chg{padding-inline:7px}}
-/* v120: groups flow left-to-right, menu stays at the right; saved list order is unchanged. */
+/* v121: groups flow left-to-right, menu stays at the right; saved list order is unchanged. */
 /* ---- v112: watchlists as top tabs (flat, blue underline on active) + swipe between lists ---- */
 #tab-watch{overflow-x:clip}   /* v113: transition transforms must not widen the page's horizontal scroll area - in RTL that scrolled the whole shell (header/nav) sideways */
 #tab-watch .wl-tools{display:none}
@@ -811,6 +811,8 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
+<link rel="stylesheet" href="chart-tools.css?v=121">
+
 </head>
 <body>
 <header class="top">
@@ -902,6 +904,62 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 <script>
 (function(){
 'use strict';
+/* v121 shared analysis workspace. Public instrument bars stay on device. */
+(function(){
+'use strict';
+let active=null;
+const colors=['#60a5fa','#fb923c','#c084fc','#34d399','#f472b6','#facc15'];
+const valid=x=>typeof x==='number' && Number.isFinite(x);
+const val=d=>d.value!=null?d.value:d.close;
+const sma=(a,n)=>a.map((v,i)=>i<n-1?null:a.slice(i-n+1,i+1).reduce((s,x)=>s+x,0)/n);
+function ema(a,n){let prev=null;return a.map((v,i)=>{if(i<n-1)return null;if(prev===null)prev=a.slice(0,n).reduce((s,x)=>s+x,0)/n;else prev=v*2/(n+1)+prev*(1-2/(n+1));return prev})}
+function rsi(a,n){let g=0,l=0;return a.map((v,i)=>{if(!i)return null;let d=v-a[i-1];if(i<=n){g+=Math.max(d,0)/n;l+=Math.max(-d,0)/n}else{g=(g*(n-1)+Math.max(d,0))/n;l=(l*(n-1)+Math.max(-d,0))/n}return i<n?null:l===0?(g===0?50:100):100-100/(1+g/l)})}
+function macd(a){let f=ema(a,12),s=ema(a,26),m=a.map((_,i)=>f[i]!=null&&s[i]!=null?f[i]-s[i]:null),start=m.findIndex(x=>x!=null),sig=Array(a.length).fill(null);if(start>=0)ema(m.slice(start),9).forEach((v,i)=>sig[i+start]=v);return {m,s:sig,h:m.map((v,i)=>v!=null&&sig[i]!=null?v-sig[i]:null)}}
+function profile(rows,n=24){let bars=rows.filter(d=>valid(d.volume)&&d.volume>=0),total=bars.reduce((s,d)=>s+d.volume,0);if(!total)return null;let lo=Math.min(...bars.map(d=>d.low??val(d))),hi=Math.max(...bars.map(d=>d.high??val(d)));if(!(hi>lo))return null;let step=(hi-lo)/n,bins=Array(n).fill(0);bars.forEach(d=>{let a=d.low??val(d),b=d.high??val(d);if(b<=a){bins[Math.min(n-1,Math.max(0,Math.floor((a-lo)/step)))]+=d.volume;return}for(let i=0;i<n;i++){let overlap=Math.max(0,Math.min(b,lo+(i+1)*step)-Math.max(a,lo+i*step));bins[i]+=d.volume*overlap/(b-a)}});return {lo,hi,step,bins,total}}
+function title(el){if(el.id==='miniChart')return 'תשואת התיק';if(el.id==='perfChart')return 'ביצועים והשוואות';if(el.id==='isChart')return typeof instSheet!=='undefined'&&instSheet?instSheet.it.n+' · '+(instSheet.it.sym||instSheet.it.q):'גרף נייר';if(el.id==='posChartEl')return typeof sheetSym!=='undefined'?sheetSym:'גרף פוזיציה';let p=el.closest('[data-rch]');return p?p.dataset.rch:'גרף'}
+function snap(el){let X=el.__xh;if(!X||X.dead)return null;let items=X.ctSeries||[];let series=items.map((s,i)=>{try{let data=s.data().filter(d=>valid(val(d)));return {type:s.seriesType(),data,name:s.__ctName||'',color:s.options().color||s.options().lineColor||colors[i%colors.length]}}catch(e){return null}}).filter(s=>s&&s.data.length);if(!series.length)return null;return {title:title(el),series,volume:X.ctVolume||[],source:X.ctSource||'',pct:el.id==='miniChart'||el.id==='perfChart'}}
+function install(el,c){let X=el.__xh;if(!X)return;X.ctSeries=[];
+ ['addLineSeries','addAreaSeries','addCandlestickSeries','addBaselineSeries','addBarSeries','addHistogramSeries'].forEach(k=>{let f=c[k]&&c[k].bind(c);if(f)c[k]=(...args)=>{let s=f(...args);X.ctSeries.push(s);return s}});
+ let r=c.removeSeries.bind(c);c.removeSeries=s=>{X.ctSeries=X.ctSeries.filter(x=>x!==s);return r(s)};
+ let b=el.querySelector(':scope > .ct-expand');if(!b){b=document.createElement('button');b.type='button';b.className='ct-expand';b.textContent='⛶ הגדלה וכלים';b.setAttribute('aria-label','הגדלת הגרף וכלי ניתוח');b.addEventListener('pointerdown',e=>e.stopPropagation());b.addEventListener('touchstart',e=>e.stopPropagation(),{passive:true});b.addEventListener('click',e=>{e.stopPropagation();let s=snap(el);if(s)open(s);else if(typeof toast==='function')toast('אין עדיין נתוני גרף להגדלה')});el.appendChild(b)} }
+function volume(el,rows,source){if(el&&el.__xh){el.__xh.ctVolume=rows;el.__xh.ctSource=source||''}}
+function barRows(raw,mode,off=0){return (raw||[]).map(p=>mode==='daily'?{time:p[0],open:p[1],high:p[2],low:p[3],close:p[4],volume:p[5]}:{time:Math.floor(p[0]/1000)+off,open:p[2]??p[1],high:p[3]??p[1],low:p[4]??p[1],close:p[1],volume:p[5]})}
+function open(model){if(active)close();if(!model.series.length||!model.series[0].data.length)return;
+ const root=document.createElement('section');root.className='ct-work';root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label','גרף מוגדל וכלי ניתוח');
+ root.innerHTML='<div class="ct-head"><strong></strong><button data-ct="rotate">⛶ מסך מלא / לרוחב</button><button data-ct="fit">איפוס זום</button><button data-ct="close" aria-label="סגירת גרף מוגדל">✕ סגירה</button></div><div class="ct-tools"></div><div class="ct-fib" hidden><label>עוגן א <input data-fa type="number" step="any"></label><label>עוגן ב <input data-fb type="number" step="any"></label><button data-ct="pick">בחרו 2 נקודות</button><button data-ct="reverse">החלפה</button><small>המחיר הראשון הוא 0%, השני 100%</small></div><div class="ct-legend"></div><div class="ct-hint" role="status"></div><div class="ct-content"><div class="ct-price chart"></div><div class="ct-pane ct-rsi" hidden><label>RSI 14 · 30 / 70</label></div><div class="ct-pane ct-macd" hidden><label>MACD 12 / 26 / 9</label></div><div class="ct-pane ct-vol" hidden><label>Volume · נפח מסחר מדווח</label></div></div>';
+ root.querySelector('strong').textContent=model.title;let oldFocus=document.activeElement,oldOverflow=document.body.style.overflow;document.body.appendChild(root);document.body.style.overflow='hidden';let A=active={root,model,charts:[],enabled:new Set(),extra:[],fibs:[],oldFocus,oldOverflow,range:null,picking:[],dead:false};
+ let T=chartTheme();function chart(el){let c=LightweightCharts.createChart(el,{autoSize:true,layout:{background:{color:T.bg},textColor:T.text,fontSize:11},grid:{vertLines:{visible:false},horzLines:{color:T.grid}},rightPriceScale:{borderVisible:false},localization:{priceFormatter:model.pct?(v=>v.toFixed(2)+'%'):undefined},timeScale:{borderVisible:false,timeVisible:typeof model.series[0].data[0].time==='number'},handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},handleScale:{mouseWheel:true,pinch:true,axisPressedMouseMove:true}});A.charts.push(c);return c}
+ let priceEl=root.querySelector('.ct-price'),c=chart(priceEl);A.c=c;A.priceEl=priceEl;
+ model.series.forEach((s,i)=>{let candle=s.type==='Candlestick'||s.type==='Bar',S=candle?c.addCandlestickSeries({upColor:T.up,downColor:T.down,borderVisible:false,wickUpColor:T.up,wickDownColor:T.down}):c.addLineSeries({color:s.color||colors[i%colors.length],lineWidth:i?2:3,priceLineVisible:false,lastValueVisible:i===0});S.setData(s.data);if(i===0)A.main=S});
+ const data=model.series[0].data,a=data.map(val),toData=arr=>data.map((d,i)=>arr[i]!=null&&valid(arr[i])?{time:d.time,value:arr[i]}:{time:d.time});A.data=data;A.values=a;
+ let vols=new Map(model.volume.map(d=>[String(d.time),d])),rows=data.map(d=>Object.assign({},d,vols.get(String(d.time))||{}));A.rows=rows;let hasVolume=rows.some(d=>valid(d.volume)&&d.volume>0),n=data.length;
+ let definitions=[['sma','SMA 20',20],['ema','EMA 20',20],['bb','Bollinger 20 ±2σ',20],['rsi','RSI 14',15],['macd','MACD 12/26/9',34],['fib','פיבונאצ׳י',2],['volume','Volume',1],['profile','Volume profile',2]];
+ root.querySelector('.ct-tools').innerHTML=definitions.map(([k,t,min])=>'<button data-ind="'+k+'" aria-pressed="false" '+((n<min||((k==='volume'||k==='profile')&&!hasVolume))?'disabled':'')+'>'+t+'</button>').join('');
+ const hint=root.querySelector('.ct-hint');A.hint=hint;const baseHint='גרף מוגדל של הטווח שכבר נטען · גלילה/צביטה לזום. '+(!hasVolume?'אין נפח מסחר מדווח בנתונים האלה; Volume ופרופיל אינם זמינים.':'נפח: רק נרות עם נתון מדווח. פרופיל הוא אומדן מהנרות, לא עסקאות לפי מחיר.');hint.textContent=baseHint;
+ let rsiEl=root.querySelector('.ct-rsi'),macdEl=root.querySelector('.ct-macd'),volEl=root.querySelector('.ct-vol');let rc=chart(rsiEl),mc=chart(macdEl),vc=chart(volEl);
+ let rs=rc.addLineSeries({color:'#c084fc',lineWidth:2,priceLineVisible:false});rs.setData(toData(rsi(a,14)));[30,70].forEach(p=>rs.createPriceLine({price:p,color:'#64748b',lineStyle:2,lineWidth:1,axisLabelVisible:true,title:''}));
+ let M=macd(a),ml=mc.addLineSeries({color:'#60a5fa',lineWidth:2,priceLineVisible:false}),ms=mc.addLineSeries({color:'#fb923c',lineWidth:1,priceLineVisible:false}),mh=mc.addHistogramSeries({priceLineVisible:false});ml.setData(toData(M.m));ms.setData(toData(M.s));mh.setData(toData(M.h).map(d=>({...d,color:d.value>=0?'#34d39988':'#f8717188'})));
+ let vs=vc.addHistogramSeries({priceFormat:{type:'volume'},priceLineVisible:false});vs.setData(rows.map(d=>valid(d.volume)&&d.volume>=0?{time:d.time,value:d.volume,color:(val(d)>=(d.open??val(d))?'#34d39999':'#f8717199')}:{time:d.time}));
+ let syncing=false;A.charts.forEach(C=>C.timeScale().subscribeVisibleLogicalRangeChange(r=>{if(!r||syncing||A.dead)return;syncing=true;A.range=r;A.charts.forEach(q=>{if(q!==C)try{q.timeScale().setVisibleLogicalRange(r)}catch(e){}});syncing=false;drawProfile()}));
+ const fibbox=root.querySelector('.ct-fib'),fa=root.querySelector('[data-fa]'),fb=root.querySelector('[data-fb]');fa.value=a[0];fb.value=a[a.length-1];
+ function fib(){A.fibs.forEach(l=>A.main.removePriceLine(l));A.fibs=[];if(!A.enabled.has('fib'))return;let x=Number(fa.value),y=Number(fb.value);if(!valid(x)||!valid(y)||x===y){hint.textContent='בחרו שני מחירים שונים לעוגני פיבונאצ׳י';return}[0,.236,.382,.5,.618,.786,1,1.618].forEach(q=>A.fibs.push(A.main.createPriceLine({price:x+(y-x)*q,color:q===.618?'#f59e0b':'#a78bfa',lineWidth:1,lineStyle:2,axisLabelVisible:true,title:(q*100).toFixed(1)+'%'})))}
+ function drawProfile(){let old=priceEl.querySelector('.ct-profile');if(old)old.remove();if(!A.enabled.has('profile'))return;let range=A.range||{from:0,to:rows.length-1},r=rows.slice(Math.max(0,Math.ceil(range.from)),Math.min(rows.length,Math.floor(range.to)+1)),p=profile(r);if(!p){hint.textContent='אין מספיק נתוני נפח מדווחים בטווח הנראה לפרופיל';return}let W=priceEl.clientWidth,H=priceEl.clientHeight,max=Math.max(...p.bins),svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.classList.add('ct-profile');svg.setAttribute('viewBox','0 0 '+W+' '+H);let right=W-c.priceScale('right').width()-3;svg.innerHTML=p.bins.map((v,i)=>{let y1=A.main.priceToCoordinate(p.lo+(i+1)*p.step),y2=A.main.priceToCoordinate(p.lo+i*p.step);if(y1==null||y2==null)return '';let w=v/max*Math.min(130,W*.28);return '<rect x="'+(right-w)+'" y="'+Math.min(y1,y2)+'" width="'+w+'" height="'+Math.max(1,Math.abs(y2-y1)-1)+'" fill="'+(v===max?'#f59e0b88':'#38bdf84d')+'"/>'}).join('');priceEl.appendChild(svg)}
+ function redraw(){A.extra.forEach(s=>c.removeSeries(s));A.extra=[];function line(v,color){let s=c.addLineSeries({color,lineWidth:1,priceLineVisible:false,lastValueVisible:false});s.setData(toData(v));A.extra.push(s)}if(A.enabled.has('sma'))line(sma(a,20),'#f59e0b');if(A.enabled.has('ema'))line(ema(a,20),'#f472b6');if(A.enabled.has('bb')){let mean=sma(a,20),sd=a.map((v,i)=>i<19?null:Math.sqrt(a.slice(i-19,i+1).reduce((s,x)=>s+(x-mean[i])**2,0)/20));line(mean,'#94a3b8');line(mean.map((v,i)=>v==null?null:v+2*sd[i]),'#22d3ee');line(mean.map((v,i)=>v==null?null:v-2*sd[i]),'#22d3ee')}
+ rsiEl.hidden=!A.enabled.has('rsi');macdEl.hidden=!A.enabled.has('macd');volEl.hidden=!A.enabled.has('volume');fibbox.hidden=!A.enabled.has('fib');fib();requestAnimationFrame(()=>{if(A.range)A.charts.forEach(q=>q.timeScale().setVisibleLogicalRange(A.range));drawProfile()});hint.textContent=baseHint+(A.enabled.has('profile')?' פרופיל הטווח הנראה: נפח כל נר מחולק באופן אחיד בין השפל לשיא; השורה הכתומה היא האומדן הגבוה ביותר.':'')}
+ const legend=root.querySelector('.ct-legend');model.series.forEach((s,i)=>{let span=document.createElement('span'),dot=document.createElement('i');dot.style.background=s.color||colors[i%colors.length];span.appendChild(dot);span.appendChild(document.createTextNode(s.name||(i===0?'הסדרה הראשית':'השוואה '+i)));legend.appendChild(span)});
+ root.addEventListener('click',async e=>{let b=e.target.closest('button');if(!b)return;let k=b.dataset.ind;if(k){A.enabled.has(k)?A.enabled.delete(k):A.enabled.add(k);b.classList.toggle('on',A.enabled.has(k));b.setAttribute('aria-pressed',String(A.enabled.has(k)));redraw();return}switch(b.dataset.ct){case'close':close();break;case'fit':c.timeScale().fitContent();break;case'rotate':await fullscreen(A);break;case'reverse':{let x=fa.value;fa.value=fb.value;fb.value=x;fib();break}case'pick':A.picking=[];A.pick=true;priceEl.classList.add('ct-pick');hint.textContent='לחצו על שתי נקודות מחיר בגרף: 0% ואז 100%';break}});
+ fa.addEventListener('input',fib);fb.addEventListener('input',fib);priceEl.addEventListener('pointerdown',e=>{if(!A.pick)return;e.preventDefault();e.stopImmediatePropagation();let p=A.main.coordinateToPrice(e.clientY-priceEl.getBoundingClientRect().top);if(!valid(p))return;A.picking.push(p);if(A.picking.length===2){fa.value=A.picking[0].toFixed(4);fb.value=A.picking[1].toFixed(4);A.pick=false;priceEl.classList.remove('ct-pick');fib();hint.textContent=baseHint}},true);
+ A.ro=new ResizeObserver(()=>drawProfile());A.ro.observe(priceEl);c.timeScale().fitContent();root.querySelector('[data-ct=close]').focus({preventScroll:true});
+ root.addEventListener('keydown',e=>{if(e.key!=='Tab')return;let f=[...root.querySelectorAll('button:not(:disabled),input')].filter(x=>x.getClientRects().length);if(e.shiftKey&&document.activeElement===f[0]){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus()}});
+}
+async function fullscreen(A){try{if(!document.fullscreenElement&&A.root.requestFullscreen)await A.root.requestFullscreen();if(screen.orientation&&screen.orientation.lock){await screen.orientation.lock('landscape');A.locked=true;A.hint.textContent='מצב לרוחב פעיל'}else A.hint.textContent='הדפדפן לא מאפשר סיבוב אוטומטי. סובבו את הטלפון ידנית; התצוגה תתאים לרוחב.'}catch(e){A.hint.textContent='סיבוב אוטומטי אינו זמין בדפדפן הזה. סובבו את הטלפון ידנית; התצוגה תתאים לרוחב.'}}
+function close(){let A=active;if(!A)return;active=null;A.dead=true;if(A.ro)A.ro.disconnect();A.charts.forEach(c=>{try{c.remove()}catch(e){}});try{if(A.locked&&screen.orientation)screen.orientation.unlock()}catch(e){}if(document.fullscreenElement===A.root)document.exitFullscreen().catch(()=>{});A.root.remove();document.body.style.overflow=A.oldOverflow;if(A.oldFocus&&A.oldFocus.isConnected)A.oldFocus.focus({preventScroll:true})}
+document.addEventListener('keydown',e=>{if(active&&e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();close()}},true);
+// Small overview charts open this same workspace; public bars are fetched only for the chosen instrument.
+document.addEventListener('click',async e=>{if(active||!e.target.closest('svg')||e.target.closest('.ct-work'))return;let el=e.target.closest('[data-ws],[data-es],[data-spark],[data-mk],[data-idx]');if(!el)return;let it;if(el.dataset.mk)it=mktInst(el.dataset.mk);else if(el.dataset.idx)it=mktInst(el.dataset.idx);else {let sym=el.dataset.ws||el.dataset.es||el.dataset.spark;let a=assetOf(sym)||{};it=secInst({sym,name:a.name,type:a.type||'stock',currency:a.currency})}if(!it)return;e.preventDefault();e.stopImmediatePropagation();if(!iq(it))await instQuotes([it]);let raw=await instBars(it,'1D',ivOf('1D'));if(raw.length<2){openInstSheet(it,'1D');return;}if(raw.length<2){toast('אין מספיק נתוני גרף לטווח הזה');return}let off=-new Date().getTimezoneOffset()*60,rows=barRows(raw,'intraday',ivIntra(ivOf('1D'))?off:0);open({title:it.n+' · '+(it.sym||it.q),series:[{type:'Line',color:colors[0],data:rows.map(d=>({time:d.time,value:d.close}))}],volume:rows,source:'CNBC'})},true);
+window.ChartTools={install,volume,barRows,open,close,isOpen:()=>!!active,math:{sma,ema,rsi,macd,profile}};
+})();
+
 // ====================== constants ======================
 const KEY = 'portfolioTracker.v2', OLD_KEY = 'portfolioTracker.v1', HIST_KEY = 'portfolioTracker.hist.v1';
 const TYPE_LABELS = {stock:'מניה', etf:'תעודת סל', fund:'קרן', crypto:'קריפטו', index:'מדד', bond:'אג״ח'};
@@ -1620,7 +1678,7 @@ async function cnbcBars(cnbcSym, from, divide){
     const k = divide ? 100 : 1, c = num(b.close)/k; let o = num(b.open)/k, h = num(b.high)/k, l = num(b.low)/k;
     if(!o) o = c; if(!h) h = Math.max(o,c); if(!l) l = Math.min(o,c);
     const d = String(b.tradeTime).slice(0,8);
-    return [d.slice(0,4)+'-'+d.slice(4,6)+'-'+d.slice(6,8), o, h, l, c];
+    return [d.slice(0,4)+'-'+d.slice(4,6)+'-'+d.slice(6,8), o, h, l, c, b.volume!=null && Number.isFinite(+b.volume) && +b.volume>=0 ? +b.volume : null];
   }).filter(b=>isFinite(b[4]) && b[4]>0);
 }
 function dedupe(bars){ const m = new Map(); bars.forEach(b=>m.set(b[0],b)); return [...m.values()].sort((a,b)=>a[0]<b[0]?-1:1); }
@@ -2279,12 +2337,12 @@ async function drawRowChart(box){ const sym = box.dataset.rch, a = assetOf(sym) 
   else { s = c.addAreaSeries({lineColor:up ? T.up : T.down, topColor:up ? 'rgba(16,185,129,.22)' : 'rgba(239,68,68,.22)', bottomColor:'rgba(0,0,0,0)', lineWidth:2, priceLineVisible:false}); s.setData(pts.map(p=>({time:tt(p), value:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time))); }
   if(R==='1D' && q && q.prev) s.createPriceLine({price:q.prev, color:'#94a3b8', lineWidth:1, lineStyle:2, axisLabelVisible:false, title:'סגירה'});
   const pos = computeAll().positions.find(x=>x.sym===sym); if(pos && pos.avg > 0 && pos.qty > 0) s.createPriceLine({price:pos.avg, color:'#f59e0b', lineWidth:1, lineStyle:1, axisLabelVisible:true, title:'עלות'});
-  c.timeScale().fitContent(); }
+  ChartTools.volume(el,ChartTools.barRows(instCache[instKey(it,R,iv)]?.pts||[], 'intraday', intr?off:0),'CNBC'); c.timeScale().fitContent(); }
 function makeChart(el, pctMode, money){
   const mask = money && hidden();
   const T = chartTheme(), c = xhAttach(el, LightweightCharts.createChart(el, {autoSize:true, layout:{background:{color:T.bg}, textColor:T.text, fontFamily:'system-ui, Roboto, Arial', fontSize:11},
     grid:{vertLines:{visible:false}, horzLines:{color:T.grid}}, rightPriceScale:{borderVisible:false, visible:!mask}, timeScale:{borderVisible:false, fixLeftEdge:true, fixRightEdge:true},
-    crosshair:{mode:0}, localization:{locale:'he-IL', priceFormatter: mask ? (()=>MASK) : pctMode ? (v=>v.toFixed(1)+'%') : (v=>Math.abs(v)>=10000 ? (v/1000).toFixed(1)+'K' : v.toFixed(Math.abs(v)<10?2:0))}})); chartReg.add(c); const rm = c.remove.bind(c); c.remove = ()=>{ chartReg.delete(c); return rm(); }; return c;   // removed charts leave the theme registry
+    crosshair:{mode:0}, localization:{locale:'he-IL', priceFormatter: mask ? (()=>MASK) : pctMode ? (v=>v.toFixed(1)+'%') : (v=>Math.abs(v)>=10000 ? (v/1000).toFixed(1)+'K' : v.toFixed(Math.abs(v)<10?2:0))}})); chartReg.add(c); const rm = c.remove.bind(c); c.remove = ()=>{ chartReg.delete(c); return rm(); }; if(el.id!=='perfChart') ChartTools.install(el,c); return c;   // removed charts leave the theme registry
 }
 // ---- end-of-line return labels (shared by the ביצועים tab and the main-screen chart) ----
 // One colored label per line at its last point, showing that line's % return, drawn over the right price scale. Our own HTML
@@ -2668,7 +2726,7 @@ async function renderMini(S, force){
     s.setData([{time:base.date, value:0}, ...pts.map(p=>({p, r:retAt(p)})).filter(x=>x.r && x.r.pct!=null).map(({p,r})=>({time:p.date, value:r.pct}))]);
     const leg = [['#2563eb','התיק', ret(eqNow(S), S)?.pct, 'miniLegPort']];
     bres.forEach(({q,h})=>{ const b = benchSeries(h, pts, base, C); if(!b){ leg.push([q.color, q.n, null]); return; }
-      const bs = miniChart.addLineSeries({color:q.color, lineWidth:2, priceLineVisible:false, lastValueVisible:false}); bs.setData(b.data); mLines.push({series:bs, color:q.color}); leg.push([q.color, q.n, b.ret]); });
+      const bs = miniChart.addLineSeries({color:q.color, lineWidth:2, priceLineVisible:false, lastValueVisible:false}); bs.__ctName=q.n; bs.setData(b.data); mLines.push({series:bs, color:q.color}); leg.push([q.color, q.n, b.ret]); });
     $('miniLeg').innerHTML = bq.length ? bmLegHtml(leg) : '';
   }
   miniChart.timeScale().fitContent();
@@ -2907,7 +2965,7 @@ async function instBars(it, range, iv){
     let pts = [];
     try{ const j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/${spec[0]}/${ymd(spec[1])}/${ymd(spec[2])}/adjusted/EST5EDT.json`, 12000);
       const bars = (j && j.barData && j.barData.priceBars) || [];
-      pts = bars.map(b=>{ const c = +b.close/k, o = +b.open/k || c, h = +b.high/k || Math.max(o,c), l = +b.low/k || Math.min(o,c); return [+b.tradeTimeinMills, c, o, h, l]; }).filter(p=>p[0] && p[1] > 0 || (it.y && p[0] && isFinite(p[1])));
+      pts = bars.map(b=>{ const c = +b.close/k, o = +b.open/k || c, h = +b.high/k || Math.max(o,c), l = +b.low/k || Math.min(o,c); return [+b.tradeTimeinMills, c, o, h, l, b.volume!=null && Number.isFinite(+b.volume) && +b.volume>=0 ? +b.volume : null]; }).filter(p=>p[0] && p[1] > 0 || (it.y && p[0] && isFinite(p[1])));
       if(ivIntra(iv) && it.stock) pts = pts.filter(p=>{ const x = nyParts(p[0]); return x.hm>=930 && x.hm<1600 && (range!=='1D' || x.d===day); });
       if(range==='YTD'){ const y0 = Date.parse(td.slice(0,4)+'-01-01T00:00:00Z'); const before = pts.filter(p=>p[0] < y0); pts = (before.length ? [before[before.length-1]] : []).concat(pts.filter(p=>p[0] >= y0)); }
     }catch(e){ console.warn('bars', it.q, range, e.message); if(c) return c.pts; }
@@ -3387,7 +3445,7 @@ async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S
     const lb = data[data.length-1], q0 = iq(it); S.bar = Object.assign({}, lb); if(q0 && q0.price!=null){ S.bar.close = q0.price; S.bar.high = Math.max(lb.high, q0.price); S.bar.low = Math.min(lb.low, q0.price); data[data.length-1] = Object.assign({}, S.bar); } }
   else { s = posChart.addAreaSeries({lineColor:col, topColor:up ? 'rgba(16,185,129,.22)' : 'rgba(239,68,68,.22)', bottomColor:'rgba(0,0,0,0)', lineWidth:2, priceLineVisible:false});
     data = pts.map(p=>({time:Math.floor(p[0]/1000) + (intr ? off : 0), value:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time)); }
-  s.setData(data); S.series = s; S.off = intr ? off : 0; S.lastT = data[data.length-1].time;
+  s.setData(data); ChartTools.volume(el,ChartTools.barRows(instCache[instKey(it,S.range,S.iv)]?.pts||[],'intraday',intr?off:0),'CNBC'); S.series = s; S.off = intr ? off : 0; S.lastT = data[data.length-1].time;
   const q = iq(it); if(S.range==='1D' && q && q.prev) s.createPriceLine({price:q.prev, color:'#94a3b8', lineWidth:1, lineStyle:2, axisLabelVisible:false, title:'סגירה'});
   posChart.timeScale().fitContent(); }
 function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it, range:range||'1D', seq:0};
@@ -3473,7 +3531,7 @@ let sheetSym = null, sheetPrice = null;   // symbol of the open position sheet (
 const NAV = []; let navRestoring = false, sheetOpener = null, srchRet = null;
 function navPush(e){ NAV.push(e); if(NAV.length > 60) NAV.splice(0, NAV.length - 60); }
 function navDrop(t){ const e = NAV[NAV.length-1]; if(e && e.t===t) NAV.pop(); }
-function navBack(){ const e = NAV.pop(); if(!e) return false; navRestoring = true;
+function navBack(){ if(ChartTools.isOpen()){ChartTools.close();return true;} const e = NAV.pop(); if(!e) return false; navRestoring = true;
   try{ if(e.t==='tab'){ if($('sheet').classList.contains('open')) closeSheet(); setTab(e.tab); }
     else if(e.t==='srch') srchHide();
     else if(e.t==='imgv') imgvHide();
@@ -3878,6 +3936,7 @@ async function drawPosChart(sym){
   let s;
   if(ui.posStyle==='candle' && h.ohlc){ s = posChart.addCandlestickSeries({upColor:chartTheme().up, downColor:chartTheme().down, borderVisible:false, wickUpColor:chartTheme().up, wickDownColor:chartTheme().down}); s.setData(bars.map(b=>({time:b[0], open:b[1], high:b[2], low:b[3], close:b[4]}))); }
   else { s = posChart.addAreaSeries({lineColor:chartTheme().line, topColor:'rgba(37,99,235,.25)', bottomColor:'rgba(37,99,235,.02)', lineWidth:2}); s.setData(bars.map(b=>({time:b[0], value:b[4]}))); }
+  ChartTools.volume(el,ChartTools.barRows(bars,'daily'),h.source||'');
   const P = computeLedger().pos[sym];
   if(P && Math.abs(P.qty)>1e-9 && P.avg){ s.createPriceLine({price:convertCur(P.avg, P.cur, h.cur), color:'#94a3b8', lineWidth:1, lineStyle:2, axisLabelVisible:!hidden(), title:P.qty<0?'מחיר שורט':'עלות'}); }
   // trade markers (B = buy, S = sell)
@@ -4896,7 +4955,7 @@ function imgvClose(){ navDrop('imgv'); imgvHide(); }
 document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='Escape') imgvClose(); });
 // ---- swipe between tabs (v42) ----
 (function(){ let sx=0, sy=0, st=0, ok=false;
-  const NOSW = 'input,textarea,select,[contenteditable],.editing,.imgv,.sheet,.sheet-bg,.chart.xh,.chart.zoomed,.rpills,.dcards,.rpop';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
+  const NOSW = 'input,textarea,select,[contenteditable],.editing,.imgv,.sheet,.sheet-bg,.ct-work,.chart.xh,.chart.zoomed,.rpills,.dcards,.rpop';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
   function scrollsX(el){ for(; el && el !== document.body; el = el.parentElement){ if(el.scrollWidth > el.clientWidth + 2){ const o = getComputedStyle(el).overflowX; if(o==='auto' || o==='scroll') return true; } } return false; }
   function blocked(t){ if(!(t instanceof Element)) return true; if(t.closest(NOSW)) return true; if($('sheetBg').classList.contains('open') || document.querySelector('dialog[open],.modal.open,.modal-bg.open')) return true; return scrollsX(t); }
   document.addEventListener('touchstart', e=>{ ok = e.touches.length===1 && !blocked(e.target); if(!ok) return; sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now(); }, {passive:true});
@@ -4935,7 +4994,7 @@ $('posSort').addEventListener('click', e=>{ const b = e.target.closest('[data-so
   try{ localStorage.setItem(SORT_KEY, `${b.dataset.sort}:${d}`); }catch(_){} renderPortfolio(computeAll()); });
 $('posList').addEventListener('pointerdown', ()=>{ listTouch = true; });
 ['pointerup','pointercancel'].forEach(ev=>document.addEventListener(ev, ()=>{ if(!listTouch) return; listTouch = false; if(sortPending) setTimeout(()=>{ if(sortPending && !listTouch) reorderCards(sortPending); }, 250); }));
-$('posList').addEventListener('click', e=>{ const n = e.target.closest('[data-new]'); if(n) return openTxForm(n.dataset.new);
+$('posList').addEventListener('click', e=>{ if(e.target.closest('.ct-expand')) return; const n = e.target.closest('[data-new]'); if(n) return openTxForm(n.dataset.new);
   const cm = e.target.closest('.pcard.pc');
   if(cm){ const sym = cm.dataset.sym;
     if(e.target.closest('[data-ctoggle]')){ const o = !cm.classList.contains('open'); cm.classList.toggle('open', o); cm.querySelector('[data-ctoggle]').setAttribute('aria-expanded', o); if(o) ui.expanded.add(sym); else ui.expanded.delete(sym); rowChartsSync(); return; }
