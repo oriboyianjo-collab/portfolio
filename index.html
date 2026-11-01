@@ -4639,6 +4639,7 @@ function setTab(tab){ try{ repPopClose(); }catch(_){}
   if(!$('srchOv').hidden) srchClose();   // v66: a tab tap closes the search overlay
   try{ sessionStorage.setItem(TAB_KEY, tab); }catch(e){}
   if(!navRestoring && tab!==ui.tab) navPush({t:'tab', tab:ui.tab});   // v87: tab switches are steps the back button retraces
+  if(tab==='watch'){ wlSwapCancel(); wlMenu = null; wlGlide = null; wlLastCur = null; const strip = $('wlTabs').querySelector('.wltabs'); if(strip) strip.scrollLeft = 0; const first = wlData.lists[0]; if(first && wlData.cur!==first.id){ wlData.cur = first.id; saveWl(); } }   // v122: every watch-tab entry starts on the leftmost saved list; redraws and list swipes keep their selection
   if(tab==='market' && ui.tab!=='market') mktRange = '1D';
   if(tab==='perf' && ui.tab!=='perf'){ ui.perfRange = 'YTD'; syncRangeChips(); }   // v66: the performance tab always opens on YTD   // v51: reset to daily on every entry
   ui.tab = tab;
@@ -4650,7 +4651,7 @@ function setTab(tab){ try{ repPopClose(); }catch(_){}
   if(tab==='perf') renderPerf(); else destroyPerf();
   if(tab==='portfolio'){ renderMini(); heatKey = ''; renderHeat(computeAll()); } else destroyMini();
   if(tab==='settings') renderSettings();
-  if(tab==='market') renderMarket(); if(tab==='watch') renderWatch(); if(tab==='news'){ if(newsTab==='rep') repEnter = true; if(newsTab==='cal') calEnter = true; loadNewsTab(); }
+  if(tab==='market') renderMarket(); if(tab==='watch'){ renderWatch(); const bar = $('wlTabs').querySelector('.wltabs'); if(bar) bar.scrollTo({left:0,behavior:'instant'}); } if(tab==='news'){ if(newsTab==='rep') repEnter = true; if(newsTab==='cal') calEnter = true; loadNewsTab(); }
   mktPoll();
 }
 // ---- News tab (v53): news.json (or news.md) uploaded by the owner to the same site; always fetched fresh ----
