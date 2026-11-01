@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=150">
+<link rel="stylesheet" href="chart-tools.css?v=151">
 
 </head>
 <body>
@@ -5150,10 +5150,9 @@ if(/^https?:$/.test(location.protocol)){
       const check = ()=>reg.update().catch(()=>{});
       check(); document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) check(); }); setInterval(check, 30*60e3);
     }).catch(err=>console.warn('SW registration failed', err));
-    let shown = false;                                           // a newer version took over: offer a reload (automatic when nothing is open)
+    let shown = false; // Never interrupt a screen, typing, chart, or form with an automatic update reload.
     navigator.serviceWorker.addEventListener('controllerchange', ()=>{ if(!had || shown) return; shown = true;
-      if(!document.querySelector('.sheet.open, #sheet.open')) { location.reload(); return; }
-      const b = document.createElement('div'); b.className = 'upd-bar'; b.innerHTML = 'גרסה חדשה של האפליקציה מוכנה <button class="btn btn-primary" id="updReload">רענון</button>';
+      const b = document.createElement('div'); b.className = 'upd-bar'; b.setAttribute('role','status'); b.innerHTML = 'גרסה חדשה של האפליקציה מוכנה <button class="btn btn-primary" id="updReload">רענון</button>';
       document.body.appendChild(b); $('updReload').onclick = ()=>location.reload(); });
   });
 }
