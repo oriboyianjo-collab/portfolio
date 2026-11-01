@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=132">
+<link rel="stylesheet" href="chart-tools.css?v=133">
 
 </head>
 <body>
@@ -2079,7 +2079,7 @@ function renderPortfolio(S){
           <div class="pc-sec"><h4>מס</h4></div>
           <div class="pc-kv"><div class="w"><span>עלות בשקלים למס</span>${f('costils')}</div></div>
           <div class="pc-sec"><h4>גרף</h4></div>
-          <div class="pc-ch" data-rch="${esc(p.sym)}"><div class="pc-ch-t"><div class="seg sm" data-rcr>${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div></div>
+          <div class="pc-ch" data-rch="${esc(p.sym)}"><div class="pc-ch-t"><button class="btn btn-sm btn-light" data-custom-chart="${esc(p.sym)}">טווח תאריכים</button><div class="seg sm" data-rcr>${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div></div>
             <div class="pc-ch-t"><div class="seg sm ivseg" data-rci></div><div class="seg sm cst" data-rcs><button data-v="line">קו</button><button data-v="candle">נרות</button></div></div>
             <div class="chart pc-chart" style="height:180px"><div class="chart-msg">טוען גרף…</div></div><div class="note" data-rccoverage hidden></div></div>
           <div class="pc-btn"><button class="btn btn-light btn-sm" data-cact="open">📄 פרטים מלאים</button><button class="btn btn-light btn-sm" data-cact="buy">🛒 קנייה</button><button class="btn btn-light btn-sm" data-cact="sell">💰 מכירה</button></div></div></div>`;
@@ -2955,12 +2955,13 @@ function nyParts(ms){ const o = Object.fromEntries(nyFmt.formatToParts(new Date(
 // v69: bar interval per range – only what CNBC serves (1M/5M/10M/30M/1H intraday ≈ last 3 months, 1D/1W/1MO) and sensible for the range
 const IV_OPT = {'1D':['1M','5M','10M','30M','1H'], '1W':['5M','10M','30M','1H','1D'], '1M':['30M','1H','1D'], 'YTD':['1D','1W'], '1Y':['1D','1W'], '5Y':['1D','1W','1MO'], 'MAX':['1D','1W','1MO']};
 const IV_DEF = {'1D':'5M', '1W':'1H', '1M':'1D', 'YTD':'1D', '1Y':'1D', '5Y':'1D', 'MAX':'1D'}, IV_LBL = {'1M':'1m','5M':'5m','10M':'10m','30M':'30m','1H':'1h','1D':'1D','1W':'1W','1MO':'1M'}, IV_KEY = 'portfolioTracker.chartIv.v1';
-const ivOf = range=>{ const m = loadJ(IV_KEY) || {}, v = m[range]; return IV_OPT[range].includes(v) ? v : IV_DEF[range]; };
+const customRange=r=>/^CUSTOM:\d{4}-\d{2}-\d{2}:\d{4}-\d{2}-\d{2}$/.test(r||'')?{from:r.split(':')[1],to:r.split(':')[2]}:null;
+const ivOf = range=>{ if(customRange(range))return '1D';const m = loadJ(IV_KEY) || {}, v = m[range]; return IV_OPT[range].includes(v) ? v : IV_DEF[range]; };
 const ivSet = (range, v)=>{ const m = loadJ(IV_KEY) || {}; m[range] = v; try{ localStorage.setItem(IV_KEY, JSON.stringify(m)); }catch(e){} };
 const ivIntra = iv=>/M$|H$/.test(iv) && iv!=='1MO';
 const instKey = (it, range, iv)=>it.q+'|'+range+(iv && iv!==IV_DEF[range] ? '|'+iv : '');
 async function instBars(it, range, iv){
-  iv = iv || IV_DEF[range]; const key = instKey(it, range, iv), c = instCache[key]; if(c && Date.now()-c.at < INST_TTL[range]) return c.pts;
+  iv = iv || (customRange(range)?'1D':IV_DEF[range]); const key = instKey(it, range, iv), c = instCache[key]; if(c && Date.now()-c.at < (customRange(range)?24*3600e3:INST_TTL[range])) return c.pts;
   if(it.der){ // v86: JPY/ILS, CHF/ILS – bar by bar from USD/ILS ÷ USD/JPY (or USD/CHF); each USD/ILS bar takes the latest other bar at or before its time
     // (within one bar step), so gaps never pair far-apart prices. High/low: the ratio's open/close extremes widened by the legs' own ranges (approximate)
     const mk = s=>({k:'fxleg:'+s, q:s, n:s, dp:4}), [A, B] = await Promise.all([instBars(mk(it.der.a), range, iv), instBars(mk(it.der.b), range, iv)]), m = it.der.m;
@@ -2972,7 +2973,8 @@ async function instBars(it, range, iv){
     return pts; }
   return barSlot(async()=>{
     const q = iq(it), td = today(), day = q && q.date ? q.date : td, ymd = d=>d.replace(/-/g,'')+'000000';
-    const spec = range==='1D' ? [iv, day, addDays(day,1)] : range==='1W' ? [iv, addDays(td,-7), addDays(td,1)] : [iv, range==='1M' ? addDays(td,-31) : range==='YTD' ? (td.slice(0,4)-1)+'-12-24' : range==='1Y' ? addDays(td,-366) : range==='MAX' ? '1900-01-01' : addDays(td,-1827), addDays(td,1)];
+    const cr=customRange(range); const spec = cr?['1D',cr.from,addDays(cr.to,1)]:range==='1D' ? [iv, day, addDays(day,1)] : range==='1W' ? [iv, addDays(td,-7), addDays(td,1)] : [iv, range==='1M' ? addDays(td,-31) : range==='YTD' ? (td.slice(0,4)-1)+'-12-24' : range==='1Y' ? addDays(td,-366) : range==='MAX' ? '1900-01-01' : addDays(td,-1827), addDays(td,1)];
+    if(cr&&it.q==='SQQQ'&&cr.from<'2020-08-17'){spec[1]=cr.from<'2020-08-14'?cr.from:'2020-08-14';spec[2]=cr.to<'2020-08-17'?'2020-08-18':spec[2];}
     const k = isTaseSec(it.q) ? 100 : 1;
     let pts = [];
     try{ const j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/${spec[0]}/${ymd(spec[1])}/${ymd(spec[2])}/adjusted/EST5EDT.json`, 12000);
@@ -2987,12 +2989,14 @@ async function instBars(it, range, iv){
           bars=bars.map(b=>String(b.tradeTime).slice(0,8)<'20200817'?Object.assign({},b,...['close','open','high','low'].map(k=>({[k]:+b[k]/5}))):b);
         }
       }
+      if(cr)bars=bars.filter(b=>{const d=String(b.tradeTime).slice(0,8);return d>=cr.from.replace(/-/g,'')&&d<=cr.to.replace(/-/g,'')});
       pts = bars.map(b=>{ const c = +b.close/k, o = +b.open/k || c, h = +b.high/k || Math.max(o,c), l = +b.low/k || Math.min(o,c); return [+b.tradeTimeinMills, c, o, h, l, b.volume!=null && Number.isFinite(+b.volume) && +b.volume>=0 ? +b.volume : null]; }).filter(p=>p[0] && p[1] > 0 || (it.y && p[0] && isFinite(p[1])));
       if(ivIntra(iv) && it.stock) pts = pts.filter(p=>{ const x = nyParts(p[0]); return x.hm>=930 && x.hm<1600 && (range!=='1D' || x.d===day); });
       if(range==='YTD'){ const y0 = Date.parse(td.slice(0,4)+'-01-01T00:00:00Z'); const before = pts.filter(p=>p[0] < y0); pts = (before.length ? [before[before.length-1]] : []).concat(pts.filter(p=>p[0] >= y0)); }
     }catch(e){ console.warn('bars', it.q, range, e.message); if(c) return c.pts; }
     if(pts.length || !it.sec) instCache[key] = {at:Date.now(), pts}; return pts; }); }   // v87: an empty answer for a security (feed hiccup) isn't remembered – the next try asks again
 // MAX means all records available from this feed, never a claim of complete IPO history.
+function customReturnOk(it,pts){if(!pts||pts.length<2)return false;const d=new Date(pts[0][0]).toISOString().slice(0,10);return ['AAPL','MSFT','NVDA','TSLA'].includes(it?.q)||(it?.q==='SQQQ')||({IBM:'2021-11-04',GE:'2024-04-02',F:'2023-02-10'}[it?.q]&&d>={IBM:'2021-11-04',GE:'2024-04-02',F:'2023-02-10'}[it.q]);}
 function rangeBasisPending(it,range,pts){
  if(range==='1D'||!pts?.length)return false;
  const cutoff={IBM:'2021-11-04',GE:'2024-04-02',F:'2023-02-10'}[it?.q];
@@ -3000,10 +3004,10 @@ function rangeBasisPending(it,range,pts){
 }
 function historyCoverage(el,note,range,pts,it){
  const verified=historyReturnVerified(it,pts);
- const text=rangeBasisPending(it,range,pts)?'תשואה מוסתרת בטווח שנבחר: המחירים כוללים התאמות לאירועי חברה שאינם ספליטים; בסיס ההשוואה עדיין בבדיקה.':range==='MAX'&&pts.length ? 'היסטוריה זמינה במקור: '+new Date(pts[0][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' עד '+new Date(pts[pts.length-1][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' · CNBC · '+(verified?'תשואת מחיר בקירוב, מותאמת לספליטים ישירים והפוכים, ללא השקעת דיבידנדים מחדש; בסיס הספליטים ונקודות הקצה נבדקו, לא כל מחיר היסטורי.':'תשואה מוסתרת: בסיס ההתאמות טרם אומת לנייר זה.')+' · לא בהכרח מתחילת המסחר; ייתכנו חוסרים. בנרות שבועיים/חודשיים התאריך הוא תחילת התקופה.' : '';
+ const cr=customRange(range); const ct=cr&&pts.length?'טווח שנבחר: '+cr.from+' עד '+cr.to+' · נתונים בפועל: '+new Date(pts[0][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' עד '+new Date(pts[pts.length-1][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' · CNBC · שינוי מהסגירה הראשונה לאחרונה בטווח; תשואת מחיר בקירוב, מותאמת לספליטים, ללא הוספת דיבידנדים; לא כל מחיר היסטורי אומת וייתכנו חוסרים במקור. ':'';const text=cr&&pts.length<2?'אין מספיק ימי מסחר בטווח שנבחר לחישוב שינוי.':ct+(rangeBasisPending(it,range,pts)||(cr&&!customReturnOk(it,pts))?'תשואה מוסתרת בטווח שנבחר: בסיס התאמות המחיר טרם אומת או כולל אירועי חברה שאינם ספליטים.':range==='MAX'&&pts.length ? 'היסטוריה זמינה במקור: '+new Date(pts[0][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' עד '+new Date(pts[pts.length-1][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' · CNBC · '+(verified?'תשואת מחיר בקירוב, מותאמת לספליטים ישירים והפוכים, ללא השקעת דיבידנדים מחדש; בסיס הספליטים ונקודות הקצה נבדקו, לא כל מחיר היסטורי.':'תשואה מוסתרת: בסיס ההתאמות טרם אומת לנייר זה.')+' · לא בהכרח מתחילת המסחר; ייתכנו חוסרים. בנרות שבועיים/חודשיים התאריך הוא תחילת התקופה.' : '');
  el.dataset.coverage=text;if(note){note.textContent=text;note.hidden=!text}
 }
-function withLive(it, range, pts){ const q = iq(it); if(!pts || !pts.length || !q || q.price==null) return pts || [];
+function withLive(it, range, pts){ if(customRange(range))return pts||[];const q = iq(it); if(!pts || !pts.length || !q || q.price==null) return pts || [];
   const last = pts[pts.length-1], now = q.ts || Date.now(); if(now > last[0]) return pts.concat([[now, q.price]]); return pts; }
 function historyReturnVerified(it,pts){
  if(!it||!pts||pts.length<2)return false;
@@ -3017,7 +3021,7 @@ function historyReturnVerified(it,pts){
  }
  return false;
 }
-function instRangeBase(it, range, pts){ const q = iq(it); if(rangeBasisPending(it,range,pts)||(range==='MAX'&&!historyReturnVerified(it,pts)))return null; return range==='1D' ? (q && q.prev) : (pts.length ? pts[0][1] : null); }
+function instRangeBase(it, range, pts){ const q = iq(it); if((customRange(range)&&!customReturnOk(it,pts))||rangeBasisPending(it,range,pts)||(range==='MAX'&&!historyReturnVerified(it,pts)))return null; return range==='1D' ? (q && q.prev) : (pts.length ? pts[0][1] : null); }
 function lineSvg(pts, base, up, W, H, dashed){ if(!pts || pts.length < 2) return '';
   const step = Math.max(1, Math.ceil(pts.length/160)), P = pts.filter((p,i)=>i%step===0 || i===pts.length-1), vals = P.map(p=>p[1]).concat(dashed && base!=null ? [base] : []);
   const lo = Math.min(...vals), hi = Math.max(...vals), r = hi-lo || 1, t0 = P[0][0], t1 = P[P.length-1][0], tr = t1-t0 || 1;
@@ -3402,6 +3406,7 @@ $('wlSearch').addEventListener('focus', ()=>wlSwapSettle());   // v114: typing a
 attachAutocomplete($('wlSearch'), $('wlAc'), it=>{ if(!wlSwapSettle()) return; $('wlSearch').value = ''; $('wlSearch').blur(); const sym = String(it.sym||'').toUpperCase(); if(!sym) return; const L = wlCur();
   if(L.items.some(x=>x.sym===sym)){ toast('כבר ברשימה'); return; }
   L.items.push({sym, name:it.name||'', type:it.type||'stock', currency:it.currency || (isTaseSec(sym)||isTaIndex(sym) ? 'ILS' : 'USD')}); wlOpen[L.id] = true; saveWlOpen(); saveWl(); renderWatch(); toast(`${sym} נוסף ל"${L.name}"`); });
+document.addEventListener('click',e=>{const b=e.target.closest('[data-custom-chart]');if(!b)return;const sym=b.dataset.customChart,a=assetOf(sym)||{};openInstSheet(secInst({sym,type:a.type||'stock',currency:a.currency}),'1Y');$('isCustom').open=true;});
 // ---- instrument sheet (market card / watchlist row) ----
 let instSheet = null;
 function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p=>p.sym===it.sym);
@@ -3410,6 +3415,7 @@ function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p
     <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b><span id="isX" class="isx"></span>${it.y ? '' : styleSegHtml('isStyle', chartStyle() || 'line')}</div>
     ${it.sec ? '<div class="is-trade"><button class="btn btn-primary" data-istx="buy">🛒 קנייה</button><button class="btn btn-light" data-istx="sell">💰 מכירה</button></div>' : ''}
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
+    <details style="margin-top:10px" id="isCustom"><summary style="cursor:pointer">טווח תאריכים לבחירה</summary><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><label style="flex:1;min-width:140px">מתאריך<input id="isFrom" type="date" max="${today()}" value="${addDays(today(),-366)}" style="width:100%"></label><label style="flex:1;min-width:140px">עד תאריך<input id="isTo" type="date" max="${today()}" value="${today()}" style="width:100%"></label><button class="btn btn-primary btn-sm" id="isApplyDates" style="width:100%;min-height:44px">הצגת הטווח</button></div><div class="note" id="isDateErr" role="status"></div></details>
     <div class="seg sm ivseg" id="isIv" aria-label="אינטרוול"></div><div class="chart" id="isChart" style="height:280px;margin-top:6px"><div class="chart-msg" id="isMsg">טוען גרף…</div></div>
     <div id="isCoverage" class="note" hidden></div><div class="inst-stats" id="isStats"></div>
     ${it.sec && it.type!=='crypto' ? detHtml() : ''}
@@ -3468,12 +3474,12 @@ async function loadAv3m(it){ const sym = it.sym; if(sym in av3m) return; av3m[sy
 document.addEventListener('click', e=>{ const b = e.target.closest('[data-det]'); if(!b) return; detOpen = !detOpen; try{ localStorage.setItem(DET_KEY, detOpen?'1':'0'); }catch(_){}
   b.setAttribute('aria-expanded', String(detOpen)); b.querySelector('i').textContent = detOpen ? '▴' : '▾'; $('isDetG').hidden = !detOpen; if(detOpen) drawDet(); });
 function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[instKey(it, S.range, S.iv)], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
-  const ch = chgInst(it, q ? q.price : null, base); $('isV').textContent = fmtInst(it, q ? q.price : null); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+''; { const e = it.sec && q && q.ext, x = $('isX'); if(x) x.innerHTML = e && S.range==='1D' ? extLineHtml(e) : ''; }
-  const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [['סגירה קודמת', fmtInst(it, q && q.prev)], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
+  const end=customRange(S.range)?(pts.length?pts[pts.length-1][1]:null):(q?q.price:null); const ch = chgInst(it, end, base); $('isV').textContent = fmtInst(it, end); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+''; { const e = it.sec && q && q.ext, x = $('isX'); if(x) x.innerHTML = e && S.range==='1D' ? extLineHtml(e) : ''; }
+  const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [[customRange(S.range)?'סגירה ראשונה בטווח':'סגירה קודמת', fmtInst(it, customRange(S.range)?(pts.length?pts[0][1]:null):(q && q.prev))], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
   if($('isDetG') && detOpen){ drawDet(); loadAv3m(it); fundLoad(); }
-  if(S.series && S.bar && q && q.price!=null){ const b = S.bar; b.close = q.price; b.high = Math.max(b.high, q.price); b.low = Math.min(b.low, q.price); try{ S.series.update(Object.assign({}, b)); }catch(e){} }
-  else if(S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
-function drawIvSeg(){ const S = instSheet, el = $('isIv'); if(!S || !el) return; el.innerHTML = IV_OPT[S.range].map(v=>`<button data-iv="${v}" class="${v===S.iv?'on':''}">${IV_LBL[v]}</button>`).join(''); }
+  if(!customRange(S.range)&&S.series && S.bar && q && q.price!=null){ const b = S.bar; b.close = q.price; b.high = Math.max(b.high, q.price); b.low = Math.min(b.low, q.price); try{ S.series.update(Object.assign({}, b)); }catch(e){} }
+  else if(!customRange(S.range)&&S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
+function drawIvSeg(){ const S = instSheet, el = $('isIv'); if(!S || !el) return; el.innerHTML = (customRange(S.range)?['1D']:IV_OPT[S.range]).map(v=>`<button data-iv="${v}" class="${v===S.iv?'on':''}">${IV_LBL[v]}</button>`).join(''); }
 async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S.it, el = $('isChart'), seq = ++S.seq;
   $('isRange').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===S.range));
   const cnd = !it.y && (chartStyle() || 'line')==='candle'; if($('isStyle')) $('isStyle').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===(cnd?'candle':'line')));
@@ -3487,7 +3493,7 @@ async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S
   const up = pts[pts.length-1][1] >= (S.range==='1D' ? ((iq(it)||{}).prev || pts[0][1]) : pts[0][1]), T = chartTheme(), col = up ? T.up : T.down;
   const seen = new Set(), raw = cnd ? instCache[instKey(it, S.range, S.iv)].pts : pts; let s, data;
   if(cnd){ s = posChart.addCandlestickSeries(candleOpts()); data = raw.map(p=>({time:Math.floor(p[0]/1000) + (intr ? off : 0), open:p[2]!=null?p[2]:p[1], high:p[3]!=null?p[3]:p[1], low:p[4]!=null?p[4]:p[1], close:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time));
-    const lb = data[data.length-1], q0 = iq(it); S.bar = Object.assign({}, lb); if(q0 && q0.price!=null){ S.bar.close = q0.price; S.bar.high = Math.max(lb.high, q0.price); S.bar.low = Math.min(lb.low, q0.price); data[data.length-1] = Object.assign({}, S.bar); } }
+    const lb = data[data.length-1], q0 = iq(it); S.bar = Object.assign({}, lb); if(!customRange(S.range)&&q0 && q0.price!=null){ S.bar.close = q0.price; S.bar.high = Math.max(lb.high, q0.price); S.bar.low = Math.min(lb.low, q0.price); data[data.length-1] = Object.assign({}, S.bar); } }
   else { s = posChart.addAreaSeries({lineColor:col, topColor:up ? 'rgba(16,185,129,.22)' : 'rgba(239,68,68,.22)', bottomColor:'rgba(0,0,0,0)', lineWidth:2, priceLineVisible:false});
     data = pts.map(p=>({time:Math.floor(p[0]/1000) + (intr ? off : 0), value:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time)); }
   s.setData(data); ChartTools.volume(el,ChartTools.barRows(instCache[instKey(it,S.range,S.iv)]?.pts||[],'intraday',intr?off:0),'CNBC'); S.series = s; S.off = intr ? off : 0; S.lastT = data[data.length-1].time;
@@ -3498,6 +3504,7 @@ function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it
   $('sheetBody').querySelectorAll('[data-istx]').forEach(b=>b.onclick = ()=>{ const q = iq(it), pr = q && q.price!=null ? q.price : null, ty = b.dataset.istx, h = computeAll().positions.find(p=>p.sym===it.sym);
     openTxForm(ty, {symbol:it.sym, currency:it.cur, assetType:it.type, date:today(), ...(ty==='sell' && h && h.qty>0 ? {qty:h.qty} : {}), ...(pr!=null ? {price: pr<10 ? Math.round(pr*10000)/10000 : Math.round(pr*100)/100} : {})}, null, null); });
   $('isRange').addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b || !instSheet) return; instSheet.range = b.dataset.v; drawInstChart(); });
+  $('isApplyDates').onclick=()=>{const a=$('isFrom'),b=$('isTo'),e=$('isDateErr');if(!a.value||!b.value||a.value>b.value||b.value>today()||!a.checkValidity()||!b.checkValidity()){e.textContent='יש לבחור תאריכים תקינים, התחלה לא אחרי הסיום, ולא בעתיד.';return}e.textContent='';instSheet.range='CUSTOM:'+a.value+':'+b.value;drawInstChart();};
   const pb = $('isPos'); if(pb) pb.onclick = ()=>openPosition(it.sym);
   $('isIv').addEventListener('click', e=>{ const b = e.target.closest('button[data-iv]'); if(!b || !instSheet) return; ivSet(instSheet.range, b.dataset.iv); drawInstChart(); });
   const sb = $('isStyle'); if(sb) sb.addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b || !instSheet) return; setChartStyle(b.dataset.v); drawInstChart(); });
