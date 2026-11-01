@@ -62,3 +62,6 @@
 
 /* v149: active crosshair inspection wins over zoomed-chart pan behavior. */
 .xh-ok.xh,.xh-ok.zoomed.xh{touch-action:none!important;overscroll-behavior:none}
+
+/* v150: native popups replaced by choices inside the rotating chart surface. */
+.ct-time select[hidden]{display:none!important}.ct-time .ct-choice{margin:0;min-width:78px;max-width:180px;white-space:nowrap;text-align:center}.ct-choice-panel{position:absolute;z-index:40;inset:94px 12px auto;background:var(--bg,#fff);color:var(--text);border:1px solid var(--border);border-radius:12px;padding:10px;box-shadow:0 8px 28px #0006;max-height:calc(100% - 110px);overflow:auto;box-sizing:border-box}.ct-choice-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.ct-choice-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:7px}.ct-choice-options button{min-height:42px;white-space:normal}.ct-work.ct-upright .ct-choice-panel{top:128px;max-height:calc(100% - 144px)}
