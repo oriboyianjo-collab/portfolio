@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=129">
+<link rel="stylesheet" href="chart-tools.css?v=130">
 
 </head>
 <body>
@@ -4730,7 +4730,7 @@ function newsHl(raw, q){ raw = String(raw||''); if(!q) return esc(raw); const lo
 // Optional per-item source list. Legacy articles keep their existing single details link.
 function newsSources(o){ const a=o.sources||o['מקורות'];return Array.isArray(a)?a.filter(x=>x&&typeof x==='object'&&/^https?:\/\//i.test(x.url||'')&&String(x.label||'').trim()).map(x=>({url:String(x.url),label:String(x.label),role:String(x.role||'')})):[]; }
 function newsSourceHtml(o){ if(!o.sources?.length)return /^https?:\/\//i.test(o.link)?`<a class="news-l" href="${esc(o.link)}" target="_blank" rel="noopener">לפרטים ←</a>`:'';
- return '<div class="news-sources"><b>מקורות</b>'+o.sources.map(x=>`<div style="margin-top:10px"><a class="news-l" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)} ←</a>${x.role?`<div class="note">${esc(x.role)}</div>`:''}</div>`).join('')+'</div>'; }
+ return '<details class="news-sources" style="margin-top:12px"><summary style="cursor:pointer;font-weight:700;color:var(--blue)">מקורות ('+o.sources.length+')</summary>'+o.sources.map(x=>`<div style="margin-top:10px"><a class="news-l" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)} ←</a>${x.role?`<div class="note">${esc(x.role)}</div>`:''}</div>`).join('')+'</details>'; }
 function newsRender(){ const el = $('newsList'), cnt = $('newsCnt'); if(!el) return; const L = newsItems, q = ($('newsQ').value||'').trim(); $('newsQx').hidden = !$('newsQ').value;
   newsAll = [];
   if(!L.length){ cnt.hidden = true; el.innerHTML = `<div class="news-empty">${newsErr ? 'קובץ החדשות (news.json) לא תקין – בדקו פסיקים ומירכאות.' : 'אין עדיין חדשות.<br><small>מוסיפים פריטים בקובץ news.json באתר GitHub.</small>'}</div>`; return; }
@@ -4739,7 +4739,7 @@ function newsRender(){ const el = $('newsList'), cnt = $('newsCnt'); if(!el) ret
   const ql = q.toLocaleLowerCase(), M = q ? B.filter(o=>[o.title, o.text, o.company, o.date, newsFd(o)].some(v=>String(v||'').toLocaleLowerCase().includes(ql))) : B;
   cnt.hidden = !q; cnt.textContent = q ? (M.length===1 ? 'תוצאה אחת' : `${M.length} תוצאות`) : '';
   if(!M.length){ el.innerHTML = `<div class="news-empty">לא נמצאו חדשות עבור „${esc(q)}”</div>`; return; }
-  el.innerHTML = M.map(o=>`<article class="news-it">${o.company ? `<span class="news-co">${newsHl(o.company,q)}</span>` : ''}<div class="news-d">${newsHl(newsFd(o),q)}</div>${o.title ? `<h3>${newsHl(o.title,q)}</h3>` : ''}${o.text ? `<div class="news-t">${newsHl(o.text,q)}</div>` : ''}${newsImgHtml(o)}${newsSourceHtml(o)}</article>`).join('');
+  el.innerHTML = M.map(o=>`<article class="news-it"><details class="news-expand"><summary style="cursor:pointer;list-style-position:outside"><h3 style="display:inline">${newsHl(o.title||o.company||'עדכון',q)}</h3></summary>${o.company ? `<span class="news-co">${newsHl(o.company,q)}</span>` : ''}<div class="news-d" style="margin-top:10px">${newsHl(newsFd(o),q)}</div>${o.text ? `<div class="news-t">${newsHl(o.text,q)}</div>` : ''}${newsImgHtml(o)}${newsSourceHtml(o)}</details></article>`).join('');
 }
 $('newsQ').addEventListener('input', newsRender);
 $('newsQx').addEventListener('click', ()=>{ $('newsQ').value = ''; newsRender(); $('newsQ').focus(); });
