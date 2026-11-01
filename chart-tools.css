@@ -23,3 +23,6 @@
 .ct-levels{flex-wrap:wrap;overflow-x:visible}.ct-levels button{flex:1 0 auto}.ct-work.ct-rotated .ct-levels{flex-wrap:nowrap;overflow-x:auto}.ct-work.ct-rotated .ct-levels button{flex:none}@media(orientation:landscape) and (max-height:550px){.ct-levels{flex-wrap:nowrap;overflow-x:auto}.ct-levels button{flex:none}}
 
 .ct-work.ct-upright .ct-levels{flex-wrap:wrap;overflow-x:visible}.ct-work.ct-upright .ct-levels button{flex:1 0 auto}
+
+/* Native fullscreen resets its own transform. Keep rotation on its child. */
+.ct-shell{position:fixed;inset:0;z-index:10020;background:var(--bg,#f8fafc)}.ct-shell:fullscreen{width:100%;height:100%;margin:0;padding:0;background:var(--bg,#f8fafc)}
