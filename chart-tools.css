@@ -53,3 +53,9 @@
 .ct-work .ct-time select{min-width:86px;max-width:100%;box-sizing:border-box}
 .ct-work.ct-upright .ct-time select{max-width:100%}
 .ct-work .ct-time button{flex-shrink:0}
+
+/* v148: one complete row, including Maximum, without sideways scrolling. */
+:is(#mktRange,#isRange,#posRange,#perfRange,#miniRange,[data-rcr]){display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);flex-wrap:nowrap;gap:1px;overflow:visible}
+:is(#mktRange,#isRange,[data-rcr]){grid-template-columns:repeat(5,minmax(0,1fr)) 1.25fr 1.6fr}
+:is(#mktRange,#isRange,#posRange,#perfRange,#miniRange,[data-rcr]) button{width:100%;min-width:0;padding:6px 1px;font-size:clamp(10px,2.7vw,12.8px);min-height:38px;white-space:nowrap}
+.pc-ch-t [data-rcr] button{font-size:clamp(10px,2.7vw,12px);padding:4px 1px;min-height:34px}
