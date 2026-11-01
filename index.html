@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=126">
+<link rel="stylesheet" href="chart-tools.css?v=127">
 
 </head>
 <body>
@@ -2976,7 +2976,9 @@ async function instBars(it, range, iv){
     const k = isTaseSec(it.q) ? 100 : 1;
     let pts = [];
     try{ const j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/${spec[0]}/${ymd(spec[1])}/${ymd(spec[2])}/adjusted/EST5EDT.json`, 12000);
-      const bars = (j && j.barData && j.barData.priceBars) || [];
+      let bars = (j && j.barData && j.barData.priceBars) || [];
+      // Verified issuer IPO dates: exclude provider pre-listing reference stubs from daily history.
+      const ipo={AAPL:'19801212',MSFT:'19860313'}[it.q]; if(ipo&&iv==='1D')bars=bars.filter(b=>String(b.tradeTime).slice(0,8)>=ipo);
       pts = bars.map(b=>{ const c = +b.close/k, o = +b.open/k || c, h = +b.high/k || Math.max(o,c), l = +b.low/k || Math.min(o,c); return [+b.tradeTimeinMills, c, o, h, l, b.volume!=null && Number.isFinite(+b.volume) && +b.volume>=0 ? +b.volume : null]; }).filter(p=>p[0] && p[1] > 0 || (it.y && p[0] && isFinite(p[1])));
       if(ivIntra(iv) && it.stock) pts = pts.filter(p=>{ const x = nyParts(p[0]); return x.hm>=930 && x.hm<1600 && (range!=='1D' || x.d===day); });
       if(range==='YTD'){ const y0 = Date.parse(td.slice(0,4)+'-01-01T00:00:00Z'); const before = pts.filter(p=>p[0] < y0); pts = (before.length ? [before[before.length-1]] : []).concat(pts.filter(p=>p[0] >= y0)); }
@@ -2984,12 +2986,12 @@ async function instBars(it, range, iv){
     if(pts.length || !it.sec) instCache[key] = {at:Date.now(), pts}; return pts; }); }   // v87: an empty answer for a security (feed hiccup) isn't remembered – the next try asks again
 // MAX means all records available from this feed, never a claim of complete IPO history.
 function historyCoverage(el,note,range,pts){
- const text=range==='MAX'&&pts.length ? 'היסטוריה זמינה במקור: '+new Date(pts[0][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' עד '+new Date(pts[pts.length-1][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' · CNBC, מחירים מתואמים לפי המקור · לא בהכרח מתחילת המסחר; ייתכנו חוסרים. בנרות שבועיים/חודשיים התאריך הוא תחילת התקופה.' : '';
+ const text=range==='MAX'&&pts.length ? 'היסטוריה זמינה במקור: '+new Date(pts[0][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' עד '+new Date(pts[pts.length-1][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' · CNBC, מחירים מתואמים לפי המקור; בסיס ההתאמות לא אומת ולכן לא מוצגת תשואה בטווח זה · לא בהכרח מתחילת המסחר; ייתכנו חוסרים. בנרות שבועיים/חודשיים התאריך הוא תחילת התקופה.' : '';
  el.dataset.coverage=text;if(note){note.textContent=text;note.hidden=!text}
 }
 function withLive(it, range, pts){ const q = iq(it); if(!pts || !pts.length || !q || q.price==null) return pts || [];
   const last = pts[pts.length-1], now = q.ts || Date.now(); if(now > last[0]) return pts.concat([[now, q.price]]); return pts; }
-function instRangeBase(it, range, pts){ const q = iq(it); return range==='1D' ? (q && q.prev) : (pts.length ? pts[0][1] : null); }
+function instRangeBase(it, range, pts){ const q = iq(it); if(range==='MAX')return null; return range==='1D' ? (q && q.prev) : (pts.length ? pts[0][1] : null); }
 function lineSvg(pts, base, up, W, H, dashed){ if(!pts || pts.length < 2) return '';
   const step = Math.max(1, Math.ceil(pts.length/160)), P = pts.filter((p,i)=>i%step===0 || i===pts.length-1), vals = P.map(p=>p[1]).concat(dashed && base!=null ? [base] : []);
   const lo = Math.min(...vals), hi = Math.max(...vals), r = hi-lo || 1, t0 = P[0][0], t1 = P[P.length-1][0], tr = t1-t0 || 1;
