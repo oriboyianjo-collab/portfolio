@@ -10,3 +10,6 @@
 @media(orientation:landscape) and (max-height:550px){.ct-price{min-height:145px}.ct-pane{flex-basis:85px;min-height:85px}.ct-hint{max-height:29px;overflow-y:auto}}
 .ct-tools{flex-wrap:wrap;overflow-x:visible;white-space:normal}.ct-tools button{flex:0 0 auto}
 @media(orientation:landscape) and (max-height:550px){.ct-tools{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap}}
+
+/* v125 crosshair dot is a real overlay at selected bar close/value, never at raw finger height. */
+.xh-dot{position:absolute;width:10px;height:10px;box-sizing:border-box;border:2px solid #fff;border-radius:50%;background:#60a5fa;transform:translate(-50%,-50%);z-index:9;pointer-events:none;box-shadow:0 0 0 2px #60a5fa66}.xh-dot[hidden]{display:none}.ct-price,.ct-pane{position:relative}.sv-xh{pointer-events:none;vector-effect:non-scaling-stroke}
