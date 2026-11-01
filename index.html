@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=127">
+<link rel="stylesheet" href="chart-tools.css?v=128">
 
 </head>
 <body>
@@ -2341,7 +2341,7 @@ async function drawRowChart(box){ const sym = box.dataset.rch, a = assetOf(sym) 
   const old = rowCharts.get(el); if(old){ try{ old.remove(); }catch(e){} rowCharts.delete(el); } el.querySelectorAll('.tv-lightweight-charts, table').forEach(x=>x.remove());
   historyCoverage(el,box.querySelector('[data-rccoverage]'),'',[]); const msg = el.querySelector('.chart-msg'); msg.style.display = 'flex'; msg.textContent = 'טוען גרף…';
   if(!iq(it)) await instQuotes([it]); const pts = withLive(it, R, await instBars(it, R, iv)); if(seq!==box.__seq || !el.isConnected) return;
-  historyCoverage(el,box.querySelector('[data-rccoverage]'),R,instCache[instKey(it,R,iv)]?.pts||[]); if(pts.length < 2 || !lwOk()){ msg.textContent = 'אין נתונים לטווח הזה'; return; } msg.style.display = 'none';
+  historyCoverage(el,box.querySelector('[data-rccoverage]'),R,instCache[instKey(it,R,iv)]?.pts||[],it); if(pts.length < 2 || !lwOk()){ msg.textContent = 'אין נתונים לטווח הזה'; return; } msg.style.display = 'none';
   const intr = ivIntra(iv), off = -new Date().getTimezoneOffset()*60, c = makeChart(el, false); rowCharts.set(el, c);
   c.applyOptions({timeScale:{timeVisible:intr, secondsVisible:false}, localization:{locale:'he-IL', priceFormatter:v=>Math.abs(v)>=10000 ? v.toLocaleString('en-US',{maximumFractionDigits:0}) : v.toFixed(Math.abs(v)<10 ? 3 : 2)}});
   const q = iq(it), up = pts[pts.length-1][1] >= (R==='1D' ? ((q||{}).prev || pts[0][1]) : pts[0][1]), T = chartTheme(), seen = new Set(), tt = p=>Math.floor(p[0]/1000) + (intr ? off : 0); let s;
@@ -2945,7 +2945,7 @@ function fmtInst(it, v){ if(v==null || !isFinite(v)) return '—'; if(it.y) retu
 function chgInst(it, a, b){ if(a==null || b==null || !b) return {t:'—', c:0};
   const d = a-b; if(it.y){ const bp = d*100; return {t:`${bp>=0?'+':''}${bp.toFixed(1)} נ״ב`, c:d}; }
   const abs = it.sec ? fmtSigned(d, it.cur, Math.abs(d)<1 ? 3 : 2) : (d>=0?'+':'') + d.toLocaleString('en-US',{minimumFractionDigits:it.dp, maximumFractionDigits:it.dp});
-  return {t:`${abs} (${fmtPct(d/b*100)})`, c:d}; }
+  const p=d/b*100, pct=p<0&&p>-100&&p.toFixed(2)==='-100.00'?p.toFixed(6)+'%':fmtPct(p); return {t:`${abs} (${pct})`, c:d}; }
 // ---- bars ----
 const instCache = {}, INST_TTL = {'1D':5*60e3, '1W':15*60e3, '1M':3*3600e3, 'YTD':3*3600e3, '1Y':6*3600e3, '5Y':12*3600e3, 'MAX':24*3600e3};
 let barQ = [], barRunning = 0;
@@ -2978,20 +2978,41 @@ async function instBars(it, range, iv){
     try{ const j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/${spec[0]}/${ymd(spec[1])}/${ymd(spec[2])}/adjusted/EST5EDT.json`, 12000);
       let bars = (j && j.barData && j.barData.priceBars) || [];
       // Verified issuer IPO dates: exclude provider pre-listing reference stubs from daily history.
-      const ipo={AAPL:'19801212',MSFT:'19860313'}[it.q]; if(ipo&&iv==='1D')bars=bars.filter(b=>String(b.tradeTime).slice(0,8)>=ipo);
+      const ipo={AAPL:'19801212',MSFT:'19860313',NVDA:'19990122',TSLA:'20100629'}[it.q]; if(ipo&&iv==='1D')bars=bars.filter(b=>String(b.tradeTime).slice(0,8)>=ipo);
+      // CNBC currently carries one EXTRA 1:5 reverse-split factor before 2020-08-17 for SQQQ.
+      // Detect that specific provider error from both sides. If the feed fixes itself, do nothing.
+      if(it.q==='SQQQ'&&iv==='1D'){
+        const a=bars.find(b=>String(b.tradeTime).startsWith('20200814')),z=bars.find(b=>String(b.tradeTime).startsWith('20200817'));
+        if(a&&z&&Math.abs((+a.close/+z.close)/(3425/3300)-5)<0.002){
+          bars=bars.map(b=>String(b.tradeTime).slice(0,8)<'20200817'?Object.assign({},b,...['close','open','high','low'].map(k=>({[k]:+b[k]/5}))):b);
+        }
+      }
       pts = bars.map(b=>{ const c = +b.close/k, o = +b.open/k || c, h = +b.high/k || Math.max(o,c), l = +b.low/k || Math.min(o,c); return [+b.tradeTimeinMills, c, o, h, l, b.volume!=null && Number.isFinite(+b.volume) && +b.volume>=0 ? +b.volume : null]; }).filter(p=>p[0] && p[1] > 0 || (it.y && p[0] && isFinite(p[1])));
       if(ivIntra(iv) && it.stock) pts = pts.filter(p=>{ const x = nyParts(p[0]); return x.hm>=930 && x.hm<1600 && (range!=='1D' || x.d===day); });
       if(range==='YTD'){ const y0 = Date.parse(td.slice(0,4)+'-01-01T00:00:00Z'); const before = pts.filter(p=>p[0] < y0); pts = (before.length ? [before[before.length-1]] : []).concat(pts.filter(p=>p[0] >= y0)); }
     }catch(e){ console.warn('bars', it.q, range, e.message); if(c) return c.pts; }
     if(pts.length || !it.sec) instCache[key] = {at:Date.now(), pts}; return pts; }); }   // v87: an empty answer for a security (feed hiccup) isn't remembered – the next try asks again
 // MAX means all records available from this feed, never a claim of complete IPO history.
-function historyCoverage(el,note,range,pts){
- const text=range==='MAX'&&pts.length ? 'היסטוריה זמינה במקור: '+new Date(pts[0][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' עד '+new Date(pts[pts.length-1][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' · CNBC, מחירים מתואמים לפי המקור; בסיס ההתאמות לא אומת ולכן לא מוצגת תשואה בטווח זה · לא בהכרח מתחילת המסחר; ייתכנו חוסרים. בנרות שבועיים/חודשיים התאריך הוא תחילת התקופה.' : '';
+function historyCoverage(el,note,range,pts,it){
+ const verified=historyReturnVerified(it,pts);
+ const text=range==='MAX'&&pts.length ? 'היסטוריה זמינה במקור: '+new Date(pts[0][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' עד '+new Date(pts[pts.length-1][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' · CNBC · '+(verified?'תשואת מחיר בקירוב, מותאמת לספליטים ישירים והפוכים, ללא השקעת דיבידנדים מחדש; בסיס הספליטים ונקודות הקצה נבדקו, לא כל מחיר היסטורי.':'תשואה מוסתרת: בסיס ההתאמות טרם אומת לנייר זה.')+' · לא בהכרח מתחילת המסחר; ייתכנו חוסרים. בנרות שבועיים/חודשיים התאריך הוא תחילת התקופה.' : '';
  el.dataset.coverage=text;if(note){note.textContent=text;note.hidden=!text}
 }
 function withLive(it, range, pts){ const q = iq(it); if(!pts || !pts.length || !q || q.price==null) return pts || [];
   const last = pts[pts.length-1], now = q.ts || Date.now(); if(now > last[0]) return pts.concat([[now, q.price]]); return pts; }
-function instRangeBase(it, range, pts){ const q = iq(it); if(range==='MAX')return null; return range==='1D' ? (q && q.prev) : (pts.length ? pts[0][1] : null); }
+function historyReturnVerified(it,pts){
+ if(!it||!pts||pts.length<2)return false;
+ const sym=it.q,first=new Date(pts[0][0]).toISOString().slice(0,10);
+ const e={AAPL:['1980-12-12',.1283479929],MSFT:['1986-03-13',.09722200036],NVDA:['1999-01-22',.04101600125],TSLA:['2010-06-29',1.592666984]}[sym];
+ if(e&&e[0]===first&&Math.abs(pts[0][1]-e[1])<=.000051)return true;
+ // SQQQ daily endpoints and its faulty reverse-split boundary must all match the independent audit.
+ if(sym==='SQQQ'&&first==='2010-02-11'&&Math.abs(pts[0][1]/12316800-1)<0.00001){
+  const d=x=>pts.find(p=>new Date(p[0]).toISOString().slice(0,10)===x);
+  return Math.abs((d('2020-08-14')||[])[1]/3425-1)<0.00001&&Math.abs((d('2020-08-17')||[])[1]/3300-1)<0.00001;
+ }
+ return false;
+}
+function instRangeBase(it, range, pts){ const q = iq(it); if(range==='MAX'&&!historyReturnVerified(it,pts))return null; return range==='1D' ? (q && q.prev) : (pts.length ? pts[0][1] : null); }
 function lineSvg(pts, base, up, W, H, dashed){ if(!pts || pts.length < 2) return '';
   const step = Math.max(1, Math.ceil(pts.length/160)), P = pts.filter((p,i)=>i%step===0 || i===pts.length-1), vals = P.map(p=>p[1]).concat(dashed && base!=null ? [base] : []);
   const lo = Math.min(...vals), hi = Math.max(...vals), r = hi-lo || 1, t0 = P[0][0], t1 = P[P.length-1][0], tr = t1-t0 || 1;
@@ -3455,7 +3476,7 @@ async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S
   historyCoverage(el,$('isCoverage'),'',[]); const msg = $('isMsg'); msg.style.display = 'flex'; msg.textContent = 'טוען גרף…';
   if(!iq(it)) await instQuotes([it]);
   S.iv = ivOf(S.range); drawIvSeg(); const pts = withLive(it, S.range, await instBars(it, S.range, S.iv)); if(seq!==S.seq || instSheet!==S) return;
-  historyCoverage(el,$('isCoverage'),S.range,instCache[instKey(it,S.range,S.iv)]?.pts||[]); instSheetLive(); if(pts.length < 2 || !lwOk()){ msg.textContent = 'אין נתונים לטווח הזה'; return; } msg.style.display = 'none';
+  historyCoverage(el,$('isCoverage'),S.range,instCache[instKey(it,S.range,S.iv)]?.pts||[],it); instSheetLive(); if(pts.length < 2 || !lwOk()){ msg.textContent = 'אין נתונים לטווח הזה'; return; } msg.style.display = 'none';
   const intr = ivIntra(S.iv), off = -new Date().getTimezoneOffset()*60;   // show Israel wall-clock times on the axis
   posChart = makeChart(el, false); posChart.applyOptions({timeScale:{timeVisible:intr, secondsVisible:false}, localization:{locale:'he-IL', priceFormatter:v=>it.y ? v.toFixed(3)+'%' : Math.abs(v)>=10000 ? v.toLocaleString('en-US',{maximumFractionDigits:0}) : v.toFixed(Math.abs(v)<10 ? 3 : 2)}});
   const up = pts[pts.length-1][1] >= (S.range==='1D' ? ((iq(it)||{}).prev || pts[0][1]) : pts[0][1]), T = chartTheme(), col = up ? T.up : T.down;
