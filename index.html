@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=134">
+<link rel="stylesheet" href="chart-tools.css?v=135">
 
 </head>
 <body>
@@ -5016,20 +5016,21 @@ function imgvHide(){ if(!IV.el || IV.el.hidden) return; IV.inNav = false; IV.el.
 function imgvClose(){ navDrop('imgv'); imgvHide(); }
 document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='Escape') imgvClose(); });
 // ---- swipe between tabs (v42) ----
-(function(){ let sx=0, sy=0, st=0, ok=false, watchDir=0, watchAt=0;
-  const watchReset = ()=>{ watchDir=0; watchAt=0; };
+(function(){ let sx=0, sy=0, st=0, ok=false, watchDir=0, watchAt=0, watchExpiry=null;
+  const WATCH_PAIR_GAP=400; // Only a rapid consecutive pair, measured from first lift to second touch.
+  const watchReset = ()=>{ watchDir=0; watchAt=0;if(watchExpiry!==null)clearTimeout(watchExpiry);watchExpiry=null; };
   document.addEventListener('click',watchReset,{passive:true});
   const NOSW = 'input,textarea,select,[contenteditable],.editing,.imgv,.sheet,.sheet-bg,.ct-work,.chart.xh,.chart.zoomed,.rpills,.dcards,.rpop';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
   function scrollsX(el){ for(; el && el !== document.body; el = el.parentElement){ if(el.scrollWidth > el.clientWidth + 2){ const o = getComputedStyle(el).overflowX; if(o==='auto' || o==='scroll') return true; } } return false; }
   function blocked(t){ if(!(t instanceof Element)) return true; if(t.closest(NOSW)) return true; if($('sheetBg').classList.contains('open') || document.querySelector('dialog[open],.modal.open,.modal-bg.open')) return true; return scrollsX(t); }
-  document.addEventListener('touchstart', e=>{ ok = e.touches.length===1 && !blocked(e.target); if(!ok){ watchReset(); return; } sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now(); }, {passive:true});
+  document.addEventListener('touchstart', e=>{ ok = e.touches.length===1 && !blocked(e.target); if(!ok){ watchReset(); return; } sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now();if(watchAt&&st-watchAt>WATCH_PAIR_GAP)watchReset(); }, {passive:true});
   document.addEventListener('touchmove', e=>{ if(ok && e.touches.length > 1){ ok = false; watchReset(); } }, {passive:true});
   document.addEventListener('touchend', e=>{ if(!ok) return; ok = false; const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
     if(Math.abs(dx) < 60 || Math.abs(dx) < 1.5*Math.abs(dy) || Date.now() - st > 900){ watchReset(); return; }
     if(ui.tab==='watch'){ const direction = dx>0 ? 1 : -1, now = Date.now();
-      if(watchDir===direction && now-watchAt<=1600){ watchReset(); const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab), j = i + direction; if(i>=0 && j>=0 && j<tabs.length) setTab(tabs[j]); return; }
-      watchDir=direction; watchAt=now;
-      const wl = wlData.lists, wi = wl.findIndex(l=>l.id===wlCur().id), wj = wi + (dx < 0 ? 1 : -1);   // v124: first swipe moves between lists; a second same-direction swipe within 1.6s follows adjacent main-tab order
+      if(watchDir===direction && st>=watchAt&&st-watchAt<=WATCH_PAIR_GAP){ watchReset(); const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab), j = i + direction; if(i>=0 && j>=0 && j<tabs.length) setTab(tabs[j]); return; }
+      watchReset();watchDir=direction; watchAt=now;watchExpiry=setTimeout(()=>{if(!ok)watchReset();},WATCH_PAIR_GAP);
+      const wl = wlData.lists, wi = wl.findIndex(l=>l.id===wlCur().id), wj = wi + (dx < 0 ? 1 : -1);   // v124: first swipe moves between lists; a rapid second same-direction swipe begun within 400ms follows adjacent main-tab order; an older swipe expires
       if(wl.length > 1 && wi >= 0 && wj >= 0 && wj < wl.length){ wlData.cur = wl[wj].id; saveWl(); wlMenu = null; renderWatch(); }   // v113: drawWatch animates the list body only - the section no longer translates (in RTL it scrolled the whole shell sideways)
       return; }
     watchReset(); const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab);
