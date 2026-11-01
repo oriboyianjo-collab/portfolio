@@ -26,3 +26,8 @@
 
 /* Native fullscreen resets its own transform. Keep rotation on its child. */
 .ct-shell{position:fixed;inset:0;z-index:10020;background:var(--bg,#f8fafc)}.ct-shell:fullscreen{width:100%;height:100%;margin:0;padding:0;background:var(--bg,#f8fafc)}
+
+/* v138: range and interval stay reachable in expanded landscape. */
+.ct-time{display:flex;align-items:center;gap:12px;padding:4px 10px;flex:none;font-size:12px;flex-wrap:wrap}.ct-time label{display:flex;align-items:center;gap:6px}.ct-time select{min-height:36px;max-width:210px;font:inherit;color:var(--text);background:var(--card,#fff);border:1px solid var(--border);border-radius:7px;padding:5px 8px}.ct-time-status{color:var(--muted)}
+.ct-work.ct-rotated .ct-time{padding:2px 8px}.ct-work.ct-rotated .ct-time select{min-height:32px}.ct-work.ct-rotated .ct-head button{min-height:32px}.ct-legend{display:none}
+@media(orientation:landscape) and (max-height:550px){.ct-time{padding:2px 8px}.ct-time select{min-height:32px}.ct-head button{min-height:32px}}
