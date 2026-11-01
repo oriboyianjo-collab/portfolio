@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=148">
+<link rel="stylesheet" href="chart-tools.css?v=149">
 
 </head>
 <body>
@@ -973,7 +973,7 @@ function open(model,keep){if(active&&!keep)close();if(keep){keep.dead=true;keep.
  root.addEventListener('click',async e=>{let b=e.target.closest('button');if(!b)return;let k=b.dataset.ind;if(k){A.enabled.has(k)?A.enabled.delete(k):A.enabled.add(k);b.classList.toggle('on',A.enabled.has(k));b.setAttribute('aria-pressed',String(A.enabled.has(k)));redraw();if(k==='fib'&&A.enabled.has('fib'))fitFib();dismissTools();return}if(b.dataset.level!=null){const p=A.levelValues[+b.dataset.level].price,span=Math.abs(+fb.value- +fa.value)/Math.max(1,+fz.value);setPriceWindow(p-span/2,p+span/2);levels.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));dismissTools();return}switch(b.dataset.ct){case'tools':{const panel=root.querySelector('.ct-settings');panel.hidden=!panel.hidden;b.setAttribute('aria-expanded',String(!panel.hidden));b.textContent=panel.hidden?'כלי ניתוח ▾':'סגירת כלים ▴';break}case'close':close();break;case'autoscale':autoPrice();dismissTools();break;case'fit':autoPrice();A.autoFit=true;priceEl.classList.remove('zoomed');fitWidth();dismissTools();break;case'fibfit':fitFib();dismissTools();break;case'rotate':await fullscreen(A);break;case'reverse':{let x=fa.value;fa.value=fb.value;fb.value=x;fib();fitFib();break}case'pick':dismissTools();A.picking=[];A.pick=true;priceEl.classList.add('ct-pick');hint.textContent='לחצו על שתי נקודות מחיר בגרף: 0% ואז 100%';root.querySelector('.ct-pick-status')?.remove();const pickStatus=document.createElement('div');pickStatus.className='ct-pick-status';pickStatus.textContent='בחרו בגרף נקודה ראשונה (0%)';root.querySelector('.ct-content').appendChild(pickStatus);break}});
  fa.addEventListener('input',()=>{fib();fitFib()});fb.addEventListener('input',()=>{fib();fitFib()});fz.addEventListener('input',()=>{const x=+fa.value,y=+fb.value,mid=A.priceWindow?(A.priceWindow.lo+A.priceWindow.hi)/2:(x+y)/2,half=Math.abs(y-x)/2/+fz.value;if(half)setPriceWindow(mid-half,mid+half)});priceEl.addEventListener('pointerdown',e=>{if(!A.pick)return;e.preventDefault();e.stopImmediatePropagation();let p=A.main.coordinateToPrice(chartPoint(priceEl,e.clientX,e.clientY).y);if(!valid(p))return;A.picking.push(p);const pickStatus=root.querySelector('.ct-pick-status');if(pickStatus)pickStatus.textContent='בחרו בגרף נקודה שנייה (100%)';if(A.picking.length===2){fa.value=A.picking[0].toFixed(4);fb.value=A.picking[1].toFixed(4);A.pick=false;root.querySelector('.ct-pick-status')?.remove();priceEl.classList.remove('ct-pick');fib();fitFib();hint.textContent=baseHint}},true);
  A.autoFit=true;function fitWidth(){if(A.dead)return;A.charts.forEach(q=>{try{if(q===c)q.resize(Math.round(priceEl.clientWidth),Math.round(priceEl.clientHeight));q.timeScale().fitContent()}catch(e){}});drawProfile()}
- A.ro=new ResizeObserver(()=>{if(A.autoFit)fitWidth();else drawProfile()});A.ro.observe(priceEl);['pointerdown','wheel','touchstart'].forEach(t=>priceEl.addEventListener(t,()=>{A.autoFit=false;if(!A.pick&&A.priceWindow)autoPrice()},{passive:true}));root.querySelector('[data-ct=close]').focus({preventScroll:true});setupChartRotation(A);if(keep){A.didExpand=keep.didExpand;A.sawLandscape=keep.sawLandscape;A.wantLandscape=keep.wantLandscape;A.orient()}else fullscreen(A);requestAnimationFrame(()=>requestAnimationFrame(fitWidth));
+ A.ro=new ResizeObserver(()=>{if(A.autoFit)fitWidth();else drawProfile()});A.ro.observe(priceEl);['pointerdown','wheel','touchstart'].forEach(t=>priceEl.addEventListener(t,e=>{A.autoFit=false;if(e.type==='wheel'&&!A.pick&&A.priceWindow)autoPrice()},{passive:true}));root.querySelector('[data-ct=close]').focus({preventScroll:true});setupChartRotation(A);if(keep){A.didExpand=keep.didExpand;A.sawLandscape=keep.sawLandscape;A.wantLandscape=keep.wantLandscape;A.orient()}else fullscreen(A);requestAnimationFrame(()=>requestAnimationFrame(fitWidth));
  root.addEventListener('keydown',e=>{if(e.key!=='Tab')return;let f=[...root.querySelectorAll('button:not(:disabled),input')].filter(x=>x.getClientRects().length);if(e.shiftKey&&document.activeElement===f[0]){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus()}});
 }
 function setupChartRotation(A){A.sawLandscape=matchMedia('(orientation:landscape)').matches;A.wantLandscape=!A.sawLandscape;A.orient=()=>{if(A.dead)return;let landscape=matchMedia('(orientation:landscape)').matches;if(landscape){A.sawLandscape=true;A.wantLandscape=false}else if(A.sawLandscape){A.wantLandscape=false}const rotated=A.wantLandscape&&!landscape;A.root.classList.toggle('ct-rotated',rotated);A.root.classList.toggle('ct-upright',!A.wantLandscape&&!landscape);A.root.style.width=rotated?A.shell.clientHeight+'px':'100%';A.root.style.height=rotated?A.shell.clientWidth+'px':'100%';};window.addEventListener('resize',A.orient);screen.orientation?.addEventListener?.('change',A.orient);A.orient();}
@@ -2322,12 +2322,12 @@ function xhAttach(el, c){ el.classList.add('xh-ok'); el.classList.remove('zoomed
   const rm = c.remove.bind(c); c.remove = ()=>{ if(el.__xh===X){ el.__xh = null; el.classList.remove('xh'); if(dot)dot.hidden=true; } X.dead = true; return rm(); };
   const ao = c.applyOptions.bind(c); c.applyOptions = o=>ao(Object.assign({}, o, o && ('handleScroll' in o || 'handleScale' in o) ? {handleScroll:false, handleScale:false} : {}));
   if(el.__xhBound) return c; el.__xhBound = true;
-  let tm = 0, on = false, x0 = 0, y0 = 0, lastCrossX=null;
+  let tm = 0, on = false, x0 = 0, y0 = 0, lastCrossX=null, inspectionRange=null;
   const cur = ()=>{ const x = el.__xh; return x && !x.dead && x.S ? x : null; };
   const at = (cx,cy)=>{ const x = cur(); if(!x) return; try{ const l0 = x.c.timeScale().coordinateToLogical(chartPoint(el,cx,cy).x); if(l0==null) return; const l = Math.round(l0);
     const d = x.S.dataByIndex(l, -1) || x.S.dataByIndex(l, 1); if(!d) return; const p = d.value!=null ? d.value : d.close; if(p!=null){ x.c.setCrosshairPosition(p, d.time, x.S); const xx=x.c.timeScale().timeToCoordinate(d.time), yy=x.S.priceToCoordinate(p); if(xx!=null&&yy!=null){dot.style.left=xx+'px';dot.style.top=yy+'px';dot.hidden=false;} } }catch(e){} };
   const clr = ()=>{dot.hidden=true;lastCrossX=null; const x = cur(); if(x) try{ x.c.clearCrosshairPosition(); }catch(e){} };
-  const stop = ()=>{ clearTimeout(tm); tm = 0; if(on){ on = false; el.classList.remove('xh'); clr(); } };
+  const stop = ()=>{ clearTimeout(tm); tm = 0; if(on){ on = false; inspectionRange=null; el.classList.remove('xh'); clr(); } };
   // v85: zoom / pan (own handling, so the page still scrolls): two fingers = pinch to zoom + drag to pan; once zoomed in, one finger
   // dragged sideways pans too (a zoomed chart also stops the tab swipe); double-tap = back to the full range
   let G = null, lastTap = 0;
@@ -2338,20 +2338,20 @@ function xhAttach(el, c){ el.classList.add('xh-ok'); el.classList.remove('zoomed
     from = Math.max(-0.3, Math.min(from, n - 0.7 - w)); try{ x.c.timeScale().setVisibleLogicalRange({from, to: from + w}); }catch(e){}
     el.classList.toggle('zoomed', w < n - 1.2); };
   const pts = e=>{ const a = e.touches[0], b = e.touches[1]; return {mx:chartPoint(el,(a.clientX+b.clientX)/2,(a.clientY+b.clientY)/2).x, d:Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY) || 1}; };
-  el.addEventListener('touchstart', e=>{ stop(); if(e.target.closest('button,input,select,.ct-fib')||el.classList.contains('ct-pick'))return; const x = cur();
+  el.addEventListener('touchstart', e=>{ if(on){e.preventDefault();e.stopPropagation();G=null;return;} stop(); if(e.target.closest('button,input,select,.ct-fib')||el.classList.contains('ct-pick'))return; const x = cur();
     if(e.touches.length===2 && x){ const r = vis(x), q = pts(e); if(r){ e.preventDefault(); G = {k:2, r0:r, d0:q.d, m0:q.mx, u:lpx(x)}; } return; }
     G = null; if(e.touches.length!==1) return; const t = e.touches[0]; {const p=chartPoint(el,t.clientX,t.clientY);x0=p.x;y0=p.y;}let holdX=t.clientX,holdY=t.clientY;
     const now = Date.now(); if(now - lastTap < 300 && x && el.classList.contains('zoomed')){ try{ x.c.timeScale().fitContent(); }catch(_){} el.classList.remove('zoomed'); lastTap = 0; return; } lastTap = now;
-    tm = setTimeout(()=>{ tm = 0; if(!cur() || G) return; on = true; el.classList.add('xh'); try{ navigator.vibrate && navigator.vibrate(8); }catch(_){} at(holdX,holdY); }, XH_MS); }, {passive:false});
+    tm = setTimeout(()=>{ tm = 0; if(!cur() || G) return; on = true; G=null; inspectionRange=vis(cur()); el.classList.add('xh'); try{ navigator.vibrate && navigator.vibrate(8); }catch(_){} at(holdX,holdY); }, XH_MS); }, {passive:false});
   el.addEventListener('touchmove', e=>{ const x = cur(), t = e.touches[0]; if(!t) return;
+    if(on){e.preventDefault();e.stopPropagation();G=null;if(x&&inspectionRange){const r=vis(x);if(r&&(Math.abs(r.from-inspectionRange.from)>1e-7||Math.abs(r.to-inspectionRange.to)>1e-7))x.c.timeScale().setVisibleLogicalRange(inspectionRange);}if(lastCrossX==null||Math.abs(t.clientX-lastCrossX)>=5){lastCrossX=t.clientX;at(t.clientX,t.clientY)}return;}
     if(G && G.k===2 && e.touches.length===2 && x){ e.preventDefault(); const q = pts(e), r = G.r0, w0 = r.to - r.from, w = w0*Math.pow(G.d0/q.d,.75), a = r.from + G.m0*G.u;   // logical point under the fingers at start
       const f = a - (a - r.from)*w/w0 - (q.mx - G.m0)*(w/el.clientWidth)*.75; setR(x, f, f + w); return; }
-    if(on){ e.preventDefault(); if(lastCrossX==null||Math.abs(t.clientX-lastCrossX)>=5){lastCrossX=t.clientX;at(t.clientX,t.clientY)} return; }
     const p=chartPoint(el,t.clientX,t.clientY),dx=p.x-x0,dy=p.y-y0;
     if(G && G.k===1){ e.preventDefault(); const r = G.r0; setR(x, r.from - dx*G.u*.75, r.to - dx*G.u*.75); return; }
     if(Math.abs(dx) > 12 || Math.abs(dy) > 12){ clearTimeout(tm); tm = 0; lastTap = 0;
       if(x && el.classList.contains('zoomed') && Math.abs(dx) > Math.abs(dy) && e.touches.length===1){ const r = vis(x); if(r){ e.preventDefault(); G = {k:1, r0:r, u:lpx(x)}; x0=p.x; } } } }, {passive:false});
-  const end = e=>{ if(G && G.k===2 && e.touches && e.touches.length) { G = null; return; } G = null; stop(); };
+  const end = e=>{ if(on && e.touches?.length){G=null;return;} if(G && G.k===2 && e.touches && e.touches.length) { G = null; return; } G = null; stop(); };
   el.addEventListener('touchend', end, {passive:true}); el.addEventListener('touchcancel', end, {passive:true});
   el.addEventListener('contextmenu', e=>{ if(on || tm) e.preventDefault(); });
   el.addEventListener('pointermove', e=>{ if(e.pointerType==='mouse') at(e.clientX,e.clientY); }); el.addEventListener('pointerleave', e=>{ if(e.pointerType==='mouse') clr(); });
