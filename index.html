@@ -794,15 +794,16 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pchg .chg-d{color:var(--muted);font-style:normal;opacity:.7}
 .pchg .chg-a{font-weight:600}
 @media (max-width:340px){.pchg{font-size:.72rem}.pchg .chg{padding-inline:7px}}
+/* v117: list groups flow left-to-right; each Hebrew tab stays RTL. Stored list order is unchanged. */
 /* ---- v112: watchlists as top tabs (flat, blue underline on active) + swipe between lists ---- */
 #tab-watch{overflow-x:clip}   /* v113: transition transforms must not widen the page's horizontal scroll area - in RTL that scrolled the whole shell (header/nav) sideways */
 #tab-watch .wl-tools{display:none}
 #wlLists.wl-sw-l{animation:swl .22s ease-out}#wlLists.wl-sw-r{animation:swr .22s ease-out}   /* v113: a list switch animates the list body only - the strip glides on its own, header/nav stay put */
 #wlLists.wl-pending{pointer-events:none}   /* v114: while a glide-up swap is staged the old rows stay visible but inert - the tabs already point at the new list, so row actions must not fire on the old one */
 #tab-watch .wltabs-w{display:flex;align-items:stretch;border-bottom:1px solid var(--border);margin:2px 0 10px}
-#tab-watch .wltabs{display:flex;gap:2px;overflow-x:auto;flex:1 1 auto;min-width:0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#tab-watch .wltabs{display:flex;direction:ltr;gap:2px;overflow-x:auto;flex:1 1 auto;min-width:0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 #tab-watch .wltabs::-webkit-scrollbar{display:none}
-#tab-watch .wltabs button{flex:0 0 auto;border:0;background:none;color:var(--muted);font:inherit;font-size:.92rem;font-weight:700;padding:9px 10px 8px;cursor:pointer;white-space:nowrap;border-bottom:2.5px solid transparent;margin-bottom:-1px;display:inline-flex;align-items:baseline;gap:5px}
+#tab-watch .wltabs button{direction:rtl;flex:0 0 auto;border:0;background:none;color:var(--muted);font:inherit;font-size:.92rem;font-weight:700;padding:9px 10px 8px;cursor:pointer;white-space:nowrap;border-bottom:2.5px solid transparent;margin-bottom:-1px;display:inline-flex;align-items:baseline;gap:5px}
 #tab-watch .wltabs button.on{color:var(--primary-d);border-bottom-color:var(--primary-d)}
 #tab-watch .wltabs button small{font-weight:600;font-size:.72rem;opacity:.7}
 #tab-watch .wlopts{flex:0 0 auto;border:0;background:none;color:var(--muted);font:inherit;font-size:1.15rem;padding:9px 8px 8px;cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px}
@@ -3181,7 +3182,7 @@ function wlTabsHtml(){ const cur = wlCur().id;
   return `<div class="wltabs-w"><div class="wltabs" role="tablist" aria-label="רשימות מעקב">${wlData.lists.map(l=>`<button role="tab" data-wlt="${esc(l.id)}" aria-selected="${l.id===cur}" class="${l.id===cur?'on':''}">${esc(l.name)}<small>${l.items.length}</small></button>`).join('')}</div><button class="wlopts" data-wlopts aria-label="אפשרויות הרשימה" title="אפשרויות הרשימה" aria-expanded="${wlMenu===cur}">⋯</button></div>`; }
 let wlLastCur = null, wlGlide = null, wlGesture = false, wlDrawPending = false, wlSwapT = null, wlPendingHtml = null, wlPendingDir = 0, wlSwapGive = 0, wlPendingTop = null;   // v113
 const wlReduced = ()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
-function wlListsSw(dir){ const el = $('wlLists'); if(!el || !dir || wlReduced()) return; el.classList.remove('wl-sw-l','wl-sw-r'); void el.offsetWidth; el.classList.add(dir>0 ? 'wl-sw-l' : 'wl-sw-r'); setTimeout(()=>el.classList.remove('wl-sw-l','wl-sw-r'), 260); }   // v113: list-body slide, direction follows the tab order delta
+function wlListsSw(dir){ const el = $('wlLists'); if(!el || !dir || wlReduced()) return; el.classList.remove('wl-sw-l','wl-sw-r'); void el.offsetWidth; el.classList.add(dir>0 ? 'wl-sw-r' : 'wl-sw-l'); setTimeout(()=>el.classList.remove('wl-sw-l','wl-sw-r'), 260); }   // v113: list-body slide, direction follows the tab order delta
 function wlStripLand(){ const tabsEl = $('wlTabs'); if(!tabsEl) return 0; const hdr = document.querySelector('header.top'), hb = hdr ? hdr.getBoundingClientRect().bottom : 0; return Math.max(0, tabsEl.getBoundingClientRect().top + window.scrollY - hb - 6); }   // v114: land with the strip just below the sticky header - never hidden under it
 function wlSwapCancel(){ if(wlSwapT){ clearTimeout(wlSwapT); wlSwapT = null; } wlPendingHtml = null; wlSwapGive = 0; wlPendingTop = null; const el = $('wlLists'); if(el) el.classList.remove('wl-pending'); }   // v114: drop a staged swap without touching the screen
 function wlStripLandFor(stagedHtml){ const land = wlStripLand(), el = $('wlLists'); if(!el || stagedHtml==null) return land;   // v116: glide only to a scroll position the page can still hold AFTER the shorter list swaps in - the swap then lands with no clamp at all
@@ -3216,7 +3217,7 @@ function wlTabsScroll(glide){ const w = $('wlTabs'), bar = w && w.querySelector(
   wlGlide = bh==='smooth' ? t : null; bar.scrollTo({left: t, behavior: bh}); }
 function wlMenuHtml(L, li, nL){ if(wlMenu!==L.id) return ''; const ed = wlEditing===L.id, so = wlSortOf(L.id);
   const msort = `<div class="wl-msort" role="group" aria-label="מיון"><div class="wl-msl">${WL_SORT_IC}<span>מיון</span>${ed ? '<small>במצב עריכה – סדר ידני</small>' : ''}</div>${Object.keys(WLS_NAME).map(k=>`<button data-ls="${k}" role="menuitemradio" aria-checked="${so.k===k}" class="${so.k===k?'on':''}"${ed?' disabled':''}>${so.k===k ? '<span class="ck" aria-hidden="true">✓</span>' : ''}${WLS_NAME[k]}${so.k===k && k!=='manual' ? `<span class="ar">${so.dir<0?'▼':'▲'}</span>` : ''}</button>`).join('')}</div>`;
-  return `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button>${msort}<button data-la="rename">🏷️ שינוי שם</button><button data-la="up" ${li===0?'disabled':''}>▶ ימינה</button><button data-la="down" ${li===nL-1?'disabled':''}>◀ שמאלה</button><button data-la="del" class="del">🗑️ מחיקה</button></div>`; }
+  return `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button>${msort}<button data-la="rename">🏷️ שינוי שם</button><button data-la="up" ${li===0?'disabled':''}>◀ שמאלה</button><button data-la="down" ${li===nL-1?'disabled':''}>▶ ימינה</button><button data-la="del" class="del">🗑️ מחיקה</button></div>`; }
 function wlSecHtml(L){ const ed = wlEditing===L.id, so = wlSortOf(L.id), its = wlSorted(L.items.map(secInst), ed, so);
   return `<div class="wls open" data-l="${esc(L.id)}"><div class="wlb">${its.length ? `<div class="wl-cols wgrid" aria-hidden="true"${ed?' hidden':''}><span></span><span>נייר</span><span class="pcol pc-s">היום</span><span class="pcol">שווי שוק</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d"><span>יומי</span></span></div><div class="wl-rows${ed?' editing':''}">${its.map((it,i)=>wlRowHtml(it, i, its.length)).join('')}</div>` : '<div class="wl-empty">הרשימה ריקה – חפשו נייר בשדה למעלה כדי להוסיף.</div>'}</div></div>`; }
 const WL_ALL_IC = {collapse:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 20 5-5 5 5"/><path d="m7 4 5 5 5-5"/></svg>', expand:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>'};   // v100: chevrons toward / away from each other
@@ -4900,7 +4901,7 @@ document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='
   document.addEventListener('touchmove', e=>{ if(ok && e.touches.length > 1) ok = false; }, {passive:true});
   document.addEventListener('touchend', e=>{ if(!ok) return; ok = false; const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
     if(Math.abs(dx) < 60 || Math.abs(dx) < 1.5*Math.abs(dy) || Date.now() - st > 900) return;
-    if(ui.tab==='watch'){ const wl = wlData.lists, wi = wl.findIndex(l=>l.id===wlCur().id), wj = wi + (dx > 0 ? 1 : -1);   // v112: on the watch screen a horizontal swipe moves between lists only, stops at the ends (no wrap, no main-tab change)
+    if(ui.tab==='watch'){ const wl = wlData.lists, wi = wl.findIndex(l=>l.id===wlCur().id), wj = wi + (dx < 0 ? 1 : -1);   // v112: on the watch screen a horizontal swipe moves between lists only, stops at the ends (no wrap, no main-tab change)
       if(wl.length > 1 && wi >= 0 && wj >= 0 && wj < wl.length){ wlData.cur = wl[wj].id; saveWl(); wlMenu = null; renderWatch(); }   // v113: drawWatch animates the list body only - the section no longer translates (in RTL it scrolled the whole shell sideways)
       return; }
     const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab);
