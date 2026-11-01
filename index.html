@@ -794,7 +794,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pchg .chg-d{color:var(--muted);font-style:normal;opacity:.7}
 .pchg .chg-a{font-weight:600}
 @media (max-width:340px){.pchg{font-size:.72rem}.pchg .chg{padding-inline:7px}}
-/* v119: groups flow left-to-right, menu stays at the right; saved list order is unchanged. */
+/* v120: groups flow left-to-right, menu stays at the right; saved list order is unchanged. */
 /* ---- v112: watchlists as top tabs (flat, blue underline on active) + swipe between lists ---- */
 #tab-watch{overflow-x:clip}   /* v113: transition transforms must not widen the page's horizontal scroll area - in RTL that scrolled the whole shell (header/nav) sideways */
 #tab-watch .wl-tools{display:none}
@@ -854,6 +854,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
     <div class="card etf-card" id="etfCard" hidden>
       <div class="fsel" id="etfPick"></div>
       <form id="etfAdd" class="etf-add-w" autocomplete="off" novalidate></form>
+      <div class="fsel" id="etfTiles"></div>
       <div id="etfHd"></div>
       <div class="vt2"><span class="vt2l"><small id="etfInfo"></small><button type="button" class="ib" data-ib-for="etfNote" data-ib-t="איך מחושב משקל כל החזקה" aria-label="הסבר: איך מחושב משקל כל החזקה" aria-haspopup="dialog">i</button></span><div class="viewtgl" id="etfView" role="group" aria-label="תצוגה"><button data-ev="list">☰ רשימה</button><button data-ev="heat">▦ מפת חום</button></div></div>
       <div id="etfSortWrap"></div>
@@ -3096,8 +3097,9 @@ const fsExt = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.ext
 function drawEtfSel(){ const el = $('etfPick'); if(!el) return; const t = etfUi.sel;
   const ord = [...ETFS].sort((a,b)=>{ const pa = fsPct(a), pb = fsPct(b); return (pa==null)-(pb==null) || (pb||0)-(pa||0); });
   const tile = x=>{ const p = fsPct(x), e = fsExt(x); return `<button class="ft${x===t?' on':''}" data-etf="${x}" aria-pressed="${x===t}" aria-label="${ETF_LBL[x]||x} ${p!=null ? fmtPct(p) : ''}${e ? ' '+e.kind+' '+fmtPct(e.pct) : ''}" style="background:${heatColor(p)}"><b class="ltr">${ETF_LBL[x]||x}</b><span class="num">${p!=null ? fmtPct(p) : '—'}</span>${extLineHtml(e, 'ftx')}${etfEditOpen ? `<span class="ft-del" data-edel="${x}" role="button" aria-label="הסרת ${ETF_LBL[x]||x} מהרשימה">✕</span>` : ''}</button>`; };
-  const h = `<div class="fs-bar"><b>מפת חום · הקרנות</b>${ib('ממוין מהעולה ביותר ליורד ביותר · צבע = שינוי יומי', 'איך ממופה מפת החום')}<small>${ETFS.length} קרנות</small><button type="button" class="fs-add${etfEditOpen ? ' on' : ''}" data-eedit aria-expanded="${etfEditOpen}">${etfEditOpen ? '✓ סיום עריכה' : '✏️ עריכה'}</button></div><div class="ft-g">${ord.map(tile).join('')}</div>`;
-  if(el.innerHTML!==h) el.innerHTML = h; }
+  const h = `<div class="fs-bar"><b>מפת חום · הקרנות</b>${ib('ממוין מהעולה ביותר ליורד ביותר · צבע = שינוי יומי', 'איך ממופה מפת החום')}<small>${ETFS.length} קרנות</small><button type="button" class="fs-add${etfEditOpen ? ' on' : ''}" data-eedit aria-expanded="${etfEditOpen}">${etfEditOpen ? '✓ סיום עריכה' : '✏️ עריכה'}</button></div>`;
+  if(el.innerHTML!==h) el.innerHTML = h;
+  const tiles = $('etfTiles'), grid = `<div class="ft-g">${ord.map(tile).join('')}</div>`; if(tiles.innerHTML!==grid) tiles.innerHTML = grid; }
 function drawEtf(){ const t = etfUi.sel, d = etfData[t], ei = secInst({sym:t, type:'etf'}), q = iq(ei), pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   drawEtfSel(); $('etfView').querySelectorAll('button').forEach(b=>{ const on = b.dataset.ev===etfUi.view; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
   const isCust = etfCust.some(x=>x.t===t), hdH = `<div class="etfhd" role="button" tabindex="0" data-es="${t}">${logoHtml(t)}<div class="t"><b class="ltr">${ETF_LBL[t]||t}</b><small>${esc((d && d.name) || (q && q.name) || '')}</small></div><div class="r"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="num muted">${q ? fmtPrice(q.ext ? q.ext.price : q.price, q.cur||'USD') : ''}</span>${extLineHtml(q && q.ext, 'etfx')}</div></div>`;
@@ -3148,7 +3150,7 @@ async function renderEtf(){ const seq = ++etfSeq, t = etfUi.sel; drawEtf(); etfI
 function applyMktMode(){ const etf = etfUi.mode==='etf'; $('mktMode').querySelectorAll('button').forEach(b=>{ const on = b.dataset.mm===etfUi.mode; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
   $('etfCard').hidden = !etf; $('mktCard').hidden = etf; }
 $('mktMode').addEventListener('click', e=>{ const b = e.target.closest('[data-mm]'); if(!b || b.dataset.mm===etfUi.mode) return; etfUi.mode = b.dataset.mm; saveEtfUi(); applyMktMode(); renderMarket(); });
-$('etfPick').addEventListener('click', e=>{ if(e.target.closest('[data-eadd]')){ etfAddOpen = !etfAddOpen; drawEtfAdd(true); drawEtfSel(); return; } if(e.target.closest('[data-eedit]')){ etfEditOpen = !etfEditOpen; etfAddOpen = etfEditOpen; drawEtfAdd(etfEditOpen); drawEtfSel(); return; } const d = e.target.closest('[data-edel]'); if(d){ e.preventDefault(); e.stopPropagation(); etfRemoveAny(d.dataset.edel); return; } if(etfEditOpen) return; const b = e.target.closest('[data-etf]'); if(!b || b.dataset.etf===etfUi.sel) return; etfUi.sel = b.dataset.etf; etfMenuOpen = false; saveEtfUi(); etfHeatKey = ''; renderEtf(); });   // v104: the tile map always stays open; the picked tile is marked and the holdings are below it
+$('etfCard').addEventListener('click', e=>{ if(e.target.closest('[data-eadd]')){ etfAddOpen = !etfAddOpen; drawEtfAdd(true); drawEtfSel(); return; } if(e.target.closest('[data-eedit]')){ etfEditOpen = !etfEditOpen; etfAddOpen = etfEditOpen; drawEtfAdd(); drawEtfSel(); return; } const d = e.target.closest('[data-edel]'); if(d){ e.preventDefault(); e.stopPropagation(); etfRemoveAny(d.dataset.edel); return; } if(etfEditOpen) return; const b = e.target.closest('[data-etf]'); if(!b || b.dataset.etf===etfUi.sel) return; etfUi.sel = b.dataset.etf; etfMenuOpen = false; saveEtfUi(); etfHeatKey = ''; renderEtf(); });   // v104: the tile map always stays open; the picked tile is marked and the holdings are below it
 $('etfHd').addEventListener('click', e=>{ if(e.target.closest('[data-ecissue]')){ const t = etfUi.sel; window.open(`https://github.com/${ISS_REPO}/issues/new?title=${encodeURIComponent('ETF: '+t)}&body=${encodeURIComponent('נוצר מהאפליקציה – לחצו Submit new issue. הקרן תתווסף לעדכון היומי מקובץ המנפיק.')}`, '_blank', 'noopener'); toast('נפתח GitHub – לחצו Submit new issue'); return; } if(e.target.closest('[data-ecdel]')){ etfRemoveCust(etfUi.sel); return; } if(e.target.closest('[data-ecm]')){ etfMenuOpen = !etfMenuOpen; drawEtf(); } });
 $('etfView').addEventListener('click', e=>{ const b = e.target.closest('[data-ev]'); if(!b || b.dataset.ev===etfUi.view) return; etfUi.view = b.dataset.ev; saveEtfUi(); etfHeatKey = ''; renderEtf(); });
 $('etfCard').addEventListener('click', e=>{ const r = e.target.closest('[data-es]'); if(!r || r.dataset.es.charAt(0)==='~') return; const sym = r.dataset.es, d = etfData[etfUi.sel], row = d && d.rows.find(x=>x[0]===sym);
