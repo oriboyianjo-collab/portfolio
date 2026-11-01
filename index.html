@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=144">
+<link rel="stylesheet" href="chart-tools.css?v=145">
 
 </head>
 <body>
@@ -3673,7 +3673,7 @@ function openTxForm(type, preset, editId, backSym, after){
     const ty = st.type, d = f;
     if(ty==='buy'||ty==='sell') return `<div class="fgrid">
         <label class="f full"><span>נייר ערך / סימול *</span><div class="ac"><input id="fSym" class="ltr-in" value="${esc(d.symbol||'')}" placeholder="הוספת נייר" autocapitalize="characters" enterkeyhint="next" spellcheck="false"><div class="ac-list" id="fSymList"></div></div>
-          <div class="hint" id="fSymName">${esc(d.symbol?assetOf(d.symbol).name:'')}</div></label>
+          <div class="hint" id="fSymName">${esc(d.symbol?assetOf(d.symbol).name:'')}</div><div class="hint" id="fListingNote">${euCur(d.symbol)?'מחיר הבורסה נקוב ב-'+euCur(d.symbol)+'. הרישום בתיק בדולר או בשקל; המחיר המוצע מומר למטבע שנבחר לפי שער המט״ח הזמין. יש לבדוק את מחיר העסקה בפועל.':''}</div></label>
         <label class="f"><span>תאריך העסקה</span><input id="fDate" type="date" value="${esc(d.date)}" max="${today()}"></label>
         <label class="f"><span>מטבע</span><select id="fCur"><option value="USD">דולר $</option><option value="ILS">שקל ₪</option></select></label>
         <label class="f"><span>כמות *</span><input id="fQty" inputmode="decimal" class="ltr-in" value="${d.qty??''}" placeholder="0"></label>
@@ -3714,7 +3714,7 @@ function openTxForm(type, preset, editId, backSym, after){
         <div class="sumbox" id="fSum"></div><div id="fWarn"></div>`;
   }
   function setSymbol(it){
-    f.symbol = it.sym;
+    f.symbol = it.sym;if($('fListingNote'))$('fListingNote').textContent=euCur(it.sym)?'מחיר הבורסה נקוב ב-'+euCur(it.sym)+'. הרישום בתיק בדולר או בשקל; המחיר המוצע מומר למטבע שנבחר לפי שער המט״ח הזמין. יש לבדוק את מחיר העסקה בפועל.':'';
     if(!it.free){ $('fCur').value = it.currency; $('fAType').value = it.type==='index'?'etf':it.type; $('fSymName').textContent = it.name||''; f._meta = it; }
     else { const a = assetOf(it.sym); $('fCur').value = a.currency; $('fAType').value = a.type==='index'?'etf':a.type; $('fSymName').textContent = a.name||''; f._meta = null; }
     prefillPrice();
