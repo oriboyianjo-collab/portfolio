@@ -4955,22 +4955,27 @@ function imgvHide(){ if(!IV.el || IV.el.hidden) return; IV.inNav = false; IV.el.
 function imgvClose(){ navDrop('imgv'); imgvHide(); }
 document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='Escape') imgvClose(); });
 // ---- swipe between tabs (v42) ----
-(function(){ let sx=0, sy=0, st=0, ok=false;
+(function(){ let sx=0, sy=0, st=0, ok=false, watchDir=0, watchAt=0;
+  const watchReset = ()=>{ watchDir=0; watchAt=0; };
+  document.addEventListener('click',watchReset,{passive:true});
   const NOSW = 'input,textarea,select,[contenteditable],.editing,.imgv,.sheet,.sheet-bg,.ct-work,.chart.xh,.chart.zoomed,.rpills,.dcards,.rpop';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
   function scrollsX(el){ for(; el && el !== document.body; el = el.parentElement){ if(el.scrollWidth > el.clientWidth + 2){ const o = getComputedStyle(el).overflowX; if(o==='auto' || o==='scroll') return true; } } return false; }
   function blocked(t){ if(!(t instanceof Element)) return true; if(t.closest(NOSW)) return true; if($('sheetBg').classList.contains('open') || document.querySelector('dialog[open],.modal.open,.modal-bg.open')) return true; return scrollsX(t); }
-  document.addEventListener('touchstart', e=>{ ok = e.touches.length===1 && !blocked(e.target); if(!ok) return; sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now(); }, {passive:true});
-  document.addEventListener('touchmove', e=>{ if(ok && e.touches.length > 1) ok = false; }, {passive:true});
+  document.addEventListener('touchstart', e=>{ ok = e.touches.length===1 && !blocked(e.target); if(!ok){ watchReset(); return; } sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now(); }, {passive:true});
+  document.addEventListener('touchmove', e=>{ if(ok && e.touches.length > 1){ ok = false; watchReset(); } }, {passive:true});
   document.addEventListener('touchend', e=>{ if(!ok) return; ok = false; const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
-    if(Math.abs(dx) < 60 || Math.abs(dx) < 1.5*Math.abs(dy) || Date.now() - st > 900) return;
-    if(ui.tab==='watch'){ const wl = wlData.lists, wi = wl.findIndex(l=>l.id===wlCur().id), wj = wi + (dx < 0 ? 1 : -1);   // v112: on the watch screen a horizontal swipe moves between lists only, stops at the ends (no wrap, no main-tab change)
+    if(Math.abs(dx) < 60 || Math.abs(dx) < 1.5*Math.abs(dy) || Date.now() - st > 900){ watchReset(); return; }
+    if(ui.tab==='watch'){ const direction = dx>0 ? 1 : -1, now = Date.now();
+      if(watchDir===direction && now-watchAt<=1600){ watchReset(); setTab(direction>0?'portfolio':'news'); return; }
+      watchDir=direction; watchAt=now;
+      const wl = wlData.lists, wi = wl.findIndex(l=>l.id===wlCur().id), wj = wi + (dx < 0 ? 1 : -1);   // v123: first swipe moves between lists; a second same-direction swipe within 1.6s exits to the named main tab
       if(wl.length > 1 && wi >= 0 && wj >= 0 && wj < wl.length){ wlData.cur = wl[wj].id; saveWl(); wlMenu = null; renderWatch(); }   // v113: drawWatch animates the list body only - the section no longer translates (in RTL it scrolled the whole shell sideways)
       return; }
-    const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab);
+    watchReset(); const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab);
     const j = i + (dx > 0 ? 1 : -1); if(i < 0 || j < 0 || j >= tabs.length) return;   // swipe right -> next tab in RTL order, left -> back; no wrap
     setTab(tabs[j]); const sec = $('tab-'+tabs[j]); if(sec && !matchMedia('(prefers-reduced-motion: reduce)').matches){ sec.classList.remove('sw-l','sw-r'); void sec.offsetWidth; sec.classList.add(dx > 0 ? 'sw-l' : 'sw-r'); setTimeout(()=>sec.classList.remove('sw-l','sw-r'), 260); }
   }, {passive:true});
-  document.addEventListener('touchcancel', ()=>{ ok = false; }, {passive:true});
+  document.addEventListener('touchcancel', ()=>{ ok = false; watchReset(); }, {passive:true});
 })();
 document.querySelector('nav.bottom').addEventListener('click', e=>{ const b = e.target.closest('button[data-tab]'); if(b) setTab(b.dataset.tab); });
 // v57: restore the tab after a reload (sessionStorage survives reload, not a fresh launch)
