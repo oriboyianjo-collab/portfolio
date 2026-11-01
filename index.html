@@ -810,8 +810,14 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wlopts[aria-expanded="true"]{color:var(--primary-d)}
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
+
+/* v159: keep the market cap visible; only the company name may shorten. */
+.rrow .rn .rmeta{display:flex;align-items:baseline;justify-content:flex-end;gap:5px;direction:ltr;overflow:visible;text-overflow:clip;min-width:0}
+.rrow .rcompany{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rrow .rcap{flex:0 0 auto;white-space:nowrap;direction:ltr;unicode-bidi:isolate}
+.rrow .rcap::before{content:"·";margin-inline-end:5px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=158">
+<link rel="stylesheet" href="chart-tools.css?v=159">
 
 </head>
 <body>
@@ -4994,7 +5000,7 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     const whyL = [r.eps && !E.ok ? 'EPS: '+E.why : '', r.rev && !R.ok ? 'הכנסות: '+R.why : ''].filter(Boolean);
     const whyHtml = ()=> whyL.length ? ib(whyL.map(x=>`<div>${esc(x)}</div>`).join(''), 'למה אין השוואה לצפי', 'warn') : '';
     return `<article class="rrow${(ec||rc) ? ' r-'+(ec||rc) : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
-      `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span>${whyHtml(r)}</div><small>${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}${ntFil.sort==='cap' ? ' · <bdi class="num">'+(r.capV ? fmtCap(r.capV) : 'שווי לא ידוע')+'</bdi>' : ''}</small></div>`+
+      `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span>${whyHtml(r)}</div><small class="rmeta"><span class="rcompany">${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}</span>${ntFil.sort==='cap' ? '<bdi class="rcap num">'+(r.capV ? fmtCap(r.capV) : 'שווי לא ידוע')+'</bdi>' : ''}</small></div>`+
       `<div class="rv">${val('EPS', r.epsEst, r.eps, ec, surp(e2, e1), E, tagB(r.epsEstB, r.epsB, r.epsCur||r.epsActCur))}</div><div class="rv">${val('הכנסות', r.revEst, r.rev, rc, surp(r2, r1), R, tagB(r.revEstB, r.revB, r.revCur||r.revActCur))}</div>${link}`+
             (/^https?:\/\//i.test(r.link) ? `<div class="rpl-row"><a class="news-l rpl-a" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">לדוח ↗</a></div>` : '')+
       (r.note ? `<div class="rnote2" role="button" tabindex="0" aria-expanded="false" data-rnote><span>${esc(r.note)}</span>${r.note.length > 90 || (r.note.match(/\n/g)||[]).length >= 2 ? '<i class="rmore2">עוד ▾</i>' : ''}</div>` : '')+`</article>`; };
