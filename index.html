@@ -811,25 +811,22 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 
-/* Outside the expanded chart, touch phones use portrait only. */
-#portraitGuard{display:none;position:fixed;inset:0;z-index:2147483646;background:var(--bg);color:var(--text);align-items:center;justify-content:center;text-align:center;padding:24px;flex-direction:column;gap:12px}#portraitGuard strong{font-size:22px}#portraitGuard p{max-width:340px;margin:0;color:var(--muted)}
-html.portrait-required #portraitGuard{display:flex}html.portrait-required body{overflow:hidden!important}
-
+/* A rejected physical lock keeps a portrait canvas, never a blocking notice. */
+html.portrait-canvas{overflow:hidden;height:100%}html.portrait-canvas body{position:fixed;top:0;left:0;width:var(--portrait-w);height:var(--portrait-h);overflow:hidden;transform-origin:top left;transform:var(--portrait-transform,translateY(var(--portrait-w)) rotate(-90deg));padding:0}
+html.portrait-canvas #appPortrait{height:100%;overflow-y:auto;overscroll-behavior:contain;padding-bottom:calc(var(--nav-h) + var(--safe-b) + 16px)}
+html.portrait-canvas .sheet{max-height:calc(var(--portrait-h)*.92)}html.portrait-canvas .ib-card{max-height:calc(var(--portrait-h)*.62)}html.portrait-canvas .news-imgs.n1 img{max-height:calc(var(--portrait-h)*.6)}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=152">
+<link rel="stylesheet" href="chart-tools.css?v=153">
 
 </head>
 <body>
 
-<div id="portraitGuard" role="dialog" aria-modal="true" aria-label="תצוגת אורך"><svg aria-hidden="true" width="68" height="68" viewBox="0 0 68 68" fill="none" stroke="currentColor" stroke-width="3"><rect x="24" y="9" width="27" height="49" rx="5"/><path d="M34 51h7M15 21a24 24 0 0 0-2 28m-7-7 7 8 7-7"/></svg><strong>סובבו את המכשיר לאורך</strong><p>האפליקציה פועלת בתצוגת אורך. תצוגת רוחב זמינה רק בתוך גרף מוגדל.</p></div>
 <script>
-// Keep orientation requests optional: ordinary tabs may refuse locking.
-window.AppOrientation=(()=>{let chart=false,locked=false,serial=0;const phone=()=>matchMedia('(pointer:coarse)').matches&&Math.min(screen.width,screen.height)<=900;const guard=document.getElementById('portraitGuard');let hidden=[];
- function showGuard(on){document.documentElement.classList.toggle('portrait-required',on);if(on){[...document.body.children].filter(e=>e!==guard&&e.tagName!=='SCRIPT'&&!hidden.some(x=>x[0]===e)).forEach(e=>{hidden.push([e,e.inert]);e.inert=true;});guard.tabIndex=-1;guard.focus({preventScroll:true});}else if(!on&&hidden.length){hidden.forEach(([e,v])=>e.inert=v);hidden=[];}}
- function sync(){const on=phone();showGuard(on&&!chart&&screen.width>screen.height);const id=++serial;if(!on)return;if(chart){if(locked){try{screen.orientation.unlock()}catch(_){}locked=false;}return;}if(screen.orientation?.lock){try{Promise.resolve(screen.orientation.lock('portrait-primary')).then(()=>{locked=true;if(id!==serial&&chart){try{screen.orientation.unlock()}catch(_){}locked=false;}}).catch(()=>{});}catch(_){}}}
+window.AppOrientation=(()=>{let chart=false,locked=false,serial=0;const phone=()=>matchMedia('(pointer:coarse)').matches&&Math.min(screen.width,screen.height)<=900;
+ function sync(){const on=phone(),fallback=on&&!chart&&screen.width>screen.height;const was=document.documentElement.classList.contains('portrait-canvas'),app=document.getElementById('appPortrait');if(fallback&&!was&&app){app.dataset.pageScroll=String(scrollY);}document.documentElement.style.setProperty('--portrait-transform',screen.orientation?.angle===270?'translateX('+innerWidth+'px) rotate(90deg)':'translateY('+innerHeight+'px) rotate(-90deg)');document.documentElement.style.setProperty('--portrait-w',innerHeight+'px');document.documentElement.style.setProperty('--portrait-h',innerWidth+'px');document.documentElement.classList.toggle('portrait-canvas',fallback);if(fallback&&!was&&app)app.scrollTop=+(app.dataset.pageScroll||0);if(!fallback&&was&&app)window.scrollTo(0,app.scrollTop);const id=++serial;if(!on)return;if(chart){if(locked){try{screen.orientation.unlock()}catch(_){}locked=false;}return;}if(screen.orientation?.lock){try{Promise.resolve(screen.orientation.lock('portrait-primary')).then(()=>{locked=true;if(id!==serial&&chart){try{screen.orientation.unlock()}catch(_){}locked=false;}}).catch(()=>{});}catch(_){}}}
  document.addEventListener('DOMContentLoaded',sync);window.addEventListener('resize',sync);screen.orientation?.addEventListener?.('change',sync);document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()});document.addEventListener('pointerup',()=>{if(!chart&&!locked)sync()},{passive:true});sync();return {setChart(v){chart=!!v;sync()}};})();
 </script>
-
+<div id="appPortrait">
 <header class="top">
   <div class="wrap"><div class="hcard">
     <div class="top-row"><h1 class="brand"><img src="logo.svg?v=33" alt="" width="40" height="40"><span>Savage Tracker</span></h1></div>
@@ -916,12 +913,13 @@ window.AppOrientation=(()=>{let chart=false,locked=false,serial=0;const phone=()
 <div class="toast" id="toast"></div>
 <input type="file" id="fileImport" accept="application/json,.json" hidden>
 <input type="file" id="fileBank" accept=".xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv" hidden>
+</div>
 <script>
 (function(){
 'use strict';
 // Canvas backing-store dimensions must use local axes, not rotated screen boxes.
 {const rects=HTMLCanvasElement.prototype.getClientRects;HTMLCanvasElement.prototype.getClientRects=function(){const r=rects.call(this);if(!this.closest('.ct-rotated'))return r;return [{left:0,top:0,right:this.clientWidth,bottom:this.clientHeight,width:this.clientWidth,height:this.clientHeight}];};}
-function chartPoint(el,x,y){const r=el.getBoundingClientRect();return el.closest('.ct-rotated')?{x:y-r.top,y:r.right-x}:{x:x-r.left,y:y-r.top};}
+function chartPoint(el,x,y){const r=el.getBoundingClientRect();return el.closest('.ct-rotated')?{x:y-r.top,y:r.right-x}:document.documentElement.classList.contains('portrait-canvas')?(screen.orientation?.angle===270?{x:y-r.top,y:r.right-x}:{x:r.bottom-y,y:x-r.left}):{x:x-r.left,y:y-r.top};}
 /* v121 shared analysis workspace. Public instrument bars stay on device. */
 (function(){
 'use strict';
