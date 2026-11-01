@@ -1,5 +1,27 @@
 [
   {
+    "כותרת": "אינטל מתכננת להסב חלק מקיבולת הייצור למחשבים אישיים לטובת מעבדי שרתים; התוספת באורגון מיועדת למחצית השנייה של 2027",
+    "תאריך": "2026-11-01 22:02",
+    "הועלה": "2026-11-01 22:02",
+    "טקסט": "לא מאומת מול מקור ראשוני לגבי ההסבה באורגון; קטע השאלות והתשובות המקורי לא נבדק ישירות\n31.10.2026 | 15:00 שעון ישראל: פרסום Tom's Hardware\nהדברים נאמרו בשיחת החברה מ-29.10, ולא בהכרזה חדשה מהיום.\n\nאינטל מתכננת להעביר חלק מקיבולת הייצור באורגון מתהליך Intel 18A, שנועדה בעיקר למעבדי Panther Lake למחשבים אישיים, לתהליך Intel 3 המשמש את מעבדי השרתים Xeon 6 Granite Rapids. כך עולה מתשובת סמנכ\"ל הכספים דייוויד זינסנר בשאלות והתשובות של שיחת החברה, כפי שמופיעה בתמליל The Motley Fool ובכתבת Tom's Hardware.\n\nלפי אותו תמליל, המנכ\"ל ליפ-בו טאן אמר שהקיבולת הנוספת באורגון מתוכננת להיכנס לייצור במחצית השנייה של 2027. לכן אין כאן הודעה שכל ההסבה כבר הושלמה או שהקיבולת הזו זמינה היום. החברה לא מסרה כמה פרוסות סיליקון יועברו בין המוצרים.\n\nבדברים המוכנים לשיחה, שנבדקו במסמך הרשמי של אינטל, החברה מתארת התקנת ציוד Intel 3 באירלנד והוספת קיבולת לאריזה מתקדמת בניו מקסיקו ובמלזיה. היא מזהירה שגם מחסור במצעים לאריזת השבבים מגביל את הגדלת תפוקת השרתים. הגדלת מספר הפרוסות לבדה אינה מבטיחה שאפשר יהיה לספק מיד יותר מעבדים מוגמרים.\n\nהמהלך משקף העדפת קיבולת לשרתים, אך אינו הודעה על הפסקת ייצור כל מעבדי המחשבים האישיים של אינטל. זו התפתחות תפעולית מתוך שיחת החברה, ללא נתוני התוצאות הכספיות.",
+    "קישור": "https://www.tomshardware.com/pc-components/cpus/intel-shifts-production-capacity-from-consumer-to-server-cpus-in-face-of-unprecedented-ai-demand-company-navigating-one-of-the-most-significant-supply-shortages-in-history",
+    "מקורות": [
+      {
+        "label": "Tom's Hardware - דיווח על ההסבה",
+        "url": "https://www.tomshardware.com/pc-components/cpus/intel-shifts-production-capacity-from-consumer-to-server-cpus-in-face-of-unprecedented-ai-demand-company-navigating-one-of-the-most-significant-supply-shortages-in-history"
+      },
+      {
+        "label": "The Motley Fool - תמליל שיחת החברה",
+        "url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/"
+      },
+      {
+        "label": "אינטל - דברים מוכנים לשיחה, לא שאלות ותשובות",
+        "url": "https://d1io3yog0oux5.cloudfront.net/_47986fe477a6ac84fe34efbcbf38dd13/intel/db/887/9273/prepared_remarks/Q3%2726_Prepared_Remarks.pdf"
+      }
+    ],
+    "category": "micro"
+  },
+  {
     "כותרת": "קנדה: צוותי הסחר יעבדו בשבועות הקרובים על הסכם עם ארה\"ב; לפי CBC, המו\"מ הרשמי צפוי להתחדש",
     "תאריך": "2026-11-01 21:42",
     "הועלה": "2026-11-01 21:42",
