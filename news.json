@@ -21,7 +21,8 @@
         "url": "https://www.cnbc.com/2026/10/31/opec-oil-output-targets-december.html",
         "role": "מאמת את שלב ההסכמה העקרונית שקדם לפגישה ומספק הקשר, לא אישור עצמאי להחלטה הסופית."
       }
-    ]
+    ],
+    "תקציר": "לפי אינטרפקס, המכסות הוקפאו; מה ההחלטה אינה אומרת על אספקת הנפט?"
   },
   {
     "כותרת": "ספייסאקס (SPCX): בית המשפט דחה את בקשת xAI לסלק תביעת זיהום אוויר נגד תחנת הכוח למרכז הנתונים שלה",
@@ -39,7 +40,8 @@
         "label": "CNBC",
         "url": "https://www.cnbc.com/2026/10/31/xai-naacp-clean-air-act-lawsuit-dismissal.html"
       }
-    ]
+    ],
+    "תקציר": "התביעה ממשיכה: מה הסיכון לתשתית החשמל של מרכז הנתונים?"
   },
   {
     "כותרת": "אמזון (AMZN) מתכננת להציע את שבבי Trainium מחוץ ל-AWS בסוף 2027",
@@ -61,7 +63,8 @@
         "label": "אמזון, מועד השיחה הרשמי",
         "url": "https://ir.aboutamazon.com/events/event-details/2026/Q3-2026-Amazoncom-Inc-Earnings-Conference-Call/default.aspx"
       }
-    ]
+    ],
+    "תקציר": "לפי תמלילים, שבבי ה-AI בדרך לשוק חיצוני; מה עדיין לא הובטח?"
   },
   {
     "כותרת": "בינאנס: לפי רויטרס, משיכות ביטקוין, את'ריום וחלק מהמטבעות היציבים חודשו בפועל",
@@ -83,7 +86,8 @@
         "label": "בינאנס, סטטוס הרשתות",
         "url": "https://www.binance.com/zh-CN/network"
       }
-    ]
+    ],
+    "תקציר": "לפי רויטרס, המשיכות חזרו בחלקן; מדוע זה עדיין לא סוף האירוע?"
   },
   {
     "כותרת": "אונדס (ONDS): סנטריקס מציעה מערכת ניידת נגד רחפנים ב-99 אלף דולר",
@@ -101,7 +105,8 @@
         "label": "הודעת סנטריקס ב-PRNewswire, כולל שעת הפרסום",
         "url": "https://www.prnewswire.com/news-releases/sentrycs-offers-ranger-a-portable-c-uas-solution-with-mitigation-capabilities-for-less-than-100-000-helping-states-maximize-femas-latest-round-of-grant-funding-302923451.html"
       }
-    ]
+    ],
+    "תקציר": "99 אלף דולר ושלוש שנות תחזוקה, אבל זו הצעת מוצר ולא הזמנה חדשה."
   },
   {
     "כותרת": "קלוד מגביל שכפול של משחקים קיימים; אין אישור לאיסור גורף על הנדסה לאחור",
@@ -123,7 +128,8 @@
         "label": "Tom's Hardware",
         "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropics-ai-model-is-now-blocking-attempts-at-video-game-recreation-and-cloning-users-also-claim-non-malicious-generic-reverse-engineering-tasks-are-blocked"
       }
-    ]
+    ],
+    "תקציר": "לפי הבדיקות שפורסמו, שכפול משחקים מוגבל; לא כל הנדסה לאחור נחסמת."
   },
   {
     "כותרת": "רוסיה מדווחת על נזק משמעותי למפעל בקסטובו; דיווחים על פגיעה בבית הזיקוק של לוקאויל",
@@ -145,7 +151,8 @@
         "label": "Deutsche Welle",
         "url": "https://www.dw.com/ru/drony-vsu-atakovali-nizegorodskuu-oblast-osintanaliz-ukazyvaet-na-pozar-na-npz-lukojla/a-79820439"
       }
-    ]
+    ],
+    "תקציר": "לפי הדיווחים נגרם נזק משמעותי; זיהוי בית הזיקוק והיקף ההשבתה לא אומתו."
   },
   {
     "כותרת": "גוגל (GOOGL): תקלה במצב AI Mode הסתירה תשובה על בחירות 2020; לפי דיווח ההמשך היא כבר תוקנה ב-29 באוקטובר",
@@ -163,7 +170,8 @@
         "label": "יו-אס-איי טודיי, דיווח ההמשך על התיקון",
         "url": "https://www.usatoday.com/story/tech/2026/10/29/google-wont-say-who-won-2020-election/92499767007/"
       }
-    ]
+    ],
+    "תקציר": "דיווח ההמשך משנה את התמונה: התקלה כבר תוקנה, לפי USA TODAY."
   },
   {
     "כותרת": "קרן השבבים SOXX תתחיל להיסחר לאחר פיצול של 3 ל-1 ביום חמישי, 5 בנובמבר",
@@ -185,7 +193,8 @@
         "label": "תזכורת רשמית מ-23 באוקטובר",
         "url": "https://www.ishares.com/us/literature/summary-prospectus/sp-ishares-phlx-semiconductor-etf-3-31.pdf"
       }
-    ]
+    ],
+    "תקציר": "יותר יחידות, מחיר נמוך יותר: מדוע הפיצול אינו יוצר תשואה בפני עצמו?"
   },
   {
     "כותרת": "מטא (META): בית המשפט בפריז הותיר בתוקף את צווי הביניים בנושא תשלום למו\"לים",
@@ -203,7 +212,8 @@
         "label": "הודעת ארגון DVP, צד להליך",
         "url": "https://www.dvpresse.fr/droits-voisins-la-cour-dappel-de-paris-confirme-les-mesures-conservatoires-prononcees-a-lencontre-de-meta/"
       }
-    ]
+    ],
+    "תקציר": "לפי רויטרס, צווי הביניים נשארים; אין כאן קנס חדש או הכרעה סופית."
   },
   {
     "כותרת": "טסלה (TSLA): בית משפט בסיאול דחה תביעת החזר של 89 רוכשי FSD",
@@ -225,7 +235,8 @@
         "label": "Seoul Economic Daily",
         "url": "https://www.sedaily.com/article/20108412"
       }
-    ]
+    ],
+    "תקציר": "לפי הדיווחים, התביעה נדחתה; אין בפסק הדין אישור בטיחות כללי ל-FSD."
   },
   {
     "כותרת": "גוגל (GOOGL): הרמנטאון אישרה הסכמים והיתר מקומי למרכז נתונים מתוכנן של 500 מגה-ואט",
@@ -247,7 +258,8 @@
         "label": "Star Tribune",
         "url": "https://www.startribune.com/data-center-hermantown-google/601905898"
       }
-    ]
+    ],
+    "תקציר": "לפי הדיווחים, אושרו שישה צעדים; אילו היתרים עוד מפרידים מההקמה?"
   },
   {
     "כותרת": "לפי רויטרס, הצי האיראני טוען שמכלית עלתה באש לאחר שפגעה במוקשים ממזרח להורמוז",
@@ -261,7 +273,8 @@
         "label": "רויטרס באמצעות אל-ערבייה",
         "url": "https://english.alarabiya.net/News/middle-east/2026/10/31/iranian-navy-says-tanker-caught-fire-after-striking-mines-near-strait-of-hormuz"
       }
-    ]
+    ],
+    "תקציר": "טענה איראנית לפי רויטרס: זהות המכלית והפגיעה עדיין לא אומתו עצמאית."
   },
   {
     "כותרת": "בינאנס: מילאנו מחדש כ-95% מהנכסים שנפגעו; חידוש משיכות בשלבים מתוכנן היום ב-08:00-11:00 שעון ישראל",
@@ -283,7 +296,8 @@
         "label": "בינאנס, סטטוס הרשתות שנבדק ב-08:02",
         "url": "https://www.binance.com/zh-CN/network"
       }
-    ]
+    ],
+    "תקציר": "לפי החברה, כיסוי הנכסים עלה ל-95%; זה אינו אישור שכל המשיכות פתוחות."
   },
   {
     "כותרת": "לפי רויטרס, הבולשת האמריקאית מייחסת לצפון קוריאה את גניבת הקריפטו מבינאנס",
@@ -297,7 +311,8 @@
         "label": "רויטרס באמצעות Devdiscourse",
         "url": "https://www.devdiscourse.com/article/international/4000213-fbi-links-north-korea-to-theft-of-6-billion-frombinance"
       }
-    ]
+    ],
+    "תקציר": "רויטרס מייחסת את המידע ל-FBI; הודעת הבולשת לא נבדקה ישירות."
   },
   {
     "כותרת": "אנבידיה (NVDA): דיווח על קושי של שותף ייצור להזמין רכיבים לכרטיס RTX 5090",
