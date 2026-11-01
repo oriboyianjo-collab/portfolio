@@ -817,7 +817,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .rrow .rcap{flex:0 0 auto;white-space:nowrap;direction:ltr;unicode-bidi:isolate}
 .rrow .rcap::before{content:"·";margin-inline-end:5px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=159">
+<link rel="stylesheet" href="chart-tools.css?v=160">
 
 </head>
 <body>
@@ -5010,7 +5010,9 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
 const FLAGS = {US:'🇺🇸', IL:'🇮🇱', EU:'🇪🇺', DE:'🇩🇪', GB:'🇬🇧', UK:'🇬🇧', FR:'🇫🇷', JP:'🇯🇵', CN:'🇨🇳', CA:'🇨🇦', CH:'🇨🇭', AU:'🇦🇺', 'ארה״ב':'🇺🇸', 'ארה"ב':'🇺🇸', 'ישראל':'🇮🇱', 'אירופה':'🇪🇺', 'גוש האירו':'🇪🇺', 'גרמניה':'🇩🇪', 'בריטניה':'🇬🇧', 'יפן':'🇯🇵', 'סין':'🇨🇳'};
 const CNAME = {US:'ארה״ב', IL:'ישראל', EU:'אירופה', DE:'גרמניה', GB:'בריטניה', UK:'בריטניה', FR:'צרפת', JP:'יפן', CN:'סין', CA:'קנדה', CH:'שווייץ', AU:'אוסטרליה'};
 function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; const enter = calEnter; calEnter = false; if(!D.items.length){ $('calFil').innerHTML = ''; el.innerHTML = ntEmpty('cal', D.err); return; }
-  const L = D.items.map((o,i)=>{ const r = {i}; for(const k in CAL_K) r[k] = pickK(o, CAL_K, k); r.d = ntDate(r.date); r.c = r.country.toUpperCase().length<=3 ? r.country.toUpperCase() : r.country; r.imp = Math.max(1, Math.min(3, Math.round(numOf(r.imp)||1))); return r; }).filter(r=>r.event);
+  // v160: the current calendar starts on Sunday; retain all older actuals in calendar.json.
+  const weekDate = new Date(today()+'T12:00:00Z'); weekDate.setUTCDate(weekDate.getUTCDate()-weekDate.getUTCDay()); const weekStart = weekDate.toISOString().slice(0,10);
+  const L = D.items.map((o,i)=>{ const r = {i}; for(const k in CAL_K) r[k] = pickK(o, CAL_K, k); r.d = ntDate(r.date); r.c = r.country.toUpperCase().length<=3 ? r.country.toUpperCase() : r.country; r.imp = Math.max(1, Math.min(3, Math.round(numOf(r.imp)||1))); return r; }).filter(r=>r.event && (!/^\d{4}-\d{2}-\d{2}$/.test(r.d) || r.d>=weekStart));
   const cs = [...new Set(L.map(r=>r.c).filter(Boolean))];
   if(ntFil.cal!=='all' && ntFil.cal!=='imp' && !cs.includes(ntFil.cal)) ntFil.cal = 'all';
   $('calFil').innerHTML = [['all','הכול'], ...cs.map(c=>[c, `${FLAGS[c]||''} ${CNAME[c]||c}`.trim()]), ['imp','●●● חשוב בלבד']].map(([k,l])=>`<button data-cf="${esc(k)}" class="${ntFil.cal===k?'on':''}">${esc(l)}</button>`).join('');
