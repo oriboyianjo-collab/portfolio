@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=145">
+<link rel="stylesheet" href="chart-tools.css?v=146">
 
 </head>
 <body>
@@ -3585,7 +3585,29 @@ function drawSrch(){ const q = $('srchQ').value.trim(), el = $('srchRes'), R = s
       `<div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : ''}</b><span class="wl-p v num">${x ? x.price.toFixed(f.dp) : ''}</span></div></div>`; };
   const fxH = FXH.length ? `<div class="slbl">מט״ח</div><div class="srows">${FXH.map(fxRow).join('')}</div>` : '';
   if(FXH.length && !FXH.every(f=>iq(fxInst(f)))) instQuotes(FXH.map(fxInst)).then(()=>{ if($('srchQ').value.trim()===q) drawSrch(); }).catch(()=>{});
-  el.innerHTML = fxH + (srchItems.length ? `<div class="slbl">${FXH.length ? 'ניירות ערך' : 'תוצאות · לחיצה פותחת גרף'}</div><div class="srows">${srchItems.map(srchRowHtml).join('')}</div>` : FXH.length ? '' : `<div class="news-empty">${srchTimer ? 'מחפש…' : `לא נמצאו תוצאות עבור „${esc(q)}”`}</div>`); }
+  el.innerHTML = fxH + (srchItems.length ? `<div class="slbl">${FXH.length ? 'ניירות ערך' : 'תוצאות · לחיצה פותחת גרף'}</div><div class="srows">${srchItems.map(srchRowHtml).join('')}</div>` : FXH.length ? '' : `<div class="news-empty">${srchTimer ? 'מחפש…' : `לא נמצאו תוצאות עבור „${esc(q)}”`}</div>`); drawReferenceSearch(q, el); }
+// Open reference discovery. Reference identities never enter quote, chart, watchlist or trade paths.
+let refCatalog = null, refLoading = null, refFailed = false, refMatches = [];
+function referenceLoad(){
+  if(refCatalog) return Promise.resolve(refCatalog);
+  if(!refLoading){ refFailed = false; refLoading = fetch('global-reference.json?v=146').then(r=>{if(!r.ok) throw new Error('reference'); return r.json();}).then(j=>{if(!Array.isArray(j.items)) throw new Error('reference'); refCatalog=j; return j;}).catch(()=>{refFailed=true; return null;}).finally(()=>{refLoading=null;}); }
+  return refLoading;
+}
+const refNormalize = s=>String(s||'').normalize('NFKC').toLocaleLowerCase().trim();
+function drawReferenceSearch(q, el){
+ const k=refNormalize(q); if(k.length<2){el.insertAdjacentHTML('beforeend','<div class="news-empty"><small>לחיפוש במאגר העולמי, הקלידו לפחות שני תווים.</small></div>');return;}
+ const heading='<div class="slbl">מאגר עולמי · מידע לזיהוי בלבד</div>';
+ if(!refCatalog){el.insertAdjacentHTML('beforeend',heading+'<div class="news-empty">'+(refFailed?'המאגר העולמי אינו זמין כרגע. החיפוש הרגיל ממשיך לפעול.':'טוען מאגר עולמי…')+'</div>'); if(!refFailed) referenceLoad().then(()=>{if($('srchQ').value.trim()===q && !$('srchOv').hidden) drawSrch();});return;}
+ const all=refCatalog.items.filter(r=>[r.sym,r.name,r.ex].some(v=>refNormalize(v).includes(k))).sort((a,b)=>Number(refNormalize(b.sym)===k)-Number(refNormalize(a.sym)===k)||a.name.localeCompare(b.name)); refMatches=all.slice(0,30);
+ el.insertAdjacentHTML('beforeend',heading+'<div class="news-empty" style="text-align:right;padding:8px 12px"><small>'+refCatalog.listings.toLocaleString('he-IL')+' רישומים · '+refCatalog.exchanges+' ישויות בורסה · Wikidata / CC0 · צילום מצב 01.11.2026<br>כיסוי חלקי. ייתכנו רישומים ישנים או שגויים. אין אימות שהנייר נסחר כיום. אין כאן מחיר או גרף.</small></div>'+(refMatches.length?'<div class="srows">'+refMatches.map((r,i)=>'<button type="button" class="ref-row" data-ref="'+i+'" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 12px;text-align:inherit;color:inherit;background:transparent;border:0;border-bottom:1px solid var(--line);font:inherit"><div style="flex:1;min-width:0"><div class="psym"><span class="ltr">'+esc(r.sym)+'</span></div><div class="pname" style="white-space:normal;overflow-wrap:anywhere">'+esc(r.name)+'</div><div class="pname" style="white-space:normal;overflow-wrap:anywhere">'+esc(r.ex)+(r.ambiguous?' · זהות דורשת אימות':'')+'</div></div><div style="flex:0 0 100px;font-size:12px;display:flex;flex-direction:column;gap:5px;text-align:left"><span>מידע בלבד</span><small>ללא מחיר / גרף</small></div></button>').join('')+'</div>'+(all.length>30?'<div class="news-empty">מוצגות 30 מתוך '+all.length+' תוצאות. הוסיפו שם חברה או בורסה לצמצום החיפוש.</div>':''):'<div class="news-empty">לא נמצאו רישומים במאגר החלקי. אין בכך קביעה שהנייר אינו קיים.</div>'));
+}
+function openReferenceSheet(r){
+ // Preserve entity + exchange + ticker as separate identity components. No provider-symbol guess.
+ srchRet=$('srchQ').value; srchClose();
+ openSheet('<button class="btn sm" data-close aria-label="סגירה" style="float:left">✕</button><div style="padding:12px 4px"><div class="muted">מאגר עולמי · זיהוי בלבד</div><h2>'+esc(r.name)+'</h2><h3 class="ltr">'+esc(r.sym)+'</h3><p>'+esc(r.ex)+'</p>'+(r.ambiguous?'<p class="muted">במקור נמצאו כמה ישויות עם אותו סימול ובורסה. זהות הרישום דורשת אימות.</p>':'')+'<div class="card" style="padding:14px"><b>אין מחיר וגרף זמינים לרישום הזה באפליקציה.</b><p>לא בוצע שיוך לספק מחירים. הרישום אינו זמין להוספה לתיק או לרשימת מעקב מתוך המאגר הזה.</p></div><p class="muted">מקור: Wikidata, רישיון CC0. צילום מצב 01.11.2026. זהו רישום ממאגר פתוח, לא אישור לסיווג הנייר או למסחר פעיל כיום. הכיסוי חלקי והמידע עשוי להיות ישן או שגוי.</p><p><a href="'+esc(r.url)+'" target="_blank" rel="noopener noreferrer">רשומת המקור ב-Wikidata ↗</a></p><p><a href="'+esc(r.exchangeUrl)+'" target="_blank" rel="noopener noreferrer">רשומת הבורסה ↗</a></p></div>');
+}
+$('srchRes').addEventListener('click',e=>{const b=e.target.closest('[data-ref]');if(b&&refMatches[+b.dataset.ref]) openReferenceSheet(refMatches[+b.dataset.ref]);});
+
 let srchFx = [];
 function srchOpen(){ const o = $('srchOv'); if(!o.hidden) return; o.hidden = false; document.body.classList.add('srch-on'); $('navSearch').classList.add('on'); $('srchQ').value = ''; srchItems = []; drawSrch();
   navPush({t:'srch'}); setTimeout(()=>$('srchQ').focus(), 30); const R = srchRecent(); if(R.length) instQuotes(R.map(srchInst)).then(()=>{ if(!$('srchQ').value.trim() && !o.hidden) drawSrch(); }).catch(()=>{}); }
@@ -5141,6 +5163,7 @@ if(/^https?:$/.test(location.protocol)){
   document.addEventListener('focusout', ()=>setTimeout(()=>{ if(!txt(document.activeElement)) { set(false); shrunk = false; } }, 80));
   document.addEventListener('pointerdown', e=>{ if(on && !shrunk && txt(document.activeElement) && e.target===document.activeElement) set(true); }, true);   // re-tap after Android back: keyboard returns
 })();
+openReferenceSheet = navSheet('reference', openReferenceSheet, r=>r.id+':'+r.eid+':'+r.sym);
 openInstSheet = navSheet('inst', openInstSheet, it=>it.k); openPosition = navSheet('pos', openPosition, sym=>sym); openTxForm = navSheet('tx', openTxForm);
 openTaxAcct = navSheet('taxacct', openTaxAcct); openShareBonus = navSheet('bonus', openShareBonus); openFracZero = navSheet('frac', openFracZero);
 openDeleteAll = navSheet('delall', openDeleteAll); openBankPreview = navSheet('bank', openBankPreview);
