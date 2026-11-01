@@ -70,3 +70,6 @@
 .xh-meas{position:absolute;inset:0;pointer-events:none;z-index:9;overflow:hidden;direction:ltr;--mc:#16a34a}.xh-meas.dn{--mc:#dc2626}.xh-meas[hidden]{display:none}
 .xh-meas .m-sh{position:absolute;top:0;bottom:0;background:var(--mc);opacity:.16}.xh-meas .m-l{position:absolute;top:0;bottom:0;width:0;border-left:1.5px solid var(--mc);transform:translateX(-.75px)}
 .xh-meas .m-lab{position:absolute;top:6px;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 9px;border-radius:8px;background:var(--mc);color:#fff;font:700 13px/1.2 system-ui;white-space:nowrap;box-shadow:0 2px 8px #0005}.xh-meas .m-lab small{font:600 10px/1.2 system-ui;opacity:.92}
+
+/* v158: while two fingers measure, nothing may scroll. */
+html.meas-lock,html.meas-lock body,html.meas-lock .sheet,html.meas-lock #sheetBody,html.meas-lock .sheet-body{overflow:hidden!important;touch-action:none!important;overscroll-behavior:none}

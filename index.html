@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=157">
+<link rel="stylesheet" href="chart-tools.css?v=158">
 
 </head>
 <body>
@@ -885,8 +885,8 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 
 <nav class="bottom"><div class="in">
   <button data-tab="news"><span class="i">📰</span>חדשות</button>
-  <button data-tab="market"><span class="i">🌐</span>שוק</button>
   <button data-tab="watch"><span class="i">👀</span><span class="nl">רשימת מעקב</span></button>
+  <button data-tab="market"><span class="i">🌐</span>שוק</button>
   <button class="nav-srch" id="navSearch" aria-label="חיפוש נייר" title="חיפוש נייר"><span><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></span></button>
   <button data-tab="portfolio" class="on"><span class="i">💼</span>תיק</button>
   <button data-tab="perf"><span class="i">📊</span>ביצועים</button>
@@ -2337,16 +2337,17 @@ function xhAttach(el, c){ el.classList.add('xh-ok'); el.classList.remove('zoomed
   const rm = c.remove.bind(c); c.remove = ()=>{ if(el.__xh===X){ el.__xh = null; el.classList.remove('xh'); if(dot)dot.hidden=true; } X.dead = true; return rm(); };
   const ao = c.applyOptions.bind(c); c.applyOptions = o=>ao(Object.assign({}, o, o && ('handleScroll' in o || 'handleScale' in o) ? {handleScroll:false, handleScale:false} : {}));
   if(el.__xhBound) return c; el.__xhBound = true;
-  let tm = 0, on = false, x0 = 0, y0 = 0, lastCrossX=null, inspectionRange=null;
+  let tm = 0, on = false, x0 = 0, y0 = 0, lastCrossX=null, inspectionRange=null, M = false, measRange = null, ignoreRest = false;
+  const lockPage = v=>document.documentElement.classList.toggle('meas-lock', v);
   const cur = ()=>{ const x = el.__xh; return x && !x.dead && x.S ? x : null; };
   const at = (cx,cy)=>{ const x = cur(); if(!x) return; try{ const l0 = x.c.timeScale().coordinateToLogical(chartPoint(el,cx,cy).x); if(l0==null) return; const l = Math.round(l0);
     const d = x.S.dataByIndex(l, -1) || x.S.dataByIndex(l, 1); if(!d) return; const p = d.value!=null ? d.value : d.close; if(p!=null){ x.c.setCrosshairPosition(p, d.time, x.S); const xx=x.c.timeScale().timeToCoordinate(d.time), yy=x.S.priceToCoordinate(p); if(xx!=null&&yy!=null){dot.style.left=xx+'px';dot.style.top=yy+'px';dot.hidden=false;} } }catch(e){} };
   const clr = ()=>{dot.hidden=true;lastCrossX=null; const x = cur(); if(x) try{ x.c.clearCrosshairPosition(); }catch(e){} };
-  const stop = ()=>{ clearTimeout(tm); tm = 0; if(meas) meas.hidden = true; if(on){ on = false; inspectionRange=null; el.classList.remove('xh'); clr(); } };
+  const stop = ()=>{ clearTimeout(tm); tm = 0; if(meas) meas.hidden = true; if(M){ M = false; measRange = null; lockPage(false); } if(on){ on = false; inspectionRange=null; el.classList.remove('xh'); clr(); } };
   // v85: zoom / pan (own handling, so the page still scrolls): two fingers = pinch to zoom + drag to pan; once zoomed in, one finger
   // dragged sideways pans too (a zoomed chart also stops the tab swipe); double-tap = back to the full range
-  // v157: two fingers that hold their spread = range measurement (shaded span + change label); a spread change beyond
-  // max(18px, 12%) turns the same gesture into pinch-zoom. Hidden amounts: % only.
+  // v158: two fingers (placed together or one after the other) = range measurement (shaded span + change label) and nothing else moves.
+  // Pinch-zoom is gone from the charts on purpose. Hidden amounts: % only.
   let meas = null;
   const fD = (t,tv)=>{ if(typeof t==='string'){ const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(t); return m?m[3]+'.'+m[2]+'.'+m[1].slice(2):t; } if(t&&typeof t==='object'&&t.year) return String(t.day).padStart(2,'0')+'.'+String(t.month).padStart(2,'0')+'.'+String(t.year).slice(2);
     const d=new Date(t*1000), p=n=>String(n).padStart(2,'0'), ds=p(d.getUTCDate())+'.'+p(d.getUTCMonth()+1)+'.'+String(d.getUTCFullYear()).slice(2); return tv && (d.getUTCHours()||d.getUTCMinutes()) ? ds+' '+p(d.getUTCHours())+':'+p(d.getUTCMinutes()) : ds; };
@@ -2374,22 +2375,30 @@ function xhAttach(el, c){ el.classList.add('xh-ok'); el.classList.remove('zoomed
     from = Math.max(-0.3, Math.min(from, n - 0.7 - w)); try{ x.c.timeScale().setVisibleLogicalRange({from, to: from + w}); }catch(e){}
     el.classList.toggle('zoomed', w < n - 1.2); };
   const pts = e=>{ const a = e.touches[0], b = e.touches[1]; return {mx:chartPoint(el,(a.clientX+b.clientX)/2,(a.clientY+b.clientY)/2).x, d:Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY) || 1}; };
-  el.addEventListener('touchstart', e=>{ if(on){e.preventDefault();e.stopPropagation();G=null;return;} stop(); if(e.target.closest('button,input,select,.ct-fib')||el.classList.contains('ct-pick'))return; const x = cur();
-    if(e.touches.length===2 && x){ const r = vis(x), q = pts(e); if(r){ e.preventDefault(); G = {k:2, r0:r, d0:q.d, m0:q.mx, u:lpx(x), mode:'meas'}; measure(e); } return; }
+  el.addEventListener('touchstart', e=>{
+    if(e.target.closest('button,input,select,.ct-fib')||el.classList.contains('ct-pick')) { if(!on) stop(); return; }
+    const x = cur();
+    if(e.touches.length>=2){ if(!x) return; e.preventDefault(); if(!M){ M = true; clearTimeout(tm); tm = 0; G = null; measRange = vis(x); lockPage(true); if(on) clr(); } measure(e); return; }   // v158: a second finger (together with or after the first) = measurement; the chart and page are frozen
+    if(on){e.preventDefault();e.stopPropagation();G=null;return;} stop();
     G = null; if(e.touches.length!==1) return; const t = e.touches[0]; {const p=chartPoint(el,t.clientX,t.clientY);x0=p.x;y0=p.y;}let holdX=t.clientX,holdY=t.clientY;
     const now = Date.now(); if(now - lastTap < 300 && x && el.classList.contains('zoomed')){ try{ x.c.timeScale().fitContent(); }catch(_){} el.classList.remove('zoomed'); lastTap = 0; return; } lastTap = now;
     tm = setTimeout(()=>{ tm = 0; if(!cur() || G) return; on = true; G=null; inspectionRange=vis(cur()); el.classList.add('xh'); try{ navigator.vibrate && navigator.vibrate(8); }catch(_){} at(holdX,holdY); }, XH_MS); }, {passive:false});
   el.addEventListener('touchmove', e=>{ const x = cur(), t = e.touches[0]; if(!t) return;
+    if(M){ if(e.cancelable) e.preventDefault(); if(e.touches.length>=2) measure(e); if(x&&measRange){ const r = vis(x); if(r&&(Math.abs(r.from-measRange.from)>1e-7||Math.abs(r.to-measRange.to)>1e-7)) x.c.timeScale().setVisibleLogicalRange(measRange); } return; }
+    if(ignoreRest) return;
     if(on){e.preventDefault();e.stopPropagation();G=null;if(x&&inspectionRange){const r=vis(x);if(r&&(Math.abs(r.from-inspectionRange.from)>1e-7||Math.abs(r.to-inspectionRange.to)>1e-7))x.c.timeScale().setVisibleLogicalRange(inspectionRange);}if(lastCrossX==null||Math.abs(t.clientX-lastCrossX)>=5){lastCrossX=t.clientX;at(t.clientX,t.clientY)}return;}
-    if(G && G.k===2 && e.touches.length===2 && x){ e.preventDefault(); const q = pts(e);
-      if(G.mode==='meas'){ if(Math.abs(q.d-G.d0) <= Math.max(18, G.d0*.12)){ measure(e); return; } G.mode = 'zoom'; hideMeas(); G.r0 = vis(x) || G.r0; G.d0 = q.d; G.m0 = q.mx; G.u = lpx(x); }   // spread changed: this is a pinch, restart its basis here so there is no jump
-      const r = G.r0, w0 = r.to - r.from, w = w0*Math.pow(G.d0/q.d,.75), a = r.from + G.m0*G.u;   // logical point under the fingers at start
-      const f = a - (a - r.from)*w/w0 - (q.mx - G.m0)*(w/el.clientWidth)*.75; setR(x, f, f + w); return; }
     const p=chartPoint(el,t.clientX,t.clientY),dx=p.x-x0,dy=p.y-y0;
     if(G && G.k===1){ e.preventDefault(); const r = G.r0; setR(x, r.from - dx*G.u*.75, r.to - dx*G.u*.75); return; }
     if(Math.abs(dx) > 12 || Math.abs(dy) > 12){ clearTimeout(tm); tm = 0; lastTap = 0;
       if(x && el.classList.contains('zoomed') && Math.abs(dx) > Math.abs(dy) && e.touches.length===1){ const r = vis(x); if(r){ e.preventDefault(); G = {k:1, r0:r, u:lpx(x)}; x0=p.x; } } } }, {passive:false});
-  const end = e=>{ if(!e.touches || e.touches.length<2) hideMeas(); if(on && e.touches?.length){G=null;return;} if(G && G.k===2 && e.touches && e.touches.length) { G = null; return; } G = null; stop(); };
+  const end = e=>{ const n = e.touches ? e.touches.length : 0;
+    if(M){ if(n>=2){ measure(e); return; }   // still two or more fingers
+      M = false; measRange = null; hideMeas(); lockPage(false); G = null;
+      if(n===1 && on){ const t = e.touches[0]; lastCrossX = null; at(t.clientX, t.clientY); return; }   // crosshair finger remains: back to the crosshair
+      if(n===1){ ignoreRest = true; return; }   // plain touch: the measurement just ends; the remaining finger does nothing
+      stop(); return; }
+    if(n===0) ignoreRest = false;
+    if(on && n){G=null;return;} G = null; stop(); };
   el.addEventListener('touchend', end, {passive:true}); el.addEventListener('touchcancel', end, {passive:true});
   el.addEventListener('contextmenu', e=>{ if(on || tm) e.preventDefault(); });
   el.addEventListener('pointermove', e=>{ if(e.pointerType==='mouse') at(e.clientX,e.clientY); }); el.addEventListener('pointerleave', e=>{ if(e.pointerType==='mouse') clr(); });
