@@ -794,13 +794,13 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pchg .chg-d{color:var(--muted);font-style:normal;opacity:.7}
 .pchg .chg-a{font-weight:600}
 @media (max-width:340px){.pchg{font-size:.72rem}.pchg .chg{padding-inline:7px}}
-/* v117: list groups flow left-to-right; each Hebrew tab stays RTL. Stored list order is unchanged. */
+/* v118: groups flow left-to-right, menu stays at the right; saved list order is unchanged. */
 /* ---- v112: watchlists as top tabs (flat, blue underline on active) + swipe between lists ---- */
 #tab-watch{overflow-x:clip}   /* v113: transition transforms must not widen the page's horizontal scroll area - in RTL that scrolled the whole shell (header/nav) sideways */
 #tab-watch .wl-tools{display:none}
 #wlLists.wl-sw-l{animation:swl .22s ease-out}#wlLists.wl-sw-r{animation:swr .22s ease-out}   /* v113: a list switch animates the list body only - the strip glides on its own, header/nav stay put */
 #wlLists.wl-pending{pointer-events:none}   /* v114: while a glide-up swap is staged the old rows stay visible but inert - the tabs already point at the new list, so row actions must not fire on the old one */
-#tab-watch .wltabs-w{display:flex;align-items:stretch;border-bottom:1px solid var(--border);margin:2px 0 10px}
+#tab-watch .wltabs-w{display:flex;direction:ltr;align-items:stretch;border-bottom:1px solid var(--border);margin:2px 0 10px}
 #tab-watch .wltabs{display:flex;direction:ltr;gap:2px;overflow-x:auto;flex:1 1 auto;min-width:0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 #tab-watch .wltabs::-webkit-scrollbar{display:none}
 #tab-watch .wltabs button{direction:rtl;flex:0 0 auto;border:0;background:none;color:var(--muted);font:inherit;font-size:.92rem;font-weight:700;padding:9px 10px 8px;cursor:pointer;white-space:nowrap;border-bottom:2.5px solid transparent;margin-bottom:-1px;display:inline-flex;align-items:baseline;gap:5px}
