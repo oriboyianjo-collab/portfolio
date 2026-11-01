@@ -65,3 +65,8 @@
 
 /* v150: native popups replaced by choices inside the rotating chart surface. */
 .ct-time select[hidden]{display:none!important}.ct-time .ct-choice{margin:0;min-width:78px;max-width:180px;white-space:nowrap;text-align:center}.ct-choice-panel{position:absolute;z-index:40;inset:94px 12px auto;background:var(--bg,#fff);color:var(--text);border:1px solid var(--border);border-radius:12px;padding:10px;box-shadow:0 8px 28px #0006;max-height:calc(100% - 110px);overflow:auto;box-sizing:border-box}.ct-choice-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.ct-choice-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:7px}.ct-choice-options button{min-height:42px;white-space:normal}.ct-work.ct-upright .ct-choice-panel{top:128px;max-height:calc(100% - 144px)}
+
+/* v157: two-finger range measurement (shade + two lines + change label). Never intercepts touches. */
+.xh-meas{position:absolute;inset:0;pointer-events:none;z-index:9;overflow:hidden;direction:ltr;--mc:#16a34a}.xh-meas.dn{--mc:#dc2626}.xh-meas[hidden]{display:none}
+.xh-meas .m-sh{position:absolute;top:0;bottom:0;background:var(--mc);opacity:.16}.xh-meas .m-l{position:absolute;top:0;bottom:0;width:0;border-left:1.5px solid var(--mc);transform:translateX(-.75px)}
+.xh-meas .m-lab{position:absolute;top:6px;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 9px;border-radius:8px;background:var(--mc);color:#fff;font:700 13px/1.2 system-ui;white-space:nowrap;box-shadow:0 2px 8px #0005}.xh-meas .m-lab small{font:600 10px/1.2 system-ui;opacity:.92}

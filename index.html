@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=156">
+<link rel="stylesheet" href="chart-tools.css?v=157">
 
 </head>
 <body>
@@ -920,7 +920,7 @@ function rsi(a,n){let g=0,l=0;return a.map((v,i)=>{if(!i)return null;let d=v-a[i
 function macd(a){let f=ema(a,12),s=ema(a,26),m=a.map((_,i)=>f[i]!=null&&s[i]!=null?f[i]-s[i]:null),start=m.findIndex(x=>x!=null),sig=Array(a.length).fill(null);if(start>=0)ema(m.slice(start),9).forEach((v,i)=>sig[i+start]=v);return {m,s:sig,h:m.map((v,i)=>v!=null&&sig[i]!=null?v-sig[i]:null)}}
 function profile(rows,n=24){let bars=rows.filter(d=>valid(d.volume)&&d.volume>=0),total=bars.reduce((s,d)=>s+d.volume,0);if(!total)return null;let lo=Math.min(...bars.map(d=>d.low??val(d))),hi=Math.max(...bars.map(d=>d.high??val(d)));if(!(hi>lo))return null;let step=(hi-lo)/n,bins=Array(n).fill(0);bars.forEach(d=>{let a=d.low??val(d),b=d.high??val(d);if(b<=a){bins[Math.min(n-1,Math.max(0,Math.floor((a-lo)/step)))]+=d.volume;return}for(let i=0;i<n;i++){let overlap=Math.max(0,Math.min(b,lo+(i+1)*step)-Math.max(a,lo+i*step));bins[i]+=d.volume*overlap/(b-a)}});return {lo,hi,step,bins,total}}
 function title(el){if(el.id==='miniChart')return 'תשואת התיק';if(el.id==='perfChart')return 'ביצועים והשוואות';if(el.id==='isChart')return typeof instSheet!=='undefined'&&instSheet?instSheet.it.n+' · '+(instSheet.it.sym||instSheet.it.q):'גרף נייר';if(el.id==='posChartEl')return typeof sheetSym!=='undefined'?sheetSym:'גרף פוזיציה';let p=el.closest('[data-rch]');return p?p.dataset.rch:'גרף'}
-function snap(el){let X=el.__xh;if(!X||X.dead)return null;let items=X.ctSeries||[];let series=items.map((s,i)=>{try{let data=s.data().filter(d=>valid(val(d)));return {type:s.seriesType(),data,name:s.__ctName||'',markers:typeof s.markers==='function'?s.markers():[],color:s.options().color||s.options().lineColor||colors[i%colors.length]}}catch(e){return null}}).filter(s=>s&&s.data.length);if(!series.length)return null;return {title:title(el),series,volume:X.ctVolume||[],source:X.ctSource||'',context:X.ctContext||null,coverage:el.dataset.coverage||'',pct:el.id==='miniChart'||el.id==='perfChart'}}
+function snap(el){let X=el.__xh;if(!X||X.dead)return null;let items=X.ctSeries||[];let series=items.map((s,i)=>{try{let data=s.data().filter(d=>valid(val(d)));return {type:s.seriesType(),data,name:s.__ctName||'',markers:typeof s.markers==='function'?s.markers():[],color:s.options().color||s.options().lineColor||colors[i%colors.length]}}catch(e){return null}}).filter(s=>s&&s.data.length);if(!series.length)return null;return {title:title(el),series,volume:X.ctVolume||[],source:X.ctSource||'',context:X.ctContext||null,coverage:el.dataset.coverage||'',pct:el.id==='miniChart'||el.id==='perfChart',mask:!!X.mask}}
 function install(el,c){let X=el.__xh;if(!X)return;X.ctSeries=[];
  ['addLineSeries','addAreaSeries','addCandlestickSeries','addBaselineSeries','addBarSeries','addHistogramSeries'].forEach(k=>{let f=c[k]&&c[k].bind(c);if(f)c[k]=(...args)=>{let s=f(...args);X.ctSeries.push(s);return s}});
  let r=c.removeSeries.bind(c);c.removeSeries=s=>{X.ctSeries=X.ctSeries.filter(x=>x!==s);return r(s)};
@@ -934,7 +934,7 @@ function open(model,keep){if(active&&!keep)close();if(keep){keep.dead=true;keep.
  const root=document.createElement('section');root.className='ct-work';root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label','גרף מוגדל וכלי ניתוח');
  root.innerHTML='<div class="ct-head"><strong></strong><button data-ct="rotate">↻ רוחב / אורך</button><button data-ct="autoscale">התאמת מחיר</button><button data-ct="fit">איפוס תצוגה</button><button data-ct="close" aria-label="סגירת גרף מוגדל">✕ סגירה</button></div><div class="ct-time" aria-label="טווח ואינטרוול"></div><div class="ct-settings" hidden><div class="ct-tools"></div><div class="ct-fib" hidden><label>עוגן א <input data-fa type="number" step="any"></label><label>עוגן ב <input data-fb type="number" step="any"></label><button data-ct="pick">בחרו 2 נקודות</button><button data-ct="reverse">החלפה</button><button data-ct="fibfit">התאמה לרמות</button><label>זום מחיר <input data-fzoom type="range" min="1" max="8" step="0.1" value="1" aria-label="זום ציר המחיר"></label><small>המחיר הראשון הוא 0%, השני 100%</small></div><div class="ct-levels" hidden aria-label="רמות פיבונאצ׳י ומחירים"></div><div class="ct-legend"></div><div class="ct-hint" role="status"></div></div><div class="ct-content"><div class="ct-price chart"></div><div class="ct-studies" hidden><div class="ct-pane ct-rsi" hidden><label>RSI 14 · 30 / 70</label></div><div class="ct-pane ct-macd" hidden><label>MACD 12 / 26 / 9</label></div><div class="ct-pane ct-vol" hidden><label>Volume · נפח מסחר מדווח</label></div></div></div>';
  root.querySelector('strong').textContent=model.title;let oldFocus=keep?keep.oldFocus:document.activeElement,oldOverflow=keep?keep.oldOverflow:document.body.style.overflow;const shell=keep?keep.shell:document.createElement('div');shell.className='ct-shell';if(keep)keep.root.replaceWith(root);else{shell.appendChild(root);document.body.appendChild(shell)}document.body.style.overflow='hidden';let A=active={root,shell,model,charts:[],enabled:new Set(),extra:[],fibs:[],oldFocus,oldOverflow,range:null,picking:[],dead:false};if(!keep&&model.context&&model.context.range!=='YTD'){queueMicrotask(()=>{if(A.dead)return;const rr=root.querySelector('[data-ct-range]');rr.value='YTD';rr.dispatchEvent(new Event('change'))})}else if(!keep&&!model.context&&!model.localRange){queueMicrotask(()=>{if(A.dead)return;const rr=root.querySelector('[data-ct-range]');rr.value='YTD';rr.dispatchEvent(new Event('change'))})}
- let T=chartTheme();function chart(el){let c=LightweightCharts.createChart(el,{autoSize:true,layout:{background:{color:T.bg},textColor:T.text,fontSize:11},grid:{vertLines:{visible:false},horzLines:{color:T.grid}},rightPriceScale:{borderVisible:false},localization:{priceFormatter:model.pct?(v=>v.toFixed(2)+'%'):undefined},timeScale:{minBarSpacing:.001,rightOffset:0,borderVisible:false,timeVisible:model.context?ivIntra(model.context.iv):typeof model.series[0].data[0].time==='number'},handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},handleScale:{mouseWheel:true,pinch:true,axisPressedMouseMove:true}});xhAttach(el,c);A.charts.push(c);return c}
+ let T=chartTheme();function chart(el){let c=LightweightCharts.createChart(el,{autoSize:true,layout:{background:{color:T.bg},textColor:T.text,fontSize:11},grid:{vertLines:{visible:false},horzLines:{color:T.grid}},rightPriceScale:{borderVisible:false},localization:{priceFormatter:model.pct?(v=>v.toFixed(2)+'%'):undefined},timeScale:{minBarSpacing:.001,rightOffset:0,borderVisible:false,timeVisible:model.context?ivIntra(model.context.iv):typeof model.series[0].data[0].time==='number'},handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},handleScale:{mouseWheel:true,pinch:true,axisPressedMouseMove:true}});xhAttach(el,c);if(el.__xh){el.__xh.pct=!!model.pct;el.__xh.mask=!!model.mask}A.charts.push(c);return c}
  let priceEl=root.querySelector('.ct-price'),c=chart(priceEl);A.c=c;A.priceEl=priceEl;
  model.series.forEach((s,i)=>{let candle=s.type==='Candlestick'||s.type==='Bar',S=candle?c.addCandlestickSeries({upColor:T.up,downColor:T.down,borderVisible:false,wickUpColor:T.up,wickDownColor:T.down}):c.addLineSeries({color:s.color||colors[i%colors.length],lineWidth:i?2:3,priceLineVisible:false,lastValueVisible:i===0});S.setData(s.data);if(s.markers?.length)S.setMarkers(s.markers);if(i===0){A.main=S;if(model.context?.it.sym)tradeMarkers(S,model.context.it.sym,model.context.iv)}});
  const data=model.series[0].data,a=data.map(val),toData=arr=>data.map((d,i)=>arr[i]!=null&&valid(arr[i])?{time:d.time,value:arr[i]}:{time:d.time});A.data=data;A.values=a;
@@ -2328,7 +2328,7 @@ mqDark.addEventListener && mqDark.addEventListener('change', ()=>{ if(themePref(
 // v84: every chart lets the page scroll – the library never sees the finger (pointer-events off, handleScroll/Scale off).
 // (v85: zoom / pan restored with own gestures – see below) Holding still ~1s shows the crosshair (price + date) at the finger; dragging then moves it and the page doesn't scroll; lifting hides it.
 // Mouse: hover shows it as before.
-const XH_MS = 1150;
+const XH_MS = 200;
 function xhAttach(el, c){ el.classList.add('xh-ok'); el.classList.remove('zoomed'); c.applyOptions({handleScroll:false, handleScale:false});
   const X = {c, S:null}; el.__xh = X;
   let dot=el.querySelector(':scope > .xh-dot'); if(!dot){dot=document.createElement('i');dot.className='xh-dot';dot.hidden=true;el.appendChild(dot)}                       // listeners are bound once per element; a redrawn chart on it replaces X
@@ -2342,9 +2342,30 @@ function xhAttach(el, c){ el.classList.add('xh-ok'); el.classList.remove('zoomed
   const at = (cx,cy)=>{ const x = cur(); if(!x) return; try{ const l0 = x.c.timeScale().coordinateToLogical(chartPoint(el,cx,cy).x); if(l0==null) return; const l = Math.round(l0);
     const d = x.S.dataByIndex(l, -1) || x.S.dataByIndex(l, 1); if(!d) return; const p = d.value!=null ? d.value : d.close; if(p!=null){ x.c.setCrosshairPosition(p, d.time, x.S); const xx=x.c.timeScale().timeToCoordinate(d.time), yy=x.S.priceToCoordinate(p); if(xx!=null&&yy!=null){dot.style.left=xx+'px';dot.style.top=yy+'px';dot.hidden=false;} } }catch(e){} };
   const clr = ()=>{dot.hidden=true;lastCrossX=null; const x = cur(); if(x) try{ x.c.clearCrosshairPosition(); }catch(e){} };
-  const stop = ()=>{ clearTimeout(tm); tm = 0; if(on){ on = false; inspectionRange=null; el.classList.remove('xh'); clr(); } };
+  const stop = ()=>{ clearTimeout(tm); tm = 0; if(meas) meas.hidden = true; if(on){ on = false; inspectionRange=null; el.classList.remove('xh'); clr(); } };
   // v85: zoom / pan (own handling, so the page still scrolls): two fingers = pinch to zoom + drag to pan; once zoomed in, one finger
   // dragged sideways pans too (a zoomed chart also stops the tab swipe); double-tap = back to the full range
+  // v157: two fingers that hold their spread = range measurement (shaded span + change label); a spread change beyond
+  // max(18px, 12%) turns the same gesture into pinch-zoom. Hidden amounts: % only.
+  let meas = null;
+  const fD = (t,tv)=>{ if(typeof t==='string'){ const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(t); return m?m[3]+'.'+m[2]+'.'+m[1].slice(2):t; } if(t&&typeof t==='object'&&t.year) return String(t.day).padStart(2,'0')+'.'+String(t.month).padStart(2,'0')+'.'+String(t.year).slice(2);
+    const d=new Date(t*1000), p=n=>String(n).padStart(2,'0'), ds=p(d.getUTCDate())+'.'+p(d.getUTCMonth()+1)+'.'+String(d.getUTCFullYear()).slice(2); return tv && (d.getUTCHours()||d.getUTCMinutes()) ? ds+' '+p(d.getUTCHours())+':'+p(d.getUTCMinutes()) : ds; };
+  const sg = (v,dec)=>(v>=0?'+':'−')+Math.abs(v).toFixed(dec);
+  const hideMeas = ()=>{ if(meas) meas.hidden = true; };
+  const measure = e=>{ const x = cur(); if(!x || e.touches.length<2) return;
+    const pa = chartPoint(el,e.touches[0].clientX,e.touches[0].clientY).x, pb = chartPoint(el,e.touches[1].clientX,e.touches[1].clientY).x, ts = x.c.timeScale();
+    const pick = px=>{ const l0 = ts.coordinateToLogical(px); if(l0==null) return null; const l = Math.round(l0), d = x.S.dataByIndex(l,-1) || x.S.dataByIndex(l,1); if(!d) return null; const v = d.value!=null ? d.value : d.close; if(v==null||!isFinite(v)) return null; const cx = ts.timeToCoordinate(d.time); return {t:d.time, v, x:cx==null?px:cx}; };
+    let A = pick(Math.min(pa,pb)), B = pick(Math.max(pa,pb)); if(!A||!B){ hideMeas(); return; }
+    if(!meas || !meas.isConnected){ meas = document.createElement('div'); meas.className = 'xh-meas'; meas.innerHTML = '<i class="m-sh"></i><i class="m-l m-l1"></i><i class="m-l m-l2"></i><b class="m-lab"></b>'; el.appendChild(meas); }
+    let tv = false; try{ tv = !!x.c.options().timeScale.timeVisible; }catch(_){}
+    const up = B.v >= A.v, mask = !!x.mask || hidden(), pctMode = !!x.pct; let main, sub = '';
+    if(pctMode){ const r = (1+B.v/100)/(1+A.v/100)-1; main = isFinite(r) ? sg(r*100,2)+'%' : '—'; sub = mask ? '' : sg(B.v-A.v,2)+' נק׳'; }
+    else { main = A.v>0 ? sg((B.v/A.v-1)*100,2)+'%' : '—'; if(!mask){ let f; try{ f = x.S.priceFormatter().format(Math.abs(B.v-A.v)); }catch(_){ f = Math.abs(B.v-A.v).toFixed(2); } sub = (B.v>=A.v?'+':'−')+f; } }
+    meas.hidden = false; meas.classList.toggle('dn', !up);
+    const W = el.clientWidth, sh = meas.children[0], l1 = meas.children[1], l2 = meas.children[2], lab = meas.children[3];
+    sh.style.left = A.x+'px'; sh.style.width = Math.max(1,B.x-A.x)+'px'; l1.style.left = A.x+'px'; l2.style.left = B.x+'px';
+    lab.innerHTML = '<span>'+main+(sub?' · '+sub:'')+'</span><small>'+fD(A.t,tv)+' → '+fD(B.t,tv)+'</small>';
+    const lw = lab.offsetWidth; lab.style.left = Math.max(4, Math.min(W-lw-4, (A.x+B.x)/2-lw/2))+'px'; };
   let G = null, lastTap = 0;
   const vis = x=>{ try{ return x.c.timeScale().getVisibleLogicalRange(); }catch(e){ return null; } };
   const nBars = x=>{ try{ return x.S.data().length; }catch(e){ return 0; } };
@@ -2354,19 +2375,21 @@ function xhAttach(el, c){ el.classList.add('xh-ok'); el.classList.remove('zoomed
     el.classList.toggle('zoomed', w < n - 1.2); };
   const pts = e=>{ const a = e.touches[0], b = e.touches[1]; return {mx:chartPoint(el,(a.clientX+b.clientX)/2,(a.clientY+b.clientY)/2).x, d:Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY) || 1}; };
   el.addEventListener('touchstart', e=>{ if(on){e.preventDefault();e.stopPropagation();G=null;return;} stop(); if(e.target.closest('button,input,select,.ct-fib')||el.classList.contains('ct-pick'))return; const x = cur();
-    if(e.touches.length===2 && x){ const r = vis(x), q = pts(e); if(r){ e.preventDefault(); G = {k:2, r0:r, d0:q.d, m0:q.mx, u:lpx(x)}; } return; }
+    if(e.touches.length===2 && x){ const r = vis(x), q = pts(e); if(r){ e.preventDefault(); G = {k:2, r0:r, d0:q.d, m0:q.mx, u:lpx(x), mode:'meas'}; measure(e); } return; }
     G = null; if(e.touches.length!==1) return; const t = e.touches[0]; {const p=chartPoint(el,t.clientX,t.clientY);x0=p.x;y0=p.y;}let holdX=t.clientX,holdY=t.clientY;
     const now = Date.now(); if(now - lastTap < 300 && x && el.classList.contains('zoomed')){ try{ x.c.timeScale().fitContent(); }catch(_){} el.classList.remove('zoomed'); lastTap = 0; return; } lastTap = now;
     tm = setTimeout(()=>{ tm = 0; if(!cur() || G) return; on = true; G=null; inspectionRange=vis(cur()); el.classList.add('xh'); try{ navigator.vibrate && navigator.vibrate(8); }catch(_){} at(holdX,holdY); }, XH_MS); }, {passive:false});
   el.addEventListener('touchmove', e=>{ const x = cur(), t = e.touches[0]; if(!t) return;
     if(on){e.preventDefault();e.stopPropagation();G=null;if(x&&inspectionRange){const r=vis(x);if(r&&(Math.abs(r.from-inspectionRange.from)>1e-7||Math.abs(r.to-inspectionRange.to)>1e-7))x.c.timeScale().setVisibleLogicalRange(inspectionRange);}if(lastCrossX==null||Math.abs(t.clientX-lastCrossX)>=5){lastCrossX=t.clientX;at(t.clientX,t.clientY)}return;}
-    if(G && G.k===2 && e.touches.length===2 && x){ e.preventDefault(); const q = pts(e), r = G.r0, w0 = r.to - r.from, w = w0*Math.pow(G.d0/q.d,.75), a = r.from + G.m0*G.u;   // logical point under the fingers at start
+    if(G && G.k===2 && e.touches.length===2 && x){ e.preventDefault(); const q = pts(e);
+      if(G.mode==='meas'){ if(Math.abs(q.d-G.d0) <= Math.max(18, G.d0*.12)){ measure(e); return; } G.mode = 'zoom'; hideMeas(); G.r0 = vis(x) || G.r0; G.d0 = q.d; G.m0 = q.mx; G.u = lpx(x); }   // spread changed: this is a pinch, restart its basis here so there is no jump
+      const r = G.r0, w0 = r.to - r.from, w = w0*Math.pow(G.d0/q.d,.75), a = r.from + G.m0*G.u;   // logical point under the fingers at start
       const f = a - (a - r.from)*w/w0 - (q.mx - G.m0)*(w/el.clientWidth)*.75; setR(x, f, f + w); return; }
     const p=chartPoint(el,t.clientX,t.clientY),dx=p.x-x0,dy=p.y-y0;
     if(G && G.k===1){ e.preventDefault(); const r = G.r0; setR(x, r.from - dx*G.u*.75, r.to - dx*G.u*.75); return; }
     if(Math.abs(dx) > 12 || Math.abs(dy) > 12){ clearTimeout(tm); tm = 0; lastTap = 0;
       if(x && el.classList.contains('zoomed') && Math.abs(dx) > Math.abs(dy) && e.touches.length===1){ const r = vis(x); if(r){ e.preventDefault(); G = {k:1, r0:r, u:lpx(x)}; x0=p.x; } } } }, {passive:false});
-  const end = e=>{ if(on && e.touches?.length){G=null;return;} if(G && G.k===2 && e.touches && e.touches.length) { G = null; return; } G = null; stop(); };
+  const end = e=>{ if(!e.touches || e.touches.length<2) hideMeas(); if(on && e.touches?.length){G=null;return;} if(G && G.k===2 && e.touches && e.touches.length) { G = null; return; } G = null; stop(); };
   el.addEventListener('touchend', end, {passive:true}); el.addEventListener('touchcancel', end, {passive:true});
   el.addEventListener('contextmenu', e=>{ if(on || tm) e.preventDefault(); });
   el.addEventListener('pointermove', e=>{ if(e.pointerType==='mouse') at(e.clientX,e.clientY); }); el.addEventListener('pointerleave', e=>{ if(e.pointerType==='mouse') clr(); });
@@ -2396,7 +2419,7 @@ function makeChart(el, pctMode, money){
   const mask = money && hidden();
   const T = chartTheme(), c = xhAttach(el, LightweightCharts.createChart(el, {autoSize:true, layout:{background:{color:T.bg}, textColor:T.text, fontFamily:'system-ui, Roboto, Arial', fontSize:11},
     grid:{vertLines:{visible:false}, horzLines:{color:T.grid}}, rightPriceScale:{borderVisible:false, visible:!mask}, timeScale:{borderVisible:false, fixLeftEdge:true, fixRightEdge:true},
-    crosshair:{mode:0}, localization:{locale:'he-IL', priceFormatter: mask ? (()=>MASK) : pctMode ? (v=>v.toFixed(1)+'%') : (v=>Math.abs(v)>=10000 ? (v/1000).toFixed(1)+'K' : v.toFixed(Math.abs(v)<10?2:0))}})); chartReg.add(c); const rm = c.remove.bind(c); c.remove = ()=>{ chartReg.delete(c); return rm(); }; if(el.id!=='perfChart') ChartTools.install(el,c); return c;   // removed charts leave the theme registry
+    crosshair:{mode:0}, localization:{locale:'he-IL', priceFormatter: mask ? (()=>MASK) : pctMode ? (v=>v.toFixed(1)+'%') : (v=>Math.abs(v)>=10000 ? (v/1000).toFixed(1)+'K' : v.toFixed(Math.abs(v)<10?2:0))}})); chartReg.add(c); const rm = c.remove.bind(c); c.remove = ()=>{ chartReg.delete(c); return rm(); }; if(el.__xh){el.__xh.pct=!!pctMode;el.__xh.mask=!!mask} if(el.id!=='perfChart') ChartTools.install(el,c); return c;   // removed charts leave the theme registry
 }
 // ---- end-of-line return labels (shared by the ביצועים tab and the main-screen chart) ----
 // One colored label per line at its last point, showing that line's % return, drawn over the right price scale. Our own HTML
@@ -5192,7 +5215,10 @@ window.__portfolio = {refresh:(...a)=>refreshPrices(...a), get state(){ return s
 // viewer); the browser history only keeps 'base' + 'top' so a back press can be caught: each press undoes the latest step, and with nothing
 // left it goes to תיק; on תיק the first press shows a toast and stays on 'base' for 2 s, so a second press leaves the app.
 // An open keyboard is closed by Android itself first (no history event).
-(()=>{ const st = history.state; if(!(st && st.g)){ history.replaceState({g:'base'}, ''); history.pushState({g:'top'}, ''); }
+// v157: Chrome's history-manipulation intervention makes the Android back button SKIP the entry before a sentinel pushed without user
+// interaction (the app then exited on one press). So the sentinel is created on the first real interaction (sticky user activation), not at load.
+(()=>{ const mk = ()=>{ const st = history.state; if(!(st && st.g)){ history.replaceState({g:'base'}, ''); history.pushState({g:'top'}, ''); } };
+  if(!(history.state && history.state.g)){ const once = ()=>{ ['click','keydown','touchend'].forEach(t=>removeEventListener(t, once, true)); mk(); }; ['click','keydown','touchend'].forEach(t=>addEventListener(t, once, {capture:true, passive:true})); }
   let armT = null;
   const rearm = ()=>{ if(!(history.state && history.state.g==='base')) return; history.pushState({g:'top'}, ''); };
   window.addEventListener('popstate', ()=>{ const s = history.state;
@@ -5200,7 +5226,7 @@ window.__portfolio = {refresh:(...a)=>refreshPrices(...a), get state(){ return s
       if(armT){ clearTimeout(armT); armT = null; history.back(); return; }   // second press within 2 s → leave
       if(navBack()){ rearm(); return; }
       if(ui.tab!=='portfolio'){ navRestoring = true; try{ setTab('portfolio'); }finally{ navRestoring = false; } rearm(); return; }
-      toast('לחץ שוב כדי לצאת'); armT = setTimeout(()=>{ armT = null; rearm(); }, 2000); return; }
+      toast('לחץ שוב אחורה ליציאה'); armT = setTimeout(()=>{ armT = null; rearm(); }, 2000); return; }
     if(armT){ clearTimeout(armT); armT = null; } });
 })();
 })();
