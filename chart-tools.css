@@ -38,3 +38,5 @@
 @media(max-width:480px) and (orientation:portrait){.ct-work.ct-upright .ct-head strong{max-width:110px}.ct-work.ct-upright .ct-time{gap:5px}.ct-work.ct-upright .ct-time label{gap:3px}.ct-work.ct-upright .ct-time select{max-width:95px}}
 
 .ct-content{position:relative}.ct-pick-status{position:absolute;z-index:15;top:6px;left:50%;transform:translateX(-50%);padding:6px 10px;background:var(--bg);border:1px solid #38bdf8;border-radius:6px;color:var(--text);font:12px system-ui;direction:rtl;pointer-events:none;white-space:nowrap}
+
+.ct-head button{font-size:11px;padding:4px 6px}.ct-head{gap:5px}.ct-head strong{font-size:12px}.ct-work.ct-upright .ct-head{flex-wrap:wrap}.ct-work.ct-upright .ct-head strong{max-width:none;flex:1 1 100%}.ct-work.ct-upright .ct-settings{top:110px;max-height:calc(100% - 126px)}
