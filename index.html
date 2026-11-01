@@ -811,7 +811,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=125">
+<link rel="stylesheet" href="chart-tools.css?v=126">
 
 </head>
 <body>
@@ -863,7 +863,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
       <div id="etfBody"></div>
       <div class="ib-src" id="etfNote"></div></div>
     <div class="card mkt-card" id="mktCard"><div class="h2row"><h2><span>שוק <button type="button" class="ib" data-ib-for="mktInfoSrc" data-ib-t="מקור הנתונים ושיטת התצוגה" aria-label="הסבר: מקור הנתונים ושיטת התצוגה" aria-haspopup="dialog">i</button></span> <small id="mktUpd"></small></h2><button class="btn btn-light btn-sm" id="mktEdit" aria-pressed="false">✏️ עריכה</button></div>
-      <div class="seg sm" id="mktRange"><button data-v="1D" class="on">יום</button><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="YTD">YTD</button><button data-v="1Y">שנה</button><button data-v="5Y">5 שנים</button></div>
+      <div class="seg sm" id="mktRange"><button data-v="1D" class="on">יום</button><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="YTD">YTD</button><button data-v="1Y">שנה</button><button data-v="5Y">5 שנים</button><button data-v="MAX">מקסימום</button></div>
       <div class="mkt-editbar" id="mktEditBar" hidden>
         <div class="ac"><input id="mktSearch" placeholder="הוספה: מניה, תעודת סל, מדד (AAPL, TA-35…)" autocomplete="off" enterkeyhint="search"><div class="ac-list" id="mktAc"></div></div>
         <div class="mkt-cat" id="mktCat"></div>
@@ -917,7 +917,7 @@ function rsi(a,n){let g=0,l=0;return a.map((v,i)=>{if(!i)return null;let d=v-a[i
 function macd(a){let f=ema(a,12),s=ema(a,26),m=a.map((_,i)=>f[i]!=null&&s[i]!=null?f[i]-s[i]:null),start=m.findIndex(x=>x!=null),sig=Array(a.length).fill(null);if(start>=0)ema(m.slice(start),9).forEach((v,i)=>sig[i+start]=v);return {m,s:sig,h:m.map((v,i)=>v!=null&&sig[i]!=null?v-sig[i]:null)}}
 function profile(rows,n=24){let bars=rows.filter(d=>valid(d.volume)&&d.volume>=0),total=bars.reduce((s,d)=>s+d.volume,0);if(!total)return null;let lo=Math.min(...bars.map(d=>d.low??val(d))),hi=Math.max(...bars.map(d=>d.high??val(d)));if(!(hi>lo))return null;let step=(hi-lo)/n,bins=Array(n).fill(0);bars.forEach(d=>{let a=d.low??val(d),b=d.high??val(d);if(b<=a){bins[Math.min(n-1,Math.max(0,Math.floor((a-lo)/step)))]+=d.volume;return}for(let i=0;i<n;i++){let overlap=Math.max(0,Math.min(b,lo+(i+1)*step)-Math.max(a,lo+i*step));bins[i]+=d.volume*overlap/(b-a)}});return {lo,hi,step,bins,total}}
 function title(el){if(el.id==='miniChart')return 'תשואת התיק';if(el.id==='perfChart')return 'ביצועים והשוואות';if(el.id==='isChart')return typeof instSheet!=='undefined'&&instSheet?instSheet.it.n+' · '+(instSheet.it.sym||instSheet.it.q):'גרף נייר';if(el.id==='posChartEl')return typeof sheetSym!=='undefined'?sheetSym:'גרף פוזיציה';let p=el.closest('[data-rch]');return p?p.dataset.rch:'גרף'}
-function snap(el){let X=el.__xh;if(!X||X.dead)return null;let items=X.ctSeries||[];let series=items.map((s,i)=>{try{let data=s.data().filter(d=>valid(val(d)));return {type:s.seriesType(),data,name:s.__ctName||'',color:s.options().color||s.options().lineColor||colors[i%colors.length]}}catch(e){return null}}).filter(s=>s&&s.data.length);if(!series.length)return null;return {title:title(el),series,volume:X.ctVolume||[],source:X.ctSource||'',pct:el.id==='miniChart'||el.id==='perfChart'}}
+function snap(el){let X=el.__xh;if(!X||X.dead)return null;let items=X.ctSeries||[];let series=items.map((s,i)=>{try{let data=s.data().filter(d=>valid(val(d)));return {type:s.seriesType(),data,name:s.__ctName||'',color:s.options().color||s.options().lineColor||colors[i%colors.length]}}catch(e){return null}}).filter(s=>s&&s.data.length);if(!series.length)return null;return {title:title(el),series,volume:X.ctVolume||[],source:X.ctSource||'',coverage:el.dataset.coverage||'',pct:el.id==='miniChart'||el.id==='perfChart'}}
 function install(el,c){let X=el.__xh;if(!X)return;X.ctSeries=[];
  ['addLineSeries','addAreaSeries','addCandlestickSeries','addBaselineSeries','addBarSeries','addHistogramSeries'].forEach(k=>{let f=c[k]&&c[k].bind(c);if(f)c[k]=(...args)=>{let s=f(...args);X.ctSeries.push(s);return s}});
  let r=c.removeSeries.bind(c);c.removeSeries=s=>{X.ctSeries=X.ctSeries.filter(x=>x!==s);return r(s)};
@@ -928,14 +928,14 @@ function open(model){if(active)close();if(!model.series.length||!model.series[0]
  const root=document.createElement('section');root.className='ct-work';root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label','גרף מוגדל וכלי ניתוח');
  root.innerHTML='<div class="ct-head"><strong></strong><button data-ct="rotate">⛶ מסך מלא / לרוחב</button><button data-ct="fit">איפוס זום</button><button data-ct="close" aria-label="סגירת גרף מוגדל">✕ סגירה</button></div><div class="ct-tools"></div><div class="ct-fib" hidden><label>עוגן א <input data-fa type="number" step="any"></label><label>עוגן ב <input data-fb type="number" step="any"></label><button data-ct="pick">בחרו 2 נקודות</button><button data-ct="reverse">החלפה</button><small>המחיר הראשון הוא 0%, השני 100%</small></div><div class="ct-legend"></div><div class="ct-hint" role="status"></div><div class="ct-content"><div class="ct-price chart"></div><div class="ct-pane ct-rsi" hidden><label>RSI 14 · 30 / 70</label></div><div class="ct-pane ct-macd" hidden><label>MACD 12 / 26 / 9</label></div><div class="ct-pane ct-vol" hidden><label>Volume · נפח מסחר מדווח</label></div></div>';
  root.querySelector('strong').textContent=model.title;let oldFocus=document.activeElement,oldOverflow=document.body.style.overflow;document.body.appendChild(root);document.body.style.overflow='hidden';let A=active={root,model,charts:[],enabled:new Set(),extra:[],fibs:[],oldFocus,oldOverflow,range:null,picking:[],dead:false};
- let T=chartTheme();function chart(el){let c=LightweightCharts.createChart(el,{autoSize:true,layout:{background:{color:T.bg},textColor:T.text,fontSize:11},grid:{vertLines:{visible:false},horzLines:{color:T.grid}},rightPriceScale:{borderVisible:false},localization:{priceFormatter:model.pct?(v=>v.toFixed(2)+'%'):undefined},timeScale:{borderVisible:false,timeVisible:typeof model.series[0].data[0].time==='number'},handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},handleScale:{mouseWheel:true,pinch:true,axisPressedMouseMove:true}});xhAttach(el,c);A.charts.push(c);return c}
+ let T=chartTheme();function chart(el){let c=LightweightCharts.createChart(el,{autoSize:true,layout:{background:{color:T.bg},textColor:T.text,fontSize:11},grid:{vertLines:{visible:false},horzLines:{color:T.grid}},rightPriceScale:{borderVisible:false},localization:{priceFormatter:model.pct?(v=>v.toFixed(2)+'%'):undefined},timeScale:{minBarSpacing:.001,borderVisible:false,timeVisible:typeof model.series[0].data[0].time==='number'},handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},handleScale:{mouseWheel:true,pinch:true,axisPressedMouseMove:true}});xhAttach(el,c);A.charts.push(c);return c}
  let priceEl=root.querySelector('.ct-price'),c=chart(priceEl);A.c=c;A.priceEl=priceEl;
  model.series.forEach((s,i)=>{let candle=s.type==='Candlestick'||s.type==='Bar',S=candle?c.addCandlestickSeries({upColor:T.up,downColor:T.down,borderVisible:false,wickUpColor:T.up,wickDownColor:T.down}):c.addLineSeries({color:s.color||colors[i%colors.length],lineWidth:i?2:3,priceLineVisible:false,lastValueVisible:i===0});S.setData(s.data);if(i===0)A.main=S});
  const data=model.series[0].data,a=data.map(val),toData=arr=>data.map((d,i)=>arr[i]!=null&&valid(arr[i])?{time:d.time,value:arr[i]}:{time:d.time});A.data=data;A.values=a;
  let vols=new Map(model.volume.map(d=>[String(d.time),d])),rows=data.map(d=>Object.assign({},d,vols.get(String(d.time))||{}));A.rows=rows;let hasVolume=rows.some(d=>valid(d.volume)&&d.volume>0),n=data.length;
  let definitions=[['sma','SMA 20',20],['ema','EMA 20',20],['bb','Bollinger 20 ±2σ',20],['rsi','RSI 14',15],['macd','MACD 12/26/9',34],['fib','פיבונאצ׳י',2],['volume','Volume',1],['profile','Volume profile',2]];
  root.querySelector('.ct-tools').innerHTML=definitions.map(([k,t,min])=>'<button data-ind="'+k+'" aria-pressed="false" '+((n<min||((k==='volume'||k==='profile')&&!hasVolume))?'disabled':'')+'>'+t+'</button>').join('');
- const hint=root.querySelector('.ct-hint');A.hint=hint;const baseHint='גרף מוגדל של הטווח שכבר נטען · גלילה/צביטה לזום. '+(!hasVolume?'אין נפח מסחר מדווח בנתונים האלה; Volume ופרופיל אינם זמינים.':'נפח: רק נרות עם נתון מדווח. פרופיל הוא אומדן מהנרות, לא עסקאות לפי מחיר.');hint.textContent=baseHint;
+ const hint=root.querySelector('.ct-hint');A.hint=hint;const baseHint=(model.coverage?model.coverage+' · ':'')+'גרף מוגדל של הטווח שכבר נטען · גלילה/צביטה לזום. '+(!hasVolume?'אין נפח מסחר מדווח בנתונים האלה; Volume ופרופיל אינם זמינים.':'נפח: רק נרות עם נתון מדווח. פרופיל הוא אומדן מהנרות, לא עסקאות לפי מחיר.');hint.textContent=baseHint;
  let rsiEl=root.querySelector('.ct-rsi'),macdEl=root.querySelector('.ct-macd'),volEl=root.querySelector('.ct-vol');let rc=chart(rsiEl),mc=chart(macdEl),vc=chart(volEl);
  let rs=rc.addLineSeries({color:'#c084fc',lineWidth:2,priceLineVisible:false});rs.setData(toData(rsi(a,14)));[30,70].forEach(p=>rs.createPriceLine({price:p,color:'#64748b',lineStyle:2,lineWidth:1,axisLabelVisible:true,title:''}));
  let M=macd(a),ml=mc.addLineSeries({color:'#60a5fa',lineWidth:2,priceLineVisible:false}),ms=mc.addLineSeries({color:'#fb923c',lineWidth:1,priceLineVisible:false}),mh=mc.addHistogramSeries({priceLineVisible:false});ml.setData(toData(M.m));ms.setData(toData(M.s));mh.setData(toData(M.h).map(d=>({...d,color:d.value>=0?'#34d39988':'#f8717188'})));
@@ -2081,7 +2081,7 @@ function renderPortfolio(S){
           <div class="pc-sec"><h4>גרף</h4></div>
           <div class="pc-ch" data-rch="${esc(p.sym)}"><div class="pc-ch-t"><div class="seg sm" data-rcr>${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div></div>
             <div class="pc-ch-t"><div class="seg sm ivseg" data-rci></div><div class="seg sm cst" data-rcs><button data-v="line">קו</button><button data-v="candle">נרות</button></div></div>
-            <div class="chart pc-chart" style="height:180px"><div class="chart-msg">טוען גרף…</div></div></div>
+            <div class="chart pc-chart" style="height:180px"><div class="chart-msg">טוען גרף…</div></div><div class="note" data-rccoverage hidden></div></div>
           <div class="pc-btn"><button class="btn btn-light btn-sm" data-cact="open">📄 פרטים מלאים</button><button class="btn btn-light btn-sm" data-cact="buy">🛒 קנייה</button><button class="btn btn-light btn-sm" data-cact="sell">💰 מכירה</button></div></div></div>`;
     }).join('');
     requestAnimationFrame(rowChartsSync);
@@ -2339,9 +2339,9 @@ async function drawRowChart(box){ const sym = box.dataset.rch, a = assetOf(sym) 
   box.querySelectorAll('[data-rcr] button').forEach(b=>b.classList.toggle('on', b.dataset.v===R)); box.querySelectorAll('[data-rcs] button').forEach(b=>b.classList.toggle('on', b.dataset.v===(cnd?'candle':'line')));
   box.querySelector('[data-rci]').innerHTML = IV_OPT[R].map(v=>`<button data-v="${v}" class="${v===iv?'on':''}">${IV_LBL[v]}</button>`).join('');
   const old = rowCharts.get(el); if(old){ try{ old.remove(); }catch(e){} rowCharts.delete(el); } el.querySelectorAll('.tv-lightweight-charts, table').forEach(x=>x.remove());
-  const msg = el.querySelector('.chart-msg'); msg.style.display = 'flex'; msg.textContent = 'טוען גרף…';
+  historyCoverage(el,box.querySelector('[data-rccoverage]'),'',[]); const msg = el.querySelector('.chart-msg'); msg.style.display = 'flex'; msg.textContent = 'טוען גרף…';
   if(!iq(it)) await instQuotes([it]); const pts = withLive(it, R, await instBars(it, R, iv)); if(seq!==box.__seq || !el.isConnected) return;
-  if(pts.length < 2 || !lwOk()){ msg.textContent = 'אין נתונים לטווח הזה'; return; } msg.style.display = 'none';
+  historyCoverage(el,box.querySelector('[data-rccoverage]'),R,instCache[instKey(it,R,iv)]?.pts||[]); if(pts.length < 2 || !lwOk()){ msg.textContent = 'אין נתונים לטווח הזה'; return; } msg.style.display = 'none';
   const intr = ivIntra(iv), off = -new Date().getTimezoneOffset()*60, c = makeChart(el, false); rowCharts.set(el, c);
   c.applyOptions({timeScale:{timeVisible:intr, secondsVisible:false}, localization:{locale:'he-IL', priceFormatter:v=>Math.abs(v)>=10000 ? v.toLocaleString('en-US',{maximumFractionDigits:0}) : v.toFixed(Math.abs(v)<10 ? 3 : 2)}});
   const q = iq(it), up = pts[pts.length-1][1] >= (R==='1D' ? ((q||{}).prev || pts[0][1]) : pts[0][1]), T = chartTheme(), seen = new Set(), tt = p=>Math.floor(p[0]/1000) + (intr ? off : 0); let s;
@@ -2920,7 +2920,7 @@ const MKT_CAT = [
 const MKT_BY = Object.fromEntries(MKT_CAT.map(x=>[x.k, x]));
 const MKT_DEFAULT = ['spx','ndx','gold','silver','btc','wti','brent','us10y','us30y'];
 const MKT_KEY = 'portfolioTracker.market.v1', WL_KEY = 'portfolioTracker.watch.v1';
-const INST_RANGES = [['1D','יום'],['1W','שבוע'],['1M','חודש'],['YTD','YTD'],['1Y','שנה'],['5Y','5 שנים']];
+const INST_RANGES = [['1D','יום'],['1W','שבוע'],['1M','חודש'],['YTD','YTD'],['1Y','שנה'],['5Y','5 שנים'],['MAX','מקסימום']];
 function loadJ(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } }
 function cleanMkt(c){ c = c && Array.isArray(c.keys) ? c : {keys:MKT_DEFAULT.slice(), meta:{}}; c.meta = c.meta || {};
   c.keys = c.keys.filter((k,i,a)=>a.indexOf(k)===i && (MKT_BY[k] || (/^sec:/.test(k) && c.meta[k] && c.meta[k].sym))); return c; }
@@ -2947,14 +2947,14 @@ function chgInst(it, a, b){ if(a==null || b==null || !b) return {t:'—', c:0};
   const abs = it.sec ? fmtSigned(d, it.cur, Math.abs(d)<1 ? 3 : 2) : (d>=0?'+':'') + d.toLocaleString('en-US',{minimumFractionDigits:it.dp, maximumFractionDigits:it.dp});
   return {t:`${abs} (${fmtPct(d/b*100)})`, c:d}; }
 // ---- bars ----
-const instCache = {}, INST_TTL = {'1D':5*60e3, '1W':15*60e3, '1M':3*3600e3, 'YTD':3*3600e3, '1Y':6*3600e3, '5Y':12*3600e3};
+const instCache = {}, INST_TTL = {'1D':5*60e3, '1W':15*60e3, '1M':3*3600e3, 'YTD':3*3600e3, '1Y':6*3600e3, '5Y':12*3600e3, 'MAX':24*3600e3};
 let barQ = [], barRunning = 0;
 function barSlot(fn){ return new Promise((res, rej)=>{ const go = async()=>{ barRunning++; try{ res(await fn()); }catch(e){ rej(e); } finally{ barRunning--; const n = barQ.shift(); if(n) n(); } }; if(barRunning < 4) go(); else barQ.push(go); }); }
 const nyFmt = new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hourCycle:'h23'});
 function nyParts(ms){ const o = Object.fromEntries(nyFmt.formatToParts(new Date(ms)).map(p=>[p.type, p.value])); return {d:`${o.year}-${o.month}-${o.day}`, hm:+(o.hour+o.minute)}; }
 // v69: bar interval per range – only what CNBC serves (1M/5M/10M/30M/1H intraday ≈ last 3 months, 1D/1W/1MO) and sensible for the range
-const IV_OPT = {'1D':['1M','5M','10M','30M','1H'], '1W':['5M','10M','30M','1H','1D'], '1M':['30M','1H','1D'], 'YTD':['1D','1W'], '1Y':['1D','1W'], '5Y':['1D','1W','1MO']};
-const IV_DEF = {'1D':'5M', '1W':'1H', '1M':'1D', 'YTD':'1D', '1Y':'1D', '5Y':'1D'}, IV_LBL = {'1M':'1m','5M':'5m','10M':'10m','30M':'30m','1H':'1h','1D':'1D','1W':'1W','1MO':'1M'}, IV_KEY = 'portfolioTracker.chartIv.v1';
+const IV_OPT = {'1D':['1M','5M','10M','30M','1H'], '1W':['5M','10M','30M','1H','1D'], '1M':['30M','1H','1D'], 'YTD':['1D','1W'], '1Y':['1D','1W'], '5Y':['1D','1W','1MO'], 'MAX':['1D','1W','1MO']};
+const IV_DEF = {'1D':'5M', '1W':'1H', '1M':'1D', 'YTD':'1D', '1Y':'1D', '5Y':'1D', 'MAX':'1D'}, IV_LBL = {'1M':'1m','5M':'5m','10M':'10m','30M':'30m','1H':'1h','1D':'1D','1W':'1W','1MO':'1M'}, IV_KEY = 'portfolioTracker.chartIv.v1';
 const ivOf = range=>{ const m = loadJ(IV_KEY) || {}, v = m[range]; return IV_OPT[range].includes(v) ? v : IV_DEF[range]; };
 const ivSet = (range, v)=>{ const m = loadJ(IV_KEY) || {}; m[range] = v; try{ localStorage.setItem(IV_KEY, JSON.stringify(m)); }catch(e){} };
 const ivIntra = iv=>/M$|H$/.test(iv) && iv!=='1MO';
@@ -2972,7 +2972,7 @@ async function instBars(it, range, iv){
     return pts; }
   return barSlot(async()=>{
     const q = iq(it), td = today(), day = q && q.date ? q.date : td, ymd = d=>d.replace(/-/g,'')+'000000';
-    const spec = range==='1D' ? [iv, day, addDays(day,1)] : range==='1W' ? [iv, addDays(td,-7), addDays(td,1)] : [iv, range==='1M' ? addDays(td,-31) : range==='YTD' ? (td.slice(0,4)-1)+'-12-24' : range==='1Y' ? addDays(td,-366) : addDays(td,-1827), addDays(td,1)];
+    const spec = range==='1D' ? [iv, day, addDays(day,1)] : range==='1W' ? [iv, addDays(td,-7), addDays(td,1)] : [iv, range==='1M' ? addDays(td,-31) : range==='YTD' ? (td.slice(0,4)-1)+'-12-24' : range==='1Y' ? addDays(td,-366) : range==='MAX' ? '1900-01-01' : addDays(td,-1827), addDays(td,1)];
     const k = isTaseSec(it.q) ? 100 : 1;
     let pts = [];
     try{ const j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/${spec[0]}/${ymd(spec[1])}/${ymd(spec[2])}/adjusted/EST5EDT.json`, 12000);
@@ -2982,6 +2982,11 @@ async function instBars(it, range, iv){
       if(range==='YTD'){ const y0 = Date.parse(td.slice(0,4)+'-01-01T00:00:00Z'); const before = pts.filter(p=>p[0] < y0); pts = (before.length ? [before[before.length-1]] : []).concat(pts.filter(p=>p[0] >= y0)); }
     }catch(e){ console.warn('bars', it.q, range, e.message); if(c) return c.pts; }
     if(pts.length || !it.sec) instCache[key] = {at:Date.now(), pts}; return pts; }); }   // v87: an empty answer for a security (feed hiccup) isn't remembered – the next try asks again
+// MAX means all records available from this feed, never a claim of complete IPO history.
+function historyCoverage(el,note,range,pts){
+ const text=range==='MAX'&&pts.length ? 'היסטוריה זמינה במקור: '+new Date(pts[0][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' עד '+new Date(pts[pts.length-1][0]).toLocaleDateString('he-IL',{timeZone:'America/New_York'})+' · CNBC, מחירים מתואמים לפי המקור · לא בהכרח מתחילת המסחר; ייתכנו חוסרים. בנרות שבועיים/חודשיים התאריך הוא תחילת התקופה.' : '';
+ el.dataset.coverage=text;if(note){note.textContent=text;note.hidden=!text}
+}
 function withLive(it, range, pts){ const q = iq(it); if(!pts || !pts.length || !q || q.price==null) return pts || [];
   const last = pts[pts.length-1], now = q.ts || Date.now(); if(now > last[0]) return pts.concat([[now, q.price]]); return pts; }
 function instRangeBase(it, range, pts){ const q = iq(it); return range==='1D' ? (q && q.prev) : (pts.length ? pts[0][1] : null); }
@@ -2997,7 +3002,7 @@ function mktCardHtml(it){ const q = iq(it), last = q ? q.price : null, key = it.
   const pts = c ? withLive(it, mktRange, c.pts) : null, base = pts ? instRangeBase(it, mktRange, pts) : (mktRange==='1D' && q ? q.prev : null);
   const ch = chgInst(it, last, mktRange==='1D' ? (q && q.prev) : base), chart = pts && pts.length > 1 ? lineSvg(pts, base, ch.c >= 0, 160, 48, mktRange==='1D') : `<div class="nod">${c ? 'אין נתונים לטווח' : 'טוען…'}</div>`;
   return `<div class="mc" role="button" tabindex="0" data-mk="${esc(it.k)}" aria-label="${esc(it.n)}"><span class="mn">${esc(it.n)} <span class="ms">${esc(it.sec ? it.sym : it.s)}</span></span><span class="mv">${fmtInst(it, q && q.ext ? q.ext.price : last)}</span>`+
-    `<span class="mch ${cls(ch.c)}">${ch.t}</span>${it.sec ? extLineHtml(q && q.ext, 'mce', true) : ''}${chart}<span class="ed"><button data-mv="up" aria-label="הזזה למעלה">▲</button><button data-mv="down" aria-label="הזזה למטה">▼</button><button data-mv="del" class="del" aria-label="הסרה">✕</button></span></div>`; }
+    `<span class="mch ${cls(ch.c)}">${ch.t}</span>${it.sec ? extLineHtml(q && q.ext, 'mce', true) : ''}${chart}${mktRange==='MAX'&&pts&&pts.length?'<small class="note">נתונים מ־'+new Date(pts[0][0]).getUTCFullYear()+' · כיסוי המקור, לא בהכרח מתחילת המסחר</small>':''}<span class="ed"><button data-mv="up" aria-label="הזזה למעלה">▲</button><button data-mv="down" aria-label="הזזה למטה">▼</button><button data-mv="del" class="del" aria-label="הסרה">✕</button></span></div>`; }
 function mktItems(){ return mktCfg.keys.map(mktInst).filter(Boolean); }
 function drawMarket(){ const g = $('mktGrid'); if(!g) return; const L = mktItems();
   g.innerHTML = L.length ? L.map(mktCardHtml).join('') : '<div class="wl-empty" style="grid-column:1/-1">המסך ריק – הוסיפו מדדים או ניירות בעריכה.</div>';
@@ -3378,7 +3383,7 @@ function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p
     ${it.sec ? '<div class="is-trade"><button class="btn btn-primary" data-istx="buy">🛒 קנייה</button><button class="btn btn-light" data-istx="sell">💰 מכירה</button></div>' : ''}
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
     <div class="seg sm ivseg" id="isIv" aria-label="אינטרוול"></div><div class="chart" id="isChart" style="height:280px;margin-top:6px"><div class="chart-msg" id="isMsg">טוען גרף…</div></div>
-    <div class="inst-stats" id="isStats"></div>
+    <div id="isCoverage" class="note" hidden></div><div class="inst-stats" id="isStats"></div>
     ${it.sec && it.type!=='crypto' ? detHtml() : ''}
     ${it.sec ? wlAddHtml(it.sym, it.n, it.type, it.cur) : it.fx ? wlAddHtml(it.sym, it.n, 'fx', '') : ''}
     ${held ? `<div class="btn-row" style="margin-top:8px"><button class="btn btn-light" id="isPos">💼 פתיחת הפוזיציה בתיק</button></div>` : ''}
@@ -3445,10 +3450,10 @@ async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S
   $('isRange').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===S.range));
   const cnd = !it.y && (chartStyle() || 'line')==='candle'; if($('isStyle')) $('isStyle').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===(cnd?'candle':'line')));
   if(posChart){ posChart.remove(); posChart = null; } S.series = null; S.bar = null; el.querySelectorAll('.tv-lightweight-charts, table').forEach(x=>x.remove());
-  const msg = $('isMsg'); msg.style.display = 'flex'; msg.textContent = 'טוען גרף…';
+  historyCoverage(el,$('isCoverage'),'',[]); const msg = $('isMsg'); msg.style.display = 'flex'; msg.textContent = 'טוען גרף…';
   if(!iq(it)) await instQuotes([it]);
   S.iv = ivOf(S.range); drawIvSeg(); const pts = withLive(it, S.range, await instBars(it, S.range, S.iv)); if(seq!==S.seq || instSheet!==S) return;
-  instSheetLive(); if(pts.length < 2 || !lwOk()){ msg.textContent = 'אין נתונים לטווח הזה'; return; } msg.style.display = 'none';
+  historyCoverage(el,$('isCoverage'),S.range,instCache[instKey(it,S.range,S.iv)]?.pts||[]); instSheetLive(); if(pts.length < 2 || !lwOk()){ msg.textContent = 'אין נתונים לטווח הזה'; return; } msg.style.display = 'none';
   const intr = ivIntra(S.iv), off = -new Date().getTimezoneOffset()*60;   // show Israel wall-clock times on the axis
   posChart = makeChart(el, false); posChart.applyOptions({timeScale:{timeVisible:intr, secondsVisible:false}, localization:{locale:'he-IL', priceFormatter:v=>it.y ? v.toFixed(3)+'%' : Math.abs(v)>=10000 ? v.toLocaleString('en-US',{maximumFractionDigits:0}) : v.toFixed(Math.abs(v)<10 ? 3 : 2)}});
   const up = pts[pts.length-1][1] >= (S.range==='1D' ? ((iq(it)||{}).prev || pts[0][1]) : pts[0][1]), T = chartTheme(), col = up ? T.up : T.down;
