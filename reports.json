@@ -1800,9 +1800,18 @@
     "תאריך": "2026-11-02",
     "צפי_EPS": "0.09",
     "צפי_הכנסות": "1.68B",
-    "הערה": "תאריך רשמי מאומת: 2.11.2026 אחרי סגירת המסחר; שיחה 3.11 לפני הפתיחה (PR 26.10)",
+    "הערה": "תאריך רשמי מאומת: 2.11.2026 אחרי סגירת המסחר; שיחה 3.11 לפני הפתיחה (PR 26.10)\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPClassAdilutedloss3.09/adjustedloss0.19;totalrevenue1582.910M. Goodwillimpairment286.7M,notrecurringoperatingcost.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "מועד": "after",
-    "קישור": ""
+    "קישור": "",
+    "בפועל_EPS": "-0.19",
+    "הכנסות_בפועל": "1.582910B",
+    "בסיס_בפועל_EPS": "Adjusted diluted Class A",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393728/0/en/camping-world-holdings-inc-reports-third-quarter-2026-results.html"
   },
   {
     "חברה": "Caesars Entertainment, Inc.",
@@ -15418,12 +15427,21 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 970.52M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. תחזית החברה לכ-3.8 מיליארד היא לשנה, לא לרבעון. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 970.52M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. תחזית החברה לכ-3.8 מיליארד היא לשנה, לא לרבעון. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdiluted1.11/nonGAAP1.26;revenue953.0MUSD.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "970.52M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-bwx-technologies-inc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "1.26",
+    "הכנסות_בפועל": "953M",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102517518/en/BWX-Technologies-Reports-Third-Quarter-2026-Results"
   },
   {
     "חברה": "Calix, Inc",
@@ -15486,12 +15504,21 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "-0.01",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 63.25M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. תחזית החברה 229–231 מיליון היא לשנה ולמוצרים בלבד, אינה תחזית סך הכנסות Q3 כולל חוזי ממשל. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 63.25M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. תחזית החברה 229–231 מיליון היא לשנה ולמוצרים בלבד, אינה תחזית סך הכנסות Q3 כולל חוזי ממשל. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. Totalrevenue64.0Mnotproductonly57.7M. EPS-0.00isroundedloss,notbreakeven;netlossattributable550KUSD.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "63.25M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-cerus-co-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "-0.00",
+    "הכנסות_בפועל": "64M",
+    "בסיס_בפועל_EPS": "GAAP basic and diluted, rounded small loss",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102374071/en/Cerus-Corporation-Announces-Third-Quarter-2026-Financial-Results"
   },
   {
     "חברה": "Choice Hotels International, Inc.",
@@ -15670,7 +15697,17 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.56",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. FiscalQ2Sep30. Totalinvestmentincome67.158M,notordinarysales. GAAPdilutednetassetincrease/share0.33;pretaxNII/share0.58,aftertaxbasicNII0.56separatemetrics. Originalforecastmetricunresolvedcomparisonoff.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
+    "בפועל_EPS": "0.33",
+    "הכנסות_בפועל": "67.158M",
+    "בסיס_בפועל_EPS": "GAAP diluted net asset increase from operations, not NII",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "לא",
+    "הסבר_EPS": "לא אומתה התאמת מדד הצפי ל-EPS, לא הוחלף ב-FFO/AFFO.",
+    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393708/8276/en/capital-southwest-announces-financial-results-for-second-fiscal-quarter-ended-september-30-2026.html",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Commercial Vehicle Group, Inc.",
@@ -15812,14 +15849,23 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.48",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 198–208M USD. מקור מ-03.08.2026, נבדק ב-02.11.2026. תחזית adjusted EBITDA של 28–31 מיליון אינה EPS. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 198–208M USD. מקור מ-03.08.2026, נבדק ב-02.11.2026. תחזית adjusted EBITDA של 28–31 מיליון אינה EPS. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. Revenue218.077M;GAAPdilutedEPS0.49/netincome18.152M.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "198–208M",
     "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://investors.everquote.com/news/news-details/2026/EverQuote-Announces-Second-Quarter-2026-Financial-Results/default.aspx",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי.",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.49",
+    "הכנסות_בפועל": "218.077M",
+    "בסיס_בפועל_EPS": "GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393721/0/en/everquote-announces-third-quarter-2026-financial-results.html"
   },
   {
     "חברה": "Diamondback Energy, Inc.",
@@ -15972,14 +16018,23 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 125–135M USD. מקור מ-12.08.2026, נבדק ב-02.11.2026. התחזית לפעילות נמשכת Broadband; Video סווגה כפעילות שהופסקה. GAAP EPS של 0.10–0.14; non-GAAP EPS של 0.15–0.19; הצפי הקיים נשמר. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 125–135M USD. מקור מ-12.08.2026, נבדק ב-02.11.2026. התחזית לפעילות נמשכת Broadband; Video סווגה כפעילות שהופסקה. GAAP EPS של 0.10–0.14; non-GAAP EPS של 0.15–0.19; הצפי הקיים נשמר. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. FiscalQ3Oct2continuingoperations. GAAPdiluted0.16/nonGAAP0.23,continuingrevenue148.838M. Discontinuedoperationsnotmixed. Revenue/forecastscopecomparisonheld.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "125–135M",
     "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://investor.harmonicinc.com/news-releases/news-release-details/harmonic-announces-second-quarter-2026-results/",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי.",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.23",
+    "הכנסות_בפועל": "148.838M",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted continuing operations",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "לא",
+    "הסבר_EPS": "לא אומתה התאמת מדד הצפי ל-EPS, לא הוחלף ב-FFO/AFFO.",
+    "קישור_לדוח": "https://www.prnewswire.com/news-releases/harmonic-announces-third-quarter-2026-results-302925916.html"
   },
   {
     "חברה": "Hillman Solutions Corp.",
@@ -16535,14 +16590,23 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 1.650–1.750B USD. מקור מ-03.08.2026, נבדק ב-02.11.2026. תחזית non-GAAP diluted EPS של 0.81–0.93; GAAP diluted EPS של 0.79–0.91. הצפי המקורי נשמר בנפרד. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 1.650–1.750B USD. מקור מ-03.08.2026, נבדק ב-02.11.2026. תחזית non-GAAP diluted EPS של 0.81–0.93; GAAP diluted EPS של 0.79–0.91. הצפי המקורי נשמר בנפרד. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdiluted0.79/nonGAAP0.90. Revenue1722.3MUSD.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "1.650–1.750B",
     "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://investor.onsemi.com/news-releases/news-release-details/onsemi-reports-second-quarter-2026-results/",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי.",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.90",
+    "הכנסות_בפועל": "1.7223B",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393744/0/en/onsemi-reports-third-quarter-2026-results.html"
   },
   {
     "חברה": "Offerpad Solutions Inc.",
@@ -16589,14 +16653,23 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.18",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 353–363M USD. מקור מ-03.08.2026, נבדק ב-02.11.2026. Paymentus, לא Verifone. תחזית הרבעון נפרדת מתחזית השנה 1.443–1.458 מיליארד. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 353–363M USD. מקור מ-03.08.2026, נבדק ב-02.11.2026. Paymentus, לא Verifone. תחזית הרבעון נפרדת מתחזית השנה 1.443–1.458 מיליארד. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdiluted0.21/nonGAAP0.25,totalrevenue372.175M.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "353–363M",
     "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.sec.gov/Archives/edgar/data/1841156/000119312526330866/pay-ex99_1.htm",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי.",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.25",
+    "הכנסות_בפועל": "372.175M",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102086639/en/Paymentus-Reports-Third-Quarter-2026-Financial-Results"
   },
   {
     "חברה": "Public Service Enterprise Group Incorporated",
@@ -16920,12 +16993,21 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.29",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 91.99M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://investors.tactilemedical.com/news-releases/news-release-details/tactile-systems-technology-inc-reports-second-quarter-2026 הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 91.99M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://investors.tactilemedical.com/news-releases/news-release-details/tactile-systems-technology-inc-reports-second-quarter-2026 הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdiluted0.31,totalrevenue91.858M;netincome7.2M.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "91.99M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-tactile-systems-technology-inc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.31",
+    "הכנסות_בפועל": "91.858M",
+    "בסיס_בפועל_EPS": "GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393718/0/en/tactile-systems-technology-inc-reports-third-quarter-2026-financial-results.html"
   },
   {
     "חברה": "Tempus AI, Inc.",
@@ -17095,7 +17177,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nCompany guidance להכנסות Q3 2026: 176–184M USD. מקור מ-10.08.2026, נבדק ב-02.11.2026. תחזית non-GAAP diluted EPS של 0.31–0.33, לא תחזית GAAP EPS. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. \nCompany guidance להכנסות Q3 2026: 176–184M USD. מקור מ-10.08.2026, נבדק ב-02.11.2026. תחזית non-GAAP diluted EPS של 0.31–0.33, לא תחזית GAAP EPS. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdiluted0.25;nonGAAPactualnotyetqualified. Totalrevenue185.599M,notannual.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "176–184M",
     "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
     "מטבע_צפי_הכנסות": "USD",
@@ -17106,8 +17188,15 @@
     "בסיס_צפי_EPS": "Company guidance, Q3 2026 Non-GAAP diluted EPS range",
     "מטבע_צפי_EPS": "USD",
     "מקור_צפי_EPS": "https://investors.upwork.com/news-releases/news-release-details/upwork-reports-second-quarter-2026-financial-results",
-    "השוואה_EPS": "לא",
-    "הסבר_EPS": "תחזית חברה בטווח non-GAAP, אינה צפי נקודתי ואין לחשב הפתעה מול קצה."
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "בפועל_EPS": "0.25",
+    "הכנסות_בפועל": "185.599M",
+    "בסיס_בפועל_EPS": "GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393727/0/en/upwork-reports-third-quarter-2026-financial-results.html"
   },
   {
     "חברה": "Ur Energy Inc",
@@ -17231,14 +17320,23 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.01",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 76.98M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. תחזית החברה מתייחסת לתפוקה, לא להכנסות רבעוניות; כאן סכום אנליסטים. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nמקור נוסף המאשר את הצפי המוצג: https://www.marketbeat.com/stocks/NYSE/VTS/earnings/. בקריאה אחרת של MarketBeat הופיע 77.10M USD. הערך הקיים נשמר עם ייחוס, ללא השוואת הפתעה עקב פער מקורות.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 76.98M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. תחזית החברה מתייחסת לתפוקה, לא להכנסות רבעוניות; כאן סכום אנליסטים. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nמקור נוסף המאשר את הצפי המוצג: https://www.marketbeat.com/stocks/NYSE/VTS/earnings/. בקריאה אחרת של MarketBeat הופיע 77.10M USD. הערך הקיים נשמר עם ייחוס, ללא השוואת הפתעה עקב פער מקורות.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPtotalrevenue82.952MUSD,nothedgeadjustedheadline71M;GAAPbasic/dilutedloss0.86. Adjustednetincome2.5MnotconvertedtoinventedadjustedEPS.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "76.98M",
     "בסיס_צפי_הכנסות": "Source conflict; Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/stocks/NYSE/VTS/earnings/",
     "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
     "השוואה_הכנסות": "לא",
-    "הסבר_הכנסות": "מקורות צפי מציגים ערכים שונים; ההשוואה כבויה עד בירור."
+    "הסבר_הכנסות": "מקורות צפי מציגים ערכים שונים; ההשוואה כבויה עד בירור.",
+    "בפועל_EPS": "-0.86",
+    "הכנסות_בפועל": "82.952M",
+    "בסיס_בפועל_EPS": "GAAP basic and diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "לא",
+    "הסבר_EPS": "לא אומתה התאמת מדד הצפי ל-EPS, לא הוחלף ב-FFO/AFFO.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102548916/en/Vitesse-Energy-Announces-Third-Quarter-2026-Results"
   },
   {
     "חברה": "V2X, Inc.",
