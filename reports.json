@@ -16154,14 +16154,23 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.13",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 86–90M USD. מקור מ-03.08.2026, נבדק ב-02.11.2026. תחזית adjusted EBITDA של 12–14 מיליון אינה EPS. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 86–90M USD. מקור מ-03.08.2026, נבדק ב-02.11.2026. תחזית adjusted EBITDA של 12–14 מיליון אינה EPS. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAP diluted EPS -0.15; non-GAAP 0.62. Q3 Sep30 total revenue97.825M USD.",
     "צפי_הכנסות": "86–90M",
     "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://investors.ibotta.com/news-events/press-releases/detail/148/ibotta-reports-second-quarter-2026-financial-results",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי.",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.62",
+    "הכנסות_בפועל": "97.825M",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102827796/en/Ibotta-Reports-Third-Quarter-2026-Financial-Results"
   },
   {
     "חברה": "Ichor Holdings",
@@ -16550,12 +16559,21 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 345.15M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://investors.metallus.com/news/news-details/2026/Metallus-Announces-Second-Quarter-2026-Results/default.aspx הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 345.15M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://investors.metallus.com/news/news-details/2026/Metallus-Announces-Second-Quarter-2026-Results/default.aspx הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAP diluted0.55;adjusted0.35. Q3totalrevenue337.2M USD.",
     "צפי_הכנסות": "345.15M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-metallus-inc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.35",
+    "הכנסות_בפועל": "337.2M",
+    "בסיס_בפועל_EPS": "Adjusted diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.prnewswire.com/news-releases/metallus-announces-third-quarter-2026-results-302926742.html"
   },
   {
     "חברה": "PLAYSTUDIOS, Inc.",
@@ -16646,7 +16664,17 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAP EPS0.43; FFO1.10/AFFO1.12 are not EPS. Q3 revenue1621.6M USD. Original forecast metric unresolved, comparison off.",
+    "בפועל_EPS": "0.43",
+    "הכנסות_בפועל": "1.6216B",
+    "בסיס_בפועל_EPS": "GAAP diluted, not FFO or AFFO",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "לא",
+    "הסבר_EPS": "לא אומתה התאמת מדד הצפי ל-EPS, לא הוחלף ב-FFO/AFFO.",
+    "קישור_לדוח": "https://www.prnewswire.com/news-releases/realty-income-announces-operating-results-for-the-three-and-nine-months-ended-september-30-2026-302926890.html",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "ONE Gas, Inc.",
@@ -16970,7 +16998,17 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. Issuer BusinessWire distribution copied by MarketMinute, primary original not yet recovered. Q3 total revenue249.565M USD; GAAP EPS0.11, FFO0.40/normalizedFFO0.39/AFFO0.45/normalizedAFFO0.41 distinct measures.",
+    "בפועל_EPS": "0.11",
+    "הכנסות_בפועל": "249.565M",
+    "בסיס_בפועל_EPS": "GAAP diluted, not FFO or AFFO",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "לא",
+    "הסבר_EPS": "לא אומתה התאמת מדד הצפי ל-EPS, לא הוחלף ב-FFO/AFFO.",
+    "קישור_לדוח": "https://www.marketminute.com/article/bizwire-2026-11-2-sabra-reports-third-quarter-2026-results-updates-2026-guidance",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "SI-BONE, Inc.",
@@ -16992,7 +17030,17 @@
     "סימול": "SITC",
     "תאריך": "2026-11-02",
     "מועד": "after",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. \nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAP diluted EPS-0.10; operating FFO-0.06 is separate. Consolidated Q3 revenue4.597M USD, not asset-sale proceeds.",
+    "בפועל_EPS": "-0.10",
+    "הכנסות_בפועל": "4.597M",
+    "בסיס_בפועל_EPS": "GAAP diluted, not operating FFO",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "לא",
+    "הסבר_EPS": "לא אומתה התאמת מדד הצפי ל-EPS, לא הוחלף ב-FFO/AFFO.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102739912/en/SITE-Centers-Reports-Third-Quarter-2026-Results",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Solid Biosciences Inc.",
