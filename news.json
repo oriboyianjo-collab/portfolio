@@ -1,5 +1,51 @@
 [
   {
+    "כותרת": "לוח הדוחות היום והלילה | שני, 02.11.2026",
+    "תאריך": "2026-11-02 08:07",
+    "הועלה": "2026-11-02 08:07",
+    "טקסט": "בדיקת המקורות: 08:06 שעון ישראל\n\nמועדי פרסום ושיחות בלבד, כתוספת למבט השבועי שנשלח ב-07:30. כל השעות בישראל; בסוגריים שעון החוף המזרחי בארה\"ב (ET).\n\nהפרסום והשיחה אינם אותו אירוע\n• לפני הפתיחה: סייפר (CIFR), עם שיחת עדכון ב-15:00 בישראל (08:00). מריוט (MAR) צפויה לפרסם סביב 14:00 (07:00), והשיחה ב-15:00 (08:00).\n• אחרי הסגירה: אפל (AAPL), פלנטיר (PLTR), פאברינט (FN), קאליקס (CALX) וורטקס (VRTX).\n• אפל: לפי מק-רומורס הפרסום ב-23:30 בישראל (16:30); השיחה מאומתת באפל ל-00:00 בלילה שבין שני לשלישי, 03.11 (17:00 ביום שני בארה\"ב).\n• פלנטיר ופאברינט: השיחות ב-00:00 בישראל ב-03.11 (17:00 ביום שני בארה\"ב). ורטקס: השיחה ב-23:30 היום (16:30).\n• קאליקס: הפרסום הלילה לאחר הסגירה, אך השיחה רק מחר, 03.11, ב-15:30 בישראל (08:30).\nאלה מועדים צפויים בלבד, ללא תוצאות. תוצאות הדוחות נשארות בלשונית הדוחות באפליקציה.",
+    "קישור": "https://investor.apple.com/investor-relations/event-details/2026/FY-26-Fourth-Quarter-Results/default.aspx",
+    "מקורות": [
+      {
+        "label": "אפל, שיחת המשקיעים",
+        "url": "https://investor.apple.com/investor-relations/event-details/2026/FY-26-Fourth-Quarter-Results/default.aspx"
+      },
+      {
+        "label": "מק-רומורס, שעת פרסום אפל",
+        "url": "https://www.macrumors.com/2026/10/06/apple-q4-2026-earnings-nov-2/"
+      },
+      {
+        "label": "פלנטיר",
+        "url": "https://investors.palantir.com/news-details/2026/Palantir-Announces-Date-of-Third-Quarter-2026-Earnings-Release-and-Webcast/"
+      },
+      {
+        "label": "פאברינט, פרסום אחרי הסגירה",
+        "url": "https://investor.fabrinet.com/news-releases/news-release-details/fabrinet-announce-first-quarter-fiscal-year-2027-financial"
+      },
+      {
+        "label": "פאברינט, שעת השיחה המעודכנת",
+        "url": "https://investor.fabrinet.com/events/event-details/fabrinets-first-quarter-2027-financial-results-conference-call"
+      },
+      {
+        "label": "קאליקס",
+        "url": "https://investor-relations.calix.com/news-events/press-releases/detail/1052/calix-to-post-third-quarter-2026-results-on-november-2-2026-announces-live-access-to-calix-connexions-2026-general-sessions"
+      },
+      {
+        "label": "סייפר",
+        "url": "https://www.globenewswire.com/news-release/2026/10/20/3384943/0/en/cipher-digital-announces-date-of-third-quarter-2026-business-update-conference-call.html"
+      },
+      {
+        "label": "מריוט",
+        "url": "https://news.marriott.com/news/2026/10/09/marriott-international-announces-release-date-for-third-quarter-2026-earnings"
+      },
+      {
+        "label": "ורטקס",
+        "url": "https://investors.vrtx.com/news-releases/news-release-details/vertex-announce-third-quarter-2026-financial-results-november"
+      }
+    ],
+    "category": "macro"
+  },
+  {
     "כותרת": "טסלה (TSLA) וספייסX (SPCX): דיווח על חידוש מגעי Terafab עם TSMC ועל אפשרות לתפקיד תפעולי רחב יותר",
     "תאריך": "2026-11-02 08:04",
     "הועלה": "2026-11-02 08:04",
