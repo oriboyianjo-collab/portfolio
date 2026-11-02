@@ -848,7 +848,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=171">
+<link rel="stylesheet" href="chart-tools.css?v=172">
 
 </head>
 <body>
@@ -970,7 +970,7 @@ function barRows(raw,mode,off=0){return (raw||[]).map(p=>mode==='daily'?{time:p[
 function open(model,keep){if(active&&!keep)close();if(keep){keep.dead=true;keep.ro?.disconnect();window.removeEventListener('resize',keep.orient);screen.orientation?.removeEventListener?.('change',keep.orient);keep.charts.forEach(c=>{try{c.remove()}catch(e){}})}if(!model.series.length||!model.series[0].data.length)return;
  const root=document.createElement('section');root.className='ct-work';root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label','גרף מוגדל וכלי ניתוח');
  root.innerHTML='<div class="ct-head"><strong></strong><button data-ct="rotate">↻ רוחב / אורך</button><button data-ct="autoscale">התאמת מחיר</button><button data-ct="fit">איפוס תצוגה</button><button data-ct="close" aria-label="סגירת גרף מוגדל">✕ סגירה</button></div><div class="ct-time" aria-label="טווח ואינטרוול"></div><div class="ct-settings" hidden><div class="ct-tools"></div><div class="ct-fib" hidden><label>עוגן א <input data-fa type="number" step="any"></label><label>עוגן ב <input data-fb type="number" step="any"></label><button data-ct="pick">בחרו 2 נקודות</button><button data-ct="reverse">החלפה</button><button data-ct="fibfit">התאמה לרמות</button><label>זום מחיר <input data-fzoom type="range" min="1" max="8" step="0.1" value="1" aria-label="זום ציר המחיר"></label><small>המחיר הראשון הוא 0%, השני 100%</small></div><div class="ct-levels" hidden aria-label="רמות פיבונאצ׳י ומחירים"></div><div class="ct-legend"></div><div class="ct-hint" role="status"></div></div><div class="ct-content"><div class="ct-price chart"></div><div class="ct-studies" hidden><div class="ct-pane ct-rsi" hidden><label>RSI 14 · 30 / 70</label></div><div class="ct-pane ct-macd" hidden><label>MACD 12 / 26 / 9</label></div><div class="ct-pane ct-vol" hidden><label>Volume · נפח מסחר מדווח</label></div></div></div>';
- root.querySelector('strong').textContent=model.title;let oldFocus=keep?keep.oldFocus:document.activeElement,oldOverflow=keep?keep.oldOverflow:document.body.style.overflow;const shell=keep?keep.shell:document.createElement('div');shell.className='ct-shell';if(keep)keep.root.replaceWith(root);else{shell.appendChild(root);document.body.appendChild(shell)}document.body.style.overflow='hidden';let A=active={root,shell,model,charts:[],enabled:new Set(),extra:[],fibs:[],oldFocus,oldOverflow,range:null,picking:[],dead:false};if(!keep&&model.context&&model.context.range!=='YTD'){queueMicrotask(()=>{if(A.dead)return;const rr=root.querySelector('[data-ct-range]');rr.value='YTD';rr.dispatchEvent(new Event('change'))})}else if(!keep&&!model.context&&!model.localRange){queueMicrotask(()=>{if(A.dead)return;const rr=root.querySelector('[data-ct-range]');rr.value='YTD';rr.dispatchEvent(new Event('change'))})}
+ root.querySelector('strong').textContent=model.title;let oldFocus=keep?keep.oldFocus:document.activeElement,oldOverflow=keep?keep.oldOverflow:document.body.style.overflow;const shell=keep?keep.shell:document.createElement('div');shell.className='ct-shell';if(keep)keep.root.replaceWith(root);else{shell.appendChild(root);document.body.appendChild(shell)}document.body.style.overflow='hidden';let A=active={root,shell,model,charts:[],enabled:new Set(),extra:[],fibs:[],oldFocus,oldOverflow,range:null,picking:[],dead:false};if(!keep&&model.context&&(model.context.range!=='1D'||(model.context.style!=='candle'&&!model.context.it.y))){queueMicrotask(()=>{if(A.dead)return;ctx.style='candle';const rr=root.querySelector('[data-ct-range]');rr.value='1D';rr.dispatchEvent(new Event('change'))})}else if(!keep&&!model.context&&!model.localRange){queueMicrotask(()=>{if(A.dead)return;const rr=root.querySelector('[data-ct-range]');rr.value='YTD';rr.dispatchEvent(new Event('change'))})}
  let T=chartTheme();function chart(el){let c=LightweightCharts.createChart(el,{autoSize:true,layout:{background:{color:T.bg},textColor:T.text,fontSize:11},grid:{vertLines:{visible:false},horzLines:{color:T.grid}},rightPriceScale:{borderVisible:false},localization:{priceFormatter:model.pct?(v=>v.toFixed(2)+'%'):undefined},timeScale:{minBarSpacing:.001,rightOffset:0,borderVisible:false,timeVisible:model.context?ivIntra(model.context.iv):typeof model.series[0].data[0].time==='number'},handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},handleScale:{mouseWheel:true,pinch:true,axisPressedMouseMove:true}});xhAttach(el,c);if(el.__xh){el.__xh.pct=!!model.pct;el.__xh.mask=!!model.mask}A.charts.push(c);return c}
  let priceEl=root.querySelector('.ct-price'),c=chart(priceEl);A.c=c;A.priceEl=priceEl;
  model.series.forEach((s,i)=>{let candle=s.type==='Candlestick'||s.type==='Bar',S=candle?c.addCandlestickSeries({upColor:T.up,downColor:T.down,borderVisible:false,wickUpColor:T.up,wickDownColor:T.down}):c.addLineSeries({color:s.color||colors[i%colors.length],lineWidth:i?2:3,priceLineVisible:false,lastValueVisible:i===0});S.setData(s.data);if(s.markers?.length)S.setMarkers(s.markers);if(i===0){A.main=S;if(model.context?.it.sym)tradeMarkers(S,model.context.it.sym,model.context.iv)}});
@@ -1044,7 +1044,7 @@ document.addEventListener('keydown',e=>{if(active&&e.key==='Escape'){const picke
 })();
 
 // Small overview charts open this same workspace; public bars are fetched only for the chosen instrument.
-document.addEventListener('click',async e=>{if(active||!e.target.closest('svg')||e.target.closest('.ct-work'))return;let el=e.target.closest('[data-ws],[data-es],[data-spark],[data-mk],[data-idx]');if(!el)return;let it;if(el.dataset.mk)it=mktInst(el.dataset.mk);else if(el.dataset.idx)it=mktInst(el.dataset.idx);else {let sym=el.dataset.ws||el.dataset.es||el.dataset.spark;let a=assetOf(sym)||{};it=secInst({sym,name:a.name,type:a.type||'stock',currency:a.currency})}if(!it)return;e.preventDefault();e.stopImmediatePropagation();if(!iq(it))await instQuotes([it]);let raw=await instBars(it,'YTD',ivOf('YTD'));if(raw.length<2){openInstSheet(it,'YTD');return;}if(raw.length<2){toast('אין מספיק נתוני גרף לטווח הזה');return}let off=-new Date().getTimezoneOffset()*60,rows=barRows(raw,'intraday',ivIntra(ivOf('YTD'))?off:0);open({title:it.n+' · '+(it.sym||it.q),series:[{type:'Line',color:colors[0],data:rows.map(d=>({time:d.time,value:d.close}))}],volume:rows,source:'CNBC',context:{it,range:'YTD',iv:ivOf('YTD'),style:'line'}})},true);
+document.addEventListener('click',async e=>{if(active||!e.target.closest('svg')||e.target.closest('.ct-work'))return;let el=e.target.closest('[data-ws],[data-es],[data-spark],[data-mk],[data-idx]');if(!el)return;let it;if(el.dataset.mk)it=mktInst(el.dataset.mk);else if(el.dataset.idx)it=mktInst(el.dataset.idx);else {let sym=el.dataset.ws||el.dataset.es||el.dataset.spark;let a=assetOf(sym)||{};it=secInst({sym,name:a.name,type:a.type||'stock',currency:a.currency})}if(!it)return;e.preventDefault();e.stopImmediatePropagation();if(!iq(it))await instQuotes([it]);try{open(await workspaceInstrument(it,'1D',ivOf('1D'),'candle'))}catch(err){openInstSheet(it,'1D')}},true);
 lockApp();document.addEventListener('visibilitychange',()=>{if(!document.hidden)lockApp()});window.addEventListener('pageshow',lockApp);window.addEventListener('focus',lockApp);document.addEventListener('pointerdown',lockApp,{once:true,passive:true});try{screen.orientation?.addEventListener?.('change',()=>{if(!active&&!/^portrait/.test(screen.orientation.type))lockApp()})}catch(e){}
 window.ChartTools={install,volume,context,tradeMarkers,barRows,open,close,isOpen:()=>!!active,math:{sma,ema,rsi,macd,profile}};
 })();
@@ -1305,7 +1305,7 @@ const chartStyle = ()=>{ try{ return localStorage.getItem(CST_KEY)==='line' ? 'l
 const setChartStyle = v=>{ try{ localStorage.setItem(CST_KEY, v); }catch(e){} };
 const styleSegHtml = (id, v)=>`<div class="seg sm cst" id="${id}"><button data-v="line" class="${v==='line'?'on':''}">קו</button><button data-v="candle" class="${v==='candle'?'on':''}">נרות</button></div>`;
 const candleOpts = ()=>{ const T = chartTheme(); return {upColor:T.up, downColor:T.down, borderVisible:false, wickUpColor:T.up, wickDownColor:T.down, priceLineVisible:false}; };
-const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'YTD', posRange:'YTD', posStyle:'candle'}; { const v = chartStyle(); if(v) ui.posStyle = v; };
+const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'YTD', posRange:'1D', posStyle:'candle'};   // charts always open on 1D + candles (a manual choice lasts for that visit only); the performance tab keeps perfRange
 // A split must never be counted twice. The bank books some splits as bonus shares ('הטבה' rows → sharebonus), and the importer can
 // also add a split it detected in the price history. If the same security has a bonus row, or an earlier split, within ±5 days,
 // the later split is a duplicate: it stays in the list (visible, deletable) but is never applied (t.dupSkip).
@@ -2476,11 +2476,11 @@ function xhAttach(el, c){ el.classList.add('xh-ok'); el.classList.remove('zoomed
   return c; }
 // v87: compact chart inside the expanded holding row – same chart as the stock screen (ranges, intervals, line/candle,
 // long-press crosshair, pinch-zoom); one live chart per open row, redrawn from the bar cache when the list is rebuilt
-const rowCharts = new Map(), rowRange = {};
+const rowCharts = new Map(), rowRange = {}, rowStyle = {};   // rowRange / rowStyle: per-visit choices; every expand resets them to 1D + candles
 function rowChartsSync(){ rowCharts.forEach((c, el)=>{ if(!el.isConnected){ try{ c.remove(); }catch(e){} rowCharts.delete(el); } });
   document.querySelectorAll('#posList .pcard.pc.open .pc-ch').forEach(b=>{ const el = b.querySelector('.pc-chart'); if(!rowCharts.has(el)) drawRowChart(b); }); }
-async function drawRowChart(box){ const sym = box.dataset.rch, a = assetOf(sym) || {}, it = secInst({sym, type:a.type||'stock', currency:a.currency}), R = rowRange[sym] || 'YTD', iv = ivOf(R), el = box.querySelector('.pc-chart');
-  const seq = (box.__seq = (box.__seq||0) + 1), cnd = (chartStyle() || 'line')==='candle';
+async function drawRowChart(box){ const sym = box.dataset.rch, a = assetOf(sym) || {}, it = secInst({sym, type:a.type||'stock', currency:a.currency}), R = rowRange[sym] || '1D', iv = ivOf(R), el = box.querySelector('.pc-chart');
+  const seq = (box.__seq = (box.__seq||0) + 1), cnd = (rowStyle[sym] || 'candle')==='candle';
   box.querySelectorAll('[data-rcr] button').forEach(b=>b.classList.toggle('on', b.dataset.v===R)); box.querySelectorAll('[data-rcs] button').forEach(b=>b.classList.toggle('on', b.dataset.v===(cnd?'candle':'line')));
   box.querySelector('[data-rci]').innerHTML = IV_OPT[R].map(v=>`<button data-v="${v}" class="${v===iv?'on':''}">${IV_LBL[v]}</button>`).join('');
   const old = rowCharts.get(el); if(old){ try{ old.remove(); }catch(e){} rowCharts.delete(el); } el.querySelectorAll('.tv-lightweight-charts, table').forEach(x=>x.remove());
@@ -3156,6 +3156,12 @@ async function instBars(it, range, iv){
       if(ivIntra(iv) && it.stock) pts = pts.filter(p=>{ const x = nyParts(p[0]); return x.hm>=930 && x.hm<1600 && (range!=='1D' || x.d===day); });
       if(range==='YTD'){ const y0 = Date.parse(td.slice(0,4)+'-01-01T00:00:00Z'); const before = pts.filter(p=>p[0] < y0); pts = (before.length ? [before[before.length-1]] : []).concat(pts.filter(p=>p[0] >= y0)); }
     }catch(e){ console.warn('bars', it.q, range, e.message); if(c) return c.pts; }
+    if(range==='1D' && !pts.length && !it.y){ try{   // closed market / pre-market / quote date unknown: nothing for the quote day -> show the last trading session found in the previous days
+      const j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/${iv}/${ymd(addDays(day,-6))}/${ymd(addDays(day,1))}/adjusted/EST5EDT.json`, 12000);
+      let all = ((j && j.barData && j.barData.priceBars) || []).map(b=>{ const c = +b.close/k, o = +b.open/k || c, h = +b.high/k || Math.max(o,c), l = +b.low/k || Math.min(o,c); return [+b.tradeTimeinMills, c, o, h, l, b.volume!=null && Number.isFinite(+b.volume) && +b.volume>=0 ? +b.volume : null]; }).filter(p=>p[0] && p[1] > 0);
+      if(ivIntra(iv) && it.stock) all = all.filter(p=>{ const x = nyParts(p[0]); return x.hm>=930 && x.hm<1600; });
+      if(all.length){ const lastT = all[all.length-1][0], ld = it.stock ? nyParts(lastT).d : null; pts = all.filter(p=>ld ? nyParts(p[0]).d===ld : p[0] >= lastT - 12*3600e3); }
+    }catch(e){ console.warn('bars 1D last session', it.q, e.message); } }
     if(pts.length || !it.sec) instCache[key] = {at:Date.now(), pts}; return pts; }); }   // v87: an empty answer for a security (feed hiccup) isn't remembered – the next try asks again
 // MAX means all records available from this feed, never a claim of complete IPO history.
 function customReturnOk(it,pts){if(!pts||pts.length<2)return false;const d=new Date(pts[0][0]).toISOString().slice(0,10);return ['AAPL','MSFT','NVDA','TSLA'].includes(it?.q)||(it?.q==='SQQQ')||({IBM:'2021-11-04',GE:'2024-04-02',F:'2023-02-10'}[it?.q]&&d>={IBM:'2021-11-04',GE:'2024-04-02',F:'2023-02-10'}[it.q]);}
@@ -3190,7 +3196,7 @@ function lineSvg(pts, base, up, W, H, dashed){ if(!pts || pts.length < 2) return
   const X = t=>((t-t0)/tr*W).toFixed(1), Y = v=>(H-2 - (v-lo)/r*(H-4)).toFixed(1), d = P.map((p,i)=>(i?'L':'M')+X(p[0])+' '+Y(p[1])).join(' '), col = up ? 'var(--green)' : 'var(--red)';
   return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${dashed && base!=null ? `<line x1="0" x2="${W}" y1="${Y(base)}" y2="${Y(base)}"/>` : ''}<path class="a" d="${d} L${W} ${H} L0 ${H} Z" fill="${col}"/><path class="l" d="${d}" stroke="${col}"/></svg>`; }
 // ---- market screen ----
-let mktRange = 'YTD',   // every chart starts year-to-date (a manual choice lasts for that visit only)
+let mktRange = '1D',   // every chart starts on the daily (1D) range (a manual choice lasts for that visit only)
     mktEditing = false, mktTimer = null, mktSeq = 0;
 function mktCardHtml(it){ const q = iq(it), last = q ? q.price : null, key = it.q+'|'+mktRange, c = instCache[key];
   const pts = c ? withLive(it, mktRange, c.pts) : null, base = pts ? instRangeBase(it, mktRange, pts) : (mktRange==='1D' && q ? q.prev : null);
@@ -3612,7 +3618,7 @@ let instSheet = null;
 function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p=>p.sym===it.sym);
   return `<h3><span>${it.sec ? logoHtml(it.sym, true) : it.fl ? `<span class="fxfl">${it.fl}</span>` : ''}<span>${esc(it.sec ? it.sym : it.n)}</span></span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="muted" style="margin:-8px 0 8px;font-size:.85rem">${esc(it.sec ? it.n : it.s)}</div>
-    <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><div class="ishd"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b><span id="isXP" class="isx"></span><span id="isXC" class="isx"></span></div>${it.y ? '' : styleSegHtml('isStyle', chartStyle() || 'line')}</div>
+    <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><div class="ishd"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b><span id="isXP" class="isx"></span><span id="isXC" class="isx"></span></div>${it.y ? '' : styleSegHtml('isStyle', 'candle')}</div>
     ${it.sec ? '<div class="is-trade"><button class="btn btn-primary" data-istx="buy">🛒 קנייה</button><button class="btn btn-light" data-istx="sell">💰 מכירה</button></div>' : ''}
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
     <details style="margin-top:10px" id="isCustom"><summary style="cursor:pointer">טווח תאריכים לבחירה</summary><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><label style="flex:1;min-width:140px">מתאריך<input id="isFrom" type="date" max="${today()}" value="${addDays(today(),-366)}" style="width:100%"></label><label style="flex:1;min-width:140px">עד תאריך<input id="isTo" type="date" max="${today()}" value="${today()}" style="width:100%"></label><button class="btn btn-primary btn-sm" id="isApplyDates" style="width:100%;min-height:44px">הצגת הטווח</button></div><div class="note" id="isDateErr" role="status"></div></details>
@@ -3699,7 +3705,7 @@ function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const
 function drawIvSeg(){ const S = instSheet, el = $('isIv'); if(!S || !el) return; el.innerHTML = (customRange(S.range)?['1D']:IV_OPT[S.range]).map(v=>`<button data-iv="${v}" class="${v===S.iv?'on':''}">${IV_LBL[v]}</button>`).join(''); }
 async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S.it, el = $('isChart'), seq = ++S.seq;
   $('isRange').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===S.range));
-  const cnd = !it.y && (chartStyle() || 'line')==='candle'; if($('isStyle')) $('isStyle').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===(cnd?'candle':'line')));
+  const cnd = !it.y && (S.style || 'candle')==='candle'; if($('isStyle')) $('isStyle').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===(cnd?'candle':'line')));
   if(posChart){ posChart.remove(); posChart = null; } S.series = null; S.bar = null; el.querySelectorAll('.tv-lightweight-charts, table').forEach(x=>x.remove());
   historyCoverage(el,$('isCoverage'),'',[]); const msg = $('isMsg'); msg.style.display = 'flex'; msg.textContent = 'טוען גרף…';
   if(!iq(it)) await instQuotes([it]);
@@ -3716,7 +3722,7 @@ async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S
   s.setData(data); ChartTools.tradeMarkers(s,it.sym,S.iv);ChartTools.context(el,it,S.range,S.iv,cnd?'candle':'line');ChartTools.volume(el,ChartTools.barRows(instCache[instKey(it,S.range,S.iv)]?.pts||[],'intraday',intr?off:0),'CNBC'); S.series = s; S.off = intr ? off : 0; S.lastT = data[data.length-1].time;
   const q = iq(it); if(S.range==='1D' && q && q.prev) s.createPriceLine({price:q.prev, color:'#94a3b8', lineWidth:1, lineStyle:2, axisLabelVisible:false, title:'סגירה'});
   posChart.timeScale().fitContent(); }
-function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it, range:'YTD', seq:0}; if(it.sec) obMount(it.sym);
+function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it, range:'1D', style:'candle', seq:0};   // every open: daily range + candles (the range argument is ignored on purpose) if(it.sec) obMount(it.sym);
   // v84: buy / sell straight from any instrument screen (search, watchlist, market, news, reports) – pre-filled symbol, currency and live price
   $('sheetBody').querySelectorAll('[data-istx]').forEach(b=>b.onclick = ()=>{ const q = iq(it), bookingCur=isEuSec(it.sym)?'USD':it.cur, pr = q && q.price!=null ? convertCur(q.price,q.cur,bookingCur) : null, ty = b.dataset.istx, h = computeAll().positions.find(p=>p.sym===it.sym);
     openTxForm(ty, {symbol:it.sym, currency:bookingCur, assetType:it.type, date:today(), ...(ty==='sell' && h && h.qty>0 ? {qty:h.qty} : {}), ...(pr!=null ? {price: pr<10 ? Math.round(pr*10000)/10000 : Math.round(pr*100)/100} : {})}, null, null); });
@@ -3724,7 +3730,7 @@ function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it
   $('isApplyDates').onclick=()=>{const a=$('isFrom'),b=$('isTo'),e=$('isDateErr');if(!a.value||!b.value||a.value>b.value||b.value>today()||!a.checkValidity()||!b.checkValidity()){e.textContent='יש לבחור תאריכים תקינים, התחלה לא אחרי הסיום, ולא בעתיד.';return}e.textContent='';instSheet.range='CUSTOM:'+a.value+':'+b.value;drawInstChart();};
   const pb = $('isPos'); if(pb) pb.onclick = ()=>openPosition(it.sym);
   $('isIv').addEventListener('click', e=>{ const b = e.target.closest('button[data-iv]'); if(!b || !instSheet) return; ivSet(instSheet.range, b.dataset.iv); drawInstChart(); });
-  const sb = $('isStyle'); if(sb) sb.addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b || !instSheet) return; setChartStyle(b.dataset.v); drawInstChart(); });
+  const sb = $('isStyle'); if(sb) sb.addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b || !instSheet) return; instSheet.style = b.dataset.v; drawInstChart(); });
   drawInstChart(); }
 
 // ---- v66: "add to watchlist" in every instrument / position sheet – pick one of the existing lists (✓ = already there) ----
@@ -4111,12 +4117,12 @@ function lotPreviewHtml(cand, editId, cur){ const base = state.txs.filter(x=>x.i
   return `<div class="lot-prev"><div class="lp-cmp"><span>מס משוער – FIFO: <b class="num">${tx('fifo')}</b></span><span>LIFO: <b class="num">${tx('lifo')}</b></span></div>
     <div class="lt-row lt-h"><span>שכבה (קנייה)</span><span>כמות</span><span>עלות ליח׳</span><span>רווח ₪ · מס</span></div>`+
     s.calc.layers.map(l=>`<div class="lt-row"><span class="num">${fmtDate(l.date)}</span><span class="num">${fmtQty(l.q)}</span><span class="num">${fmtPrice(l.c,cur)}</span><span class="num ${cls(l.taxable)}">${fmtSigned(l.taxable,'ILS',0)} · ${fmtMoney(Math.max(0,l.taxable*rate),'ILS',0)}</span></div>`).join('')+`</div>`; }
-function openPosition(sym){ui.posRange='YTD';
+function openPosition(sym){ui.posRange='1D'; ui.posStyle='candle';
   const S = computeAll(), p = S.positions.find(x=>x.sym===sym) || S.closed.find(x=>x.sym===sym); if(!p) return;
   const cur = p.cur, short = p.qty<0, open = Math.abs(p.qty)>1e-9, q = state.quotes[sym]||{};
   openSheet(`<h3><span>${logoHtml(sym, true)}<span class="ltr">${esc(sym)}</span>${short?'<span class="tag short">שורט</span>':''}</span><button class="x" data-close aria-label="סגירה">✕</button></h3>
     <div class="muted" style="margin:-8px 0 10px;font-size:.85rem">${esc(p.asset.name||'')}</div>
-    <div class="ctrls"><div class="seg sm" id="posRange">${['1M','3M','YTD','1Y','5Y'].map(r=>`<button data-v="${r}" class="${r===ui.posRange?'on':''}">${{'1M':'חודש','3M':'3 ח׳','YTD':'YTD','1Y':'שנה','5Y':'5 שנים'}[r]}</button>`).join('')}</div>
+    <div class="ctrls"><div class="seg sm" id="posRange">${['1D','1M','3M','YTD','1Y','5Y'].map(r=>`<button data-v="${r}" class="${r===ui.posRange?'on':''}">${{'1D':'יום','1M':'חודש','3M':'3 ח׳','YTD':'YTD','1Y':'שנה','5Y':'5 שנים'}[r]}</button>`).join('')}</div>
       <div class="seg sm" id="posStyle" style="flex:0 0 auto"><button data-v="line" class="${ui.posStyle==='line'?'on':''}">קו</button><button data-v="candle" class="${ui.posStyle==='candle'?'on':''}">נרות</button></div></div>
     <div class="chart" id="posChartEl" style="height:260px"><div class="chart-msg" id="posMsg">טוען גרף…</div></div>
     <div class="rchg" id="posRchg"></div>
@@ -4137,7 +4143,7 @@ function openPosition(sym){ui.posRange='YTD';
   sheetSym = sym; sheetPrice = p.price; obMount(sym);
   if($('isDetG')){ posDet = secInst({sym, type:assetOf(sym).type||'stock', currency:assetOf(sym).currency}); posDetAt = Date.now(); drawDet(); if(detOpen){ loadAv3m(posDet); fundLoad(); } instQuotes([posDet]).then(()=>{ if(sheetSym===sym && posDet) drawDet(); }).catch(()=>{}); }   // v161: same details grid as the instrument sheet (public per-share data only)
   const body = $('sheetBody');
-  const segs = (id, key)=>body.querySelector(id).addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return; ui[key]=b.dataset.v; if(key==='posStyle') setChartStyle(b.dataset.v); body.querySelectorAll(id+' button').forEach(x=>x.classList.toggle('on',x===b)); drawPosChart(sym); });
+  const segs = (id, key)=>body.querySelector(id).addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return; ui[key]=b.dataset.v; body.querySelectorAll(id+' button').forEach(x=>x.classList.toggle('on',x===b)); drawPosChart(sym); });
   segs('#posRange','posRange'); segs('#posStyle','posStyle');
   body.querySelectorAll('[data-pact]').forEach(b=>b.onclick = ()=>{
     const act = b.dataset.pact;
@@ -4201,12 +4207,13 @@ function marketDate(m){ const am = Object.values(ASIA_MK).find(x=>x[0]===m); ret
 function renderPosRchg(price){
   const L = posLive, el = $('posRchg'); if(!el || !L || !(L.base>0) || price==null) return;
   const v = (price/L.base - 1)*100;
-  el.innerHTML = `<span>${L.ytd ? `מתחילת השנה <span class="muted">(מול סגירת <span class="num">${fmtDate(L.baseDate)}</span>: <span class="num">${fmtMoneyRaw(L.base, L.hcur, 2)}</span>)</span>` : `שינוי בטווח <span class="muted">(מול <span class="num">${fmtDate(L.baseDate)}</span>)</span>`}</span><b id="posRchgPct" class="num ${cls(v)}">${fmtPct(v)}</b>`;
+  el.innerHTML = `<span>${L.day ? `שינוי היום <span class="muted">(מול סגירה קודמת <span class="num">${fmtMoneyRaw(L.base, L.hcur, 2)}</span>)</span>` : L.ytd ? `מתחילת השנה <span class="muted">(מול סגירת <span class="num">${fmtDate(L.baseDate)}</span>: <span class="num">${fmtMoneyRaw(L.base, L.hcur, 2)}</span>)</span>` : `שינוי בטווח <span class="muted">(מול <span class="num">${fmtDate(L.baseDate)}</span>)</span>`}</span><b id="posRchgPct" class="num ${cls(v)}">${fmtPct(v)}</b>`;
 }
 function updatePosLive(){
   const L = posLive; if(!posChart || !L) return;
   const pr = priceOf(L.sym); if(pr.price==null || pr.manual) return;
   const price = convertCur(pr.price, assetOf(L.sym).currency, L.hcur), m = marketOf(L.sym), d = marketDate(m);if(m==='global')return;
+  if(L.intra){ renderPosRchg(price); const b = L.bar; b.close = price; b.high = Math.max(b.high, price); b.low = Math.min(b.low, price); try{ L.series.update(L.candle ? Object.assign({}, b) : {time:b.time, value:price}); }catch(e){} return; }   // v172: 1D – only the last bar follows the live price
   renderPosRchg(price);
   let b = L.bar;
   if(b.time !== d){ if(marketState(m).state!=='open' || d < b.time) return; b = {time:d, open:price, high:price, low:price, close:price}; }   // first tick of a new session
@@ -4222,15 +4229,41 @@ function splitAdjBars(sym, bars){
     if(!ev.length) return bars;
     return bars.map(b=>{ let f = 1; ev.forEach(e=>{ if(b[0] < e.d) f *= e.r; }); return f===1 ? b : [b[0], b[1]/f, b[2]/f, b[3]/f, b[4]/f, b[5]==null ? null : b[5]*f]; });
   }catch(e){ return bars; } }
+let posSeq = 0, posNoteX = '';
+async function drawPosIntraday(sym, seq){   // v172: the 1D (יום) option – intraday bars through the same path as the instrument sheet (instBars); candles by default
+  const el = $('posChartEl'), msg = $('posMsg'), a = assetOf(sym) || {}, it = secInst({sym, type:a.type||'stock', currency:a.currency}), cur = it.cur;
+  $('posRchg').innerHTML = '';
+  if(!iq(it)) await instQuotes([it]);
+  const iv = ivOf('1D'), raw = await instBars(it, '1D', iv); if(seq!==posSeq || el!==$('posChartEl')) return;
+  if(!raw.length){ posNoteX = ' · אין נתוני תוך־יום לנייר זה – מוצג YTD'; ui.posRange = 'YTD'; $('posRange').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===ui.posRange)); return drawPosChart(sym); }
+  if(posChart){ posChart.remove(); posChart = null; }
+  msg.style.display = 'none';
+  const cnd = ui.posStyle==='candle', off = -new Date().getTimezoneOffset()*60, q = iq(it), T = chartTheme(), seen = new Set(), tt = p=>Math.floor(p[0]/1000) + off;
+  posChart = makeChart(el, false); posChart.applyOptions({timeScale:{timeVisible:true, secondsVisible:false}, localization:{locale:'he-IL', priceFormatter:v=>Math.abs(v)>=10000 ? v.toLocaleString('en-US',{maximumFractionDigits:0}) : v.toFixed(Math.abs(v)<10 ? 3 : 2)}});
+  let s, data; const up = raw[raw.length-1][1] >= ((q||{}).prev || raw[0][1]);
+  if(cnd){ s = posChart.addCandlestickSeries(candleOpts()); data = raw.map(p=>({time:tt(p), open:p[2]??p[1], high:p[3]??p[1], low:p[4]??p[1], close:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time)); }
+  else { s = posChart.addAreaSeries({lineColor:up ? T.up : T.down, topColor:up ? 'rgba(16,185,129,.22)' : 'rgba(239,68,68,.22)', bottomColor:'rgba(0,0,0,0)', lineWidth:2, priceLineVisible:false}); data = raw.map(p=>({time:tt(p), value:p[1]})).filter(d=>!seen.has(d.time) && seen.add(d.time)); }
+  s.setData(data);
+  ChartTools.context(el, it, '1D', iv, cnd?'candle':'line'); ChartTools.volume(el, ChartTools.barRows(raw, 'intraday', off), 'CNBC');
+  if(q && q.prev) s.createPriceLine({price:q.prev, color:'#94a3b8', lineWidth:1, lineStyle:2, axisLabelVisible:false, title:'סגירה'});
+  const P = computeLedger().pos[sym];
+  if(P && Math.abs(P.qty)>1e-9 && P.avg){ s.createPriceLine({price:convertCur(P.avg, P.cur, cur), color:'#f59e0b', lineWidth:1, lineStyle:2, axisLabelVisible:!hidden(), title:P.qty<0?'מחיר שורט':'עלות'}); }
+  const mks = ChartTools.tradeMarkers(s, sym, iv), lb = data[data.length-1];
+  posLive = {sym, series:s, candle:cnd, intra:true, hcur:cur, bar:Object.assign({}, lb), base:q && q.prev, baseDate:null, ytd:false, day:true};
+  renderPosRchg(q && q.price!=null ? q.price : raw[raw.length-1][1]); updatePosLive();
+  posChart.timeScale().fitContent();
+  $('posNote').textContent = `מקור: CNBC · יום מסחר אחרון · מחירים ב${cur==='USD'?'דולר':cur==='ILS'?'שקל':cur}${mks.length?' · B/S = הקניות והמכירות שלך':''}`;
+}
 async function drawPosChart(sym){
-  posLive = null;
+  posLive = null; const seq = ++posSeq;
   const el = $('posChartEl'), msg = $('posMsg'); if(!el) return;
   if(posChart){ posChart.remove(); posChart=null; }
   if(!lwOk()){ msg.textContent='ספריית הגרפים לא נטענה'; return; }
   msg.style.display='flex'; msg.textContent='טוען גרף…';
+  if(ui.posRange==='1D') return drawPosIntraday(sym, seq);
   const ytd = ui.posRange==='YTD', from = ytd ? ytdStart() : addDays(today(), -RANGE_DAYS[ui.posRange]);
   const h = await getHistory(sym, addDays(from, -10));
-  if(el!==$('posChartEl')) return;
+  if(el!==$('posChartEl') || seq!==posSeq) return;
   if(posChart){ posChart.remove(); posChart=null; }
   const hAdj = h ? splitAdjBars(sym, h.bars) : [], bars = h ? hAdj.filter(b=>b[0]>=from) : [];
   if(!bars.length){ msg.textContent='אין היסטוריית מחירים זמינה לנייר זה'; $('posNote').textContent=''; return; }
@@ -4248,7 +4281,7 @@ async function drawPosChart(sym){
   const lb = bars[bars.length-1]; posLive = {sym, series:s, candle: ui.posStyle==='candle' && h.ohlc, hcur:h.cur, bar:{time:lb[0], open:lb[1], high:lb[2], low:lb[3], close:lb[4]}, base:baseBar[4], baseDate:baseBar[0], ytd};
   renderPosRchg(lb[4]); updatePosLive();   // live quote right away
   posChart.timeScale().fitContent();
-  $('posNote').textContent = `מקור: ${h.source} · מחירים ב${h.cur==='USD'?'דולר':'שקל'}${ui.posStyle==='candle'&&!h.ohlc?' · אין נתוני OHLC – מוצג קו':''}${mks.length?' · B/S = הקניות והמכירות שלך':''}`;
+  $('posNote').textContent = `מקור: ${h.source} · מחירים ב${h.cur==='USD'?'דולר':'שקל'}${ui.posStyle==='candle'&&!h.ohlc?' · אין נתוני OHLC – מוצג קו':''}${mks.length?' · B/S = הקניות והמכירות שלך':''}${posNoteX}`; posNoteX = '';
 }
 
 // ---------- v110 mock: ⓘ info buttons ----------
@@ -4940,7 +4973,7 @@ function setTab(tab){ try{ repPopClose(); }catch(_){}
   try{ sessionStorage.setItem(TAB_KEY, tab); }catch(e){}
   if(!navRestoring && tab!==ui.tab) navPush({t:'tab', tab:ui.tab});   // v87: tab switches are steps the back button retraces
   if(tab==='watch'){ wlSwapCancel(); wlMenu = null; wlGlide = null; wlLastCur = null; const strip = $('wlTabs').querySelector('.wltabs'); if(strip) strip.scrollLeft = 0; const first = wlData.lists[0]; if(first && wlData.cur!==first.id){ wlData.cur = first.id; saveWl(); } }   // v122: every watch-tab entry starts on the leftmost saved list; redraws and list swipes keep their selection
-  if(tab==='market' && ui.tab!=='market') mktRange = 'YTD';
+  if(tab==='market' && ui.tab!=='market') mktRange = '1D';
   if((tab==='perf'||tab==='portfolio') && ui.tab!==tab){ ui.perfRange = 'YTD'; syncRangeChips(); }   // v66: the performance tab always opens on YTD   // v51: reset to daily on every entry
   ui.tab = tab;
   if(tab!=='watch' && typeof wlSwapCancel==='function') wlSwapCancel();   // v114: never let a staged watchlist swap scroll or rewrite after leaving watch
@@ -5315,9 +5348,9 @@ $('posList').addEventListener('pointerdown', ()=>{ listTouch = true; });
 $('posList').addEventListener('click', e=>{ if(e.target.closest('.ct-expand')) return; const n = e.target.closest('[data-new]'); if(n) return openTxForm(n.dataset.new);
   const cm = e.target.closest('.pcard.pc');
   if(cm){ const sym = cm.dataset.sym;
-    if(e.target.closest('[data-ctoggle]')){ const o = !cm.classList.contains('open'); cm.classList.toggle('open', o); cm.querySelector('[data-ctoggle]').setAttribute('aria-expanded', o); if(o){rowRange[sym]='YTD';const el=cm.querySelector('.pc-chart'),old=rowCharts.get(el);if(old){old.remove();rowCharts.delete(el)}ui.expanded.add(sym)} else ui.expanded.delete(sym); rowChartsSync(); return; }
+    if(e.target.closest('[data-ctoggle]')){ const o = !cm.classList.contains('open'); cm.classList.toggle('open', o); cm.querySelector('[data-ctoggle]').setAttribute('aria-expanded', o); if(o){rowRange[sym]='1D';rowStyle[sym]='candle';const el=cm.querySelector('.pc-chart'),old=rowCharts.get(el);if(old){old.remove();rowCharts.delete(el)}ui.expanded.add(sym)} else ui.expanded.delete(sym); rowChartsSync(); return; }
     const rb = e.target.closest('.pc-ch button'); if(rb){ const box = rb.closest('.pc-ch'), g = rb.parentElement.dataset;
-      if('rcr' in g) rowRange[sym] = rb.dataset.v; else if('rci' in g) ivSet(rowRange[sym] || 'YTD', rb.dataset.v); else if('rcs' in g) setChartStyle(rb.dataset.v); drawRowChart(box); return; }
+      if('rcr' in g) rowRange[sym] = rb.dataset.v; else if('rci' in g) ivSet(rowRange[sym] || '1D', rb.dataset.v); else if('rcs' in g) rowStyle[sym] = rb.dataset.v; drawRowChart(box); return; }
     const a = e.target.closest('[data-cact]'); if(!a) return;
     if(a.dataset.cact==='open') return openPosition(sym);
     const S = computeAll(), p = S.positions.find(x=>x.sym===sym); if(!p) return;
