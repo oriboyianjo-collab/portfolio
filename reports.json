@@ -15378,12 +15378,13 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.14",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q2 FY2027: 166.89M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. נבדק פרסום Q1; תחזית 650–670 מיליון של החברה היא לשנה ולא לרבעון. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "פרסום תוצאות Q2 FY2027 והשיחה נדחו ליום שני, 09.11.2026 בשעה 16:30 בניו יורק (23:30 בישראל).\nהצפי מתייחס לרבעון השני של שנת הכספים 2027.\nבסיס הצפי לא ידוע.",
     "צפי_הכנסות": "166.89M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q2 FY2027 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-digital-turbine-apps-expected-to-release-quarterly-earnings-on-monday-2026-10-26/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "מקור_מועד_דוח": "https://ir.digitalturbine.com/news-events/press-releases/detail/707/digital-turbine-reschedules-fiscal-2027-second-quarter"
   },
   {
     "חברה": "Axsome Therapeutics, Inc.",
