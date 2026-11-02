@@ -848,7 +848,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=177">
+<link rel="stylesheet" href="chart-tools.css?v=178">
 
 </head>
 <body>
@@ -5205,10 +5205,41 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
       const kind = /analyst|אנליסט/i.test(t) ? 'אנליסטים' : (/company|guidance|תחזית חברה/i.test(t) ? 'חברה' : '');
       const rng = /range|טווח/i.test(t) ? ' (טווח)' : '';
       const un = /unknown|לא ידוע/i.test(t) ? ' · בסיס לא ידוע' : '';
+      const conflict = /source conflict|מקורות סותרים/i.test(t) ? 'מקורות סותרים · ' : '';
+      const dil = /dilut|מדולל/i.test(t), bas = !dil && /basic|בסיסי/i.test(t);
+      const cont = /continu|נמשכת|מתמשכת/i.test(t) ? ' (פעילות נמשכת)' : '';
+      const q = (dil ? ' מדולל' : bas ? ' בסיסי' : '') + cont;
+      const ads = /\bADR\b|ל-ADR/i.test(t) ? ' ל-ADR' : (/\bADS\b|ל-ADS|ל־ADS/i.test(t) ? ' ל-ADS' : '');
+      const tF = t.replace(/,?\s*not\s+(?:operating\s+|core\s+)?FFO(?:\s+or\s+AFFO)?/ig, '').replace(/,?\s*not\s+AFFO/ig, '');
       let basis = '';
-      if(/adjusted|מתואם|מותאם|non[- ]?gaap/i.test(t)) basis = /continuing|נמשכת/i.test(t) ? 'מתואם מדולל (פעילות נמשכת)' : (/diluted|מדולל/i.test(t) ? 'מתואם מדולל' : 'מתואם');
-      else if(/gaap|ifrs/i.test(t)) basis = 'GAAP';
-      const head = kind ? kind + rng + un : un.replace(/^ · /, '');
+      if(/core ffo|ffo ליבה/i.test(tF)) basis = 'FFO ליבה';
+      else if(/affo/i.test(tF)) basis = 'AFFO';
+      else if(/ffoaa/i.test(tF)) basis = 'FFOAA';
+      else if(/normalized ffo|ffo מנורמל/i.test(tF)) basis = 'FFO מנורמל';
+      else if(/ffo כמתואם|ffo מתואם/i.test(tF)) basis = 'FFO מתואם';
+      else if(/\bffo\b/i.test(tF)) basis = 'FFO';
+      else if(/non[- ]?gaap|לא[- ]?gaap|adjusted|מתואם|מותאם/i.test(t) && !/reverse[- ]?split adjusted|זהה למתואם/i.test(t)) basis = (/core|ליבה/i.test(t) ? 'מתואם ליבה' : 'מתואם') + q + ads;
+      else if(/non[- ]?ifrs|לא[- ]?ifrs/i.test(t)) basis = (/ליבה|core/i.test(t) ? 'ליבה (לא-IFRS)' : 'לא-IFRS');
+      else if(/chilean gaap/i.test(t)) basis = 'GAAP צ׳ילה' + q + ads;
+      else if(/gaap/i.test(t)) basis = 'GAAP' + q + ads;
+      else if(/ifrs[- ]?eu/i.test(t)) basis = 'IFRS-EU' + q;
+      else if(/ifrs|ias 33/i.test(t)) basis = 'IFRS' + q + ads;
+      else if(/net investment income/i.test(t)) basis = 'הכנסה נטו מהשקעות למניה' + (bas ? ' (בסיסי)' : '');
+      else if(/total investment income/i.test(t)) basis = 'סה״כ הכנסות השקעות' + (/\bBDC\b/i.test(t) ? ' (BDC)' : '');
+      else if(/distributable/i.test(t)) basis = /adj/i.test(t) ? 'לחלוקה מתואם' : (/loss/i.test(t) ? 'הפסד לחלוקה' : 'לחלוקה');
+      else if(/underlying/i.test(t)) basis = 'מתואם (Underlying)' + (/\bRC\b/.test(t) ? ' RC' : '') + ads;
+      else if(/reported net earnings/i.test(t)) basis = 'רווח נטו מדווח למניה';
+      else if(/consolidated/i.test(t) && /total revenue/i.test(t) && /net sales/i.test(t)) basis = 'סה״כ הכנסות / מכירות נטו מאוחדות';
+      else if(/consolidated/i.test(t) && /net sales/i.test(t)) basis = 'מכירות נטו מאוחדות';
+      else if(/consolidated/i.test(t) && /rental/i.test(t)) basis = 'הכנסות שכירות מאוחדות' + cont;
+      else if(/consolidated/i.test(t) && /revenue/i.test(t)) basis = /total/i.test(t) ? 'סה״כ הכנסות מאוחדות' : (/reported/i.test(t) ? 'הכנסות מאוחדות מדווחות' : 'הכנסות מאוחדות');
+      else if(/total revenue/i.test(t) && /net sales/i.test(t)) basis = 'סה״כ הכנסות / מכירות נטו';
+      else if(/rental and other property/i.test(t)) basis = 'הכנסות שכירות ונכסים אחרות';
+      else if(/total operating income/i.test(t)) basis = 'סה״כ הכנסות תפעול';
+      else if(/total revenues and other income/i.test(t)) basis = 'סה״כ הכנסות והכנסות אחרות';
+      else if(/net sales/i.test(t)) basis = 'מכירות נטו';
+      else if(/^core למניה רגילה$/i.test(t)) basis = 'ליבה למניה רגילה';
+      const head = (kind ? conflict + kind + rng + un : un.replace(/^ · /, '')) || (conflict ? conflict.replace(/ · $/, '') : '');
       return [head, basis].filter(Boolean).join(' · ') || t; };
     const tagB = (estB, actB, cur)=>{ const a = BL(estB), b2 = BL(actB), c = String(cur||'').toUpperCase();
       if(!a && !b2) return c && c!=='USD' ? `<small class="rb">${esc(c)}</small>` : '';
