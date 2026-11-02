@@ -15224,12 +15224,21 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 265.33M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. נבדקו פרסום Q2 ושיחת החברה: תחזית נפח ו-EBITDA אינה תחזית הכנסות דולרית; EBITDA אינו EPS. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסות: 267.778 מיליון דולר, לעומת 293.178 מיליון דולר ברבעון הקודם ו-259.613 מיליון דולר אשתקד.\nהפסד מדולל למניה לפי GAAP: ‏0.36 דולר, לעומת הפסד של 0.20 דולר ברבעון הקודם ו-0.19 דולר אשתקד.\nבסיס הצפי לא ידוע.",
     "צפי_הכנסות": "265.33M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-atlas-energy-solutions-inc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "-0.36",
+    "הכנסות_בפועל": "267.778M",
+    "בסיס_בפועל_EPS": "GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102432900/en/Atlas-Energy-Solutions-Announces-Third-Quarter-2026-Results"
   },
   {
     "חברה": "AH Realty Trust, Inc.",
@@ -16355,12 +16364,21 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 82.24M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. תחזית החברה 327–332 מיליון היא לשנה, לא לרבעון. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסות: 83.309 מיליון דולר, לעומת 76.474 מיליון דולר אשתקד.\nEPS מדולל לפי GAAP: ‏0.18 דולר, לעומת 0.20 דולר אשתקד.\nרווח תפעולי: 6.6 מיליון דולר, לעומת 7.6 מיליון דולר אשתקד.\nבסיס הצפי לא ידוע.",
     "צפי_הכנסות": "82.24M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-healthstream-inc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.18",
+    "הכנסות_בפועל": "83.309M",
+    "בסיס_בפועל_EPS": "GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102117319/en/HealthStream-Announces-Third-Quarter-2026-Results"
   },
   {
     "חברה": "Huntsman Corporation",
