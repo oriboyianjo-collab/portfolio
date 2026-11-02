@@ -817,7 +817,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .rrow .rcap{flex:0 0 auto;white-space:nowrap;direction:ltr;unicode-bidi:isolate}
 .rrow .rcap::before{content:"·";margin-inline-end:5px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=162">
+<link rel="stylesheet" href="chart-tools.css?v=163">
 
 </head>
 <body>
@@ -1670,7 +1670,7 @@ async function cnbcQuotes(symbols){
       // v49: US pre-market only (after-hours / overnight are ignored): change vs the prior close = regular "last" before the open
       if(k===1 && E && (E.type==='PRE_MKT' || E.type==='POST_MKT')){ const pl = num(E.last), ts = parseTs(E.last_time); if(pl!=null && pl>0 && ts){ const chg = pl - last; pre = {price:pl, chg, pct: last ? chg/last*100 : null, ts, kind: E.type==='POST_MKT' ? 'after' : 'pre'}; } }   // v64: + after-hours; both vs the regular 'last' (pre: prior close, after: today's close)
       const ev = q.EventData || {}, px = v=>{ const n = num(v); return n==null ? null : n/k; }, pn = v=>{ const n = num(v); return n==null ? null : n; }, big = v=>parseCap(v);
-      const X = {open:px(q.open), high:px(q.high), low:px(q.low), yh:px(q.yrhiprice), yl:px(q.yrloprice), av10:big(q.tendayavgvol), eps:px(q.eps), pe:pn(q.pe), fpe:pn(q.fpe), ps:k>1 ? null : pn(q.psales), shs:big(q.sharesout), div:px(q.dividend)||px(ev.div_amount), dy:pn(String(q.dividendyield||'').replace('%','')), beta:pn(q.beta), exd:ev.div_ex_date||'', ne:ev.next_earnings_date||'', vol:big(q.volume)};   // v102: key-stats for the 'details' section (CNBC fields; TASE prices are in agorot -> /100)
+      const X = {open:px(q.open), high:px(q.high), low:px(q.low), yh:px(q.yrhiprice), yl:px(q.yrloprice), av10:big(q.tendayavgvol), eps:px(q.eps), feps:px(q.feps), pe:pn(q.pe), fpe:pn(q.fpe), ps:k>1 ? null : pn(q.psales), shs:big(q.sharesout), div:px(q.dividend)||px(ev.div_amount), dy:pn(String(q.dividendyield||'').replace('%','')), beta:pn(q.beta), exd:ev.div_ex_date||'', ne:ev.next_earnings_date||'', vol:big(q.volume)};   // v102: key-stats for the 'details' section (CNBC fields; TASE prices are in agorot -> /100)
       out[String(orig).toUpperCase()] = {x:X, pre, mcap: mc!=null ? (pence ? mc : mc/k) : null, price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', source:'CNBC'};
     });
   }
@@ -3549,12 +3549,26 @@ function fundCells(it, q){ const f = fundFor(it), px = q && q.price, X = (q && q
   const bt = f && f.beta!=null ? f.beta : X.beta!=null ? X.beta : null;
   out.beta = [bt==null ? '--' : bt.toFixed(2), bt==null ? '' : (f && f.beta!=null ? '5 שנים · חודשי' : 'CNBC'), {ttl:'בטא', tip:`<p><b>בטא</b> = רגישות המניה לשוק (S&amp;P 500). 1.0 = זזה כמו השוק; מעל 1 = תנודתית יותר; מתחת ל־1 = רגועה יותר; שלילי = נעה נגד השוק.</p><p>${f && f.beta!=null ? 'מחושבת על 5 שנים של תשואות חודשיות (מקור: '+B('Yahoo Finance')+', מתעדכן בסבב יומי).' : 'מקור: '+B('CNBC')+' (אין חישוב 5 שנים זמין לנייר הזה).'}</p>`}];
   return out; }
-function detRows(it, q){ const X = (q && q.x) || {}, FC = fundCells(it, q), cur = it.cur, pr = v=>v==null || !isFinite(v) ? DET_DASH : fmtPrice(v, cur), pc = (X.high!=null && X.low!=null && q && q.prev) ? (X.high-X.low)/q.prev*100 : null;
+// v162: Forward P/E – live price ÷ forward EPS (CNBC `feps`, analyst consensus for the next 12 months); falls back to CNBC's own `fpe` when feps is missing. '--' when unavailable / negative / implausible.
+function fwdCells(it, q){ const X = (q && q.x) || {}, px = q && q.price, B = s=>`<bdi dir="ltr">${s}</bdi>`, cur = it.cur;
+  let fe = X.feps!=null && isFinite(X.feps) ? X.feps : null;
+  if(fe!=null && X.eps>0 && fe/X.eps < 0.25) fe = null;   // CNBC occasionally mixes share classes (e.g. BRK.B): ignore an EPS estimate that is <¼ of the trailing EPS
+  let pe = null, live = false;
+  if(fe!=null && fe>0 && px>0){ pe = px/fe; live = true; } else if(fe==null && X.fpe>0){ pe = X.fpe; }
+  if(pe!=null && !(pe>0 && pe<10000)) pe = null;
+  const src = `<p class="ib-f">מקור: ${B('CNBC')} · תחזיות אנליסטים</p>`, epsTxt = fe!=null ? fmtPrice(fe, cur) : '';
+  const peCell = [pe==null ? '--' : pe.toFixed(2)+'x', pe==null ? (fe!=null && fe<=0 ? 'רווח צפוי שלילי' : '') : (live ? '<em class="lv">● חי</em> · EPS '+B(epsTxt) : 'מקור CNBC'),
+    {ttl:'מכפיל רווח צפוי (Forward P/E)', tip:`<p><b>מכפיל רווח צפוי</b> = מחיר המניה ÷ רווח למניה צפוי ל־12 החודשים הבאים, לפי תחזיות אנליסטים.</p><p>המחיר <b>חי</b> – המכפיל מחושב מחדש בכל עדכון מחיר; תחזית הרווח משתנה רק כשהאנליסטים מעדכנים.</p>${pe!=null && live ? `<p>${B(fmtInst(it, px)+' ÷ '+epsTxt+' = '+pe.toFixed(2)+'x')}</p>` : ''}<p>נמוך מהמכפיל הנוכחי (TTM) = השוק מצפה לצמיחת רווחים. לא מוצג כשהרווח הצפוי שלילי או חסר.</p>${src}`}];
+  const gr = fe!=null && X.eps>0 ? (fe/X.eps-1)*100 : null;
+  const epsCell = [fe==null ? '--' : epsTxt, gr==null ? '' : B((gr>=0?'+':'')+gr.toFixed(1)+'%')+' לעומת TTM', {ttl:'רווח למניה צפוי (Forward EPS)', tip:`<p><b>רווח למניה צפוי</b> = הערכת קונצנזוס האנליסטים לרווח למניה ב־12 החודשים הבאים. והיא הבסיס למכפיל הרווח הצפוי.</p>${gr!=null ? `<p>לעומת הרווח למניה ב־12 החודשים האחרונים (${B(fmtPrice(X.eps, cur))}): ${B((gr>=0?'+':'')+gr.toFixed(1)+'%')}.</p>` : ''}<p>תחזית – לא נתון מדווח, ועשויה להשתנות.</p>${src}`}];
+  return {pe:peCell, eps:epsCell}; }
+function detRows(it, q){ const X = (q && q.x) || {}, FC = fundCells(it, q), FW = fwdCells(it, q), cur = it.cur, pr = v=>v==null || !isFinite(v) ? DET_DASH : fmtPrice(v, cur), pc = (X.high!=null && X.low!=null && q && q.prev) ? (X.high-X.low)/q.prev*100 : null;
   const a3 = av3m[it.sym]; return [
   ['פתיחה', pr(X.open)], ['סגירה קודמת', pr(q && q.prev)], ['טווח יומי %', pc!=null ? pc.toFixed(2)+'%' : DET_DASH],
   ['שיא 52 שבועות', pr(X.yh)], ['שפל 52 שבועות', pr(X.yl)], ['ווליום', FC.vol],
-  ['רווח למניה (EPS)', pr(X.eps)], ['מכפיל רווח (TTM)', detFmtN(X.pe, 2)], ['מכפיל רווח (צפוי)', detFmtN(X.fpe, 2)],
-  ['מכפיל הון (P/B)', FC.pb], ['מכפיל מכירות (P/S)', detFmtN(X.ps, 3)], ['הון עצמי למניה', FC.bv],
+  ['רווח למניה (EPS)', pr(X.eps)], ['מכפיל רווח (TTM)', detFmtN(X.pe, 2)], ['מכפיל רווח צפוי', FW.pe],
+  ['רווח למניה צפוי', FW.eps], ['מכפיל הון (P/B)', FC.pb], ['מכפיל מכירות (P/S)', detFmtN(X.ps, 3)],
+  ['הון עצמי למניה', FC.bv],
   ['מניות במחזור', detFmtBig(X.shs)], ['שווי שוק', q && q.mcap ? fmtCap(q.mcap, cur) : DET_DASH], ['Free Float', FC.fl],
   ['דיבידנד', pr(X.div)], ['תשואת דיבידנד', X.dy!=null ? X.dy.toFixed(2)+'%' : DET_DASH], ['תאריך אקס-דיבידנד', detFmtDate(X.exd)],
   ['דוח הבא', detFmtDate(X.ne)], ['בטא', FC.beta]]; }
