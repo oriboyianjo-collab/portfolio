@@ -17223,12 +17223,24 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 327.87M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://ottertail.com/investor/investor-news/news-details/2026/Otter-Tail-Corporation-Announces-Second-Quarter-Results-and-Updates-Annual-Earnings-Guidance/default.aspx הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "Q3 2026, הסתיים ב-30.09.2026, GAAP מאוחד.\nהכנסות תפעוליות כוללות: 320.513 מיליון דולר, לעומת 325.563 מיליון אשתקד.\nEPS מדולל: 1.41 דולר, לעומת 1.86 דולר אשתקד.\nרווח תפעולי: 68.897 מיליון דולר, לעומת 96.605 מיליון אשתקד.\nרווח נקי: 59.463 מיליון דולר, לעומת 78.292 מיליון אשתקד.\nבסיס צפי EPS לא ידוע.",
     "צפי_הכנסות": "327.87M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-otter-tail-co-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "1.41",
+    "מטבע_EPS": "USD",
+    "בסיס_בפועל_EPS": "GAAP diluted",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית מול GAAP מדולל המסומן.",
+    "הכנסות_בפועל": "320.513M",
+    "מטבע_הכנסות": "USD",
+    "בסיס_בפועל_הכנסות": "GAAP consolidated total operating revenues",
+    "השוואה_הכנסות": "כן",
+    "קישור_לדוח": "https://ottertail.com/investor/investor-news/news-details/2026/Otter-Tail-Corporation-Announces-Third-Quarter-Results-and-Affirms-the-Midpoint-of-Annual-Earnings-Guidance/default.aspx",
+    "מקור_הכנסות_בפועל": "https://ottertail.com/investor/investor-news/news-details/2026/Otter-Tail-Corporation-Announces-Third-Quarter-Results-and-Affirms-the-Midpoint-of-Annual-Earnings-Guidance/default.aspx",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 327.87M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://ottertail.com/investor/investor-news/news-details/2026/Otter-Tail-Corporation-Announces-Second-Quarter-Results-and-Updates-Annual-Earnings-Guidance/default.aspx הנתון מעוגל לפי המקור; אינו הכנסה בפועל."
   },
   {
     "חברה": "Pampa Energia S.A.",
