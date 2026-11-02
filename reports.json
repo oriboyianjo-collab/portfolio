@@ -15424,7 +15424,17 @@
     "סימול": "BRCC",
     "תאריך": "2026-11-02",
     "מועד": "after",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסות: 108.038 מיליון דולר.\nהפסד למניית Class A לפי GAAP: 0.28 דולר.\nהנתונים לאחר איחוד מניות 1 ל-10 ב-21.08.2026.",
+    "בפועל_EPS": "-0.28",
+    "הכנסות_בפועל": "108.038M",
+    "בסיס_בפועל_EPS": "GAAP Class A, reverse-split adjusted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "לא",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102471654/en/BRC-Inc.-Reports-Third-Quarter-2026-Financial-Results",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Bogota Financial Corp.",
@@ -16210,14 +16220,23 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.27",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 223–225M USD. מקור מ-04.08.2026, נבדק ב-02.11.2026. תחזית non-GAAP operating income של 61–63 מיליון אינה EPS. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.",
+    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסות: 235 מיליון דולר, עלייה שנתית של 52%.\nEPS מדולל non-GAAP: ‏0.71 דולר, לעומת 0.32 דולר אשתקד.\nEPS מדולל לפי GAAP: ‏0.66 דולר, לעומת הפסד של 0.02 דולר אשתקד.",
     "צפי_הכנסות": "223–225M",
     "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://ir.hingehealth.com/news/news-details/2026/Hinge-Health-reports-record-second-quarter-2026-financial-results-signs-definitive-agreement-to-acquire-Cylinder-Health/default.aspx",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי.",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.71",
+    "הכנסות_בפועל": "235.0M",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261030657931/en/Hinge-Health-reports-record-third-quarter-2026-financial-results"
   },
   {
     "חברה": "HealthStream, Inc.",
@@ -17568,7 +17587,17 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסות תפעוליות כוללות: 593.6 מיליון דולר.\nהכנסות ללא החזרים: 555.6 מיליון דולר.\nEPS מדולל לפי GAAP: 0.66 דולר.",
+    "בפועל_EPS": "0.66",
+    "הכנסות_בפועל": "593.6M",
+    "בסיס_בפועל_EPS": "GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261030461468/en/Valaris-Reports-Third-Quarter-2026-Results",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Vornado Realty Trust",
@@ -17611,12 +17640,18 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 1.96B USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://investors.voya.com/news/news-details/2026/Voya-Financial-Announces-Second-Quarter-2026-Results/default.aspx הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nEPS מדולל לפי GAAP: ‏2.09 דולר, לעומת 1.80 דולר אשתקד.\nרווח נקי לבעלי המניות הרגילות: 193 מיליון דולר, לעומת 176 מיליון דולר אשתקד.\nרווח תפעולי מתואם למניה: 2.60 דולר.",
     "צפי_הכנסות": "1.96B",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-voya-financial-inc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "2.09",
+    "בסיס_בפועל_EPS": "GAAP diluted",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "לא",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102441500/en/Voya-Financial-Announces-Third-Quarter-2026-Results"
   },
   {
     "חברה": "Voyager Technologies, Inc.",
