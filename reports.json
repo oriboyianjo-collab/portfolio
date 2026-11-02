@@ -18522,7 +18522,13 @@
     "תאריך": "2026-11-03",
     "מועד": "after",
     "צפי_EPS": "0.42",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות כוללות Q3 2026: 340M–360M USD, פרסום החברה מ-04.08.2026. Neutron Holdings היא Lime (LIME), בהתאם לזיהוי המפורש בפרסום החברה. תחזית EBITDA מתואם של 120M–130M אינה הכנסות ואינה EPS; התחזית השנתית 1.04B–1.10B לא שימשה כצפי רבעוני. המקור הראשוני וארכיון הודעות החברה נקראו ב-02.11.2026; חיפוש עדכונים מאוחרים לא ביסס שינוי מספרי אך אינו מוכיח שלא חל עדכון בכל מקור אפשרי. אין בחירת אמצע ואין החלפת צפי EPS קיים. מקור: https://investors.li.me/news-releases/news-release-details/lime-announces-second-quarter-2026-financial-results\nמועד החברה אומת בהודעת 13.10.2026: פרסום ביום שלישי 03.11.2026 אחרי הנעילה, שיחה בשעה 17:00 ET. מקור מועד בלבד, לא קישור לדוח נוכחי: https://investors.li.me/news-releases/news-release-details/lime-announce-third-quarter-2026-financial-results-november-3",
+    "צפי_הכנסות": "340M–360M",
+    "בסיס_צפי_הכנסות": "Company guidance (dated), Q3 2026 total revenue",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://investors.li.me/news-releases/news-release-details/lime-announces-second-quarter-2026-financial-results",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "תחזית חברה בטווח מתוארך; אין לבחור אמצע או לחשב הפתעה מול קצה טווח."
   },
   {
     "חברה": "Lindblad Expeditions Holdings Inc.",
