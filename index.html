@@ -848,7 +848,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=174">
+<link rel="stylesheet" href="chart-tools.css?v=175">
 
 </head>
 <body>
@@ -3751,7 +3751,7 @@ async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S
   s.setData(data); ChartTools.tradeMarkers(s,it.sym,S.iv);ChartTools.context(el,it,S.range,S.iv,cnd?'candle':'line');ChartTools.volume(el,ChartTools.barRows(instCache[instKey(it,S.range,S.iv)]?.pts||[],'intraday',intr?off:0),'CNBC'); S.series = s; S.off = intr ? off : 0; S.lastT = data[data.length-1].time;
   const q = iq(it); if(S.range==='1D' && q && q.prev) s.createPriceLine({price:q.prev, color:'#94a3b8', lineWidth:1, lineStyle:2, axisLabelVisible:false, title:'סגירה'});
   posChart.timeScale().fitContent(); }
-function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it, range:'1D', style:'candle', seq:0};   // every open: daily range + candles (the range argument is ignored on purpose) if(it.sec) obMount(it.sym);
+function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it, range:'1D', style:'candle', seq:0}; if(it.sec) obMount(it.sym);   // every open: daily range + candles (the range argument is ignored on purpose); v175: the order-book mount had been swallowed by this comment since v172
   // v84: buy / sell straight from any instrument screen (search, watchlist, market, news, reports) – pre-filled symbol, currency and live price
   $('sheetBody').querySelectorAll('[data-istx]').forEach(b=>b.onclick = ()=>{ const q = iq(it), bookingCur=isEuSec(it.sym)?'USD':it.cur, pr = q && q.price!=null ? convertCur(q.price,q.cur,bookingCur) : null, ty = b.dataset.istx, h = computeAll().positions.find(p=>p.sym===it.sym);
     openTxForm(ty, {symbol:it.sym, currency:bookingCur, assetType:it.type, date:today(), ...(ty==='sell' && h && h.qty>0 ? {qty:h.qty} : {}), ...(pr!=null ? {price: pr<10 ? Math.round(pr*10000)/10000 : Math.round(pr*100)/100} : {})}, null, null); });
