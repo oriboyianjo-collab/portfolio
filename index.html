@@ -477,6 +477,11 @@ body{font-size:15px}
 .wgrid{grid-template-columns:40px minmax(min-content,1fr) 64px 92px}
 @media (max-width:370px){.wgrid{grid-template-columns:38px minmax(min-content,1fr) 56px 84px}.wr .pc-s .spark{width:54px}}
 /* v65: extended-hours line under the price (slot reserved for the whole pre/after session → constant row height) */
+.hltb{display:inline-block;font-style:normal;font-weight:800;font-size:.78em;letter-spacing:.2px;padding:1px 7px;border-radius:99px;direction:ltr;line-height:1.4;white-space:nowrap;vertical-align:middle;background:#fef3c7;color:#92400e}.hltb.susp{background:#fee2e2;color:#991b1b}
+html.dark .hltb{background:#78350f;color:#fde68a}html.dark .hltb.susp{background:#7f1d1d;color:#fecaca}
+.age.hlt{font-weight:800;direction:ltr;background:#fef3c7;color:#92400e}.age.hlt.susp{background:#fee2e2;color:#991b1b}html.dark .age.hlt{background:#78350f;color:#fde68a}html.dark .age.hlt.susp{background:#7f1d1d;color:#fecaca}
+.xl.hltx{font-weight:800;color:#b45309}.xl.hltx.susp{color:#dc2626}html.dark .xl.hltx{color:#fbbf24}html.dark .xl.hltx.susp{color:#f87171}html.ext-sess .xl.hltx,.xl.hltx{display:block}
+.kv b.hltv{font-weight:800;direction:ltr;color:#b45309}.kv b.hltv.susp{color:#dc2626}html.dark .kv b.hltv{color:#fbbf24}html.dark .kv b.hltv.susp{color:#f87171}
 .xl{display:none;font-size:.68rem;font-weight:600;line-height:1.25;white-space:nowrap;direction:ltr;unicode-bidi:isolate;text-align:end}
 html.ext-sess .xl{display:block;min-height:1.25em}
 .xl.is-pre::before,.xl.is-after::before{font-size:.85em;padding:0 3px;margin-inline-end:3px;line-height:1.3}
@@ -843,7 +848,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=166">
+<link rel="stylesheet" href="chart-tools.css?v=167">
 
 </head>
 <body>
@@ -1158,12 +1163,44 @@ function usSession(now){
 }
 // usable pre-market quote: only while the US is in pre-market (04:00–09:30 ET, trading days) and stamped today ≥ 04:00 ET
 // v64: also after-hours (close → close+4h ET, same day, stamped after the close). After 20:00 ET the session is night/closed → null → regular close.
-function preOf(q, now){ if(!q || !q.pre || !q.pre.ts) return null; const ss = usSession(now); if(ss!=='pre' && ss!=='post') return null;
+// v167: trading halt / suspension. CNBC EventData.is_halted==='Y' (CORS-open, all US listings) = halted; the Cboe book 'status' from the existing worker
+// (only asked for halted symbols) refines it: '...Halt' -> 'Halted', 'Suspend...' -> 'Suspended'. A halted/suspended stock shows that word instead of the
+// live/session badge, and its pre/after-hours change is hidden (preOf returns null).
+const HALT_REF = {};
+function haltOf(q){ if(!q || !q.halt) return null; if(q.updated && Date.now()-q.updated > 30*60e3) return null;
+  const r = HALT_REF[String(q.hsym||'').toUpperCase()]; return r && r.k && Date.now()-r.at < 10*60e3 ? r.k : q.halt; }
+const haltCls = h=>h==='Suspended' ? 'susp' : 'halt';
+// reason codes (Nasdaq trade-halts feed / NYSE free text) -> short Hebrew explanation
+const HALT_CODES = {T1:'ממתינה הודעה מהחברה (News Pending) – המסחר נעצר עד שהחדשות יפורסמו', T2:'החדשות פורסמו – ממתינים לחידוש המסחר', T3:'החדשות פורסמו וזמני החידוש נקבעו', T5:'הפסקה בגלל תנודת מחיר חריגה', T6:'פעילות חריגה בשוק', T7:'הפסקה אחרי פעילות חריגה – ממתין לחדשות', T8:'עצירה בתעודת סל (ETF)', T12:'נאסד״ק ביקשה מידע נוסף מהחברה', H4:'אי עמידה בדרישות הרישום למסחר', H9:'החברה לא עדכנית בדיווחים לרשות', H10:'השעיית מסחר של ה-SEC', H11:'חשש רגולטורי – עצירה של ה-SEC', O1:'תקלה תפעולית', LUDP:'עצירת תנודתיות (Limit Up–Limit Down)', LUDS:'עצירת תנודתיות (Limit Up–Limit Down)', MWC1:'עצירת שוק רחבה (Circuit Breaker)', MWC2:'עצירת שוק רחבה (Circuit Breaker)', MWC3:'עצירת שוק רחבה (Circuit Breaker)', IPO1:'הנפקה – טרם נפתח מסחר', IPOQ:'הנפקה – תקופת הצעות', IPOE:'הנפקה – הרחבת תקופת הצעות', M1:'עצירה מנהלית של הבורסה', M2:'עצירה מנהלית של הבורסה', C3:'החברה לא פרסמה את החדשות – מסחר נעצר', C4:'חידוש המסחר עדיין לא נקבע', C9:'חידוש המסחר עדיין לא נקבע', C11:'חידוש המסחר עדיין לא נקבע', R4:'התנאים הוסרו – ממתינים לחידוש', R9:'התנאים הוסרו – ממתינים לחידוש'};
+const HALT_TXT = [[/news pending/i,'T1'],[/news released/i,'T2'],[/volatility|LULD|limit up/i,'LUDP'],[/sec\b.*suspen|suspen.*sec\b/i,'H10'],[/regulatory concern/i,'H11'],[/additional information/i,'T12'],[/operations?/i,'O1'],[/IIV|component prices/i,'T8']];
+const haltCodeOf = d=>{ if(!d) return ''; const c = String(d.code||'').toUpperCase(); if(HALT_CODES[c]) return c; const t = HALT_TXT.find(x=>x[0].test(d.reason||'')); return t ? t[1] : c; };
+function etDate(dmy, hms){ try{ const a = /^(\d{1,2})\/(\d{1,2})\/(\d{4})/.exec(dmy||''), b = /^(\d{4})-(\d{2})-(\d{2})/.exec(dmy||''), t = /(\d{1,2}):(\d{2})/.exec(hms||'');   // 'MM/DD/YYYY' (Nasdaq) or 'YYYY-MM-DD' (NYSE), ET wall clock
+  if(!(a||b) || !t) return null; const y = a ? +a[3] : +b[1], mo = a ? +a[1] : +b[2], da = a ? +a[2] : +b[3], iso = `${y}-${String(mo).padStart(2,'0')}-${String(da).padStart(2,'0')}`;
+  for(const off of [4,5]){ const d = new Date(Date.UTC(y,mo-1,da,+t[1]+off,+t[2])), z = zoned('America/New_York', d); if(z.date===iso && z.min===(+t[1])*60+(+t[2])) return d; } }catch(_){} return null; }
+function haltWhen(label, dmy, hms){ const d = etDate(dmy, hms); if(!d) return ''; const f = (tz)=>d.toLocaleTimeString('he-IL',{timeZone:tz,hour:'2-digit',minute:'2-digit'}), dd = d.toLocaleDateString('he-IL',{timeZone:'Asia/Jerusalem',day:'numeric',month:'numeric'});
+  return `<p><b>${label}:</b> <span class="num">${f('Asia/Jerusalem')}</span> שעון ישראל · ${dd} <span class="muted">(<span class="num">${f('America/New_York')}</span> ET)</span></p>`; }
+function haltInfoHtml(sym, label){
+  const r = HALT_REF[String(sym||'').toUpperCase()] || {}, d = r.d, susp = label==='Suspended';
+  let h = `<p><b>${susp ? 'Suspended – השעיית מסחר' : 'Halted – עצירת מסחר'}</b><br>${susp ? 'המסחר במניה הושעה (בד״כ בהחלטת רגולטור או הבורסה), לעיתים לימים. המחיר המוצג הוא המחיר האחרון.' : 'המסחר במניה נעצר זמנית (בד״כ לדקות עד שעות) וימשיך אחרי שהבורסה תודיע על חידוש.'}</p>`;
+  const c = haltCodeOf(d);
+  if(d && (c || d.reason)) h += `<p><b>סיבה:</b> ${HALT_CODES[c] ? esc(HALT_CODES[c]) : esc(d.reason||'')} <span class="muted ltr">(${esc([d.code||c, d.reason].filter(Boolean).join(' · '))})</span></p>`;
+  else h += '<p class="muted">קוד הסיבה אינו זמין כרגע.</p>';
+  if(d){ h += haltWhen('זמן העצירה', d.haltDate, d.haltTime) + (d.resumeTrade || d.resumeQuote ? haltWhen('חידוש מסחר צפוי', d.resumeDate || d.haltDate, d.resumeTrade || d.resumeQuote) : '<p class="muted">זמן חידוש המסחר טרם נקבע.</p>'); }
+  return h + `<p class="muted" style="font-size:.78rem">${d ? 'מקור: '+(d.source==='nyse' ? 'NYSE' : 'Nasdaq Trader')+' · ' : ''}סטטוס לפי CNBC${r.k ? ' + Cboe' : ''}</p>`; }
+const haltIb = (sym, h)=>ib(haltInfoHtml(sym, h), h==='Suspended' ? 'Suspended – השעיית מסחר' : 'Halted – עצירת מסחר', 'warn');
+const haltChip = (h, sym)=>`<i class="hltb ${haltCls(h)}">${h}</i>${haltIb(sym, h)}`;
+function haltRefine(sym){ try{ const u = String(sym||'').toUpperCase(), r = HALT_REF[u] || (HALT_REF[u] = {k:null, at:0, busy:false, d:null});
+  if(!OB_URL || r.busy || Date.now()-r.at < 60e3 || marketOf(u)!=='us' || isCrypto(u)) return; r.busy = true; r.at = Date.now();
+  const get = path=>fetch(OB_URL+path+encodeURIComponent(u), {cache:'no-store'}).then(x=>x.ok ? x.json() : null).catch(()=>null);
+  Promise.all([get('/?s='), get('/halt?s=')]).then(([j, hd])=>{ const st = String(j && j.status || ''), d = hd && (hd.code || hd.reason || hd.haltTime) ? hd : null;
+    let k = /suspend/i.test(st) ? 'Suspended' : /halt/i.test(st) ? 'Halted' : null; if(d && (haltCodeOf(d)==='H10' || /suspen/i.test(d.reason||''))) k = 'Suspended';
+    const ch = k !== r.k || JSON.stringify(d) !== JSON.stringify(r.d); r.k = k; r.d = d; if(ch){ try{ renderAll(); }catch(_){} try{ instSheetLive(); }catch(_){} } }).finally(()=>{ r.busy = false; }); }catch(_){} }
+function preOf(q, now){ if(!q || !q.pre || !q.pre.ts || haltOf(q)) return null; const ss = usSession(now); if(ss!=='pre' && ss!=='post') return null;
   const kind = q.pre.kind || 'pre'; if((ss==='pre') !== (kind==='pre')) return null;
   const z = zoned('America/New_York', now), t = zoned('America/New_York', new Date(q.pre.ts)), close = US_EARLY.has(z.date) ? 13*60 : 16*60;
   return t.date===z.date && (ss==='pre' ? t.min >= 4*60 : t.min >= close) && q.pre.price > 0 ? Object.assign({kind}, q.pre) : null; }
 // v65: small extended-hours line under a row's price: 'after -0.34 (-0.10%)' (market data – never masked)
-function extLineHtml(e, cls0, full){ if(!e) return `<span class="xl${cls0?' '+cls0:''}"></span>`; const up = e.chg>=0;   // rows: tag + %; wide cards (full): tag + change (%)
+function extLineHtml(e, cls0, full){ if(!e) return `<span class="xl${cls0?' '+cls0:''}"></span>`; if(e.halt) return `<span class="xl hltx ${haltCls(e.halt)}${cls0?' '+cls0:''}">${e.halt}</span>`; const up = e.chg>=0;   // rows: tag + %; wide cards (full): tag + change (%)
   return `<span class="xl num ${e.chg>0?'pos':e.chg<0?'neg':''} is-${e.kind}${cls0?' '+cls0:''}">${full ? (up?'+':'-')+Math.abs(e.chg).toFixed(2)+' ('+fmtPct(e.pct)+')' : fmtPct(e.pct)}</span>`; }
 function extSessMark(){ const on = !!extSess(); if(document.documentElement.classList.contains('ext-sess') !== on) document.documentElement.classList.toggle('ext-sess', on); }
 const extSess = now=>{ const ss = usSession(now); return ss==='pre' || ss==='post' ? ss : null; };   // US extended session (pre / after-hours)
@@ -1697,7 +1734,8 @@ async function cnbcQuotes(symbols){
       if(k===1 && E && (E.type==='PRE_MKT' || E.type==='POST_MKT')){ const pl = num(E.last), ts = parseTs(E.last_time); if(pl!=null && pl>0 && ts){ const chg = pl - last; pre = {price:pl, chg, pct: last ? chg/last*100 : null, ts, kind: E.type==='POST_MKT' ? 'after' : 'pre'}; } }   // v64: + after-hours; both vs the regular 'last' (pre: prior close, after: today's close)
       const ev = q.EventData || {}, px = v=>{ const n = num(v); return n==null ? null : n/k; }, pn = v=>{ const n = num(v); return n==null ? null : n; }, big = v=>parseCap(v);
       const X = {open:px(q.open), high:px(q.high), low:px(q.low), yh:px(q.yrhiprice), yl:px(q.yrloprice), av10:big(q.tendayavgvol), eps:px(q.eps), feps:px(q.feps), pe:pn(q.pe), fpe:pn(q.fpe), ps:k>1 ? null : pn(q.psales), shs:big(q.sharesout), div:px(q.dividend)||px(ev.div_amount), dy:pn(String(q.dividendyield||'').replace('%','')), beta:pn(q.beta), exd:ev.div_ex_date||'', ne:ev.next_earnings_date||'', vol:big(q.volume)};   // v102: key-stats for the 'details' section (CNBC fields; TASE prices are in agorot -> /100)
-      out[String(orig).toUpperCase()] = {x:X, pre, mcap: mc!=null ? (pence ? mc : mc/k) : null, price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', source:'CNBC'};
+      out[String(orig).toUpperCase()] = {x:X, pre, mcap: mc!=null ? (pence ? mc : mc/k) : null, price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', halt: k===1 && (/suspend/i.test(q.curmktstatus||'') ? 'Suspended' : (String(ev.is_halted).toUpperCase()==='Y' || /halt/i.test(q.curmktstatus||'')) ? 'Halted' : ''), hsym:String(orig).toUpperCase(), source:'CNBC'};
+      { const o = out[String(orig).toUpperCase()]; if(o.halt) haltRefine(o.hsym); }   // v167: halted -> ask the Cboe book status (existing worker) whether it is a halt or a suspension
     });
   }
   return out;
@@ -1919,6 +1957,7 @@ function renderLiveStatus(){
 function ageInfo(sym, p){
   if(p && p.manual) return {t:'מחיר ידני', c:''};
   const q = state.quotes[sym]; if(!q || q.price==null) return {t:'', c:''};
+  { const hl = haltOf(q); if(hl) return {t:hl, c:'hlt '+haltCls(hl)}; }   // v167: halted / suspended replaces the live / session badge
   const ms = marketState(marketOf(sym)).state;
   const ts = q.ts;
   if(!ts) return {t: q.time ? 'סגירה '+fmtDate(String(q.time).slice(0,10)) : '', c:''};
@@ -2034,7 +2073,7 @@ function chgLines(F){ const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0
   const row = (lbl, p, a)=>`<div class="chg"><span class="chg-l">${lbl}</span>${f(p)}<i class="chg-d">·</i>${f(a)}</div>`;
   return `<div class="pchg">${row('יומי','cdp','cda')}${row('מעלות','cup','cua')}</div>`; }
 function cardFields(p){
-  const cur = p.cur, a = ageInfo(p.sym, p);
+  const cur = p.cur, a = ageInfo(p.sym, p), hlq = p.manual ? null : haltOf(state.quotes[p.sym]);
   // collapsed row: share price + daily % (plus change-from-cost % while sorting by it); value, amounts and change-from-cost live in the details
   return {
     hd:[p.dayPct!=null ? fmtPct(p.dayPct) : '—', 'num '+cls(p.dayPct)],
@@ -2055,7 +2094,7 @@ function cardFields(p){
     cup:[chgPct(p.unrealPct), 'chg-p num '+cls(p.unreal)],
     cua:[chgAmt(p.unreal, p, 0), 'chg-a num '+cls(p.unreal)],
     dayp:[p.dayPct!=null?fmtPct(p.dayPct):'—', 'num '+cls(p.day)],
-    he:[p.ext ? fmtPct(p.ext.pct) : '', 'xl'+(p.ext ? ' num '+cls(p.ext.chg)+' is-'+p.ext.kind : '')],   // v65: extended line under the price
+    he:[hlq ? hlq : p.ext ? fmtPct(p.ext.pct) : '', 'xl'+(hlq ? ' hltx '+haltCls(hlq) : p.ext ? ' num '+cls(p.ext.chg)+' is-'+p.ext.kind : '')],   // v65: extended line under the price
     daya:[p.day!=null?fmtSigned(p.day,cur):'', 'num '+cls(p.day)],
     mvs:[fmtMoney(p.mv,cur,0), 'num'],
     unra:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
@@ -3045,6 +3084,7 @@ async function instQuotes(list){ const qs = [...new Set(list.flatMap(i=>i.der ? 
   for(let i=0;i<qs.length;i+=40){ try{ Object.assign(mq, await cnbcQuotes(qs.slice(i,i+40)));for(const c in FXQ){const x=mq[FXQ[c][0]];if(x?.price>0)fxx[c]=FXQ[c][1]?1/x.price:x.price;} }catch(e){ console.warn('market quotes', e.message); } } }
 function iq(it){ if(it.der){ const a = mq[it.der.a], b = mq[it.der.b]; return a && b && a.price && b.price ? {price:a.price/b.price*it.der.m, prev: a.prev && b.prev ? a.prev/b.prev*it.der.m : null} : null; }
   const q = mq[String(it.q).toUpperCase()] || null; if(!q || !it.sec || marketOf(it.sym)!=='us') return q;
+  const hl = haltOf(q); if(hl) return Object.assign({}, q, {hlt:hl});
   const pr = preOf(q); return pr ? Object.assign({}, q, {ext:{kind:pr.kind, price:pr.price, chg:pr.chg, pct:pr.pct}}) : q; }   // v65: regular quote kept (change pill); extended price/line from .ext   // v49: US pre-market view (prev = prior close)
 function fmtInst(it, v){ if(v==null || !isFinite(v)) return '—'; if(it.y) return v.toFixed(it.dp||3)+'%'; if(it.sec) return fmtPrice(v, it.cur);   // market price: never masked by the eye toggle
   return (it.u||'') + v.toLocaleString('en-US',{minimumFractionDigits:it.dp, maximumFractionDigits:it.dp}); }
@@ -3284,7 +3324,7 @@ function etfRowHtml(it, w, mx){ const q = iq(it), c = instCache[it.q+'|1D'], pts
   return `<div class="wr wgrid egrid" role="button" tabindex="0" data-es="${esc(it.sym)}">${logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(nm)}</div></div>`+
     `<div class="pcol pc-s">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, pct==null || pct >= 0, 48, 24) : ''}</div><div class="pcol pc-m num">${capT(q && q.mcap, it.cur)}</div>`+
     `<div class="ew"><b class="num">${w < 1 ? w.toFixed(2) : w.toFixed(1)}%</b><span class="wbar"><i style="width:${Math.max(4, w/mx*100).toFixed(0)}%"></i></span></div>`+
-    `<div class="pcol pc-p"><span class="wl-p v num">${q ? fmtPrice(q.ext ? q.ext.price : q.price, q.cur||it.cur) : '—'}</span></div><div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${extLineHtml(q && q.ext)}</div></div>`; }
+    `<div class="pcol pc-p"><span class="wl-p v num">${q ? fmtPrice(q.ext ? q.ext.price : q.price, q.cur||it.cur) : '—'}</span></div><div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${extLineHtml(q && (q.hlt ? {halt:q.hlt} : q.ext))}</div></div>`; }
 // v110: add / remove a fund. State is local to this view; the list is re-drawn by drawEtf().
 let etfAddOpen = false, etfAddBusy = false, etfMenuOpen = false;
 const etfSaveData = ()=>{ try{ localStorage.setItem(ETF_KEY, JSON.stringify(etfData)); }catch(e){} };
@@ -3406,7 +3446,7 @@ function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts =
   const pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${it.fx ? `<span class="fxfl" aria-hidden="true">${it.fl}</span>` : logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div></div>`+
     `<div class="pcol pc-s wl-live">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, up, 48, 24) : ''}</div><div class="pcol pc-m wl-live num">${capT(q && q.mcap, it.cur)}</div>`+
-    `<div class="pcol pc-p wl-live"><span class="wl-p v num">${q ? (it.fx ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div><div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${extLineHtml(q && q.ext)}</div>`+
+    `<div class="pcol pc-p wl-live"><span class="wl-p v num">${q ? (it.fx ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div><div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${extLineHtml(q && (q.hlt ? {halt:q.hlt} : q.ext))}</div>`+
     `<div class="wl-ed" style="grid-column:3/-1"><button data-wm="up" aria-label="הזזה למעלה" ${i===0?'disabled':''}>▲</button><button data-wm="down" aria-label="הזזה למטה" ${i===n-1?'disabled':''}>▼</button><button data-wm="del" class="del" aria-label="הסרה מהרשימה">✕</button></div></div>`; }
 // v112: lists are horizontal tabs at the top; only the active list renders, without the old collapsible header
 function wlTabsHtml(){ const cur = wlCur().id;
@@ -3651,7 +3691,7 @@ async function loadAv3m(it){ const sym = it.sym; if(sym in av3m) return; av3m[sy
 document.addEventListener('click', e=>{ const b = e.target.closest('[data-det]'); if(!b) return; detOpen = !detOpen; try{ localStorage.setItem(DET_KEY, detOpen?'1':'0'); }catch(_){}
   b.setAttribute('aria-expanded', String(detOpen)); b.querySelector('i').textContent = detOpen ? '▴' : '▾'; $('isDetG').hidden = !detOpen; if(detOpen) drawDet(); });
 function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[instKey(it, S.range, S.iv)], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
-  const end=customRange(S.range)?(pts.length?pts[pts.length-1][1]:null):(q?q.price:null); const ch = chgInst(it, end, base); $('isV').textContent = fmtInst(it, end); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+''; { const e = it.sec && q && q.ext && S.range==='1D' ? q.ext : null, xp = $('isXP'), xc = $('isXC'); if(xp && xc){ xp.innerHTML = e ? `<span class="xl num ${cls(e.chg)}">${fmtInst(it, e.price)}</span>` : ''; xc.innerHTML = e ? `<span class="xl num ${cls(e.chg)}"><i class="xbd xbd-${e.kind}">${e.kind}</i>${chgInst(it, e.price, e.price-e.chg).t}</span>` : ''; } }   // v165: extended-hours price right under the price, its change right under the daily change (aligned columns)
+  const end=customRange(S.range)?(pts.length?pts[pts.length-1][1]:null):(q?q.price:null); const ch = chgInst(it, end, base); $('isV').textContent = fmtInst(it, end); $('isC').textContent = ch.t; $('isC').className = 'num '+cls(ch.c)+''; { const e = it.sec && q && q.ext && S.range==='1D' ? q.ext : null, hl = it.sec && q && q.hlt, xp = $('isXP'), xc = $('isXC'); if(xp && xc){ xp.innerHTML = e ? `<span class="xl num ${cls(e.chg)}">${fmtInst(it, e.price)}</span>` : ''; xc.innerHTML = hl ? `<span class="xl" style="display:inline-block">${haltChip(hl, q.hsym)}</span>` : e ? `<span class="xl num ${cls(e.chg)}"><i class="xbd xbd-${e.kind}">${e.kind}</i>${chgInst(it, e.price, e.price-e.chg).t}</span>` : ''; } }   // v165: extended-hours price right under the price, its change right under the daily change (aligned columns)
   const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [[customRange(S.range)?'סגירה ראשונה בטווח':'סגירה קודמת', fmtInst(it, customRange(S.range)?(pts.length?pts[0][1]:null):(q && q.prev))], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
   if($('isDetG') && detOpen){ drawDet(); loadAv3m(it); fundLoad(); }
   if(!customRange(S.range)&&S.series && S.bar && q && q.price!=null){ const b = S.bar; b.close = q.price; b.high = Math.max(b.high, q.price); b.low = Math.min(b.low, q.price); try{ S.series.update(Object.assign({}, b)); }catch(e){} }
@@ -3727,7 +3767,7 @@ function fxInst(f){ return {k:'fx:'+f.code, fx:true, type:'fx', sym:f.code, n:f.
 function srchInst(m){ return secInst({sym:m.sym, name:m.name||'', type:m.type||'stock', currency:m.currency}); }
 function srchRowHtml(m, i){ const it = srchInst(m), q = iq(it), pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   return `<div class="wr srow" role="button" tabindex="0" data-si="${i}">${logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span>${m.ex ? `<span class="sx">${esc(m.ex)}</span>` : ''}</div><div class="pname">${esc(m.name||(q && q.name)||'')}${m.type && TYPE_LABELS[m.type] && m.type!=='stock' ? ` · ${TYPE_LABELS[m.type]}` : ''}</div></div>`+
-    `<div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : ''}</b><span class="wl-p v num">${q ? fmtPrice(q.price, q.cur||it.cur) : ''}</span>${extLineHtml(q && q.ext)}</div></div>`; }
+    `<div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : ''}</b><span class="wl-p v num">${q ? fmtPrice(q.price, q.cur||it.cur) : ''}</span>${extLineHtml(q && (q.hlt ? {halt:q.hlt} : q.ext))}</div></div>`; }
 function drawSrch(){ const q = $('srchQ').value.trim(), el = $('srchRes'), R = srchRecent(); $('srchQx').hidden = !$('srchQ').value;
   if(!q){ srchItems = R; el.innerHTML = R.length ? `<div class="slbl">חיפושים אחרונים <button class="lnk" id="srchClr">ניקוי</button></div><div class="srows">${R.map(srchRowHtml).join('')}</div>` : '<div class="news-empty">הקלידו סימול או שם – לחיצה על תוצאה פותחת את הגרף.</div>'; return; }
   const FXH = srchFx = fxSearch(q), fxRow = (f, i)=>{ const it = fxInst(f), x = iq(it), pct = x && x.prev ? (x.price/x.prev-1)*100 : null;
@@ -4128,6 +4168,7 @@ function symTxHtml(sym){ const l = sortedTxs().filter(t=>t.symbol===sym || t.toS
 // detail-sheet numbers: each value cell has data-k so live ticks can patch it in place
 function posKvRows(p){
   const cur = p.cur, short = p.qty<0, open = Math.abs(p.qty)>1e-9, R = [];
+  { const hl = open && !p.manual ? haltOf(state.quotes[p.sym]) : null; if(hl) R.push(['hlt','סטטוס מסחר', hl, 'hltv '+haltCls(hl)]); }   // v167
   if(open) R.push(['mv','שווי', fmtMoney(p.mv,cur) + (cur==='USD' && p.mvILS!=null ? ' · ' + fmtMoney(p.mvILS,'ILS',0) : ''), '', 'hl'], ['unreal','שינוי מעלות (ברוטו)', `${fmtPct(p.unrealPct)} · ${fmtSigned(p.unreal,cur)}`, cls(p.unreal), 'hl'], ['weight','% מהתיק', fmtW(p.weight), ''], ['price',`מחיר נוכחי${p.manual?' (ידני)':''}${p.pre?' · pre':''}`, fmtPrice(p.pre ? p.prePrice : p.price,cur), ''],
     ['day', 'שינוי היום', p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
     ['qty', short?'כמות בשורט':'כמות', fmtQtyP(Math.abs(p.qty)), ''], ['avg', short?'מחיר שורט ממוצע':'עלות ממוצעת', fmtMoney(p.avg,cur), ''],
@@ -4139,7 +4180,7 @@ function posKvRows(p){
   R.push(['real','רווח ממומש', fmtSigned(p.realized,cur), cls(p.realized)], ['fees','עמלות ששולמו', fmtMoney(p.fees,cur), '']);
   return R;
 }
-function posKvHtml(p){ return posKvRows(p).map(([k,l,v,c,rc])=>`<div${rc?` class="${rc}"`:''}><span>${l}${k==='net' ? `<button type="button" class="ib" data-ib-for="posNetSrc" data-ib-t="איך מחושב הנטו" aria-label="הסבר: איך מחושב הנטו">i</button>` : ''}</span><b data-k="${k}" class="${c==='nonum'?'':'num '+c}">${v}</b></div>`).join(''); }
+function posKvHtml(p){ const sym0 = p.sym; return posKvRows(p).map(([k,l,v,c,rc])=>`<div${rc?` class="${rc}"`:''}><span>${l}${k==='hlt' ? haltIb(sym0, v) : ''}${k==='net' ? `<button type="button" class="ib" data-ib-for="posNetSrc" data-ib-t="איך מחושב הנטו" aria-label="הסבר: איך מחושב הנטו">i</button>` : ''}</span><b data-k="${k}" class="${c==='nonum'?'':'num '+c}">${v}</b></div>`).join(''); }
 function posInfoHtml(p){
   const q = state.quotes[p.sym]||{}, cur = p.cur, open = Math.abs(p.qty)>1e-9;
   return `${q.updated?`מחיר עודכן ${fmtTime(q.updated)} · ${esc(q.source||'')}${q.time?' · מסחר '+esc(String(q.time).slice(0,10)):''}`:''}${open?`<span class="ib-src" id="posNetSrc">"נטו" = אחרי עמלת סגירה משוערת <span class="num">${fmtMoney(p.closeFee,cur)}</span> ומס ${state.settings.taxRate}% על רווח, אחרי קיזוז מגן המס של השנה.</span>`:''}`;
