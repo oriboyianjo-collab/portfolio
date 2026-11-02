@@ -16331,13 +16331,19 @@
     "סימול": "GLRE",
     "תאריך": "2026-11-02",
     "מועד": "after",
-    "הערה": "EPS: 0.10 USD (GAAP diluted ordinary share).\nפרמיות נטו שהורווחו: 153.429 מיליון דולר.",
+    "הערה": "Q3 2026, הסתיים ב-30.09.2026.\nהכנסות כוללות לפי GAAP: 148.294 מיליון דולר, לעומת 146.071 מיליון אשתקד.\nפרמיות נטו שהורווחו: 153.429 מיליון דולר, מדד נפרד.\nEPS מדולל למניה רגילה לפי GAAP: 0.10 דולר, לעומת הפסד 0.13 דולר אשתקד.",
     "בפועל_EPS": "0.10",
     "בסיס_בפועל_EPS": "GAAP diluted ordinary share",
     "מטבע_EPS": "USD",
     "השוואה_EPS": "לא",
     "הסבר_EPS": "הצפי נשמר; התאמת מדד הצפי טרם אומתה. אין השוואה למדד שונה.",
-    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393745/23254/en/greenlight-re-announces-financial-results-for-third-quarter-and-nine-months-ended-september-30-2026.html"
+    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393745/23254/en/greenlight-re-announces-financial-results-for-third-quarter-and-nine-months-ended-september-30-2026.html",
+    "הכנסות_בפועל": "148.294M",
+    "מטבע_הכנסות": "USD",
+    "בסיס_בפועל_הכנסות": "GAAP consolidated total revenues",
+    "השוואה_הכנסות": "לא",
+    "מקור_הכנסות_בפועל": "https://investors.greenlightre.com/pdfcontent/cik/1385613/id/3a20d02a-948d-4dfa-801e-5f1b8acc8054/file/glre-20260930.htm/to/000138561326000140_glre-20260930.pdf",
+    "הערות_מקור_ארכיון": "\nEPS: 0.10 USD (GAAP diluted ordinary share).\nפרמיות נטו שהורווחו: 153.429 מיליון דולר."
   },
   {
     "חברה": "Grab Holdings Limited",
