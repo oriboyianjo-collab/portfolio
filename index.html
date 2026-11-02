@@ -534,9 +534,9 @@ body.srch-on{overflow:hidden}
 .rrow{display:grid;grid-template-columns:30px minmax(0,1fr) 62px 68px;align-items:center;gap:7px;padding:6px 4px;border-bottom:1px solid var(--border);cursor:pointer;position:relative}
 .rrow .logo{width:30px;height:30px;font-size:.62rem}.rrow .rn{min-width:0}.rrow .r1{display:flex;align-items:center;gap:4px;min-width:0;white-space:nowrap;overflow:hidden}.rrow .r1 b{font-size:.86rem}.rrow .rti{font-style:normal;font-size:.72rem}
 .rrow .rn small{display:block;direction:ltr;text-align:right;unicode-bidi:plaintext;color:var(--muted);font-size:.68rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.25}.rrow .rix{display:inline-flex;gap:2px;margin:0}.rrow .rix i{font-size:.56rem;padding:0 4px}
-.rrow .rtag{font-size:.58rem;padding:0 5px}.rrow .rv{text-align:center;line-height:1.15;min-width:0}.rrow .rv span{display:block;font-size:.56rem;color:var(--muted);white-space:nowrap}.rrow .rv b{display:block;font-size:.78rem;direction:ltr;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rrow .rv small{display:block;font-size:.58rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rrow .rv bdi{direction:ltr;unicode-bidi:isolate}
+.rrow .rtag{font-size:.58rem;padding:0 5px}.rrow .rv{text-align:center;line-height:1.15;min-width:0}.rrow .rv span{display:block;font-size:.56rem;color:var(--muted);white-space:nowrap}.rrow .rv b{display:block;font-size:.78rem;direction:ltr;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rrow .rv small{display:block;font-size:.58rem;color:var(--muted);white-space:normal;overflow:visible}.rrow .rv bdi{direction:ltr;unicode-bidi:isolate}
 .rrow .rv .rs{display:block;font-style:normal;font-size:.58rem;font-weight:700;white-space:nowrap;margin-top:1px}.rrow .rv .rs.pos{color:var(--green)}.rrow .rv .rs.neg{color:var(--red)}
-.rrow .rv .rb{display:block;font-size:.52rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr}.rrow .rv .rs.na{color:var(--muted);font-weight:600}
+.rrow .rv .rb{display:block;font-size:.52rem;color:var(--muted);white-space:normal;overflow:visible;direction:ltr}.rrow .rv .rs.na{color:var(--muted);font-weight:600}
 .rrow .rwhy,.rrow .rnote2{grid-column:1/-1;font-size:.7rem;line-height:1.4;color:var(--muted);margin:2px 0 0;padding-inline-start:37px}
 .rrow .rwhy{color:#f59e0b;white-space:pre-line}.rrow .rnote2{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .rrow .rnote2 span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--text);opacity:.85;white-space:pre-line;overflow-wrap:anywhere}.rrow .rnote2.open span{display:block;-webkit-line-clamp:unset}
@@ -848,7 +848,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=176">
+<link rel="stylesheet" href="chart-tools.css?v=177">
 
 </head>
 <body>
@@ -5201,18 +5201,49 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     const E = cmpOf(r.epsEstB, r.epsB, r.epsCur, r.epsEstCur, r.epsActCur, r.epsCmp, r.epsWhy), R = cmpOf(r.revEstB, r.revB, r.revCur, r.revEstCur, r.revActCur, r.revCmp, r.revWhy);
     const e1 = numOf(r.epsEst), e2 = numOf(r.eps), r1 = numU(r.revEst), r2 = numU(r.rev);
     const ec = E.ok && e1!=null && e2!=null ? (e2>=e1?'pos':'neg') : '', rc = R.ok && r1!=null && r2!=null ? (r2>=r1?'pos':'neg') : '';
-    const tagB = (estB, actB, cur)=>{ const a = BL(estB), b = BL(actB), c = String(cur||'').toUpperCase(); const t = a && b && BN(a)!==BN(b) ? `${a}→${b}` : (b || a); return t || c ? `<small class="rb">${esc([t, c].filter(Boolean).join(' · '))}</small>` : ''; };
+    const shortB = b0=>{ const t = String(b0||'').trim(); if(!t) return '';
+      const kind = /analyst|אנליסט/i.test(t) ? 'אנליסטים' : (/company|guidance|תחזית חברה/i.test(t) ? 'חברה' : '');
+      const rng = /range|טווח/i.test(t) ? ' (טווח)' : '';
+      const un = /unknown|לא ידוע/i.test(t) ? ' · בסיס לא ידוע' : '';
+      let basis = '';
+      if(/adjusted|מתואם|מותאם|non[- ]?gaap/i.test(t)) basis = /continuing|נמשכת/i.test(t) ? 'מתואם מדולל (פעילות נמשכת)' : (/diluted|מדולל/i.test(t) ? 'מתואם מדולל' : 'מתואם');
+      else if(/gaap|ifrs/i.test(t)) basis = 'GAAP';
+      const head = kind ? kind + rng + un : un.replace(/^ · /, '');
+      return [head, basis].filter(Boolean).join(' · ') || t; };
+    const tagB = (estB, actB, cur)=>{ const a = BL(estB), b2 = BL(actB), c = String(cur||'').toUpperCase();
+      if(!a && !b2) return c && c!=='USD' ? `<small class="rb">${esc(c)}</small>` : '';
+      const t = a && b2 && BN(a)!==BN(b2) ? `${shortB(a)} → ${shortB(b2)}` : shortB(b2 || a);
+      const full = [a, b2].filter(Boolean).join(' → ') + (c ? ` · ${c}` : '');
+      return `<small class="rb" title="${esc(full)}">${esc([t, c && c!=='USD' ? c : ''].filter(Boolean).join(' · '))}</small>`; };
     const link = '';
     const ix = r.ixs.length ? r.ixs.slice(0,2).map(x=>`<i class="${ixCls(x.k).trim()}">${esc(ixS(x.l))}</i>`).join('') + (r.ixs.length>2 ? `<i>+${r.ixs.length-2}</i>` : '') : '<i>אחר</i>';
     const fv = x=>{ const t = String(x||'').trim(); return t ? `<bdi>${esc(t)}</bdi>` : '—'; };   // v76: label line, then the value on its own line (LTR, no wrap)
+    const fmtR = x=>{ const t = String(x||'').trim(); if(!t) return null;
+      const fmt1 = s0=>{ const m = s0.trim().match(/^(-?[\d,]*\.?\d+)([BMK])?$/); if(!m) return null;
+        const n = parseFloat(m[1].replace(/,/g, '')); if(!isFinite(n)) return null;
+        const dec = (m[1].split('.')[1] || '').length; if(dec<=2) return null;
+        let r = n.toFixed(2); if(parseFloat(r)===0 && n!==0) r = String(parseFloat(n.toPrecision(2)));
+        const neg = r.startsWith('-'), bdy = neg ? r.slice(1) : r, ip = bdy.split('.');
+        ip[0] = ip[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return (neg?'-':'') + ip.join('.') + (m[2]||''); };
+      const parts = t.split('–');
+      if(parts.length===2){ const fa = fmt1(parts[0]), fb = fmt1(parts[1]); if(!fa && !fb) return null;
+        const ra = fa || parts[0].trim(), rb2 = fb || parts[1].trim();
+        const strip = v=>v.replace(/[BMK]$/,'').replace(/,/g,'');
+        if(fa && fb && strip(ra)===strip(rb2)) return null;
+        return ra + '–' + rb2; }
+      return fmt1(t); };
+    const bdiR = (x, cls)=>{ const t = String(x||'').trim(); if(!t) return '—'; const s2 = fmtR(t);
+      return s2 && s2!==t ? `<bdi${cls?' class="'+cls+'"':''} title="${esc(t)}">${esc(s2)}</bdi>` : `<bdi${cls?' class="'+cls+'"':''}>${esc(t)}</bdi>`; };
     const surp = (a, e)=>a!=null && e!=null && e!==0 ? (a-e)/Math.abs(e)*100 : null;
     const sp = x=>x==null ? '' : `<em class="rs ${x>=0?'pos':'neg'}"><bdi>${x>=0?'+':''}${Math.abs(x)>=100 ? x.toFixed(0) : x.toFixed(1)}%</bdi> ${x>=0?'ביט':'מיס'}</em>`;
-    const val = (lbl, est, act, c, x, cm, tg)=> act ? `<span>${lbl} בפועל</span><b class="num ${c}">${fv(act)}</b><small>צפי <bdi class="num">${esc(est)||'—'}</bdi></small>${tg}${cm.ok ? sp(x) : '<em class="rs na">ללא %</em>'}` : `<span>${lbl} צפי</span><b class="num">${fv(est)}</b>${tg}`;
+    const val = (lbl, est, act, c, x, cm, tg, isRev)=>{ const vb = isRev ? v=>bdiR(v,'') : fv, eb = isRev ? v=>bdiR(v,'num') : v=>`<bdi class="num">${esc(v)||'—'}</bdi>`;
+      return act ? `<span>${lbl} בפועל</span><b class="num ${c}">${vb(act)}</b><small>צפי ${eb(est)}</small>${tg}${cm.ok ? sp(x) : '<em class="rs na">ללא %</em>'}` : `<span>${lbl} צפי</span><b class="num">${vb(est)}</b>${tg}`; };
     const whyL = [r.eps && !E.ok ? 'EPS: '+E.why : '', r.rev && !R.ok ? 'הכנסות: '+R.why : ''].filter(Boolean);
     const whyHtml = ()=> whyL.length ? ib(whyL.map(x=>`<div>${esc(x)}</div>`).join(''), 'למה אין השוואה לצפי', 'warn') : '';
     return `<article class="rrow${(ec||rc) ? ' r-'+(ec||rc) : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
       `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span>${whyHtml(r)}</div><small class="rmeta"><span class="rcompany">${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}</span>${ntFil.sort==='cap' ? '<bdi class="rcap num">'+(r.capV ? fmtCap(r.capV) : 'שווי לא ידוע')+'</bdi>' : ''}</small></div>`+
-      `<div class="rv">${val('EPS', r.epsEst, r.eps, ec, surp(e2, e1), E, tagB(r.epsEstB, r.epsB, r.epsCur||r.epsActCur))}</div><div class="rv">${val('הכנסות', r.revEst, r.rev, rc, surp(r2, r1), R, tagB(r.revEstB, r.revB, r.revCur||r.revActCur))}</div>${link}`+
+      `<div class="rv">${val('EPS', r.epsEst, r.eps, ec, surp(e2, e1), E, tagB(r.epsEstB, r.epsB, r.epsCur||r.epsActCur))}</div><div class="rv">${val('הכנסות', r.revEst, r.rev, rc, surp(r2, r1), R, tagB(r.revEstB, r.revB, r.revCur||r.revActCur), true)}</div>${link}`+
             (/^https?:\/\//i.test(r.link) ? `<div class="rpl-row"><a class="news-l rpl-a" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">לדוח ↗</a></div>` : '')+
       (r.note ? `<div class="rnote2" role="button" tabindex="0" aria-expanded="false" data-rnote><span>${esc(r.note)}</span>${r.note.length > 90 || (r.note.match(/\n/g)||[]).length >= 2 ? '<i class="rmore2">עוד ▾</i>' : ''}</div>` : '')+`</article>`; };
   const grp = (A)=>{ let h = '', last = null; A.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="rday">${dayHead(r.d)}</div>`; } h += card(r); }); return h; };
