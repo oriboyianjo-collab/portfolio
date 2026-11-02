@@ -848,7 +848,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=173">
+<link rel="stylesheet" href="chart-tools.css?v=174">
 
 </head>
 <body>
@@ -1896,7 +1896,7 @@ function openSymbols(){ const L = computeLedger(); return Object.values(L.pos).f
 function applyQuotes(res, syms){
   const now = Date.now(); let errors = 0;
   syms.forEach(s=>{ const q = res.quotes[s];
-    if(q){ state.quotes[s] = Object.assign(q, {updated:now, error:null});
+    if(q){ state.quotes[s] = Object.assign(q, {updated:now, error:null}); yMerge(s, state.quotes[s]);
       if(!state.assets[s]) state.assets[s] = assetOf(s);
       if(!state.assets[s].name && q.name) state.assets[s].name = q.name; }
     else { state.quotes[s] = Object.assign(state.quotes[s]||{}, {error:'לא נמצא מחיר'}); if(num(state.manual[s])==null) errors++; } });
@@ -2715,7 +2715,7 @@ async function idxApply(q){
   let alt = {}; if(need.length){ try{ alt = await cnbcQuotes(need.map(x=>x.alt)); }catch(e){} }
   IDX.forEach(x=>{ const a = q[x.s], b = alt[x.alt], u = a && a.price!=null && a.prev ? a : b && b.price!=null && b.prev ? b : null; if(!u) return;
     const ep = b && b.pre && b.pre.pct!=null ? {price:b.pre.price, pct:b.pre.pct, ts:b.pre.ts, kind:b.pre.kind||'pre', src:x.alt} : null;
-    idxData.q[x.k] = {last:u.price, prev:u.prev, sym: u===a ? x.s : x.alt, etf: u!==a, status:u.status||'', ts:u.ts||null, date:u.date||'', pre:ep}; });
+    idxData.q[x.k] = {last:u.price, prev:u.prev, sym: u===a ? x.s : x.alt, etf: u!==a, status:u.status||'', ts:u.ts||null, date:u.date||'', pre:ep}; yMergeIdx(x.k); });
   idxSave(); renderIdx(); idxSpark().catch(e=>console.warn('index sparkline', e.message));
 }
 async function idxSpark(){
@@ -3110,7 +3110,7 @@ function secInst(m){ if(m.type==='fx' && FX_BY[String(m.sym).toUpperCase()]) ret
 function mktInst(k){ if(MKT_BY[k]){ const c = MKT_BY[k]; return Object.assign({q:c.s}, c); } const m = mktCfg.meta[k]; return m ? secInst(m) : null; }
 const mq = {};   // live quotes keyed by the CNBC request symbol (upper-case)
 async function instQuotes(list){ const qs = [...new Set(list.flatMap(i=>i.der ? [i.der.a, i.der.b] : [i.q,...(euCur(i.sym)?[FXQ[euCur(i.sym)][0]]:[])]))].filter(Boolean); if(!qs.length) return;
-  for(let i=0;i<qs.length;i+=40){ try{ Object.assign(mq, await cnbcQuotes(qs.slice(i,i+40)));for(const c in FXQ){const x=mq[FXQ[c][0]];if(x?.price>0)fxx[c]=FXQ[c][1]?1/x.price:x.price;} }catch(e){ console.warn('market quotes', e.message); } } }
+  for(let i=0;i<qs.length;i+=40){ try{ Object.assign(mq, yMergeAll(await cnbcQuotes(qs.slice(i,i+40))));for(const c in FXQ){const x=mq[FXQ[c][0]];if(x?.price>0)fxx[c]=FXQ[c][1]?1/x.price:x.price;} }catch(e){ console.warn('market quotes', e.message); } } }
 function iq(it){ if(it.der){ const a = mq[it.der.a], b = mq[it.der.b]; return a && b && a.price && b.price ? {price:a.price/b.price*it.der.m, prev: a.prev && b.prev ? a.prev/b.prev*it.der.m : null} : null; }
   const q = mq[String(it.q).toUpperCase()] || null; if(!q || !it.sec || marketOf(it.sym)!=='us') return q;
   const hl = haltOf(q); if(hl) return Object.assign({}, q, {hlt:hl});
@@ -5432,12 +5432,150 @@ openReferenceSheet = navSheet('reference', openReferenceSheet, r=>r.id+':'+r.eid
 openInstSheet = navSheet('inst', openInstSheet, it=>it.k); openPosition = navSheet('pos', openPosition, sym=>sym); openTxForm = navSheet('tx', openTxForm);
 openTaxAcct = navSheet('taxacct', openTaxAcct); openShareBonus = navSheet('bonus', openShareBonus); openFracZero = navSheet('frac', openFracZero);
 openDeleteAll = navSheet('delall', openDeleteAll); openBankPreview = navSheet('bank', openBankPreview);
+// ====================== v174: live US ticks (Yahoo streamer, straight from the browser) ======================
+// One WebSocket to Yahoo's public streamer (no key, no account) while the page is visible and the US trades (pre / regular / after-hours).
+// Frames are JSON {type:'pricing', message:<base64 protobuf>}; fields: 1 id, 2 price (float32), 3 time (sint64 ms), 5 exchange, 6 quoteType,
+// 7 marketHours (0 pre, 1 regular, 2 after-hours, 3 extended), 8 change %, 9 day volume (sint64), 12 change (float32), 22 last size.
+// Ticks go into the SAME objects the CNBC poll fills (state.quotes for holdings, mq for market / watch / instrument sheet, idxData for the index
+// tiles), then ONE coalesced patch (≤ ~4/s, slower when a patch is slow) repaints in place through the usual livePatch / morph paths – no list
+// rebuilds, no scroll jumps. CNBC polling is untouched (fallback, non-US symbols, fields Yahoo does not send); a poll never steps a price back
+// behind a newer tick (yMerge). Regular-session ticks move the regular price; pre / after-hours ticks only fill q.pre (the existing extended line).
+// A halted / suspended quote ignores ticks (the label wins). US plain tickers only: .TA, European, crypto and non-security tiles keep polling.
+const YWS = {url:'wss://streamer.finance.yahoo.com/?version=2', ws:null, subs:new Map(), sent:new Set(), fails:0, retryT:0, off:0, msgs:0, ticks:0, applied:0, lastMsg:0, lastTick:0, openedAt:0, opens:0, closes:0, flushes:0, flushMs:0, flushMax:0, lastErr:''};
+const YIDX = {'.SPX':'^GSPC', '.NDX':'^NDX', '.DJI':'^DJI', '.RUT':'^RUT', '.VIX':'^VIX'};
+const yLast = {};                                   // upper-case app symbol -> {kind, price, ts} of the newest applied tick
+const yDirtyH = new Set(), yDirtyQ = new Set(); let yDirtyIdx = false, yFlushT = 0, yLastFlush = 0, yGap = 250, yInstAt = 0, yHoldSig = '', yHoldAt = 0, yHold = [];
+const yOff = ()=>{ try{ return localStorage.getItem('portfolioTracker.yws') === '0'; }catch(e){ return false; } };   // hidden kill switch: localStorage portfolioTracker.yws = '0'
+function yDecode(b64){
+  let bin; try{ bin = atob(b64); }catch(e){ return null; }
+  const n = bin.length, b = new Uint8Array(n); for(let i=0;i<n;i++) b[i] = bin.charCodeAt(i);
+  const dv = new DataView(b.buffer), o = {}; let i = 0;
+  const vi = ()=>{ let r = 0, m = 1, c; do{ if(i >= n) throw 0; c = b[i++]; r += (c & 127) * m; m *= 128; }while(c & 128); return r; };
+  const zz = v=>v % 2 ? -(v + 1) / 2 : v / 2;
+  try{ while(i < n){ const k = vi(), f = Math.floor(k / 8), w = k % 8;
+    if(w === 0){ const v = vi(); if(f===3) o.t = zz(v); else if(f===7) o.mh = v; else if(f===9) o.vol = zz(v); else if(f===6) o.qt = v; }
+    else if(w === 5){ if(i + 4 > n) throw 0; const v = dv.getFloat32(i, true); i += 4; if(f===2) o.p = Math.round(v * 1e4) / 1e4; else if(f===8) o.cp = v; else if(f===12) o.chg = v; }
+    else if(w === 1){ i += 8; }
+    else if(w === 2){ const l = vi(); if(i + l > n) throw 0; if(f===1) o.id = bin.substr(i, l); i += l; }
+    else throw 0; } }catch(e){}
+  return o.id && o.p > 0 && o.t > 0 ? o : null;
+}
+function yOf(key){ const s = String(key || '').toUpperCase(); if(YIDX[s]) return YIDX[s];
+  if(!/^[A-Z][A-Z0-9]{0,5}([.-][A-Z]{1,2})?$/.test(s) || isCrypto(s) || marketOf(s) !== 'us') return null; return s.replace('.', '-'); }
+function yHoldKeys(){ const sig = state.txs.length + ':' + (state.txs.length ? state.txs[state.txs.length-1].id : '');
+  if(sig !== yHoldSig || Date.now() - yHoldAt > 60000){ yHoldSig = sig; yHoldAt = Date.now(); try{ yHold = openSymbols(); }catch(e){} } return yHold; }
+function yWanted(){   // yahoo symbol -> Set(app symbols); priority order = insertion order (holdings first), capped
+  const keys = [], add = k=>{ if(k) keys.push(k); };
+  yHoldKeys().forEach(add);
+  IDX.forEach(x=>{ const q = idxData.q[x.k]; if(q && q.sym) add(q.sym); });
+  const yk = it=>it && !it.der ? (it.sec ? it.sym : YIDX[String(it.q || '').toUpperCase()] ? String(it.q).toUpperCase() : null) : null;   // securities by ticker; of the built-in tiles only the US indices have a Yahoo twin
+  add(yk(instSheet && instSheet.it));
+  if(posLive && posLive.sym) add(posLive.sym);
+  if(ui.tab === 'watch') wlItems().forEach(it=>add(it.sec ? it.sym : null));
+  if(ui.tab === 'market' && etfUi.mode !== 'etf') mktItems().forEach(it=>add(yk(it)));
+  const m = new Map();
+  for(const k of keys){ const y = yOf(k); if(!y) continue; if(!m.has(y)){ if(m.size >= 150) continue; m.set(y, new Set()); } m.get(y).add(k); }
+  return m;
+}
+function ySubs(){
+  const ws = YWS.ws; if(!ws || ws.readyState !== 1) return;
+  YWS.subs = yWanted();
+  const add = [...YWS.subs.keys()].filter(y=>!YWS.sent.has(y)), del = [...YWS.sent].filter(y=>!YWS.subs.has(y));
+  try{
+    for(let i=0;i<add.length;i+=50){ ws.send(JSON.stringify({subscribe:add.slice(i, i+50)})); }
+    if(del.length) ws.send(JSON.stringify({unsubscribe:del}));
+  }catch(e){ return; }
+  add.forEach(y=>YWS.sent.add(y)); del.forEach(y=>YWS.sent.delete(y));
+}
+function yClose(){ const ws = YWS.ws; YWS.ws = null; YWS.sent.clear(); if(ws){ ws.onopen = ws.onmessage = ws.onerror = ws.onclose = null; try{ ws.close(); }catch(e){} YWS.closes++; } }
+function yFail(why){ YWS.lastErr = why || ''; const had = !!YWS.ws; yClose(); if(!had || document.hidden) return;
+  YWS.fails++; if(YWS.fails >= 6){ YWS.off = Date.now() + 10*60e3; YWS.fails = 0; }   // repeatedly failing: stay quiet 10 min, polling carries on
+  clearTimeout(YWS.retryT); YWS.retryT = setTimeout(()=>{ YWS.retryT = 0; ySync(); }, Math.min(60000, 1000 * Math.pow(2, Math.max(0, YWS.fails - 1)))); }
+function yOpen(){
+  let ws; try{ ws = new WebSocket(YWS.url); }catch(e){ YWS.ws = {readyState:0}; yFail('ctor'); return; }
+  YWS.ws = ws; YWS.openedAt = Date.now(); YWS.opens++;
+  ws.onopen = ()=>{ if(YWS.ws !== ws) return; YWS.sent.clear(); ySubs(); };
+  ws.onmessage = e=>{ if(YWS.ws !== ws) return; YWS.msgs++; YWS.lastMsg = Date.now(); YWS.fails = 0;
+    try{ const j = JSON.parse(e.data); if(j && j.type === 'pricing' && j.message){ const o = yDecode(j.message); if(o){ YWS.ticks++; yApply(o); } } }catch(x){} };
+  ws.onerror = ()=>{ if(YWS.ws === ws) yFail('error'); };
+  ws.onclose = ()=>{ if(YWS.ws === ws) yFail('close'); };
+}
+function ySync(){
+  const ss = usSession(), want = !yOff() && !document.hidden && navigator.onLine !== false && Date.now() >= YWS.off && (ss === 'pre' || ss === 'reg' || ss === 'post');
+  if(!want){ if(YWS.ws) yClose(); return; }
+  if(!YWS.ws && !YWS.retryT){ yOpen(); return; }
+  if(YWS.ws && YWS.ws.readyState === 1){
+    if(YWS.sent.size && Date.now() - Math.max(YWS.lastMsg, YWS.openedAt) > 45000){ yFail('stall'); return; }   // silent socket: reconnect
+    ySubs(); }
+}
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ yClose(); clearTimeout(YWS.retryT); YWS.retryT = 0; } else { YWS.fails = 0; YWS.off = 0; ySync(); } });
+// one tick -> every quote object that shows this symbol
+function yOne(q, kind, o, store){
+  if(!q || q.price == null || haltOf(q)) return false;
+  const px = o.p, ts = o.t;
+  if(kind === 'reg'){
+    if(ts < (q.ts || 0) || (q.price === px && q.ts === ts)) return false;
+    q.price = px; q.ts = ts; q.realTime = true;
+    if(q.prev == null && o.chg != null && isFinite(o.chg)) q.prev = px - o.chg;
+    const x = q.x; if(x){ if(x.high != null && px > x.high) x.high = px; if(x.low != null && px < x.low) x.low = px; if(o.vol > 0) x.vol = o.vol; }
+    if(store === 'H') q.updated = Date.now();
+    return true; }
+  if(!(q.price > 0) || (q.pre && q.pre.ts > ts)) return false;
+  q.pre = {price:px, chg:px - q.price, pct:(px / q.price - 1) * 100, ts, kind:kind === 'post' ? 'after' : 'pre'};
+  return true;
+}
+function yApply(o){
+  const targets = YWS.subs.get(o.id); if(!targets) return;
+  const now = Date.now(); if(o.t > now + 120000) return;
+  const ss = usSession(); let kind = o.mh === 1 ? 'reg' : o.mh === 0 ? 'pre' : o.mh === 2 ? 'post' : o.mh === 3 ? (ss === 'pre' || ss === 'post' ? ss : null) : null;
+  if(!kind || (kind !== 'reg' && (kind !== ss || o.id[0] === '^'))) return;   // extended ticks only inside their own session; indices have no extended line
+  YWS.lastTick = now; let any = false;
+  targets.forEach(s=>{ const u = String(s).toUpperCase(), prev = yLast[u];
+    if(!prev || o.t >= prev.ts) yLast[u] = {kind, price:o.p, ts:o.t};
+    if(yOne(state.quotes[s], kind, o, 'H')){ yDirtyH.add(s); any = true; }
+    if(yOne(mq[u], kind, o, 'Q')){ yDirtyQ.add(u); any = true; }
+    if(kind === 'reg') IDX.forEach(x=>{ const q = idxData.q[x.k]; if(q && q.sym === u && !(o.t < (q.ts || 0))){ q.last = o.p; q.ts = o.t; yDirtyIdx = true; any = true; } }); });
+  if(any){ YWS.applied++; yQueue(); }
+}
+// a CNBC poll must not step a price back behind a newer tick
+function yMerge(key, q){ const y = yLast[String(key).toUpperCase()]; if(!y || !q || q.price == null || haltOf(q)) return;
+  if(y.kind === 'reg'){ if(y.ts > (q.ts || 0)){ q.price = y.price; q.ts = y.ts; q.realTime = true; } }
+  else if(q.price > 0 && y.kind === usSession() && y.ts > ((q.pre && q.pre.ts) || 0)) q.pre = {price:y.price, chg:y.price - q.price, pct:(y.price / q.price - 1) * 100, ts:y.ts, kind:y.kind === 'post' ? 'after' : 'pre'}; }
+function yMergeAll(r){ for(const k in r) yMerge(k, r[k]); return r; }
+function yMergeIdx(k){ const q = idxData.q[k], y = q && yLast[String(q.sym).toUpperCase()]; if(y && y.kind === 'reg' && y.ts > (q.ts || 0)){ q.last = y.price; q.ts = y.ts; } }
+// ---- coalesced, in-place repaint ----
+function yQueue(){ if(yFlushT) return; yFlushT = setTimeout(()=>{ yFlushT = 0; requestAnimationFrame(yFlush); }, Math.max(0, yGap - (performance.now() - yLastFlush))); }
+function yFlush(){
+  if(document.hidden){ yDirtyH.clear(); yDirtyQ.clear(); yDirtyIdx = false; return; }
+  const t0 = performance.now(), H = yDirtyH.size, Q = new Set(yDirtyQ), I = yDirtyIdx; yDirtyH.clear(); yDirtyQ.clear(); yDirtyIdx = false; YWS.flushes++;
+  try{
+    if(H) livePatch();
+    if(I) renderIdx();
+    if(Q.size){ yPatchMarket(Q); yPatchWatch(Q);
+      if(instSheet && instSheet.it){ const k = instSheet.it.sec ? instSheet.it.sym : String(instSheet.it.q || '').toUpperCase();
+        if(Q.has(String(k).toUpperCase())){ if(t0 - yInstAt >= 600){ yInstAt = t0; instSheetLive(); } else{ yDirtyQ.add(String(k).toUpperCase()); } } } }
+  }catch(e){ console.warn('live tick patch', e && e.message); }
+  yLastFlush = performance.now(); const dur = yLastFlush - t0; YWS.flushMs = Math.round((YWS.flushMs * 4 + dur) / 5 * 10) / 10; YWS.flushMax = Math.max(YWS.flushMax, Math.round(dur * 10) / 10); yGap = Math.min(1500, Math.max(250, dur * 6));   // slow phone → patch less often, never queue up
+  if(yDirtyH.size || yDirtyQ.size || yDirtyIdx) yQueue();
+}
+function yPatchMarket(Q){
+  if(ui.tab !== 'market' || mktEditing || etfUi.mode === 'etf') return; const g = $('mktGrid'); if(!g) return;
+  mktItems().forEach(it=>{ if(it.der || !Q.has(String(it.q).toUpperCase())) return; const el = g.querySelector(`[data-mk="${CSS.escape(it.k)}"]`); if(!el) return;
+    const t = document.createElement('div'); t.innerHTML = mktCardHtml(it); if(t.firstElementChild) morphKids(el, t.firstElementChild); });
+}
+function yPatchWatch(Q){
+  if(ui.tab !== 'watch' || wlGesture || wlPendingHtml != null) return; const box = $('wlLists'); if(!box || box.querySelector('.wl-rows.editing')) return;
+  box.querySelectorAll('.wr[data-ws]').forEach(el=>{ const sym = el.dataset.ws; if(!Q.has(String(sym).toUpperCase())) return;
+    const x = wlCur().items.find(m=>m.sym === sym); if(!x) return; const t = document.createElement('div'); t.innerHTML = wlRowHtml(secInst(x), 0, 2); const r = t.firstElementChild; if(!r) return;
+    ['.pc-s', '.pc-m', '.pc-p', '.pc-d'].forEach(sel=>{ const a = el.querySelector(sel), b = r.querySelector(sel); if(a && b) morphKids(a, b); }); });
+}
 // ====================== init ======================
 renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
+setInterval(ySync, 1500); ySync();                                                 // v174: live US ticks over WebSocket (CNBC polling keeps running underneath)
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {refresh:(...a)=>refreshPrices(...a), get state(){ return state; }, openPosition:(...a)=>openPosition(...a), openTxForm:(...a)=>openTxForm(...a), lotsTM:(tx)=>taxModel(tx||state.txs), commission:(...a)=>commission(...a), inferFees:(...a)=>inferFees(...a), get mkt(){ return {cfg:mktCfg, q:mq, bars:instCache}; }, get wl(){ return wlData; }, mktTick, squarify, heatColor, spark(){ return spk; }, spkRun, setTheme, idx(){ return idxData; }, idxApply, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get yws(){ return {state:YWS.ws ? YWS.ws.readyState : -1, msgs:YWS.msgs, ticks:YWS.ticks, applied:YWS.applied, flushes:YWS.flushes, flushMs:YWS.flushMs, flushMax:YWS.flushMax, opens:YWS.opens, closes:YWS.closes, fails:YWS.fails, lastMsg:YWS.lastMsg, lastTick:YWS.lastTick, subs:[...YWS.subs.keys()], gap:yGap, err:YWS.lastErr}; }, yDecode, yApply, yLast, refresh:(...a)=>refreshPrices(...a), get state(){ return state; }, openPosition:(...a)=>openPosition(...a), openTxForm:(...a)=>openTxForm(...a), lotsTM:(tx)=>taxModel(tx||state.txs), commission:(...a)=>commission(...a), inferFees:(...a)=>inferFees(...a), get mkt(){ return {cfg:mktCfg, q:mq, bars:instCache}; }, get wl(){ return wlData; }, mktTick, squarify, heatColor, spark(){ return spk; }, spkRun, setTheme, idx(){ return idxData; }, idxApply, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 // v77: Android back button – never leave the app on one press. History: [base, top(+ overlay entries)]. Popping back to 'base' =
 // v87: the back button retraces the user's own steps. NAV is the app's screen stack (tab switches, the search, each sheet level, the image
 // viewer); the browser history only keeps 'base' + 'top' so a back press can be caught: each press undoes the latest step, and with nothing
