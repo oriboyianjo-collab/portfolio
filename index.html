@@ -836,7 +836,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.ob-h b{font-size:.95rem}
 .ob-bd{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:99px;background:#d1fae5;color:#065f46;white-space:nowrap}html.dark .ob-bd{background:#064e3b;color:#6ee7b7}
 .ob-bd.off,html.dark .ob-bd.off{background:var(--border);color:var(--muted)}
-.ob-sp{display:flex;justify-content:space-between;align-items:center;font-size:.74rem;color:var(--muted);margin:0 0 6px}.ob-sp b{color:var(--text);direction:ltr;unicode-bidi:isolate}
+.ob-sp{display:flex;justify-content:flex-start;gap:8px;align-items:center;font-size:.74rem;color:var(--muted);margin:0 0 6px}.ob-sp b{color:var(--text);direction:ltr;unicode-bidi:isolate}
 .ob-g{display:grid;grid-template-columns:1fr 1fr;gap:6px;direction:ltr}
 .ob-t{display:flex;justify-content:space-between;font-size:.66rem;color:var(--muted);padding:0 4px 3px}
 .ob-r{position:relative;display:flex;justify-content:space-between;font-size:.8rem;padding:3px 4px;font-variant-numeric:tabular-nums;border-radius:4px;overflow:hidden;min-height:22px}
@@ -848,7 +848,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=168">
+<link rel="stylesheet" href="chart-tools.css?v=169">
 
 </head>
 <body>
@@ -3601,7 +3601,7 @@ function obDraw(j, stale){ const body = document.getElementById('obBody'), bd = 
   const row = (x, side)=>`<div class="ob-r"><i style="width:${Math.max(6, x.q/mx*100)}%"></i>${side==='b' ? `<span>${x.q.toLocaleString('en-US')}</span><span class="ob-p">${obFmt(x.p)}</span>` : `<span class="ob-p">${obFmt(x.p)}</span><span>${x.q.toLocaleString('en-US')}</span>`}</div>`;
   const sb = bids.reduce((a,x)=>a+x.q,0), sa = asks.reduce((a,x)=>a+x.q,0), pct = sb+sa ? Math.round(sb/(sb+sa)*100) : 50;
   const sp = bids.length && asks.length ? asks[0].p - bids[0].p : null;
-  body.innerHTML = (sp!=null ? `<div class="ob-sp"><span>פער (ספרד)</span><b>${sp.toFixed(bids[0].p<1?4:2)} · ${(sp/bids[0].p*100).toFixed(2)}%</b></div>` : '')
+  body.innerHTML = (sp!=null ? `<div class="ob-sp"><span>פער (Spread)</span><b>${sp.toFixed(bids[0].p<1?4:2)} · ${(sp/bids[0].p*100).toFixed(2)}%</b></div>` : '')
     + `<div class="ob-g"><div class="ob-b"><div class="ob-t"><span>כמות</span><span>קנייה (Bid)</span></div>${bids.map(x=>row(x,'b')).join('') || '<div class="ob-msg">—</div>'}</div><div class="ob-a"><div class="ob-t"><span>מכירה (Ask)</span><span>כמות</span></div>${asks.map(x=>row(x,'a')).join('') || '<div class="ob-msg">—</div>'}</div></div>`
     + (bids.length && asks.length ? `<div class="ob-im"><i style="width:${pct}%"></i></div><div class="ob-iml"><span>קונים ${pct}%</span><span>מוכרים ${100-pct}%</span></div>` : '')
     + `<div class="ob-ft${stale?' warn':''}">${stale ? 'החיבור נקטע – מוצג המידע האחרון · ' : ''}נתוני <bdi>Cboe BZX+EDGX</bdi> בלבד (שתי בורסות, לא כלל השוק) · עודכן <bdi>${esc(j.ts||'')} ET</bdi> · כמויות במניות${obLive() ? '' : ' · השוק סגור'}</div>`; }
