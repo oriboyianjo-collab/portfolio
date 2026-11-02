@@ -848,7 +848,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=179">
+<link rel="stylesheet" href="chart-tools.css?v=180">
 
 </head>
 <body>
@@ -5206,7 +5206,8 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
       const rng = /range|טווח/i.test(t) ? ' (טווח)' : '';
       const un = /unknown|לא ידוע/i.test(t) ? ' · בסיס לא ידוע' : '';
       const conflict = /source conflict|מקורות סותרים/i.test(t) ? 'מקורות סותרים · ' : '';
-      const dil = /dilut|מדולל/i.test(t), bas = !dil && /basic|בסיסי/i.test(t);
+      const unD = /basic\s*\/\s*diluted\s+not\s+specified|(?:dilut\w*|basic)[^;,]{0,30}\bnot specified\b|\bnot specified\b[^;,]{0,30}(?:dilut\w*|basic)|(?:dilut\w*|basic)[^;,]{0,30}\bunspecified\b/i.test(t);
+      const dil = !unD && /dilut|מדולל/i.test(t), bas = !unD && !dil && /basic|בסיסי/i.test(t);
       const cont = /continu|נמשכת|מתמשכת/i.test(t) ? ' (פעילות נמשכת)' : '';
       const q = (dil ? ' מדולל' : bas ? ' בסיסי' : '') + cont;
       const ads = /\bADR\b|ל-ADR/i.test(t) ? ' ל-ADR' : (/\bADS\b|ל-ADS|ל־ADS/i.test(t) ? ' ל-ADS' : '');
