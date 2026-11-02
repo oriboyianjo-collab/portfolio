@@ -811,13 +811,13 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #tab-watch .wls{margin-top:0}
 #tab-watch .wls .wlb{padding:0}
 
-/* v159: keep the market cap visible; only the company name may shorten. */
+/* v161: keep the market cap visible; only the company name may shorten. */
 .rrow .rn .rmeta{display:flex;align-items:baseline;justify-content:flex-end;gap:5px;direction:ltr;overflow:visible;text-overflow:clip;min-width:0}
 .rrow .rcompany{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rrow .rcap{flex:0 0 auto;white-space:nowrap;direction:ltr;unicode-bidi:isolate}
 .rrow .rcap::before{content:"·";margin-inline-end:5px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=160">
+<link rel="stylesheet" href="chart-tools.css?v=161">
 
 </head>
 <body>
@@ -3040,6 +3040,19 @@ const ivOf = range=>{ if(customRange(range))return '1D';const m = loadJ(IV_KEY) 
 const ivSet = (range, v)=>{ const m = loadJ(IV_KEY) || {}; m[range] = v; try{ localStorage.setItem(IV_KEY, JSON.stringify(m)); }catch(e){} };
 const ivIntra = iv=>/M$|H$/.test(iv) && iv!=='1MO';
 const instKey = (it, range, iv)=>it.q+'|'+range+(iv && iv!==IV_DEF[range] ? '|'+iv : '');
+// v161: CNBC's /adjusted/ daily bars sometimes carry an EXTRA split factor that never happened (OKLL: ×5 before 2026-08-19; SQQQ: ×5 before 2020-08-17).
+// A factor boundary is only real if the /unadjusted/ closes jump by about the same ratio on that day; otherwise the older bars are divided back. Daily bars only; any failure → bars stay as served.
+const SPLITFIX = {};
+function splitFixes(cq, a, b, adjP){ const key = cq+'|'+a+'|'+b+'|'+today(); if(SPLITFIX[key]) return SPLITFIX[key];
+  const base = `https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cq)}/1D/${a}/${b}`, get = m=>fetchJSON(`${base}/${m}/EST5EDT.json`, 20000).then(j=>(j&&j.barData&&j.barData.priceBars)||[]);
+  return (SPLITFIX[key] = Promise.all([adjP || get('adjusted'), get('unadjusted')]).then(([A,U])=>{
+    const um = new Map(U.map(x=>[String(x.tradeTime).slice(0,8), +x.close])), out = []; let pr = null, pu = null;
+    A.forEach(x=>{ const d = String(x.tradeTime).slice(0,8), u = um.get(d), c = +x.close; if(!(u>0.05 && c>0.05)) return; const rho = c/u;
+      if(pr!=null && Math.abs(Math.log(rho/pr)) > 0.15){ const f = pr/rho; if(!(Math.log(u/pu)/Math.log(f) > 0.5)) out.push({d, f}); }
+      pr = rho; pu = u; });
+    return out; }).catch(e=>{ delete SPLITFIX[key]; return []; })); }
+function applySplitFixes(bars, fixes){ if(!fixes || !fixes.length) return bars;
+  return bars.map(b=>{ const d = String(b.tradeTime).slice(0,8); let f = 1; fixes.forEach(x=>{ if(d < x.d) f *= x.f; }); return f===1 ? b : Object.assign({}, b, ...['close','open','high','low'].map(k=>({[k]: +b[k]/f}))); }); }
 async function instBars(it, range, iv){
   iv = iv || (customRange(range)?'1D':IV_DEF[range]); const key = instKey(it, range, iv), c = instCache[key]; if(c && Date.now()-c.at < (customRange(range)?24*3600e3:INST_TTL[range])) return c.pts;
   if(it.der){ // v86: JPY/ILS, CHF/ILS – bar by bar from USD/ILS ÷ USD/JPY (or USD/CHF); each USD/ILS bar takes the latest other bar at or before its time
@@ -3057,10 +3070,13 @@ async function instBars(it, range, iv){
     if(cr&&it.q==='SQQQ'&&cr.from<'2020-08-17'){spec[1]=cr.from<'2020-08-14'?cr.from:'2020-08-14';spec[2]=cr.to<'2020-08-17'?'2020-08-18':spec[2];}
     const k = isTaseSec(it.q) ? 100 : 1;
     let pts = [];
-    try{ const j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/${spec[0]}/${ymd(spec[1])}/${ymd(spec[2])}/adjusted/EST5EDT.json`, 12000);
+    try{ const adjP = fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/${spec[0]}/${ymd(spec[1])}/${ymd(spec[2])}/adjusted/EST5EDT.json`, 12000);
+      const fixP = it.sec && it.type!=='crypto' && it.type!=='index' && !ivIntra(iv) ? splitFixes(cnbcSymbol(it.q), ymd(spec[1]), ymd(spec[2]), iv==='1D' ? adjP.then(j=>(j&&j.barData&&j.barData.priceBars)||[]) : null) : null;
+      const j = await adjP;
       let bars = (j && j.barData && j.barData.priceBars) || [];
       // Verified issuer IPO dates: exclude provider pre-listing reference stubs from daily history.
       const ipo={AAPL:'19801212',MSFT:'19860313',NVDA:'19990122',TSLA:'20100629'}[it.q]; if(ipo&&iv==='1D')bars=bars.filter(b=>String(b.tradeTime).slice(0,8)>=ipo);
+      if(fixP) bars = applySplitFixes(bars, await fixP);   // v161: drop split factors the unadjusted prices don't confirm (generic; covers the SQQQ case below too)
       // CNBC currently carries one EXTRA 1:5 reverse-split factor before 2020-08-17 for SQQQ.
       // Detect that specific provider error from both sides. If the feed fixes itself, do nothing.
       if(it.q==='SQQQ'&&iv==='1D'){
@@ -3516,7 +3532,7 @@ function detFmtDate(v){ const m = String(v||'').match(/^(\d{2})\/(\d{2})\/(\d{4}
 // Yahoo floatShares / 5Y beta, SEC-derived float fallback) for every US-listed ticker – never from this app's portfolio. Row = [BVPS, balance-sheet date, filing date, 1=10-K, shares, float, float as-of, float src Y|S, beta].
 const FUND_URL = 'fundamentals.json', FUND_STALE_DAYS = 135; let fundP = null, fundAt = 0, fundData = null;
 function fundLoad(){ if(fundP && Date.now()-fundAt < 30*60e3) return fundP; fundAt = Date.now();
-  return fundP = fetch(FUND_URL+'?h='+Math.floor(Date.now()/36e5), {cache:'no-store'}).then(r=>r.ok ? r.json() : null).then(j=>{ if(j && j.d && typeof j.d==='object'){ fundData = j; if(instSheet && $('isDetG') && detOpen) drawDet(); } return fundData; }).catch(()=>fundData); }
+  return fundP = fetch(FUND_URL+'?h='+Math.floor(Date.now()/36e5), {cache:'no-store'}).then(r=>r.ok ? r.json() : null).then(j=>{ if(j && j.d && typeof j.d==='object'){ fundData = j; if($('isDetG') && detOpen) drawDet(); } return fundData; }).catch(()=>fundData); }
 const fundDate = d=>{ const m = String(d||'').match(/^(\d{4})-(\d{2})-(\d{2})/); return m ? `<bdi dir="ltr">${m[3]}.${m[2]}.${m[1]}</bdi>` : '--'; };
 function fundFor(it){ if(!fundData || !it.sec || marketOf(it.sym)!=='us') return null; const T = String(it.sym).toUpperCase(), r = fundData.d[T] || fundData.d[T.replace(/\./g, '-')];
   return r ? {bv:r[0], asof:r[1], filed:r[2], k:r[3] ? '10-K' : '10-Q', sh:r[4], fl:r[5], fld:r[6], fls:r[7], beta:r[8], gen:fundData.generated||''} : null; }
@@ -3542,7 +3558,10 @@ function detRows(it, q){ const X = (q && q.x) || {}, FC = fundCells(it, q), cur 
   ['מניות במחזור', detFmtBig(X.shs)], ['שווי שוק', q && q.mcap ? fmtCap(q.mcap, cur) : DET_DASH], ['Free Float', FC.fl],
   ['דיבידנד', pr(X.div)], ['תשואת דיבידנד', X.dy!=null ? X.dy.toFixed(2)+'%' : DET_DASH], ['תאריך אקס-דיבידנד', detFmtDate(X.exd)],
   ['דוח הבא', detFmtDate(X.ne)], ['בטא', FC.beta]]; }
-function drawDet(){ const S = instSheet, g = $('isDetG'); if(!S || !g) return; const it = S.it, q = iq(it);
+// v161: the 'פרטים' grid is shared by the instrument sheet and the position sheet (תיק) – detItem() is whichever is open
+let posDet = null, posDetAt = 0;
+function detItem(){ return instSheet ? instSheet.it : (sheetSym ? posDet : null); }
+function drawDet(){ const it = detItem(), g = $('isDetG'); if(!it || !g) return; const q = iq(it);
   g.innerHTML = detRows(it, q).map(([l,v])=>{ if(Array.isArray(v)){ const [val, sub, t] = v, na = val==='--';
       return `<div class="fx"><span>${l}${t ? ib(t.tip, t.ttl, t.warn?'warn':'') : ''}</span><b class="num${na?' na':''}${l==='מכפיל הון (P/B)' && val!==g.dataset.pbv ? ' tick' : ''}">${val}</b>${sub ? `<small>${sub}</small>` : ''}</div>`; }
     return `<div><span>${l}</span><b class="num${v===DET_DASH||v==='…'?' na':''}">${v}</b></div>`; }).join('');
@@ -3550,7 +3569,7 @@ function drawDet(){ const S = instSheet, g = $('isDetG'); if(!S || !g) return; c
 async function loadAv3m(it){ const sym = it.sym; if(sym in av3m) return; av3m[sym] = undefined;
   try{ const from = addDays(today(), -92), j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/1D/${cnbcStamp(from)}/${cnbcStamp(addDays(today(),1))}/unadjusted/EST5EDT.json`, 15000);
     const v = ((j.barData||{}).priceBars||[]).map(b=>num(b.volume)).filter(x=>x>0); av3m[sym] = v.length >= 20 ? v.reduce((a,b)=>a+b,0)/v.length : null; }catch(e){ av3m[sym] = null; }
-  if(instSheet && instSheet.it.sym===sym) drawDet(); }
+  { const d = detItem(); if(d && d.sym===sym) drawDet(); } }
 document.addEventListener('click', e=>{ const b = e.target.closest('[data-det]'); if(!b) return; detOpen = !detOpen; try{ localStorage.setItem(DET_KEY, detOpen?'1':'0'); }catch(_){}
   b.setAttribute('aria-expanded', String(detOpen)); b.querySelector('i').textContent = detOpen ? '▴' : '▾'; $('isDetG').hidden = !detOpen; if(detOpen) drawDet(); });
 function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[instKey(it, S.range, S.iv)], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
@@ -3703,7 +3722,7 @@ function navSheet(name, f, keyOf){ return (...a)=>{ const was = $('sheet').class
     else if(was && prev) navPush({t:'sheet', key:prev.key, reopen:prev.open});
     else if(!was){ navPush({t:'sheetClose', srchQ:srchRet}); } }
   srchRet = null; return r; }; }
-function openSheet(html){ sheetSym = null; instSheet = null; if(posChart){ posChart.remove(); posChart=null; } $('sheetBody').innerHTML = html; $('sheetBg').classList.add('open'); $('sheet').classList.add('open'); $('sheet').scrollTop = 0; }
+function openSheet(html){ sheetSym = null; instSheet = null; posDet = null; if(posChart){ posChart.remove(); posChart=null; } $('sheetBody').innerHTML = html; $('sheetBg').classList.add('open'); $('sheet').classList.add('open'); $('sheet').scrollTop = 0; }
 function closeSheet(){ if(!navRestoring){ while(NAV.length && NAV[NAV.length-1].t==='sheet') NAV.pop(); navDrop('sheetClose'); } sheetOpener = null; sheetSym = null; instSheet = null; $('sheetBg').classList.remove('open'); $('sheet').classList.remove('open'); if(posChart){ posChart.remove(); posChart=null; } posLive = null; }
 $('sheetBg').onclick = closeSheet;
 $('sheetBody').addEventListener('click', e=>{ if(e.target.closest('[data-close]')) closeSheet(); });
@@ -3986,6 +4005,7 @@ function openPosition(sym){ui.posRange='YTD';
     <div class="note" id="posNote"></div>
     <div class="kv" style="margin-top:10px" id="posKv">${posKvHtml(p)}</div>
     <div class="note" id="posInfo">${posInfoHtml(p)}</div>
+    ${assetOf(sym).type!=='crypto' && secInst({sym, type:assetOf(sym).type||'stock', currency:assetOf(sym).currency}).sec ? detHtml() : ''}
     <div class="btn-row" style="margin-top:12px">
       <button class="btn btn-primary" data-pact="buy">🛒 ${short?'קנייה לכיסוי':'קנייה'}</button>
       <button class="btn btn-light" data-pact="sell">💰 ${short?'הגדלת שורט':'מכירה'}</button></div>
@@ -3997,6 +4017,7 @@ function openPosition(sym){ui.posRange='YTD';
     <div id="posLots">${lotsHtml(sym, cur)}</div>
     <div class="sym-tx"><h4>העסקאות שלך ב-<span class="ltr">${esc(sym)}</span> <small class="muted" style="font-weight:500">(לחיצה לעריכה או מחיקה)</small></h4><div id="symTx">${symTxHtml(sym)}</div></div>`);
   sheetSym = sym; sheetPrice = p.price;
+  if($('isDetG')){ posDet = secInst({sym, type:assetOf(sym).type||'stock', currency:assetOf(sym).currency}); posDetAt = Date.now(); drawDet(); if(detOpen){ loadAv3m(posDet); fundLoad(); } instQuotes([posDet]).then(()=>{ if(sheetSym===sym && posDet) drawDet(); }).catch(()=>{}); }   // v161: same details grid as the instrument sheet (public per-share data only)
   const body = $('sheetBody');
   const segs = (id, key)=>body.querySelector(id).addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return; ui[key]=b.dataset.v; if(key==='posStyle') setChartStyle(b.dataset.v); body.querySelectorAll(id+' button').forEach(x=>x.classList.toggle('on',x===b)); drawPosChart(sym); });
   segs('#posRange','posRange'); segs('#posStyle','posStyle');
@@ -4055,6 +4076,7 @@ function updatePosSheet(S){
   if(sheetPrice!=null && p.price!=null && Math.abs(p.price-sheetPrice)>1e-9){ const dir = p.price-sheetPrice;
     flash(box.querySelector('[data-k="price"]'), dir); if(!hidden()) flash(box.querySelector('[data-k="mv"]'), dir*(p.qty<0?-1:1)); }
   sheetPrice = p.price;
+  if(posDet && $('isDetG')){ if(detOpen) drawDet(); const now = Date.now(); if(now - posDetAt > 15000){ posDetAt = now; const d = posDet; instQuotes([d]).then(()=>{ if(sheetSym===d.sym && posDet===d) drawDet(); }).catch(()=>{}); } }   // v161: live details
 }
 function marketDate(m){ const am = Object.values(ASIA_MK).find(x=>x[0]===m); return zoned(am ? am[1] : m==='tase' ? 'Asia/Jerusalem' : m==='eu' ? 'Europe/Berlin' : 'America/New_York').date; }
 function renderPosRchg(price){
@@ -4073,6 +4095,14 @@ function updatePosLive(){
   L.bar = b;
   try{ L.series.update(L.candle ? b : {time:b.time, value:price}); }catch(e){ console.warn('live pos chart', e.message); }
 }
+// v161: the position chart plots history bars that are UNadjusted (the ledger needs raw prices); show them split-adjusted so a split is not a cliff and the cost line (post-split) matches.
+// Events = splits recorded in the ledger + splits detected in the prices that the ledger doesn't have (±5 days). Pre-split bars: price ÷ ratio, volume × ratio.
+function splitAdjBars(sym, bars){
+  try{ const ev = state.txs.filter(t=>t.symbol===sym && t.type==='split' && !t.voided && !t.dupSkip && num(t.ratio)>0).map(t=>({d:t.date, r:num(t.ratio)}));
+    detectSplits(bars).filter(x=>x.date<=today() && !ev.some(e=>Math.abs(daysBetween(e.d, x.date))<=5)).forEach(x=>ev.push({d:x.date, r:x.ratio}));
+    if(!ev.length) return bars;
+    return bars.map(b=>{ let f = 1; ev.forEach(e=>{ if(b[0] < e.d) f *= e.r; }); return f===1 ? b : [b[0], b[1]/f, b[2]/f, b[3]/f, b[4]/f, b[5]==null ? null : b[5]*f]; });
+  }catch(e){ return bars; } }
 async function drawPosChart(sym){
   posLive = null;
   const el = $('posChartEl'), msg = $('posMsg'); if(!el) return;
@@ -4083,7 +4113,7 @@ async function drawPosChart(sym){
   const h = await getHistory(sym, addDays(from, -10));
   if(el!==$('posChartEl')) return;
   if(posChart){ posChart.remove(); posChart=null; }
-  const bars = h ? h.bars.filter(b=>b[0]>=from) : [];
+  const hAdj = h ? splitAdjBars(sym, h.bars) : [], bars = h ? hAdj.filter(b=>b[0]>=from) : [];
   if(!bars.length){ msg.textContent='אין היסטוריית מחירים זמינה לנייר זה'; $('posNote').textContent=''; return; }
   msg.style.display='none';
   posChart = makeChart(el, false);
@@ -4095,7 +4125,7 @@ async function drawPosChart(sym){
   if(P && Math.abs(P.qty)>1e-9 && P.avg){ s.createPriceLine({price:convertCur(P.avg, P.cur, h.cur), color:'#94a3b8', lineWidth:1, lineStyle:2, axisLabelVisible:!hidden(), title:P.qty<0?'מחיר שורט':'עלות'}); }
   const mks=ChartTools.tradeMarkers(s,sym,'1D');
   // change over the range: YTD = vs the 31/12 close of last year; other ranges = vs the last close before the range (else its first close)
-  const baseBar = h.bars.filter(b=>b[0] < from).pop() || bars[0];
+  const baseBar = hAdj.filter(b=>b[0] < from).pop() || bars[0];
   const lb = bars[bars.length-1]; posLive = {sym, series:s, candle: ui.posStyle==='candle' && h.ohlc, hcur:h.cur, bar:{time:lb[0], open:lb[1], high:lb[2], low:lb[3], close:lb[4]}, base:baseBar[4], baseDate:baseBar[0], ytd};
   renderPosRchg(lb[4]); updatePosLive();   // live quote right away
   posChart.timeScale().fitContent();
