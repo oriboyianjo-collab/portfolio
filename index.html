@@ -216,7 +216,7 @@ nav.bottom .in{max-width:820px;margin:0 auto;display:flex;height:var(--nav-h)}
 nav.bottom button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:.74rem;color:var(--muted);font-weight:600;cursor:pointer}
 nav.bottom button .i{font-size:1.35rem;line-height:1}nav.bottom button{min-width:0;padding:0 2px;font-size:.7rem;line-height:1.1;text-align:center}nav.bottom .nl{display:block;max-width:100%}
 nav.bottom button.on{color:var(--primary)}
-html,body{overscroll-behavior-x:none}.xh-ok{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.xh-ok.xh{touch-action:none}.xh-ok.zoomed{touch-action:pan-y}.xh-ok .tv-lightweight-charts,.xh-ok .tv-lightweight-charts *{pointer-events:none!important}main .chart{transition:box-shadow .15s}main .chart.active{box-shadow:0 0 0 2px var(--accent,#3b82f6);border-radius:10px}
+html,body{overscroll-behavior-x:none;overscroll-behavior-y:contain}.xh-ok{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.xh-ok.xh{touch-action:none}.xh-ok.zoomed{touch-action:pan-y}.xh-ok .tv-lightweight-charts,.xh-ok .tv-lightweight-charts *{pointer-events:none!important}main .chart{transition:box-shadow .15s}main .chart.active{box-shadow:0 0 0 2px var(--accent,#3b82f6);border-radius:10px}
 .wl-to{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted);margin:6px 0 4px}.wl-to select{font:inherit;font-size:.85rem;padding:4px 8px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);max-width:60%}
 .wls{border:1px solid var(--border);border-radius:12px;margin-top:8px;overflow:hidden}.wlh{display:flex;align-items:stretch}.wlh-t{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:none;border:0;color:var(--text);font:inherit;padding:11px 12px;cursor:pointer;text-align:right}
 .wlh-n{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}.wlh-c{display:flex;gap:6px;font-size:.82rem;margin-inline-start:auto;white-space:nowrap}.wlh-v{color:var(--muted);font-size:.9rem}
@@ -816,8 +816,17 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .rrow .rcompany{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rrow .rcap{flex:0 0 auto;white-space:nowrap;direction:ltr;unicode-bidi:isolate}
 .rrow .rcap::before{content:"·";margin-inline-end:5px}
+
+/* v164: in-app pull-to-refresh (the Android WebView wrapper has no native one; Chrome's native one is disabled via overscroll-behavior-y:contain above) */
+#ptr{position:fixed;top:0;left:50%;margin-left:-19px;width:38px;height:38px;border-radius:50%;background:var(--card,#182235);border:1px solid var(--border,#2a3649);box-shadow:0 4px 14px rgba(0,0,0,.35);z-index:9000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(-50px);direction:rtl;will-change:transform,opacity}
+#ptr.snap{transition:transform .22s ease,opacity .22s ease}
+#ptr svg{width:22px;height:22px;display:block}
+#ptr circle{fill:none;stroke:var(--primary-d,#60a5fa);stroke-width:3;stroke-linecap:round;stroke-dasharray:44 100}
+#ptr.go circle{stroke:var(--green,#34d399)}
+#ptr.spin svg{animation:ptrspin .8s linear infinite}
+@keyframes ptrspin{to{transform:rotate(360deg)}}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=163">
+<link rel="stylesheet" href="chart-tools.css?v=164">
 
 </head>
 <body>
@@ -5290,13 +5299,64 @@ window.__portfolio = {refresh:(...a)=>refreshPrices(...a), get state(){ return s
       toast('לחץ שוב אחורה ליציאה'); armT = setTimeout(()=>{ armT = null; rearm(); }, 2000); return; }
     if(armT){ clearTimeout(armT); armT = null; } });
 })();
+// v164: pull-to-refresh. At the very top of the page, a single-finger downward drag past the threshold runs the same refresh as the old refresh button
+// (prices + FX; on the news tab also the news/reports/calendar reload). Never starts on charts, in sheets / modals / viewers / the expanded chart, on form fields, or inside a scrolled inner list.
+(()=>{
+  const MAX = 90, BLOCK = '.chart,.xh-ok,svg.spark,[data-mk],.tv-lightweight-charts,canvas,.ct-work,.sheet,.sheet-bg,.imgv,.sov,.rpop,.upd-bar,input,textarea,select,[contenteditable],.editing,dialog,.modal,.modal-bg';
+  const el = document.createElement('div'); el.id = 'ptr'; el.setAttribute('role','status'); el.setAttribute('aria-label','רענון');
+  el.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/></svg>'; document.body.appendChild(el);
+  let sx = 0, sy = 0, pulling = false, armed = false, busy = false, dist = 0;
+  const top = ()=> (window.scrollY||0) <= 0 && ((document.scrollingElement||document.documentElement).scrollTop||0) <= 0;
+  const safeT = ()=>{ const v = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-t')); return isNaN(v) ? 0 : v; };
+  function innerScrolled(t){ for(; t && t !== document.body && t !== document.documentElement; t = t.parentElement){ if(t.scrollTop > 0){ const o = getComputedStyle(t).overflowY; if(o==='auto'||o==='scroll') return true; } } return false; }
+  function overlayOpen(){ return !!document.querySelector('.ct-work,.imgv:not([hidden]),.sheet-bg.open,.sheet.open,dialog[open],.modal.open,.modal-bg.open,.sov:not([hidden])') || document.body.classList.contains('kb'); }
+  function show(d, snap){ el.classList.toggle('snap', !!snap); const y = Math.max(0, d) - 46 + 12 + safeT(); el.style.transform = 'translateY('+y+'px) rotate('+(d*4)+'deg)'; el.style.opacity = d <= 4 ? '0' : String(Math.min(1, d/40)); }
+  function hide(){ el.classList.remove('spin','go'); show(0, true); el.style.transform = 'translateY(-50px)'; el.style.opacity = '0'; }
+  async function run(){
+    busy = true; el.classList.add('spin'); el.classList.remove('go'); el.style.transform = 'translateY('+(12+safeT()+14)+'px)'; el.style.opacity = '1'; el.classList.add('snap');
+    const t0 = Date.now();
+    try{
+      const jobs = [refreshPrices(false)];
+      if(ui.tab==='news') jobs.push(Promise.resolve().then(()=>loadNewsTab()));
+      else if(ui.tab==='market' || ui.tab==='watch') jobs.push(Promise.resolve().then(()=>mktTick()));
+      await Promise.race([Promise.allSettled(jobs), new Promise(r=>setTimeout(r, 15000))]);
+    }catch(e){ console.warn('pull refresh', e); }
+    const w = 700 - (Date.now()-t0); if(w > 0) await new Promise(r=>setTimeout(r, w));
+    hide(); busy = false;
+  }
+  document.addEventListener('touchstart', e=>{
+    pulling = false; armed = false;
+    if(busy || e.touches.length !== 1) return;
+    const t = e.target; if(!(t instanceof Element) || t.closest(BLOCK) || !top() || innerScrolled(t) || overlayOpen()) return;
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; pulling = 'maybe'; dist = 0;
+  }, {passive:true});
+  document.addEventListener('touchmove', e=>{
+    if(!pulling) return;
+    if(e.touches.length !== 1 || !top()){ pulling = false; hide(); return; }
+    const dy = e.touches[0].clientY - sy, dx = e.touches[0].clientX - sx;
+    if(pulling === 'maybe'){
+      if(Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)){ pulling = false; return; }   // horizontal swipe (tab navigation)
+      if(dy < -6){ pulling = false; return; }                                             // scrolling the page up
+      if(dy < 10) return;
+      pulling = true;
+    }
+    if(dy <= 0){ dist = 0; armed = false; show(0, true); return; }
+    dist = Math.min(MAX, dy*0.5); armed = dist >= 56;   // = ~112px of finger travel (damped x0.5)
+    if(e.cancelable) e.preventDefault();
+    el.classList.toggle('go', armed); show(dist, false);
+  }, {passive:false});
+  const end = ()=>{ const was = pulling === true, go = armed; pulling = false; armed = false; if(!was) return; if(go) run(); else hide(); };
+  document.addEventListener('touchend', end, {passive:true});
+  document.addEventListener('touchcancel', ()=>{ if(pulling === true) hide(); pulling = false; armed = false; }, {passive:true});
+})();
 })();
 </script>
 <script>(()=>{ const K='portfolioTracker.hdrMini', top=document.querySelector('header.top'), b=document.getElementById('hMin');
   const ap=v=>{ top.classList.toggle('mini', v); b.setAttribute('aria-expanded', String(!v)); b.setAttribute('aria-label', v?'הרחבת שורת השווי':'כיווץ שורת השווי'); };
   let v=false; try{ v=localStorage.getItem(K)==='1'; }catch(e){} ap(v);
   b.addEventListener('click', e=>{ e.stopPropagation(); v=!v; try{ localStorage.setItem(K, v?'1':'0'); }catch(_){} ap(v); });
-  top.addEventListener('click', e=>{ if(v && !e.target.closest('button')){ v=false; try{ localStorage.setItem(K,'0'); }catch(_){} ap(false); } }); })();</script>
+  top.addEventListener('click', e=>{ if(v && !e.target.closest('button')){ v=false; try{ localStorage.setItem(K,'0'); }catch(_){} ap(false); } }); })();
+</script>
 </body>
 </html>
 
