@@ -15789,12 +15789,21 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 1.24B USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. נבדק פרסום Q2; תחזית תפוקה ועלות לשנה אינה תחזית הכנסות רבעונית. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "הכנסות כוללות: 1351.212 מיליון דולר, לעומת 866.579 מיליון דולר אשתקד.\nהפסד בסיסי ומדולל למניית Class A לפי GAAP: ‏0.01 דולר, לעומת 0.04 דולר אשתקד.",
     "צפי_הכנסות": "1.24B",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-crescent-energy-company-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "-0.01",
+    "הכנסות_בפועל": "1.351212B",
+    "בסיס_בפועל_EPS": "GAAP Class A basic and diluted",
+    "בסיס_בפועל_הכנסות": "GAAP consolidated total revenues",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "השוואה_הכנסות": "כן",
+    "קישור_לדוח": "https://s21.q4cdn.com/856702509/files/content_files/Crescent-Energy-Reports-Third-Quarter-2026-Results.pdf"
   },
   {
     "חברה": "D/B/A Centerspace",
@@ -15940,14 +15949,17 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "EPS: 4.05 USD (GAAP per common share).\nרווח תפעולי non-GAAP למניה: 2.13 דולר; בנטרול פריטים מיוחדים: 1.98 דולר.",
+    "הערה": "EPS: 4.05 USD (GAAP per common share).\nרווח תפעולי non-GAAP למניה: 2.13 דולר; בנטרול פריטים מיוחדים: 1.98 דולר.\nהכנסות כוללות: 3881 מיליון דולר, לעומת 1450 מיליון דולר אשתקד.",
     "בפועל_EPS": "4.05",
     "בסיס_בפועל_EPS": "GAAP per common share",
     "מטבע_EPS": "USD",
     "השוואה_EPS": "לא",
     "הסבר_EPS": "מדד הצפי לא אומת מול מדד הרווח בפועל. אין השוואה בין GAAP לרווח תפעולי.",
-    "קישור_לדוח": "https://lasvegassun.com/news/2026/nov/02/equitable-holdings-reports-third-quarter-2026-resu/",
-    "השוואה_הכנסות": "לא"
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102363675/en/Equitable-Holdings-Reports-Third-Quarter-2026-Results",
+    "השוואה_הכנסות": "לא",
+    "הכנסות_בפועל": "3.881B",
+    "בסיס_בפועל_הכנסות": "GAAP consolidated total revenues",
+    "מטבע_הכנסות": "USD"
   },
   {
     "חברה": "Ero Copper Corp.",
