@@ -15293,7 +15293,8 @@
     "מטבע_הכנסות": "USD",
     "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
-    "קישור_לדוח": "https://www.prnewswire.com/news-releases/alamo-group-announces-financial-results-for-the-third-quarter-2026-and-strengthens-its-industrial-portfolio-302926944.html"
+    "קישור_לדוח": "https://www.prnewswire.com/news-releases/alamo-group-announces-financial-results-for-the-third-quarter-2026-and-strengthens-its-industrial-portfolio-302926944.html",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Almonty Industries Inc.",
@@ -15791,7 +15792,8 @@
     "מטבע_הכנסות": "USD",
     "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
-    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393787/0/en/california-resources-corporation-reports-third-quarter-2026-financial-and-operating-results.html"
+    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393787/0/en/california-resources-corporation-reports-third-quarter-2026-financial-and-operating-results.html",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Crawford & Company",
@@ -15911,7 +15913,8 @@
     "מטבע_EPS": "USD",
     "מטבע_הכנסות": "USD",
     "השוואה_EPS": "כן",
-    "קישור_לדוח": "https://s204.q4cdn.com/845668686/files/doc_news/CVG-Reports-Third-Quarter-2026-Results-and-Announces-CEO-Succession-Plan-2026.pdf"
+    "קישור_לדוח": "https://s204.q4cdn.com/845668686/files/doc_news/CVG-Reports-Third-Quarter-2026-Results-and-Announces-CEO-Succession-Plan-2026.pdf",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Diversified Healthcare Trust",
@@ -16271,7 +16274,8 @@
     "מטבע_הכנסות": "USD",
     "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
-    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102380224/en/Herbalife-Achieves-Third-Quarter-Net-Sales-Growth-of-6.0-Strong-Profitability-and-Robust-Operating-Cash-Flow-Fifth-Consecutive-Quarter-of-Expansion"
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102380224/en/Herbalife-Achieves-Third-Quarter-Net-Sales-Growth-of-6.0-Strong-Profitability-and-Robust-Operating-Cash-Flow-Fifth-Consecutive-Quarter-of-Expansion",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Harmonic Inc.",
@@ -16782,7 +16786,8 @@
     "מטבע_הכנסות": "USD",
     "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
-    "קישור_לדוח": "https://www.prnewswire.com/news-releases/msa-safety-announces-third-quarter-2026-results-302926898.html"
+    "קישור_לדוח": "https://www.prnewswire.com/news-releases/msa-safety-announces-third-quarter-2026-results-302926898.html",
+    "השוואה_הכנסות": "כן"
   },
   {
     "חברה": "Maison Solutions Inc.",
@@ -17176,7 +17181,17 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.13",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסות: 56.604 מיליון דולר, לעומת 66.192 מיליון דולר אשתקד.\nהפסד בסיסי ומדולל למניה לפי GAAP: ‏0.05 דולר, לעומת רווח של 0.39 דולר אשתקד.\nבסיס הצפי לא ידוע.",
+    "בפועל_EPS": "-0.05",
+    "הכנסות_בפועל": "56.604M",
+    "בסיס_בפועל_EPS": "GAAP basic and diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://pershingsquareinc.com/wp-content/uploads/2026/11/PS-Inc.-Q3-2026-Earnings-Presentation.pdf",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Pyxis Oncology, Inc.",
@@ -17674,14 +17689,14 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.26",
-    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסה כוללת: 74.135 מיליון דולר, לעומת 66.918 מיליון דולר אשתקד; עלייה שנתית של כ-11%.\nהפסד מדולל למניה לפי GAAP: 0.02 דולר.\nFFO למניה: 0.24 דולר; FFO מנורמל למניה: 0.26 דולר.",
+    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסה כוללת: 74.135 מיליון דולר, לעומת 66.918 מיליון דולר אשתקד; עלייה שנתית של כ-11%.\nהפסד מדולל למניה לפי GAAP: 0.02 דולר.\nFFO למניה: 0.24 דולר; FFO מנורמל למניה: 0.26 דולר.\nבסיס הצפי לא ידוע.",
     "בפועל_EPS": "-0.02",
     "הכנסות_בפועל": "74.135M",
     "בסיס_בפועל_EPS": "GAAP diluted",
     "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
     "מטבע_EPS": "USD",
     "מטבע_הכנסות": "USD",
-    "השוואה_EPS": "לא",
+    "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
     "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393781/0/en/umh-properties-inc-reports-results-for-the-third-quarter-ended-september-30-2026.html",
     "השוואה_הכנסות": "לא"
@@ -17774,7 +17789,7 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "הכנסות: 467.657 מיליון דולר, לעומת 453.700 מיליון דולר אשתקד.\nהפסד מדולל למניה לפי GAAP: ‏0.25 דולר, לעומת רווח של 0.06 דולר אשתקד.\nFFO למניה: 0.62 דולר, לעומת 0.58 דולר אשתקד.\nFFO מתואם למניה: 0.65 דולר, לעומת 0.57 דולר אשתקד.",
+    "הערה": "הכנסות: 467.657 מיליון דולר, לעומת 453.700 מיליון דולר אשתקד.\nהפסד מדולל למניה לפי GAAP: ‏0.25 דולר, לעומת רווח של 0.06 דולר אשתקד.\nFFO למניה: 0.62 דולר, לעומת 0.58 דולר אשתקד.\nFFO מתואם למניה: 0.65 דולר, לעומת 0.57 דולר אשתקד.\nבסיס הצפי לא ידוע.",
     "בפועל_EPS": "-0.25",
     "הכנסות_בפועל": "467.657M",
     "בסיס_בפועל_EPS": "GAAP diluted",
