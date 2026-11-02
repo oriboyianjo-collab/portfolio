@@ -17728,12 +17728,21 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.05",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 156.84M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://ir.onetetra.com/news/news-details/2026/TETRA-TECHNOLOGIES-INC--REPORTS-STRONG-SECOND-QUARTER-2026-RESULTS/default.aspx הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "רבעון שלישי שהסתיים ב-30.09.2026.\nהכנסות: 167.951 מיליון דולר, לעומת 185.657 מיליון דולר ברבעון הקודם ו-153.239 מיליון דולר אשתקד.\nEPS מדולל מתואם: ‏0.06 דולר, לעומת 0.08 דולר ברבעון הקודם ו-0.04 דולר אשתקד.\nEPS מדולל לפי GAAP: ‏0.05 דולר, לעומת 0.07 דולר ברבעון הקודם ו-0.03 דולר אשתקד.\nרווח תפעולי: 9.729 מיליון דולר, לעומת 20.130 מיליון דולר ברבעון הקודם ו-11.130 מיליון דולר אשתקד.\nבסיס הצפי לא ידוע.",
     "צפי_הכנסות": "156.84M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-tetra-technologies-inc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.06",
+    "הכנסות_בפועל": "167.951M",
+    "בסיס_בפועל_EPS": "Adjusted diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://ir.onetetra.com/news/news-details/2026/TETRA-TECHNOLOGIES-INC--REPORTS-STRONG-THIRD-QUARTER-2026-RESULTS/default.aspx"
   },
   {
     "חברה": "Travere Therapeutics, Inc.",
