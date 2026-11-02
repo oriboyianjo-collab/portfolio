@@ -15161,13 +15161,22 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nתחזית חברה להכנסות Q3 2026: 620–660M USD, לפי פרסום החברה מ-03.08.2026. הטווח נשמר ללא בחירת אמצע. החברה פרסמה 640 מיליון ±20 מיליון, וטבלת ההתאמה מפרטת 620–660 מיליון. תחזית GAAP EPS מפעילות נמשכת 2.13–2.63; תחזית non-GAAP EPS היא 2.75–3.25. שני בסיסים שונים, לא הוחלפו בצפי EPS הקיים. אין זו הכנסה בפועל. סקירת תחזיות נבדקה ב-02.11.2026; לא אותרה בבדיקה זו תחזית רבעונית מאוחרת המחליפה את הטווח.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nתחזית חברה להכנסות Q3 2026: 620–660M USD, לפי פרסום החברה מ-03.08.2026. הטווח נשמר ללא בחירת אמצע. החברה פרסמה 640 מיליון ±20 מיליון, וטבלת ההתאמה מפרטת 620–660 מיליון. תחזית GAAP EPS מפעילות נמשכת 2.13–2.63; תחזית non-GAAP EPS היא 2.75–3.25. שני בסיסים שונים, לא הוחלפו בצפי EPS הקיים. אין זו הכנסה בפועל. סקירת תחזיות נבדקה ב-02.11.2026; לא אותרה בבדיקה זו תחזית רבעונית מאוחרת המחליפה את הטווח.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAP diluted continuing EPS2.80; non-GAAP3.65. Net revenue696.4MUSD. Non-GAAPnetincome150MvsGAAPcontinuing116M.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "620–660M",
     "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.sec.gov/Archives/edgar/data/927003/000092700326000030/aeis-20260803xex99d1.htm",
     "השוואה_הכנסות": "לא",
-    "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי."
+    "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי.",
+    "בפועל_EPS": "3.65",
+    "הכנסות_בפועל": "696.4M",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted, continuing operations",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102073709/en/Advanced-Energy-Reports-Third-Quarter-2026-Results"
   },
   {
     "חברה": "Atlas Energy Solutions Inc.",
@@ -15191,7 +15200,17 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.14",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdilutedloss/shareandunit0.07;FFOandadjustedFFO0.16arenotEPS. Continuing rentalrevenue52.323MUSD. Discontinuedoperations/multifamily-sale scope must not be mixed. Comparison disabled pending original forecastmetric mapping.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
+    "בפועל_EPS": "-0.07",
+    "הכנסות_בפועל": "52.323M",
+    "בסיס_בפועל_EPS": "GAAP diluted per share and OP unit, not FFO",
+    "בסיס_בפועל_הכנסות": "GAAP consolidated total revenue, continuing rental for AHRT",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "לא",
+    "הסבר_EPS": "לא אומתה התאמת מדד הצפי ל-EPS, לא הוחלף ב-FFO/AFFO.",
+    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393729/0/en/ah-realty-trust-reports-third-quarter-2026-results.html",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Acadia Realty Trust",
@@ -15691,14 +15710,23 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "-0.45",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 110–130M USD. מקור מ-05.08.2026, נבדק ב-02.11.2026. תחזית הרבעון אינה תחזית השנה 645–675 מיליון. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 110–130M USD. מקור מ-05.08.2026, נבדק ב-02.11.2026. תחזית הרבעון אינה תחזית השנה 645–675 מיליון. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdilutedEPS-0.64; adjusted-0.36. Totalrevenue110MUSD.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "110–130M",
     "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.sec.gov/Archives/edgar/data/1367644/000136764426000080/ebs2026-06x30deckfinal.htm",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי.",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "-0.36",
+    "הכנסות_בפועל": "110M",
+    "בסיס_בפועל_EPS": "Adjusted diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102016366/en/Emergent-Biosolutions-Reports-Third-Quarter-2026-Financial-Results"
   },
   {
     "חברה": "Estee Lauder Companies, Inc. (The)",
@@ -16032,14 +16060,23 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 315–345M USD. מקור מ-03.08.2026, נבדק ב-02.11.2026. GAAP diluted EPS של 0.25–0.35 ו-non-GAAP diluted EPS של 0.40–0.50 הם בסיסים שונים; הצפי הקיים נשמר. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 315–345M USD. מקור מ-03.08.2026, נבדק ב-02.11.2026. GAAP diluted EPS של 0.25–0.35 ו-non-GAAP diluted EPS של 0.40–0.50 הם בסיסים שונים; הצפי הקיים נשמר. הטווח נשמר במלואו ללא בחירת אמצע; אין זה נתון בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdilutedEPS0.55;non-GAAP0.63. Net sales328.699MUSD vs294.8Mpreviousquarter and239.3Myearago. Netincome20.9M.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "315–345M",
     "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.sec.gov/Archives/edgar/data/1652535/000165253526000066/ex-991_26q2xearnings.htm",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי.",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.63",
+    "הכנסות_בפועל": "328.699M",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102404580/en/Ichor-Holdings-Ltd.-Announces-Third-Quarter-2026-Financial-Results"
   },
   {
     "חברה": "IDEXX Laboratories, Inc.",
@@ -16147,12 +16184,21 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 1.21B USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. תחזית החברה 4.60–4.75 מיליארד היא לשנה, לא לרבעון. רכיב IPR&D והשפעתו על EPS אינם תחזית הכנסות; צפי EPS המקורי נשמר בנפרד. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 1.21B USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. תחזית החברה 4.60–4.75 מיליארד היא לשנה, לא לרבעון. רכיב IPR&D והשפעתו על EPS אינם תחזית הכנסות; צפי EPS המקורי נשמר בנפרד. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdilutedloss/share-7.48;adjusted-3.88includesacquiredIPRD. Do not add back11.03 to invent another EPS. Revenue1,243.0MUSD.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "1.21B",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-jazz-pharmaceuticals-plc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "-3.88",
+    "הכנסות_בפועל": "1.243B",
+    "בסיס_בפועל_EPS": "Adjusted diluted, includes acquired IPRD",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.prnewswire.com/news-releases/jazz-pharmaceuticals-announces-third-quarter-2026-financial-results-302926800.html"
   },
   {
     "חברה": "Kosmos Energy Ltd.",
@@ -16262,13 +16308,22 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nתחזית חברה להכנסות Q3 2026: 245–265M USD, לפי פרסום החברה מ-04.08.2026. הטווח נשמר ללא בחירת אמצע. זהו היקף החברה כולל כשני חודשי AMI, לא תחזית FPGA בלבד 210–230 מיליון. תחזית non-GAAP EPS היא 0.54–0.58, הצפי הקיים נשמר. אין זו הכנסה בפועל. סקירת תחזיות נבדקה ב-02.11.2026; לא אותרה בבדיקה זו תחזית רבעונית מאוחרת המחליפה את הטווח.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nתחזית חברה להכנסות Q3 2026: 245–265M USD, לפי פרסום החברה מ-04.08.2026. הטווח נשמר ללא בחירת אמצע. זהו היקף החברה כולל כשני חודשי AMI, לא תחזית FPGA בלבד 210–230 מיליון. תחזית non-GAAP EPS היא 0.54–0.58, הצפי הקיים נשמר. אין זו הכנסה בפועל. סקירת תחזיות נבדקה ב-02.11.2026; לא אותרה בבדיקה זו תחזית רבעונית מאוחרת המחליפה את הטווח.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. FiscalQ3ended03.10.2026. GAAPdilutedEPS0.08;non-GAAP0.72. Revenue291.035MUSD,118%y/y. AMIincludedonlyfromJuly27acquisition,notfullquartercomparison. GAAPgrossmargin67.4%,non-GAAP70.9%;notoperatingmargin.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "245–265M",
     "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://ir.latticesemi.com/news-releases/news-release-details/lattice-semiconductor-reports-record-2q26-revenue-62-yoy/",
     "השוואה_הכנסות": "לא",
-    "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי."
+    "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול קצה כאילו היה צפי נקודתי.",
+    "בפועל_EPS": "0.72",
+    "הכנסות_בפועל": "291.035M",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102740952/en/Lattice-Semiconductor-Reports-Record-3Q26-Revenue-Up-118-YOY"
   },
   {
     "חברה": "Lightbridge Corporation",
@@ -16738,7 +16793,17 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdilutedEPS2.19;AFFO/share3.17isnotEPS. Original forecast mayFFO/AFFO and is preserved, comparison disabled pending metric mapping. Revenue713.924MUSD.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
+    "בפועל_EPS": "2.19",
+    "הכנסות_בפועל": "713.924M",
+    "בסיס_בפועל_EPS": "GAAP diluted EPS, not AFFO",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "לא",
+    "הסבר_EPS": "לא אומתה התאמת מדד הצפי ל-EPS, לא הוחלף ב-FFO/AFFO.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102239047/en/SBA-Communications-Corporation-Reports-Third-Quarter-2026-Results-Updates-Full-Year-2026-Outlook-and-Declares-Quarterly-Cash-Dividend",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Sabra Health Care REIT, Inc.",
@@ -16976,12 +17041,21 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "-0.25",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים\nAnalyst consensus להכנסות Q3 2026: 195.29M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://ir.travere.com/press-releases/news-details/2026/Travere-Therapeutics-Reports-Second-Quarter-2026-Financial-Results/default.aspx הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים\nAnalyst consensus להכנסות Q3 2026: 195.29M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://ir.travere.com/press-releases/news-details/2026/Travere-Therapeutics-Reports-Second-Quarter-2026-Financial-Results/default.aspx הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPbasicloss/share0.55;non-GAAPbasicloss0.31. Totalrevenue224.563MUSD=product220.196M+license/collab4.367M,notFILSPARI200.2M. GAAPnetloss52.3M.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "195.29M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-travere-therapeutics-inc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "-0.31",
+    "הכנסות_בפועל": "224.563M",
+    "בסיס_בפועל_EPS": "Non-GAAP basic",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102327521/en/Travere-Therapeutics-Reports-Third-Quarter-2026-Financial-Results"
   },
   {
     "חברה": "UDR, Inc.",
@@ -17135,12 +17209,21 @@
       "S&P 500",
       "Nasdaq 100"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 3.42B USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://investors.vrtx.com/news-releases/news-release-details/vertex-reports-second-quarter-2026-financial-results הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 3.42B USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://investors.vrtx.com/news-releases/news-release-details/vertex-reports-second-quarter-2026-financial-results הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdilutedEPS2.56;non-GAAP4.76. Totalrevenue3,440.8MUSD.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "3.42B",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-vertex-pharmaceuticals-incorporated-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "4.76",
+    "הכנסות_בפועל": "3.4408B",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102902999/en/Vertex-Reports-Third-Quarter-2026-Financial-Results"
   },
   {
     "חברה": "Vitesse Energy, Inc.",
@@ -17166,12 +17249,21 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 1.22B USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://investors.gov2x.com/news/news-details/2026/V2X-Reports-Second-Quarter-2026-Results/default.aspx הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 1.22B USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://investors.gov2x.com/news/news-details/2026/V2X-Reports-Second-Quarter-2026-Results/default.aspx הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. FiscalQ3ended02.10.2026,notSep30. GAAPdilutedEPS1.01;adjusted1.64. Revenue1,271.463MUSD,9%y/y;GAAPnetincome32M.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "1.22B",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-v2x-inc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "1.64",
+    "הכנסות_בפועל": "1.271463B",
+    "בסיס_בפועל_EPS": "Adjusted diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.prnewswire.com/news-releases/v2x-reports-third-quarter-2026-results-302926699.html"
   },
   {
     "חברה": "Waystar Holding Corp.",
@@ -17182,14 +17274,23 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 323.43M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. נבדק מקור Q2 של החברה; כאן צפי אנליסטים לרבעון, לא תחזית שנתית. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nמקור נוסף המאשר את הצפי המוצג: https://www.tipranks.com/news/pre-earnings/way-earnings-report-this-week-is-it-a-buy-ahead-of-earnings-pre-earnings-news. בקריאה אחרת של MarketBeat הופיע 323.42M USD. הערך הקיים נשמר עם ייחוס, ללא השוואת הפתעה עקב פער מקורות.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 323.43M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. נבדק מקור Q2 של החברה; כאן צפי אנליסטים לרבעון, לא תחזית שנתית. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nמקור נוסף המאשר את הצפי המוצג: https://www.tipranks.com/news/pre-earnings/way-earnings-report-this-week-is-it-a-buy-ahead-of-earnings-pre-earnings-news. בקריאה אחרת של MarketBeat הופיע 323.42M USD. הערך הקיים נשמר עם ייחוס, ללא השוואת הפתעה עקב פער מקורות.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. GAAPdilutedEPS0.16;non-GAAP0.44. Totalrevenue325.6MUSD. GAAPnetincome31Mvsnon-GAAP87.1M.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "323.43M",
     "בסיס_צפי_הכנסות": "Source conflict; Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tipranks.com/news/pre-earnings/way-earnings-report-this-week-is-it-a-buy-ahead-of-earnings-pre-earnings-news",
     "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
     "השוואה_הכנסות": "לא",
-    "הסבר_הכנסות": "מקורות צפי מציגים ערכים שונים; ההשוואה כבויה עד בירור."
+    "הסבר_הכנסות": "מקורות צפי מציגים ערכים שונים; ההשוואה כבויה עד בירור.",
+    "בפועל_EPS": "0.44",
+    "הכנסות_בפועל": "325.6M",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.prnewswire.com/news-releases/waystar-reports-third-quarter-2026-results-302926866.html"
   },
   {
     "חברה": "Williams Companies, Inc. (The)",
