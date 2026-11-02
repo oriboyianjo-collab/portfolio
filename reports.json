@@ -15718,7 +15718,7 @@
     "מטבע_EPS": "USD",
     "השוואה_EPS": "לא",
     "הסבר_EPS": "מדד הצפי לא אומת מול מדד הרווח בפועל. אין השוואה בין GAAP לרווח תפעולי.",
-    "קישור_לדוח": "https://lasvegassun.com/news/2026/nov/02/corebridge-financial-announces-third-quarter-2026-/",
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102973918/en/Corebridge-Financial-Announces-Third-Quarter-2026-Results",
     "השוואה_הכנסות": "לא"
   },
   {
@@ -17672,12 +17672,17 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "-0.85",
-    "הערה": "הכנסות: ~89M USD.\nעלייה שנתית בהכנסות: 124%.\nרווח גולמי: 10.2 מיליון דולר; שיעור רווח גולמי: 11.5%.",
-    "הכנסות_בפועל": "~89M",
-    "בסיס_בפועל_הכנסות": "Approximate consolidated revenue, issuer rounded",
+    "הערה": "הכנסות: 88.715 מיליון דולר, עלייה שנתית של 124%.\nהפסד מתואם למניה: 0.87 דולר.\nהפסד בסיסי ומדולל למניה לפי GAAP: 0.91 דולר.\nהפסד נקי המיוחס לחברה: 55.680 מיליון דולר.\nרווח גולמי: 10.231 מיליון דולר; שיעור רווח גולמי: 11.5%.\nהפסד תפעולי: 61.903 מיליון דולר.",
+    "הכנסות_בפועל": "88.715M",
+    "בסיס_בפועל_הכנסות": "GAAP consolidated revenue",
     "מטבע_הכנסות": "USD",
     "השוואה_הכנסות": "לא",
-    "קישור_לדוח": "https://lasvegassun.com/news/2026/nov/02/voyager-reports-record-third-quarter-2026-revenue-/"
+    "קישור_לדוח": "https://www.businesswire.com/news/home/20261102392426/en/Voyager-Reports-Record-Third-Quarter-2026-Revenue-Bookings-and-Backlog",
+    "בפועל_EPS": "-0.87",
+    "בסיס_בפועל_EPS": "Non-GAAP adjusted loss per share",
+    "מטבע_EPS": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית מול בסיס הבפועל המסומן."
   },
   {
     "חברה": "Vertex Pharmaceuticals Incorporated",
