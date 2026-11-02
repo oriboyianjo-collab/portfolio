@@ -16261,7 +16261,14 @@
       "S&P 500",
       "Nasdaq 100"
     ],
-    "הערה": "מועד הפרסום אחרי הסגירה אושר בהודעת החברה; שיחת 17:00 ניו יורק אינה שעת פרסום מדויקת. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד הפרסום אחרי הסגירה אושר בהודעת החברה; שיחת 17:00 ניו יורק אינה שעת פרסום מדויקת. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nתחזית החברה להכנסות Q3 2026 היא טווח 2.160–2.164 מיליארד USD לפי הודעת תוצאות Q2 מ-03.08.2026, בסעיף Outlook. זו תחזית חברה לרבעון המדווח, לא קונצנזוס ולא הכנסה בפועל. הטווח נשמר כטווח ללא בחירת אמצע או חישוב הפתעה מול קצה. צפי EPS המקורי 0.33 נשמר; זהו צפי אנליסטים לפי Nasdaq, בסיס הצפי לא ידוע.",
+    "צפי_הכנסות": "2.160–2.164B",
+    "בסיס_צפי_הכנסות": "Company guidance, Q3 2026 revenue range",
+    "מטבע_הכנסות": "USD",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "תחזית חברה בטווח; אין לחשב הפתעה מול הקצה התחתון כאילו היה צפי נקודתי.",
+    "מקור_צפי_הכנסות": "https://investors.palantir.com/news-details/2026/Palantir-Reports-Q2-2026-U-S--Comm-Revenue-Growth-of-149-YY-and-Revenue-Growth-of-93-YY-Raises-FY-2026-Revenue-Guidance-to-82-YY-Growth-and-U-S--Comm-Revenue-Guidance-to-134-YY-Crushing-Consensus-Expectations",
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
   },
   {
     "חברה": "People Incorporated",
