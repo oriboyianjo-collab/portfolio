@@ -28271,7 +28271,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "-0.25",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 624.77M USD, 1 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "624.77M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 1 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ACDC/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.pfholdingscorp.com/news-events/press-releases/detail/72/profrac-holding-corp-announces-third-quarter-2026-earnings",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Acorn Energy, Inc.",
@@ -28337,7 +28346,16 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 310.61M USD, 7 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "310.61M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 7 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ACMR/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.acmr.com/news-releases/news-release-details/acm-research-release-third-quarter-2026-financial-results/",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Aclaris Therapeutics, Inc.",
@@ -28351,7 +28369,16 @@
     "סימול": "ACTG",
     "תאריך": "2026-11-05",
     "מועד": "before",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 45.5M USD, 1 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "45.5M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 1 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ACTG/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.businesswire.com/news/home/20261022820755/en/Acacia-Research-to-Release-Third-Quarter-2026-Financial-Results-on-November-5-2026",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
   },
   {
     "חברה": "Ameren Corporation",
@@ -28400,7 +28427,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "0.01",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 28.23M USD, 3 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "28.23M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 3 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/AGEN/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investor.agenusbio.com/news/news-details/2026/Agenus-to-Provide-Third-Quarter-2026-Financial-Report-and-Development-Update/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Agios Pharmaceuticals, Inc.",
@@ -28427,7 +28463,16 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 1.38B USD, 3 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "1.38B",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 3 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/AGNT/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.agnt.inc/press-releases/q3-2026-results-tba",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Assured Guaranty Ltd.",
@@ -28526,7 +28571,16 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 266.33M USD, 5 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "266.33M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 5 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ALRM/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.alarm.com/news-releases/press-release-details/2026/Alarm-com-to-Announce-2026-Third-Quarter-Results-on-November-5-2026/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Altimmune, Inc.",
@@ -28605,7 +28659,16 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 120.97M USD, 9 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "120.97M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 9 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/AORT/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.nasdaq.com/press-release/artivion-announces-release-date-and-teleconference-call-details-third-quarter-2026",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Alpha and Omega Semiconductor Limited",
@@ -28687,7 +28750,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "-0.60",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 8.04M USD, 13 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "8.04M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 13 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ARCT/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.businesswire.com/news/home/20261026684656/en/Arcturus-Therapeutics-to-Report-Third-Quarter-Financial-Results-and-Provide-Corporate-Update-on-November-5-2026",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Arhaus, Inc.",
@@ -28739,7 +28811,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.08",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 323.6M USD, 20 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "323.6M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 20 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ARRY/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.arraytechinc.com/news-releases/news-release-details/array-technologies-announces-third-quarter-2026-earnings-release/",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Arrow Electronics, Inc.",
@@ -28764,7 +28845,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.08",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 91.22M USD, 2 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "91.22M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 2 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ASLE/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.aersale.com/news-releases/news-release-details/aersaler-announces-date-third-quarter-2026-earnings-release",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Aspen Aerogels, Inc.",
@@ -28817,7 +28907,16 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 83.87M USD, 5 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "83.87M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 5 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ATEN/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.a10networks.com/news-events/news/news-details/2026/A10-Networks-to-Announce-Third-Quarter-2026-Financial-Results-on-November-5-2026/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "aTyr Pharma, Inc.",
@@ -29057,7 +29156,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "-0.25",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 39.98M USD, 9 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "39.98M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 9 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/BKSY/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.blacksky.com/news-events/press-releases/news-details/2026/BlackSky-to-Host-Third-Quarter-2026-Results-Conference-Call/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "BKV Corporation",
@@ -29065,7 +29173,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "0.30",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 286.26M USD, 2 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "286.26M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 2 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/BKV/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.bkv.com/news-events/latest-news/detail/239/bkv-corporation-announces-timing-of-third-quarter-2026-earnings-release-and-conference-call-details",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "BlackLine, Inc.",
@@ -29098,7 +29215,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "-0.04",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 22.96M USD, 4 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "22.96M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 4 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/BLNK/analysis/",
+    "מקור_אימות_מועד_דוח": "https://blinkcharging.com/news/blink-charging-to-host-third-quarter-conference-call-on-thursday-november-5-2026",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Bob's Discount Furniture, Inc.",
@@ -29106,7 +29232,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "0.28",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 666.21M USD, 12 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "666.21M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 12 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/BOBS/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.mybobs.com/news-events/press-releases/detail/135/bobs-discount-furniture-announces-third-quarter-2026-conference-call-date",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "BRBI BR Partners S.A.",
@@ -29145,7 +29280,16 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 420.53M USD, 14 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "420.53M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 14 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/BSY/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.bentley.com/en/news/bentley-systems-to-announce-third-quarter-2026-results/",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Baytex Energy Corp.",
@@ -29573,7 +29717,16 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 605.26M USD, 9 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "605.26M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 9 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/CON/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.concentra.com/news-events/press-releases/detail/215/concentra-to-announce-third-quarter-2026-results-on-thursday-november-5-2026",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "ConocoPhillips",
@@ -29598,7 +29751,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "0",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 193.78M USD, 17 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "193.78M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 17 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/CORZ/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.corescientific.com/news-events/press-releases/detail/145/core-scientific-inc-schedules-third-quarter-fiscal-year-2026-earnings-release-conference-call-and-webcast",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Chesapeake Utilities Corporation",
@@ -29627,7 +29789,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "2.06",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 199.04M USD, 3 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "199.04M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 3 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/CRAI/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.crai.com/news-releases/news-release-details/charles-river-associates-cra-host-third-quarter-fiscal-2026/",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Cardiff Oncology, Inc.",
@@ -29690,7 +29861,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "-0.38",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 92.91M USD, 9 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "92.91M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 9 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/CSTL/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.castlebiosciences.com/news-events/press-releases/detail/487/castle-biosciences-to-release-third-quarter-2026-financial-results-and-host-webcast-on-thursday-nov-5-2026",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Castellum, Inc.",
@@ -29698,7 +29878,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 14.86M USD, 1 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "14.86M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 1 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/CTM/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.globenewswire.com/news-release/2026/10/28/3390727/0/en/castellum-schedules-third-quarter-2026-earnings-release-and-conference-call.html",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "CytomX Therapeutics, Inc.",
@@ -29747,7 +29936,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "-0.19",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 48.69M USD, 9 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "48.69M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 9 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/CYRX/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.cryoportinc.com/news-events/press-releases/detail/412/cryoport-to-report-third-quarter-2026-financial-results-on-november-5-2026",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Citizens & Northern Corp",
@@ -29914,7 +30112,16 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 3.42B USD, 5 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "3.42B",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 5 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/DTE/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.dteenergy.com/news/press-release-details/2026/DTE-Energy-schedules-third-quarter-2026-earnings-release-conference-call/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Drilling Tools International Corporation",
@@ -30085,7 +30292,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.34",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 42.21M USD, 3 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "42.21M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 3 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ETON/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.globenewswire.com/news-release/2026/10/29/3391071/0/en/eton-pharmaceuticals-to-report-third-quarter-2026-financial-results-on-thursday-november-5-2026.html",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Entravision Communications Corporation",
@@ -30133,7 +30349,16 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 1.91B USD, 4 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "1.91B",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 4 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/EVRG/analysis/",
+    "מקור_אימות_מועד_דוח": "https://newsroom.evergy.com/",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Edgewise Therapeutics, Inc.",
@@ -30184,7 +30409,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.07",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 182.83M USD, 7 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "182.83M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 7 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/FIGS/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.wearfigs.com/news/news-details/2026/FIGS-Announces-Date-of-Third-Quarter-2026-Earnings-Release-Conference-Call-and-Webcast/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "FTAI Infrastructure Inc.",
@@ -30254,7 +30488,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.09",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 248.94M USD, 2 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "248.94M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 2 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/FNKO/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investor.funko.com/news-and-events/press-releases/Press-Releases/2026/Funko-to-Announce-2026-Third-Quarter-Financial-Results-and-Host-Video-Webcast-on-Thursday-November-5-2026/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "EDAP TMS S.A.",
@@ -30334,7 +30577,16 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 1.17B USD, 13 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "1.17B",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 13 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/FUN/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.nasdaq.com/press-release/six-flags-announce-2026-third-quarter-results-november-5-earnings-call-starts-8-am",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "FrontView REIT, Inc.",
@@ -30391,7 +30643,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "1.13",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 389.39M USD, 3 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "389.39M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 3 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/GCT/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.globenewswire.com/news-release/2026/10/29/3391194/0/en/gigacloud-technology-inc-to-announce-third-quarter-2026-financial-results-and-host-conference-call-on-november-5-2026.html",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Genesis Energy, L.P.",
@@ -30413,7 +30674,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "0",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 261.01M USD, 19 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "261.01M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 19 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/GENI/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.geniussports.com/news/announcements/announcements-details/2026/Genius-Sports-to-Announce-Third-Quarter-2026-Results-on-November-5/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Geo Group Inc (The)",
@@ -30438,7 +30708,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "-0.68",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 350.64M USD, 22 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "350.64M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 22 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/GH/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.guardanthealth.com/press-releases/press-releases/2026/Guardant-Health-to-Report-Third-Quarter-2026-Financial-Results-on-November-5-2026/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Graham Corporation",
@@ -30503,7 +30782,16 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 792.3M USD, 15 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "792.3M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 15 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/GMED/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.globenewswire.com/news-release/2026/10/12/3379219/0/en/globus-medical-schedules-third-quarter-earnings-release-and-conference-call.html",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Genie Energy Ltd.",
@@ -30567,7 +30855,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.28",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 365.76M USD, 7 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "365.76M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 7 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/GRDN/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.guardianpharmacy.com/news/news-details/2026/Guardian-Pharmacy-Services-Inc--to-Report-Third-Quarter-2026-Financial-Results-and-Host-Conference-Call/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Grindr Inc.",
@@ -30575,7 +30872,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.16",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 136.63M USD, 3 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "136.63M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 3 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/GRND/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.grindr.com/news/news-details/2026/Grindr-Announces-Date-of-Third-Quarter-2026-Financial-Results-Earnings-Call/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Granite Ridge Resources, Inc.",
@@ -30648,7 +30954,16 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 490.85M USD, 7 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "490.85M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 7 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/HALO/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ir.halozyme.com/news/news-details/2026/Halozyme-to-Report-Third-Quarter-2026-Financial-and-Operating-Results/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "HA Sustainable Infrastructure Capital, Inc.",
@@ -30794,7 +31109,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.36",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 836.53M USD, 4 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "836.53M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 4 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/IAG/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.iamgold.com/English/investors/news-releases/news-releases-details/2026/IAMGOLD-Provides-Notice-of-Third-Quarter-2026-Results-and-Conference-Call/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "IBEX Limited",
@@ -30826,7 +31150,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "1.89",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 490.83M USD, 5 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "490.83M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 5 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ICFI/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.streetinsider.com/SEC+Filings/Form+8-K+ICF+International%2C+Inc.+For%3A+Sep+24/27102309.html",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "ICU Medical, Inc.",
@@ -30837,7 +31170,16 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 553.93M USD, 8 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "553.93M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 8 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ICUI/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.globenewswire.com/news-release/2026/10/22/3386355/0/en/icu-medical-announces-time-of-third-quarter-2026-earnings-conference-call.html",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Imax Corporation",
@@ -30887,7 +31229,16 @@
     "סימול": "INGN",
     "תאריך": "2026-11-05",
     "מועד": "after",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 92.25M USD, 2 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "92.25M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 2 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/INGN/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investor.inogen.com/news-events/press-releases/detail/268/inogen-to-report-third-quarter-2026-financial-results-on",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
   },
   {
     "חברה": "Ingredion Incorporated",
@@ -30898,7 +31249,16 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 1.8B USD, 5 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "1.8B",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 5 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/INGR/analysis/",
+    "מקור_אימות_מועד_דוח": "https://ingredion.gcs-web.com/news-releases/news-release-details/ingredion-release-2026-third-quarter-financial-results-november",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "InMed Pharmaceuticals Inc.",
@@ -30959,7 +31319,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "-0.79",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 141.2M USD, 11 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "141.2M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 11 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/IONQ/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.ionq.com/news/news-details/2026/IonQ-to-Report-Third-Quarter-2026-Financial-Results-on-November-5-2026/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Income Opportunity Realty Investors, Inc.",
@@ -30973,7 +31342,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "-0.09",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 114.98M USD, 7 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "114.98M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 7 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/IOVA/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.globenewswire.com/news-release/2026/10/27/3388814/0/en/iovance-biotherapeutics-to-report-third-quarter-2026-financial-results-and-corporate-updates-on-thursday-november-5-2026.html",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Innate Pharma S.A.",
@@ -31025,7 +31403,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.02",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 222.24M USD, 14 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "222.24M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 14 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/IRTC/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.irhythmtech.com/news/news-details/2026/iRhythm-Holdings-to-Report-Third-Quarter-2026-Financial-Results-on-November-5-2026/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Ironwood Pharmaceuticals, Inc.",
@@ -31093,7 +31480,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "-0.25",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 2.47M USD, 8 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "2.47M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 8 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/KDK/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.kodiak.ai/news-releases/news-release-details/kodiak-report-third-quarter-2026-financial-results-november-5",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Keel Infrastructure Corp.",
@@ -31101,7 +31497,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "-0.07",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 19.96M USD, 10 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "19.96M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 10 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/KEEL/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.globenewswire.com/news-release/2026/10/22/3386165/0/en/keel-infrastructure-schedules-third-quarter-2026-conference-call-on-november-5-2026.html",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Kelly Services, Inc.",
@@ -31152,7 +31557,16 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 194.74M USD, 13 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "194.74M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 13 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/KRMN/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.karman-sd.com/News--Events/press-releases/news-details/2026/Karman-Space--Defense-Schedules-Third-Quarter-Fiscal-Year-2026-Earnings-Release-Conference-Call-and-Webcast/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Kronos Worldwide Inc",
@@ -31276,7 +31690,16 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "0.20",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 173.96M USD, 2 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "173.96M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 2 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/LCUT/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.otcmarkets.com/stock/LCUT/news/Lifetime-Brands-Announces-Dates-for-Third-Quarter-2026-Financial-Results-and-Investor-Day?e=&id=3559520",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "loanDepot, Inc.",
@@ -31397,7 +31820,16 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.24",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 127.07M USD, 6 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 05.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "127.07M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 6 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/LOCO/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investor.elpolloloco.com/news-releases/news-release-details/el-pollo-loco-holdings-inc-announce-third-quarter-2026-results",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Loma Negra Compania Industrial Argentina Sociedad Anonima",
@@ -34710,7 +35142,16 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 501.53M USD, 5 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 06.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "501.53M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 5 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ATMU/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.atmus.com/news/news-details/2026/Atmus-Filtration-Technologies-to-Announce-Third-Quarter-2026-Results-on-November-6-2026/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Avalon Holdings Corporation",
@@ -34769,7 +35210,16 @@
     "תאריך": "2026-11-06",
     "מועד": "before",
     "צפי_EPS": "-0.02",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 721.73M USD, 5 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 06.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "721.73M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 5 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/BKD/analysis/",
+    "מקור_אימות_מועד_דוח": "https://brookdaleinvestors.com/news/news-details/2026/Brookdale-Announces-Third-Quarter-2026-Earnings-Release-and-Conference-Call/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Bloomin' Brands, Inc.",
@@ -34777,7 +35227,16 @@
     "תאריך": "2026-11-06",
     "מועד": "before",
     "צפי_EPS": "-0.24",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026, הסתיים ב-27.09.2026.\nצפי הכנסות אנליסטים: 925.6M USD, 10 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 06.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "925.6M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 10 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/BLMN/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.bloominbrands.com/news-releases/news-release-details/bloomin-brands-inc-host-fiscal-2026-third-quarter-earnings",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Berkshire Hathaway Inc.",
@@ -34873,7 +35332,16 @@
     "תאריך": "2026-11-06",
     "מועד": "before",
     "צפי_EPS": "0.44",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 69.6M USD, 11 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 06.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "69.6M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 11 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/DCBO/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.docebo.inc/news/news-details/2026/Docebo-to-Host-Third-Quarter-Fiscal-2026-Conference-Call/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Dauch Corporation",
@@ -34900,7 +35368,16 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 3.96B USD, 9 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 06.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "3.96B",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 9 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/DK/analysis/",
+    "מקור_אימות_מועד_דוח": "https://www.delekus.com/about-us/newsroom/news-details/2026/Delek-US-Holdings-to-Host-Third-Quarter-2026-Conference-Call-on-November-6-2026/default.aspx",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Delek Logistics Partners, L.P.",
@@ -35089,7 +35566,16 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 40.89B USD, 17 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 06.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "40.89B",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 17 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/HUM/analysis/",
+    "מקור_אימות_מועד_דוח": "https://humana.gcs-web.com/news-releases/news-release-details/humana-inc-release-third-quarter-2026-results-november-6-2026",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Impact BioMedical, Inc.",
@@ -35141,7 +35627,16 @@
     "תאריך": "2026-11-06",
     "מועד": "before",
     "צפי_EPS": "0.36",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 333.71M USD, 4 אנליסטים.\nמועד פרסום מאושר על ידי החברה: 06.11.2026.\nבסיס צפי EPS לא ידוע.",
+    "צפי_הכנסות": "333.71M",
+    "מטבע_צפי_הכנסות": "USD",
+    "בסיס_צפי_הכנסות": "Analyst consensus, September 2026 quarter, 4 analysts",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/KYIV/analysis/",
+    "מקור_אימות_מועד_דוח": "https://investors.kyivstar.ua/news-releases/news-release-details/kyivstar-release-3q26-earnings-november-6-2026-reschedules",
+    "אימות_תקופת_צפי_הכנסות": "Own full Yahoo Sep2026 USD table and issuer release date body read",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "כן",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
   },
   {
     "חברה": "Legacy Housing Corporation",
