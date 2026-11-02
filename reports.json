@@ -24265,7 +24265,13 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q1 FY2027 ended September 30 2026: 176M ±10M USD, פרסום חברה מ-12.08.2026. המקור הראשוני נקרא ונבדק ב-02.11.2026. חיפוש עדכונים מאוחרים לא ביסס שינוי מספרי, אך לא הושלמה בדיקה ממצה של כל ארכיון החברה; זהו ייחוס לתחזית המתוארכת ולא אישור שלא חל עדכון. אין בחירת אמצע ואין החלפת צפי EPS קיים. מקור: https://investor.aosmd.com/press-releases/press-release-details/2026/Alpha-and-Omega-Semiconductor-Reports-Financial-Results-for-Fiscal-Fourth-Quarter-and-Fiscal-Year-Ended-June-30-2026/default.aspx",
+    "צפי_הכנסות": "176M ±10M",
+    "בסיס_צפי_הכנסות": "Company guidance (dated), Q1 FY2027 ended September 30 2026 revenue",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://investor.aosmd.com/press-releases/press-release-details/2026/Alpha-and-Omega-Semiconductor-Reports-Financial-Results-for-Fiscal-Fourth-Quarter-and-Fiscal-Year-Ended-June-30-2026/default.aspx",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "תחזית חברה מתוארכת, בטווח או בקירוב; אין לחשב הפתעה מול קצה טווח או נתון מקורב."
   },
   {
     "חברה": "Air Products and Chemicals, Inc.",
@@ -24891,7 +24897,13 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "1.17",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 89.2M–93.2M USD, פרסום חברה מ-06.08.2026. המקור הראשוני נקרא ונבדק ב-02.11.2026. חיפוש עדכונים מאוחרים לא ביסס שינוי מספרי, אך לא הושלמה בדיקה ממצה של כל ארכיון החברה; זהו ייחוס לתחזית המתוארכת ולא אישור שלא חל עדכון. אין בחירת אמצע ואין החלפת צפי EPS קיים. מקור: https://www.investor.consensus.com/news/news-details/2026/Consensus-Cloud-Solutions-Inc--Reports-Second-Quarter-2026-Results-Reaffirms-Full-Year-2026-and-Releases-Q3-2026-Guidance-Increases-Stock-Buyback-Program-to-200-Million/default.aspx",
+    "צפי_הכנסות": "89.2M–93.2M",
+    "בסיס_צפי_הכנסות": "Company guidance (dated), Q3 2026 revenue",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.investor.consensus.com/news/news-details/2026/Consensus-Cloud-Solutions-Inc--Reports-Second-Quarter-2026-Results-Reaffirms-Full-Year-2026-and-Releases-Q3-2026-Guidance-Increases-Stock-Buyback-Program-to-200-Million/default.aspx",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "תחזית חברה מתוארכת, בטווח או בקירוב; אין לחשב הפתעה מול קצה טווח או נתון מקורב."
   },
   {
     "חברה": "Compania Cervecerias Unidas, S.A.",
@@ -24905,7 +24917,13 @@
     "סימול": "CDLX",
     "תאריך": "2026-11-05",
     "מועד": "after",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nCompany guidance להכנסות Q3 2026: 34M–39M USD, פרסום חברה מ-05.08.2026. המקור הראשוני נקרא ונבדק ב-02.11.2026. חיפוש עדכונים מאוחרים לא ביסס שינוי מספרי, אך לא הושלמה בדיקה ממצה של כל ארכיון החברה; זהו ייחוס לתחזית המתוארכת ולא אישור שלא חל עדכון. אין בחירת אמצע ואין החלפת צפי EPS קיים. מקור: https://ir.cardlytics.com/news/news-details/2026/Cardlytics-Second-Quarter-2026-Financial-Results-Driven-By-Strong-Operational-Performance/default.aspx",
+    "צפי_הכנסות": "34M–39M",
+    "בסיס_צפי_הכנסות": "Company guidance (dated), Q3 2026 revenue",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://ir.cardlytics.com/news/news-details/2026/Cardlytics-Second-Quarter-2026-Financial-Results-Driven-By-Strong-Operational-Performance/default.aspx",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "תחזית חברה מתוארכת, בטווח או בקירוב; אין לחשב הפתעה מול קצה טווח או נתון מקורב."
   },
   {
     "חברה": "Celcuity Inc.",
@@ -25387,7 +25405,13 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "-0.04",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 22M–22.9M USD, פרסום חברה מ-05.08.2026. המקור הראשוני נקרא ונבדק ב-02.11.2026. חיפוש עדכונים מאוחרים לא ביסס שינוי מספרי, אך לא הושלמה בדיקה ממצה של כל ארכיון החברה; זהו ייחוס לתחזית המתוארכת ולא אישור שלא חל עדכון. אין בחירת אמצע ואין החלפת צפי EPS קיים. מקור: https://investors.1stdibs.com/news/news-details/2026/1stDibs-Reports-Second-Quarter-2026-Financial-Results/default.aspx",
+    "צפי_הכנסות": "22M–22.9M",
+    "בסיס_צפי_הכנסות": "Company guidance (dated), Q3 2026 revenue",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://investors.1stdibs.com/news/news-details/2026/1stDibs-Reports-Second-Quarter-2026-Financial-Results/default.aspx",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "תחזית חברה מתוארכת, בטווח או בקירוב; אין לחשב הפתעה מול קצה טווח או נתון מקורב."
   },
   {
     "חברה": "Diodes Incorporated",
@@ -27445,7 +27469,13 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.35",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 244M–260M USD, פרסום חברה מ-06.08.2026. המקור הראשוני נקרא ונבדק ב-02.11.2026. חיפוש עדכונים מאוחרים לא ביסס שינוי מספרי, אך לא הושלמה בדיקה ממצה של כל ארכיון החברה; זהו ייחוס לתחזית המתוארכת ולא אישור שלא חל עדכון. אין בחירת אמצע ואין החלפת צפי EPS קיים. מקור: https://investors.nerdwallet.com/static-files/f56441ee-44cf-450b-9cab-08325729329a",
+    "צפי_הכנסות": "244M–260M",
+    "בסיס_צפי_הכנסות": "Company guidance (dated), Q3 2026 revenue",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://investors.nerdwallet.com/static-files/f56441ee-44cf-450b-9cab-08325729329a",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "תחזית חברה מתוארכת, בטווח או בקירוב; אין לחשב הפתעה מול קצה טווח או נתון מקורב."
   },
   {
     "חברה": "NexPoint Real Estate Finance, Inc.",
@@ -27534,7 +27564,13 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "2.58",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 277M–287M USD, פרסום חברה מ-06.08.2026. המקור הראשוני נקרא ונבדק ב-02.11.2026. חיפוש עדכונים מאוחרים לא ביסס שינוי מספרי, אך לא הושלמה בדיקה ממצה של כל ארכיון החברה; זהו ייחוס לתחזית המתוארכת ולא אישור שלא חל עדכון. אין בחירת אמצע ואין החלפת צפי EPS קיים. מקור: https://www.novami.com/investors/press-releases/nova-reports-record-second-quarter-2026-financial-results/",
+    "צפי_הכנסות": "277M–287M",
+    "בסיס_צפי_הכנסות": "Company guidance (dated), Q3 2026 revenue",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.novami.com/investors/press-releases/nova-reports-record-second-quarter-2026-financial-results/",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "תחזית חברה מתוארכת, בטווח או בקירוב; אין לחשב הפתעה מול קצה טווח או נתון מקורב."
   },
   {
     "חברה": "Enviri Corporation",
@@ -27754,7 +27790,13 @@
     "תאריך": "2026-11-05",
     "מועד": "after",
     "צפי_EPS": "0.06",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q3 2026: 56M–59M USD, פרסום חברה מ-06.08.2026. המקור הראשוני נקרא ונבדק ב-02.11.2026. חיפוש עדכונים מאוחרים לא ביסס שינוי מספרי, אך לא הושלמה בדיקה ממצה של כל ארכיון החברה; זהו ייחוס לתחזית המתוארכת ולא אישור שלא חל עדכון. אין בחירת אמצע ואין החלפת צפי EPS קיים. מקור: https://investor.pumabiotechnology.com/news-releases/news-release-details/puma-biotechnology-reports-second-quarter-2026-financial-results",
+    "צפי_הכנסות": "56M–59M",
+    "בסיס_צפי_הכנסות": "Company guidance (dated), Q3 2026 revenue",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://investor.pumabiotechnology.com/news-releases/news-release-details/puma-biotechnology-reports-second-quarter-2026-financial-results",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "תחזית חברה מתוארכת, בטווח או בקירוב; אין לחשב הפתעה מול קצה טווח או נתון מקורב."
   },
   {
     "חברה": "Pacira BioSciences, Inc.",
@@ -27998,7 +28040,13 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nCompany guidance להכנסות Q1 FY2027: 545M–565M USD, פרסום חברה מ-06.08.2026. המקור הראשוני נקרא ונבדק ב-02.11.2026. חיפוש עדכונים מאוחרים לא ביסס שינוי מספרי, אך לא הושלמה בדיקה ממצה של כל ארכיון החברה; זהו ייחוס לתחזית המתוארכת ולא אישור שלא חל עדכון. אין בחירת אמצע ואין החלפת צפי EPS קיים. מקור: https://investor.onepeloton.com/news-releases/news-release-details/peloton-announces-q4-fy2026-financial-results/",
+    "צפי_הכנסות": "545M–565M",
+    "בסיס_צפי_הכנסות": "Company guidance (dated), Q1 FY2027 revenue",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://investor.onepeloton.com/news-releases/news-release-details/peloton-announces-q4-fy2026-financial-results/",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "תחזית חברה מתוארכת, בטווח או בקירוב; אין לחשב הפתעה מול קצה טווח או נתון מקורב."
   },
   {
     "חברה": "Pulmatrix, Inc.",
