@@ -825,8 +825,25 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #ptr.go circle{stroke:var(--green,#34d399)}
 #ptr.spin svg{animation:ptrspin .8s linear infinite}
 @keyframes ptrspin{to{transform:rotate(360deg)}}
+
+/* ---- v166: order book card (Cboe BZX+EDGX via Cloudflare Worker) ---- */
+.ob{margin-top:12px;background:var(--bg-f8fafc);border:1px solid var(--border);border-radius:14px;padding:10px 10px 8px}
+.ob-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.ob-h b{font-size:.95rem}
+.ob-bd{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:99px;background:#d1fae5;color:#065f46;white-space:nowrap}html.dark .ob-bd{background:#064e3b;color:#6ee7b7}
+.ob-bd.off,html.dark .ob-bd.off{background:var(--border);color:var(--muted)}
+.ob-sp{display:flex;justify-content:space-between;align-items:center;font-size:.74rem;color:var(--muted);margin:0 0 6px}.ob-sp b{color:var(--text);direction:ltr;unicode-bidi:isolate}
+.ob-g{display:grid;grid-template-columns:1fr 1fr;gap:6px;direction:ltr}
+.ob-t{display:flex;justify-content:space-between;font-size:.66rem;color:var(--muted);padding:0 4px 3px}
+.ob-r{position:relative;display:flex;justify-content:space-between;font-size:.8rem;padding:3px 4px;font-variant-numeric:tabular-nums;border-radius:4px;overflow:hidden;min-height:22px}
+.ob-r i{position:absolute;top:0;bottom:0;opacity:.22;z-index:0}.ob-r span{position:relative;z-index:1}
+.ob-b .ob-r i{right:0;background:var(--green)}.ob-a .ob-r i{left:0;background:var(--red)}.ob-a .ob-r{flex-direction:row-reverse}
+.ob-b .ob-p{color:var(--green);font-weight:700}.ob-a .ob-p{color:var(--red);font-weight:700}
+.ob-im{height:6px;border-radius:99px;background:var(--red);margin:8px 0 3px;overflow:hidden;direction:ltr}.ob-im i{display:block;height:100%;background:var(--green)}
+.ob-iml{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);direction:ltr}
+.ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
+.ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=165">
+<link rel="stylesheet" href="chart-tools.css?v=166">
 
 </head>
 <body>
@@ -3512,6 +3529,44 @@ attachAutocomplete($('wlSearch'), $('wlAc'), it=>{ if(!wlSwapSettle()) return; $
   if(L.items.some(x=>x.sym===sym)){ toast('כבר ברשימה'); return; }
   L.items.push({sym, name:it.name||'', type:it.type||'stock', currency:it.currency || (isTaseSec(sym)||isTaIndex(sym) ? 'ILS' : 'USD')}); wlOpen[L.id] = true; saveWlOpen(); saveWl(); renderWatch(); toast(`${sym} נוסף ל"${L.name}"`); });
 document.addEventListener('click',e=>{const b=e.target.closest('[data-custom-chart]');if(!b)return;const sym=b.dataset.customChart,a=assetOf(sym)||{};openInstSheet(secInst({sym,type:a.type||'stock',currency:a.currency}),'1Y');$('isCustom').open=true;});
+
+// ---- v166 order book: Cboe BZX+EDGX book (5 levels, real-time) through the owner's free Cloudflare Worker (the browser cannot call Cboe: no CORS).
+// OB_URL empty = feature off (no card, no requests). US securities only; TASE / foreign listings show 'אין נתונים'. Polls every 5 s ONLY while the sheet is open,
+// the app is visible and the US is in pre / regular / after-hours; outside those it loads once. No keys, no user data is sent (symbol only).
+const OB_URL = 'https://savage-orderbook.oriboyianjo.workers.dev';
+const OB = {t:null, sym:null, seq:0, fails:0, busy:false, last:null};
+const obFmt = p=>Number(p).toLocaleString('en-US',{minimumFractionDigits:p<1?4:2, maximumFractionDigits:p<1?4:2});
+function obHtml(sym){ if(!OB_URL || !sym || isCrypto(sym)) return '';
+  const us = marketOf(sym)==='us';
+  return `<div class="ob" id="obBox" data-sym="${esc(sym)}"><div class="ob-h"><b>📖 ספר פקודות</b><span class="ob-bd off" id="obBd">${us?'טוען…':'אין נתונים'}</span></div><div id="obBody">${us?'<div class="ob-msg">טוען ספר פקודות…</div>':'<div class="ob-msg">אין נתוני ספר פקודות לנייר זה – הספר זמין למניות ותעודות סל בארה״ב בלבד.</div>'}</div></div>`; }
+function obStop(){ if(OB.t){ clearInterval(OB.t); OB.t = null; } OB.sym = null; OB.seq++; OB.busy = false; }
+const obLive = ()=>{ const s = usSession(); return s==='pre' || s==='reg' || s==='post'; };
+function obMount(sym){ obStop(); const box = document.getElementById('obBox'); if(!OB_URL || !box || !sym || marketOf(sym)!=='us') return;
+  OB.sym = sym; OB.fails = 0; OB.last = null; obTick(true); OB.t = setInterval(()=>obTick(false), 5000); }
+async function obTick(first){ const box = document.getElementById('obBox');
+  if(!box || !box.isConnected || box.dataset.sym!==OB.sym || !$('sheet').classList.contains('open')){ obStop(); return; }
+  if(document.hidden || OB.busy) return; if(!first && !obLive()) return;
+  const seq = ++OB.seq, sym = OB.sym, ctrl = new AbortController(), to = setTimeout(()=>ctrl.abort(), 6000); OB.busy = true;
+  try{ const r = await fetch(OB_URL+'/?s='+encodeURIComponent(sym), {signal:ctrl.signal, cache:'no-store'}); if(!r.ok) throw new Error('HTTP '+r.status); const j = await r.json();
+    if(seq!==OB.seq) return; OB.fails = 0; OB.last = j; obDraw(j, false); }
+  catch(e){ if(seq!==OB.seq) return; OB.fails++; if(OB.last) obDraw(OB.last, OB.fails>=3); else if(OB.fails>=2) obMsg('לא ניתן לטעון ספר פקודות כרגע.', 'שגיאה'); }
+  finally{ clearTimeout(to); if(seq===OB.seq) OB.busy = false; } }
+function obMsg(t, badge){ const b = document.getElementById('obBody'), d = document.getElementById('obBd'); if(b) b.innerHTML = `<div class="ob-msg">${esc(t)}</div>`; if(d){ d.textContent = badge; d.className = 'ob-bd off'; } }
+function obDraw(j, stale){ const body = document.getElementById('obBody'), bd = document.getElementById('obBd'); if(!body || !bd) return;
+  const bids = (j.bids||[]).slice(0,5), asks = (j.asks||[]).slice(0,5);
+  if(!j.found){ obMsg('הנייר לא נמצא בספר של Cboe.', 'אין נתונים'); return; }
+  if(!bids.length && !asks.length){ obMsg(obLive() ? 'אין פקודות פתוחות ב-Cboe כרגע.' : 'השוק סגור – אין פקודות פתוחות.', obLive() ? 'ריק' : 'סגור'); return; }
+  const live = obLive() && !stale; bd.className = 'ob-bd'+(live?'':' off'); bd.innerHTML = live ? '<bdi>Cboe</bdi> · 5 רמות · חי' : 'מידע ישן';
+  const mx = Math.max(1, ...bids.map(x=>x.q), ...asks.map(x=>x.q));
+  const row = (x, side)=>`<div class="ob-r"><i style="width:${Math.max(6, x.q/mx*100)}%"></i>${side==='b' ? `<span>${x.q.toLocaleString('en-US')}</span><span class="ob-p">${obFmt(x.p)}</span>` : `<span class="ob-p">${obFmt(x.p)}</span><span>${x.q.toLocaleString('en-US')}</span>`}</div>`;
+  const sb = bids.reduce((a,x)=>a+x.q,0), sa = asks.reduce((a,x)=>a+x.q,0), pct = sb+sa ? Math.round(sb/(sb+sa)*100) : 50;
+  const sp = bids.length && asks.length ? asks[0].p - bids[0].p : null;
+  body.innerHTML = (sp!=null ? `<div class="ob-sp"><span>פער (ספרד)</span><b>${sp.toFixed(bids[0].p<1?4:2)} · ${(sp/bids[0].p*100).toFixed(2)}%</b></div>` : '')
+    + `<div class="ob-g"><div class="ob-b"><div class="ob-t"><span>כמות</span><span>קנייה (Bid)</span></div>${bids.map(x=>row(x,'b')).join('') || '<div class="ob-msg">—</div>'}</div><div class="ob-a"><div class="ob-t"><span>מכירה (Ask)</span><span>כמות</span></div>${asks.map(x=>row(x,'a')).join('') || '<div class="ob-msg">—</div>'}</div></div>`
+    + (bids.length && asks.length ? `<div class="ob-im"><i style="width:${pct}%"></i></div><div class="ob-iml"><span>קונים ${pct}%</span><span>מוכרים ${100-pct}%</span></div>` : '')
+    + `<div class="ob-ft${stale?' warn':''}">${stale ? 'החיבור נקטע – מוצג המידע האחרון · ' : ''}נתוני <bdi>Cboe BZX+EDGX</bdi> בלבד (שתי בורסות, לא כלל השוק) · עודכן <bdi>${esc(j.ts||'')} ET</bdi> · כמויות במניות${obLive() ? '' : ' · השוק סגור'}</div>`; }
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden && OB.t) obTick(true); });
+
 // ---- instrument sheet (market card / watchlist row) ----
 let instSheet = null;
 function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p=>p.sym===it.sym);
@@ -3522,7 +3577,7 @@ function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
     <details style="margin-top:10px" id="isCustom"><summary style="cursor:pointer">טווח תאריכים לבחירה</summary><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><label style="flex:1;min-width:140px">מתאריך<input id="isFrom" type="date" max="${today()}" value="${addDays(today(),-366)}" style="width:100%"></label><label style="flex:1;min-width:140px">עד תאריך<input id="isTo" type="date" max="${today()}" value="${today()}" style="width:100%"></label><button class="btn btn-primary btn-sm" id="isApplyDates" style="width:100%;min-height:44px">הצגת הטווח</button></div><div class="note" id="isDateErr" role="status"></div></details>
     <div class="seg sm ivseg" id="isIv" aria-label="אינטרוול"></div><div class="chart" id="isChart" style="height:280px;margin-top:6px"><div class="chart-msg" id="isMsg">טוען גרף…</div></div>
-    <div id="isCoverage" class="note" hidden></div><div class="inst-stats" id="isStats"></div>
+    <div id="isCoverage" class="note" hidden></div><div class="inst-stats" id="isStats"></div>${it.sec && it.type!=='crypto' ? obHtml(it.sym) : ''}
     ${it.sec && it.type!=='crypto' ? detHtml() : ''}
     ${it.sec ? wlAddHtml(it.sym, it.n, it.type, it.cur) : it.fx ? wlAddHtml(it.sym, it.n, 'fx', '') : ''}
     ${held ? `<div class="btn-row" style="margin-top:8px"><button class="btn btn-light" id="isPos">💼 פתיחת הפוזיציה בתיק</button></div>` : ''}
@@ -3621,7 +3676,7 @@ async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S
   s.setData(data); ChartTools.tradeMarkers(s,it.sym,S.iv);ChartTools.context(el,it,S.range,S.iv,cnd?'candle':'line');ChartTools.volume(el,ChartTools.barRows(instCache[instKey(it,S.range,S.iv)]?.pts||[],'intraday',intr?off:0),'CNBC'); S.series = s; S.off = intr ? off : 0; S.lastT = data[data.length-1].time;
   const q = iq(it); if(S.range==='1D' && q && q.prev) s.createPriceLine({price:q.prev, color:'#94a3b8', lineWidth:1, lineStyle:2, axisLabelVisible:false, title:'סגירה'});
   posChart.timeScale().fitContent(); }
-function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it, range:'YTD', seq:0};
+function openInstSheet(it, range){ openSheet(instSheetHtml(it)); instSheet = {it, range:'YTD', seq:0}; if(it.sec) obMount(it.sym);
   // v84: buy / sell straight from any instrument screen (search, watchlist, market, news, reports) – pre-filled symbol, currency and live price
   $('sheetBody').querySelectorAll('[data-istx]').forEach(b=>b.onclick = ()=>{ const q = iq(it), bookingCur=isEuSec(it.sym)?'USD':it.cur, pr = q && q.price!=null ? convertCur(q.price,q.cur,bookingCur) : null, ty = b.dataset.istx, h = computeAll().positions.find(p=>p.sym===it.sym);
     openTxForm(ty, {symbol:it.sym, currency:bookingCur, assetType:it.type, date:today(), ...(ty==='sell' && h && h.qty>0 ? {qty:h.qty} : {}), ...(pr!=null ? {price: pr<10 ? Math.round(pr*10000)/10000 : Math.round(pr*100)/100} : {})}, null, null); });
@@ -3745,8 +3800,8 @@ function navSheet(name, f, keyOf){ return (...a)=>{ const was = $('sheet').class
     else if(was && prev) navPush({t:'sheet', key:prev.key, reopen:prev.open});
     else if(!was){ navPush({t:'sheetClose', srchQ:srchRet}); } }
   srchRet = null; return r; }; }
-function openSheet(html){ sheetSym = null; instSheet = null; posDet = null; if(posChart){ posChart.remove(); posChart=null; } $('sheetBody').innerHTML = html; $('sheetBg').classList.add('open'); $('sheet').classList.add('open'); $('sheet').scrollTop = 0; }
-function closeSheet(){ if(!navRestoring){ while(NAV.length && NAV[NAV.length-1].t==='sheet') NAV.pop(); navDrop('sheetClose'); } sheetOpener = null; sheetSym = null; instSheet = null; $('sheetBg').classList.remove('open'); $('sheet').classList.remove('open'); if(posChart){ posChart.remove(); posChart=null; } posLive = null; }
+function openSheet(html){ obStop(); sheetSym = null; instSheet = null; posDet = null; if(posChart){ posChart.remove(); posChart=null; } $('sheetBody').innerHTML = html; $('sheetBg').classList.add('open'); $('sheet').classList.add('open'); $('sheet').scrollTop = 0; }
+function closeSheet(){ obStop(); if(!navRestoring){ while(NAV.length && NAV[NAV.length-1].t==='sheet') NAV.pop(); navDrop('sheetClose'); } sheetOpener = null; sheetSym = null; instSheet = null; $('sheetBg').classList.remove('open'); $('sheet').classList.remove('open'); if(posChart){ posChart.remove(); posChart=null; } posLive = null; }
 $('sheetBg').onclick = closeSheet;
 $('sheetBody').addEventListener('click', e=>{ if(e.target.closest('[data-close]')) closeSheet(); });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $('sheet').classList.contains('open')) closeSheet(); });
@@ -4025,7 +4080,7 @@ function openPosition(sym){ui.posRange='YTD';
       <div class="seg sm" id="posStyle" style="flex:0 0 auto"><button data-v="line" class="${ui.posStyle==='line'?'on':''}">קו</button><button data-v="candle" class="${ui.posStyle==='candle'?'on':''}">נרות</button></div></div>
     <div class="chart" id="posChartEl" style="height:260px"><div class="chart-msg" id="posMsg">טוען גרף…</div></div>
     <div class="rchg" id="posRchg"></div>
-    <div class="note" id="posNote"></div>
+    <div class="note" id="posNote"></div>${obHtml(sym)}
     <div class="kv" style="margin-top:10px" id="posKv">${posKvHtml(p)}</div>
     <div class="note" id="posInfo">${posInfoHtml(p)}</div>
     ${assetOf(sym).type!=='crypto' && secInst({sym, type:assetOf(sym).type||'stock', currency:assetOf(sym).currency}).sec ? detHtml() : ''}
@@ -4039,7 +4094,7 @@ function openPosition(sym){ui.posRange='YTD';
     <div class="btn-row" style="margin-top:8px"><button class="btn btn-danger" data-pact="remove">🗑️ הסר לגמרי</button></div>
     <div id="posLots">${lotsHtml(sym, cur)}</div>
     <div class="sym-tx"><h4>העסקאות שלך ב-<span class="ltr">${esc(sym)}</span> <small class="muted" style="font-weight:500">(לחיצה לעריכה או מחיקה)</small></h4><div id="symTx">${symTxHtml(sym)}</div></div>`);
-  sheetSym = sym; sheetPrice = p.price;
+  sheetSym = sym; sheetPrice = p.price; obMount(sym);
   if($('isDetG')){ posDet = secInst({sym, type:assetOf(sym).type||'stock', currency:assetOf(sym).currency}); posDetAt = Date.now(); drawDet(); if(detOpen){ loadAv3m(posDet); fundLoad(); } instQuotes([posDet]).then(()=>{ if(sheetSym===sym && posDet) drawDet(); }).catch(()=>{}); }   // v161: same details grid as the instrument sheet (public per-share data only)
   const body = $('sheetBody');
   const segs = (id, key)=>body.querySelector(id).addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return; ui[key]=b.dataset.v; if(key==='posStyle') setChartStyle(b.dataset.v); body.querySelectorAll(id+' button').forEach(x=>x.classList.toggle('on',x===b)); drawPosChart(sym); });
