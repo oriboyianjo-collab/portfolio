@@ -15411,12 +15411,21 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.17",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 149.51M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. נבדק פרסום Q2; תחזית 600–610 מיליון של החברה היא לשנה ולא לרבעון. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 149.51M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. נבדק פרסום Q2; תחזית 600–610 מיליון של החברה היא לשנה ולא לרבעון. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.\nתוצאות רבעון שלישי2026 פורסמו02.11.2026,USD. FiscalQ3ended26.09.2026. GAAPdilutedClassAEPS0.08;nonGAAP0.17. Worldwidenetsales142.442MUSD,2.7%y/yreported,2.9%organic. Revenueincludesallregions,notUSonly.\nפירוט רווח תפעולי, מרווח ושינויים רבעוניים/שנתיים יושלם לאחר אימות נתונים תואמים; לא הוחלף ב-EBITDA או ברווח נקי.",
     "צפי_הכנסות": "149.51M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.investing.com/news/earnings/bioventus-set-to-report-earnings-as-strategic-review-continues-93CH-4992098",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "בפועל_EPS": "0.17",
+    "הכנסות_בפועל": "142.442M",
+    "בסיס_בפועל_EPS": "Non-GAAP diluted Class A",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenue / net sales",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "השוואה_EPS": "כן",
+    "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
+    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393722/0/en/bioventus-reports-third-quarter-financial-results.html"
   },
   {
     "חברה": "BWX Technologies, Inc.",
