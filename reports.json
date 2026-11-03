@@ -18774,13 +18774,18 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 725.87M דולר. לא תחזית החברה.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 725.87M דולר. לא תחזית החברה.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: -0.05 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
     "צפי_הכנסות": "725.87M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3'26 total revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:770db545295c1:0-ahco-q3-26-earnings-revenue-estimate-is-725-87m-usd/",
     "תאריך_מקור_צפי_הכנסות": "2026-11-03 own fetch; dated TradingView company preview",
-    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03"
+    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03",
+    "צפי_EPS": "-0.05",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
+    "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
+    "שורת_מקור_צפי_EPS": "| ![AdaptHealth Corp. stock logo](https://www.marketbeat.com/img/logos/adapthealth-corp-logo.png?s=thumb&v=20240515085317) AHCO AdaptHealth | 11/3/2026 | Morning | ($0.05) | $725.87 million | View AdaptHealth Earnings Report for 11/3/2026 |"
   },
   {
     "חברה": "Ashford Hospitality Trust Inc",
@@ -19176,13 +19181,18 @@
     "סימול": "ASC",
     "תאריך": "2026-11-03",
     "מועד": "before",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 59.58M דולר. לא תחזית החברה.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 59.58M דולר. לא תחזית החברה.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 0.49 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
     "צפי_הכנסות": "59.58M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3'26 total revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:41b7730f101c8:0-asc-q3-26-earnings-revenue-estimate-is-59-58m-usd/",
     "תאריך_מקור_צפי_הכנסות": "2026-11-03 own fetch; dated TradingView company preview",
-    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03"
+    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03",
+    "צפי_EPS": "0.49",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
+    "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
+    "שורת_מקור_צפי_EPS": "| ![Ardmore Shipping Corporation stock logo](https://www.marketbeat.com/img/logos/ardmore-shipping-co-logo.png?s=thumb&v=20240522154529) ASC Ardmore Shipping | 11/3/2026 | Morning | $0.49 | $59.58 million | View Ardmore Shipping Earnings Report for 11/3/2026 |"
   },
   {
     "חברה": "Ashland Inc.",
@@ -19388,13 +19398,18 @@
     "סימול": "BXC",
     "תאריך": "2026-11-03",
     "מועד": "after",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 814.17M דולר. לא תחזית החברה.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 814.17M דולר. לא תחזית החברה.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 0.60 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
     "צפי_הכנסות": "814.17M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3'26 total revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:62a39c6017fed:0-bxc-q3-26-earnings-revenue-estimate-is-814-17m-usd/",
     "תאריך_מקור_צפי_הכנסות": "2026-11-03 own fetch; dated TradingView company preview",
-    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03"
+    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03",
+    "צפי_EPS": "0.60",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
+    "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
+    "שורת_מקור_צפי_EPS": "| ![BlueLinx Holdings Inc. stock logo](https://www.marketbeat.com/img/logos/bluelinx-holdings-inc-logo.png?s=thumb&v=20221208150322) BXC BlueLinx | 11/3/2026 | Afternoon | $0.60 | $814.17 million | View BlueLinx Earnings Report for 11/3/2026 |"
   },
   {
     "חברה": "Avis Budget Group, Inc.",
@@ -19574,7 +19589,7 @@
     "חברה": "Cumberland Pharmaceuticals Inc.",
     "סימול": "CPIX",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-03.11.2026: 8.50M דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-03.11.2026: 8.50M דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: -0.13 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
     "צפי_הכנסות": "8.50M",
     "בסיס_צפי_הכנסות": "Analyst consensus for report scheduled 03.11.2026; fiscal quarter not stated by source",
     "מטבע_צפי_הכנסות": "USD",
@@ -19583,7 +19598,12 @@
     "אימות_צפי_הכנסות": "MarketBeat dated table re-fetched 03.11.2026; existing forecasts preserved",
     "סטטוס_בדיקת_תחזית_חברה": "bounded_check_no_guidance_found (not proof of absence)",
     "השוואה_הכנסות": "לא",
-    "הסבר_הכנסות": "צפי אנליסטים מיוחס ללוח המקור; התאמת מטבע והיקף לבפועל תיבדק עם פרסום התוצאות."
+    "הסבר_הכנסות": "צפי אנליסטים מיוחס ללוח המקור; התאמת מטבע והיקף לבפועל תיבדק עם פרסום התוצאות.",
+    "צפי_EPS": "-0.13",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
+    "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
+    "שורת_מקור_צפי_EPS": "| ![Cumberland Pharmaceuticals Inc. stock logo](https://www.marketbeat.com/img/logos/cumberland-pharmaceuticals-inc-logo.png?s=thumb&v=20261007121345) CPIX Cumberland Pharmaceuticals | 11/3/2026 | Morning | ($0.13) | $8.50 million | View Cumberland Pharmaceuticals Earnings Report for 11/3/2026 |"
   },
   {
     "חברה": "Coupang, Inc.",
@@ -20625,13 +20645,18 @@
     "סימול": "JELD",
     "תאריך": "2026-11-03",
     "מועד": "after",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 804.29M דולר. לא תחזית החברה.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 804.29M דולר. לא תחזית החברה.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 0.05 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
     "צפי_הכנסות": "804.29M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3'26 total revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:c65aa1cb9ebeb:0-jeld-q3-26-earnings-revenue-estimate-is-804-29m-usd/",
     "תאריך_מקור_צפי_הכנסות": "2026-11-03 own fetch; dated TradingView company preview",
-    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03"
+    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03",
+    "צפי_EPS": "0.05",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
+    "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
+    "שורת_מקור_צפי_EPS": "| ![JELD-WEN Holding, Inc. stock logo](https://www.marketbeat.com/img/logos/jeld-wen-holding-inc-logo.png?s=thumb&v=20221207144509) JELD JELD-WEN | 11/3/2026 | Afternoon | $0.05 | $804.29 million | View JELD-WEN Earnings Report for 11/3/2026 |"
   },
   {
     "חברה": "Jack Henry & Associates, Inc.",
@@ -20661,13 +20686,18 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 2.07B דולר. לא תחזית החברה.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 2.07B דולר. לא תחזית החברה.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 7.24 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
     "צפי_הכנסות": "2.07B",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3'26 total revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:5c9b47f3b8847:0-jxn-q3-26-earnings-revenue-estimate-is-2-07b-usd/",
     "תאריך_מקור_צפי_הכנסות": "2026-11-03 own fetch; dated TradingView company preview",
-    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03"
+    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03",
+    "צפי_EPS": "7.24",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
+    "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
+    "שורת_מקור_צפי_EPS": "| ![Jackson Financial Inc. stock logo](https://www.marketbeat.com/img/logos/jackson-financial-inc-logo.png?s=thumb&v=20210927094351) JXN Jackson Financial | 11/3/2026 | Afternoon | $7.24 | $2.07 billion | View Jackson Financial Earnings Report for 11/3/2026 |"
   },
   {
     "חברה": "Kadant Inc",
@@ -22242,7 +22272,7 @@
     "סימול": "UAN",
     "תאריך": "2026-11-03",
     "מועד": "before",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-03.11.2026: 165.40M דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-03.11.2026: 165.40M דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 1.62 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
     "צפי_הכנסות": "165.40M",
     "בסיס_צפי_הכנסות": "Analyst consensus for report scheduled 03.11.2026; fiscal quarter not stated by source",
     "מטבע_צפי_הכנסות": "USD",
@@ -22251,7 +22281,12 @@
     "אימות_צפי_הכנסות": "MarketBeat dated table re-fetched 03.11.2026; existing forecasts preserved",
     "סטטוס_בדיקת_תחזית_חברה": "bounded_check_no_guidance_found (not proof of absence)",
     "השוואה_הכנסות": "לא",
-    "הסבר_הכנסות": "צפי אנליסטים מיוחס ללוח המקור; התאמת מטבע והיקף לבפועל תיבדק עם פרסום התוצאות."
+    "הסבר_הכנסות": "צפי אנליסטים מיוחס ללוח המקור; התאמת מטבע והיקף לבפועל תיבדק עם פרסום התוצאות.",
+    "צפי_EPS": "1.62",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
+    "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
+    "שורת_מקור_צפי_EPS": "| ![CVR Partners, LP stock logo](https://www.marketbeat.com/img/logos/cvr-partners-logo.jpg?s=thumb) UAN CVR Partners | 11/3/2026 (Confirmed) | Afternoon | $1.62 | $165.40 million | View CVR Partners Earnings Report for 11/3/2026 |"
   },
   {
     "חברה": "United Fire Group, Inc",
