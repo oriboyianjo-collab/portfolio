@@ -22421,7 +22421,7 @@
     "חברה": "Standard BioTools Inc.",
     "סימול": "LAB",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח ⁦Nasdaq⁩, שנבדק ב-⁦31.10.2026⁩; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\n⁦Q3⁩ - צפי הכנסות אנליסטים, לא תחזית החברה.\nצפי ⁦MarketBeat⁩: ⁦18.80M⁩ דולר\nצפי ⁦BusinessQuant⁩: ⁦19.56M⁩\nאיסוף הצפי לא הושלם עקב הפער.\nפער הספקים לא יושב.",
+    "הערה": "תקופה: ⁦Q3 2026⁩\nצפי הכנסות לפי ⁦MarketBeat⁩ מתאריך ⁦27.10.2026⁩: ⁦18.80M USD⁩\nאומדן אנליסטים ממקור אחד; אינו תחזית הנהלה\nפער ספקים: ⁦BusinessQuant⁩ מציג ⁦19.56M⁩\n⁦Yahoo⁩ מציג ⁦18.4M USD⁩ לרבעון ספטמבר, בטבלה שעדיין מסמנת את יוני כרבעון הנוכחי\nפער הספקים לא יושב; אין קונצנזוס יחיד מאומת\nהחברה הודיעה על מכירת עסקים; התאמת היקף הפעילות לאומדן טרם אומתה\nתאריך ⁦03.11⁩ הוא מועד ספק, לא אישור חברה שנמצא בבדיקה זו\nשיחת ⁦05.11⁩ לפי ספק אינה הוכחת תאריך פרסום\nהשוואת הכנסות: כבויה",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.tradingview.com/news/tradingview:9cf43691be511:0-auph-q3-26-earnings-revenue-estimate-is-83-61m-usd/",
       "https://www.marketbeat.com/earnings/reports/2026-11-3-ternium-sa-stock/",
@@ -22432,7 +22432,15 @@
       "https://www.fxempire.it/stocks/rdnw/earnings",
       "https://businessquant.com/stocks/drk/estimates/"
     ],
-    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 18.80M דולר, BusinessQuant מציג 19.56M. הפער בין הספקים טרם יושב.\nמועד לפי לוח Nasdaq, שנבדק ב-⁦31.10.2026⁩; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\n⁦Q3⁩ - צפי הכנסות אנליסטים, לא תחזית החברה.\nצפי MarketBeat: ⁦18.80M דולר⁩\nצפי BusinessQuant: ⁦19.56M⁩\nאיסוף הצפי לא הושלם עקב הפער.\nפער הספקים לא יושב."
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 18.80M דולר, BusinessQuant מציג 19.56M. הפער בין הספקים טרם יושב.\nמועד לפי לוח Nasdaq, שנבדק ב-⁦31.10.2026⁩; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\n⁦Q3⁩ - צפי הכנסות אנליסטים, לא תחזית החברה.\nצפי MarketBeat: ⁦18.80M דולר⁩\nצפי BusinessQuant: ⁦19.56M⁩\nאיסוף הצפי לא הושלם עקב הפער.\nפער הספקים לא יושב.\nמועד לפי לוח ⁦Nasdaq⁩, שנבדק ב-⁦31.10.2026⁩; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\n⁦Q3⁩ - צפי הכנסות אנליסטים, לא תחזית החברה.\nצפי ⁦MarketBeat⁩: ⁦18.80M⁩ דולר\nצפי ⁦BusinessQuant⁩: ⁦19.56M⁩\nאיסוף הצפי לא הושלם עקב הפער.\nפער הספקים לא יושב.",
+    "צפי_הכנסות": "18.80M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-standard-biotools-lab-projected-to-release-earnings-on-tuesday-2026-10-27/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Single-source attributed estimate, not unified consensus; reporting scope and provider conflict unresolved",
+    "בסיס_צפי_הכנסות": "Analyst revenue estimate attributed to named secondary source; not company guidance",
+    "השוואה_הכנסות": "לא",
+    "מקור_פער_צפי_הכנסות": "https://businessquant.com/stocks/lab/estimates/"
   },
   {
     "חברה": "Liberty Global Ltd.",
@@ -24095,7 +24103,7 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "0.05",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nנמצא ב-MarketBeat צפי הכנסות 366.41M דולר ל-Q3. התאמת מטבע האומדן לדיווח החברה ב-CAD טרם אומתה; אין המרת מטבע משוערת.",
+    "הערה": "מועד פרסום לפי הודעת החברה: ⁦03.11.2026⁩ לפני הפתיחה\nתקופה: ⁦Q3 2026⁩\nצפי הכנסות לפי סקירת ⁦Investing.com⁩ מתאריך ⁦02.11.2026⁩: ⁦521.7M CAD⁩\nצפי אנליסטים המיוחס לסקירה אחת; אינו תחזית החברה\nהסקירה נוצרה בסיוע ⁦AI⁩ ונבדקה בידי עורך, לפי הצהרת האתר\nמקור אחר, ⁦MarketBeat⁩: ⁦366.41M⁩ דולר; מטבע האומדן לא הובהר\nלא בוצעה המרת מטבע ולא אומת קונצנזוס יחיד\nהתאמת היקף הדיווח להשוואה: טרם אומתה\nהשוואת הכנסות: כבויה\nצפי ⁦EPS⁩ המקורי נשמר; בסיס הצפי לא ידוע",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-3-suncor-energy-inc-stock/",
       "https://www.marketbeat.com/earnings/reports/2026-11-3-transalta-co-stock/",
@@ -24106,7 +24114,16 @@
       "https://www.marketbeat.com/earnings/reports/2026-11-16-sonoma-pharmaceuticals-inc-stock/",
       "https://www.chartmill.com/stock/quote/LND/earnings",
       "https://www.tradingview.com/symbols/TSX-TA/financials-earnings/"
-    ]
+    ],
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nנמצא ב-MarketBeat צפי הכנסות 366.41M דולר ל-Q3. התאמת מטבע האומדן לדיווח החברה ב-CAD טרם אומתה; אין המרת מטבע משוערת.",
+    "צפי_הכנסות": "521.7M",
+    "מטבע_צפי_הכנסות": "CAD",
+    "מקור_צפי_הכנסות": "https://www.investing.com/news/earnings/transalta-earnings-under-pressure-as-portfolio-shift-unfolds-93CH-4992181",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Single-source attributed estimate, not unified consensus; reporting scope and provider conflict unresolved",
+    "בסיס_צפי_הכנסות": "Analyst revenue estimate attributed to named secondary source; not company guidance",
+    "השוואה_הכנסות": "לא",
+    "מקור_פער_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-3-transalta-co-stock/"
   },
   {
     "חברה": "Talos Energy, Inc.",
