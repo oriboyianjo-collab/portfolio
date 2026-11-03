@@ -16107,7 +16107,7 @@
     "סימול": "BRCC",
     "תאריך": "2026-11-02",
     "מועד": "after",
-    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסות: 108.038 מיליון דולר.\nהפסד למניית Class A לפי GAAP: 0.28 דולר.\nהנתונים לאחר איחוד מניות 1 ל-10 ב-21.08.2026.",
+    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסות: 108.038 מיליון דולר.\nהפסד למניית Class A לפי GAAP: 0.28 דולר.\nהנתונים לאחר איחוד מניות 1 ל-10 ב-21.08.2026.\nצפי הכנסות אנליסטים Q3 2026: 105.89M USD; אינו תחזית הנהלה. MarketBeat פרסם ב-26.10 צפי 105.89M דולר ל-Q3, לפני התוצאות. השוואה כבויה. צפי EPS הקיים נשמר.",
     "בפועל_EPS": "-0.28",
     "הכנסות_בפועל": "108.038M",
     "בסיס_בפועל_EPS": "GAAP Class A, reverse-split adjusted",
@@ -16117,7 +16117,13 @@
     "השוואה_EPS": "לא",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
     "קישור_לדוח": "https://www.businesswire.com/news/home/20261102471654/en/BRC-Inc.-Reports-Third-Quarter-2026-Financial-Results",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "לא",
+    "צפי_הכנסות": "105.89M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-brc-brcc-set-to-announce-quarterly-earnings-on-monday-2026-10-26/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result Q3 analyst forecast; USD; comparison compatibility not yet verified"
   },
   {
     "חברה": "Bogota Financial Corp.",
@@ -16570,7 +16576,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "הכנסות: ~59.5M USD.\nEPS: 7.28 USD (GAAP diluted).\nירידה שנתית בהכנסות: 16.6%.\nרווח ממכירת נכסים והשקעות: 150.3 מיליון דולר.\nCore FFO למניה: 1.11 דולר.",
+    "הערה": "הכנסות: ~59.5M USD.\nEPS: 7.28 USD (GAAP diluted).\nירידה שנתית בהכנסות: 16.6%.\nרווח ממכירת נכסים והשקעות: 150.3 מיליון דולר.\nCore FFO למניה: 1.11 דולר.\nצפי הכנסות אנליסטים Q3 2026: 62.74M USD; אינו תחזית הנהלה. MarketBeat פרסם ב-26.10 צפי 62.74M דולר ל-Q3, לפני התוצאות. השוואה כבויה. צפי EPS הקיים נשמר.",
     "בפועל_EPS": "7.28",
     "הכנסות_בפועל": "~59.5M",
     "בסיס_בפועל_EPS": "GAAP diluted",
@@ -16580,7 +16586,13 @@
     "השוואה_EPS": "לא",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
     "קישור_לדוח": "https://www.prnewswire.com/news-releases/centerspace-reports-third-quarter-2026-financial--operating-results-302926810.html",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "לא",
+    "צפי_הכנסות": "62.74M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-centerspace-csr-projected-to-release-quarterly-earnings-on-monday-2026-10-26/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result Q3 analyst forecast; USD; comparison compatibility not yet verified"
   },
   {
     "חברה": "Capital Southwest Corporation",
@@ -16661,7 +16673,7 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "הכנסות: 820.892 מיליון דולר.\nEPS מדולל לפי GAAP: 0.02 דולר.\nFFO מתואם למניה: 0.44 דולר.",
+    "הערה": "הכנסות: 820.892 מיליון דולר.\nEPS מדולל לפי GAAP: 0.02 דולר.\nFFO מתואם למניה: 0.44 דולר.\nצפי הכנסות אנליסטים Q3 2026: 748.41M USD; אינו תחזית הנהלה. MarketBeat פרסם ב-26.10 צפי 748.41M דולר ל-Q3, לפני התוצאות. השוואה כבויה. צפי EPS הקיים נשמר.",
     "בפועל_EPS": "0.02",
     "בסיס_בפועל_EPS": "GAAP diluted, not FFO",
     "מטבע_EPS": "USD",
@@ -16670,7 +16682,14 @@
     "קישור_לדוח": "https://www.businesswire.com/news/home/20261102951319/en/Healthpeak-Properties-Reports-Third-Quarter-2026-Results-and-Increases-Full-Year-2026-Earnings-Guidance",
     "הכנסות_בפועל": "820.892M",
     "מטבע_הכנסות": "USD",
-    "בסיס_בפועל_הכנסות": "GAAP consolidated total revenues"
+    "בסיס_בפועל_הכנסות": "GAAP consolidated total revenues",
+    "צפי_הכנסות": "748.41M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-healthpeak-properties-doc-projected-to-announce-earnings-on-monday-2026-10-26/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result Q3 analyst forecast; USD; comparison compatibility not yet verified",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Emergent BioSolutions Inc.",
@@ -18740,7 +18759,7 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסות תפעוליות כוללות: 593.6 מיליון דולר.\nהכנסות ללא החזרים: 555.6 מיליון דולר.\nEPS מדולל לפי GAAP: 0.66 דולר.",
+    "הערה": "רבעון שלישי 2026, שהסתיים ב-30.09.2026\nהכנסות תפעוליות כוללות: 593.6 מיליון דולר.\nהכנסות ללא החזרים: 555.6 מיליון דולר.\nEPS מדולל לפי GAAP: 0.66 דולר.\nצפי הכנסות אנליסטים Q3 2026: 562.70M USD; אינו תחזית הנהלה. MarketBeat פרסם ב-26.10 צפי 562.70M דולר ל-Q3, לפני התוצאות; Finviz הציג כ-573M. פער ספקים לא יושב. השוואה כבויה. צפי EPS הקיים נשמר.",
     "בפועל_EPS": "0.66",
     "הכנסות_בפועל": "593.6M",
     "בסיס_בפועל_EPS": "GAAP diluted",
@@ -18750,7 +18769,13 @@
     "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
     "קישור_לדוח": "https://www.businesswire.com/news/home/20261030461468/en/Valaris-Reports-Third-Quarter-2026-Results",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "לא",
+    "צפי_הכנסות": "562.70M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-valaris-val-set-to-post-quarterly-earnings-on-monday-2026-10-26/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result Q3 analyst forecast; USD; comparison compatibility not yet verified"
   },
   {
     "חברה": "Vornado Realty Trust",
