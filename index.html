@@ -857,7 +857,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=183">
+<link rel="stylesheet" href="chart-tools.css?v=184">
 
 </head>
 <body>
@@ -5654,39 +5654,55 @@ function yPatchWatch(Q){
     const x = wlCur().items.find(m=>m.sym === sym); if(!x) return; const t = document.createElement('div'); t.innerHTML = wlRowHtml(secInst(x), 0, 2); const r = t.firstElementChild; if(!r) return;
     ['.pc-s', '.pc-m', '.pc-p', '.pc-d'].forEach(sel=>{ const a = el.querySelector(sel), b = r.querySelector(sel); if(a && b) morphKids(a, b); }); });
 }
-// ---- v176: overnight supplement. Yahoo's overnight ticks are thin, so while the US is in the night session (20:00–04:00 ET) the app also asks the owner's Worker
-// route /night?s=A,B,… (Robinhood 24-hour quotes: Blue Ocean / Bruce ATS, bid + ask, sub-second timestamps) every ~4 s. FEATURE-DETECTED: an older Worker answers 400
-// (or nothing) → the app silently keeps using the Yahoo stream alone and re-checks every 10 min. A /night quote is applied only if it is newer than the newest
-// tick for that symbol (same yApply path as a stream tick, mh 4).
-const NIGHT = {ok:null, fails:0, next:0, busy:false, polls:0, applied:0, lastAt:0, last:null};
+// ---- v176/v184: overnight supplement. Yahoo sends NO snapshot at night and only a sampled tick per trade, so a quiet stock (META, BAC, F…) could show nothing for minutes.
+// While the US is in the night session (20:00–04:00 ET) the app therefore also polls the LAST overnight trade (Robinhood 24-hour quotes: Blue Ocean / Bruce ATS), newest-wins against
+// the stream: (1) the owner's Worker route /night?s=A,B,… (fast, ~3 s, only if deployed – feature-detected), else (2) a browser-direct CORS relay of the same public Robinhood
+// URL (r.jina.ai, no key, ~5 s, 20 req/min limit per IP). Both fail silently (retry later); the stream keeps working alone. A quote is applied only if newer than the newest tick.
+// Kill switches: localStorage portfolioTracker.yws='0' (everything) / portfolioTracker.nightrelay='0' (third-party relay only).
+const NW = {ok:null, fails:0, next:0, at:0, polls:0, applied:0, lastAt:0}, NR = {ok:null, fails:0, next:0, at:0, polls:0, applied:0, lastAt:0}, NIGHT = {busy:false, src:''};
+const nrOff = ()=>{ try{ return localStorage.getItem('portfolioTracker.nightrelay') === '0'; }catch(e){ return false; } };
+const RH_Q = 'https://api.robinhood.com/marketdata/quotes/?bounds=24_5&symbols=';
+function nightRh(j){ const out = {}; ((j && j.results) || []).forEach(q=>{ if(!q || !q.symbol) return; const t = Date.parse(q.venue_last_non_reg_trade_time), p = Number(q.last_non_reg_trade_price) || Number(q.last_extended_hours_trade_price);
+  if(p > 0 && t > 0) out[String(q.symbol).toUpperCase()] = {price:p, ts:t}; }); return out; }
+async function nightFetch(url, ctrl, relay){
+  const r = await fetch(url, {signal:ctrl.signal, cache:'no-store', headers: relay ? {'Accept':'application/json'} : undefined}); if(!r.ok) throw new Error('HTTP ' + r.status);
+  const j = await r.json();
+  if(relay){ let c = j && j.data && j.data.content; if(typeof c !== 'string') throw new Error('shape'); let k; try{ k = JSON.parse(c); }catch(e){ const a = c.indexOf('{'), z = c.lastIndexOf('}'); k = JSON.parse(c.slice(a, z + 1)); } return nightRh(k); }
+  if(!j || typeof j.quotes !== 'object' || !j.quotes) throw new Error('shape');   // an old Worker answers a book / error object here
+  const o = {}; for(const k in j.quotes){ const x = j.quotes[k]; if(x && x.price > 0 && x.ts > 0) o[String(k).toUpperCase()] = {price:x.price, ts:x.ts}; } return o; }
+function nightApply(q, S){
+  if(usSession() !== 'night') return;
+  for(const k in q){ const x = q[k], id = k.replace('.', '-'), tg = YWS.subs.get(id); if(!tg) continue;
+    const have = Math.max(0, ...[...tg].map(m=>{ const l = yLast[String(m).toUpperCase()]; return l ? l.ts : 0; }));
+    if(x.ts <= have) continue;                                 // the stream (or an earlier poll) already has this or something newer
+    const n0 = YWS.applied; yApply({id, p:x.price, t:x.ts, mh:4, src:'night'}); if(YWS.applied > n0) S.applied++; } }
 async function nightPoll(){
-  if(NIGHT.busy || document.hidden || navigator.onLine === false || !OB_URL || yOff() || usSession() !== 'night' || Date.now() < NIGHT.next) return;
+  if(NIGHT.busy || document.hidden || navigator.onLine === false || !OB_URL || yOff() || usSession() !== 'night') return;
+  const now = Date.now(), useW = NW.ok !== false || now >= NW.next, useR = !nrOff() && (NR.ok !== false || now >= NR.next);
+  const wOk = useW && now >= NW.next && now - NW.at >= 3000, rOk = useR && now >= NR.next && now - NR.at >= 5000 && !(NW.ok === true && now - NW.lastAt < 15000);   // the relay rests while the Worker answers
+  if(!wOk && !rOk) return;
   const w = yWanted(); if(!w.size) return; YWS.subs = w;
   const list = [...w.keys()].filter(y=>y[0] !== '^').slice(0, 40).map(y=>y.replace('-', '.')); if(!list.length) return;
-  NIGHT.busy = true; const ctrl = new AbortController(), to = setTimeout(()=>ctrl.abort(), 5000); NIGHT.polls++;
+  NIGHT.busy = true;
   try{
-    const r = await fetch(OB_URL + '/night?s=' + encodeURIComponent(list.join(',')), {signal:ctrl.signal, cache:'no-store'});
-    if(!r.ok) throw new Error('HTTP ' + r.status);
-    const j = await r.json(); if(!j || typeof j.quotes !== 'object' || !j.quotes) throw new Error('shape');   // an old Worker answers a book / error object here
-    NIGHT.ok = true; NIGHT.fails = 0; NIGHT.next = 0; NIGHT.lastAt = Date.now(); NIGHT.last = j;
-    if(usSession() !== 'night') return;
-    for(const k in j.quotes){ const x = j.quotes[k]; if(!x || !(x.price > 0) || !(x.ts > 0)) continue;
-      const id = String(k).toUpperCase().replace('.', '-'), tg = YWS.subs.get(id); if(!tg) continue;
-      const have = Math.max(0, ...[...tg].map(m=>{ const l = yLast[String(m).toUpperCase()]; return l ? l.ts : 0; }));
-      if(x.ts <= have) continue;                                 // the stream already has something newer or equal
-      const n0 = YWS.applied; yApply({id, p:x.price, t:x.ts, mh:4, src:'night'}); if(YWS.applied > n0) NIGHT.applied++; }
-  }catch(e){
-    NIGHT.fails++; if(NIGHT.fails >= 3){ NIGHT.ok = false; NIGHT.fails = 0; NIGHT.next = Date.now() + 10*60e3; } }   // not deployed / blocked: stay quiet, retry in 10 min
-  finally{ clearTimeout(to); NIGHT.busy = false; }
+    if(wOk){ NW.at = Date.now(); NW.polls++; const ctrl = new AbortController(), to = setTimeout(()=>ctrl.abort(), 5000);
+      try{ const q = await nightFetch(OB_URL + '/night?s=' + encodeURIComponent(list.join(',')), ctrl, false); NW.ok = true; NW.fails = 0; NW.lastAt = Date.now(); NIGHT.src = 'worker'; nightApply(q, NW); return; }
+      catch(e){ NW.fails++; if(NW.fails >= 3){ NW.ok = false; NW.fails = 0; NW.next = Date.now() + 10*60e3; } }   // not deployed / blocked: stay quiet, retry in 10 min
+      finally{ clearTimeout(to); } }
+    if(rOk || (!nrOff() && now - NR.at >= 5000 && now >= NR.next)){ NR.at = Date.now(); NR.polls++; const ctrl = new AbortController(), to = setTimeout(()=>ctrl.abort(), 8000);
+      try{ const q = await nightFetch('https://r.jina.ai/' + RH_Q + encodeURIComponent(list.join(',')), ctrl, true); NR.ok = true; NR.fails = 0; NR.lastAt = Date.now(); NIGHT.src = 'relay'; nightApply(q, NR); }
+      catch(e){ NR.fails++; if(NR.fails >= 3){ NR.ok = false; NR.fails = 0; NR.next = Date.now() + (/429/.test(String(e && e.message)) ? 2 : 5)*60e3; } }
+      finally{ clearTimeout(to); } }
+  }finally{ NIGHT.busy = false; }
 }
-setInterval(nightPoll, 4000);
+setInterval(nightPoll, 1000);
 // ====================== init ======================
 renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
 refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          // always fetch fresh quotes on open, then start the live loop
 setInterval(ySync, 1500); ySync();                                                 // v174: live US ticks over WebSocket (CNBC polling keeps running underneath)
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
-window.__portfolio = {get night(){ return {ok:NIGHT.ok, polls:NIGHT.polls, applied:NIGHT.applied, fails:NIGHT.fails, lastAt:NIGHT.lastAt}; }, get yws(){ return {state:YWS.ws ? YWS.ws.readyState : -1, msgs:YWS.msgs, ticks:YWS.ticks, applied:YWS.applied, flushes:YWS.flushes, flushMs:YWS.flushMs, flushMax:YWS.flushMax, opens:YWS.opens, closes:YWS.closes, fails:YWS.fails, lastMsg:YWS.lastMsg, lastTick:YWS.lastTick, subs:[...YWS.subs.keys()], gap:yGap, err:YWS.lastErr}; }, yDecode, yApply, yLast, refresh:(...a)=>refreshPrices(...a), get state(){ return state; }, openPosition:(...a)=>openPosition(...a), openTxForm:(...a)=>openTxForm(...a), lotsTM:(tx)=>taxModel(tx||state.txs), commission:(...a)=>commission(...a), inferFees:(...a)=>inferFees(...a), get mkt(){ return {cfg:mktCfg, q:mq, bars:instCache}; }, get wl(){ return wlData; }, mktTick, squarify, heatColor, spark(){ return spk; }, spkRun, setTheme, idx(){ return idxData; }, idxApply, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+window.__portfolio = {get night(){ return {src:NIGHT.src, worker:{ok:NW.ok, polls:NW.polls, applied:NW.applied, fails:NW.fails}, relay:{ok:NR.ok, polls:NR.polls, applied:NR.applied, fails:NR.fails, lastAt:NR.lastAt}}; }, get yws(){ return {state:YWS.ws ? YWS.ws.readyState : -1, msgs:YWS.msgs, ticks:YWS.ticks, applied:YWS.applied, flushes:YWS.flushes, flushMs:YWS.flushMs, flushMax:YWS.flushMax, opens:YWS.opens, closes:YWS.closes, fails:YWS.fails, lastMsg:YWS.lastMsg, lastTick:YWS.lastTick, subs:[...YWS.subs.keys()], gap:yGap, err:YWS.lastErr}; }, yDecode, yApply, yLast, refresh:(...a)=>refreshPrices(...a), get state(){ return state; }, openPosition:(...a)=>openPosition(...a), openTxForm:(...a)=>openTxForm(...a), lotsTM:(tx)=>taxModel(tx||state.txs), commission:(...a)=>commission(...a), inferFees:(...a)=>inferFees(...a), get mkt(){ return {cfg:mktCfg, q:mq, bars:instCache}; }, get wl(){ return wlData; }, mktTick, squarify, heatColor, spark(){ return spk; }, spkRun, setTheme, idx(){ return idxData; }, idxApply, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
 // v77: Android back button – never leave the app on one press. History: [base, top(+ overlay entries)]. Popping back to 'base' =
 // v87: the back button retraces the user's own steps. NAV is the app's screen stack (tab switches, the search, each sheet level, the image
 // viewer); the browser history only keeps 'base' + 'top' so a back press can be caught: each press undoes the latest step, and with nothing
