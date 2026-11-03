@@ -15542,9 +15542,16 @@
     "חברה": "Option Care Health, Inc.",
     "תאריך": "2026-11-04",
     "מועד": "",
-    "הערה": "תוצאות Q3 2026 צפויות בתאריך זה לפי הודעת החברה; שעת הפרסום לא נמסרה. לא תתקיים שיחת תוצאות בעקבות הודעת הרכישה. טרם פורסמו תוצאות.; צפי EPS לפי Nasdaq, 31.10; בסיס הצפי לא ידוע",
+    "הערה": "תוצאות Q3 2026 צפויות בתאריך זה לפי הודעת החברה; שעת הפרסום לא נמסרה. לא תתקיים שיחת תוצאות בעקבות הודעת הרכישה. טרם פורסמו תוצאות.; צפי EPS לפי Nasdaq, 31.10; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 1.48B USD; אינו תחזית הנהלה. TradingView ו-MarketBeat מציגים 1.48B USD; Yahoo מציג 1.47B ו-BusinessQuant 1.54B. מועד הודעת החברה הקיים נשמר; נתוני ספקים אינם משנים אותו. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "קישור": "",
-    "צפי_EPS": "0.44"
+    "צפי_EPS": "0.44",
+    "צפי_הכנסות": "1.48B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:7a782ccfe7da1:0-opch-q3-26-earnings-revenue-estimate-is-1-48b-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "לא"
   },
   {
     "סימול": "DASH",
@@ -22943,7 +22950,7 @@
     "מדד": [
       "Nasdaq 100"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: Zacks מ-29.10 מציג 1.91B דולר, MarketBeat מ-27.10 מציג 1.85B. הפער בין הספקים טרם יושב.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: Zacks מ-29.10 מציג 1.91B דולר, MarketBeat מ-27.10 מציג 1.85B. הפער בין הספקים טרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 1.91B USD; אינו תחזית הנהלה. Zacks ו-EarningsWhispers מציגים 1.91B USD; Yahoo מציג 1.80B ל-Q3, ו-1.85B הופיע במקור MarketBeat קודם. הפער לא יושב. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://finance.yahoo.com/markets/stocks/articles/shopify-stock-portfolio-pre-q3-162400242.html",
       "https://finance.yahoo.com/quote/ET/analysis/",
@@ -22951,7 +22958,14 @@
       "https://www.marketbeat.com/earnings/reports/2026-11-3-teva-pharmaceutical-industries-limited-stock/",
       "https://www.newsquawk.com/headlines/newsquawk-daily-us-earnings-estimates---3rd-november-2026-etn-mpc-pfe-amgn-bkng-anet-amd-shop",
       "https://www.marketbeat.com/instant-alerts/upcoming-thomson-reuters-tri-set-to-post-quarterly-earnings-on-tuesday-2026-10-27/"
-    ]
+    ],
+    "צפי_הכנסות": "1.91B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/markets/stocks/articles/gear-thomson-reuters-tri-q3-121504948.html",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Transcat, Inc.",
@@ -24262,7 +24276,14 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 1.39B USD; אינו תחזית הנהלה. TradingView ו-MarketBeat מציגים 1.39B USD; Yahoo מציג 1.43B ל-Q3. מועד הלוח המקורי נשמר ללא אישור מחדש. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
+    "צפי_הכנסות": "1.39B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:364670b9972fd:0-bco-q3-26-earnings-revenue-estimate-is-1-39b-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "BioCryst Pharmaceuticals, Inc.",
