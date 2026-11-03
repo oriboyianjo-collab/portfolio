@@ -19973,7 +19973,7 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "0.06",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מ-27.10 מציג 62.64M דולר, TipRanks מ-01.11 מציג 86.18M דולר. הפער מהותי וטרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 87.04M USD; אינו תחזית הנהלה. FXEmpire מציג 87.04M USD ל-Q3 לפי 2 אנליסטים; MarketBeat מציג 62.64M. זהו צפי ספק מסוים, לא קונצנזוס אחיד מאומת. פער ספקים או היקף דיווח לא יושב. השוואה כבויה. צפי EPS הקיים נשמר.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nפער מקורות בצפי הכנסות Q3: MarketBeat מ-27.10 מציג 62.64M דולר, TipRanks מ-01.11 מציג 86.18M דולר. הפער מהותי וטרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 87.04M USD; אינו תחזית הנהלה. FXEmpire מציג 87.04M USD ל-Q3 לפי 2 אנליסטים; MarketBeat מציג 62.64M. זהו צפי ספק מסוים, לא קונצנזוס אחיד מאומת. פער ספקים או היקף דיווח לא יושב. השוואה כבויה. צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-10-aviat-networks-inc-stock/",
       "https://www.fxempire.com/stocks/avnw/earnings",
@@ -22963,7 +22963,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: סקירת MarketBeat מציגה 269.74M דולר, הודעת הספק מ-27.10 מציגה 273.21M. הפער טרם יושב.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: סקירת MarketBeat מציגה 269.74M דולר, הודעת הספק מ-27.10 מציגה 273.21M. הפער טרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 276.01M USD; אינו תחזית הנהלה. FXEmpire מציג 276.01M USD ל-Q3 לפי 8 אנליסטים; MarketBeat בסקירת 27.10 מציג 273.21M ובדף הנוכחי 269.74M. זהו צפי ספק מסוים, לא קונצנזוס אחיד מאומת; היקף הדיווח להשוואה טרם אומת. השוואה כבויה. צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-3-sphere-entertainment-co-stock/",
       "https://www.marketbeat.com/instant-alerts/upcoming-summit-hotel-properties-inn-projected-to-release-quarterly-earnings-on-tuesday-2026-10-27/",
@@ -22975,7 +22975,14 @@
       "https://www.tipranks.com/news/pre-earnings/is-tars-a-buy-before-earnings-pre-earnings-news",
       "https://www.marketbeat.com/instant-alerts/upcoming-silicon-laboratories-slab-expected-to-post-earnings-on-tuesday-2026-10-27/",
       "https://www.marketbeat.com/instant-alerts/upcoming-sphere-entertainment-sphr-set-to-announce-earnings-on-tuesday-2026-10-27/"
-    ]
+    ],
+    "צפי_הכנסות": "276.01M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.fxempire.com/stocks/sphr/earnings",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific Q3 USD analyst forecast; provider conflicts explicitly retained",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Sprout Social, Inc",
@@ -23421,7 +23428,7 @@
     "סימול": "TXO",
     "תאריך": "2026-11-03",
     "צפי_EPS": "0.22",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 103.72M דולר, Stocktaper מציג 102.05M. הפער בין הספקים טרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 98.05M USD; אינו תחזית הנהלה. FXEmpire מציג 98.05M USD ל-Q3 לפי 3 אנליסטים; MarketBeat מציג 103.72M; פער ספקים או היקף דיווח לא יושב. זהו צפי ספק מסוים, לא קונצנזוס אחיד מאומת. השוואה כבויה. צפי EPS הקיים נשמר.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nפער מקורות בצפי הכנסות Q3: MarketBeat מציג 103.72M דולר, Stocktaper מציג 102.05M. הפער בין הספקים טרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 98.05M USD; אינו תחזית הנהלה. FXEmpire מציג 98.05M USD ל-Q3 לפי 3 אנליסטים; MarketBeat מציג 103.72M; פער ספקים או היקף דיווח לא יושב. זהו צפי ספק מסוים, לא קונצנזוס אחיד מאומת. השוואה כבויה. צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-4-douglas-elliman-inc-stock/",
       "https://www.marketbeat.com/instant-alerts/upcoming-txo-partners-txo-projected-to-release-earnings-on-tuesday-2026-10-27/",
