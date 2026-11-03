@@ -28268,7 +28268,17 @@
     "תאריך": "2026-11-04",
     "מועד": "before",
     "צפי_EPS": "0.34",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026 לפי TradingView מ-28.10: 244.39M USD\nצפי FXEmpire נפרד: 248.97M USD\nBusinessQuant מציג 251.26M; מטבע האומדן לא אומת\nפער הספקים לא יושב; אין זה קונצנזוס אחיד\nהשוואת ההפתעה כבויה\nהחברה אישרה פרסום תוצאות ב-04.11 לפני פתיחת המסחר\nשיחת תוצאות ב-08:00 ניו יורק באותו יום\nאינו תחזית הנהלה או הכנסה בפועל; צפי EPS המקורי נשמר",
+    "צפי_הכנסות": "244.39M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:eff4c5ff3155e:0-floc-q3-26-earnings-revenue-estimate-is-244-39m-usd/",
+    "מקור_פער_צפי_הכנסות": "https://www.fxempire.com/stocks/floc/earnings",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "בסיס_צפי_הכנסות": "Dated source-specific analyst estimate, not company guidance or unified consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-28",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "פער ספקים בצפי; השוואת הפתעה כבויה.",
+    "מקור_אימות_מצב": "https://ir.flowco-inc.com/news-events/news/news-details/2026/Flowco-Holdings-Inc--to-Announce-Third-Quarter-2026-Results-on-November-4-2026/default.aspx"
   },
   {
     "חברה": "Flutter Entertainment plc",
