@@ -19021,13 +19021,17 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 2.97B דולר. לא תחזית החברה.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 2.97B דולר. לא תחזית החברה.\nצפי אנליסטים ל-EPS Q3 2026 לפי TradingView: 1.11 USD; בסיס הצפי לא ידוע.",
     "צפי_הכנסות": "2.97B",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3'26 total revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:310c06487c7e9:0-ande-q3-26-earnings-revenue-estimate-is-2-97b-usd/",
     "תאריך_מקור_צפי_הכנסות": "2026-11-03 own fetch; dated TradingView company preview",
-    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03"
+    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03",
+    "צפי_EPS": "1.11",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst EPS consensus, Q3 2026; GAAP/adjusted basis not stated",
+    "מקור_צפי_EPS": "https://www.tradingview.com/news/tradingview:310c06487c7e9:0-ande-q3-26-earnings-revenue-estimate-is-2-97b-usd/"
   },
   {
     "חברה": "Arista Networks, Inc.",
@@ -20681,7 +20685,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 118.53M USD.\nמועד הדוח אינו מאושר בנפרד על ידי החברה.\nבסיס צפי EPS לא ידוע.",
+    "הערה": "Q3 2026.\nצפי הכנסות אנליסטים: 118.53M USD.\nמועד הדוח אינו מאושר בנפרד על ידי החברה.\nבסיס צפי EPS לא ידוע.\nצפי אנליסטים ל-EPS Q3 2026 לפי BusinessQuant: -0.76 USD; בסיס הצפי לא ידוע.",
     "צפי_הכנסות": "118.53M",
     "מטבע_צפי_הכנסות": "USD",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
@@ -20689,7 +20693,11 @@
     "תאריך_מקור_צפי_הכנסות": "2026-11-03",
     "אימות_צפי_הכנסות": "Read full TradingView narrative: company/ticker, Q3 2026, stated release date and explicit USD",
     "השוואה_הכנסות": "כן",
-    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים"
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים",
+    "צפי_EPS": "-0.76",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst EPS consensus, Q3 2026; GAAP/adjusted basis not stated",
+    "מקור_צפי_EPS": "https://businessquant.com/stocks/jbgs/estimates/"
   },
   {
     "חברה": "JBT Marel Corporation",
@@ -22141,13 +22149,17 @@
     "חברה": "SS Innovations International Inc.",
     "סימול": "SSII",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים\nצפי אנליסטים להכנסות Q3'26: 15.10M דולר. לא תחזית החברה.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים\nצפי אנליסטים להכנסות Q3'26: 15.10M דולר. לא תחזית החברה.\nצפי אנליסטים ל-EPS Q3 2026 לפי TradingView: -0.01 USD; בסיס הצפי לא ידוע.",
     "צפי_הכנסות": "15.10M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3'26 total revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:dfba9152a5cba:0-ssii-q3-26-earnings-revenue-estimate-is-15-10m-usd/",
     "תאריך_מקור_צפי_הכנסות": "2026-11-03 own fetch; dated TradingView company preview",
-    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03"
+    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03",
+    "צפי_EPS": "-0.01",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst EPS consensus, Q3 2026; GAAP/adjusted basis not stated",
+    "מקור_צפי_EPS": "https://www.tradingview.com/news/tradingview:dfba9152a5cba:0-ssii-q3-26-earnings-revenue-estimate-is-15-10m-usd/"
   },
   {
     "חברה": "SSR Mining Inc.",
