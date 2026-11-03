@@ -20166,14 +20166,21 @@
     "סימול": "ET",
     "תאריך": "2026-11-03",
     "מועד": "before",
-    "הערה": "מועד פרסום לפי הודעת החברה; טרם פורסמו תוצאות\nצפי הכנסות Q3 לא הושלם: Yahoo מציג 32.43B USD לרבעון ספטמבר, בעוד ספקים אחרים מציגים אומדנים שונים. היקף הקונצנזוס טרם יושב.",
+    "הערה": "מועד פרסום לפי הודעת החברה; טרם פורסמו תוצאות\nצפי הכנסות Q3 לא הושלם: Yahoo מציג 32.43B USD לרבעון ספטמבר, בעוד ספקים אחרים מציגים אומדנים שונים. היקף הקונצנזוס טרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 32.43B USD; אינו תחזית הנהלה. Yahoo ו-Seeking Alpha מציגים 32.43B USD ל-Q3; Zacks מ-2.11 מציג 35.60B USD. פער הספקים לא יושב. מועד הלוח המקורי נשמר ללא אישור מחדש. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://finance.yahoo.com/markets/stocks/articles/shopify-stock-portfolio-pre-q3-162400242.html",
       "https://finance.yahoo.com/quote/ET/analysis/",
       "https://finance.yahoo.com/markets/stocks/articles/gear-thomson-reuters-tri-q3-121504948.html",
       "https://www.marketbeat.com/earnings/reports/2026-11-3-teva-pharmaceutical-industries-limited-stock/",
       "https://www.newsquawk.com/headlines/newsquawk-daily-us-earnings-estimates---3rd-november-2026-etn-mpc-pfe-amgn-bkng-anet-amd-shop"
-    ]
+    ],
+    "צפי_הכנסות": "32.43B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/ET/analysis/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Eaton Corporation, PLC",
@@ -20416,7 +20423,7 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "0.63",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: לוח MarketBeat מציג 2.27B דולר, סקירת הדוח של אותו ספק מציגה 1.97B. פער המקור והמטבע טרם יושבו.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: לוח MarketBeat מציג 2.27B דולר, סקירת הדוח של אותו ספק מציגה 1.97B. פער המקור והמטבע טרם יושבו.\nצפי הכנסות אנליסטים Q3 2026: 3.17B CAD; אינו תחזית הנהלה. Yahoo ו-WealthAwesome מציגים 3.17B CAD ל-Q3; Yahoo ברישום הקנדי מציג גם 3.27B CAD, ו-TipRanks 3.23B CAD. המטבע כאן דולר קנדי, ולא USD; אין המרה או השוואה לצפי EPS הקיים. מועד הלוח המקורי נשמר ללא אישור מחדש. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-9-ideaya-biosciences-inc-stock/",
       "https://www.itiger.com/news/1110774144",
@@ -20424,7 +20431,14 @@
       "https://www.marketbeat.com/earnings/reports/2026-11-3-fortis-inc-stock/",
       "https://www.gurufocus.com/news/9161940/enlight-renewable-energy-ltd-enlt-q3-2026-earnings-report-preview-what-to-expect",
       "https://www.marketbeat.com/earnings/2026-11-03/"
-    ]
+    ],
+    "צפי_הכנסות": "3.17B",
+    "מטבע_צפי_הכנסות": "CAD",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/FTS/analysis/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "First Watch Restaurant Group, Inc.",
