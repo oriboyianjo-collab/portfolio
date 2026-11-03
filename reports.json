@@ -35,14 +35,22 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q2 FY2027 ended 2026-09-30: 90.92M USD; אינו תחזית הנהלה. TradingView מ-19.10 ו-TipRanks מ-24.10 מציגים אותו צפי לפני התוצאות. הספק מכנה Q2 26; הודעת החברה מאשרת Q2 FY2027 עד 30.09.2026. נתון ההכנסות בדוח החברה ובצפי נקוב ב-USD לאותה תקופה; השוואת הכנסות מותרת לצפי המתוארך. בסיס הצפי לא ידוע. צפי EPS הקיים נשמר.",
     "קישור": "https://www.businesswire.com/news/home/20261026081460/en/Agilysys-Announces-Record-Revenue-of-%2493.4M-in-Fiscal-2027-Second-Quarter",
     "הכנסות_בפועל": "93.4M",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "0.67",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "90.92M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:c02596690ab82:0-agys-q2-26-earnings-revenue-estimate-is-90-92m-usd/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-19",
+    "אימות_תקופת_צפי_הכנסות": "Q2 FY2027 ended 2026-09-30",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst forecast independently corroborated, issuer confirms period/currency",
+    "השוואה_הכנסות": "כן",
+    "בסיס_צפי_הכנסות": "לא ידוע"
   },
   {
     "חברה": "Amkor Technology, Inc.",
@@ -699,14 +707,22 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "0.75",
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026 ended 2026-09-30: 354.41M USD; אינו תחזית הנהלה. TradingView מ-19.10 ו-TipRanks מ-24.10 מציגים אותו צפי לפני התוצאות. הודעת החברה מאשרת Q3 עד 30.09.2026. נתון ההכנסות בדוח החברה ובצפי נקוב ב-USD לאותה תקופה; השוואת הכנסות מותרת לצפי המתוארך. בסיס הצפי לא ידוע. צפי EPS הקיים נשמר.",
     "קישור": "https://investor.kforce.com/news-and-events/news/news-details/2026/Kforce-Reports-Third-Quarter-2026-Revenue-of-357-8-Million-Exceeding-High-End-of-Guidance-and-Improving-7-5-Year-Over-Year/default.aspx",
     "הכנסות_בפועל": "357.8M",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "0.9",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "354.41M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:010127341174b:0-kfrc-q3-26-earnings-revenue-estimate-is-354-41m-usd/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-19",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026 ended 2026-09-30",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst forecast independently corroborated, issuer confirms period/currency",
+    "השוואה_הכנסות": "כן",
+    "בסיס_צפי_הכנסות": "לא ידוע"
   },
   {
     "חברה": "Lakeland Financial Corporation",
