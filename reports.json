@@ -21625,14 +21625,22 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות Q1 FY2027 לא הושלם: TradingView מ-02.11 מציג 484.00M USD, FXEmpire מציג 493.68M USD. אין לבחור מספר ללא יישוב הפער.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות Q1 FY2027 לא הושלם: TradingView מ-02.11 מציג 484.00M USD, FXEmpire מציג 493.68M USD. אין לבחור מספר ללא יישוב הפער.\nצפי הכנסות אנליסטים ל-Q1 FY2027: 484.00M USD; אינו תחזית הנהלה. צפי EPS הקיים נשמר; בסיסו לא ידוע. עדכון אימות: TradingView ו-TipRanks תומכים ב-484M USD; Yahoo מציג 484.24M ו-FXEmpire 493.68M. פער הספקים נשמר; אין קונצנזוס אחיד מאומת והשוואת ההפתעה כבויה.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-3-vital-farms-inc-stock/",
       "https://www.marketbeat.com/instant-alerts/upcoming-vital-farms-vitl-expected-to-post-quarterly-earnings-on-tuesday-2026-10-27/",
       "https://www.tradingview.com/news/tradingview:7ec0791d6ac95:0-mzti-q1-27-earnings-eps-estimate-is-1-37-usd/",
       "https://www.fxempire.com/stocks/mzti/earnings",
       "https://www.fxempire.com/stocks/tfpm/earnings"
-    ]
+    ],
+    "צפי_הכנסות": "484.00M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:7ec0791d6ac95:0-mzti-q1-27-earnings-eps-estimate-is-1-37-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q1 FY2027",
+    "אימות_צפי_הכנסות": "Analyst consensus, separately corroborated; not company guidance",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "לא",
+    "מקור_פער_צפי_הכנסות": "https://finance.yahoo.com/quote/MZTI/analysis/"
   },
   {
     "חברה": "Nuveen Churchill Direct Lending Corp.",
