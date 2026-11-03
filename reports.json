@@ -92,14 +92,21 @@
     "תאריך": "2026-10-26",
     "מועד": "before",
     "צפי_EPS": "0.82",
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 585.83M USD; אינו תחזית הנהלה. צפי היסטורי של MarketBeat מ-19.10 ו-TipRanks מ-24.10, לפני התוצאות, ל-Q3 2026; אינו נתון בפועל. בסיס ההכנסות מול הדוח טרם אומת; השוואה כבויה. צפי EPS הקיים נשמר.",
     "קישור": "https://www.businesswire.com/news/home/20261026689938/en/Alliance-Resource-Partners-L.P.-Reports-Third-Quarter-2026-Financial-and-Operating-Results-Declares-Quarterly-Cash-Distribution-of-%240.60-Per-Unit-and-Updates-Guidance",
     "הכנסות_בפועל": "603M",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "1.08",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "585.83M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-alliance-resource-partners-arlp-projected-to-post-earnings-on-monday-2026-10-19/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-19",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst estimate, not actual revenue",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Avidbank Holdings, Inc.",
@@ -216,8 +223,15 @@
     "בפועל_EPS": "1.07",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "הערה": "GAAP 0.67; בסיס הצפי לא ידוע",
-    "השוואה_EPS": "כן"
+    "הערה": "GAAP 0.67; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 1.76B USD; אינו תחזית הנהלה. צפי היסטורי של TradingView מ-19.10 ו-Zacks מ-21.10, לפני התוצאות, ל-Q3 2026; אינו נתון בפועל. בסיס ההכנסות מול הדוח טרם אומת; השוואה כבויה. צפי EPS הקיים נשמר.",
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "1.76B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:4cc960cb45e7f:0-bro-q3-26-earnings-revenue-estimate-is-1-76b-usd/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-19",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst estimate, not actual revenue",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Brixmor Property Group Inc.",
@@ -288,7 +302,7 @@
       "S&P 500",
       "Nasdaq 100"
     ],
-    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 1.61B USD; אינו תחזית הנהלה. צפי היסטורי שפורסם לפני התוצאות: TradingView מ-19.10 ו-Investing מ-26.10 לפני הסגירה מציגים 1.61B USD ל-Q3. זה אינו נתון הכנסות בפועל ואינו משנה תוצאות קיימות. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 1.61B USD; אינו תחזית הנהלה. צפי היסטורי שפורסם לפני התוצאות: TradingView מ-19.10 ו-Investing מ-26.10 לפני הסגירה מציגים 1.61B USD ל-Q3. זה אינו נתון הכנסות בפועל ואינו משנה תוצאות קיימות. הכנסות Q3 בדוח החברה ובצפי נקובות ב-USD; השוואת הכנסות מותרת לצפי המתוארך. בסיס הצפי לא ידוע. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "קישור": "https://investor.cadence.com/news/news-details/2026/Cadence-Reports-Third-Quarter-2026-Financial-Results/",
     "הכנסות_בפועל": "1.633B",
     "מטבע_הכנסות": "USD",
@@ -300,9 +314,10 @@
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:ef5c5525d73f8:0-cdns-q3-26-earnings-revenue-estimate-is-1-61b-usd/",
     "אימות_תקופת_צפי_הכנסות": "Q3 2026",
-    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "אימות_צפי_הכנסות": "Dated pre-result Q3 2026 USD revenue forecast independently corroborated",
     "תאריך_מקור_צפי_הכנסות": "2026-10-19",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "כן",
+    "בסיס_צפי_הכנסות": "לא ידוע"
   },
   {
     "חברה": "Cincinnati Financial Corporation",
@@ -849,7 +864,7 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 10.84B USD; אינו תחזית הנהלה. צפי היסטורי של TradingView מ-23.10, לפני התוצאות, ל-Q3 2026: 10.84B USD; MarketBeat מאשר בנפרד את הצפי ההיסטורי. לא הועתקו הכנסות בפועל לתחזית. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 10.84B USD; אינו תחזית הנהלה. צפי היסטורי של TradingView מ-23.10, לפני התוצאות, ל-Q3 2026: 10.84B USD; MarketBeat מאשר בנפרד את הצפי ההיסטורי. לא הועתקו הכנסות בפועל לתחזית. הכנסות Q3 בדוח החברה ובצפי נקובות ב-USD; השוואת הכנסות מותרת לצפי המתוארך. בסיס הצפי לא ידוע. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "קישור": "https://investors.nucor.com/news/news-details/2026/Nucor-Reports-Results-for-the-Third-Quarter-of-2026/default.aspx",
     "הכנסות_בפועל": "11.25B",
     "מטבע_הכנסות": "USD",
@@ -861,9 +876,10 @@
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:842a0919e1897:0-nue-q3-26-earnings-eps-estimate-is-5-84-usd/",
     "אימות_תקופת_צפי_הכנסות": "Q3 2026",
-    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "אימות_צפי_הכנסות": "Dated pre-result Q3 2026 USD revenue forecast independently corroborated",
     "תאריך_מקור_צפי_הכנסות": "2026-10-23",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "כן",
+    "בסיס_צפי_הכנסות": "לא ידוע"
   },
   {
     "חברה": "Northwest Bancshares, Inc.",
@@ -1047,14 +1063,21 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 213.21M USD; אינו תחזית הנהלה. צפי היסטורי של TradingView מ-19.10, לפני התוצאות, ל-Q3 2026. MarketBeat מציג אותו צפי היסטורי; Tickeron מציג כ-213.6M. השוואה כבויה עד לבדיקת בסיס הכנסות מול הדוח. צפי EPS הקיים נשמר.",
     "קישור": "https://investor.rambus.com/press-releases/press-release-details/2026/Rambus-Reports-Third-Quarter-2026-Financial-Results/default.aspx",
     "הכנסות_בפועל": "218.3M",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "0.84",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "213.21M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:e0d2ccafe8ee4:0-rmbs-q3-26-earnings-revenue-estimate-is-213-21m-usd/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-19",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst estimate, not actual revenue",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Summit Therapeutics Inc.",
@@ -1176,14 +1199,21 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "GAAP -3.80; בסיס הצפי לא ידוע",
+    "הערה": "GAAP -3.80; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 3.93B USD; אינו תחזית הנהלה. צפי היסטורי של Benzinga מ-26.10 בשעה 08:45 ניו יורק, לפני התוצאות, ל-Q3 2026. TradingView מ-23.10 מציג 3.94B; פער ספקים לא יושב. השוואה כבויה. צפי EPS הקיים נשמר.",
     "קישור": "https://investors.whirlpoolcorp.com/news-and-events/news/news-details/2026/Whirlpool-Corporation-Announces-Third-Quarter-Results/default.aspx",
     "הכנסות_בפועל": "3.677B",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "-0.21",
     "בסיס_בפועל_EPS": "מתואם (ongoing)",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "3.93B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.benzinga.com/analyst-stock-ratings/price-target/26/10/62587565/whirlpool-earnings-are-imminent-these-most-accurate-analysts-revise-forecasts-ahead-of-earnings-call",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst estimate, not actual revenue",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Zedge, Inc.",
