@@ -22558,14 +22558,21 @@
     "חברה": "RideNow Group, Inc.",
     "סימול": "RDNW",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות Q3 לא הושלם: BusinessQuant מציג 301.05M, FXEmpire מציג 293.75M USD. גם תאריך הספק 10.11 שונה מהלוח המקורי שנשמר; הפער טרם יושב.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nפער מקורות בצפי הכנסות Q3: BusinessQuant מציג 301.05M, FXEmpire מציג 293.75M USD. גם תאריך הספק 10.11 שונה מהלוח המקורי שנשמר; הפער טרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 293.75M USD; אינו תחזית הנהלה. FXEmpire מציג 293.75M USD ל-Q3 לפי 5 אנליסטים; BusinessQuant מציג 301.05M. תאריך הספק 10.11 שונה מהלוח המקורי שנשמר. זהו צפי ספק מסוים, לא קונצנזוס אחיד מאומת; הפערים טרם יושבו. השוואה כבויה. צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://businessquant.com/stocks/doug/estimates/",
       "https://businessquant.com/stocks/lab/estimates/",
       "https://businessquant.com/stocks/rdnw/estimates/",
       "https://www.fxempire.it/stocks/rdnw/earnings",
       "https://businessquant.com/stocks/drk/estimates/"
-    ]
+    ],
+    "צפי_הכנסות": "293.75M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.fxempire.com/stocks/rdnw/earnings",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific quarter/currency analyst forecast; provider conflicts explicitly retained",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Red Rock Resorts, Inc.",
@@ -22963,7 +22970,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: סקירת MarketBeat מציגה 269.74M דולר, הודעת הספק מ-27.10 מציגה 273.21M. הפער טרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 276.01M USD; אינו תחזית הנהלה. FXEmpire מציג 276.01M USD ל-Q3 לפי 8 אנליסטים; MarketBeat בסקירת 27.10 מציג 273.21M ובדף הנוכחי 269.74M. זהו צפי ספק מסוים, לא קונצנזוס אחיד מאומת; היקף הדיווח להשוואה טרם אומת. השוואה כבויה. צפי EPS הקיים נשמר.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nפער מקורות בצפי הכנסות Q3: סקירת MarketBeat מציגה 269.74M דולר, הודעת הספק מ-27.10 מציגה 273.21M. הפער טרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 276.01M USD; אינו תחזית הנהלה. FXEmpire מציג 276.01M USD ל-Q3 לפי 8 אנליסטים; MarketBeat בסקירת 27.10 מציג 273.21M ובדף הנוכחי 269.74M. זהו צפי ספק מסוים, לא קונצנזוס אחיד מאומת; היקף הדיווח להשוואה טרם אומת. השוואה כבויה. צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-3-sphere-entertainment-co-stock/",
       "https://www.marketbeat.com/instant-alerts/upcoming-summit-hotel-properties-inn-projected-to-release-quarterly-earnings-on-tuesday-2026-10-27/",
@@ -23091,7 +23098,7 @@
     "תאריך": "2026-11-03",
     "מועד": "after",
     "צפי_EPS": "2.35",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: סקירת MarketBeat מציגה 11.96B דולר, הודעת הספק מ-27.10 מציגה 11.85B. גם התאמת המטבע והגדרת ההכנסות טרם אומתה.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nפער מקורות בצפי הכנסות Q3: סקירת MarketBeat מציגה 11.96B דולר, הודעת הספק מ-27.10 מציגה 11.85B. גם התאמת המטבע והגדרת ההכנסות טרם אומתה.\nצפי הכנסות אנליסטים Q3 2026: 15.56B CAD; אינו תחזית הנהלה. Yahoo Finance מציג 15.56B CAD לרבעון המסתיים בספטמבר 2026 לפי 3 אנליסטים; אין להמיר או להשוות לנתוני דולר אמריקאי של ספק אחר. הגדרת ההכנסות להשוואה טרם אומתה. השוואה כבויה. צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-3-suncor-energy-inc-stock/",
       "https://www.marketbeat.com/earnings/reports/2026-11-3-transalta-co-stock/",
@@ -23102,7 +23109,14 @@
       "https://finance.yahoo.com/energy/articles/ahead-suncor-energy-su-q3-121506205.html",
       "https://www.marketbeat.com/earnings/reports/2026-11-3-suncor-energy-inc-stock/",
       "https://www.marketbeat.com/instant-alerts/upcoming-suncor-energy-su-set-to-post-earnings-on-tuesday-2026-10-27/"
-    ]
+    ],
+    "צפי_הכנסות": "15.56B",
+    "מטבע_צפי_הכנסות": "CAD",
+    "מקור_צפי_הכנסות": "https://ca.finance.yahoo.com/quote/SU/analysis/",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "אימות_תקופת_צפי_הכנסות": "Quarter ending September 2026",
+    "אימות_צפי_הכנסות": "Source-specific quarter/currency analyst forecast; provider conflicts explicitly retained",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Latham Group, Inc.",
