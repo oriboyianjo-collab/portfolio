@@ -1023,7 +1023,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "Nareit FFO 0.69; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 189.79M USD; אינו תחזית הנהלה. צפי היסטורי של TradingView מ-19.10, לפני התוצאות. הודעת החברה מאשרת Q3 2026. צפי ההכנסות נפרד מ-EPS/FFO ואינו משנה אותם. נתון ההכנסות בדוח החברה ובצפי נקוב ב-USD לאותה תקופה; השוואת הכנסות מותרת לצפי המתוארך. בסיס הצפי לא ידוע. צפי EPS הקיים נשמר.",
+    "הערה": "Nareit FFO 0.69; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 189.79M USD; אינו תחזית הנהלה. צפי היסטורי של TradingView מ-19.10, לפני התוצאות. הודעת החברה מאשרת Q3 2026. צפי ההכנסות נפרד מ-EPS/FFO ואינו משנה אותם. TipRanks מ-24.10 מציג 190.17M USD לעומת 189.79M ב-TradingView; פער ספקים לא יושב. הצפי הוא נתון ספק מסוים ולא קונצנזוס אחיד מאומת; השוואה כבויה. בסיס הצפי לא ידוע. צפי EPS הקיים נשמר.",
     "קישור": "https://investors.phillipsedison.com/news-events/news-details/2026/Phillips-Edison--Company-Reports-Third-Quarter-2026-Results/default.aspx",
     "הכנסות_בפועל": "193.1M",
     "מטבע_הכנסות": "USD",
@@ -1036,8 +1036,8 @@
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:56ab2bc1a564b:0-peco-q3-26-earnings-revenue-estimate-is-189-79m-usd/",
     "תאריך_מקור_צפי_הכנסות": "2026-10-19",
     "אימות_תקופת_צפי_הכנסות": "Q3 2026",
-    "אימות_צפי_הכנסות": "Dated pre-result analyst forecast independently corroborated, issuer confirms period/currency",
-    "השוואה_הכנסות": "כן",
+    "אימות_צפי_הכנסות": "Dated TradingView pre-result estimate 189.79M USD; TipRanks 190.17M provider conflict unresolved",
+    "השוואה_הכנסות": "לא",
     "בסיס_צפי_הכנסות": "לא ידוע"
   },
   {
