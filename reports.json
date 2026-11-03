@@ -19364,7 +19364,13 @@
     "סימול": "AVNW",
     "תאריך": "2026-11-03",
     "צפי_EPS": "0.20",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q1 FY2027 לא הושלם: FXEmpire מציג 105.62M USD; קיימים אומדנים אחרים. גם מועד הספק 10.11 שונה מהלוח המקורי 03.11 שנשמר. אין שינוי תאריך או צפי EPS.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-10-aviat-networks-inc-stock/",
+      "https://www.fxempire.com/stocks/avnw/earnings",
+      "https://www.marketbeat.com/instant-alerts/upcoming-core-molding-technologies-cmt-projected-to-release-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://blog.tipranks.com/cmt-earnings-this-week-how-will-it-perform-pre-earnings-news-2/"
+    ]
   },
   {
     "חברה": "Ball Corporation",
@@ -19442,7 +19448,10 @@
     "סימול": "BMEA",
     "תאריך": "2026-11-03",
     "צפי_EPS": "-0.18",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nבלוח MarketBeat ל-03.11 אין צפי הכנסות זמין (N/A). השדה נשאר ריק, לא אפס; צפי EPS המקורי נשמר.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/2026-11-03/"
+    ]
   },
   {
     "חברה": "BioNTech SE",
@@ -19634,7 +19643,10 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "-0.39",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nבלוח MarketBeat ל-03.11 אין צפי הכנסות זמין (N/A). השדה נשאר ריק, לא אפס; צפי EPS המקורי נשמר.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/2026-11-03/"
+    ]
   },
   {
     "חברה": "Core Molding Technologies Inc",
@@ -19642,7 +19654,13 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "0.06",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מ-27.10 מציג 62.64M דולר, TipRanks מ-01.11 מציג 86.18M דולר. הפער מהותי וטרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-10-aviat-networks-inc-stock/",
+      "https://www.fxempire.com/stocks/avnw/earnings",
+      "https://www.marketbeat.com/instant-alerts/upcoming-core-molding-technologies-cmt-projected-to-release-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://blog.tipranks.com/cmt-earnings-this-week-how-will-it-perform-pre-earnings-news-2/"
+    ]
   },
   {
     "חברה": "Claros Mortgage Trust, Inc.",
@@ -20026,7 +20044,13 @@
     "סימול": "EMBJ",
     "תאריך": "2026-11-03",
     "צפי_EPS": "0.87",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: Yahoo מציג 2.21B USD, FXEmpire מציג 2.29B USD. הפער בין הספקים טרם יושב; צפי EPS המקורי נשמר.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-10-ashford-hospitality-trust-inc-stock/",
+      "https://finance.yahoo.com/quote/EMBJ/analysis/",
+      "https://www.fxempire.com/stocks/embj/earnings",
+      "https://www.fxempire.com/stocks/infu/earnings"
+    ]
   },
   {
     "חברה": "Enlight Renewable Energy Ltd.",
@@ -20034,14 +20058,27 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "0.13",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם בגלל פער מקורות: MarketBeat מציג 660.41M USD, GuruFocus מ-02.11 מציג 214.88M USD. ההגדרה טרם יושבה; אין לבחור מספר לפי קרבה.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-9-ideaya-biosciences-inc-stock/",
+      "https://www.itiger.com/news/1110774144",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-koninklijke-philips-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-fortis-inc-stock/",
+      "https://www.gurufocus.com/news/9161940/enlight-renewable-energy-ltd-enlt-q3-2026-earnings-report-preview-what-to-expect",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-enlight-renewable-energy-ltd-stock/",
+      "https://finance.yahoo.com/quote/ET/analysis/",
+      "https://finance.yahoo.com/markets/stocks/articles/gear-thomson-reuters-tri-q3-121504948.html"
+    ]
   },
   {
     "חברה": "Eupraxia Pharmaceuticals Inc.",
     "סימול": "EPRX",
     "תאריך": "2026-11-03",
     "צפי_EPS": "-0.26",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nבלוח MarketBeat ל-03.11 אין צפי הכנסות זמין (N/A). השדה נשאר ריק, לא אפס; צפי EPS המקורי נשמר.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/2026-11-03/"
+    ]
   },
   {
     "חברה": "EagleRock Land, LLC",
@@ -20298,7 +20335,15 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "0.63",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: לוח MarketBeat מציג 2.27B דולר, סקירת הדוח של אותו ספק מציגה 1.97B. פער המקור והמטבע טרם יושבו.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-9-ideaya-biosciences-inc-stock/",
+      "https://www.itiger.com/news/1110774144",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-koninklijke-philips-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-fortis-inc-stock/",
+      "https://www.gurufocus.com/news/9161940/enlight-renewable-energy-ltd-enlt-q3-2026-earnings-report-preview-what-to-expect",
+      "https://www.marketbeat.com/earnings/2026-11-03/"
+    ]
   },
   {
     "חברה": "First Watch Restaurant Group, Inc.",
@@ -20707,7 +20752,14 @@
     "סימול": "INFU",
     "תאריך": "2026-11-03",
     "מועד": "before",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות Q3 לא הושלם: Yahoo מציג 37.27M USD לרבעון ספטמבר, FXEmpire מציג 38.88M USD. הפער טרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-10-ashford-hospitality-trust-inc-stock/",
+      "https://finance.yahoo.com/quote/EMBJ/analysis/",
+      "https://www.fxempire.com/stocks/embj/earnings",
+      "https://www.fxempire.com/stocks/infu/earnings",
+      "https://finance.yahoo.com/quote/INFU/analysis/"
+    ]
   },
   {
     "חברה": "Summit Hotel Properties, Inc.",
@@ -20715,7 +20767,13 @@
     "תאריך": "2026-11-03",
     "מועד": "after",
     "צפי_EPS": "0.16",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מ-27.10 מציג 179.84M דולר, TradingView מאותו יום מציג 180.63M USD. הפער טרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-sphere-entertainment-co-stock/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-summit-hotel-properties-inn-projected-to-release-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.tradingview.com/news/tradingview:a1e5b6e8cc470:0-inn-q3-26-earnings-revenue-estimate-is-180-63m-usd/",
+      "https://www.fxempire.com/stocks/cohn/earnings"
+    ]
   },
   {
     "חברה": "InnovAge Holding Corp.",
@@ -21455,7 +21513,14 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות Q1 FY2027 לא הושלם: TradingView מ-02.11 מציג 484.00M USD, FXEmpire מציג 493.68M USD. אין לבחור מספר ללא יישוב הפער.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-vital-farms-inc-stock/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-vital-farms-vitl-expected-to-post-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.tradingview.com/news/tradingview:7ec0791d6ac95:0-mzti-q1-27-earnings-eps-estimate-is-1-37-usd/",
+      "https://www.fxempire.com/stocks/mzti/earnings",
+      "https://www.fxempire.com/stocks/tfpm/earnings"
+    ]
   },
   {
     "חברה": "Nuveen Churchill Direct Lending Corp.",
@@ -21525,7 +21590,10 @@
     "סימול": "NVCT",
     "תאריך": "2026-11-03",
     "צפי_EPS": "-0.22",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nבלוח MarketBeat ל-03.11 אין צפי הכנסות זמין (N/A). השדה נשאר ריק, לא אפס; צפי EPS המקורי נשמר.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/2026-11-03/"
+    ]
   },
   {
     "חברה": "Navigator Holdings Ltd.",
@@ -21790,7 +21858,15 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "0.37",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: לוח MarketBeat מציג 5.01B דולר, סקירת הדוח מציגה 5.02B. הפער טרם יושב; מטבע הדוח בפועל ייבדק בנפרד.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-9-ideaya-biosciences-inc-stock/",
+      "https://www.itiger.com/news/1110774144",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-koninklijke-philips-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-fortis-inc-stock/",
+      "https://www.gurufocus.com/news/9161940/enlight-renewable-energy-ltd-enlt-q3-2026-earnings-report-preview-what-to-expect",
+      "https://www.marketbeat.com/earnings/2026-11-03/"
+    ]
   },
   {
     "חברה": "PJT Partners Inc.",
@@ -22348,7 +22424,19 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: סקירת MarketBeat מציגה 269.74M דולר, הודעת הספק מ-27.10 מציגה 273.21M. הפער טרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-sphere-entertainment-co-stock/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-summit-hotel-properties-inn-projected-to-release-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.tradingview.com/news/tradingview:a1e5b6e8cc470:0-inn-q3-26-earnings-revenue-estimate-is-180-63m-usd/",
+      "https://www.fxempire.com/stocks/cohn/earnings",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-super-group-sghc-limited-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-triple-flag-precious-metals-corp-stock-1/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-united-fire-group-ufcs-set-to-release-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.tipranks.com/news/pre-earnings/is-tars-a-buy-before-earnings-pre-earnings-news",
+      "https://www.marketbeat.com/instant-alerts/upcoming-silicon-laboratories-slab-expected-to-post-earnings-on-tuesday-2026-10-27/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-sphere-entertainment-sphr-set-to-announce-earnings-on-tuesday-2026-10-27/"
+    ]
   },
   {
     "חברה": "Sprout Social, Inc",
@@ -22575,7 +22663,19 @@
     "תאריך": "2026-11-03",
     "מועד": "after",
     "צפי_EPS": "0.23",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 108.68M דולר, FXEmpire מציג 108.94M USD. הפער בין הספקים טרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-super-group-sghc-limited-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-triple-flag-precious-metals-corp-stock-1/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-united-fire-group-ufcs-set-to-release-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.tipranks.com/news/pre-earnings/is-tars-a-buy-before-earnings-pre-earnings-news",
+      "https://www.marketbeat.com/instant-alerts/upcoming-silicon-laboratories-slab-expected-to-post-earnings-on-tuesday-2026-10-27/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-vital-farms-inc-stock/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-vital-farms-vitl-expected-to-post-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.tradingview.com/news/tradingview:7ec0791d6ac95:0-mzti-q1-27-earnings-eps-estimate-is-1-37-usd/",
+      "https://www.fxempire.com/stocks/mzti/earnings",
+      "https://www.fxempire.com/stocks/tfpm/earnings"
+    ]
   },
   {
     "חברה": "Talen Energy Corporation",
@@ -22650,7 +22750,15 @@
     "מדד": [
       "Nasdaq 100"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: Zacks מ-29.10 מציג 1.91B דולר, MarketBeat מ-27.10 מציג 1.85B. הפער בין הספקים טרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://finance.yahoo.com/markets/stocks/articles/shopify-stock-portfolio-pre-q3-162400242.html",
+      "https://finance.yahoo.com/quote/ET/analysis/",
+      "https://finance.yahoo.com/markets/stocks/articles/gear-thomson-reuters-tri-q3-121504948.html",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-teva-pharmaceutical-industries-limited-stock/",
+      "https://www.newsquawk.com/headlines/newsquawk-daily-us-earnings-estimates---3rd-november-2026-etn-mpc-pfe-amgn-bkng-anet-amd-shop",
+      "https://www.marketbeat.com/instant-alerts/upcoming-thomson-reuters-tri-set-to-post-quarterly-earnings-on-tuesday-2026-10-27/"
+    ]
   },
   {
     "חברה": "Transcat, Inc.",
@@ -22851,7 +22959,14 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "-0.13",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: סקירת MarketBeat מציגה 181.78M USD, הודעת הספק מ-27.10 מציגה 182.48M USD. הפער טרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-vital-farms-inc-stock/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-vital-farms-vitl-expected-to-post-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.tradingview.com/news/tradingview:7ec0791d6ac95:0-mzti-q1-27-earnings-eps-estimate-is-1-37-usd/",
+      "https://www.fxempire.com/stocks/mzti/earnings",
+      "https://www.fxempire.com/stocks/tfpm/earnings"
+    ]
   },
   {
     "חברה": "Varonis Systems, Inc.",
