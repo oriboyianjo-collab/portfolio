@@ -23430,7 +23430,7 @@
     "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים ל-Q3 2026: 9.57B USD; אינו תחזית הנהלה. צפי EPS הקיים נשמר; בסיסו לא ידוע.\nהצפי מוצג בדולר לפי הספק; השוואה תמתין לאימות מטבע והגדרת הכנסות הבנק בדוח בפועל.\nIssuer3T26IFRSconsolidatedincomeJul1Sep30: ProdutoBancario48357Mvs43402M,interest78709Mexpense61921M,pretax14289M,totalnet12270M,attributable12227M,basiclocalcommonpreferred1.11/diluted1.10BRLnotUSDADR. Managementrecurring12617M/1.14BRLseparateBRGAAPnet12164M/1.10local. https://filemanager-cdn.mziq.com/published/42787847-4cf6-4461-94a5-40ed237dca33/a513e837-a817-4963-91b6-7ddf5aec51b2 ; https://filemanager-cdn.mziq.com/published/42787847-4cf6-4461-94a5-40ed237dca33/204f63e4-ab81-4618-9707-de0a1be27314",
     "בפועל_EPS": "1.10",
     "מטבע_EPS": "BRL",
-    "בסיס_בפועל_EPS": "IFRS diluted per local ordinary/preferred share, BRL, not USD ADR",
+    "בסיס_בפועל_EPS": "IFRS diluted per local ordinary or preferred share",
     "השוואה_EPS": "לא",
     "הסבר_EPS": "הנתון בפועל הוא BRL למניה מקומית מדוללת, לא נתון USD ל-ADR; התאמת מטבע ויחידת הצפי המקורי לא אומתה ולכן אחוז ההפתעה מוסתר.",
     "הכנסות_בפועל": "48.357B",
