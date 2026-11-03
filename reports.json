@@ -15769,12 +15769,15 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 655.08M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. תחזית EBITDA ורווח כלכלי למניה של החברה אינה תחזית הכנסות; הצפי הקיים נשמר בנפרד. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "Q3 2026: החברה הודיעה ב-02.11 על פרסום תוצאות ב-09.11.2026 ושיחה ב-08:30 ניו יורק. רשומת 02.11 היא מועד לוח קודם, לא תוצאות שפורסמו.\nצפי הכנסות אנליסטים: 655.08M USD; צפי EPS המקורי נשמר, בסיסו לא ידוע.",
     "צפי_הכנסות": "655.08M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-affiliated-managers-group-inc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 655.08M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. תחזית EBITDA ורווח כלכלי למניה של החברה אינה תחזית הכנסות; הצפי הקיים נשמר בנפרד. הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "מקור_אימות_מועד": "https://ir.amg.com/news-releases/news-release-details/amg-announce-third-quarter-results-november-9-2026",
+    "מועד_פרסום_מאומת": "2026-11-09"
   },
   {
     "חברה": "Digital Turbine, Inc.",
@@ -18172,12 +18175,15 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 245.47M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://ir.tgtherapeutics.com/news-releases/news-release-details/tg-therapeutics-reports-second-quarter-2026-financial-results הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "הערה": "Q3 2026: החברה הודיעה ב-02.11 על שיחת תוצאות ב-09.11.2026, 08:30 ניו יורק; הודעת התוצאות תפורסם לפניה. רשומת 02.11 היא מועד לוח קודם, לא תוצאות שפורסמו.\nצפי הכנסות אנליסטים: 245.47M USD; צפי EPS המקורי נשמר, בסיסו לא ידוע.",
     "צפי_הכנסות": "245.47M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3 2026 revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-2-tg-therapeutics-inc-stock/",
-    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown"
+    "בסיס_צפי_EPS": "Analyst consensus (Nasdaq); accounting basis unknown",
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nAnalyst consensus להכנסות Q3 2026: 245.47M USD. מקור מ-02.11.2026, נבדק ב-02.11.2026. במקור החברה שנבדק לא אומתה תחזית מספרית תואמת להכנסות הרבעון; הצפי כאן מיוחס לאנליסטים, לא לחברה. אין להסיק מכך שהחברה מעולם לא פרסמה תחזית. מקור החברה שנבדק: https://ir.tgtherapeutics.com/news-releases/news-release-details/tg-therapeutics-reports-second-quarter-2026-financial-results הנתון מעוגל לפי המקור; אינו הכנסה בפועל.",
+    "מקור_אימות_מועד": "https://ir.tgtherapeutics.com/news-releases/news-release-details/tg-therapeutics-host-conference-call-third-quarter-2026",
+    "מועד_פרסום_מאומת": "2026-11-09"
   },
   {
     "חברה": "Tennant Company",
