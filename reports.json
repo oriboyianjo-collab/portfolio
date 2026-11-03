@@ -20187,7 +20187,7 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "Q3 2026 | USD\nהכנסות: טרם אומתו\nEPS Adjusted after-tax income per diluted common share: 2.06 USD\nEPS GAAP מדולל: 1.60 USD\nרווח נקי מיוחס לבעלי מניות רגילות: 844M USD\nרווח מתואם לאחר מס: 1.086B USD\nפרמיות נטו שנכתבו General Insurance: כ-6.7B USD; מדד מגזרי שאינו סך הכנסות מאוחד\nרווח תפעולי ושיעורו: טרם אומתו; הכנסה מחיתום אינה תחליף\nשינוי רבעוני ברווח התפעולי ובשיעורו: טרם אומת\nכל תחזיות האנליסטים המקוריות נשמרו ללא שינוי\nבסיס צפי EPS לא ידוע; השוואה מספרית מול המדד המסומן",
+    "הערה": "Q3 2026 | USD\nהכנסות כוללות מאוחדות GAAP: 7.443B USD לעומת 6.351B USD ברבעון המקביל\nEPS Adjusted after-tax income per diluted common share: 2.06 USD\nEPS GAAP מדולל: 1.60 USD\nרווח נקי מיוחס לבעלי מניות רגילות: 844M USD\nרווח מתואם לאחר מס: 1.086B USD\nפרמיות נטו שנכתבו General Insurance: כ-6.7B USD; מדד מגזרי שאינו סך הכנסות מאוחד\nרווח תפעולי ושיעורו: טרם אומתו; הכנסה מחיתום אינה תחליף\nשינוי רבעוני ברווח התפעולי ובשיעורו: טרם אומת\nכל תחזיות האנליסטים המקוריות נשמרו ללא שינוי\nבסיס צפי EPS לא ידוע; השוואה מספרית מול המדד המסומן\nהכנסות מפרמיות: 6.453B USD; הכנסות השקעה נטו 1.100B USD; הפסדי מימוש נטו 110M USD\nרווח לפני מס GAAP: 1.119B USD; רווח מתואם לפני מס 1.445B USD, אינם רווח תפעולי",
     "צפי_הכנסות": "7.42B",
     "בסיס_צפי_הכנסות": "Analyst consensus for report scheduled 03.11.2026; fiscal quarter not stated by source",
     "מטבע_צפי_הכנסות": "USD",
@@ -20195,15 +20195,18 @@
     "שורת_מקור_צפי_הכנסות": "American International Group (AIG) | 11/3/2026 (Confirmed) | Afternoon | EPS est $1.88 | Revenue est $7.42 billion",
     "אימות_צפי_הכנסות": "MarketBeat dated table re-fetched 03.11.2026; existing forecasts preserved",
     "סטטוס_בדיקת_תחזית_חברה": "bounded_check_no_guidance_found (not proof of absence)",
-    "השוואה_הכנסות": "לא",
-    "הסבר_הכנסות": "צפי אנליסטים מיוחס ללוח המקור; התאמת מטבע והיקף לבפועל תיבדק עם פרסום התוצאות.",
+    "השוואה_הכנסות": "כן",
+    "הסבר_הכנסות": "הצפי המקורי נשמר; הכנסות כוללות מאוחדות ולא פרמיות שנכתבו.",
     "בפועל_EPS": "2.06",
     "מטבע_EPS": "USD",
     "בסיס_בפועל_EPS": "Adjusted after-tax income per diluted common share",
     "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס צפי EPS לא ידוע; השוואה מספרית מול המדד המסומן.",
     "קישור_לדוח": "https://www.sec.gov/Archives/edgar/data/5272/000000527226000101/q32026earningsrelease.htm",
-    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-03.11.2026: 7.42B דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל."
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-03.11.2026: 7.42B דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל.\nQ3 2026 | USD\nהכנסות: טרם אומתו\nEPS Adjusted after-tax income per diluted common share: 2.06 USD\nEPS GAAP מדולל: 1.60 USD\nרווח נקי מיוחס לבעלי מניות רגילות: 844M USD\nרווח מתואם לאחר מס: 1.086B USD\nפרמיות נטו שנכתבו General Insurance: כ-6.7B USD; מדד מגזרי שאינו סך הכנסות מאוחד\nרווח תפעולי ושיעורו: טרם אומתו; הכנסה מחיתום אינה תחליף\nשינוי רבעוני ברווח התפעולי ובשיעורו: טרם אומת\nכל תחזיות האנליסטים המקוריות נשמרו ללא שינוי\nבסיס צפי EPS לא ידוע; השוואה מספרית מול המדד המסומן\nGAAP totalrevenues primarysupplement page4 3Q26firstcolumn7,443M/3Q25fifth6,351M; not GI premiums. https://www.aig.com/content/dam/aig/america-canada/us/documents/investor-relations/financial-supplement/aig-quarterly-financial-supplement-3q26.pdf",
+    "הכנסות_בפועל": "7.443B",
+    "מטבע_הכנסות": "USD",
+    "בסיס_בפועל_הכנסות": "GAAP consolidated total revenues"
   },
   {
     "חברה": "Assurant, Inc.",
