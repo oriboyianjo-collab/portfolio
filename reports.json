@@ -19372,13 +19372,21 @@
     "סימול": "AVNW",
     "תאריך": "2026-11-03",
     "צפי_EPS": "0.20",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q1 FY2027 לא הושלם: FXEmpire מציג 105.62M USD; קיימים אומדנים אחרים. גם מועד הספק 10.11 שונה מהלוח המקורי 03.11 שנשמר. אין שינוי תאריך או צפי EPS.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q1 FY2027 לא הושלם: FXEmpire מציג 105.62M USD; קיימים אומדנים אחרים. גם מועד הספק 10.11 שונה מהלוח המקורי 03.11 שנשמר. אין שינוי תאריך או צפי EPS.\nצפי הכנסות אנליסטים ל-Q1 FY2027: 103.54M USD; אינו תחזית הנהלה. צפי EPS הקיים נשמר; בסיסו לא ידוע. עדכון אימות נוסף: TradingView ו-Yahoo תומכים ב-103.54M; MarketBeat מציג 103.55M ו-FXEmpire 105.62M. מועד הלוח המקורי נשמר ללא אישור מחדש. פערי הספקים נשמרו; אין קונצנזוס אחיד מאומת והשוואת ההפתעה כבויה.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-10-aviat-networks-inc-stock/",
       "https://www.fxempire.com/stocks/avnw/earnings",
       "https://www.marketbeat.com/instant-alerts/upcoming-core-molding-technologies-cmt-projected-to-release-quarterly-earnings-on-tuesday-2026-10-27/",
       "https://blog.tipranks.com/cmt-earnings-this-week-how-will-it-perform-pre-earnings-news-2/"
-    ]
+    ],
+    "צפי_הכנסות": "103.54M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:4d5790b9eecc0:0-avnw-q1-27-earnings-revenue-estimate-is-103-54m-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q1 FY2027",
+    "אימות_צפי_הכנסות": "Analyst consensus, separately corroborated; not company guidance",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "לא",
+    "מקור_פער_צפי_הכנסות": "https://www.fxempire.com/stocks/avnw/earnings"
   },
   {
     "חברה": "Ball Corporation",
@@ -23151,14 +23159,22 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "-0.13",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: סקירת MarketBeat מציגה 181.78M USD, הודעת הספק מ-27.10 מציגה 182.48M USD. הפער טרם יושב.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: סקירת MarketBeat מציגה 181.78M USD, הודעת הספק מ-27.10 מציגה 182.48M USD. הפער טרם יושב.\nצפי הכנסות אנליסטים ל-Q3 2026: 182.48M USD; אינו תחזית הנהלה. צפי EPS הקיים נשמר; בסיסו לא ידוע. עדכון אימות נוסף: TradingView ו-Seeking Alpha תומכים ב-182.48M; קיימים גם 181.78M ו-FXEmpire 186.44M. פערי הספקים נשמרו; אין קונצנזוס אחיד מאומת והשוואת ההפתעה כבויה.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-3-vital-farms-inc-stock/",
       "https://www.marketbeat.com/instant-alerts/upcoming-vital-farms-vitl-expected-to-post-quarterly-earnings-on-tuesday-2026-10-27/",
       "https://www.tradingview.com/news/tradingview:7ec0791d6ac95:0-mzti-q1-27-earnings-eps-estimate-is-1-37-usd/",
       "https://www.fxempire.com/stocks/mzti/earnings",
       "https://www.fxempire.com/stocks/tfpm/earnings"
-    ]
+    ],
+    "צפי_הכנסות": "182.48M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:f86afe74b39fd:0-vitl-q3-26-earnings-revenue-estimate-is-182-48m-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Analyst consensus, separately corroborated; not company guidance",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "לא",
+    "מקור_פער_צפי_הכנסות": "https://www.fxempire.com/stocks/vitl/earnings"
   },
   {
     "חברה": "Varonis Systems, Inc.",
