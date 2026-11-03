@@ -19932,7 +19932,7 @@
     "חברה": "Douglas Elliman Inc.",
     "סימול": "DOUG",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 276.10M דולר, BusinessQuant מציג 276.75M. גם תאריך הספק 04.11 שונה מהלוח המקורי 03.11 שנשמר.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות אנליסטים ל-Q3 2026: 276.10M USD, לפי סקירת MarketBeat מ-28.10 ו-Backpack (אנליסט הכנסות אחד). אינו תחזית הנהלה. נתון BusinessQuant מ-06.10 הוא 276.75M; נשמר כאן הצפי המתוארך המאוחר יותר, ללא השוואת הפתעה עד יישוב פער הספקים. מועד הספק 04.11 שונה מהלוח המקורי 03.11 שנשמר; צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/instant-alerts/upcoming-the-hackett-group-hckt-projected-to-post-quarterly-earnings-on-tuesday-2026-10-27/",
       "https://www.tradingview.com/news/tradingview:d6148e6e74988:0-mg-q3-26-earnings-revenue-estimate-is-202-41m-usd/",
@@ -19944,7 +19944,14 @@
       "https://businessquant.com/stocks/rdnw/estimates/",
       "https://www.fxempire.it/stocks/rdnw/earnings",
       "https://businessquant.com/stocks/drk/estimates/"
-    ]
+    ],
+    "צפי_הכנסות": "276.10M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-douglas-elliman-doug-projected-to-post-earnings-on-wednesday-2026-10-28/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Analyst consensus from dated October 28 preview, corroborated by Backpack one revenue analyst; not company guidance",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-28",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Diamondrock Hospitality Company",
