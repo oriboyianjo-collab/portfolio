@@ -25122,7 +25122,7 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "Q3 2026 | USD\nהכנסות: טרם אומתו\nEPS After-tax adjusted operating income per diluted common share: 3.77 USD\nEPS GAAP: 3.96 USD\nרווח נקי מיוחס: 1.388B USD\nרווח תפעולי מתואם לאחר מס: 1.321B USD; אינו רווח תפעולי GAAP\nהכנסות מאוחדות ורווח תפעולי GAAP: טרם אומתו\nשינוי רבעוני ברווח התפעולי ובשיעורו: טרם אומת\nכל תחזיות האנליסטים המקוריות נשמרו ללא שינוי\nבסיס צפי EPS לא ידוע; השוואה מספרית מול המדד המסומן",
+    "הערה": "Q3 2026 | USD\nהכנסות כוללות GAAP: 14.449B USD לעומת 17.888B USD ברבעון המקביל\nEPS After-tax adjusted operating income per diluted common share: 3.77 USD\nEPS GAAP: 3.96 USD\nרווח נקי מיוחס: 1.388B USD\nרווח תפעולי מתואם לאחר מס: 1.321B USD; אינו רווח תפעולי GAAP\nרווח תפעולי GAAP: טרם אומת; AOI הוא מדד מתואם נפרד\nשינוי רבעוני ברווח התפעולי ובשיעורו: טרם אומת\nכל תחזיות האנליסטים המקוריות נשמרו ללא שינוי\nבסיס צפי EPS לא ידוע; השוואה מספרית מול המדד המסומן\nהכנסות על בסיס AOI: 13.493B USD; אינן הכנסות GAAP\nרווח תפעולי מתואם לפני מס AOI: 1.646B USD לעומת 1.829B USD בשנה הקודמת ו-1.651B USD ברבעון הקודם\nאחוז הפתעת הכנסות מוסתר עד אימות בסיס GAAP לעומת AOI בצפי",
     "צפי_הכנסות": "14.66B",
     "בסיס_צפי_הכנסות": "Analyst consensus for report scheduled 03.11.2026; fiscal quarter not stated by source",
     "מטבע_צפי_הכנסות": "USD",
@@ -25131,14 +25131,17 @@
     "אימות_צפי_הכנסות": "MarketBeat dated table re-fetched 03.11.2026; existing forecasts preserved",
     "סטטוס_בדיקת_תחזית_חברה": "bounded_check_no_guidance_found (not proof of absence)",
     "השוואה_הכנסות": "לא",
-    "הסבר_הכנסות": "צפי אנליסטים מיוחס ללוח המקור; התאמת מטבע והיקף לבפועל תיבדק עם פרסום התוצאות.",
+    "הסבר_הכנסות": "היקף צפי הכנסות על בסיס GAAP לעומת AOI לא אומת.",
     "בפועל_EPS": "3.77",
     "מטבע_EPS": "USD",
     "בסיס_בפועל_EPS": "After-tax adjusted operating income per diluted common share",
     "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס צפי EPS לא ידוע; השוואה מספרית מול המדד המסומן.",
     "קישור_לדוח": "https://www.sec.gov/Archives/edgar/data/1137774/000113777426000219/exhibit991-3q26earningspre.htm",
-    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-03.11.2026: 14.66B דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל."
+    "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-03.11.2026: 14.66B דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל.\nQ3 2026 | USD\nהכנסות: טרם אומתו\nEPS After-tax adjusted operating income per diluted common share: 3.77 USD\nEPS GAAP: 3.96 USD\nרווח נקי מיוחס: 1.388B USD\nרווח תפעולי מתואם לאחר מס: 1.321B USD; אינו רווח תפעולי GAAP\nהכנסות מאוחדות ורווח תפעולי GAAP: טרם אומתו\nשינוי רבעוני ברווח התפעולי ובשיעורו: טרם אומת\nכל תחזיות האנליסטים המקוריות נשמרו ללא שינוי\nבסיס צפי EPS לא ידוע; השוואה מספרית מול המדד המסומן\nGAAP total revenues verified SEC financialsupplement reconciliation page32 Q3 columns:14,449M current/17,888M prior, AOI13,493M current. https://www.sec.gov/Archives/edgar/data/1137774/000113777426000219/exhibit992-3q26qfs.htm",
+    "הכנסות_בפועל": "14.449B",
+    "מטבע_הכנסות": "USD",
+    "בסיס_בפועל_הכנסות": "GAAP total revenues"
   },
   {
     "חברה": "Personalis, Inc.",
