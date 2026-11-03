@@ -1,5 +1,85 @@
 [
   {
+    "כותרת": "וול סטריט היום: JOLTS, הזמנות ממפעלים ובחירות האמצע",
+    "תאריך": "2026-11-03 08:07",
+    "הועלה": "2026-11-03 08:07",
+    "טקסט": "נכון ל-08:07 שעון ישראל\n\n17:00 - משרות פנויות בארה\"ב לספטמבר (JOLTS)\nהנתון הקודם הרשמי: 7.079 מיליון. הצפי אינו אחיד: 7.15 מיליון לפי פורקס פקטורי, לעומת כ-7.10 מיליון לפי מרקטווטש. לצד המספר הראשי, הגיוסים, העזיבות והפיטורים יעזרו להעריך את הביקוש לעובדים לקראת דוח התעסוקה ביום שישי.\n\n17:00 - הזמנות ממפעלים לספטמבר\nהצפי לעלייה חודשית של 1.2% לפי פורקס פקטורי, או 1.5% לפי מרקטווטש, לעומת עלייה של 0.1% באוגוסט לפי הנתון הרשמי. הפער הוא בין סקרי התחזיות, לא בין נתונים רשמיים. הדוח יספק בדיקה נוספת של הביקוש התעשייתי וההשקעות.\n\nבחירות האמצע בארה\"ב\nההצבעה מתקיימת היום. סגירת הקלפיות הראשונה בחלק מהמדינות צפויה ב-01:00 בלילה שבין שלישי לרביעי בשעון ישראל. התוצאות עשויות להשפיע על הציפיות למדיניות מס, תקציב ורגולציה; אין להניח שתמונת השליטה בקונגרס תוכרע כבר הלילה.",
+    "קישור": "https://www.bls.gov/schedule/2026/11_sched_list.htm",
+    "מקורות": [
+      {
+        "label": "BLS, לוח הפרסומים הרשמי",
+        "url": "https://www.bls.gov/schedule/2026/11_sched_list.htm"
+      },
+      {
+        "label": "BLS, נתון JOLTS הקודם",
+        "url": "https://www.bls.gov/news.release/jolts.htm"
+      },
+      {
+        "label": "Census, לוח הפרסומים הרשמי",
+        "url": "https://www.census.gov/manufacturing/m3/release_schedule.html"
+      },
+      {
+        "label": "Census, נתון ההזמנות הקודם",
+        "url": "https://www.census.gov/manufacturing/m3/current/index.html"
+      },
+      {
+        "label": "Forex Factory, סקר תחזיות",
+        "url": "https://www.forexfactory.com/calendar?day=nov3.2026"
+      },
+      {
+        "label": "MarketWatch, סקר תחזיות",
+        "url": "https://www.marketwatch.com/economy-politics/calendar"
+      },
+      {
+        "label": "NYT, זמני סגירת הקלפיות",
+        "url": "https://www.nytimes.com/interactive/2026/11/02/us/elections/polls-closing-time-midterm-elections.html"
+      }
+    ],
+    "category": "macro"
+  },
+  {
+    "כותרת": "החברות המרכזיות שצפויות לדווח היום ומועדי השיחות",
+    "תאריך": "2026-11-03 08:07",
+    "הועלה": "2026-11-03 08:07",
+    "טקסט": "לפני פתיחת המסחר: פייזר (PFE) ושופיפיי (SHOP).\nשיחת שופיפיי ב-15:30 ושיחת פייזר ב-17:00 שעון ישראל.\n\nאחרי סגירת המסחר: איי-אם-די (AMD), אריסטה (ANET) ואמג'ן (AMGN).\nשיחות אריסטה ואמג'ן ב-23:30 היום. שיחת איי-אם-די בחצות, בתחילת יום רביעי 4.11.\n\nאלה מועדי השיחות, לא שעות פרסום הדוחות. שעות שחרור מדויקות לא אומתו; התוצאות עצמן יופיעו בלשונית הדוחות באפליקציה.\n\nהפד\nלא אומתה בבדיקה הופעה משמעותית של חבר הנהלת הפד או נשיא בנק אזורי להיום. לוח ההנהלה שנגיש בבדיקה חלקי, ולכן אין זו קביעה שלא יהיו הופעות או התבטאויות. אמירה חדשה ומשמעותית על ריבית, אינפלציה או תעסוקה תיבדק בנפרד.",
+    "קישור": "https://ir.amd.com/news-events/press-releases/detail/1300/amd-to-report-fiscal-third-quarter-2026-financial-results",
+    "מקורות": [
+      {
+        "label": "AMD, הודעת החברה",
+        "url": "https://ir.amd.com/news-events/press-releases/detail/1300/amd-to-report-fiscal-third-quarter-2026-financial-results"
+      },
+      {
+        "label": "Arista, הודעת החברה",
+        "url": "https://www.arista.com/en/company/news/press-release/24817-pr-20261006"
+      },
+      {
+        "label": "Amgen, הודעת החברה",
+        "url": "https://www.amgen.com/newsroom/press-releases/2026/10/amgen-announces-webcast-of-2026-third-quarter-financial-results"
+      },
+      {
+        "label": "Pfizer, הודעת החברה",
+        "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-invites-public-view-and-listen-webcast-november-3"
+      },
+      {
+        "label": "Shopify, הודעת החברה",
+        "url": "https://www.shopify.com/investors/press-releases/shopify-announce-third-quarter-2026-financial-results"
+      },
+      {
+        "label": "הפד, לוח הנהלת הבנק",
+        "url": "https://www.federalreserve.gov/newsevents/calendar.htm"
+      },
+      {
+        "label": "הפד בשיקגו, לוח אירועים",
+        "url": "https://www.chicagofed.org/events/index"
+      },
+      {
+        "label": "הפד בדאלאס, נאומי לוגן",
+        "url": "https://www.dallasfed.org/news/speeches/logan"
+      }
+    ],
+    "category": "markets"
+  },
+  {
     "כותרת": "אנבידיה (NVDA): דיווח על דרישה מלקוחות הענן להפחית תלות בלקוחות סיניים",
     "תאריך": "2026-11-03 07:57",
     "הועלה": "2026-11-03 07:57",
