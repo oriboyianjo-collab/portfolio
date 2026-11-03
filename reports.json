@@ -26448,7 +26448,14 @@
     "תאריך": "2026-11-04",
     "מועד": "after",
     "צפי_EPS": "0.77",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים להכנסות Q3 2026: 105.35M USD. TradingView, 28.10.2026; פער מקור: FXEmpire 128.17M USD. היקף הכנסות ברוטו לעומת נטו לא אומת. לא תחזית הנהלה. התאמת היקף ההכנסות להשוואה לא אומתה; השוואה כבויה.",
+    "צפי_הכנסות": "105.35M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:f7660bcda5c23:0-gnk-q3-26-earnings-revenue-estimate-is-105-35m-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Explicit-currency period-matched analyst revenue estimate; reporting-scope comparison pending",
+    "השוואה_הכנסות": "לא",
+    "מקור_פער_צפי_הכנסות": "https://www.fxempire.com/stocks/gnk/earnings"
   },
   {
     "חברה": "Global Net Lease, Inc.",
@@ -28859,7 +28866,14 @@
     "סימול": "RGR",
     "תאריך": "2026-11-04",
     "מועד": "after",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3 2026: 131.03M USD. TradingView, 28.10.2026; פער מקור: Yahoo 131.47M USD לרבעון ספטמבר. אין קונצנזוס יחיד מאומת. לא תחזית הנהלה. התאמת היקף ההכנסות להשוואה לא אומתה; השוואה כבויה.",
+    "צפי_הכנסות": "131.03M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:1b319b78e8f14:0-rgr-q3-26-earnings-revenue-estimate-is-131-03m-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Explicit-currency period-matched analyst revenue estimate; reporting-scope comparison pending",
+    "השוואה_הכנסות": "לא",
+    "מקור_פער_צפי_הכנסות": "https://finance.yahoo.com/quote/RGR/analysis/"
   },
   {
     "חברה": "Riot Platforms, Inc.",
@@ -29148,7 +29162,13 @@
     "תאריך": "2026-11-04",
     "מועד": "after",
     "צפי_EPS": "-0.12",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים להכנסות Q3 2026: 23.51M USD. TradingView, 28.10.2026. לא תחזית הנהלה. התאמת היקף ההכנסות להשוואה לא אומתה; השוואה כבויה.",
+    "צפי_הכנסות": "23.51M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:ada3339ca727f:0-sght-q3-26-earnings-revenue-estimate-is-23-51m-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Explicit-currency period-matched analyst revenue estimate; reporting-scope comparison pending",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Shoals Technologies Group, Inc.",
@@ -31830,7 +31850,14 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "-0.83",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים להכנסות Q3 2026: 234.73M USD. TradingView, 29.10.2026; פער מקור: FXEmpire 240.06M USD. אין קונצנזוס יחיד מאומת. לא תחזית הנהלה. התאמת היקף ההכנסות להשוואה לא אומתה; השוואה כבויה.",
+    "צפי_הכנסות": "234.73M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:74188b4bb1104:0-ccoi-q3-26-earnings-revenue-estimate-is-234-73m-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Explicit-currency period-matched analyst revenue estimate; reporting-scope comparison pending",
+    "השוואה_הכנסות": "לא",
+    "מקור_פער_צפי_הכנסות": "https://www.fxempire.com/stocks/ccoi/earnings"
   },
   {
     "חברה": "Consensus Cloud Solutions, Inc.",
@@ -31942,7 +31969,14 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים להכנסות Q3 2026: 920.02M USD. TradingView, 29.10.2026; פער מקור: FXEmpire 987.54M USD. בסיס דמי ניהול/הכנסות כולל טרם אומת. לא תחזית הנהלה. התאמת היקף ההכנסות להשוואה לא אומתה; השוואה כבויה.",
+    "צפי_הכנסות": "920.02M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:904dc729159e5:0-cg-q3-26-earnings-revenue-estimate-is-920-02m-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Explicit-currency period-matched analyst revenue estimate; reporting-scope comparison pending",
+    "השוואה_הכנסות": "לא",
+    "מקור_פער_צפי_הכנסות": "https://www.fxempire.com/stocks/cg/earnings"
   },
   {
     "חברה": "Carlyle Secured Lending, Inc.",
