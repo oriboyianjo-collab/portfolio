@@ -258,14 +258,22 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "בסיס: FFO (לא EPS GAAP) — צפי Zacks FFO מותאם; בפועל Nareit FFO למניה",
+    "הערה": "בסיס: FFO (לא EPS GAAP) — צפי Zacks FFO מותאם; בפועל Nareit FFO למניה\nצפי הכנסות אנליסטים Q3 2026: 357.28M USD; אינו תחזית הנהלה. צפי היסטורי של TipRanks מ-24.10, לפני התוצאות. TradingView מ-19.10 מציג 357.77M USD; פער ספקים לא יושב. צפי ההכנסות נפרד מ-EPS/FFO ואינו משנה אותם. הצפי הוא נתון ספק מסוים, לא קונצנזוס אחיד מאומת; השוואה כבויה. צפי EPS הקיים נשמר.",
     "קישור": "https://www.prnewswire.com/news-releases/brixmor-property-group-announces-third-quarter-results-with-strong-leasing-demand-driving-occupancy-to-record-highs-increases-dividend-over-7-and-raises-outlook-302919608.html",
     "הכנסות_בפועל": "359.6M",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "0.6",
     "בסיס_צפי_EPS": "FFO",
     "בסיס_בפועל_EPS": "FFO",
-    "מטבע_EPS": "USD"
+    "מטבע_EPS": "USD",
+    "צפי_הכנסות": "357.28M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "http://www.tipranks.com/news/pre-earnings/brixmor-property-group-brx-q3-earnings-cheat-sheet-pre-earnings-news",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-24",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst forecast independently corroborated, issuer confirms period/currency",
+    "השוואה_הכנסות": "לא",
+    "בסיס_צפי_הכנסות": "לא ידוע"
   },
   {
     "חברה": "Sierra Bancorp",
@@ -1015,14 +1023,22 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "Nareit FFO 0.69; בסיס הצפי לא ידוע",
+    "הערה": "Nareit FFO 0.69; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 189.79M USD; אינו תחזית הנהלה. צפי היסטורי של TradingView מ-19.10, לפני התוצאות. הודעת החברה מאשרת Q3 2026. צפי ההכנסות נפרד מ-EPS/FFO ואינו משנה אותם. נתון ההכנסות בדוח החברה ובצפי נקוב ב-USD לאותה תקופה; השוואת הכנסות מותרת לצפי המתוארך. בסיס הצפי לא ידוע. צפי EPS הקיים נשמר.",
     "קישור": "https://investors.phillipsedison.com/news-events/news-details/2026/Phillips-Edison--Company-Reports-Third-Quarter-2026-Results/default.aspx",
     "הכנסות_בפועל": "193.1M",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "0.71",
     "בסיס_בפועל_EPS": "Core FFO",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "189.79M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:56ab2bc1a564b:0-peco-q3-26-earnings-revenue-estimate-is-189-79m-usd/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-19",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst forecast independently corroborated, issuer confirms period/currency",
+    "השוואה_הכנסות": "כן",
+    "בסיס_צפי_הכנסות": "לא ידוע"
   },
   {
     "חברה": "Principal Financial Group Inc",
