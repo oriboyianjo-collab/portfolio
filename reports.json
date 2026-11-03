@@ -17,14 +17,22 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "0.16",
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 10.94M USD; אינו תחזית הנהלה. TradingView מ-23.10 ו-MarketBeat מ-22.10 מציגים אותו צפי לפני התוצאות. הודעת החברה מאשרת Q3 2026. נתון ההכנסות בדוח החברה ובצפי נקוב ב-USD לאותה תקופה; השוואת הכנסות מותרת לצפי המתוארך. בסיס הצפי לא ידוע. צפי EPS הקיים נשמר.",
     "קישור": "https://www.prnewswire.com/news-releases/audioeye-reports-record-third-quarter-2026-results-302919827.html",
     "הכנסות_בפועל": "11M",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "0.3",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "10.94M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:4d5caed135e50:0-aeye-q3-26-earnings-eps-estimate-is-0-27-usd/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-23",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst forecast independently corroborated, issuer confirms period/currency",
+    "השוואה_הכנסות": "כן",
+    "בסיס_צפי_הכנסות": "לא ידוע"
   },
   {
     "חברה": "Agilysys, Inc.",
@@ -584,14 +592,22 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q4 FY2026: 605.1M USD; אינו תחזית הנהלה. צפי היסטורי של TipRanks מ-24.10 ו-AlphaStreet מ-21.10, לפני התוצאות. TradingView מ-19.10 מציג 611.32M USD; פער ספקים לא יושב. דוח החברה מאשר Q4 FY2026. הצפי הוא נתון ספק מסוים, לא קונצנזוס אחיד מאומת; השוואה כבויה. צפי EPS הקיים נשמר.",
     "קישור": "https://pressroom.gbrx.com/2026-10-26-Greenbrier-Reports-Fourth-Quarter-and-Fiscal-2026-Results",
     "הכנסות_בפועל": "591M",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "0.39",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "605.1M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tipranks.com/news/pre-earnings/gbx-earnings-this-week-how-will-it-perform-pre-earnings-news-2",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-24",
+    "אימות_תקופת_צפי_הכנסות": "Q4 FY2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst forecast independently corroborated, issuer confirms period/currency",
+    "השוואה_הכנסות": "לא",
+    "בסיס_צפי_הכנסות": "לא ידוע"
   },
   {
     "חברה": "Gerdau S.A.",
