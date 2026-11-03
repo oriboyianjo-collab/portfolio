@@ -11,8 +11,8 @@ const ROOT = path.resolve(__dirname, '..');
 const OUT = argv('--out') || path.join(ROOT, 'holdings', 'issuer.json');
 const ONLY = (argv('--only') || '').split(',').map(s => s.trim().toUpperCase()).filter(Boolean);
 function argv(k){ const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : ''; }
-// built-in = the app's 19 heat-map funds (hint = adapter to try first; funds without a working adapter just stay on TickerInside / ETFIQ in the app)
-const BUILTIN = {XLI:'ssga',XLY:'ssga',XLF:'ssga',XLE:'ssga',XAR:'ssga',XLU:'ssga',XLB:'ssga',XLV:'ssga',XLC:'ssga',XLP:'ssga',IGV:'ishares',SOXX:'ishares',NCLD:'roundhill',DRAM:'roundhill',JEDI:'defiance',PRAM:'defiance',NUKZ:'nuxt',NECK:'nuxt',DRNZ:''};
+// built-in = the app's 20 heat-map funds (hint = adapter to try first; funds without a working adapter just stay on TickerInside / ETFIQ in the app)
+const BUILTIN = {XLK:'ssga',XLI:'ssga',XLY:'ssga',XLF:'ssga',XLE:'ssga',XAR:'ssga',XLU:'ssga',XLB:'ssga',XLV:'ssga',XLC:'ssga',XLP:'ssga',IGV:'ishares',SOXX:'ishares',NCLD:'roundhill',DRAM:'roundhill',JEDI:'defiance',PRAM:'defiance',NUKZ:'nuxt',NECK:'nuxt',DRNZ:''};
 const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36';
 const log = (...a) => console.log(...a);
 async function get(url, o = {}){
