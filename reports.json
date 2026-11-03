@@ -22908,7 +22908,6 @@
     "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
     "שורת_מקור_צפי_EPS": "| ![Hecla Mining Company stock logo](https://www.marketbeat.com/img/logos/hecla-mining-logo.png?s=thumb&v=20240503131652) HL Hecla Mining | 11/3/2026 | Afternoon | $0.14 | $340.10 million | View Hecla Mining Earnings Report for 11/3/2026 |",
     "הערות_מקור_ארכיון": "\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים ל-הכנסות לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 340.10M USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 0.14 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.\nPrimaryissuerQ3releaseNov3: continuingoperationsrecastCasaBerardidiscontinued, sales394820K/priorQ333851K/priorYear315998K, income149600K/117876K/89363K, BASICcontinuingEPS.22/.18/.13. NotadjustedEPSnotoperatingprofit. https://ir.hecla.com/News--Media/news-releases/news-details/2026/Hecla-Reports-Third-Quarter-2026-Results/default.aspx",
-    "בפועל_הכנסות": "394.820M",
     "מטבע_הכנסות": "USD",
     "בסיס_בפועל_הכנסות": "GAAP continuing operations, Casa Berardi excluded and comparatives recast",
     "בפועל_EPS": "0.22",
@@ -22916,7 +22915,8 @@
     "בסיס_בפועל_EPS": "GAAP basic income per common share from continuing operations",
     "השוואה_EPS": "לא",
     "הסבר_EPS": "EPS בסיסי מפעילות נמשכת ללא Casa Berardi; התאמת היקף הצפי המקורי טרם אומתה ולכן אחוז ההפתעה מוסתר.",
-    "קישור_לדוח": "https://ir.hecla.com/News--Media/news-releases/news-details/2026/Hecla-Reports-Third-Quarter-2026-Results/default.aspx"
+    "קישור_לדוח": "https://ir.hecla.com/News--Media/news-releases/news-details/2026/Hecla-Reports-Third-Quarter-2026-Results/default.aspx",
+    "הכנסות_בפועל": "394.820M"
   },
   {
     "חברה": "Hamilton Lane Incorporated",
@@ -26184,10 +26184,10 @@
     "השוואה_EPS": "לא",
     "הסבר_EPS": "הנתון בפועל ב-CAD למניה בסיסית; מטבע ובסיס הצפי המקורי טרם אומתו ולכן אחוז ההפתעה מוסתר.",
     "קישור_לדוח": "https://www.suncor.com/-/media/project/suncor/files/investor-centre/quarterly-reports-2026/2026-q3-suncor-energy-quarterly-report-en.pdf?modified=20261103213000&created=20261103131451",
-    "בפועל_הכנסות": "20.817B",
     "מטבע_הכנסות": "CAD",
     "בסיס_בפועל_הכנסות": "Gross revenues, IFRS, before royalties",
-    "הסבר_הכנסות": "הנתון בפועל הוא הכנסות ברוטו לפני תמלוגים ב-CAD; התאמת היקף הצפי המקורי טרם אומתה ולכן אחוז ההפתעה מוסתר."
+    "הסבר_הכנסות": "הנתון בפועל הוא הכנסות ברוטו לפני תמלוגים ב-CAD; התאמת היקף הצפי המקורי טרם אומתה ולכן אחוז ההפתעה מוסתר.",
+    "הכנסות_בפועל": "20.817B"
   },
   {
     "חברה": "Latham Group, Inc.",
