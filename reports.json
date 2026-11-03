@@ -26997,7 +26997,17 @@
     "סימול": "BWMN",
     "תאריך": "2026-11-04",
     "צפי_EPS": "0.36",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026 לפי MarketBeat מ-28.10: 137.54M USD\nTradingView מציג גם 137.54M USD\nעמוד MarketBeat הנוכחי מציג 137.55M\nFXEmpire מציג צפי נפרד: 162.04M USD\nBusinessQuant מציג 130.27M; מטבע האומדן לא אומת\nהחברה מדווחת בנפרד הכנסות ברוטו והכנסות שירות נטו\nבסיס האומדנים בין הספקים לא יושב\nאין זה קונצנזוס אחיד; השוואת ההפתעה כבויה\nמועד 04.11 הוא הערכת ספק, לא אישור חברה שנמצא\nאינו תחזית הנהלה או הכנסה בפועל; צפי EPS המקורי נשמר",
+    "צפי_הכנסות": "137.54M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-bowman-consulting-group-bwmn-set-to-announce-earnings-on-wednesday-2026-10-28/",
+    "מקור_אימות_מטבע_צפי_הכנסות": "https://www.tradingview.com/symbols/NASDAQ-BWMN/",
+    "מקור_פער_צפי_הכנסות": "https://www.fxempire.com/stocks/bwmn/earnings",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "בסיס_צפי_הכנסות": "Dated source-specific analyst revenue estimate; gross versus net-service scope unresolved; provider conflicts retained",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-28",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "פערי ספקים ובסיס הכנסות ברוטו מול הכנסות שירות נטו לא יושבו."
   },
   {
     "חברה": "Blackstone Secured Lending Fund",
