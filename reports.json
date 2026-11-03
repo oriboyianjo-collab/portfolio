@@ -16834,7 +16834,7 @@
       "S&P 500",
       "Nasdaq 100"
     ],
-    "הערה": "הכנסות: 5.431B USD.\nEPS: 5.86 USD (Adjusted diluted, two-class method).\nEPS מדולל לפי GAAP: 5.69 דולר; חישוב בשיטת שתי מחלקות מניות.",
+    "הערה": "הכנסות: 5.431B USD.\nEPS: 5.86 USD (Adjusted diluted, two-class method).\nEPS מדולל לפי GAAP: 5.69 דולר; חישוב בשיטת שתי מחלקות מניות.\nצפי הכנסות אנליסטים Q3 2026: 4.60B USD; אינו תחזית הנהלה. MarketBeat פרסם ב-26.10 צפי 4.60B דולר ל-Q3, לפני התוצאות. Zacks דרך Yahoo הציג 4.29B; פער ספקים או היקף דיווח לא יושב. השוואה כבויה. צפי EPS הקיים נשמר.",
     "בפועל_EPS": "5.86",
     "הכנסות_בפועל": "5.431B",
     "בסיס_בפועל_EPS": "Adjusted diluted, two-class method",
@@ -16844,7 +16844,13 @@
     "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
     "קישור_לדוח": "https://www.diamondbackenergy.com/news-releases/news-release-details/diamondback-energy-inc-announces-third-quarter-2026-financial",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "לא",
+    "צפי_הכנסות": "4.60B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-diamondback-energy-fang-set-to-post-earnings-on-monday-2026-10-26/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result Q3 analyst forecast; USD; comparison compatibility not yet verified"
   },
   {
     "חברה": "FATPIPE, INC.",
@@ -17133,7 +17139,7 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.07",
-    "הערה": "הכנסות: 1.717B USD.\nEPS: 0.04 USD (Adjusted diluted).\nהפסד מדולל למניה לפי GAAP: 0.10 דולר.\nהפסד נקי: 18 מיליון דולר; רווח נקי מתואם: 7 מיליון דולר.",
+    "הערה": "הכנסות: 1.717B USD.\nEPS: 0.04 USD (Adjusted diluted).\nהפסד מדולל למניה לפי GAAP: 0.10 דולר.\nהפסד נקי: 18 מיליון דולר; רווח נקי מתואם: 7 מיליון דולר.\nצפי הכנסות אנליסטים Q3 2026: 1.61B USD; אינו תחזית הנהלה. MarketBeat פרסם ב-26.10 צפי 1.61B דולר ל-Q3, לפני התוצאות. Zacks דרך Yahoo הציג 1.60B; פער ספקים נשמר. השוואה כבויה. צפי EPS הקיים נשמר.",
     "בפועל_EPS": "0.04",
     "הכנסות_בפועל": "1.717B",
     "בסיס_בפועל_EPS": "Adjusted diluted",
@@ -17143,7 +17149,13 @@
     "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
     "קישור_לדוח": "https://www.prnewswire.com/news-releases/huntsman-announces-third-quarter-2026-earnings-302926922.html",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "לא",
+    "צפי_הכנסות": "1.61B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-huntsman-hun-expected-to-announce-quarterly-earnings-on-monday-2026-10-26/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result Q3 analyst forecast; USD; comparison compatibility not yet verified"
   },
   {
     "חברה": "i-80 Gold Corp.",
@@ -18066,7 +18078,7 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "הכנסות: 655.801M USD.\nEPS: 0.58 USD (GAAP diluted).\nעלייה שנתית בהכנסות: 10.7%.\nFFO למניה: 1.75 דולר; מתואם: 1.79 דולר.",
+    "הערה": "הכנסות: 655.801M USD.\nEPS: 0.58 USD (GAAP diluted).\nעלייה שנתית בהכנסות: 10.7%.\nFFO למניה: 1.75 דולר; מתואם: 1.79 דולר.\nצפי הכנסות אנליסטים Q3 2026: 641.83M USD; אינו תחזית הנהלה. MarketBeat פרסם ב-26.10 צפי 641.83M דולר ל-Q3, לפני התוצאות; אינו צפי חדש לאחר הפרסום. השוואה כבויה. צפי EPS הקיים נשמר.",
     "בפועל_EPS": "0.58",
     "הכנסות_בפועל": "655.801M",
     "בסיס_בפועל_EPS": "GAAP diluted",
@@ -18076,7 +18088,13 @@
     "השוואה_EPS": "לא",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
     "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393756/0/en/ryman-hospitality-properties-inc-reports-third-quarter-2026-results.html",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "לא",
+    "צפי_הכנסות": "641.83M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-ryman-hospitality-properties-rhp-set-to-announce-earnings-on-monday-2026-10-26/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result Q3 analyst forecast; USD; comparison compatibility not yet verified"
   },
   {
     "חברה": "Transocean Ltd.",
@@ -18186,7 +18204,7 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "הכנסות: 713.924M USD.\nEPS: 2.19 USD (GAAP diluted EPS, not AFFO).\nAFFO למניה: 3.17 דולר.",
+    "הערה": "הכנסות: 713.924M USD.\nEPS: 2.19 USD (GAAP diluted EPS, not AFFO).\nAFFO למניה: 3.17 דולר.\nצפי הכנסות אנליסטים Q3 2026: 721.13M USD; אינו תחזית הנהלה. MarketBeat פרסם ב-26.10 צפי 721.13M דולר ל-Q3, לפני התוצאות; אינו צפי חדש לאחר הפרסום. השוואה כבויה. צפי EPS הקיים נשמר.",
     "בפועל_EPS": "2.19",
     "הכנסות_בפועל": "713.924M",
     "בסיס_בפועל_EPS": "GAAP diluted EPS, not AFFO",
@@ -18196,7 +18214,13 @@
     "השוואה_EPS": "לא",
     "הסבר_EPS": "לא אומתה התאמת מדד הצפי ל-EPS, לא הוחלף ב-FFO/AFFO.",
     "קישור_לדוח": "https://www.businesswire.com/news/home/20261102239047/en/SBA-Communications-Corporation-Reports-Third-Quarter-2026-Results-Updates-Full-Year-2026-Outlook-and-Declares-Quarterly-Cash-Dividend",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "לא",
+    "צפי_הכנסות": "721.13M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-sba-communications-sbac-expected-to-release-earnings-on-monday-2026-10-26/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result Q3 analyst forecast; USD; comparison compatibility not yet verified"
   },
   {
     "חברה": "Sabra Health Care REIT, Inc.",
@@ -18702,7 +18726,7 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "הכנסות תפעוליות כוללות: 661M USD.\nEPS: 0.72 USD (GAAP basic and diluted, Class A common).\nהכנסות: עלייה שנתית של 58.13%, מ-418 מיליון דולר.\nתמלוגים: 656 מיליון דולר; בונוסי חכירה: 4 מיליון דולר; אחרות: מיליון דולר.\nרווח תפעולי: 399 מיליון דולר, לעומת הפסד של 176 מיליון דולר אשתקד.\nמרווח תפעולי: 60.36%, לעומת ‎-42.11% אשתקד; שיפור של 102.47 נקודות אחוז.\nרווח נקי מאוחד: 300 מיליון דולר; לבעלי Viper: 140 מיליון דולר.\nתזרים מפעילות: 447 מיליון דולר.\nהפקת נפט: 69,076 חביות ביום; הפקה כוללת: 141,152 חביות שווה ערך נפט ביום.\nתחזית הפקת נפט לרבעון הרביעי: 70–71 אלף חביות ביום.",
+    "הערה": "הכנסות תפעוליות כוללות: 661M USD.\nEPS: 0.72 USD (GAAP basic and diluted, Class A common).\nהכנסות: עלייה שנתית של 58.13%, מ-418 מיליון דולר.\nתמלוגים: 656 מיליון דולר; בונוסי חכירה: 4 מיליון דולר; אחרות: מיליון דולר.\nרווח תפעולי: 399 מיליון דולר, לעומת הפסד של 176 מיליון דולר אשתקד.\nמרווח תפעולי: 60.36%, לעומת ‎-42.11% אשתקד; שיפור של 102.47 נקודות אחוז.\nרווח נקי מאוחד: 300 מיליון דולר; לבעלי Viper: 140 מיליון דולר.\nתזרים מפעילות: 447 מיליון דולר.\nהפקת נפט: 69,076 חביות ביום; הפקה כוללת: 141,152 חביות שווה ערך נפט ביום.\nתחזית הפקת נפט לרבעון הרביעי: 70–71 אלף חביות ביום.\nצפי הכנסות אנליסטים Q3 2026: 623.11M USD; אינו תחזית הנהלה. MarketBeat פרסם ב-26.10 צפי 623.11M דולר ל-Q3, לפני התוצאות; אינו צפי חדש לאחר הפרסום. השוואה כבויה. צפי EPS הקיים נשמר.",
     "בפועל_EPS": "0.72",
     "הכנסות_בפועל": "661M",
     "בסיס_בפועל_EPS": "GAAP basic and diluted, Class A common",
@@ -18712,7 +18736,13 @@
     "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן, ללא החלפת הצפי המקורי.",
     "השוואה_הכנסות": "לא",
-    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393700/31654/en/viper-energy-inc-a-subsidiary-of-diamondback-energy-inc-reports-third-quarter-2026-financial-and-operating-results.html"
+    "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393700/31654/en/viper-energy-inc-a-subsidiary-of-diamondback-energy-inc-reports-third-quarter-2026-financial-and-operating-results.html",
+    "צפי_הכנסות": "623.11M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-viper-energy-vnom-set-to-release-earnings-on-monday-2026-10-26/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result Q3 analyst forecast; USD; comparison compatibility not yet verified"
   },
   {
     "חברה": "Voya Financial, Inc.",
