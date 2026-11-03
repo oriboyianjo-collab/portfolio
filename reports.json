@@ -281,14 +281,21 @@
       "S&P 500",
       "Nasdaq 100"
     ],
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 1.61B USD; אינו תחזית הנהלה. צפי היסטורי שפורסם לפני התוצאות: TradingView מ-19.10 ו-Investing מ-26.10 לפני הסגירה מציגים 1.61B USD ל-Q3. זה אינו נתון הכנסות בפועל ואינו משנה תוצאות קיימות. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "קישור": "https://investor.cadence.com/news/news-details/2026/Cadence-Reports-Third-Quarter-2026-Financial-Results/",
     "הכנסות_בפועל": "1.633B",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "2.11",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "1.61B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:ef5c5525d73f8:0-cdns-q3-26-earnings-revenue-estimate-is-1-61b-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-19",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Cincinnati Financial Corporation",
@@ -333,14 +340,21 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "2.88",
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 5.47B USD; אינו תחזית הנהלה. צפי היסטורי שפורסם לפני התוצאות: Seeking Alpha מ-23.10 ובנזינגה דרך Longbridge מ-26.10 לפני הסגירה מציגים 5.47B USD ל-Q3. מקורות מוקדמים אחרים הציגו 5.37B או 5.44B; פערים לא יושבו. זה אינו נתון בפועל ואינו משנה תוצאות קיימות. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388573/0/en/celestica-announces-third-quarter-2026-financial-results-and-will-hold-2026-investor-and-analyst-day.html",
     "הכנסות_בפועל": "5.83B",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "3.3",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "5.47B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://seekingalpha.com/news/4656575-celestica-q3-2026-earnings-preview-analysts-expect-wide-yy-growth",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-23",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Clearwater Paper Corporation",
