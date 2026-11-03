@@ -27238,7 +27238,18 @@
     "תאריך": "2026-11-04",
     "מועד": "before",
     "צפי_EPS": "1.78",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026 לפי MarketBeat: 1.67B USD\nTradingView מציג גם 1.67B USD\nצפי FXEmpire נפרד: 1.71B USD\nBusinessQuant מציג 1.76B; מטבע האומדן לא אומת\nפער הספקים לא יושב; אין זה קונצנזוס אחיד\nהשוואת ההפתעה כבויה\nהחברה אישרה פרסום תוצאות ב-04.11 ב-07:00 ניו יורק בקירוב\nאינו תחזית הנהלה או הכנסה בפועל; צפי EPS המקורי נשמר",
+    "צפי_הכנסות": "1.67B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/reports/2026-11-4-colliers-international-group-inc-stock/",
+    "מקור_אימות_מטבע_צפי_הכנסות": "https://www.tradingview.com/symbols/NASDAQ-CIGI/",
+    "מקור_פער_צפי_הכנסות": "https://www.fxempire.com/stocks/cigi/earnings",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "בסיס_צפי_הכנסות": "Source-specific analyst revenue estimate; provider conflicts retained",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "לא",
+    "הסבר_הכנסות": "פער ספקים בצפי; היקף ומטבע התוצאות ייבדקו בפרסום הדוח.",
+    "מקור_אימות_מועד": "https://corporate.colliers.com/news/news-details/2026/Colliers-to-announce-third-quarter-results-on-November-4-2026/default.aspx"
   },
   {
     "חברה": "CompX International Inc.",
