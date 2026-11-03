@@ -23100,7 +23100,7 @@
     "תאריך": "2026-11-03",
     "מועד": "after",
     "צפי_EPS": "0.23",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 108.68M דולר, FXEmpire מציג 108.94M USD. הפער בין הספקים טרם יושב.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 108.68M דולר, FXEmpire מציג 108.94M USD. הפער בין הספקים טרם יושב.\nצפי הכנסות אנליסטים Q3 2026 לפי FXEmpire: 108.94M USD, לפי 5 אנליסטים; אינו תחזית הנהלה. MarketBeat מציג 108.68M ו-ChartMill מציג 102.16M; פער ספקים לא יושב. השוואה כבויה. צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-3-super-group-sghc-limited-stock/",
       "https://www.marketbeat.com/earnings/reports/2026-11-3-triple-flag-precious-metals-corp-stock-1/",
@@ -23112,7 +23112,14 @@
       "https://www.tradingview.com/news/tradingview:7ec0791d6ac95:0-mzti-q1-27-earnings-eps-estimate-is-1-37-usd/",
       "https://www.fxempire.com/stocks/mzti/earnings",
       "https://www.fxempire.com/stocks/tfpm/earnings"
-    ]
+    ],
+    "צפי_הכנסות": "108.94M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.fxempire.com/stocks/tfpm/earnings",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "FXEmpire source-specific analyst forecast, Q3 2026 USD; competing providers differ",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Talen Energy Corporation",
