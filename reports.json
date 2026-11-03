@@ -57,8 +57,15 @@
     "בפועל_EPS": "0.76",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "הערה": "בסיס הצפי לא ידוע",
-    "השוואה_EPS": "כן"
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 2.02B USD; אינו תחזית הנהלה. צפי היסטורי של Zacks מ-21.10, לפני התוצאות, ל-Q3 2026: 2.02B USD. Investing ו-TradingView הציגו 2.03B; פער ספקים לא יושב. זה אינו נתון בפועל. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "2.02B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/markets/stocks/articles/analyst-projections-key-metrics-reveal-184212797.html",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-21",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Alexandria Real Estate Equities, Inc.",
@@ -453,14 +460,21 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 565.33M USD; אינו תחזית הנהלה. צפי היסטורי של TipRanks מ-24.10, לפני התוצאות, ל-Q3 2026: 565.33M USD; MarketBeat מציג אותו צפי היסטורי. Investing הציג 565.7M לפני התוצאות ב-26.10; פער ספקים לא יושב. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "קישור": "https://www.globenewswire.com/news-release/2026/10/26/3388582/0/en/dorman-products-inc-reports-third-quarter-2026-results-updates-2026-guidance.html",
     "הכנסות_בפועל": "561.7M",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "2.08",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "565.33M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "http://www.tipranks.com/news/pre-earnings/dorm-upcoming-earnings-report-what-to-expect-pre-earnings-news",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-24",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Flexsteel Industries, Inc.",
@@ -835,14 +849,21 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 10.84B USD; אינו תחזית הנהלה. צפי היסטורי של TradingView מ-23.10, לפני התוצאות, ל-Q3 2026: 10.84B USD; MarketBeat מאשר בנפרד את הצפי ההיסטורי. לא הועתקו הכנסות בפועל לתחזית. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "קישור": "https://investors.nucor.com/news/news-details/2026/Nucor-Reports-Results-for-the-Third-Quarter-of-2026/default.aspx",
     "הכנסות_בפועל": "11.25B",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "5.8",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "10.84B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:842a0919e1897:0-nue-q3-26-earnings-eps-estimate-is-5-84-usd/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-23",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Northwest Bancshares, Inc.",
@@ -1118,8 +1139,15 @@
     "בפועל_EPS": "1.31",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "הערה": "GAAP 1.25; בסיס הצפי לא ידוע",
-    "השוואה_EPS": "כן"
+    "הערה": "GAAP 1.25; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 34.81B USD; אינו תחזית הנהלה. צפי היסטורי של Zacks מ-21.10, לפני התוצאות, ל-Q3 2026: 34.81B USD. AlphaStreet הציג 34.85B ו-MarketBeat 34.77B; פערי ספקים לא יושבו. זה אינו נתון בפועל. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "34.81B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/markets/stocks/articles/countdown-verizon-vz-q3-earnings-184211209.html",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-21",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Welltower Inc.",
