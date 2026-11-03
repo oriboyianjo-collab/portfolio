@@ -710,7 +710,11 @@
     "סימול": "METCB",
     "תאריך": "2026-11-03",
     "מועד": "after",
-    "הערה": "תאריך תוקן לפי PR רשמי: תוצאות Q3 ב־3.11 אחרי הסגירה (Ramaco, METC/METCB)"
+    "הערה": "תאריך תוקן לפי PR רשמי: תוצאות Q3 ב־3.11 אחרי הסגירה (Ramaco, METC/METCB)\nלא הועתק צפי ההכנסות של METC: נדרש אימות היקף הזכויות והדיווח של מניית Class B בנפרד. אין אפס או צפי נפרד מאומת בשורה זו.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.tipranks.com/news/pre-earnings/gef-b-earnings-this-week-how-will-it-perform-pre-earnings-news",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-ramaco-resources-inc-stock/"
+    ]
   },
   {
     "חברה": "MakeMyTrip Limited",
@@ -19203,7 +19207,11 @@
     "חברה": "AquaBounty Technologies, Inc.",
     "סימול": "AQB",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים\nMarketBeat מציג צפי הכנסות 265 אלף דולר לאירוע משוער ב-10.11, בלי תקופה כספית מפורשת. שיוכו לשורת 03.11 לא אומת; אין למלא אפס לפי פעילות מצומצמת.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://theearningsmadness.com/company/CRVL/estimates",
+      "https://www.marketbeat.com/earnings/reports/2026-11-10-aquabounty-technologies-inc-stock/"
+    ]
   },
   {
     "חברה": "Aquestive Therapeutics, Inc.",
@@ -19808,7 +19816,11 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nנמצא אומדן הכנסות 268M דולר של EarningsMadness ל-Q2 FY2027, אך האתר מגדיר אותו כאומדן שלו ולא קונצנזוס אנליסטים. לא הוזן כקונצנזוס.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://theearningsmadness.com/company/CRVL/estimates",
+      "https://www.marketbeat.com/earnings/reports/2026-11-10-aquabounty-technologies-inc-stock/"
+    ]
   },
   {
     "חברה": "CVR Energy Inc.",
@@ -19920,7 +19932,19 @@
     "חברה": "Douglas Elliman Inc.",
     "סימול": "DOUG",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 276.10M דולר, BusinessQuant מציג 276.75M. גם תאריך הספק 04.11 שונה מהלוח המקורי 03.11 שנשמר.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/instant-alerts/upcoming-the-hackett-group-hckt-projected-to-post-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.tradingview.com/news/tradingview:d6148e6e74988:0-mg-q3-26-earnings-revenue-estimate-is-202-41m-usd/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-marriott-vacations-worldwide-vac-expected-to-release-quarterly-earnings-on-wednesday-2026-10-28/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-4-douglas-elliman-inc-stock/",
+      "https://businessquant.com/stocks/embj/estimates/",
+      "https://businessquant.com/stocks/doug/estimates/",
+      "https://businessquant.com/stocks/lab/estimates/",
+      "https://businessquant.com/stocks/rdnw/estimates/",
+      "https://www.fxempire.it/stocks/rdnw/earnings",
+      "https://businessquant.com/stocks/drk/estimates/"
+    ]
   },
   {
     "חברה": "Diamondrock Hospitality Company",
@@ -19947,7 +19971,14 @@
     "סימול": "DRK",
     "תאריך": "2026-11-03",
     "צפי_EPS": "-0.42",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nנמצא אומדן Q3 ב-BusinessQuant של 4.84M, אך המטבע והיקף הנתון לא אומתו. לא הוזן מספר ללא יחידה מאומתת.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://businessquant.com/stocks/doug/estimates/",
+      "https://businessquant.com/stocks/lab/estimates/",
+      "https://businessquant.com/stocks/rdnw/estimates/",
+      "https://www.fxempire.it/stocks/rdnw/earnings",
+      "https://businessquant.com/stocks/drk/estimates/"
+    ]
   },
   {
     "חברה": "Driven Brands Holdings Inc.",
@@ -20086,20 +20117,41 @@
     "תאריך": "2026-11-03",
     "מועד": "after",
     "צפי_EPS": "0.11",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: GuruFocus מ-02.11 מציג 45.94M דולר, BusinessQuant מציג 43.97M. הפער טרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-4-douglas-elliman-inc-stock/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-txo-partners-txo-projected-to-release-earnings-on-tuesday-2026-10-27/",
+      "https://www.stocktaper.com/stock/TXO",
+      "https://www.gurufocus.com/news/9162010/eaglerock-land-llc-erok-q3-2026-everything-you-need-to-know-ahead-of-earnings",
+      "https://businessquant.com/stocks/erok/estimates/"
+    ]
   },
   {
     "חברה": "EnerSyn Global Inc.",
     "סימול": "ESYN",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים\nבבדיקת FXEmpire לא מוצג צפי הכנסות מספרי ל-Q3 2026. השדה נשאר ריק, לא אפס.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/stocks/NASDAQ/AQB/earnings/",
+      "https://www.fxempire.com/stocks/esyn/earnings",
+      "https://www.marketbeat.com/stocks/NASDAQ/KTCC/earnings/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-vertical-aerospace-evtl-expected-to-post-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.nasdaq.com/market-activity/stocks/seb/earnings"
+    ]
   },
   {
     "חברה": "Energy Transfer LP",
     "סימול": "ET",
     "תאריך": "2026-11-03",
     "מועד": "before",
-    "הערה": "מועד פרסום לפי הודעת החברה; טרם פורסמו תוצאות"
+    "הערה": "מועד פרסום לפי הודעת החברה; טרם פורסמו תוצאות\nצפי הכנסות Q3 לא הושלם: Yahoo מציג 32.43B USD לרבעון ספטמבר, בעוד ספקים אחרים מציגים אומדנים שונים. היקף הקונצנזוס טרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://finance.yahoo.com/markets/stocks/articles/shopify-stock-portfolio-pre-q3-162400242.html",
+      "https://finance.yahoo.com/quote/ET/analysis/",
+      "https://finance.yahoo.com/markets/stocks/articles/gear-thomson-reuters-tri-q3-121504948.html",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-teva-pharmaceutical-industries-limited-stock/",
+      "https://www.newsquawk.com/headlines/newsquawk-daily-us-earnings-estimates---3rd-november-2026-etn-mpc-pfe-amgn-bkng-anet-amd-shop"
+    ]
   },
   {
     "חברה": "Eaton Corporation, PLC",
@@ -20153,7 +20205,14 @@
     "סימול": "EVTL",
     "תאריך": "2026-11-03",
     "צפי_EPS": "-0.29",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nסקירת MarketBeat מ-27.10 מציינת צפי EPS בלבד, ללא צפי הכנסות מספרי. השדה נשאר ריק, לא אפס.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/stocks/NASDAQ/AQB/earnings/",
+      "https://www.fxempire.com/stocks/esyn/earnings",
+      "https://www.marketbeat.com/stocks/NASDAQ/KTCC/earnings/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-vertical-aerospace-evtl-expected-to-post-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.nasdaq.com/market-activity/stocks/seb/earnings"
+    ]
   },
   {
     "חברה": "Expeditors International of Washington, Inc.",
@@ -20692,7 +20751,16 @@
     "סימול": "IDYA",
     "תאריך": "2026-11-03",
     "צפי_EPS": "-1.26",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 7.58M דולר ומועד משוער 09.11; סקירה אחרת מציגה 7.9M. היקף ההשוואה ומועד הפרסום לא אומתו בנפרד מהחברה.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-9-ideaya-biosciences-inc-stock/",
+      "https://www.itiger.com/news/1110774144",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-koninklijke-philips-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-fortis-inc-stock/",
+      "https://www.gurufocus.com/news/9161940/enlight-renewable-energy-ltd-enlt-q3-2026-earnings-report-preview-what-to-expect",
+      "https://www.marketbeat.com/earnings/reports/2026-11-9-ideaya-biosciences-inc-stock/",
+      "https://smartinvestorsdaily.com/articles/nasdaq-idya-earnings-preview-2026-11-03"
+    ]
   },
   {
     "חברה": "Icahn Enterprises L.P.",
@@ -21059,7 +21127,14 @@
     "סימול": "KTCC",
     "תאריך": "2026-11-03",
     "מועד": "after",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nלא נמצא צפי הכנסות מספרי במקורות שנבדקו ל-Q1 FY2027; אין להסיק צפי מהכנסות הרבעון הקודם. השדה נשאר ריק, לא אפס.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/stocks/NASDAQ/AQB/earnings/",
+      "https://www.fxempire.com/stocks/esyn/earnings",
+      "https://www.marketbeat.com/stocks/NASDAQ/KTCC/earnings/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-vertical-aerospace-evtl-expected-to-post-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.nasdaq.com/market-activity/stocks/seb/earnings"
+    ]
   },
   {
     "חברה": "Kura Oncology, Inc.",
@@ -21081,7 +21156,17 @@
     "חברה": "Standard BioTools Inc.",
     "סימול": "LAB",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 18.80M דולר, BusinessQuant מציג 19.56M. הפער בין הספקים טרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.tradingview.com/news/tradingview:9cf43691be511:0-auph-q3-26-earnings-revenue-estimate-is-83-61m-usd/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-ternium-sa-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-standard-biotools-inc-stock/",
+      "https://businessquant.com/stocks/doug/estimates/",
+      "https://businessquant.com/stocks/lab/estimates/",
+      "https://businessquant.com/stocks/rdnw/estimates/",
+      "https://www.fxempire.it/stocks/rdnw/earnings",
+      "https://businessquant.com/stocks/drk/estimates/"
+    ]
   },
   {
     "חברה": "Liberty Global Ltd.",
@@ -21245,7 +21330,13 @@
     "סימול": "LND",
     "תאריך": "2026-11-03",
     "מועד": "after",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nלא אומת צפי הכנסות בר-שיוך לתקופת הדוח ולמטבעה; הכנסות עבר אינן צפי לרבעון הבא. השדה נשאר ריק, לא אפס.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://businessquant.com/stocks/snoa/estimates/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-16-sonoma-pharmaceuticals-inc-stock/",
+      "https://www.chartmill.com/stock/quote/LND/earnings",
+      "https://www.tradingview.com/symbols/TSX-TA/financials-earnings/"
+    ]
   },
   {
     "חברה": "Louisiana-Pacific Corporation",
@@ -21747,7 +21838,7 @@
     "חברה": "PAMT CORP",
     "סימול": "PAMT",
     "תאריך": "2026-11-03",
-    "הערה": "Q3 2026: תוצאות פורסמו ב-02.11, לא מועד הלוח 03.11. הכנסות מאוחדות 162.548M USD כולל תוספת דלק, עלייה 8.2% שנתי; EPS GAAP מדולל -0.38 USD. אין צפי קיים.\nהפסד תפעולי 5.022M לעומת 5.711M אשתקד; שולי רווח תפעולי מחושבים -3.09%. הפסד נקי 8.056M לעומת 5.587M אשתקד. הכנסות ללא תוספת דלק 135.982M, מדד נפרד.",
+    "הערה": "Q3 2026: תוצאות פורסמו ב-02.11, לא מועד הלוח 03.11. הכנסות מאוחדות 162.548M USD כולל תוספת דלק, עלייה 8.2% שנתי; EPS GAAP מדולל -0.38 USD. אין צפי קיים.\nהפסד תפעולי 5.022M לעומת 5.711M אשתקד; שולי רווח תפעולי מחושבים -3.09%. הפסד נקי 8.056M לעומת 5.587M אשתקד. הכנסות ללא תוספת דלק 135.982M, מדד נפרד.\nלא אומת צפי הכנסות היסטורי בר-השוואה לפני פרסום תוצאות Q3 ב-02.11. אין להסיק אותו מהתוצאה בפועל או מהכנסות ללא תוספת דלק.",
     "הערות_מקור_ארכיון": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים",
     "בפועל_EPS": "-0.38",
     "בסיס_בפועל_EPS": "GAAP diluted",
@@ -21758,7 +21849,11 @@
     "השוואה_הכנסות": "לא",
     "השוואה_EPS": "לא",
     "קישור": "https://www.businesswire.com/news/home/20261102194521/en/PAMT-CORP-Announces-Results-for-the-Third-Quarter-Ended-September-30-2026",
-    "מועד_פרסום_מאומת": "2026-11-02"
+    "מועד_פרסום_מאומת": "2026-11-02",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.businesswire.com/news/home/20261102194521/en/PAMT-CORP-Announces-Results-for-the-Third-Quarter-Ended-September-30-2026",
+      "https://www.accessnewswire.com/newsroom/en/banking-and-financial-services/rhinebeck-bancorp-inc.-reports-results-for-the-quarter-ended-septemb-1243803"
+    ]
   },
   {
     "חברה": "Par Pacific Holdings, Inc.",
@@ -22053,7 +22148,14 @@
     "חברה": "RideNow Group, Inc.",
     "סימול": "RDNW",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי הכנסות Q3 לא הושלם: BusinessQuant מציג 301.05M, FXEmpire מציג 293.75M USD. גם תאריך הספק 10.11 שונה מהלוח המקורי שנשמר; הפער טרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://businessquant.com/stocks/doug/estimates/",
+      "https://businessquant.com/stocks/lab/estimates/",
+      "https://businessquant.com/stocks/rdnw/estimates/",
+      "https://www.fxempire.it/stocks/rdnw/earnings",
+      "https://businessquant.com/stocks/drk/estimates/"
+    ]
   },
   {
     "חברה": "Red Rock Resorts, Inc.",
@@ -22252,7 +22354,14 @@
     "חברה": "Seaboard Corporation",
     "סימול": "SEB",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; קיימת גם רשומת לוח מוקדמת במועד אחר ללא תוצאות בפועל; אין בכך אישור לשני דוחות שונים\nב-Nasdaq לא זמין צפי הכנסות מספרי בבדיקה זו. השדה נשאר ריק, לא אפס; לא הועתקו נתוני בנק SEB משוודיה לחברת Seaboard.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/stocks/NASDAQ/AQB/earnings/",
+      "https://www.fxempire.com/stocks/esyn/earnings",
+      "https://www.marketbeat.com/stocks/NASDAQ/KTCC/earnings/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-vertical-aerospace-evtl-expected-to-post-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.nasdaq.com/market-activity/stocks/seb/earnings"
+    ]
   },
   {
     "חברה": "Super Group (SGHC) Limited",
@@ -22407,7 +22516,13 @@
     "חברה": "Sonoma Pharmaceuticals, Inc.",
     "סימול": "SNOA",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nנמצא אומדן הכנסות ב-BusinessQuant המסומן Q2 26, אך שיוכו ל-Q2 FY2027 לא אומת. מועד אחר בספק 16.11 אינו אישור חברה. אין להעתיק אומדן מתקופה לא תואמת.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://businessquant.com/stocks/snoa/estimates/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-16-sonoma-pharmaceuticals-inc-stock/",
+      "https://www.chartmill.com/stock/quote/LND/earnings",
+      "https://www.tradingview.com/symbols/TSX-TA/financials-earnings/"
+    ]
   },
   {
     "חברה": "SOPHiA GENETICS SA",
@@ -22552,7 +22667,18 @@
     "תאריך": "2026-11-03",
     "מועד": "after",
     "צפי_EPS": "2.35",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: סקירת MarketBeat מציגה 11.96B דולר, הודעת הספק מ-27.10 מציגה 11.85B. גם התאמת המטבע והגדרת ההכנסות טרם אומתה.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-suncor-energy-inc-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-transalta-co-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-tango-therapeutics-inc-stock/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-taysha-gene-therapies-tsha-set-to-announce-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-werewolf-therapeutics-inc-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-transalta-co-stock/",
+      "https://finance.yahoo.com/energy/articles/ahead-suncor-energy-su-q3-121506205.html",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-suncor-energy-inc-stock/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-suncor-energy-su-set-to-post-earnings-on-tuesday-2026-10-27/"
+    ]
   },
   {
     "חברה": "Latham Group, Inc.",
@@ -22593,7 +22719,12 @@
     "סימול": "SYRE",
     "תאריך": "2026-11-03",
     "צפי_EPS": "-0.79",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nמקורות מציגים צפי הכנסות 0 ל-Q3, אך טבלת TradingView מציגה מקף במקום מספר והיקף כיסוי האנליסטים אינו מפורט. האפס לא הוזן כקונצנזוס מאומת.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.tradingview.com/news/tradingview:a2fde0a489df4:0-syre-q3-26-earnings-revenue-estimate-is-0-usd/",
+      "https://businessquant.com/stocks/syre/estimates/",
+      "https://www.marketbeat.com/earnings/2026-11-03/"
+    ]
   },
   {
     "חברה": "Sysco Corporation",
@@ -22618,7 +22749,18 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "0.05",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nנמצא ב-MarketBeat צפי הכנסות 366.41M דולר ל-Q3. התאמת מטבע האומדן לדיווח החברה ב-CAD טרם אומתה; אין המרת מטבע משוערת.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-suncor-energy-inc-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-transalta-co-stock/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-tango-therapeutics-inc-stock/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-taysha-gene-therapies-tsha-set-to-announce-quarterly-earnings-on-tuesday-2026-10-27/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-3-werewolf-therapeutics-inc-stock/",
+      "https://businessquant.com/stocks/snoa/estimates/",
+      "https://www.marketbeat.com/earnings/reports/2026-11-16-sonoma-pharmaceuticals-inc-stock/",
+      "https://www.chartmill.com/stock/quote/LND/earnings",
+      "https://www.tradingview.com/symbols/TSX-TA/financials-earnings/"
+    ]
   },
   {
     "חברה": "Talos Energy, Inc.",
@@ -22841,7 +22983,14 @@
     "סימול": "TXO",
     "תאריך": "2026-11-03",
     "צפי_EPS": "0.22",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 103.72M דולר, Stocktaper מציג 102.05M. הפער בין הספקים טרם יושב.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/earnings/reports/2026-11-4-douglas-elliman-inc-stock/",
+      "https://www.marketbeat.com/instant-alerts/upcoming-txo-partners-txo-projected-to-release-earnings-on-tuesday-2026-10-27/",
+      "https://www.stocktaper.com/stock/TXO",
+      "https://www.gurufocus.com/news/9162010/eaglerock-land-llc-erok-q3-2026-everything-you-need-to-know-ahead-of-earnings",
+      "https://businessquant.com/stocks/erok/estimates/"
+    ]
   },
   {
     "חברה": "CVR Partners, LP",
@@ -23048,7 +23197,13 @@
     "סימול": "WEYS",
     "תאריך": "2026-11-03",
     "מועד": "after",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nבמקורות שנבדקו לא מופיע צפי הכנסות מספרי ל-Q3 2026. השדה נשאר ריק, לא אפס; נתון עבר אינו תחזית.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/stocks/NYSEAMERICAN/SEB/earnings/",
+      "https://stocknear.com/stocks/WEYS/statistics/earnings",
+      "https://backpack.exchange/stocks/WMK/earnings",
+      "https://www.marketbeat.com/earnings/2026-11-03/"
+    ]
   },
   {
     "חברה": "Willis Lease Finance Corporation",
@@ -23068,7 +23223,13 @@
     "חברה": "Weis Markets, Inc.",
     "סימול": "WMK",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nב-Backpack מוצג אירוע Q3 FY2026 ללא מספר צפי הכנסות. השדה נשאר ריק, לא אפס; אין להסיק תחזית מתוצאות עבר.",
+    "מקורות_בדיקת_פער_הכנסות": [
+      "https://www.marketbeat.com/stocks/NYSEAMERICAN/SEB/earnings/",
+      "https://stocknear.com/stocks/WEYS/statistics/earnings",
+      "https://backpack.exchange/stocks/WMK/earnings",
+      "https://www.marketbeat.com/earnings/2026-11-03/"
+    ]
   },
   {
     "חברה": "Essential Utilities, Inc.",
