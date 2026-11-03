@@ -14569,15 +14569,16 @@
     "הערה": "Q3 2026 | הסתיים ב-30.09.2026\nהכנסות תפעוליות כוללות (Total operating income): 701.006 מיליארד CLP, מחושב מהפרש 9 חודשים 2,269.145 מיליארד ומחצית ראשונה 1,568.139 מיליארד, באותה הגדרת הבנק.\nריבית והצמדה נטו: 508.432 מיליארד; עמלות נטו 130.453 מיליארד; תוצאות פיננסיות נטו 61.098 מיליארד. רכיבים אלה אינם מלוא ההכנסות התפעוליות.\nרווח לפני הפסדי אשראי: 447.773 מיליארד CLP; שיעורו מההכנסות התפעוליות 63.9%. אינו מדד US GAAP לחברה לא-פיננסית.\nבסיס הדיווח הוא כללי בנקים של CMF בצ'ילה, דומים ל-IFRS עם הבדלים, לא US GAAP.\nרווח נקי לבעלי המניות כ-237.1 מיליארד CLP, ירידה שנתית של 4.2% ורבעונית של 38.0%.\nEPS של 0.50 USD ל-ADR הוא תרגום הבנק. התאמת בסיס ומטבע הצפי 0.65 לא אומתה, ולכן אין השוואה.\nהלוואות עלו ב-1.8% רבעונית ופיקדונות ב-2.8%.",
     "קישור": "https://www.globenewswire.com/news-release/2026/10/30/3392140/0/en/banco-santander-chile-reports-strong-third-quarter-2026-results-driven-by-continued-customer-growth-higher-profitability-and-stable-capital-levels.html",
     "בפועל_EPS": "0.5",
-    "בסיס_בפועל_EPS": "CMF Chile bank accounting; issuer translated USD per ADR",
+    "בסיס_בפועל_EPS": "CMF צ׳ילה, ADR בדולר",
     "מטבע_EPS": "USD",
     "השוואה_EPS": "לא",
     "הערות_מקור_ארכיון": "\nבסיס הצפי לא ידוע. EPS ל-ADR בדולר הוא תרגום הבנק; בסיס הצפי לא אומת ולכן אין השוואה. הכנסות, רווח תפעולי ושוליו לא פורסמו בפרסום שנבדק.\n\nרווח תפעולי ושולי רווח תפעולי: לא פורסמו במקור שנבדק; אין אומדן חלופי.\n\nעיקרי הפעילות | Q3 2026\nאשראי: תיק ההלוואות עלה ב-1.8% רבעונית; הלוואות מסחריות עלו ב-4.0% ופיקדונות ב-2.8%.\nרווחיות: רווח נקי 237 מיליארד פסו, ירידה שנתית של 4.2% ורבעונית של 38.0%; אין טבלת הכנסות או מגזרים במקור שנבדק.\n\nתקופה: Q3 2026\nבסיס הרווח התפעולי: US GAAP, מאוחד",
-    "הכנסות_בפועל": "701.006B CLP",
+    "הכנסות_בפועל": "701.006B",
     "מטבע_הכנסות": "CLP",
     "בסיס_בפועל_הכנסות": "CMF Chile bank accounting; calculated Q3 Total operating income",
     "השוואה_הכנסות": "לא",
-    "אימות_הכנסות_בפועל": "Calculated Q3=9M2269145-H11568139 millionCLP same management-commentary definition; https://www.sec.gov/Archives/edgar/data/1027552/000102755226000127/mncsept26.htm ; https://www.sec.gov/Archives/edgar/data/1027552/000102755226000098/managementcommentary2q2026.pdf"
+    "אימות_הכנסות_בפועל": "Calculated Q3=9M2269145-H11568139 millionCLP same management-commentary definition; https://www.sec.gov/Archives/edgar/data/1027552/000102755226000127/mncsept26.htm ; https://www.sec.gov/Archives/edgar/data/1027552/000102755226000098/managementcommentary2q2026.pdf",
+    "מטבע_בפועל_הכנסות": "CLP"
   },
   {
     "חברה": "BrightSpring Health Services, Inc.",
