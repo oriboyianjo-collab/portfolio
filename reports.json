@@ -20356,14 +20356,19 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים ל-הכנסות לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 340.10M USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים ל-הכנסות לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 340.10M USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 0.14 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
     "צפי_הכנסות": "340.10M",
     "מטבע_צפי_הכנסות": "USD",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "צפי מלוח MarketBeat המתוארך; מטבע והיקף מול בפועל ייבדקו עם פרסום התוצאות.",
     "בסיס_צפי_הכנסות": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/2026-11-03/",
-    "שורת_מקור_צפי_הכנסות": "| ![Hecla Mining Company stock logo](https://www.marketbeat.com/img/logos/hecla-mining-logo.png?s=thumb&v=20240503131652) HL Hecla Mining | 11/3/2026 | Afternoon | $0.14 | $340.10 million | View Hecla Mining Earnings Report for 11/3/2026 |"
+    "שורת_מקור_צפי_הכנסות": "| ![Hecla Mining Company stock logo](https://www.marketbeat.com/img/logos/hecla-mining-logo.png?s=thumb&v=20240503131652) HL Hecla Mining | 11/3/2026 | Afternoon | $0.14 | $340.10 million | View Hecla Mining Earnings Report for 11/3/2026 |",
+    "צפי_EPS": "0.14",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
+    "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
+    "שורת_מקור_צפי_EPS": "| ![Hecla Mining Company stock logo](https://www.marketbeat.com/img/logos/hecla-mining-logo.png?s=thumb&v=20240503131652) HL Hecla Mining | 11/3/2026 | Afternoon | $0.14 | $340.10 million | View Hecla Mining Earnings Report for 11/3/2026 |"
   },
   {
     "חברה": "Hamilton Lane Incorporated",
@@ -20496,14 +20501,19 @@
     "סימול": "IEP",
     "תאריך": "2026-11-03",
     "מועד": "before",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים ל-הכנסות לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 2.33B USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים ל-הכנסות לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 2.33B USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 0.09 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
     "צפי_הכנסות": "2.33B",
     "מטבע_צפי_הכנסות": "USD",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "צפי מלוח MarketBeat המתוארך; מטבע והיקף מול בפועל ייבדקו עם פרסום התוצאות.",
     "בסיס_צפי_הכנסות": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/2026-11-03/",
-    "שורת_מקור_צפי_הכנסות": "| ![Icahn Enterprises L.P. stock logo](https://www.marketbeat.com/img/logos/icahn-enterprises-lp-logo.png?s=thumb&v=20240215143849) IEP Icahn Enterprises | 11/3/2026 | Morning | $0.09 | $2.33 billion | View Icahn Enterprises Earnings Report for 11/3/2026 |"
+    "שורת_מקור_צפי_הכנסות": "| ![Icahn Enterprises L.P. stock logo](https://www.marketbeat.com/img/logos/icahn-enterprises-lp-logo.png?s=thumb&v=20240215143849) IEP Icahn Enterprises | 11/3/2026 | Morning | $0.09 | $2.33 billion | View Icahn Enterprises Earnings Report for 11/3/2026 |",
+    "צפי_EPS": "0.09",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
+    "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
+    "שורת_מקור_צפי_EPS": "| ![Icahn Enterprises L.P. stock logo](https://www.marketbeat.com/img/logos/icahn-enterprises-lp-logo.png?s=thumb&v=20240215143849) IEP Icahn Enterprises | 11/3/2026 | Morning | $0.09 | $2.33 billion | View Icahn Enterprises Earnings Report for 11/3/2026 |"
   },
   {
     "חברה": "International Flavors & Fragrances, Inc.",
@@ -20888,14 +20898,19 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים ל-הכנסות לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 438.21M USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים ל-הכנסות לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 438.21M USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 0.72 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
     "צפי_הכנסות": "438.21M",
     "מטבע_צפי_הכנסות": "USD",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "צפי מלוח MarketBeat המתוארך; מטבע והיקף מול בפועל ייבדקו עם פרסום התוצאות.",
     "בסיס_צפי_הכנסות": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/2026-11-03/",
-    "שורת_מקור_צפי_הכנסות": "| ![LGI Homes, Inc. stock logo](https://www.marketbeat.com/img/logos/lgi-homes-inc-logo.jpg?s=thumb) LGIH LGI Homes | 11/3/2026 | Morning | $0.72 | $438.21 million | View LGI Homes Earnings Report for 11/3/2026 |"
+    "שורת_מקור_צפי_הכנסות": "| ![LGI Homes, Inc. stock logo](https://www.marketbeat.com/img/logos/lgi-homes-inc-logo.jpg?s=thumb) LGIH LGI Homes | 11/3/2026 | Morning | $0.72 | $438.21 million | View LGI Homes Earnings Report for 11/3/2026 |",
+    "צפי_EPS": "0.72",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
+    "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
+    "שורת_מקור_צפי_EPS": "| ![LGI Homes, Inc. stock logo](https://www.marketbeat.com/img/logos/lgi-homes-inc-logo.jpg?s=thumb) LGIH LGI Homes | 11/3/2026 | Morning | $0.72 | $438.21 million | View LGI Homes Earnings Report for 11/3/2026 |"
   },
   {
     "חברה": "Longeveron Inc.",
@@ -21593,14 +21608,19 @@
     "חברה": "Personalis, Inc.",
     "סימול": "PSNL",
     "תאריך": "2026-11-03",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים ל-הכנסות לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 21.54M USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים ל-הכנסות לפי MarketBeat לדוח המתוכנן ל-03.11.2026: 21.54M USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.\nצפי אנליסטים ל-EPS לפי MarketBeat לדוח המתוכנן ל-03.11.2026: -0.26 USD. רבעון כספי לא צוין במקור; בסיס הצפי לא ידוע. אין זה נתון בפועל.",
     "צפי_הכנסות": "21.54M",
     "מטבע_צפי_הכנסות": "USD",
     "השוואה_הכנסות": "לא",
     "הסבר_הכנסות": "צפי מלוח MarketBeat המתוארך; מטבע והיקף מול בפועל ייבדקו עם פרסום התוצאות.",
     "בסיס_צפי_הכנסות": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
     "מקור_צפי_הכנסות": "https://www.marketbeat.com/earnings/2026-11-03/",
-    "שורת_מקור_צפי_הכנסות": "| ![Personalis, Inc. stock logo](https://www.marketbeat.com/img/logos/personalis-inc-logo.png?s=thumb&v=20221223093814) PSNL Personalis | 11/3/2026 | Afternoon | ($0.26) | $21.54 million | View Personalis Earnings Report for 11/3/2026 |"
+    "שורת_מקור_צפי_הכנסות": "| ![Personalis, Inc. stock logo](https://www.marketbeat.com/img/logos/personalis-inc-logo.png?s=thumb&v=20221223093814) PSNL Personalis | 11/3/2026 | Afternoon | ($0.26) | $21.54 million | View Personalis Earnings Report for 11/3/2026 |",
+    "צפי_EPS": "-0.26",
+    "מטבע_צפי_EPS": "USD",
+    "בסיס_צפי_EPS": "Analyst estimate for report scheduled 2026-11-03; fiscal quarter not stated by source",
+    "מקור_צפי_EPS": "https://www.marketbeat.com/earnings/2026-11-03/",
+    "שורת_מקור_צפי_EPS": "| ![Personalis, Inc. stock logo](https://www.marketbeat.com/img/logos/personalis-inc-logo.png?s=thumb&v=20221223093814) PSNL Personalis | 11/3/2026 | Afternoon | ($0.26) | $21.54 million | View Personalis Earnings Report for 11/3/2026 |"
   },
   {
     "חברה": "Postal Realty Trust, Inc.",
