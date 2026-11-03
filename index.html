@@ -5194,7 +5194,7 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
   const within = (a,b)=>ntFil.sort==='az' ? nmK(a).localeCompare(nmK(b), ['he','en'], {sensitivity:'base'}) || a.symbol.localeCompare(b.symbol)
     : ntFil.sort==='cap' ? ((b.capV!=null)-(a.capV!=null)) || (b.capV||0)-(a.capV||0) || a.symbol.localeCompare(b.symbol)
     : ((b.ixs.length?1:0)-(a.ixs.length?1:0));
-  const M = M0.slice().sort((a,b)=>(a.d<b.d?-1:a.d>b.d?1:0) || within(a,b));   // sorting is inside each day – the day groups stay
+  const M = M0.slice().sort((a,b)=> ntFil.sort==='cap' ? within(a,b) : (a.d<b.d?-1:a.d>b.d?1:0) || within(a,b));   // v186: market-cap sort ranks the whole filtered list globally; other sorts stay within day groups
   if(ntFil.sort==='cap'){ const miss = [...new Set(M.filter(r=>r.capV==null).map(r=>r.symbol))]; if(miss.length) loadRepCaps(miss).then(ch=>{ if(ch && newsTab==='rep') drawReports(); }); }
   if(!M.length){ el.innerHTML = `<div class="news-empty">${qn ? 'לא נמצאו דוחות עבור „'+esc(ntFil.q.trim())+'”.' : 'אין דוחות בסינון הזה.'}</div>`; return; }
   const hasResults = r=>[r.eps, r.rev].some(v=>v!=null && String(v).trim()!=='' && !/^(?:[—–-]|n\/?a|null)$/i.test(String(v).trim()));
@@ -5294,13 +5294,16 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     const whyL = [r.eps && !E.ok ? 'EPS: '+E.why : '', r.rev && !R.ok ? 'הכנסות: '+R.why : ''].filter(Boolean);
     const whyHtml = ()=> whyL.length ? ib(whyL.map(x=>`<div>${esc(x)}</div>`).join(''), 'למה אין השוואה לצפי', 'warn') : '';
     return `<article class="rrow${(ec||rc) ? ' r-'+(ec||rc) : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
-      `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span>${whyHtml(r)}</div><small class="rmeta"><span class="rcompany">${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}</span>${ntFil.sort==='cap' ? '<bdi class="rcap num">'+(r.capV ? fmtCap(r.capV) : 'שווי לא ידוע')+'</bdi>' : ''}</small></div>`+
+      `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span>${whyHtml(r)}</div><small class="rmeta"><span class="rcompany">${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}${ntFil.sort==='cap' && multiDay ? ' · '+esc(fmtDate(r.d)) : ''}</span>${ntFil.sort==='cap' ? '<bdi class="rcap num">'+(r.capV ? fmtCap(r.capV) : 'שווי לא ידוע')+'</bdi>' : ''}</small></div>`+
       `<div class="rv">${val('EPS', r.epsEst, r.eps, ec, surp(e2, e1), E, tagB(r.epsEstB, r.epsB, r.epsCur||r.epsActCur))}</div><div class="rv">${val('הכנסות', r.revEst, r.rev, rc, surp(r2, r1), R, tagB(r.revEstB, r.revB, r.revCur||r.revActCur), true)}</div>${link}`+
             (/^https?:\/\//i.test(r.link) ? `<div class="rpl-row"><a class="news-l rpl-a" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">לדוח ↗</a></div>` : '')+
       (r.note ? `<div class="rnote2" role="button" tabindex="0" aria-expanded="false" data-rnote><span>${esc(r.note)}</span>${r.note.length > 90 || (r.note.match(/\n/g)||[]).length >= 2 ? '<i class="rmore2">עוד ▾</i>' : ''}</div>` : '')+`</article>`; };
   const grp = (A)=>{ let h = '', last = null; A.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="rday">${dayHead(r.d)}</div>`; } h += card(r); }); return h; };
-  const A = [...up, ...past], more = A.length - repShow, upS = up.slice(0, repShow), pastS = past.slice(0, Math.max(0, repShow - up.length));
-  el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' || ntFil.tm!=='all' || qn ? ' בסינון' : ''}</div>` + (upS.length ? '<div class="rsec">ללא תוצאות מאומתות</div>'+grp(upS) : '') + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '') + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
+  // v186: in market-cap sort the list is one global ranking – no day/section group headers; the card shows its date when the filter spans days
+  const multiDay = new Set(M.map(r=>r.d)).size > 1;
+  const grpCap = A=>A.map(card).join('');
+  const capFlat = ntFil.sort==='cap', A = capFlat ? M : [...up, ...past], more = A.length - repShow, upS = capFlat ? [] : up.slice(0, repShow), pastS = capFlat ? [] : past.slice(0, Math.max(0, repShow - up.length));
+  el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' || ntFil.tm!=='all' || qn ? ' בסינון' : ''}</div>` + (capFlat ? grpCap(M.slice(0, repShow)) : (upS.length ? '<div class="rsec">ללא תוצאות מאומתות</div>'+grp(upS) : '') + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '')) + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
 const FLAGS = {US:'🇺🇸', IL:'🇮🇱', EU:'🇪🇺', DE:'🇩🇪', GB:'🇬🇧', UK:'🇬🇧', FR:'🇫🇷', JP:'🇯🇵', CN:'🇨🇳', CA:'🇨🇦', CH:'🇨🇭', AU:'🇦🇺', 'ארה״ב':'🇺🇸', 'ארה"ב':'🇺🇸', 'ישראל':'🇮🇱', 'אירופה':'🇪🇺', 'גוש האירו':'🇪🇺', 'גרמניה':'🇩🇪', 'בריטניה':'🇬🇧', 'יפן':'🇯🇵', 'סין':'🇨🇳'};
 const CNAME = {US:'ארה״ב', IL:'ישראל', EU:'אירופה', DE:'גרמניה', GB:'בריטניה', UK:'בריטניה', FR:'צרפת', JP:'יפן', CN:'סין', CA:'קנדה', CH:'שווייץ', AU:'אוסטרליה'};
 function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; const enter = calEnter; calEnter = false; if(!D.items.length){ $('calFil').innerHTML = ''; el.innerHTML = ntEmpty('cal', D.err); return; }
