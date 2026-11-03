@@ -19973,13 +19973,20 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "0.06",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מ-27.10 מציג 62.64M דולר, TipRanks מ-01.11 מציג 86.18M דולר. הפער מהותי וטרם יושב.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מ-27.10 מציג 62.64M דולר, TipRanks מ-01.11 מציג 86.18M דולר. הפער מהותי וטרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 87.04M USD; אינו תחזית הנהלה. FXEmpire מציג 87.04M USD ל-Q3 לפי 2 אנליסטים; MarketBeat מציג 62.64M. זהו צפי ספק מסוים, לא קונצנזוס אחיד מאומת. פער ספקים או היקף דיווח לא יושב. השוואה כבויה. צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-10-aviat-networks-inc-stock/",
       "https://www.fxempire.com/stocks/avnw/earnings",
       "https://www.marketbeat.com/instant-alerts/upcoming-core-molding-technologies-cmt-projected-to-release-quarterly-earnings-on-tuesday-2026-10-27/",
       "https://blog.tipranks.com/cmt-earnings-this-week-how-will-it-perform-pre-earnings-news-2/"
-    ]
+    ],
+    "צפי_הכנסות": "87.04M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.fxempire.com/stocks/cmt/earnings",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific Q3 USD analyst forecast; provider conflicts explicitly retained",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Claros Mortgage Trust, Inc.",
@@ -23414,14 +23421,21 @@
     "סימול": "TXO",
     "תאריך": "2026-11-03",
     "צפי_EPS": "0.22",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 103.72M דולר, Stocktaper מציג 102.05M. הפער בין הספקים טרם יושב.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 103.72M דולר, Stocktaper מציג 102.05M. הפער בין הספקים טרם יושב.\nצפי הכנסות אנליסטים Q3 2026: 98.05M USD; אינו תחזית הנהלה. FXEmpire מציג 98.05M USD ל-Q3 לפי 3 אנליסטים; MarketBeat מציג 103.72M; פער ספקים או היקף דיווח לא יושב. זהו צפי ספק מסוים, לא קונצנזוס אחיד מאומת. השוואה כבויה. צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-4-douglas-elliman-inc-stock/",
       "https://www.marketbeat.com/instant-alerts/upcoming-txo-partners-txo-projected-to-release-earnings-on-tuesday-2026-10-27/",
       "https://www.stocktaper.com/stock/TXO",
       "https://www.gurufocus.com/news/9162010/eaglerock-land-llc-erok-q3-2026-everything-you-need-to-know-ahead-of-earnings",
       "https://businessquant.com/stocks/erok/estimates/"
-    ]
+    ],
+    "צפי_הכנסות": "98.05M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.fxempire.com/stocks/txo/earnings",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific Q3 USD analyst forecast; provider conflicts explicitly retained",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "CVR Partners, LP",
