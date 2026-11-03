@@ -17071,7 +17071,7 @@
     "תאריך": "2026-11-02",
     "מועד": "after",
     "צפי_EPS": "0.22",
-    "הערה": "רבעון שלישי שהסתיים ב-26.09.2026.\nהכנסות: 457.488 מיליון דולר, לעומת 424.939 מיליון דולר אשתקד; עלייה שנתית של 7.7%.\nEPS מדולל מתואם: ‏0.22 דולר, ללא שינוי שנתי.\nEPS מדולל לפי GAAP: ‏0.03 דולר, לעומת 0.12 דולר אשתקד.\nבסיס הצפי לא ידוע.",
+    "הערה": "רבעון שלישי שהסתיים ב-26.09.2026.\nהכנסות: 457.488 מיליון דולר, לעומת 424.939 מיליון דולר אשתקד; עלייה שנתית של 7.7%.\nEPS מדולל מתואם: ‏0.22 דולר, ללא שינוי שנתי.\nEPS מדולל לפי GAAP: ‏0.03 דולר, לעומת 0.12 דולר אשתקד.\nבסיס הצפי לא ידוע.\nצפי הכנסות אנליסטים Q3 2026: 460.15M USD; אינו תחזית הנהלה. MarketBeat פרסם ב-26.10 צפי 460.15M דולר ל-Q3, לפני התוצאות; אינו צפי חדש לאחר הפרסום. השוואה כבויה. צפי EPS הקיים נשמר.",
     "בפועל_EPS": "0.22",
     "הכנסות_בפועל": "457.488M",
     "בסיס_בפועל_EPS": "Adjusted diluted",
@@ -17081,7 +17081,13 @@
     "השוואה_EPS": "כן",
     "הסבר_EPS": "בסיס הצפי לא ידוע; השוואה מספרית בלבד מול בסיס הבפועל המסומן. הצפי המקורי נשמר.",
     "קישור_לדוח": "https://www.globenewswire.com/news-release/2026/11/02/3393780/0/en/hillman-reports-third-quarter-2026-results-updates-full-year-outlook.html",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "לא",
+    "צפי_הכנסות": "460.15M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-hillman-solutions-hlmn-expected-to-post-quarterly-earnings-on-monday-2026-10-26/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst forecast; USD; comparison compatibility not yet verified"
   },
   {
     "חברה": "Hinge Health, Inc.",
@@ -17777,7 +17783,7 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "הכנסות: 1.6216B USD.\nEPS: 0.43 USD (GAAP diluted, not FFO or AFFO).",
+    "הערה": "הכנסות: 1.6216B USD.\nEPS: 0.43 USD (GAAP diluted, not FFO or AFFO).\nצפי הכנסות אנליסטים Q3 2026: 1.43B USD; אינו תחזית הנהלה. MarketBeat פרסם ב-26.10 צפי 1.43B דולר ל-Q3, לפני התוצאות; אינו צפי חדש לאחר הפרסום. השוואה כבויה. צפי EPS הקיים נשמר.",
     "בפועל_EPS": "0.43",
     "הכנסות_בפועל": "1.6216B",
     "בסיס_בפועל_EPS": "GAAP diluted, not FFO or AFFO",
@@ -17787,7 +17793,13 @@
     "השוואה_EPS": "לא",
     "הסבר_EPS": "לא אומתה התאמת מדד הצפי ל-EPS, לא הוחלף ב-FFO/AFFO.",
     "קישור_לדוח": "https://www.prnewswire.com/news-releases/realty-income-announces-operating-results-for-the-three-and-nine-months-ended-september-30-2026-302926890.html",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "לא",
+    "צפי_הכנסות": "1.43B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-realty-income-o-projected-to-post-quarterly-earnings-on-monday-2026-10-26/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-26",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst forecast; USD; comparison compatibility not yet verified"
   },
   {
     "חברה": "ONE Gas, Inc.",
