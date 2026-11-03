@@ -21981,7 +21981,7 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "0.37",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: לוח MarketBeat מציג 5.01B דולר, סקירת הדוח מציגה 5.02B. הפער טרם יושב; מטבע הדוח בפועל ייבדק בנפרד.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים ל-Q3 2026: 4.407B EUR, לפי קובץ הקונצנזוס העדכני המקושר באתר Philips מ-08.10, 16 אומדנים. זהו קונצנזוס אנליסטים חיצוניים שהחברה מארחת, לא תחזית הנהלה. ספקים דולריים מציגים 5.01-5.02B ונתוני אירו אחרים שונים; אין המרת מטבע והשוואת הפתעה כבויה עד התאמת מטבע והיקף. צפי EPS הקיים נשמר ללא שינוי.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-9-ideaya-biosciences-inc-stock/",
       "https://www.itiger.com/news/1110774144",
@@ -21989,7 +21989,14 @@
       "https://www.marketbeat.com/earnings/reports/2026-11-3-fortis-inc-stock/",
       "https://www.gurufocus.com/news/9161940/enlight-renewable-energy-ltd-enlt-q3-2026-earnings-report-preview-what-to-expect",
       "https://www.marketbeat.com/earnings/2026-11-03/"
-    ]
+    ],
+    "צפי_הכנסות": "4.407B EUR",
+    "מטבע_צפי_הכנסות": "EUR",
+    "מקור_צפי_הכנסות": "https://www.philips.com/c-dam/corporate/about-philips/investors/financial-results/Philips_Sell-side_Analyst_Consensus_Overview_8_Oct_2026.xlsx",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "External sell-side analyst consensus hosted by Philips, 16 revenue estimates, October 8 2026, EUR millions; expressly not Philips management forecast",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-08",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "PJT Partners Inc.",
