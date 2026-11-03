@@ -20097,13 +20097,20 @@
     "סימול": "EMBJ",
     "תאריך": "2026-11-03",
     "צפי_EPS": "0.87",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: Yahoo מציג 2.21B USD, FXEmpire מציג 2.29B USD. הפער בין הספקים טרם יושב; צפי EPS המקורי נשמר.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: Yahoo מציג 2.21B USD, FXEmpire מציג 2.29B USD. הפער בין הספקים טרם יושב; צפי EPS המקורי נשמר.\nצפי הכנסות אנליסטים Q3 2026: 2.21B USD; אינו תחזית הנהלה. Yahoo ו-OptionsAnalysisSuite מציגים 2.21B USD ל-Q3; BusinessQuant מציג 2.32B ו-FXEmpire 2.29B. צפי הכנסות קבוצתי בלבד, ללא הסקת יחס ADS או שינוי צפי EPS. ספקים אחרים מציגים מועד 10.11 לעומת 3.11 בלוח המקורי; מועד השורה לא אושר מחדש ולא שונה. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-10-ashford-hospitality-trust-inc-stock/",
       "https://finance.yahoo.com/quote/EMBJ/analysis/",
       "https://www.fxempire.com/stocks/embj/earnings",
       "https://www.fxempire.com/stocks/infu/earnings"
-    ]
+    ],
+    "צפי_הכנסות": "2.21B",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/quote/EMBJ/analysis/",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Enlight Renewable Energy Ltd.",
