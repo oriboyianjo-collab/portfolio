@@ -35,6 +35,11 @@
         "label": "CFTC, הודעת היו\"ר",
         "url": "https://www.cftc.gov/PressRoom/PressReleases/9319-26",
         "role": "מקור ראשוני"
+      },
+      {
+        "label": "CFTC, הצהרת היו\"ר המלאה",
+        "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/seligstatement110326",
+        "role": "מקור ראשוני; אישור לפי Regulation 40.3 כמוצרי security futures, בכפוף לדיני הסחורות וניירות הערך ולשתי הרשויות"
       }
     ],
     "category": "macro",
@@ -112,6 +117,11 @@
         "label": "StreetInsider, כותרת משנית בלבד",
         "url": "https://www.streetinsider.com/Rumors/Washington+and+Tehran+Make+Concessions+on+Nuclear+Program%2C+Frozen+Funds%2C+Al+Araby+Al+Jadeed+Reports/27278137.html",
         "role": "הטקסט המלא אינו פתוח; אינו אימות עצמאי להסכם"
+      },
+      {
+        "label": "Newsquawk, דיווח נוסף המייחס ל-Al Araby",
+        "url": "https://www.newsquawk.com/headlines/us-iran-announcement-will-reportedly-be-made-step-by-step-and-simultaneously-al-araby-al-jadeed-reports-",
+        "role": "03.11, עמוד 16:00 ישראל; באתר צוין מבזק בפיד ב-15:40 ישראל. מקור משני לאותו ייחוס, אינו אישור עצמאי או רשמי; מועד המקור המקורי עדיין לא ידוע"
       },
       {
         "label": "אל-ג'זירה, להקשר בלבד",
