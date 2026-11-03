@@ -5197,7 +5197,8 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
   const M = M0.slice().sort((a,b)=>(a.d<b.d?-1:a.d>b.d?1:0) || within(a,b));   // sorting is inside each day – the day groups stay
   if(ntFil.sort==='cap'){ const miss = [...new Set(M.filter(r=>r.capV==null).map(r=>r.symbol))]; if(miss.length) loadRepCaps(miss).then(ch=>{ if(ch && newsTab==='rep') drawReports(); }); }
   if(!M.length){ el.innerHTML = `<div class="news-empty">${qn ? 'לא נמצאו דוחות עבור „'+esc(ntFil.q.trim())+'”.' : 'אין דוחות בסינון הזה.'}</div>`; return; }
-  const up = M.filter(r=>r.d >= t), past = M.filter(r=>r.d < t).sort((a,b)=>(a.d>b.d?-1:a.d<b.d?1:0) || within(a,b));
+  const hasResults = r=>[r.eps, r.rev].some(v=>v!=null && String(v).trim()!=='' && !/^(?:[—–-]|n\/?a|null)$/i.test(String(v).trim()));
+  const up = M.filter(r=>!hasResults(r)), past = M.filter(hasResults).sort((a,b)=>(a.d>b.d?-1:a.d<b.d?1:0) || within(a,b));
   const shortN = n=>String(n||'').replace(/,?\s*(Inc\.?|Incorporated|Corporation|Corp\.?|Company|Co\.|Ltd\.?|Limited|plc|PLC|Holdings?|Group|N\.V\.|S\.A\.|SE|AG|L\.P\.|LP|Class [A-C]|Ordinary Shares?|Common Stock)\b\.?/g,'').replace(/[\s,.-]+$/,'').trim();
   const ixS = l=>String(l).replace(/^S&P\s*/i,'S&P').replace(/^Nasdaq\s*100$/i,'NDX').replace(/^נאסד"?ק\s*100$/,'NDX').replace(/^Dow( Jones| 30)?$/i,'DOW').replace(/^Russell\s*2000$/i,'R2K');
   const card = r=>{ const ti = /^(before|pre|bmo|לפני)/i.test(r.time) ? '<i class="rti" title="לפני פתיחה">☀️</i>' : /^(after|post|amc|אחרי)/i.test(r.time) ? '<i class="rti" title="אחרי סגירה">🌙</i>' : r.time ? `<i class="rti num">${esc(r.time)}</i>` : '';
@@ -5299,7 +5300,7 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
       (r.note ? `<div class="rnote2" role="button" tabindex="0" aria-expanded="false" data-rnote><span>${esc(r.note)}</span>${r.note.length > 90 || (r.note.match(/\n/g)||[]).length >= 2 ? '<i class="rmore2">עוד ▾</i>' : ''}</div>` : '')+`</article>`; };
   const grp = (A)=>{ let h = '', last = null; A.forEach(r=>{ if(r.d!==last){ last = r.d; h += `<div class="rday">${dayHead(r.d)}</div>`; } h += card(r); }); return h; };
   const A = [...up, ...past], more = A.length - repShow, upS = up.slice(0, repShow), pastS = past.slice(0, Math.max(0, repShow - up.length));
-  el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' || ntFil.tm!=='all' || qn ? ' בסינון' : ''}</div>` + grp(upS) + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '') + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
+  el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' || ntFil.tm!=='all' || qn ? ' בסינון' : ''}</div>` + (upS.length ? '<div class="rsec">ללא תוצאות מאומתות</div>'+grp(upS) : '') + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '') + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
 const FLAGS = {US:'🇺🇸', IL:'🇮🇱', EU:'🇪🇺', DE:'🇩🇪', GB:'🇬🇧', UK:'🇬🇧', FR:'🇫🇷', JP:'🇯🇵', CN:'🇨🇳', CA:'🇨🇦', CH:'🇨🇭', AU:'🇦🇺', 'ארה״ב':'🇺🇸', 'ארה"ב':'🇺🇸', 'ישראל':'🇮🇱', 'אירופה':'🇪🇺', 'גוש האירו':'🇪🇺', 'גרמניה':'🇩🇪', 'בריטניה':'🇬🇧', 'יפן':'🇯🇵', 'סין':'🇨🇳'};
 const CNAME = {US:'ארה״ב', IL:'ישראל', EU:'אירופה', DE:'גרמניה', GB:'בריטניה', UK:'בריטניה', FR:'צרפת', JP:'יפן', CN:'סין', CA:'קנדה', CH:'שווייץ', AU:'אוסטרליה'};
 function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; const enter = calEnter; calEnter = false; if(!D.items.length){ $('calFil').innerHTML = ''; el.innerHTML = ntEmpty('cal', D.err); return; }
