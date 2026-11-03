@@ -438,14 +438,22 @@
     "תאריך": "2026-10-26",
     "מועד": "after",
     "צפי_EPS": "0.01",
-    "הערה": "בסיס הצפי לא ידוע",
+    "הערה": "בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 516.51M USD; אינו תחזית הנהלה. צפי היסטורי של MarketBeat מ-19.10 ו-TipRanks מ-24.10, לפני התוצאות. הודעת החברה מאשרת Q3 2026. נתון ההכנסות בדוח החברה ובצפי נקוב ב-USD לאותה תקופה; השוואת הכנסות מותרת לצפי המתוארך. בסיס הצפי לא ידוע. צפי EPS הקיים נשמר.",
     "קישור": "https://www.businesswire.com/news/home/20261026119739/en/Custom-Truck-One-Source-Inc.-Reports-Record-Third-Quarter-2026-Results-and-Increases-Full-Year-2026-Adjusted-EBITDA-and-SER-Revenue-Guidance",
     "הכנסות_בפועל": "495.2M",
     "מטבע_הכנסות": "USD",
     "בפועל_EPS": "0.01",
     "בסיס_בפועל_EPS": "GAAP",
     "מטבע_EPS": "USD",
-    "השוואה_EPS": "כן"
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "516.51M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-custom-truck-one-source-ctos-expected-to-announce-quarterly-earnings-on-monday-2026-10-19/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-19",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst forecast independently corroborated, issuer confirms period/currency",
+    "השוואה_הכנסות": "כן",
+    "בסיס_צפי_הכנסות": "לא ידוע"
   },
   {
     "חברה": "Cemex S.A.B. de C.V.",
@@ -784,8 +792,16 @@
     "בפועל_EPS": "-0.19",
     "בסיס_בפועל_EPS": "מתואם",
     "מטבע_EPS": "USD",
-    "הערה": "GAAP -1.57; בסיס הצפי לא ידוע",
-    "השוואה_EPS": "כן"
+    "הערה": "GAAP -1.57; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 71.30M USD; אינו תחזית הנהלה. צפי היסטורי של TradingView מ-19.10 ו-TipRanks מ-24.10, לפני התוצאות. השוואה כבויה עד לאימות מטבע ובסיס ההכנסות בפועל מול דוח החברה. צפי EPS הקיים נשמר.",
+    "השוואה_EPS": "כן",
+    "צפי_הכנסות": "71.30M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:d3063af3f6316:0-med-q3-26-earnings-revenue-estimate-is-71-30m-usd/",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-19",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Dated pre-result analyst forecast independently corroborated, issuer confirms period/currency",
+    "השוואה_הכנסות": "לא",
+    "בסיס_צפי_הכנסות": "לא ידוע"
   },
   {
     "חברה": "Ramaco Resources, Inc.",
