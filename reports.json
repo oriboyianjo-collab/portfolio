@@ -20975,7 +20975,7 @@
     "סימול": "IDYA",
     "תאריך": "2026-11-03",
     "צפי_EPS": "-1.26",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 7.58M דולר ומועד משוער 09.11; סקירה אחרת מציגה 7.9M. היקף ההשוואה ומועד הפרסום לא אומתו בנפרד מהחברה.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם: MarketBeat מציג 7.58M דולר ומועד משוער 09.11; סקירה אחרת מציגה 7.9M. היקף ההשוואה ומועד הפרסום לא אומתו בנפרד מהחברה.\nצפי הכנסות אנליסטים Q3 2026: 7.58M USD; אינו תחזית הנהלה. MarketBeat ו-Backpack מציגים 7.58M USD ל-Q3; BusinessQuant מציג 7.08M ו-FXEmpire 6.99M. ספקים מציגים 9.11 לעומת 3.11 בשורה המקורית; מועד השורה לא אושר מחדש ולא שונה. אין קונצנזוס אחיד מאומת; השוואה כבויה. צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-9-ideaya-biosciences-inc-stock/",
       "https://www.itiger.com/news/1110774144",
@@ -20984,7 +20984,14 @@
       "https://www.gurufocus.com/news/9161940/enlight-renewable-energy-ltd-enlt-q3-2026-earnings-report-preview-what-to-expect",
       "https://www.marketbeat.com/earnings/reports/2026-11-9-ideaya-biosciences-inc-stock/",
       "https://smartinvestorsdaily.com/articles/nasdaq-idya-earnings-preview-2026-11-03"
-    ]
+    ],
+    "צפי_הכנסות": "7.58M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://backpack.exchange/stocks/IDYA/earnings/estimates",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific corroborated Q3 USD forecast; provider/date conflicts explicitly retained",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Icahn Enterprises L.P.",
@@ -31788,7 +31795,14 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "0.04",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 94.40M USD; אינו תחזית הנהלה. TradingView ו-MarketBeat מציגים 94.40M USD ל-Q3; Yahoo מציג 94.61M. הודעת החברה מאשרת פרסום ב-5.11 ושיחה ב-08:30 ניו יורק. אין קונצנזוס אחיד מאומת; השוואה כבויה. צפי EPS הקיים נשמר.",
+    "צפי_הכנסות": "94.40M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:69830fca44d34:0-crnt-q3-26-earnings-revenue-estimate-is-94-40m-usd/",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific corroborated Q3 USD forecast; provider/date conflicts explicitly retained",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Cronos Group Inc.",
@@ -31975,7 +31989,14 @@
     "תאריך": "2026-11-05",
     "מועד": "before",
     "צפי_EPS": "1.06",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות אנליסטים Q3 2026: 221.93M USD; אינו תחזית הנהלה. MarketBeat מציג 221.93M USD ל-Q3 ו-OpenCapital כ-221.9M; Yahoo מציג 227.4M ו-FXEmpire 224.15M. הודעת החברה מ-22.10 מאשרת פרסום ב-5.11, אך עמוד האירוע מציג 6.11 בשעה 13:00 ניו יורק לשיחה; הסתירה במועד השיחה לא יושבה, לא בוצע שינוי תאריך. אין קונצנזוס אחיד מאומת; השוואה כבויה. צפי EPS הקיים נשמר.",
+    "צפי_הכנסות": "221.93M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://www.marketbeat.com/instant-alerts/upcoming-ducommun-dco-set-to-post-quarterly-earnings-on-thursday-2026-10-29/",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific corroborated Q3 USD forecast; provider/date conflicts explicitly retained",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Definium Therapeutics, Inc.",
