@@ -20111,7 +20111,7 @@
     "תאריך": "2026-11-03",
     "מועד": "before",
     "צפי_EPS": "0.13",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם בגלל פער מקורות: MarketBeat מציג 660.41M USD, GuruFocus מ-02.11 מציג 214.88M USD. ההגדרה טרם יושבה; אין לבחור מספר לפי קרבה.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי הכנסות Q3 לא הושלם בגלל פער מקורות: MarketBeat מציג 660.41M USD, GuruFocus מ-02.11 מציג 214.88M USD. ההגדרה טרם יושבה; אין לבחור מספר לפי קרבה.\nצפי הכנסות אנליסטים Q3 2026: 218.58M USD; אינו תחזית הנהלה. Zacks מציג 218.58M USD ל-Q3; EarningsWhispers דרך Finviz מציג כ-218.6M USD. GuruFocus מציג 214.88M USD, MarketBeat 660.41M USD, ו-Yahoo מציג 595.95M ILS ל-Q3. לא בוצעה המרת מטבע ולא יושבו פערי ההגדרה בין הספקים. מועד הלוח המקורי נשמר ללא אישור מחדש. אין קונצנזוס אחיד מאומת; השוואת ההפתעה כבויה. צפי EPS הקיים נשמר; בסיסו לא ידוע.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://www.marketbeat.com/earnings/reports/2026-11-9-ideaya-biosciences-inc-stock/",
       "https://www.itiger.com/news/1110774144",
@@ -20121,7 +20121,14 @@
       "https://www.marketbeat.com/earnings/reports/2026-11-3-enlight-renewable-energy-ltd-stock/",
       "https://finance.yahoo.com/quote/ET/analysis/",
       "https://finance.yahoo.com/markets/stocks/articles/gear-thomson-reuters-tri-q3-121504948.html"
-    ]
+    ],
+    "צפי_הכנסות": "218.58M",
+    "מטבע_צפי_הכנסות": "USD",
+    "מקור_צפי_הכנסות": "https://finance.yahoo.com/markets/stocks/articles/earnings-preview-enlight-renewable-energy-130012163.html",
+    "אימות_תקופת_צפי_הכנסות": "Q3 2026",
+    "אימות_צפי_הכנסות": "Source-specific analyst estimate corroborated separately; providers disagree, not uniform consensus",
+    "תאריך_מקור_צפי_הכנסות": "2026-11-03",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Eupraxia Pharmaceuticals Inc.",
