@@ -21344,13 +21344,20 @@
     "סימול": "LND",
     "תאריך": "2026-11-03",
     "מועד": "after",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nלא אומת צפי הכנסות בר-שיוך לתקופת הדוח ולמטבעה; הכנסות עבר אינן צפי לרבעון הבא. השדה נשאר ריק, לא אפס.",
+    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטי XP ל-Q1 FY2027 מ-30.10: הכנסות נטו 350M BRL כולל מכירת חוות, לעומת 299M BRL ללא מכירת חוות. זהו צפי של בית השקעות אחד, לא קונצנזוס ולא תחזית הנהלה. נקוב בריאל ברזילאי, לא בדולר; אין המרת מטבע. השוואת הפתעה כבויה עד אימות היקף ההכנסות בפועל. AGRO3 ו-LND הם מניה ו-ADR של אותה חברה לפי אתר החברה. לוח החברה מאשר פרסום 1T27 ב-03.11 ושיחת משקיעים ב-05.11, ללא שעה מאומתת כאן; צפי EPS הקיים נשמר.",
     "מקורות_בדיקת_פער_הכנסות": [
       "https://businessquant.com/stocks/snoa/estimates/",
       "https://www.marketbeat.com/earnings/reports/2026-11-16-sonoma-pharmaceuticals-inc-stock/",
       "https://www.chartmill.com/stock/quote/LND/earnings",
       "https://www.tradingview.com/symbols/TSX-TA/financials-earnings/"
-    ]
+    ],
+    "צפי_הכנסות": "350M BRL",
+    "מטבע_צפי_הכנסות": "BRL",
+    "מקור_צפי_הכנסות": "https://conteudos.xpi.com.br/acoes/relatorios/brasilagro-agro3-previa-de-resultados-do-1t27-modo-de-espera-persiste/",
+    "אימות_תקופת_צפי_הכנסות": "Q1 FY2027",
+    "אימות_צפי_הכנסות": "XP analyst forecast of net revenue including farm sales, not consensus and not company guidance; BRL, no FX conversion",
+    "תאריך_מקור_צפי_הכנסות": "2026-10-30",
+    "השוואה_הכנסות": "לא"
   },
   {
     "חברה": "Louisiana-Pacific Corporation",
