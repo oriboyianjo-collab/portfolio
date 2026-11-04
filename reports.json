@@ -30710,13 +30710,18 @@
     "מדד": [
       "S&P 600"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים להכנסות Q3'26: 505.84M דולר. לא תחזית החברה.",
+    "הערה": "שעת הפרסום הצפויה היא סביב 23:05 לפי לוח חיצוני, לפי שעון ישראל; אינה שעת שיחת המשקיעים.\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים להכנסות Q3'26: 505.84M דולר. לא תחזית החברה.",
     "צפי_הכנסות": "505.84M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3'26 total revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:8d8336c0131a9:0-hcc-q3-26-earnings-revenue-estimate-is-505-84m-usd/",
     "תאריך_מקור_צפי_הכנסות": "2026-11-03 own fetch; dated TradingView company preview",
-    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03"
+    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03",
+    "release_time_il": "23:05",
+    "release_time_approx": true,
+    "release_time_source": "https://www.tradingview.com/news/tradingview:19be98b2f6c03:0-hcc-q3-26-earnings-eps-estimate-is-1-55-usd/",
+    "release_time_verified_date": "2026-11-04",
+    "release_time_basis": "third-party-estimate"
   },
   {
     "חברה": "HCI Group, Inc.",
