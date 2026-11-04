@@ -233,7 +233,7 @@ html,body{overscroll-behavior-x:none;overscroll-behavior-y:contain}.xh-ok{touch-
 .wl-in{position:relative}
 .wl-addbox .wl-add .ac-list{left:12px;right:12px}
 .wl-addrow{display:flex;gap:12px;align-items:flex-end}
-.wl-fld{display:flex;flex-direction:column;gap:5px;min-width:0}
+.wl-to{position:relative}#wlToBtn{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;min-height:44px;height:44px;padding:0 12px;width:100%}#wlToBtn span{flex:1;min-width:0;text-align:start}.wl-pick{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;box-sizing:border-box;font:inherit;font-size:.85rem;font-weight:600;padding:8px 10px;min-height:40px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;text-align:start}.wl-pick span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wl-pick svg{flex:none;opacity:.7;transition:transform .15s}.wl-pick[aria-expanded=true] svg{transform:rotate(180deg)}.wl-pm{position:absolute;inset-inline:0;top:calc(100% + 4px);z-index:30;max-height:240px;overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,.45);padding:4px}.wl-pm[hidden]{display:none}.wl-pm button{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;font:inherit;font-size:.85rem;font-weight:600;color:var(--text);background:none;border:0;border-radius:9px;padding:9px 10px;cursor:pointer;text-align:start}.wl-pm button small{color:var(--muted);font-weight:500}.wl-pm button.on{background:var(--bg-f8fafc);color:var(--primary)}.wl-fld{display:flex;flex-direction:column;gap:5px;min-width:0}
 .wl-fld-srch{flex:1 1 auto}
 .wl-fld-to{flex:0 1 44%}
 .wl-lab{font-size:.8rem;font-weight:600;color:var(--muted);white-space:nowrap}
@@ -971,7 +971,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
         <div class="wl-fld wl-fld-srch"><span class="wl-lab">הוספת נייר</span>
           <div class="ac wl-add"><div class="wl-in"><input id="wlSearch" placeholder="חיפוש נייר" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></div><div class="ac-list" id="wlAc"></div></div>
         </div>
-        <label class="wl-to wl-fld wl-fld-to"><span class="wl-lab">יתווסף לרשימה:</span><select id="wlTo"></select></label>
+        <label class="wl-to wl-fld wl-fld-to"><span class="wl-lab">בחירת רשימה</span><select id="wlTo" hidden></select><button type="button" id="wlToBtn" class="wl-pick" aria-haspopup="listbox" aria-expanded="false"><span id="wlToTxt"></span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div id="wlToMenu" class="wl-pm" role="listbox" hidden></div></label>
       </div></div>
       <div class="wl-tools"><span>קבוצות:</span><button type="button" id="wlAll"></button></div>
       <div id="wlLists"></div></div>
@@ -3709,6 +3709,7 @@ function drawWlAll(){ const any = wlData.lists.some(l=>wlOpen[l.id]), b = $('wlA
 function drawWatch(){ if(wlGesture){ wlDrawPending = true; return; }   // v113: never rebuild the rows under an active touch - a poll redraw mid-swipe ate the gesture
   const n = wlItems().length; drawWlAll();
   $('wlCount').textContent = `· ${wlData.lists.length} רשימות · ${n} ניירות`;
+  { const cu = wlCur(); $('wlToTxt').textContent = cu ? cu.name : ''; $('wlToMenu').innerHTML = wlData.lists.map(l=>`<button type="button" role="option" data-wto="${esc(l.id)}" class="${l.id===cu.id?'on':''}" aria-selected="${l.id===cu.id}"><span>${esc(l.name)}</span><small>${l.items.length}</small></button>`).join(''); }
   $('wlTo').innerHTML = wlData.lists.map(l=>`<option value="${esc(l.id)}"${l.id===wlCur().id?' selected':''}>${esc(l.name)}</option>`).join('');
   const cur = wlCur(), ci = wlData.lists.indexOf(cur);
   const prevIdx = wlLastCur ? wlData.lists.findIndex(l=>l.id===wlLastCur) : -1, dir = prevIdx < 0 ? 0 : ci - prevIdx;
@@ -3738,6 +3739,9 @@ function wlNewList(){ const n = (prompt('שם הרשימה החדשה:', `רשי
 $('wlNew').onclick = ()=>{ if(!wlSwapSettle()) return; wlNewList(); };   // v114: settle any staged swap before acting
 $('wlAll').onclick = ()=>{ if(!wlSwapSettle()) return;   // v114
   const any = wlData.lists.some(l=>wlOpen[l.id]); wlOpen = {}; if(!any) wlData.lists.forEach(l=>{ wlOpen[l.id] = true; }); saveWlOpen(); wlMenu = null; renderWatch(); };   // v100: any open -> collapse all, else expand all (same watchOpen storage as the per-group toggle)
+$('wlToBtn').onclick = e=>{ e.stopPropagation(); const m = $('wlToMenu'), o = m.hidden; m.hidden = !o; $('wlToBtn').setAttribute('aria-expanded', o); };
+$('wlToMenu').onclick = e=>{ const b = e.target.closest('[data-wto]'); if(!b) return; $('wlToMenu').hidden = true; $('wlToBtn').setAttribute('aria-expanded','false'); $('wlTo').value = b.dataset.wto; $('wlTo').dispatchEvent(new Event('change')); };
+document.addEventListener('click', e=>{ if(!e.target.closest('.wl-to')){ $('wlToMenu').hidden = true; $('wlToBtn').setAttribute('aria-expanded','false'); } });
 $('wlTo').onchange = e=>{ wlData.cur = e.target.value; saveWl(); wlMenu = null; renderWatch(); };   // v112: select follows/drives the active tab
 $('wlLists').addEventListener('click', e=>{ if(wlPendingHtml!=null) return;   // v114: staged swap - old rows inert; pointer-events:none covers touches, this covers keyboard/programmatic activation
   const sec = e.target.closest('.wls'); if(!sec) return; const L = wlList(sec.dataset.l); if(!L) return;
