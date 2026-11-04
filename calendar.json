@@ -573,7 +573,16 @@
     "חשיבות": 1,
     "קודם": "57.9",
     "צפי": "57.9",
-    "הערה": "לוח S&P Global, 14:45 UTC; צפי ForexFactory; ערך קודם הוא אומדן הבזק של אוקטובר, לא המדד הסופי של ספטמבר"
+    "הערה": "הנתון הסופי לשירותים באוקטובר 2026 הוא 56.1 לפי Investing, ForexFactory ו-StreetInsider. לא אומת עדיין מול פרסום ראשוני של S&P Global. צפי 57.9 וערך קודם 57.9 נשמרו; הקודם הוא אומדן הבזק של אוקטובר, בעוד המדד הסופי של ספטמבר היה 58.8 לפי Investing. שעת הפרסום המתוכננת 14:45 UTC היא 16:45 בישראל. המדד המשולב הוא פרסום נפרד וטרם אומת.",
+    "הערות_מקור_ארכיון": "\nלוח S&P Global, 14:45 UTC; צפי ForexFactory; ערך קודם הוא אומדן הבזק של אוקטובר, לא המדד הסופי של ספטמבר",
+    "בפועל": "56.1",
+    "קישור": "https://www.investing.com/economic-calendar/services-pmi-1062",
+    "תאריך_בדיקה_עדכנית": "2026-11-04",
+    "מקורות_בדיקה_עדכנית": [
+      "https://www.investing.com/economic-calendar/services-pmi-1062",
+      "https://www.forexfactory.com/calendar?day=nov4.2026",
+      "https://www.streetinsider.com/Economic+Data/S%26P+Global+US+Services+PMI+%28Oct+F%29+56.1+vs+57.9+Expected/27287527.html"
+    ]
   },
   {
     "תאריך": "2026-11-04",
