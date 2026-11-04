@@ -28469,13 +28469,18 @@
     "תאריך": "2026-11-04",
     "מועד": "before",
     "צפי_EPS": "0.74",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים להכנסות Q3'26: 344.71M דולר. לא תחזית החברה.",
+    "הערה": "שעת פרסום צפויה סביב 15:00 לפי לוח חיצוני, שעון ישראל; אינה שעת שיחת המשקיעים.\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים להכנסות Q3'26: 344.71M דולר. לא תחזית החברה.",
     "צפי_הכנסות": "344.71M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3'26 total revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:514789fa935f0:0-batra-q3-26-earnings-revenue-estimate-is-344-71m-usd/",
     "תאריך_מקור_צפי_הכנסות": "2026-11-03 own fetch; dated TradingView company preview",
-    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03"
+    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03",
+    "release_time_il": "15:00",
+    "release_time_approx": true,
+    "release_time_source": "https://www.tradingview.com/news/tradingview:514789fa935f0:0-batra-q3-26-earnings-revenue-estimate-is-344-71m-usd/",
+    "release_time_verified_date": "2026-11-04",
+    "release_time_basis": "third-party-estimate"
   },
   {
     "חברה": "Atlanta Braves Holdings, Inc.",
@@ -28483,7 +28488,12 @@
     "תאריך": "2026-11-04",
     "מועד": "before",
     "צפי_EPS": "0.63",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "שעת פרסום צפויה סביב 15:00 לפי לוח חיצוני, שעון ישראל; אינה שעת שיחת המשקיעים.\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע",
+    "release_time_il": "15:00",
+    "release_time_approx": true,
+    "release_time_source": "https://www.tradingview.com/news/tradingview:514789fa935f0:0-batra-q3-26-earnings-revenue-estimate-is-344-71m-usd/",
+    "release_time_verified_date": "2026-11-04",
+    "release_time_basis": "third-party-estimate"
   },
   {
     "חברה": "Barrett Business Services, Inc.",
@@ -29836,13 +29846,18 @@
     "סימול": "ECX",
     "תאריך": "2026-11-04",
     "מועד": "before",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 315.22M דולר. לא תחזית החברה.",
+    "הערה": "שעת פרסום צפויה סביב 14:00 לפי לוח חיצוני, שעון ישראל; אינה שעת שיחת המשקיעים.\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות\nצפי אנליסטים להכנסות Q3'26: 315.22M דולר. לא תחזית החברה.",
     "צפי_הכנסות": "315.22M",
     "בסיס_צפי_הכנסות": "Analyst consensus, Q3'26 total revenue",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.tradingview.com/news/tradingview:419f4a0f07bd9:0-ecx-q3-26-earnings-revenue-estimate-is-315-22m-usd/",
     "תאריך_מקור_צפי_הכנסות": "2026-11-03 own fetch; dated TradingView company preview",
-    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03"
+    "אימות_צפי_הכנסות": "Fetched and checked 2026-11-03",
+    "release_time_il": "14:00",
+    "release_time_approx": true,
+    "release_time_source": "https://www.tradingview.com/news/tradingview:419f4a0f07bd9:0-ecx-q3-26-earnings-revenue-estimate-is-315-22m-usd/",
+    "release_time_verified_date": "2026-11-04",
+    "release_time_basis": "third-party-estimate"
   },
   {
     "חברה": "Excelerate Energy, Inc.",
