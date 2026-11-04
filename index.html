@@ -858,7 +858,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=189">
+<link rel="stylesheet" href="chart-tools.css?v=190">
 
 </head>
 <body>
@@ -5806,6 +5806,12 @@ var AL_KEY = 'portfolioTracker.alerts', AL_SEEN = 'portfolioTracker.alertsSeen',
 var AL_DEF = {on:false, newsHold:true, newsWatch:false, repBefore:true, repMorning:true, repPub:true, pxOn:false, pxDef:5, px:{}, muted:[]};
 var alP = Object.assign({}, AL_DEF, loadJ(AL_KEY)||{}), alSeen = loadJ(AL_SEEN)||{init:false, keys:[]}, alList = Array.isArray(loadJ(AL_LIST)) ? loadJ(AL_LIST) : [];
 var alView = null, alFilter = 'all', alLastData = 0, alPushOk = false;
+// v190: inside the Android app wrapper (WebView) window.SavageNative exists: native notification permission + notify(), and the app runs the 15-minute background check itself
+var alSN = window.SavageNative || null;
+var alSNPerm = ()=>{ try{ return alSN.permission(); }catch(e){ return 'denied'; } };
+var alSNAsk = ()=>new Promise(res=>{ let done = false; const f = ()=>{ if(done) return; done = true; window.removeEventListener('savagenative-permission', f); res(alSNPerm()); };
+  window.addEventListener('savagenative-permission', f); try{ alSN.requestPermission(); }catch(e){ f(); } setTimeout(f, 90e3); });
+var alScope = ()=>{ try{ return new URL('./', location.href).href; }catch(e){ return location.href.split('?')[0]; } };
 if(!Array.isArray(alP.muted)) alP.muted = []; if(!alP.px || typeof alP.px!=='object') alP.px = {};
 var alSave = ()=>{ try{ localStorage.setItem(AL_KEY, JSON.stringify(alP)); localStorage.setItem(AL_SEEN, JSON.stringify({init:alSeen.init, keys:alSeen.keys.slice(-800)})); localStorage.setItem(AL_LIST, JSON.stringify(alList.slice(0,150))); }catch(e){} };
 var alUnread = ()=>alList.filter(a=>!a.read).length;
@@ -5816,6 +5822,14 @@ function alSyms(){ let hold = [], watch = [];
 async function alCacheGet(){ try{ const r = await (await caches.open(AL_CACHE)).match(AL_CFG); return r ? await r.json() : null; }catch(e){ return null; } }
 async function alCachePut(cfg){ try{ await (await caches.open(AL_CACHE)).put(AL_CFG, new Response(JSON.stringify(cfg), {headers:{'Content-Type':'application/json'}})); }catch(e){} }
 async function alSync(){   // merge what the service worker found (periodic sync / push) and hand it the current prefs + ticker lists
+  if(alSN){   // app wrapper: the native background job keeps its own seen/pending state – merge it, then hand it the current prefs + tickers
+    let c = {}; try{ c = JSON.parse(alSN.takePending()||'{}')||{}; }catch(e){}
+    const S = alSyms();
+    (c.seen||[]).forEach(k=>{ if(!alSeen.keys.includes(k)) alSeen.keys.push(k); });
+    (c.pending||[]).forEach(it=>{ if(it && it.key && !alList.some(a=>a.key===it.key)) alList.unshift({key:it.key, kind:it.kind, sym:it.sym, title:it.title, body:it.body, t:it.t||Date.now(), read:false}); });
+    alList.sort((a,b)=>b.t-a.t); if(c.init) alSeen.init = true;
+    try{ alSN.setAlertConfig(JSON.stringify({prefs:alP, hold:S.hold, watch:S.watch, muted:alP.muted, seen:alSeen.keys.slice(-800), init:alSeen.init})); }catch(e){}
+    alSave(); alBadge(); if(alView==='list') alRender(); return; }
   if(!('caches' in window)) return; const c = (await alCacheGet()) || {}, S = alSyms();
   (c.seen||[]).forEach(k=>{ if(!alSeen.keys.includes(k)) alSeen.keys.push(k); });
   (c.pending||[]).forEach(it=>{ if(!alList.some(a=>a.key===it.key)) alList.unshift({key:it.key, kind:it.kind, sym:it.sym, title:it.title, body:it.body, t:it.t||Date.now(), read:false}); });
@@ -5823,6 +5837,8 @@ async function alSync(){   // merge what the service worker found (periodic sync
   await alCachePut({prefs:alP, hold:S.hold, watch:S.watch, muted:alP.muted, seen:alSeen.keys.slice(-800), init:alSeen.init, pending:[]});
   alSave(); alBadge(); }
 async function alNotify(it){
+  if(alSN){ if(!alP.on || alSNPerm()!=='granted') return;
+    try{ alSN.notify(it.title, it.body||'', alScope()+'?al='+encodeURIComponent(it.kind||'')+'&s='+encodeURIComponent(it.sym||'')+'&k='+encodeURIComponent(it.key||''), it.key||''); }catch(e){} return; }
   if(!(alP.on && 'Notification' in window && Notification.permission==='granted')) return;
   try{ const reg = await navigator.serviceWorker.ready;
     await reg.showNotification(it.title, {body:it.body||'', icon:'icon-192.png', badge:'badge-mono-96.png', tag:it.key, lang:'he', dir:'rtl',
@@ -5847,6 +5863,7 @@ function alCheckPx(){   // live quotes the app already has – no extra requests
     out.push({key:'x|'+sym+'|'+d+'|'+(pct>0?'u':'d'), kind:'px', sym, title:(pct>0?'📈 ':'📉 ')+sym+' '+(pct>0?'+':'')+pct.toFixed(1)+'% היום', body:'חצתה את סף ההתראה ('+thr+'%)'}); });
   alAdd(out); }
 async function alPush(sub){   // optional: Web Push through the owner's Worker; silently skipped when the Worker has no /push routes
+  if(alSN) return;   // app wrapper: no Web Push in a WebView – the native background job replaces it
   try{ if(!('serviceWorker' in navigator) || !('PushManager' in window) || typeof OB_URL==='undefined') return;
     const reg = await navigator.serviceWorker.ready;
     if(!sub){ const s = await reg.pushManager.getSubscription(); if(s){ fetch(OB_URL+'/push/unsubscribe', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({endpoint:s.endpoint})}).catch(()=>{}); await s.unsubscribe(); } alPushOk = false; return; }
@@ -5859,10 +5876,13 @@ async function alPush(sub){   // optional: Web Push through the owner's Worker; 
     if(alView==='set') alRender();
   }catch(e){ alPushOk = false; } }
 var alPushT = null; var alPushSoon = ()=>{ clearTimeout(alPushT); alPushT = setTimeout(()=>alPush(alP.on), 1500); };
-async function alPeriodic(on){ try{ const reg = await navigator.serviceWorker.ready; if(!reg.periodicSync) return;
+async function alPeriodic(on){ if(alSN) return; try{ const reg = await navigator.serviceWorker.ready; if(!reg.periodicSync) return;
   if(on){ try{ const st = await navigator.permissions.query({name:'periodic-background-sync'}); if(st.state==='denied') return; }catch(_){} await reg.periodicSync.register('savage-alerts', {minInterval:3*3600e3}); }
   else await reg.periodicSync.unregister('savage-alerts'); }catch(e){} }
 async function alMaster(on){
+  if(alSN){
+    if(on){ const before = alSNPerm(); if(before!=='granted'){ const after = await alSNAsk(); if(after!=='granted') toast(before==='denied' ? 'ההתראות חסומות – אפשרו התראות בהגדרות האפליקציה' : 'לא ניתנה הרשאה להתראות – ההתראות יופיעו רק ברשימה באפליקציה'); } }
+    alP.on = on; alSave(); alSync(); if(on) alCheckData(true); alRender(); return; }
   if(on && 'Notification' in window && Notification.permission==='default'){ try{ await Notification.requestPermission(); }catch(e){} }
   alP.on = on; alSave(); if(on && 'Notification' in window && Notification.permission==='denied') toast('ההרשאה להתראות חסומה בדפדפן – ההתראות יופיעו רק ברשימה באפליקציה');
   alPeriodic(on); alPush(on); alSync(); if(on) alCheckData(true); alRender(); }
@@ -5882,16 +5902,17 @@ function alRender(){ const c = $('alertsCard'); if(!c || !alView) return;
       ${L.length ? L.map((a,i)=>`<div class="al-it ${a.read?'':'new'}" data-i="${esc(a.key)}"><span class="ic">${alIc(a.kind)}</span><div><b>${esc(a.title)}</b><p>${esc(a.body||'')}</p><span class="t">${alAgo(a.t)}</span></div></div>`).join('') : '<div class="al-note" style="text-align:center;padding:24px 0">אין התראות עדיין</div>'}
       ${alList.length?`<button class="btn btn-light btn-block" id="alClear" style="margin-top:10px">🗑️ ניקוי הרשימה</button>`:''}</div>`;
   } else {
-    const S = alSyms(), syms = S.hold.concat(S.watch), n = alUnread(), perm = 'Notification' in window ? Notification.permission : 'unsupported';
+    const S = alSyms(), syms = S.hold.concat(S.watch), n = alUnread(), perm = alSN ? alSNPerm() : 'Notification' in window ? Notification.permission : 'unsupported';
     c.innerHTML = bar('🔔 התראות') + `
       <div class="set-sec al-row" id="alToList" role="button" tabindex="0"><div><h4>📬 רשימת ההתראות</h4><div class="al-sub">${n ? n+' שלא נקראו · ' : ''}${alList[0] ? 'אחרונה: '+esc(alList[0].title) : 'עדיין אין התראות'}</div></div>${n?`<span class="al-badge">${n}</span>`:'<span class="al-chev">‹</span>'}</div>
-      <div class="set-sec"><label class="al-li"><div><b>הפעלת התראות</b><small>${perm==='denied' ? '⚠️ ההרשאה חסומה בדפדפן – רק רשימה באפליקציה' : perm==='unsupported' ? 'הדפדפן לא תומך בהתראות – רק רשימה באפליקציה' : 'התראות למכשיר (מבקש הרשאה)'}</small></div>${alTg('on', alP.on)}</label></div>
+      <div class="set-sec"><label class="al-li"><div><b>הפעלת התראות</b><small>${alSN ? (perm==='granted' ? 'התראות דרך האפליקציה פעילות' : perm==='denied' ? '⚠️ ההרשאה חסומה – אפשרו התראות בהגדרות האפליקציה' : 'התראות דרך האפליקציה (מבקש הרשאה)') : perm==='denied' ? '⚠️ ההרשאה חסומה בדפדפן – רק רשימה באפליקציה' : perm==='unsupported' ? 'הדפדפן לא תומך בהתראות – רק רשימה באפליקציה' : 'התראות למכשיר (מבקש הרשאה)'}</small></div>${alTg('on', alP.on)}</label></div>
       <div class="set-sec"><h4>📰 חדשות</h4>${alLi('על המניות שלי','', 'newsHold')}${alLi('על רשימת המעקב','', 'newsWatch')}</div>
       <div class="set-sec"><h4>📊 דוחות כספיים</h4>${alLi('יום לפני הדוח','', 'repBefore')}${alLi('בבוקר יום הדוח','', 'repMorning')}${alLi('דוח פורסם','', 'repPub')}</div>
       <div class="set-sec"><h4>📈 תנועת מחיר יומית</h4>${alLi('התראה כשמניה זזה מעל הסף', '', 'pxOn')}
         <div class="al-li"><div>סף ברירת מחדל</div><input class="al-pct" id="alPxDef" inputmode="decimal" value="${num(alP.pxDef)||''}" placeholder="%" ${alP.on?'':'disabled'}></div></div>
       <div class="set-sec"><h4>לפי מניה</h4>${syms.length ? `<div class="al-note">מתג = התראות למניה (חדשות, דוחות, מחיר). אחוז ריק = סף ברירת המחדל.</div>` + syms.map(s=>`<div class="al-li"><span class="al-sym">${esc(s)}</span><input class="al-pct" data-px="${esc(s)}" inputmode="decimal" value="${num(alP.px[s])!=null?num(alP.px[s]):''}" placeholder="${num(alP.pxDef)||'—'}%" ${alP.on?'':'disabled'}>${`<input type="checkbox" class="al-tg" data-mute="${esc(s)}" ${alP.muted.includes(s)?'':'checked'} ${alP.on?'':'disabled'} aria-label="${esc(s)}">`}</div>`).join('') : '<div class="al-note">אין עדיין מניות בתיק או ברשימת המעקב.</div>'}</div>
-      <div class="al-note">ℹ️ הבדיקה רצה כשהאפליקציה פתוחה, וגם ברקע כשהדפדפן מאפשר (אנדרואיד, אפליקציה מותקנת – לא בזמן קבוע). ${alPushOk ? '✓ מחובר לשרת ההתראות – התראות מגיעות גם כשהאפליקציה סגורה (חדשות ודוחות).' : 'שרת התראות (Cloudflare) עוד לא פעיל – ההתראות לא מובטחות כשהאפליקציה סגורה.'} התראות מחיר נבדקות רק כשהאפליקציה פתוחה.</div>`;
+      ${alSN ? `<div class="set-sec"><button class="btn btn-light btn-block" id="alTest">🔔 שליחת התראת בדיקה</button><button class="btn btn-light btn-block" id="alSys" style="margin-top:8px">⚙️ הגדרות התראות במערכת</button></div>
+      <div class="al-note">ℹ️ ${perm==='granted' ? 'התראות דרך האפליקציה פעילות' : 'התראות דרך האפליקציה'} – חדשות ודוחות נבדקים ברקע בערך כל 15 דקות, גם כשהאפליקציה סגורה (אנדרואיד עשוי לעכב במצב חיסכון בסוללה). התראות מחיר נבדקות רק כשהאפליקציה פתוחה.</div>` : `<div class="al-note">ℹ️ הבדיקה רצה כשהאפליקציה פתוחה, וגם ברקע כשהדפדפן מאפשר (אנדרואיד, אפליקציה מותקנת – לא בזמן קבוע). ${alPushOk ? '✓ מחובר לשרת ההתראות – התראות מגיעות גם כשהאפליקציה סגורה (חדשות ודוחות).' : 'שרת התראות (Cloudflare) עוד לא פעיל – ההתראות לא מובטחות כשהאפליקציה סגורה.'} התראות מחיר נבדקות רק כשהאפליקציה פתוחה.</div>`}`;
   }
   $('alBack').onclick = ()=>alClose(); }
 function alGoto(kind, sym){
@@ -5900,6 +5921,7 @@ function alGoto(kind, sym){
 function alFromUrl(u){ try{ const p = new URL(u, location.href).searchParams, kind = p.get('al'); if(kind==null) return false; const key = p.get('k');
   alSync().then(()=>{ const a = alList.find(x=>x.key===key); if(a){ a.read = true; alSave(); alBadge(); } });
   alGoto(kind, p.get('s')||''); return true; }catch(e){ return false; } }
+window.SavageOpenAlert = u=>alFromUrl(u);   // v190: called by the Android app when a native notification is tapped while the app is open
 window.SavageAlerts = {add:items=>alAdd(items), unread:()=>alUnread(), sync:()=>alSync(), check:()=>alCheckData(true)};   // small handle for testing from the console
 (function alInit(){
   const sec = $('tab-settings'); if(sec && !$('alertsCard')){ const d = document.createElement('div'); d.className = 'card'; d.id = 'alertsCard'; d.hidden = true; sec.appendChild(d); }
@@ -5907,6 +5929,8 @@ window.SavageAlerts = {add:items=>alAdd(items), unread:()=>alUnread(), sync:()=>
     if(e.target.closest('#alRow')){ alOpen('set'); return; }
     const c = $('alertsCard'); if(!c || !c.contains(e.target)) return;
     if(e.target.closest('#alToList')){ alOpen('list'); return; }
+    if(alSN && e.target.closest('#alSys')){ try{ alSN.openSettings(); }catch(_){} return; }
+    if(alSN && e.target.closest('#alTest')){ if(alSNPerm()!=='granted'){ toast('אפשרו התראות כדי לקבל התראת בדיקה'); return; } try{ alSN.notify('🔔 בדיקת התראות', 'ההתראות עובדות – Savage Tracker', alScope(), 'test|'+Date.now()); }catch(_){} return; }
     const f = e.target.closest('[data-f]'); if(f){ alFilter = f.dataset.f; alRender(); return; }
     if(e.target.closest('#alReadAll')){ alList.forEach(a=>a.read = true); alSave(); alBadge(); alRender(); return; }
     if(e.target.closest('#alClear')){ if(confirm('לנקות את רשימת ההתראות?')){ alList = []; alSave(); alBadge(); alRender(); } return; }
