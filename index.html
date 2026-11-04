@@ -227,7 +227,7 @@ nav.bottom button .i{font-size:1.35rem;line-height:1}nav.bottom button{min-width
 nav.bottom button.on{color:var(--primary)}
 html,body{overscroll-behavior-x:none;overscroll-behavior-y:contain}.xh-ok{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.xh-ok.xh{touch-action:none}.xh-ok.zoomed{touch-action:pan-y}.xh-ok .tv-lightweight-charts,.xh-ok .tv-lightweight-charts *{pointer-events:none!important}main .chart{transition:box-shadow .15s}main .chart.active{box-shadow:0 0 0 2px var(--accent,#3b82f6);border-radius:10px}
 .wl-to{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted);margin:6px 0 4px}.wl-to select{font:inherit;font-size:.85rem;padding:4px 8px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);max-width:60%}
-#wlNew{white-space:nowrap;flex:none}
+#wlNew{white-space:nowrap;flex:none;min-height:28px;padding:3px 9px;font-size:.7rem;border-radius:8px}#tab-watch .h2row h2{min-width:0;white-space:nowrap}#wlCount{white-space:nowrap;font-size:.72rem}
 .wl-addbox{position:relative;border:1px solid var(--border);border-radius:14px;padding:10px 12px;margin:8px 0}
 .wl-addbox .wl-add{position:static}
 .wl-in{position:relative}
@@ -3358,11 +3358,11 @@ attachAutocomplete($('mktSearch'), $('mktAc'), it=>{ $('mktSearch').value = ''; 
   if(mktCfg.keys.includes(k)){ toast('כבר במסך'); return; } mktCfg.meta[k] = m; mktCfg.keys.push(k); saveMkt(); renderMarket(); toast(`${m.sym} נוסף למסך השוק`); });
 // ====================== commodities tab (סחורות): CNBC front-month futures, native unit labels, no chart ======================
 const COM_CAT = [
-  {k:'gold', s:'@GC.1', n:'זהב', u:'', dp:2}, {k:'silver', s:'@SI.1', n:'כסף', u:'', dp:3}, {k:'wti', s:'@CL.1', n:'נפט WTI', u:'$ / חבית', dp:2},
-  {k:'brent', s:'@LCO.1', n:'נפט ברנט', u:'$ / חבית', dp:2}, {k:'ng', s:'@NG.1', n:'גז טבעי', u:'$ / MMBtu', dp:3}, {k:'hg', s:'@HG.1', n:'נחושת', u:'', dp:3},
-  {k:'pl', s:'@PL.1', n:'פלטינה', u:'', dp:2}, {k:'pa', s:'@PA.1', n:'פלדיום', u:'', dp:2}, {k:'ho', s:'@HO.1', n:'סולר חימום', u:'$ / גלון', dp:4}, {k:'rb', s:'@RB.1', n:'בנזין RBOB', u:'$ / גלון', dp:4},
-  {k:'corn', s:'@C.1', n:'תירס', u:'', dp:2}, {k:'wheat', s:'@W.1', n:'חיטה', u:'', dp:2}, {k:'soy', s:'@S.1', n:'סויה', u:'', dp:2},
-  {k:'sm', s:'@SM.1', n:'קמח סויה', u:'', dp:2}, {k:'bo', s:'@BO.1', n:'שמן סויה', u:'', dp:2}, {k:'oats', s:'@O.1', n:'שיבולת שועל', u:'', dp:2}, {k:'rice', s:'@RR.1', n:'אורז', u:'', dp:3},
+  {k:'gold', s:'@GC.1', n:'זהב', u:'$ / אונקיה', dp:2}, {k:'silver', s:'@SI.1', n:'כסף', u:'$ / אונקיה', dp:3}, {k:'wti', s:'@CL.1', n:'נפט WTI', u:'$ / חבית', dp:2},
+  {k:'brent', s:'@LCO.1', n:'נפט ברנט', u:'$ / חבית', dp:2}, {k:'ng', s:'@NG.1', n:'גז טבעי', u:'$ / MMBtu', dp:3}, {k:'hg', s:'@HG.1', n:'נחושת', u:'$ / ליברה', dp:3},
+  {k:'pl', s:'@PL.1', n:'פלטינה', u:'$ / אונקיה', dp:2}, {k:'pa', s:'@PA.1', n:'פלדיום', u:'$ / אונקיה', dp:2}, {k:'ho', s:'@HO.1', n:'סולר חימום', u:'$ / גלון', dp:4}, {k:'rb', s:'@RB.1', n:'בנזין RBOB', u:'$ / גלון', dp:4},
+  {k:'corn', s:'@C.1', n:'תירס', u:'סנט / בושל', dp:2}, {k:'wheat', s:'@W.1', n:'חיטה', u:'סנט / בושל', dp:2}, {k:'soy', s:'@S.1', n:'סויה', u:'סנט / בושל', dp:2},
+  {k:'sm', s:'@SM.1', n:'קמח סויה', u:'$ / טון קצר', dp:2}, {k:'bo', s:'@BO.1', n:'שמן סויה', u:'סנט / ליברה', dp:2}, {k:'oats', s:'@O.1', n:'שיבולת שועל', u:'', dp:2}, {k:'rice', s:'@RR.1', n:'אורז', u:'', dp:3},
   {k:'coffee', s:'@KC.1', n:'קפה', u:'סנט / ליברה', dp:2}, {k:'sugar', s:'@SB.1', n:'סוכר', u:'סנט / ליברה', dp:2}, {k:'cotton', s:'@CT.1', n:'כותנה', u:'סנט / ליברה', dp:2}, {k:'cocoa', s:'@CC.1', n:'קקאו', u:'$ / טון', dp:0},
   {k:'oj', s:'@OJ.1', n:'מיץ תפוזים', u:'סנט / ליברה', dp:2}, {k:'lc', s:'@LC.1', n:'בקר חי', u:'', dp:3}, {k:'fc', s:'@FC.1', n:'בקר לפיטום', u:'', dp:3}, {k:'lh', s:'@LH.1', n:'חזיר רזה', u:'', dp:3}, {k:'lbr', s:'@LBR.1', n:'עץ', u:'', dp:2}];
 const COM_BY = Object.fromEntries(COM_CAT.map(x=>[x.k, x])), COM_DEFAULT = ['gold','silver','wti','ng','hg','wheat'], COM_KEY = 'portfolioTracker.commodities.v1';
