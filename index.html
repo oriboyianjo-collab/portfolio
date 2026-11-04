@@ -857,7 +857,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=184">
+<link rel="stylesheet" href="chart-tools.css?v=187">
 
 </head>
 <body>
@@ -4366,10 +4366,8 @@ function renderSettings(){
       </div>`;
   const commInfo = cur => ib(`<div>עסקה של <span class="num">${fmtMoneyRaw(exAmt(cur),cur,0)}</span> (${EXQ} מניות) → עמלה <b class="num" data-ex="${cur}">${fmtMoneyRaw(commission(cur, exAmt(cur), EXQ),cur)}</b></div><div>${cur==='USD'?'לדוגמה: מתחת ל־2,000$ עמלה של 7$.':'לדוגמה: מתחת ל־5,000₪ עמלה של 25₪.'} השאירו 0 כדי לא להשתמש. עסקה קטנה של <span class="num">${fmtMoneyRaw(exSmall(cur),cur,0)}</span> → עמלה <b class="num" data-exs="${cur}">${fmtMoneyRaw(commission(cur, exSmall(cur)),cur)}</b></div><div>העמלה מחושבת אוטומטית בטופס העסקה ואפשר לשנות אותה בכל עסקה. שינוי כאן לא משנה עסקאות שכבר נשמרו.</div>`, 'איך מחושבת העמלה');
   $('settingsCard').innerHTML = `
-    <div class="set-sec"><h4>🎨 תצוגה${ib('👁 כפתור העין ליד שווי התיק מסתיר/מציג את כל הסכומים (למשל כשמראים את המסך למישהו).', 'הסתרת סכומים')}</h4><div class="fgrid"><label class="f"><span>ערכת צבעים</span><select id="setTheme"><option value="light">בהיר</option><option value="dark">כהה</option><option value="auto">לפי הגדרות המכשיר</option></select></label></div></div>
-    <div class="set-sec"><h4>⚡ עדכון מחירים חי${ib('כשהשווקים סגורים או שהאפליקציה ברקע – העדכון מואט/מושהה אוטומטית. מניות ארה״ב: זמן אמת (CNBC). ת״א: מעוכב (CNBC מסמן realTime=false). קריפטו: כמה שניות.', 'איך מתעדכנים המחירים')}</h4><div class="fgrid">
-      <label class="f"><span>תדירות בזמן מסחר</span><select id="setRefresh">${[[0,'כבוי'],[5,'כל 5 שניות'],[15,'כל 15 שניות'],[30,'כל 30 שניות'],[60,'כל דקה']].map(([v,l])=>`<option value="${v}" ${num(s.refreshSec)===v?'selected':''}>${l}</option>`).join('')}</select></label>
-</div></div>
+    <div class="set-sec al-row" id="alRow" role="button" tabindex="0"><div><h4>🔔 התראות</h4><div class="al-sub" id="alRowSub">חדשות, דוחות, תנועות מחיר</div></div><span style="display:flex;gap:8px;align-items:center"><span class="al-badge" id="alRowN" hidden></span><span class="al-chev">‹</span></span></div>
+    
     <div class="set-sec" id="feeInferSec" hidden></div>
     <div class="set-sec"><h4>💸 עמלת קנייה/מכירה – ניירות בדולר${commInfo('USD')}</h4>${comm('USD')}</div>
     <div class="set-sec"><h4>💸 עמלת קנייה/מכירה – ניירות בשקל${commInfo('ILS')}</h4>${comm('ILS')}</div>
@@ -4392,8 +4390,10 @@ function renderSettings(){
     renderHeader(computeAll());
   }));
   renderFeeInfer();
-  $('setTheme').value = themePref(); $('setTheme').onchange = e=>setTheme(e.target.value);
-  $('setRefresh').onchange = e=>{ state.settings.refreshSec = num(e.target.value)||0; save(); backoff = 0; schedulePoll(); };
+  // v187: the theme (header ☀️/🌙) and live-refresh (saved refreshSec kept as is) pickers left this screen; 🔔 alerts took their place
+  if($('setTheme')){ $('setTheme').value = themePref(); $('setTheme').onchange = e=>setTheme(e.target.value); }
+  if($('setRefresh')) $('setRefresh').onchange = e=>{ state.settings.refreshSec = num(e.target.value)||0; save(); backoff = 0; schedulePoll(); };
+  try{ if(alView){ alView = 'list'; alClose(); alClose(); } alBadge(); }catch(e){}
   $('btnExport').onclick = exportData; $('btnImport').onclick = ()=>$('fileImport').click();
   $('btnBank').onclick = ()=>$('fileBank').click();
   $('btnReset').onclick = openDeleteAll;
@@ -5776,6 +5776,131 @@ window.__portfolio = {get night(){ return {src:NIGHT.src, worker:{ok:NW.ok, poll
   document.addEventListener('touchend', end, {passive:true});
   document.addEventListener('touchcancel', ()=>{ if(pulling === true) hide(); pulling = false; armed = false; }, {passive:true});
 })();
+
+// ====================== v187: alerts (news on my stocks, earnings reports, price moves) ======================
+// Everything is stored on this device (localStorage + a small cache shared with sw.js). Optional Web Push via the owner's Cloudflare Worker (OB_URL):
+// used only if <worker>/push/vapid answers; otherwise the in-app / periodic check below is the only source.
+var AL_KEY = 'portfolioTracker.alerts', AL_SEEN = 'portfolioTracker.alertsSeen', AL_LIST = 'portfolioTracker.alertsList', AL_CACHE = 'savage-alerts-v1', AL_CFG = './__alerts/cfg';
+var AL_DEF = {on:false, newsHold:true, newsWatch:false, repBefore:true, repMorning:true, repPub:true, pxOn:false, pxDef:5, px:{}, muted:[]};
+var alP = Object.assign({}, AL_DEF, loadJ(AL_KEY)||{}), alSeen = loadJ(AL_SEEN)||{init:false, keys:[]}, alList = Array.isArray(loadJ(AL_LIST)) ? loadJ(AL_LIST) : [];
+var alView = null, alFilter = 'all', alLastData = 0, alPushOk = false;
+if(!Array.isArray(alP.muted)) alP.muted = []; if(!alP.px || typeof alP.px!=='object') alP.px = {};
+var alSave = ()=>{ try{ localStorage.setItem(AL_KEY, JSON.stringify(alP)); localStorage.setItem(AL_SEEN, JSON.stringify({init:alSeen.init, keys:alSeen.keys.slice(-800)})); localStorage.setItem(AL_LIST, JSON.stringify(alList.slice(0,150))); }catch(e){} };
+var alUnread = ()=>alList.filter(a=>!a.read).length;
+function alSyms(){ let hold = [], watch = [];
+  try{ hold = computeAll().positions.filter(p=>Math.abs(p.qty)>1e-9).map(p=>p.sym); }catch(e){}
+  try{ wlData.lists.forEach(l=>l.items.forEach(i=>{ if(!watch.includes(i.sym)) watch.push(i.sym); })); }catch(e){}
+  return {hold, watch: watch.filter(s=>!hold.includes(s))}; }
+async function alCacheGet(){ try{ const r = await (await caches.open(AL_CACHE)).match(AL_CFG); return r ? await r.json() : null; }catch(e){ return null; } }
+async function alCachePut(cfg){ try{ await (await caches.open(AL_CACHE)).put(AL_CFG, new Response(JSON.stringify(cfg), {headers:{'Content-Type':'application/json'}})); }catch(e){} }
+async function alSync(){   // merge what the service worker found (periodic sync / push) and hand it the current prefs + ticker lists
+  if(!('caches' in window)) return; const c = (await alCacheGet()) || {}, S = alSyms();
+  (c.seen||[]).forEach(k=>{ if(!alSeen.keys.includes(k)) alSeen.keys.push(k); });
+  (c.pending||[]).forEach(it=>{ if(!alList.some(a=>a.key===it.key)) alList.unshift({key:it.key, kind:it.kind, sym:it.sym, title:it.title, body:it.body, t:it.t||Date.now(), read:false}); });
+  alList.sort((a,b)=>b.t-a.t); if(c.init) alSeen.init = true;
+  await alCachePut({prefs:alP, hold:S.hold, watch:S.watch, muted:alP.muted, seen:alSeen.keys.slice(-800), init:alSeen.init, pending:[]});
+  alSave(); alBadge(); }
+async function alNotify(it){
+  if(!(alP.on && 'Notification' in window && Notification.permission==='granted')) return;
+  try{ const reg = await navigator.serviceWorker.ready;
+    await reg.showNotification(it.title, {body:it.body||'', icon:'icon-192.png', badge:'badge-mono-96.png', tag:it.key, lang:'he', dir:'rtl',
+      data:{url: reg.scope+'?al='+encodeURIComponent(it.kind)+'&s='+encodeURIComponent(it.sym||'')+'&k='+encodeURIComponent(it.key)}}); }catch(e){} }
+function alAdd(items){ const fresh = items.filter(it=>!alSeen.keys.includes(it.key)); if(!fresh.length) return;
+  fresh.forEach(it=>{ alSeen.keys.push(it.key); alList.unshift({key:it.key, kind:it.kind, sym:it.sym, title:it.title, body:it.body, t:Date.now(), read:false}); });
+  alSave(); alBadge(); if(alView) alRender();
+  if(document.hidden) fresh.slice(0,4).forEach(alNotify);
+  else if(fresh.length) { fresh.slice(0,3).forEach(alNotify); } }
+async function alCheckData(force){   // news.json / reports.json – at most every 10 minutes while the app runs
+  if(!alP.on || !window.AlertsCore) return; if(!force && Date.now()-alLastData < 10*60e3) return; alLastData = Date.now();
+  const get = f => fetch(f, {cache:'no-store'}).then(r=>r.ok ? r.json() : []).catch(()=>[]);
+  const [news, reports] = await Promise.all([get('news.json'), get('reports.json')]);
+  await alSync();
+  const S = alSyms(); let items = AlertsCore.detect({news, reports, prefs:alP, hold:S.hold, watch:S.watch, muted:alP.muted});
+  if(!alSeen.init){ alSeen.init = true; items.filter(i=>i.base).forEach(i=>{ if(!alSeen.keys.includes(i.key)) alSeen.keys.push(i.key); }); items = items.filter(i=>!i.base); alSave(); }
+  alAdd(items); alSync(); }
+function alCheckPx(){   // live quotes the app already has – no extra requests
+  if(!alP.on || !alP.pxOn) return; const S = alSyms(), d = AlertsCore.ilDate(0), out = [];
+  S.hold.concat(S.watch).forEach(sym=>{ if(alP.muted.includes(sym)) return; const thr = num(alP.px[sym])!=null ? num(alP.px[sym]) : num(alP.pxDef); if(!(thr>0)) return;
+    const q = state.quotes && state.quotes[sym]; if(!q || !(q.price>0) || !(q.prev>0)) return; const pct = (q.price/q.prev-1)*100; if(Math.abs(pct) < thr) return;
+    out.push({key:'x|'+sym+'|'+d+'|'+(pct>0?'u':'d'), kind:'px', sym, title:(pct>0?'📈 ':'📉 ')+sym+' '+(pct>0?'+':'')+pct.toFixed(1)+'% היום', body:'חצתה את סף ההתראה ('+thr+'%)'}); });
+  alAdd(out); }
+async function alPush(sub){   // optional: Web Push through the owner's Worker; silently skipped when the Worker has no /push routes
+  try{ if(!('serviceWorker' in navigator) || !('PushManager' in window) || typeof OB_URL==='undefined') return;
+    const reg = await navigator.serviceWorker.ready;
+    if(!sub){ const s = await reg.pushManager.getSubscription(); if(s){ fetch(OB_URL+'/push/unsubscribe', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({endpoint:s.endpoint})}).catch(()=>{}); await s.unsubscribe(); } alPushOk = false; return; }
+    if(Notification.permission!=='granted') return;
+    const r = await fetch(OB_URL+'/push/vapid', {cache:'no-store'}); if(!r.ok) return; const j = await r.json(); if(!j || !j.key) return;
+    const k = Uint8Array.from(atob(j.key.replace(/-/g,'+').replace(/_/g,'/')+'=='.slice(0,(4-j.key.length%4)%4)), c=>c.charCodeAt(0));
+    let s = await reg.pushManager.getSubscription(); if(!s) s = await reg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:k});
+    const S = alSyms(), body = JSON.stringify({sub:s.toJSON(), prefs:{newsHold:alP.newsHold, newsWatch:alP.newsWatch, repBefore:alP.repBefore, repMorning:alP.repMorning, repPub:alP.repPub}, hold:S.hold, watch:S.watch, muted:alP.muted});
+    const res = await fetch(OB_URL+'/push/subscribe', {method:'POST', headers:{'Content-Type':'application/json'}, body}); alPushOk = res.ok;
+    if(alView==='set') alRender();
+  }catch(e){ alPushOk = false; } }
+var alPushT = null; var alPushSoon = ()=>{ clearTimeout(alPushT); alPushT = setTimeout(()=>alPush(alP.on), 1500); };
+async function alPeriodic(on){ try{ const reg = await navigator.serviceWorker.ready; if(!reg.periodicSync) return;
+  if(on){ try{ const st = await navigator.permissions.query({name:'periodic-background-sync'}); if(st.state==='denied') return; }catch(_){} await reg.periodicSync.register('savage-alerts', {minInterval:3*3600e3}); }
+  else await reg.periodicSync.unregister('savage-alerts'); }catch(e){} }
+async function alMaster(on){
+  if(on && 'Notification' in window && Notification.permission==='default'){ try{ await Notification.requestPermission(); }catch(e){} }
+  alP.on = on; alSave(); if(on && 'Notification' in window && Notification.permission==='denied') toast('ההרשאה להתראות חסומה בדפדפן – ההתראות יופיעו רק ברשימה באפליקציה');
+  alPeriodic(on); alPush(on); alSync(); if(on) alCheckData(true); alRender(); }
+function alBadge(){ const n = alUnread(), b = $('alRowN'); if(b){ b.textContent = n; b.hidden = !n; } const s = $('alRowSub'); if(s) s.textContent = 'חדשות, דוחות, תנועות מחיר' + (alP.on ? '' : ' · כבוי') + (n ? ' · '+n+' חדשות' : ''); }
+function alOpen(v){ alView = v||'set'; const t = $('tab-settings'); if(!t) return; t.querySelector('.set-bar').style.display = 'none'; $('settingsCard').hidden = true; $('alertsCard').hidden = false; alRender(); window.scrollTo(0,0); }
+function alClose(){ if(alView==='list'){ alOpen('set'); return; } alView = null; const t = $('tab-settings'); if(!t) return; t.querySelector('.set-bar').style.display = ''; $('settingsCard').hidden = false; $('alertsCard').hidden = true; alBadge(); window.scrollTo(0,0); }
+var alTg = (id, on, dis)=>`<input type="checkbox" class="al-tg" data-al="${id}" ${on?'checked':''} ${dis?'disabled':''} aria-label="${id}">`;
+var alLi = (txt, sub, id)=>`<label class="al-li"><div>${txt}${sub?`<small>${sub}</small>`:''}</div>${alTg(id, alP[id], !alP.on)}</label>`;
+var alIc = k => k==='news' ? '📰' : k==='rep' ? '📊' : k==='px' ? '📈' : '🔔';
+function alAgo(t){ const m = Math.round((Date.now()-t)/60e3); if(m<1) return 'עכשיו'; if(m<60) return 'לפני '+m+' ד׳'; const h = Math.round(m/60); if(h<24) return 'לפני '+h+' שע׳'; return new Date(t).toLocaleDateString('he-IL', {day:'numeric', month:'numeric'})+' '+new Date(t).toLocaleTimeString('he-IL', {hour:'2-digit', minute:'2-digit'}); }
+function alRender(){ const c = $('alertsCard'); if(!c || !alView) return;
+  const bar = t=>`<div class="set-bar"><h2>${t}</h2><button class="btn set-back" id="alBack" aria-label="חזרה">חזרה ←</button></div>`;
+  if(alView==='list'){
+    const L = alList.filter(a=>alFilter==='all' || a.kind===alFilter);
+    c.innerHTML = bar('📬 רשימת ההתראות') + `<div class="set-sec"><div style="display:flex;justify-content:space-between;align-items:center"><div class="al-f" id="alF">${[['all','הכל'],['news','חדשות'],['rep','דוחות'],['px','מחיר']].map(([k,l])=>`<button data-f="${k}" class="${alFilter===k?'on':''}">${l}</button>`).join('')}</div></div>
+      ${alUnread()?`<button class="btn btn-light btn-block" id="alReadAll" style="margin-bottom:8px">✓ סמן הכל כנקרא</button>`:''}
+      ${L.length ? L.map((a,i)=>`<div class="al-it ${a.read?'':'new'}" data-i="${esc(a.key)}"><span class="ic">${alIc(a.kind)}</span><div><b>${esc(a.title)}</b><p>${esc(a.body||'')}</p><span class="t">${alAgo(a.t)}</span></div></div>`).join('') : '<div class="al-note" style="text-align:center;padding:24px 0">אין התראות עדיין</div>'}
+      ${alList.length?`<button class="btn btn-light btn-block" id="alClear" style="margin-top:10px">🗑️ ניקוי הרשימה</button>`:''}</div>`;
+  } else {
+    const S = alSyms(), syms = S.hold.concat(S.watch), n = alUnread(), perm = 'Notification' in window ? Notification.permission : 'unsupported';
+    c.innerHTML = bar('🔔 התראות') + `
+      <div class="set-sec al-row" id="alToList" role="button" tabindex="0"><div><h4>📬 רשימת ההתראות</h4><div class="al-sub">${n ? n+' שלא נקראו · ' : ''}${alList[0] ? 'אחרונה: '+esc(alList[0].title) : 'עדיין אין התראות'}</div></div>${n?`<span class="al-badge">${n}</span>`:'<span class="al-chev">‹</span>'}</div>
+      <div class="set-sec"><label class="al-li"><div><b>הפעלת התראות</b><small>${perm==='denied' ? '⚠️ ההרשאה חסומה בדפדפן – רק רשימה באפליקציה' : perm==='unsupported' ? 'הדפדפן לא תומך בהתראות – רק רשימה באפליקציה' : 'התראות למכשיר (מבקש הרשאה)'}</small></div>${alTg('on', alP.on)}</label></div>
+      <div class="set-sec"><h4>📰 חדשות</h4>${alLi('על המניות שלי','', 'newsHold')}${alLi('על רשימת המעקב','', 'newsWatch')}</div>
+      <div class="set-sec"><h4>📊 דוחות כספיים</h4>${alLi('יום לפני הדוח','', 'repBefore')}${alLi('בבוקר יום הדוח','', 'repMorning')}${alLi('דוח פורסם','', 'repPub')}</div>
+      <div class="set-sec"><h4>📈 תנועת מחיר יומית</h4>${alLi('התראה כשמניה זזה מעל הסף', '', 'pxOn')}
+        <div class="al-li"><div>סף ברירת מחדל</div><input class="al-pct" id="alPxDef" inputmode="decimal" value="${num(alP.pxDef)||''}" placeholder="%" ${alP.on?'':'disabled'}></div></div>
+      <div class="set-sec"><h4>לפי מניה</h4>${syms.length ? `<div class="al-note">מתג = התראות למניה (חדשות, דוחות, מחיר). אחוז ריק = סף ברירת המחדל.</div>` + syms.map(s=>`<div class="al-li"><span class="al-sym">${esc(s)}</span><input class="al-pct" data-px="${esc(s)}" inputmode="decimal" value="${num(alP.px[s])!=null?num(alP.px[s]):''}" placeholder="${num(alP.pxDef)||'—'}%" ${alP.on?'':'disabled'}>${`<input type="checkbox" class="al-tg" data-mute="${esc(s)}" ${alP.muted.includes(s)?'':'checked'} ${alP.on?'':'disabled'} aria-label="${esc(s)}">`}</div>`).join('') : '<div class="al-note">אין עדיין מניות בתיק או ברשימת המעקב.</div>'}</div>
+      <div class="al-note">ℹ️ הבדיקה רצה כשהאפליקציה פתוחה, וגם ברקע כשהדפדפן מאפשר (אנדרואיד, אפליקציה מותקנת – לא בזמן קבוע). ${alPushOk ? '✓ מחובר לשרת ההתראות – התראות מגיעות גם כשהאפליקציה סגורה (חדשות ודוחות).' : 'שרת התראות (Cloudflare) עוד לא פעיל – ההתראות לא מובטחות כשהאפליקציה סגורה.'} התראות מחיר נבדקות רק כשהאפליקציה פתוחה.</div>`;
+  }
+  $('alBack').onclick = ()=>alClose(); }
+function alGoto(kind, sym){
+  if(kind==='px' || (!kind && sym)){ try{ const S = computeAll(); if(S.positions.some(p=>p.sym===sym) || S.closed.some(p=>p.sym===sym)){ if(ui.tab==='settings') setTab('portfolio'); openPosition(sym); return; } }catch(e){} setTab('watch'); return; }
+  setTab('news'); const b = document.querySelector('#newsSeg [data-nt="'+(kind==='rep'?'rep':'news')+'"]'); if(b && !b.classList.contains('on')) b.click(); }
+function alFromUrl(u){ try{ const p = new URL(u, location.href).searchParams, kind = p.get('al'); if(kind==null) return false; const key = p.get('k');
+  alSync().then(()=>{ const a = alList.find(x=>x.key===key); if(a){ a.read = true; alSave(); alBadge(); } });
+  alGoto(kind, p.get('s')||''); return true; }catch(e){ return false; } }
+window.SavageAlerts = {add:items=>alAdd(items), unread:()=>alUnread(), sync:()=>alSync(), check:()=>alCheckData(true)};   // small handle for testing from the console
+(function alInit(){
+  const sec = $('tab-settings'); if(sec && !$('alertsCard')){ const d = document.createElement('div'); d.className = 'card'; d.id = 'alertsCard'; d.hidden = true; sec.appendChild(d); }
+  document.addEventListener('click', e=>{
+    if(e.target.closest('#alRow')){ alOpen('set'); return; }
+    const c = $('alertsCard'); if(!c || !c.contains(e.target)) return;
+    if(e.target.closest('#alToList')){ alOpen('list'); return; }
+    const f = e.target.closest('[data-f]'); if(f){ alFilter = f.dataset.f; alRender(); return; }
+    if(e.target.closest('#alReadAll')){ alList.forEach(a=>a.read = true); alSave(); alBadge(); alRender(); return; }
+    if(e.target.closest('#alClear')){ if(confirm('לנקות את רשימת ההתראות?')){ alList = []; alSave(); alBadge(); alRender(); } return; }
+    const it = e.target.closest('[data-i]'); if(it){ const a = alList.find(x=>x.key===it.dataset.i); if(a){ a.read = true; alSave(); alBadge(); alClose(); alClose(); alGoto(a.kind, a.sym); } } });
+  document.addEventListener('change', e=>{ const t = e.target; const c = $('alertsCard'); if(!c || !c.contains(t)) return;
+    if(t.dataset.al==='on'){ alMaster(t.checked); return; }
+    if(t.dataset.al){ alP[t.dataset.al] = t.checked; alSave(); alPushSoon(); alSync(); if(t.dataset.al==='pxOn') alCheckPx(); else alCheckData(true); return; }
+    if(t.dataset.mute){ const s = t.dataset.mute; alP.muted = alP.muted.filter(x=>x!==s); if(!t.checked) alP.muted.push(s); alSave(); alPushSoon(); alSync(); return; }
+    if(t.id==='alPxDef'){ const v = num(t.value); alP.pxDef = v>0 ? v : 0; alSave(); alRender(); return; }
+    if(t.dataset.px){ const v = num(t.value); if(v>0) alP.px[t.dataset.px] = v; else delete alP.px[t.dataset.px]; alSave(); return; } });
+  if('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', e=>{ if(e.data && e.data.alertOpen) alFromUrl(e.data.alertOpen); });
+  if(alFromUrl(location.href)) try{ history.replaceState(history.state, '', location.pathname); }catch(e){}
+  setTimeout(()=>{ alSync(); alCheckData(true); if(alP.on) alPush(true); }, 4000);
+  setInterval(()=>{ if(!document.hidden){ alCheckPx(); alCheckData(false); } }, 60e3);
+  document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) setTimeout(()=>{ alSync(); alCheckData(false); alCheckPx(); }, 1500); });
+})();
 })();
 </script>
 <script>(()=>{ const K='portfolioTracker.hdrMini', top=document.querySelector('header.top'), b=document.getElementById('hMin');
@@ -5784,6 +5909,26 @@ window.__portfolio = {get night(){ return {src:NIGHT.src, worker:{ok:NW.ok, poll
   b.addEventListener('click', e=>{ e.stopPropagation(); v=!v; try{ localStorage.setItem(K, v?'1':'0'); }catch(_){} ap(v); });
   top.addEventListener('click', e=>{ if(v && !e.target.closest('button')){ v=false; try{ localStorage.setItem(K,'0'); }catch(_){} ap(false); } }); })();
 </script>
+<script src="alerts-core.js?v=187"></script>
+<style>
+.al-row{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:10px}
+.al-row h4{margin:0}.al-sub{font-size:.78rem;color:var(--muted);margin-top:3px}.al-chev{color:var(--primary);font-size:1.5rem;line-height:1}
+.al-badge{background:var(--red);color:#fff;border-radius:10px;padding:1px 8px;font-weight:700;font-size:.75rem;min-width:22px;text-align:center}
+.al-li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}.al-li:last-child{border-bottom:0}
+.al-li small{display:block;color:var(--muted);font-size:.74rem;margin-top:2px}
+.al-tg{appearance:none;-webkit-appearance:none;width:44px;height:26px;border-radius:13px;background:#94a3b8;position:relative;flex:none;cursor:pointer;margin:0;transition:background .15s}
+html.dark .al-tg{background:#334155}.al-tg::after{content:"";position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:right .15s}
+.al-tg:checked{background:var(--primary)}.al-tg:checked::after{right:21px}.al-tg:disabled{opacity:.45}
+#alertsCard input.al-tg{width:44px;min-height:0;height:26px;padding:0;border:0;border-radius:13px;background-color:#94a3b8;outline:none}html.dark #alertsCard input.al-tg{background-color:#334155;border:0}#alertsCard input.al-tg:checked,html.dark #alertsCard input.al-tg:checked{background-color:var(--primary)}
+#alertsCard input.al-pct{width:64px;min-height:0;padding:6px;border-radius:10px}
+.al-pct{width:64px;text-align:center;padding:6px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);font:inherit;font-size:.85rem}
+.al-sym{font-weight:700;direction:ltr;min-width:64px}
+.al-note{font-size:.75rem;color:var(--muted);line-height:1.5;margin:6px 2px}
+.al-f{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}.al-f button{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:14px;padding:5px 12px;font:inherit;font-size:.8rem;cursor:pointer}.al-f button.on{background:var(--primary);border-color:var(--primary);color:#fff}
+.al-it{display:flex;gap:10px;padding:11px 6px;border-bottom:1px solid var(--border);cursor:pointer;border-radius:10px}.al-it.new{background:rgba(59,130,246,.12)}.al-it .ic{font-size:1.2rem}
+.al-it b{font-size:.88rem}.al-it p{margin:3px 0;color:var(--muted);font-size:.8rem;line-height:1.4}.al-it .t{font-size:.7rem;color:var(--muted)}
+</style>
+
 </body>
 </html>
 
