@@ -1,4 +1,4 @@
-// Savage Tracker alerts – shared detection rules (v187; v191: prefs.newsAll = every new news item, supersedes newsHold/newsWatch). Used by index.html, sw.js (importScripts) and copied into the Cloudflare Worker.
+// Savage Tracker alerts – shared detection rules (v187; v192: unchanged rules, instant push via the Worker; v191: prefs.newsAll = every new news item, supersedes newsHold/newsWatch). Used by index.html, sw.js (importScripts) and copied into the Cloudflare Worker.
 // Input is only the public news.json / reports.json plus the user's own ticker lists; nothing here is stored on the site.
 (function(g){
   const TK = /^[A-Z][A-Z0-9.\-]{0,9}$/;
