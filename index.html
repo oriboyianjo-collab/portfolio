@@ -861,6 +861,9 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.ob-h b{font-size:.95rem}
 .ob-bd{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:99px;background:#d1fae5;color:#065f46;white-space:nowrap}html.dark .ob-bd{background:#064e3b;color:#6ee7b7}
 .ob-bd.off,html.dark .ob-bd.off{background:var(--border);color:var(--muted)}
+.ob-live{display:flex;align-items:center;gap:10px}
+.ob-rchg{display:flex;align-items:baseline;gap:8px;font-size:.95rem;white-space:nowrap}
+.ob-rchg:empty{display:none}
 .ob-sp{display:flex;justify-content:flex-start;gap:8px;align-items:center;font-size:.74rem;color:var(--muted);margin:0 0 6px}.ob-sp b{color:var(--text);direction:ltr;unicode-bidi:isolate}
 .ob-g{display:grid;grid-template-columns:1fr 1fr;gap:6px;direction:ltr}
 .ob-t{display:flex;justify-content:space-between;font-size:.66rem;color:var(--muted);padding:0 4px 3px}
@@ -3668,7 +3671,7 @@ const OB = {t:null, sym:null, seq:0, fails:0, busy:false, last:null};
 const obFmt = p=>Number(p).toLocaleString('en-US',{minimumFractionDigits:p<1?4:2, maximumFractionDigits:p<1?4:2});
 function obHtml(sym){ if(!OB_URL || !sym || isCrypto(sym)) return '';
   const us = marketOf(sym)==='us';
-  return `<div class="ob" id="obBox" data-sym="${esc(sym)}"><div class="ob-h"><b>📖 ספר פקודות</b><span class="ob-bd off" id="obBd">${us?'טוען…':'אין נתונים'}</span></div><div id="obBody">${us?'<div class="ob-msg">טוען ספר פקודות…</div>':'<div class="ob-msg">אין נתוני ספר פקודות לנייר זה – הספר זמין למניות ותעודות סל בארה״ב בלבד.</div>'}</div></div>`; }
+  return `<div class="ob" id="obBox" data-sym="${esc(sym)}"><div class="ob-h"><b>📖 ספר פקודות</b><div class="ob-live"><span class="ob-rchg" id="obRchg"></span><span class="ob-bd off" id="obBd">${us?'טוען…':'אין נתונים'}</span></div></div><div id="obBody">${us?'<div class="ob-msg">טוען ספר פקודות…</div>':'<div class="ob-msg">אין נתוני ספר פקודות לנייר זה – הספר זמין למניות ותעודות סל בארה״ב בלבד.</div>'}</div></div>`; }
 function obStop(){ if(OB.t){ clearInterval(OB.t); OB.t = null; } OB.sym = null; OB.seq++; OB.busy = false; }
 const obLive = ()=>{ const s = usSession(); return s==='pre' || s==='reg' || s==='post'; };
 function obMount(sym){ obStop(); const box = document.getElementById('obBox'); if(!OB_URL || !box || !sym || marketOf(sym)!=='us') return;
@@ -3686,7 +3689,7 @@ function obDraw(j, stale){ const body = document.getElementById('obBody'), bd = 
   const bids = (j.bids||[]).slice(0,5), asks = (j.asks||[]).slice(0,5);
   if(!j.found){ obMsg('הנייר לא נמצא בספר של Cboe.', 'אין נתונים'); return; }
   if(!bids.length && !asks.length){ obMsg(obLive() ? 'אין פקודות פתוחות ב-Cboe כרגע.' : 'השוק סגור – אין פקודות פתוחות.', obLive() ? 'ריק' : 'סגור'); return; }
-  const live = obLive() && !stale; bd.className = 'ob-bd'+(live?'':' off'); bd.innerHTML = live ? '<bdi>Cboe</bdi> · 5 רמות · חי' : 'מידע ישן';
+  const live = obLive() && !stale; bd.className = 'ob-bd'+(live?'':' off'); bd.innerHTML = live ? '<bdi>Cboe</bdi> · חי' : 'מידע ישן';
   const mx = Math.max(1, ...bids.map(x=>x.q), ...asks.map(x=>x.q));
   const row = (x, side)=>`<div class="ob-r"><i style="width:${Math.max(6, x.q/mx*100)}%"></i>${side==='b' ? `<span>${x.q.toLocaleString('en-US')}</span><span class="ob-p">${obFmt(x.p)}</span>` : `<span class="ob-p">${obFmt(x.p)}</span><span>${x.q.toLocaleString('en-US')}</span>`}</div>`;
   const sb = bids.reduce((a,x)=>a+x.q,0), sa = asks.reduce((a,x)=>a+x.q,0), pct = sb+sa ? Math.round(sb/(sb+sa)*100) : 50;
@@ -4208,8 +4211,7 @@ function openPosition(sym){ui.posRange='1D'; ui.posStyle='candle';
     <div class="ctrls"><div class="seg sm" id="posRange">${['1D','1M','3M','YTD','1Y','5Y'].map(r=>`<button data-v="${r}" class="${r===ui.posRange?'on':''}">${{'1D':'יום','1M':'חודש','3M':'3 ח׳','YTD':'YTD','1Y':'שנה','5Y':'5 שנים'}[r]}</button>`).join('')}</div>
       <div class="seg sm" id="posStyle" style="flex:0 0 auto"><button data-v="line" class="${ui.posStyle==='line'?'on':''}">קו</button><button data-v="candle" class="${ui.posStyle==='candle'?'on':''}">נרות</button></div></div>
     <div class="chart" id="posChartEl" style="height:260px"><div class="chart-msg" id="posMsg">טוען גרף…</div></div>
-    <div class="rchg" id="posRchg"></div>
-    <div class="note" id="posNote"></div>${obHtml(sym)}
+    <div class="rchg" id="posRchg"></div>${obHtml(sym)}
     <div class="kv" style="margin-top:10px" id="posKv">${posKvHtml(p)}</div>
     <div class="note" id="posInfo">${posInfoHtml(p)}</div>
     ${assetOf(sym).type!=='crypto' && secInst({sym, type:assetOf(sym).type||'stock', currency:assetOf(sym).currency}).sec ? detHtml() : ''}
@@ -4288,9 +4290,11 @@ function updatePosSheet(S){
 }
 function marketDate(m){ const am = Object.values(ASIA_MK).find(x=>x[0]===m); return zoned(am ? am[1] : m==='tase' ? 'Asia/Jerusalem' : m==='eu' ? 'Europe/Berlin' : 'America/New_York').date; }
 function renderPosRchg(price){
-  const L = posLive, el = $('posRchg'); if(!el || !L || !(L.base>0) || price==null) return;
+  const L = posLive, hd = $('obRchg'), el = $('posRchg'); if(!L || !(L.base>0) || price==null) return;
   const v = (price/L.base - 1)*100;
-  el.innerHTML = `<span>${L.day ? `שינוי יומי` : L.ytd ? `מתחילת השנה <span class="muted">(מול סגירת <span class="num">${fmtDate(L.baseDate)}</span>: <span class="num">${fmtMoneyRaw(L.base, L.hcur, 2)}</span>)</span>` : `שינוי בטווח <span class="muted">(מול <span class="num">${fmtDate(L.baseDate)}</span>)</span>`}</span><span style="display:flex;align-items:baseline;gap:8px"><b id="posRchgPct" class="num ${cls(v)}">${fmtPct(v)}</b>${L.day ? `<span class="num">${fmtMoneyRaw(price, L.hcur, 2)}</span>` : ''}</span>`;
+  if(L.day && hd){ hd.innerHTML = `<b id="posRchgPct" class="num ${cls(v)}">${fmtPct(v)}</b><span class="num">${fmtMoneyRaw(price, L.hcur, 2)}</span>`; if(el) el.innerHTML = ''; return; }
+  if(hd) hd.innerHTML = '';
+  if(el) el.innerHTML = `<span>${L.day ? `שינוי יומי` : L.ytd ? `מתחילת השנה <span class="muted">(מול סגירת <span class="num">${fmtDate(L.baseDate)}</span>: <span class="num">${fmtMoneyRaw(L.base, L.hcur, 2)}</span>)</span>` : `שינוי בטווח <span class="muted">(מול <span class="num">${fmtDate(L.baseDate)}</span>)</span>`}</span><span style="display:flex;align-items:baseline;gap:8px"><b id="posRchgPct" class="num ${cls(v)}">${fmtPct(v)}</b>${L.day ? `<span class="num">${fmtMoneyRaw(price, L.hcur, 2)}</span>` : ''}</span>`;
 }
 function updatePosLive(){
   const L = posLive; if(!posChart || !L) return;
@@ -4315,7 +4319,7 @@ function splitAdjBars(sym, bars){
 let posSeq = 0, posNoteX = '';
 async function drawPosIntraday(sym, seq){   // v172: the 1D (יום) option – intraday bars through the same path as the instrument sheet (instBars); candles by default
   const el = $('posChartEl'), msg = $('posMsg'), a = assetOf(sym) || {}, it = secInst({sym, type:a.type||'stock', currency:a.currency}), cur = it.cur;
-  $('posRchg').innerHTML = '';
+  { const _rc=$('posRchg'); if(_rc) _rc.innerHTML=''; const _rh=$('obRchg'); if(_rh) _rh.innerHTML=''; }
   if(!iq(it)) await instQuotes([it]);
   const iv = ivOf('1D'), raw = await instBars(it, '1D', iv); if(seq!==posSeq || el!==$('posChartEl')) return;
   if(!raw.length){ posNoteX = ' · אין נתוני תוך־יום לנייר זה – מוצג YTD'; ui.posRange = 'YTD'; $('posRange').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===ui.posRange)); return drawPosChart(sym); }
@@ -4335,7 +4339,6 @@ async function drawPosIntraday(sym, seq){   // v172: the 1D (יום) option – 
   posLive = {sym, series:s, candle:cnd, intra:true, hcur:cur, bar:Object.assign({}, lb), base:q && q.prev, baseDate:null, ytd:false, day:true};
   renderPosRchg(q && q.price!=null ? q.price : raw[raw.length-1][1]); updatePosLive();
   posChart.timeScale().fitContent();
-  $('posNote').textContent = `מקור: CNBC · יום מסחר אחרון · מחירים ב${cur==='USD'?'דולר':cur==='ILS'?'שקל':cur}${mks.length?' · B/S = הקניות והמכירות שלך':''}`;
 }
 async function drawPosChart(sym){
   posLive = null; const seq = ++posSeq;
@@ -4349,7 +4352,7 @@ async function drawPosChart(sym){
   if(el!==$('posChartEl') || seq!==posSeq) return;
   if(posChart){ posChart.remove(); posChart=null; }
   const hAdj = h ? splitAdjBars(sym, h.bars) : [], bars = h ? hAdj.filter(b=>b[0]>=from) : [];
-  if(!bars.length){ msg.textContent='אין היסטוריית מחירים זמינה לנייר זה'; $('posNote').textContent=''; return; }
+  if(!bars.length){ msg.textContent='אין היסטוריית מחירים זמינה לנייר זה'; return; }
   msg.style.display='none';
   posChart = makeChart(el, false);
   let s;
@@ -4364,7 +4367,7 @@ async function drawPosChart(sym){
   const lb = bars[bars.length-1]; posLive = {sym, series:s, candle: ui.posStyle==='candle' && h.ohlc, hcur:h.cur, bar:{time:lb[0], open:lb[1], high:lb[2], low:lb[3], close:lb[4]}, base:baseBar[4], baseDate:baseBar[0], ytd};
   renderPosRchg(lb[4]); updatePosLive();   // live quote right away
   posChart.timeScale().fitContent();
-  $('posNote').textContent = `מקור: ${h.source} · מחירים ב${h.cur==='USD'?'דולר':'שקל'}${ui.posStyle==='candle'&&!h.ohlc?' · אין נתוני OHLC – מוצג קו':''}${mks.length?' · B/S = הקניות והמכירות שלך':''}${posNoteX}`; posNoteX = '';
+  posNoteX = '';
 }
 
 // ---------- v110 mock: ⓘ info buttons ----------
