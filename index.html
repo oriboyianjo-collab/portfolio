@@ -219,6 +219,18 @@ nav.bottom button .i{font-size:1.35rem;line-height:1}nav.bottom button{min-width
 nav.bottom button.on{color:var(--primary)}
 html,body{overscroll-behavior-x:none;overscroll-behavior-y:contain}.xh-ok{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.xh-ok.xh{touch-action:none}.xh-ok.zoomed{touch-action:pan-y}.xh-ok .tv-lightweight-charts,.xh-ok .tv-lightweight-charts *{pointer-events:none!important}main .chart{transition:box-shadow .15s}main .chart.active{box-shadow:0 0 0 2px var(--accent,#3b82f6);border-radius:10px}
 .wl-to{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted);margin:6px 0 4px}.wl-to select{font:inherit;font-size:.85rem;padding:4px 8px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);max-width:60%}
+#wlNew{white-space:nowrap;flex:none}
+.wl-addbox{border:1px solid var(--border);border-radius:14px;padding:10px 12px;margin:8px 0}
+.wl-addrow{display:flex;gap:12px;align-items:flex-end}
+.wl-fld{display:flex;flex-direction:column;gap:5px;min-width:0}
+.wl-fld-srch{flex:1 1 auto}
+.wl-fld-to{flex:0 1 44%}
+.wl-lab{font-size:.8rem;font-weight:600;color:var(--muted);white-space:nowrap}
+.wl-to.wl-fld{margin:0;align-items:stretch;gap:5px}
+.wl-to.wl-fld select{max-width:none;width:100%}
+.wl-addbox .wl-add{margin:0}
+.wl-add .ac-ic{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--muted);pointer-events:none}
+.wl-add input{padding-left:32px}
 .wls{border:1px solid var(--border);border-radius:12px;margin-top:8px;overflow:hidden}.wlh{display:flex;align-items:stretch}.wlh-t{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:none;border:0;color:var(--text);font:inherit;padding:11px 12px;cursor:pointer;text-align:right}
 .wlh-n{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}.wlh-c{display:flex;gap:6px;font-size:.82rem;margin-inline-start:auto;white-space:nowrap}.wlh-v{color:var(--muted);font-size:.9rem}
 .wlh-m{flex:none;width:44px;background:none;border:0;border-inline-start:1px solid var(--border);color:var(--text);font-size:1.2rem;cursor:pointer}.wls.open .wlh{border-bottom:1px solid var(--border)}
@@ -921,8 +933,12 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
   <section class="tab" id="tab-watch">
     <div class="card"><div class="h2row"><h2>רשימות מעקב <small id="wlCount"></small></h2><button class="btn btn-light btn-sm" id="wlNew">+ רשימה חדשה</button></div>
       <div id="wlTabs"></div>
-      <div class="ac wl-add"><input id="wlSearch" placeholder="הוספת נייר" autocomplete="off" enterkeyhint="search"><div class="ac-list" id="wlAc"></div></div>
-      <label class="wl-to">יתווסף לרשימה: <select id="wlTo"></select></label>
+      <div class="wl-addbox"><div class="wl-addrow">
+        <div class="wl-fld wl-fld-srch"><span class="wl-lab">הוספת נייר</span>
+          <div class="ac wl-add"><input id="wlSearch" placeholder="חיפוש נייר" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><div class="ac-list" id="wlAc"></div></div>
+        </div>
+        <label class="wl-to wl-fld wl-fld-to"><span class="wl-lab">יתווסף לרשימה:</span><select id="wlTo"></select></label>
+      </div></div>
       <div class="wl-tools"><span>קבוצות:</span><button type="button" id="wlAll"></button></div>
       <div id="wlLists"></div></div>
   </section>
