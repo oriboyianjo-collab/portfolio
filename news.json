@@ -1,5 +1,27 @@
 [
   {
+    "כותרת": "גוגל (GOOGL): ביקורת פוליטית על השינוי בחיפוש בבתי ספר ותגובת החברה",
+    "תאריך": "2026-11-04 09:22",
+    "הועלה": "2026-11-04 09:22",
+    "טקסט": "התגובות והמענה נמסרו בדיווח CNBC, ללא אימות נפרד מול מקור ראשוני\n4.11.2026 | 02:08 שעון ישראל, מועד פרסום CNBC. הודעת גוגל המקורית: 3.11; שעת פרסומה אינה ידועה.\n\nלפי CNBC, ראש עיריית ניו יורק זוהראן ממדאני, הסנאטור ברני סנדרס ויו\"ר רשות הסחר הפדרלית לשעבר לינה קאן מתחו ביקורת על השינוי המתוכנן בחשבונות תלמידים. ממדאני האשים את החברה בניצול כוחה כדי לכפות כלי AI בבתי ספר; סנדרס כינה זאת סחיטה. אלו טענות המבקרים, לא קביעה משפטית או רגולטורית.\n\nבתגובה שמובאת בדיווח, גוגל אמרה שכלי הבינה המלאכותית והחיפוש יהיו כבויים כברירת מחדל ובתי הספר ישלטו בהפעלתם. החברה לא השיבה במפורש לטענה שלא ניתן לקבל חיפוש ללא AI. לפי TechCrunch, מנהל תחום החינוך בגוגל אמר שתלמידים במוסד שבוחר להימנע מ-AI לחלוטין לא יקבלו גישה לחיפוש בחשבון בית הספר.\n\nההודעה הרשמית נוגעת לחשבונות תלמידים מגן חובה עד כיתה י\"ב, עם פרטים שיימסרו לפני היישום בחודשים הקרובים. אין כאן הודעה על חסימת החיפוש לציבור הרחב או על ניתוק בתי הספר היום.\n\nקשור לפריט שנשלח ב-3.11 בשעה 21:02 על שינוי הבקרות. מה חדש: הביקורת הפומבית ותגובת גוגל, לא שינוי מדיניות נוסף.\n\nמקור לתגובות ולמענה: CNBC\nhttps://www.cnbc.com/2026/11/03/google-responds-to-outrage-over-removing-search-in-schools-that-ban-ai.html\n\nהודעת גוגל הרשמית\nhttps://blog.google/products-and-platforms/products/education/ai-learning-era-updates-2026/\n\nמקור לציטוט מנהל החינוך: TechCrunch\nhttps://techcrunch.com/2026/11/03/google-will-let-schools-disable-its-ai-tools-but-not-without-sacrificing-search/",
+    "קישור": "https://www.cnbc.com/2026/11/03/google-responds-to-outrage-over-removing-search-in-schools-that-ban-ai.html",
+    "מקורות": [
+      {
+        "label": "מקור לתגובות ולמענה: CNBC",
+        "url": "https://www.cnbc.com/2026/11/03/google-responds-to-outrage-over-removing-search-in-schools-that-ban-ai.html"
+      },
+      {
+        "label": "הודעת גוגל הרשמית",
+        "url": "https://blog.google/products-and-platforms/products/education/ai-learning-era-updates-2026/"
+      },
+      {
+        "label": "מקור לציטוט מנהל החינוך: TechCrunch",
+        "url": "https://techcrunch.com/2026/11/03/google-will-let-schools-disable-its-ai-tools-but-not-without-sacrificing-search/"
+      }
+    ],
+    "category": "micro"
+  },
+  {
     "כותרת": "אמדוקס (DOX) רכשה את חברת תוכנות הביטוח איי-איי-אס (EIS) בכ-340 מיליון דולר במזומן",
     "תאריך": "2026-11-04 08:42",
     "הועלה": "2026-11-04 08:42",
