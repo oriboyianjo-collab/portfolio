@@ -3693,8 +3693,7 @@ function obDraw(j, stale){ const body = document.getElementById('obBody'), bd = 
   const sp = bids.length && asks.length ? asks[0].p - bids[0].p : null;
   body.innerHTML = (sp!=null ? `<div class="ob-sp"><b>Spread ${(sp/bids[0].p*100).toFixed(2)}% · $${sp.toFixed(bids[0].p<1?4:2)}</b></div>` : '')
     + `<div class="ob-g"><div class="ob-b"><div class="ob-t"><span>כמות</span><span>קנייה (Bid)</span></div>${bids.map(x=>row(x,'b')).join('') || '<div class="ob-msg">—</div>'}</div><div class="ob-a"><div class="ob-t"><span>מכירה (Ask)</span><span>כמות</span></div>${asks.map(x=>row(x,'a')).join('') || '<div class="ob-msg">—</div>'}</div></div>`
-    + (bids.length && asks.length ? `<div class="ob-im"><i style="width:${pct}%"></i></div><div class="ob-iml"><span>קונים ${pct}%</span><span>מוכרים ${100-pct}%</span></div>` : '')
-    + `<div class="ob-ft${stale?' warn':''}">${stale ? 'החיבור נקטע – מוצג המידע האחרון · ' : ''}נתוני <bdi>Cboe BZX+EDGX</bdi> בלבד (שתי בורסות, לא כלל השוק) · עודכן <bdi>${esc(j.ts||'')} ET</bdi> · כמויות במניות${obLive() ? '' : ' · השוק סגור'}</div>`; }
+    + (bids.length && asks.length ? `<div class="ob-im"><i style="width:${pct}%"></i></div><div class="ob-iml"><span>קונים ${pct}%</span><span>מוכרים ${100-pct}%</span></div>` : ''); }
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden && OB.t) obTick(true); });
 
 // ---- instrument sheet (market card / watchlist row) ----
