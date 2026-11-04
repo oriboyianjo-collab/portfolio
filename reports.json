@@ -27676,7 +27676,7 @@
     "תאריך": "2026-11-04",
     "מועד": "before",
     "צפי_EPS": "1.42",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-04.11.2026: 899.50M דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל.",
+    "הערה": "שעת פרסום צפויה: 14:00 לפי אישור החברה, שעון ישראל; אינה שעת שיחת המשקיעים.\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-04.11.2026: 899.50M דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל.",
     "צפי_הכנסות": "899.50M",
     "בסיס_צפי_הכנסות": "Analyst consensus for report scheduled 04.11.2026; fiscal quarter not stated by source",
     "מטבע_צפי_הכנסות": "USD",
@@ -27685,7 +27685,12 @@
     "אימות_צפי_הכנסות": "MarketBeat dated table re-fetched 03.11.2026; existing forecasts preserved",
     "סטטוס_בדיקת_תחזית_חברה": "bounded_check_no_guidance_found (not proof of absence)",
     "השוואה_הכנסות": "לא",
-    "הסבר_הכנסות": "צפי אנליסטים מיוחס ללוח המקור; התאמת מטבע והיקף לבפועל תיבדק עם פרסום התוצאות."
+    "הסבר_הכנסות": "צפי אנליסטים מיוחס ללוח המקור; התאמת מטבע והיקף לבפועל תיבדק עם פרסום התוצאות.",
+    "release_time_il": "14:00",
+    "release_time_approx": false,
+    "release_time_source": "https://ir.youradv.com/news-events/news-releases/news-releases-details/2026/Advantage-Solutions-to-Report-Third-Quarter-2026-Financial-Results/default.aspx",
+    "release_time_verified_date": "2026-11-04",
+    "release_time_basis": "issuer-scheduled"
   },
   {
     "חברה": "Aeva Technologies, Inc.",
@@ -28545,7 +28550,12 @@
     "תאריך": "2026-11-04",
     "מועד": "before",
     "צפי_EPS": "-0.51",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "שעת פרסום צפויה סביב 14:00 לפי אישור החברה, שעון ישראל; אינה שעת שיחת המשקיעים.\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע",
+    "release_time_il": "14:00",
+    "release_time_approx": true,
+    "release_time_source": "https://www.globenewswire.com/news-release/2026/10/06/3375393/0/en/brookfield-renewable-to-host-third-quarter-2026-results-conference-call.html",
+    "release_time_verified_date": "2026-11-04",
+    "release_time_basis": "issuer-scheduled-approximate"
   },
   {
     "חברה": "Brookfield Renewable Corporation",
@@ -28553,7 +28563,12 @@
     "תאריך": "2026-11-04",
     "מועד": "before",
     "צפי_EPS": "-0.90",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "שעת פרסום צפויה סביב 14:00 לפי אישור החברה, שעון ישראל; אינה שעת שיחת המשקיעים.\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע",
+    "release_time_il": "14:00",
+    "release_time_approx": true,
+    "release_time_source": "https://www.globenewswire.com/news-release/2026/10/06/3375393/0/en/brookfield-renewable-to-host-third-quarter-2026-results-conference-call.html",
+    "release_time_verified_date": "2026-11-04",
+    "release_time_basis": "issuer-scheduled-approximate"
   },
   {
     "חברה": "BGSF, Inc.",
@@ -28787,7 +28802,12 @@
     "תאריך": "2026-11-04",
     "מועד": "before",
     "צפי_EPS": "0.09",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע"
+    "הערה": "שעת פרסום צפויה: 15:00 לפי אישור החברה, שעון ישראל; אינה שעת שיחת המשקיעים.\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע",
+    "release_time_il": "15:00",
+    "release_time_approx": false,
+    "release_time_source": "https://investors.burfordcapital.com/news/news-details/2026/Burford-Announces-Date-for-Release-of-3Q26-Financial-Results-and-Results-Call-Registration-and-Participation-Details/default.aspx",
+    "release_time_verified_date": "2026-11-04",
+    "release_time_basis": "issuer-scheduled"
   },
   {
     "חברה": "Bowman Consulting Group Ltd.",
