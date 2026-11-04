@@ -3380,7 +3380,7 @@ let comCfg = (()=>{ const j = loadJ(COM_KEY); const ks = j && Array.isArray(j.ke
 const saveCom = ()=>{ try{ localStorage.setItem(COM_KEY, JSON.stringify(comCfg)); }catch(e){} };
 const comInst = k=>{ const c = COM_BY[k]; return c ? Object.assign({q:c.s}, c, {u:''}) : null; };
 const comItems = ()=>comCfg.keys.map(comInst).filter(Boolean);
-const COM_IMG = {gold:'gold',silver:'silver',wti:'oil',brent:'oil',ng:'gas',hg:'copper',wheat:'wheat',soy:'soy',coffee:'coffee',corn:'corn',lc:'cattle',fc:'cattle',lh:'hog'};
+const COM_IMG = {gold:'gold',silver:'silver',wti:'oil',brent:'oil',ng:'gas',hg:'copper',wheat:'wheat',soy:'soy',coffee:'coffee',corn:'corn',lc:'cattle',fc:'cattle',lh:'hog',cocoa:'cocoa',cotton:'cotton',lbr:'lumber',rice:'rice',oats:'oats'};
 function comTile(it){ const q = iq(it), last = q ? q.price : null, prev = q ? q.prev : null, p = last!=null && prev ? (last/prev-1)*100 : null, c = COM_BY[it.k];
   const im = COM_IMG[it.k];
   return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}${im ? ' cm' : ''}"${im ? ` style="--ic:url(cm2/${im}.jpg)"` : ''} data-ck="${esc(it.k)}"><span class="a1"><b>${esc(c.n)}</b><small>${esc(c.s.replace('.1',''))}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:c.dp, maximumFractionDigits:c.dp}) : '—'}</span><span class="a2"><small>${esc(c.u)}</small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
