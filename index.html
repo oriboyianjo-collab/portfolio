@@ -3363,9 +3363,9 @@ const COM_CAT = [
   {k:'brent', s:'@LCO.1', n:'נפט ברנט', u:'$ / חבית', dp:2}, {k:'ng', s:'@NG.1', n:'גז טבעי', u:'$ / MMBtu', dp:3}, {k:'hg', s:'@HG.1', n:'נחושת', u:'$ / ליברה', dp:3},
   {k:'pl', s:'@PL.1', n:'פלטינה', u:'$ / אונקיה', dp:2}, {k:'pa', s:'@PA.1', n:'פלדיום', u:'$ / אונקיה', dp:2}, {k:'ho', s:'@HO.1', n:'סולר חימום', u:'$ / גלון', dp:4}, {k:'rb', s:'@RB.1', n:'בנזין RBOB', u:'$ / גלון', dp:4},
   {k:'corn', s:'@C.1', n:'תירס', u:'סנט / בושל', dp:2}, {k:'wheat', s:'@W.1', n:'חיטה', u:'סנט / בושל', dp:2}, {k:'soy', s:'@S.1', n:'סויה', u:'סנט / בושל', dp:2},
-  {k:'sm', s:'@SM.1', n:'קמח סויה', u:'$ / טון קצר', dp:2}, {k:'bo', s:'@BO.1', n:'שמן סויה', u:'סנט / ליברה', dp:2}, {k:'oats', s:'@O.1', n:'שיבולת שועל', u:'', dp:2}, {k:'rice', s:'@RR.1', n:'אורז', u:'', dp:3},
+  {k:'sm', s:'@SM.1', n:'קמח סויה', u:'$ / טון קצר', dp:2}, {k:'bo', s:'@BO.1', n:'שמן סויה', u:'סנט / ליברה', dp:2}, {k:'oats', s:'@O.1', n:'שיבולת שועל', u:'סנט / בושל', dp:2}, {k:'rice', s:'@RR.1', n:'אורז', u:'$ / cwt', dp:3},
   {k:'coffee', s:'@KC.1', n:'קפה', u:'סנט / ליברה', dp:2}, {k:'sugar', s:'@SB.1', n:'סוכר', u:'סנט / ליברה', dp:2}, {k:'cotton', s:'@CT.1', n:'כותנה', u:'סנט / ליברה', dp:2}, {k:'cocoa', s:'@CC.1', n:'קקאו', u:'$ / טון', dp:0},
-  {k:'oj', s:'@OJ.1', n:'מיץ תפוזים', u:'סנט / ליברה', dp:2}, {k:'lc', s:'@LC.1', n:'בקר חי', u:'', dp:3}, {k:'fc', s:'@FC.1', n:'בקר לפיטום', u:'', dp:3}, {k:'lh', s:'@LH.1', n:'חזיר רזה', u:'', dp:3}, {k:'lbr', s:'@LBR.1', n:'עץ', u:'', dp:2}];
+  {k:'oj', s:'@OJ.1', n:'מיץ תפוזים', u:'סנט / ליברה', dp:2}, {k:'lc', s:'@LC.1', n:'בקר חי', u:'סנט / ליברה', dp:3}, {k:'fc', s:'@FC.1', n:'בקר לפיטום', u:'סנט / ליברה', dp:3}, {k:'lh', s:'@LH.1', n:'חזיר רזה', u:'סנט / ליברה', dp:3}, {k:'lbr', s:'@LBR.1', n:'עץ', u:'$ / MBF', dp:2}];
 const COM_BY = Object.fromEntries(COM_CAT.map(x=>[x.k, x])), COM_DEFAULT = ['gold','silver','wti','ng','hg','wheat'], COM_KEY = 'portfolioTracker.commodities.v1';
 let comCfg = (()=>{ const j = loadJ(COM_KEY); const ks = j && Array.isArray(j.keys) ? j.keys.filter((k,i,a)=>COM_BY[k] && a.indexOf(k)===i) : COM_DEFAULT.slice(); return {keys:ks}; })(), comEditing = false;
 const saveCom = ()=>{ try{ localStorage.setItem(COM_KEY, JSON.stringify(comCfg)); }catch(e){} };
