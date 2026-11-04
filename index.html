@@ -3342,7 +3342,7 @@ async function mktTick(){ if(document.hidden) return;
   if(ui.tab==='market' && etfUi.mode==='etf'){ const d = etfData[etfUi.sel]; if(d){ await instQuotes([secInst({sym:etfUi.sel, type:'etf'}), ...etfItems(d)]); drawEtf(); } }
   else if(ui.tab==='market' && etfUi.sub==='com'){ await instQuotes(comItems()); drawCom(); }
   else if(ui.tab==='market' && etfUi.sub==='fx'){ await instQuotes(fxItems()); drawFx(); }
-  else if(ui.tab==='market'){ await instQuotes(glbItems()); drawGlb(); }
+  else if(ui.tab==='market'){ await Promise.all([instQuotes(glbItems().filter(i=>!i.fileSrc)), loadIdxFile()]); drawGlb(); }
   else if(false){}
   else if(ui.tab==='market'){ const L = mktItems(); await instQuotes(L); if(mktRange==='1D' || mktRange==='1W') await Promise.all(L.map(it=>instBars(it, mktRange).catch(()=>{}))); drawMarket(); }
   else if(ui.tab==='watch'){ const L = wlItems(); await instQuotes(L); await Promise.all(L.map(it=>instBars(it, '1D').catch(()=>{}))); drawWatch(); }
@@ -3446,21 +3446,29 @@ const GLB_CAT = [
   {k:'ta35', s:'.TA35', n:'ת"א 35', c:'ישראל', e:'israel tel aviv', dp:2},
   {k:'ta125', s:'.TA125', n:'ת"א 125', c:'ישראל', e:'israel tel aviv', dp:2},
   {k:'colcap', s:'.COLCAP', n:'COLCAP', c:'קולומביה', e:'colombia', dp:2},
+  {k:'tasi', s:'IDXF:TASI', n:'טאדאוול (TASI)', c:'ערב הסעודית', e:'saudi arabia tadawul סעודיה ערב סעודית', dp:2, fileSrc:1},
+  {k:'qe', s:'IDXF:QE', n:'QE קטאר', c:'קטאר', e:'qatar קטר', dp:2, fileSrc:1},
+  {k:'sensex', s:'IDXF:SENSEX', n:'סנסקס (BSE)', c:'הודו', e:'india bse sensex', dp:2, fileSrc:1},
   {k:'xu100', s:'.XU100', n:'BIST 100', c:'טורקיה', e:'turkey', dp:2}];
 const GLB_BY = Object.fromEntries(GLB_CAT.map(x=>[x.k, x])), GLB_DEFAULT = ['spx','ndx','dji','ftse','dax','n225','hsi','kospi'], GLB_KEY = 'portfolioTracker.globalIdx.v1';
 let glbCfg = (()=>{ const j = loadJ(GLB_KEY); const ks = j && Array.isArray(j.keys) ? j.keys.filter((k,i,a)=>GLB_BY[k] && a.indexOf(k)===i) : GLB_DEFAULT.slice(); return {keys:ks}; })(), glbEditing = false;
 const saveGlb = ()=>{ try{ localStorage.setItem(GLB_KEY, JSON.stringify(glbCfg)); }catch(e){} };
 const glbInst = k=>{ const c = GLB_BY[k]; return c ? Object.assign({q:c.s, name:c.n, sym:c.s}, c, {u:''}) : null; };
 const glbItems = ()=>glbCfg.keys.map(glbInst).filter(Boolean);
+// indices CNBC does not carry (Saudi, Qatar, Sensex): price index snapshots from indices.json (Yahoo, refreshed by a scheduled job) – never live; the quote's own date+time is always shown
+let idxFileAt = 0;
+async function loadIdxFile(){ if(Date.now()-idxFileAt < 60e3 && mq['IDXF:TASI']) return; idxFileAt = Date.now();
+  try{ const j = await fetchJSON('indices.json?t='+Date.now(), 8000), Q = (j && j.quotes) || {};
+    for(const k in Q){ const x = Q[k]; if(x && x.price > 0 && x.ts > 0) mq['IDXF:'+k.toUpperCase()] = {price:x.price, prev:x.prev > 0 ? x.prev : null, ts:x.ts, cur:x.cur||'USD', name:x.name||'', fileSrc:true, realTime:false}; } }catch(e){} }
 function glbTile(it){ const q = iq(it), last = q ? q.price : null, prev = q ? q.prev : null, p = last!=null && prev ? (last/prev-1)*100 : null, c = GLB_BY[it.k];
-  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}" data-gk="${esc(it.k)}"><span class="a1"><b>${esc(c.n)}</b><small>${esc(c.c)}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:c.dp, maximumFractionDigits:c.dp}) : '—'}</span><span class="a2"><small>${esc(staleTag(q))}</small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
+  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}" data-gk="${esc(it.k)}"><span class="a1"><b>${esc(c.n)}</b><small>${esc(c.c)}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:c.dp, maximumFractionDigits:c.dp}) : '—'}</span><span class="a2"><small>${esc(q && q.fileSrc && q.ts ? 'ציטוט אחרון '+fmtTime(q.ts) : staleTag(q))}</small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
 function drawGlb(){ const g = $('glbGrid'); if(!g) return; const L = glbItems();
   g.innerHTML = L.length ? L.map(glbTile).join('') : '<div class="wl-empty" style="grid-column:1/-1">אין מדדים – הוסיפו בעריכה.</div>';
   g.style.display = glbEditing ? 'none' : ''; $('glbEditBox').hidden = !glbEditing; $('glbEdit').textContent = glbEditing ? '✓ סיום' : '✏️ עריכה'; $('glbEdit').setAttribute('aria-pressed', String(glbEditing));
   if(glbEditing){ const qq0 = (($('glbSearch')||{}).value||'').trim().toLowerCase(); $('glbRows').innerHTML = glbCfg.keys.map((k,i)=>{ const c = GLB_BY[k]; if(qq0 && !(c.n+' '+c.c+' '+c.e+' '+c.s).toLowerCase().includes(qq0)) return ''; return `<div class="cr" data-gk="${k}"><button class="x" data-gdel aria-label="הסרת ${esc(c.n)}">✕</button><div><b>${esc(c.n)}</b><small>${esc(c.c)} · ${esc(c.s)}</small></div><button data-gmv="up" aria-label="למעלה" ${i===0?'disabled':''}>▲</button><button data-gmv="down" aria-label="למטה" ${i===glbCfg.keys.length-1?'disabled':''}>▼</button></div>`; }).join('');
     const qq = (($('glbSearch')||{}).value||'').trim().toLowerCase(); const rest = GLB_CAT.filter(c=>!glbCfg.keys.includes(c.k) && (!qq || (c.n+' '+c.c+' '+c.e+' '+c.s).toLowerCase().includes(qq))); $('glbAddList').innerHTML = rest.length ? rest.map(c=>`<button data-gadd="${c.k}">+ ${esc(c.n)} · ${esc(c.c)}</button>`).join('') : '<div class="note">לא נמצאו מדדים.</div>'; }
   const t = Object.values(mq).map(x=>x.ts||0).filter(Boolean); $('glbUpd').textContent = t.length ? '· '+new Date(Math.max(...t)).toLocaleTimeString('he-IL',{hour:'2-digit', minute:'2-digit'}) : ''; }
-async function renderGlb(){ drawGlb(); const L = glbItems(); if(L.some(it=>!iq(it))){ await instQuotes(L); if(etfUi.mode==='mk' && etfUi.sub==='glob') drawGlb(); } }
+async function renderGlb(){ drawGlb(); const L = glbItems(); if(L.some(it=>!iq(it))){ await Promise.all([instQuotes(L.filter(i=>!i.fileSrc)), L.some(i=>i.fileSrc) ? loadIdxFile() : null]); if(etfUi.mode==='mk' && etfUi.sub==='glob') drawGlb(); } }
 $('glbEdit').onclick = ()=>{ glbEditing = !glbEditing; drawGlb(); };
 $('glbDone').onclick = ()=>{ glbEditing = false; drawGlb(); };
 $('glbReset').onclick = ()=>{ if(!confirm('לאפס את הגלובל לברירת המחדל (8 המדדים המקוריים)?')) return; glbCfg = {keys:GLB_DEFAULT.slice()}; saveGlb(); renderGlb(); };
@@ -3858,7 +3866,7 @@ document.addEventListener('visibilitychange', ()=>{ if(!document.hidden && OB.t)
 let instSheet = null;
 function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p=>p.sym===it.sym);
   return `<h3><span>${it.sec ? logoHtml(it.sym, true) : it.fl ? `<span class="fxfl">${it.fl}</span>` : ''}<span>${esc(it.sec ? it.sym : it.n)}</span></span><button class="x" data-close aria-label="סגירה">✕</button></h3>
-    <div class="muted" style="margin:-8px 0 8px;font-size:.85rem">${esc(it.sec ? it.n : it.s)}${it.sec ? '' : '<span id="isAsof"></span>'}</div>
+    <div class="muted" style="margin:-8px 0 8px;font-size:.85rem">${esc(it.sec ? it.n : it.fileSrc ? 'Yahoo Finance · ללא גרף' : it.s)}${it.sec ? '' : '<span id="isAsof"></span>'}</div>
     <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><div class="ishd"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b><span id="isXP" class="isx"></span><span id="isXC" class="isx"></span></div>${it.y ? '' : styleSegHtml('isStyle', 'candle')}</div>
     ${it.sec ? '<div class="is-trade"><button class="btn btn-primary" data-istx="buy">🛒 קנייה</button><button class="btn btn-light" data-istx="sell">💰 מכירה</button></div>' : ''}
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
