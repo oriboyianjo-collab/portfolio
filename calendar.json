@@ -551,12 +551,15 @@
     "חשיבות": 2,
     "קודם": "90K",
     "צפי": "68K–75K",
-    "הערה": "צפי שונה: ForexFactory 68K; TD 75K. תאריך FRED; שעה 08:15 ET לפי eOption ו-TD; אתר ADP לא מציג לוח נובמבר נגיש. אין לערבב עם הסדרה השבועית\nעדכון מקורות 03.11.2026: ForexFactory67K כעת;68K ישן.75K היה TD מהבדיקה הקודמת ולא אומת מחדש, לא מקור טרי מאומת. הצפי המקורי בשדה נשמר, לא הוחלף.",
+    "הערה": "דוח ADP החודשי לאוקטובר 2026: נוספו 86 אלף משרות במגזר הפרטי. הנתון לספטמבר תוקן מ-90 אלף ל-86 אלף; השדה קודם נשמר כערך המקורי והעדכון מוצג כאן בנפרד. צפי עדכני מיוחס ל-ForexFactory ול-Investing: 67 אלף; הטווח ההיסטורי 68K-75K נשמר בשדה צפי, ו-75K לא אומת מחדש. אין לערבב עם NER Pulse השבועי. המקור הראשוני הוא הודעת ADP מ-4.11.2026; שעת הפרסום המתוכננת 08:15 ניו יורק היא 15:15 בישראל.",
     "מקורות_בדיקה_עדכנית": [
-      "https://www.forexfactory.com/calendar?week=nov1.2026",
-      "https://www.marketwatch.com/economy-politics/calendar"
+      "https://mediacenter.adp.com/2026-11-04-ADP-National-Employment-Report-Private-Sector-Employment-Increased-by-86,000-Jobs-in-October",
+      "https://www.adpemploymentreport.com/"
     ],
-    "תאריך_בדיקה_עדכנית": "2026-11-03"
+    "תאריך_בדיקה_עדכנית": "2026-11-04",
+    "הערות_מקור_ארכיון": "\nצפי שונה: ForexFactory 68K; TD 75K. תאריך FRED; שעה 08:15 ET לפי eOption ו-TD; אתר ADP לא מציג לוח נובמבר נגיש. אין לערבב עם הסדרה השבועית\nעדכון מקורות 03.11.2026: ForexFactory67K כעת;68K ישן.75K היה TD מהבדיקה הקודמת ולא אומת מחדש, לא מקור טרי מאומת. הצפי המקורי בשדה נשמר, לא הוחלף.",
+    "בפועל": "86K",
+    "קישור": "https://mediacenter.adp.com/2026-11-04-ADP-National-Employment-Report-Private-Sector-Employment-Increased-by-86,000-Jobs-in-October"
   },
   {
     "תאריך": "2026-11-04",
