@@ -394,12 +394,14 @@
     "חשיבות": 2,
     "קודם": "54.9",
     "צפי": "54.7–54.9",
-    "הערה": "צפי שונה: Newsquawk 54.7; TD 54.8; ForexFactory 54.9\nעדכון מקורות 03.11.2026: MarketWatch54.6; ForexFactory54.8.54.9 בFFישן;54.7Newsquawkישן לא אומת מחדש. הצפי המקורי בשדה נשמר, לא הוחלף.",
+    "הערה": "צפי שונה: Newsquawk 54.7; TD 54.8; ForexFactory 54.9\nעדכון מקורות 03.11.2026: MarketWatch54.6; ForexFactory54.8.54.9 בFFישן;54.7Newsquawkישן לא אומת מחדש. הצפי המקורי בשדה נשמר, לא הוחלף.\nבפועל 54.5 לאוקטובר 2026, לפי הדוח הראשוני של ISM שנקרא בדפדפן. קודם ספטמבר 54.9. הצפי המקורי 54.7–54.9 נשמר; הנתון נמוך מכל הטווח הזה. מדד מעל 50 מציין התרחבות. שעת 17:00 היא שעת הפרסום בלוח, לא חותמת זמן מהדוח.",
     "מקורות_בדיקה_עדכנית": [
-      "https://www.forexfactory.com/calendar?week=nov1.2026",
-      "https://www.marketwatch.com/economy-politics/calendar"
+      "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/services/october/"
     ],
-    "תאריך_בדיקה_עדכנית": "2026-11-03"
+    "תאריך_בדיקה_עדכנית": "2026-11-04",
+    "הערות_מקור_ארכיון": "\nצפי שונה: Newsquawk 54.7; TD 54.8; ForexFactory 54.9\nעדכון מקורות 03.11.2026: MarketWatch54.6; ForexFactory54.8.54.9 בFFישן;54.7Newsquawkישן לא אומת מחדש. הצפי המקורי בשדה נשמר, לא הוחלף.",
+    "בפועל": "54.5",
+    "קישור": "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/services/october/"
   },
   {
     "תאריך": "2026-11-04",
