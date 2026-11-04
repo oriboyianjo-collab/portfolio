@@ -157,11 +157,12 @@ button{font-family:inherit}
 .heat-map .ht b{font-weight:800;direction:ltr;unicode-bidi:isolate;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 1px rgba(0,0,0,.25)}.heat-map .ht i{font-style:normal;font-weight:700;direction:ltr;unicode-bidi:isolate;white-space:nowrap}.heat-map .ht s{text-decoration:none;opacity:.85;font-weight:600;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
 @media (max-width:370px){.heat-map{height:224px}}
 .mkt-card{padding:12px}.mkt-card .seg{margin:2px 0 10px}
-.com-g{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.com-g .ct2{position:relative;text-align:right;color:#fff;border-radius:18px;padding:12px;border:1px solid rgba(255,255,255,.12);cursor:pointer;font:inherit;min-width:0;display:flex;flex-direction:column}
+.mk-sub{display:flex;gap:8px;margin:0 0 10px}.mk-sub[hidden]{display:none}.mk-sub button{flex:0 0 auto;border:1px solid var(--border);background:var(--bg-f1f5f9);color:var(--fg-334155);border-radius:999px;padding:7px 16px;font:inherit;font-weight:600;font-size:.85rem;cursor:pointer}.mk-sub button.on{background:var(--primary);border-color:var(--primary);color:#fff}.glb-search{width:100%;box-sizing:border-box;margin:0 0 8px;padding:9px 12px;border-radius:12px;border:1px solid var(--border);background:var(--bg-f8fafc);color:inherit;font:inherit}
+.com-card{background:none!important;border:0!important;box-shadow:none!important;padding:0!important}.com-g{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.com-g .ct2{position:relative;text-align:right;color:#fff;border-radius:14px;padding:8px 10px;border:1px solid rgba(255,255,255,.12);cursor:pointer;font:inherit;min-width:0;display:flex;flex-direction:column}
 .ct2.up{background:linear-gradient(155deg,rgba(21,128,61,.88),rgba(11,18,32,.92))}.ct2.dn{background:linear-gradient(155deg,rgba(185,28,28,.88),rgba(11,18,32,.92))}.ct2.fl{background:linear-gradient(155deg,rgba(71,85,105,.9),rgba(11,18,32,.92))}
-.ct2 .a1{display:flex;justify-content:space-between;gap:6px;align-items:baseline}.ct2 .a1 b{font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ct2 .a1 small{opacity:.7;direction:ltr;unicode-bidi:isolate;font-size:.66rem}
-.ct2 .pv{font-size:1.5rem;font-weight:800;margin-top:12px;direction:ltr;unicode-bidi:isolate;text-align:right;letter-spacing:-.3px;white-space:nowrap}.ct2 .a2{display:flex;justify-content:space-between;align-items:baseline;margin-top:2px}
-.ct2 .a2 small{opacity:.78;font-size:.64rem}.ct2 .a2 b{font-size:.92rem;direction:ltr;unicode-bidi:isolate}
+.ct2 .a1{display:flex;justify-content:space-between;gap:6px;align-items:baseline}.ct2 .a1 b{font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ct2 .a1 small{opacity:.7;direction:ltr;unicode-bidi:isolate;font-size:.62rem}
+.ct2 .pv{font-size:1.2rem;font-weight:800;margin-top:6px;direction:ltr;unicode-bidi:isolate;text-align:right;letter-spacing:-.3px;white-space:nowrap}.ct2 .a2{display:flex;justify-content:space-between;align-items:baseline;margin-top:2px}
+.ct2 .a2 small{opacity:.78;font-size:.6rem;min-height:.8em}.ct2 .a2 b{font-size:.78rem;direction:ltr;unicode-bidi:isolate}
 .com-edit .cr{display:flex;align-items:center;gap:8px;padding:9px 4px;border-bottom:1px solid var(--border)}.com-edit .cr div{flex:1;min-width:0}.com-edit .cr b{display:block;font-size:.92rem}.com-edit .cr small{color:var(--muted);font-size:.7rem}
 .com-edit .cr button{min-width:34px;min-height:34px;border-radius:50%;border:1px solid var(--border);background:var(--bg-f8fafc);color:inherit;font:inherit}.com-edit .cr .x{background:#ef4444;color:#fff;border:0}.com-h5{margin:12px 2px 6px;font-size:.8rem;color:var(--muted)}
 .mkt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -933,7 +934,8 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
   </section>
   <section class="tab" id="tab-tx"><div class="card"><div class="tx-h"><h2>היסטוריית עסקאות <small id="txCount"></small></h2><button class="btn btn-primary btn-sm" id="txNew">➕ עסקה חדשה</button></div><div class="hist-bar" id="txHistBar" style="margin-top:0"></div><div id="txList"></div></div></section>
   <section class="tab" id="tab-market">
-    <div class="seg mkt-mode" id="mktMode" role="group" aria-label="תצוגת השוק"><button data-mm="my" class="on">🌐 השוק שלי</button><button data-mm="etf">🧩 מדדים</button><button data-mm="com">🛢️ סחורות</button></div>
+    <div class="seg mkt-mode" id="mktMode" role="group" aria-label="תצוגת השווקים"><button data-mm="mk" class="on">🌐 שווקים</button><button data-mm="etf">🧩 מדדים</button></div>
+    <div class="mk-sub" id="mkSub" role="group" aria-label="סוג שוק"><button data-ms="glob">גלובל</button><button data-ms="com">סחורות</button></div>
     <div class="card etf-card" id="etfCard" hidden>
       <div class="fsel" id="etfPick"></div>
       <form id="etfAdd" class="etf-add-w" autocomplete="off" novalidate></form>
@@ -947,7 +949,12 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
       <div class="com-g" id="comGrid"></div>
       <div class="com-edit" id="comEditBox" hidden><div id="comRows"></div><h5 class="com-h5">הוספת סחורה</h5><div class="mkt-cat" id="comAddList"></div>
         <div class="btn-row"><button class="btn btn-light btn-sm" id="comReset">↺ איפוס לברירת מחדל</button><button class="btn btn-primary btn-sm" id="comDone">✓ סיום</button></div></div>
-      <div class="ib-src" id="comNote">מחירי חוזים עתידיים (החוזה הקרוב), בהשהיה, לפי יחידת המידה של כל נכס. המחיר והשינוי נשארים כפי שמפורסמים, ללא המרת מטבע.</div></div>
+      <div class="ib-src" id="comNote">מחירי חוזים עתידיים (החוזה הקרוב), בהשהיה. יחידת המידה מוצגת רק כשאומתה מול מפרט הבורסה; המחיר והשינוי כפי שמפורסמים.</div></div>
+    <div class="card com-card" id="glbCard" hidden><div class="h2row"><h2><span>גלובל</span> <small id="glbUpd"></small></h2><button class="btn btn-light btn-sm" id="glbEdit" aria-pressed="false">✏️ עריכה</button></div>
+      <div class="com-g" id="glbGrid"></div>
+      <div class="com-edit" id="glbEditBox" hidden><input type="search" id="glbSearch" class="glb-search" placeholder="חיפוש מדד או מדינה" autocomplete="off"><div id="glbRows"></div><h5 class="com-h5">הוספת מדד</h5><div class="mkt-cat" id="glbAddList"></div>
+        <div class="btn-row"><button class="btn btn-light btn-sm" id="glbReset">↺ איפוס לברירת מחדל</button><button class="btn btn-primary btn-sm" id="glbDone">✓ סיום</button></div></div>
+      <div class="ib-src" id="glbNote">מדדים מובילים לפי מדינה, בהשהיה. המחיר והשינוי כפי שמפורסמים.</div></div>
     <div class="card mkt-card" id="mktCard"><div class="h2row"><h2><span>שוק <button type="button" class="ib" data-ib-for="mktInfoSrc" data-ib-t="מקור הנתונים ושיטת התצוגה" aria-label="הסבר: מקור הנתונים ושיטת התצוגה" aria-haspopup="dialog">i</button></span> <small id="mktUpd"></small></h2><button class="btn btn-light btn-sm" id="mktEdit" aria-pressed="false">✏️ עריכה</button></div>
       <div class="seg sm" id="mktRange"><button data-v="1D" class="on">יום</button><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="YTD">YTD</button><button data-v="1Y">שנה</button><button data-v="5Y">5 שנים</button><button data-v="MAX">מקסימום</button></div>
       <div class="mkt-editbar" id="mktEditBar" hidden>
@@ -1136,7 +1143,7 @@ const CRYPTO_IDS = {BTC:'bitcoin',ETH:'ethereum',SOL:'solana',XRP:'ripple',ADA:'
 const BM_PRESETS = [
   {s:'SPY',n:'S&P 500 · SPY'},{s:'QQQ',n:'Nasdaq 100 · QQQ'},{s:'SOXX',n:'שבבים · SOXX'},{s:'VOO',n:'VOO'},
   {s:'DIA',n:'Dow Jones · DIA'},{s:'IWM',n:'Russell 2000 · IWM'},{s:'.TA35',n:'ת״א 35'},{s:'.TA125',n:'ת״א 125'},{s:'BTC',n:'ביטקוין',t:'crypto'}];
-const DEFAULT_SETTINGS = {commission:{USD:{fixed:0,pct:0,min:7.5,perShare:0.01,max:0,smallBelow:0,smallFee:0}, ILS:{fixed:0,pct:0.08,min:4.65,perShare:0,max:0,smallBelow:0,smallFee:0}}, fxFeePct:0, taxRate:25, benchmarks:['SPY','.TA35'], refreshSec:15, hideAmounts:false, hideHistory:false};
+const DEFAULT_SETTINGS = {commission:{USD:{fixed:0,pct:0,min:7.5,perShare:0.01,max:0,smallBelow:0,smallFee:0}, ILS:{fixed:0,pct:0.08,min:4.65,perShare:0,max:0,smallBelow:0,smallFee:0}}, fxFeePct:0, taxRate:25, benchmarks:['SPY','.TA35'], refreshSec:15, hideAmounts:false, hideHistory:false, hideTxHistory:false};
 
 // ====================== helpers ======================
 const $ = id => document.getElementById(id);
@@ -1294,7 +1301,7 @@ function mergeSettings(s){
   return {commission:{USD:Object.assign(d.commission.USD, oldDef(c.USD) ? {} : Object.assign({perShare:0, max:0}, c.USD)), ILS:Object.assign(d.commission.ILS, oldDef(c.ILS) ? {} : Object.assign({perShare:0, max:0}, c.ILS))},
     fxFeePct: num(s.fxFeePct) ?? d.fxFeePct, taxRate: num(s.taxRate) ?? d.taxRate, benchmarks: Array.isArray(s.benchmarks)? s.benchmarks.slice(0,10) : d.benchmarks, bmOff: Array.isArray(s.bmOff) ? s.bmOff.slice(0,10) : [], bmV66: !!s.bmV66,
     refreshSec: [0,5,15,30,60].includes(num(s.refreshSec)) ? num(s.refreshSec) : d.refreshSec,
-    hideAmounts: !!s.hideAmounts, hideHistory: !!s.hideHistory};
+    hideAmounts: !!s.hideAmounts, hideHistory: !!s.hideHistory, hideTxHistory: s.hideTxHistory===undefined ? !!s.hideHistory : !!s.hideTxHistory};
 }
 function defaultState(){ return {version:2, txs:[], assets:{}, quotes:{}, manual:{}, fx:{rate:null,prev:null,updated:null,source:null}, settings:mergeSettings(null), lastRefresh:null, refreshErrors:0, hiddenClosed:[], removedSymbols:[], importMap:{}}; }
 function migrateHoldings(s, holdings){
@@ -2317,14 +2324,15 @@ function renderPortfolio(S){
 // Closed positions (qty 0): realized P/L rows; can be hidden from the list without touching their transactions
 function isHiddenClosed(sym){ return (state.hiddenClosed||[]).includes(sym); }
 // "hide history": display-only filter for securities with qty 0 (closed or removed). Ledger/totals are never filtered.
-function histHidden(){ return !!state.settings.hideHistory; }
+function histHidden(sc){ return sc==='tx' ? !!state.settings.hideTxHistory : !!state.settings.hideHistory; }
 function closedSymSet(){ const L = computeLedger(); return new Set(Object.values(L.pos).filter(p=>Math.abs(p.qty)<1e-9).map(p=>p.sym)); }
-function histToggleHtml(){ const on = histHidden();
-  return `<button class="chip-b ${on?'on':''}" data-histtoggle aria-pressed="${on}">${on?'✓ ':''}🙈 הסתר היסטוריה של פוזיציות סגורות</button>`; }
+function histToggleHtml(sc){ const on = histHidden(sc);
+  return `<button class="chip-b ${on?'on':''}" data-histtoggle${sc==='tx'?' data-hscope="tx"':''} aria-pressed="${on}">${on?'✓ ':''}🙈 הסתר היסטוריה של פוזיציות סגורות</button>`; }
 document.addEventListener('click', e=>{
-  if(e.target.closest('[data-histtoggle]') || e.target.closest('[data-histshow]')){
-    state.settings.hideHistory = e.target.closest('[data-histshow]') ? false : !histHidden(); save(); renderAll();
-    toast(histHidden() ? 'היסטוריית הפוזיציות הסגורות מוסתרת (המספרים לא השתנו)' : 'היסטוריית הפוזיציות הסגורות מוצגת'); }
+  const hb = e.target.closest('[data-histtoggle]') || e.target.closest('[data-histshow]');
+  if(hb){ const sc = hb.dataset.hscope === 'tx' ? 'tx' : 'pos', key = sc==='tx' ? 'hideTxHistory' : 'hideHistory';
+    state.settings[key] = e.target.closest('[data-histshow]') ? false : !histHidden(sc); save(); renderAll();
+    toast(histHidden(sc) ? 'היסטוריית הפוזיציות הסגורות מוסתרת (המספרים לא השתנו)' : 'היסטוריית הפוזיציות הסגורות מוצגת'); }
 });
 function isRemoved(sym){ return (state.removedSymbols||[]).includes(sym); }
 function renderClosed(S){
@@ -2462,8 +2470,8 @@ function txDesc(t){
 }
 function renderTxList(){
   let list = sortedTxs().reverse(), hiddenN = 0;
-  if(histHidden()){ const cs = closedSymSet(); const all = list.length; list = list.filter(t=>!(t.symbol && (t.type==='buy'||t.type==='sell'||t.type==='split'||t.type==='sharebonus'||t.type==='fraczero') && cs.has(t.symbol))); hiddenN = all - list.length; }
-  $('txHistBar').innerHTML = state.txs.length ? histToggleHtml() + (hiddenN ? `<span class="hist-note" id="txHiddenNote">מוסתרות ${hiddenN} עסקאות של פוזיציות סגורות · <button class="linkbtn" data-histshow>הצג</button></span>` : '') : '';
+  if(histHidden('tx')){ const cs = closedSymSet(); const all = list.length; list = list.filter(t=>!(t.symbol && (t.type==='buy'||t.type==='sell'||t.type==='split'||t.type==='sharebonus'||t.type==='fraczero') && cs.has(t.symbol))); hiddenN = all - list.length; }
+  $('txHistBar').innerHTML = state.txs.length ? histToggleHtml('tx') + (hiddenN ? `<span class="hist-note" id="txHiddenNote">מוסתרות ${hiddenN} עסקאות של פוזיציות סגורות · <button class="linkbtn" data-histshow data-hscope="tx">הצג</button></span>` : '') : '';
   $('txCount').textContent = list.length ? `${list.length} עסקאות` : '';
   if(!list.length && hiddenN){ $('txList').innerHTML = '<div class="empty">כל העסקאות שייכות לפוזיציות סגורות ומוסתרות.</div>'; return; }
   if(!list.length){ $('txList').innerHTML = '<div class="empty"><div class="big">🧾</div>אין עדיין עסקאות. לחצו על + כדי להוסיף.</div>'; return; }
@@ -3183,7 +3191,7 @@ function cleanWl(w){ if(!w || !Array.isArray(w.lists) || !w.lists.length) w = {l
 let mktCfg = cleanMkt(loadJ(MKT_KEY)), wlData = cleanWl(loadJ(WL_KEY));
 function saveMkt(){ try{ localStorage.setItem(MKT_KEY, JSON.stringify(mktCfg)); }catch(e){} }
 function saveWl(){ try{ localStorage.setItem(WL_KEY, JSON.stringify(wlData)); }catch(e){} }
-function importExtras(j){ if(j && j.watchlists){ wlData = cleanWl(j.watchlists); saveWl(); } if(j && j.market){ mktCfg = cleanMkt(j.market); saveMkt(); } }
+function importExtras(j){ if(j && j.watchlists){ wlData = cleanWl(j.watchlists); saveWl(); } if(j && j.market){ mktCfg = cleanMkt(j.market); saveMkt(); } if(j && j.commodities && Array.isArray(j.commodities.keys)){ comCfg = {keys:j.commodities.keys.filter((k,i,a)=>COM_BY[k] && a.indexOf(k)===i)}; saveCom(); } }
 // an instrument = a catalog entry or a security from the directory search
 function secInst(m){ if(m.type==='fx' && FX_BY[String(m.sym).toUpperCase()]) return fxInst(FX_BY[String(m.sym).toUpperCase()]); const sym = m.sym.toUpperCase(), cr = m.type==='crypto'; return {k:'sec:'+sym, sec:true, sym, q: cr ? sym+'.CM=' : sym, n:m.name||sym, type:m.type||'stock', cur: euCur(sym) || m.currency || (isTaseSec(sym) || isTaIndex(sym) ? 'ILS' : 'USD'), stock: !cr && m.type!=='index' && marketOf(sym)==='us'}; }
 function mktInst(k){ if(MKT_BY[k]){ const c = MKT_BY[k]; return Object.assign({q:c.s}, c); } const m = mktCfg.meta[k]; return m ? secInst(m) : null; }
@@ -3319,14 +3327,16 @@ function drawMarket(){ const g = $('mktGrid'); if(!g) return; const L = mktItems
   if(mktEditing){ const have = new Set(mktCfg.keys), groups = [...new Set(MKT_CAT.map(c=>c.g))];
     $('mktCat').innerHTML = groups.map(gname=>{ const xs = MKT_CAT.filter(c=>c.g===gname && !have.has(c.k)); return xs.length ? `<h5>${gname}</h5>` + xs.map(c=>`<button data-add="${c.k}">+ ${esc(c.n)}</button>`).join('') : ''; }).join('') || '<div class="note">כל הפריטים המובנים כבר במסך.</div>'; }
   const q0 = Object.values(mq).map(q=>q.ts||0).filter(Boolean); $('mktUpd').textContent = q0.length ? '· '+new Date(Math.max(...q0)).toLocaleTimeString('he-IL',{hour:'2-digit', minute:'2-digit'}) : ''; }
-async function renderMarket(){ applyMktMode(); if(etfUi.mode==='com'){ ++mktSeq; return renderCom(); } if(etfUi.mode==='etf'){ ++mktSeq; return renderEtf(); }
+async function renderMarket(){ applyMktMode(); if(etfUi.mode==='mk'){ ++mktSeq; return etfUi.sub==='com' ? renderCom() : renderGlb(); } if(etfUi.mode==='etf'){ ++mktSeq; return renderEtf(); }
   const seq = ++mktSeq, L = mktItems(); drawMarket();
   if(L.some(it=>!iq(it))) { await instQuotes(L); if(seq===mktSeq) drawMarket(); }
   await Promise.all(L.map(it=>instBars(it, mktRange).then(()=>{ if(seq!==mktSeq) return; const el = $('mktGrid').querySelector(`[data-mk="${CSS.escape(it.k)}"]`); if(el) el.outerHTML = mktCardHtml(it); }).catch(()=>{})));
   if(seq===mktSeq) drawMarket(); }
 async function mktTick(){ if(document.hidden) return;
   if(ui.tab==='market' && etfUi.mode==='etf'){ const d = etfData[etfUi.sel]; if(d){ await instQuotes([secInst({sym:etfUi.sel, type:'etf'}), ...etfItems(d)]); drawEtf(); } }
-  else if(ui.tab==='market' && etfUi.mode==='com'){ await instQuotes(comItems()); drawCom(); }
+  else if(ui.tab==='market' && etfUi.sub==='com'){ await instQuotes(comItems()); drawCom(); }
+  else if(ui.tab==='market'){ await instQuotes(glbItems()); drawGlb(); }
+  else if(false){}
   else if(ui.tab==='market'){ const L = mktItems(); await instQuotes(L); if(mktRange==='1D' || mktRange==='1W') await Promise.all(L.map(it=>instBars(it, mktRange).catch(()=>{}))); drawMarket(); }
   else if(ui.tab==='watch'){ const L = wlItems(); await instQuotes(L); await Promise.all(L.map(it=>instBars(it, '1D').catch(()=>{}))); drawWatch(); }
   if(instSheet) instSheetLive(); }
@@ -3348,13 +3358,13 @@ attachAutocomplete($('mktSearch'), $('mktAc'), it=>{ $('mktSearch').value = ''; 
   if(mktCfg.keys.includes(k)){ toast('כבר במסך'); return; } mktCfg.meta[k] = m; mktCfg.keys.push(k); saveMkt(); renderMarket(); toast(`${m.sym} נוסף למסך השוק`); });
 // ====================== commodities tab (סחורות): CNBC front-month futures, native unit labels, no chart ======================
 const COM_CAT = [
-  {k:'gold', s:'@GC.1', n:'זהב', u:'$ / אונקיה', dp:2}, {k:'silver', s:'@SI.1', n:'כסף', u:'$ / אונקיה', dp:3}, {k:'wti', s:'@CL.1', n:'נפט WTI', u:'$ / חבית', dp:2},
-  {k:'brent', s:'@LCO.1', n:'נפט ברנט', u:'$ / חבית', dp:2}, {k:'ng', s:'@NG.1', n:'גז טבעי', u:'$ / MMBtu', dp:3}, {k:'hg', s:'@HG.1', n:'נחושת', u:'$ / ליברה', dp:3},
-  {k:'pl', s:'@PL.1', n:'פלטינה', u:'$ / אונקיה', dp:2}, {k:'pa', s:'@PA.1', n:'פלדיום', u:'$ / אונקיה', dp:2}, {k:'ho', s:'@HO.1', n:'סולר חימום', u:'$ / גלון', dp:4}, {k:'rb', s:'@RB.1', n:'בנזין RBOB', u:'$ / גלון', dp:4},
-  {k:'corn', s:'@C.1', n:'תירס', u:'סנט / בושל', dp:2}, {k:'wheat', s:'@W.1', n:'חיטה', u:'סנט / בושל', dp:2}, {k:'soy', s:'@S.1', n:'סויה', u:'סנט / בושל', dp:2},
-  {k:'sm', s:'@SM.1', n:'קמח סויה', u:'$ / טון', dp:2}, {k:'bo', s:'@BO.1', n:'שמן סויה', u:'סנט / ליברה', dp:2}, {k:'oats', s:'@O.1', n:'שיבולת שועל', u:'סנט / בושל', dp:2}, {k:'rice', s:'@RR.1', n:'אורז', u:'$ / 100 ליברה', dp:3},
+  {k:'gold', s:'@GC.1', n:'זהב', u:'', dp:2}, {k:'silver', s:'@SI.1', n:'כסף', u:'', dp:3}, {k:'wti', s:'@CL.1', n:'נפט WTI', u:'$ / חבית', dp:2},
+  {k:'brent', s:'@LCO.1', n:'נפט ברנט', u:'$ / חבית', dp:2}, {k:'ng', s:'@NG.1', n:'גז טבעי', u:'$ / MMBtu', dp:3}, {k:'hg', s:'@HG.1', n:'נחושת', u:'', dp:3},
+  {k:'pl', s:'@PL.1', n:'פלטינה', u:'', dp:2}, {k:'pa', s:'@PA.1', n:'פלדיום', u:'', dp:2}, {k:'ho', s:'@HO.1', n:'סולר חימום', u:'$ / גלון', dp:4}, {k:'rb', s:'@RB.1', n:'בנזין RBOB', u:'$ / גלון', dp:4},
+  {k:'corn', s:'@C.1', n:'תירס', u:'', dp:2}, {k:'wheat', s:'@W.1', n:'חיטה', u:'', dp:2}, {k:'soy', s:'@S.1', n:'סויה', u:'', dp:2},
+  {k:'sm', s:'@SM.1', n:'קמח סויה', u:'', dp:2}, {k:'bo', s:'@BO.1', n:'שמן סויה', u:'', dp:2}, {k:'oats', s:'@O.1', n:'שיבולת שועל', u:'', dp:2}, {k:'rice', s:'@RR.1', n:'אורז', u:'', dp:3},
   {k:'coffee', s:'@KC.1', n:'קפה', u:'סנט / ליברה', dp:2}, {k:'sugar', s:'@SB.1', n:'סוכר', u:'סנט / ליברה', dp:2}, {k:'cotton', s:'@CT.1', n:'כותנה', u:'סנט / ליברה', dp:2}, {k:'cocoa', s:'@CC.1', n:'קקאו', u:'$ / טון', dp:0},
-  {k:'oj', s:'@OJ.1', n:'מיץ תפוזים', u:'סנט / ליברה', dp:2}, {k:'lc', s:'@LC.1', n:'בקר חי', u:'סנט / ליברה', dp:3}, {k:'fc', s:'@FC.1', n:'בקר לפיטום', u:'סנט / ליברה', dp:3}, {k:'lh', s:'@LH.1', n:'חזיר רזה', u:'סנט / ליברה', dp:3}, {k:'lbr', s:'@LBR.1', n:'עץ', u:'$ / 1,000 רגל־לוח', dp:2}];
+  {k:'oj', s:'@OJ.1', n:'מיץ תפוזים', u:'סנט / ליברה', dp:2}, {k:'lc', s:'@LC.1', n:'בקר חי', u:'', dp:3}, {k:'fc', s:'@FC.1', n:'בקר לפיטום', u:'', dp:3}, {k:'lh', s:'@LH.1', n:'חזיר רזה', u:'', dp:3}, {k:'lbr', s:'@LBR.1', n:'עץ', u:'', dp:2}];
 const COM_BY = Object.fromEntries(COM_CAT.map(x=>[x.k, x])), COM_DEFAULT = ['gold','silver','wti','ng','hg','wheat'], COM_KEY = 'portfolioTracker.commodities.v1';
 let comCfg = (()=>{ const j = loadJ(COM_KEY); const ks = j && Array.isArray(j.keys) ? j.keys.filter((k,i,a)=>COM_BY[k] && a.indexOf(k)===i) : COM_DEFAULT.slice(); return {keys:ks}; })(), comEditing = false;
 const saveCom = ()=>{ try{ localStorage.setItem(COM_KEY, JSON.stringify(comCfg)); }catch(e){} };
@@ -3368,7 +3378,7 @@ function drawCom(){ const g = $('comGrid'); if(!g) return; const L = comItems();
   if(comEditing){ $('comRows').innerHTML = comCfg.keys.map((k,i)=>{ const c = COM_BY[k]; return `<div class="cr" data-ck="${k}"><button class="x" data-cdel aria-label="הסרת ${esc(c.n)}">✕</button><div><b>${esc(c.n)}</b><small>${esc(c.u)} · ${esc(c.s.replace('.1',''))}</small></div><button data-cmv="up" aria-label="למעלה" ${i===0?'disabled':''}>▲</button><button data-cmv="down" aria-label="למטה" ${i===comCfg.keys.length-1?'disabled':''}>▼</button></div>`; }).join('');
     const rest = COM_CAT.filter(c=>!comCfg.keys.includes(c.k)); $('comAddList').innerHTML = rest.length ? rest.map(c=>`<button data-cadd="${c.k}">+ ${esc(c.n)}</button>`).join('') : '<div class="note">כל הסחורות כבר ברשימה.</div>'; }
   const t = Object.values(mq).map(x=>x.ts||0).filter(Boolean); $('comUpd').textContent = t.length ? '· '+new Date(Math.max(...t)).toLocaleTimeString('he-IL',{hour:'2-digit', minute:'2-digit'}) : ''; }
-async function renderCom(){ drawCom(); const L = comItems(); if(L.some(it=>!iq(it))){ await instQuotes(L); if(etfUi.mode==='com') drawCom(); } }
+async function renderCom(){ drawCom(); const L = comItems(); if(L.some(it=>!iq(it))){ await instQuotes(L); if(etfUi.mode==='mk' && etfUi.sub==='com') drawCom(); } }
 $('comEdit').onclick = ()=>{ comEditing = !comEditing; drawCom(); };
 $('comDone').onclick = ()=>{ comEditing = false; drawCom(); };
 $('comReset').onclick = ()=>{ if(!confirm('לאפס את הסחורות לברירת המחדל (6 הפריטים המקוריים)?')) return; comCfg = {keys:COM_DEFAULT.slice()}; saveCom(); renderCom(); };
@@ -3377,6 +3387,57 @@ $('comEditBox').addEventListener('click', e=>{ const r = e.target.closest('[data
   if(a){ comCfg.keys.push(a.dataset.cadd); saveCom(); renderCom(); return; } if(!r) return; const i = comCfg.keys.indexOf(r.dataset.ck), m = e.target.closest('[data-cmv]');
   if(e.target.closest('[data-cdel]')){ comCfg.keys.splice(i,1); } else if(m){ const j = m.dataset.cmv==='up' ? i-1 : i+1; if(j<0 || j>=comCfg.keys.length) return; [comCfg.keys[i], comCfg.keys[j]] = [comCfg.keys[j], comCfg.keys[i]]; } else return;
   saveCom(); renderCom(); });
+// ====================== global tab (גלובל): CNBC index quotes by country, no chart ======================
+const GLB_CAT = [
+  {k:'spx', s:'.SPX', n:'S&P 500', c:'ארה"ב', e:'united states usa america ארצות הברית אמריקה', dp:2},
+  {k:'ndx', s:'.IXIC', n:'נאסדק', c:'ארה"ב', e:'united states usa america ארצות הברית אמריקה', dp:2},
+  {k:'dji', s:'.DJI', n:"דאו ג'ונס", c:'ארה"ב', e:'united states usa america ארצות הברית אמריקה', dp:2},
+  {k:'rut', s:'.RUT', n:'ראסל 2000', c:'ארה"ב', e:'united states usa america ארצות הברית אמריקה', dp:2},
+  {k:'ftse', s:'.FTSE', n:'FTSE 100', c:'בריטניה', e:'uk united kingdom england אנגליה', dp:2},
+  {k:'dax', s:'.GDAXI', n:'DAX', c:'גרמניה', e:'germany', dp:2},
+  {k:'cac', s:'.FCHI', n:'CAC 40', c:'צרפת', e:'france', dp:2},
+  {k:'ibex', s:'.IBEX', n:'IBEX 35', c:'ספרד', e:'spain', dp:2},
+  {k:'mib', s:'.FTMIB', n:'FTSE MIB', c:'איטליה', e:'italy', dp:2},
+  {k:'aex', s:'.AEX', n:'AEX', c:'הולנד', e:'netherlands', dp:2},
+  {k:'smi', s:'.SSMI', n:'SMI', c:'שוויץ', e:'switzerland', dp:2},
+  {k:'stoxx', s:'.STOXX50E', n:'Euro Stoxx 50', c:'אירופה', e:'europe eurozone', dp:2},
+  {k:'n225', s:'.N225', n:'ניקיי 225', c:'יפן', e:'japan nikkei', dp:2},
+  {k:'hsi', s:'.HSI', n:'האנג סנג', c:'הונג קונג', e:'hong kong', dp:2},
+  {k:'ssec', s:'.SSEC', n:'שנגחאי', c:'סין', e:'china shanghai', dp:2},
+  {k:'kospi', s:'.KS11', n:'KOSPI', c:'דרום קוריאה', e:'south korea korea', dp:2},
+  {k:'kosdaq', s:'.KQ11', n:'KOSDAQ', c:'דרום קוריאה', e:'south korea korea', dp:2},
+  {k:'twii', s:'.TWII', n:'TAIEX', c:'טאיוואן', e:'taiwan', dp:2},
+  {k:'nifty', s:'.NSEI', n:'ניפטי 50', c:'הודו', e:'india', dp:2},
+  {k:'asx', s:'.AXJO', n:'ASX 200', c:'אוסטרליה', e:'australia', dp:2},
+  {k:'sti', s:'.STI', n:'STI', c:'סינגפור', e:'singapore', dp:2},
+  {k:'tsx', s:'.GSPTSE', n:'TSX', c:'קנדה', e:'canada', dp:2},
+  {k:'bvsp', s:'.BVSP', n:'Bovespa', c:'ברזיל', e:'brazil', dp:0},
+  {k:'mxx', s:'.MXX', n:'IPC', c:'מקסיקו', e:'mexico', dp:2},
+  {k:'dfm', s:'.DFMGI', n:'דובאי DFM', c:'איחוד האמירויות', e:'uae dubai emirates', dp:2},
+  {k:'xu100', s:'.XU100', n:'BIST 100', c:'טורקיה', e:'turkey', dp:2}];
+const GLB_BY = Object.fromEntries(GLB_CAT.map(x=>[x.k, x])), GLB_DEFAULT = ['spx','ndx','dji','ftse','dax','n225','hsi','kospi'], GLB_KEY = 'portfolioTracker.globalIdx.v1';
+let glbCfg = (()=>{ const j = loadJ(GLB_KEY); const ks = j && Array.isArray(j.keys) ? j.keys.filter((k,i,a)=>GLB_BY[k] && a.indexOf(k)===i) : GLB_DEFAULT.slice(); return {keys:ks}; })(), glbEditing = false;
+const saveGlb = ()=>{ try{ localStorage.setItem(GLB_KEY, JSON.stringify(glbCfg)); }catch(e){} };
+const glbInst = k=>{ const c = GLB_BY[k]; return c ? Object.assign({q:c.s, name:c.n, sym:c.s}, c, {u:''}) : null; };
+const glbItems = ()=>glbCfg.keys.map(glbInst).filter(Boolean);
+function glbTile(it){ const q = iq(it), last = q ? q.price : null, prev = q ? q.prev : null, p = last!=null && prev ? (last/prev-1)*100 : null, c = GLB_BY[it.k];
+  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}" data-gk="${esc(it.k)}"><span class="a1"><b>${esc(c.n)}</b><small>${esc(c.c)}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:c.dp, maximumFractionDigits:c.dp}) : '—'}</span><span class="a2"><small></small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
+function drawGlb(){ const g = $('glbGrid'); if(!g) return; const L = glbItems();
+  g.innerHTML = L.length ? L.map(glbTile).join('') : '<div class="wl-empty" style="grid-column:1/-1">אין מדדים – הוסיפו בעריכה.</div>';
+  g.style.display = glbEditing ? 'none' : ''; $('glbEditBox').hidden = !glbEditing; $('glbEdit').textContent = glbEditing ? '✓ סיום' : '✏️ עריכה'; $('glbEdit').setAttribute('aria-pressed', String(glbEditing));
+  if(glbEditing){ const qq0 = (($('glbSearch')||{}).value||'').trim().toLowerCase(); $('glbRows').innerHTML = glbCfg.keys.map((k,i)=>{ const c = GLB_BY[k]; if(qq0 && !(c.n+' '+c.c+' '+c.e+' '+c.s).toLowerCase().includes(qq0)) return ''; return `<div class="cr" data-gk="${k}"><button class="x" data-gdel aria-label="הסרת ${esc(c.n)}">✕</button><div><b>${esc(c.n)}</b><small>${esc(c.c)} · ${esc(c.s)}</small></div><button data-gmv="up" aria-label="למעלה" ${i===0?'disabled':''}>▲</button><button data-gmv="down" aria-label="למטה" ${i===glbCfg.keys.length-1?'disabled':''}>▼</button></div>`; }).join('');
+    const qq = (($('glbSearch')||{}).value||'').trim().toLowerCase(); const rest = GLB_CAT.filter(c=>!glbCfg.keys.includes(c.k) && (!qq || (c.n+' '+c.c+' '+c.e+' '+c.s).toLowerCase().includes(qq))); $('glbAddList').innerHTML = rest.length ? rest.map(c=>`<button data-gadd="${c.k}">+ ${esc(c.n)} · ${esc(c.c)}</button>`).join('') : '<div class="note">לא נמצאו מדדים.</div>'; }
+  const t = Object.values(mq).map(x=>x.ts||0).filter(Boolean); $('glbUpd').textContent = t.length ? '· '+new Date(Math.max(...t)).toLocaleTimeString('he-IL',{hour:'2-digit', minute:'2-digit'}) : ''; }
+async function renderGlb(){ drawGlb(); const L = glbItems(); if(L.some(it=>!iq(it))){ await instQuotes(L); if(etfUi.mode==='mk' && etfUi.sub==='glob') drawGlb(); } }
+$('glbEdit').onclick = ()=>{ glbEditing = !glbEditing; drawGlb(); };
+$('glbDone').onclick = ()=>{ glbEditing = false; drawGlb(); };
+$('glbReset').onclick = ()=>{ if(!confirm('לאפס את הגלובל לברירת המחדל (8 המדדים המקוריים)?')) return; glbCfg = {keys:GLB_DEFAULT.slice()}; saveGlb(); renderGlb(); };
+$('glbGrid').addEventListener('click', e=>{ const b = e.target.closest('[data-gk]'); if(!b) return; const it = glbInst(b.dataset.gk); if(it) openInstSheet(it, '1D'); });
+$('glbEditBox').addEventListener('click', e=>{ const r = e.target.closest('[data-gk]'), a = e.target.closest('[data-gadd]');
+  if(a){ glbCfg.keys.push(a.dataset.gadd); saveGlb(); renderGlb(); return; } if(!r) return; const i = glbCfg.keys.indexOf(r.dataset.gk), m = e.target.closest('[data-gmv]');
+  if(e.target.closest('[data-gdel]')){ glbCfg.keys.splice(i,1); } else if(m){ const j = m.dataset.gmv==='up' ? i-1 : i+1; if(j<0 || j>=glbCfg.keys.length) return; [glbCfg.keys[i], glbCfg.keys[j]] = [glbCfg.keys[j], glbCfg.keys[i]]; } else return;
+  saveGlb(); renderGlb(); });
+$('glbSearch').addEventListener('input', ()=>drawGlb());
 // ---- v66: ETF holdings (הרכבי מדדים) ----
 // v110: holdings + weights – ALL positions of the fund. Two free, no-key, CORS-open sources are read together:
 //   TickerInside (/fund/<t>.json: ticker → weight, issuer file / SEC N-PORT) and ETFIQ (/data/books/<t>.json: issuer file with names, usually the fresher one);
@@ -3396,7 +3457,7 @@ let ETFS; etfRebuild();
 const saveEtfCust = ()=>{ try{ localStorage.setItem(ETF_CUST_KEY, JSON.stringify(etfCust)); }catch(e){} etfRebuild(); };
 const saveEtfHidden = ()=>{ try{ localStorage.setItem(ETF_HIDE_KEY, JSON.stringify(etfHidden)); }catch(e){} etfRebuild(); };
 const ETF_UI_KEY = 'portfolioTracker.etfUi.v1', ETF_KEY = 'portfolioTracker.etfHold.v1', ETF_TTL = 6*3600e3, ETF_SPARK = 30, ETF_SCHEMA = 3;
-let etfUi = Object.assign({mode:'my', sel:'XLI', view:'list'}, loadJ(ETF_UI_KEY)||{}); if(!ETFS.includes(etfUi.sel)) etfUi.sel = ETFS[0];   // v111: first visible fund, not a possibly-hidden one
+let etfUi = Object.assign({mode:'mk', sub:'glob', sel:'XLI', view:'list'}, loadJ(ETF_UI_KEY)||{}); if(!ETFS.includes(etfUi.sel)) etfUi.sel = ETFS[0];   // v111: first visible fund, not a possibly-hidden one
 let etfData = loadJ(ETF_KEY) || {}, etfErr = {}, etfSeq = 0, etfHeatKey = '';
 const saveEtfUi = ()=>{ try{ localStorage.setItem(ETF_UI_KEY, JSON.stringify(etfUi)); }catch(e){} };
 // row = [symbol, name, weight%, nq]; nq=1 → a position with no tradable ticker (private fund, line not matched): shown by name, no quote
@@ -3564,9 +3625,12 @@ async function renderEtf(){ const seq = ++etfSeq, t = etfUi.sel; drawEtf(); etfI
   if(d && d.rows.length) etfLoadP0(t, d).then(()=>{ if(seq===etfSeq && ui.tab==='market' && etfUi.mode==='etf') drawEtf(); }).catch(()=>{});
   if(etfUi.view==='list') await Promise.all(etfItems(d).filter(it=>!it.nq).slice(0, ETF_SPARK).map(it=>instBars(it, '1D').catch(()=>{})));
   if(seq===etfSeq) drawEtf(); }
-function applyMktMode(){ const etf = etfUi.mode==='etf', com = etfUi.mode==='com'; $('mktMode').querySelectorAll('button').forEach(b=>{ const on = b.dataset.mm===etfUi.mode; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
-  $('etfCard').hidden = !etf; $('mktCard').hidden = etf || com; $('comCard').hidden = !com; }
-$('mktMode').addEventListener('click', e=>{ const b = e.target.closest('[data-mm]'); if(!b || b.dataset.mm===etfUi.mode) return; etfUi.mode = b.dataset.mm; saveEtfUi(); applyMktMode(); renderMarket(); });
+function applyMktMode(){ if(etfUi.mode!=='etf') etfUi.mode = 'mk'; if(etfUi.sub!=='com') etfUi.sub = 'glob'; const etf = etfUi.mode==='etf', com = !etf && etfUi.sub==='com', glb = !etf && !com;
+  $('mktMode').querySelectorAll('button').forEach(b=>{ const on = (b.dataset.mm==='etf') === etf; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+  $('mkSub').hidden = etf; $('mkSub').querySelectorAll('button').forEach(b=>{ const on = b.dataset.ms===etfUi.sub; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+  $('etfCard').hidden = !etf; $('mktCard').hidden = true; $('comCard').hidden = !com; $('glbCard').hidden = !glb; }
+$('mktMode').addEventListener('click', e=>{ const b = e.target.closest('[data-mm]'); if(!b) return; const to = b.dataset.mm==='etf' ? 'etf' : 'mk'; if(to===etfUi.mode) return; etfUi.mode = to; saveEtfUi(); applyMktMode(); renderMarket(); });
+$('mkSub').addEventListener('click', e=>{ const b = e.target.closest('[data-ms]'); if(!b || b.dataset.ms===etfUi.sub) return; etfUi.sub = b.dataset.ms; saveEtfUi(); applyMktMode(); renderMarket(); });
 $('etfCard').addEventListener('click', e=>{ if(e.target.closest('[data-eadd]')){ etfAddOpen = !etfAddOpen; drawEtfAdd(true); drawEtfSel(); return; } if(e.target.closest('[data-eedit]')){ etfEditOpen = !etfEditOpen; etfAddOpen = etfEditOpen; drawEtfAdd(); drawEtfSel(); return; } const d = e.target.closest('[data-edel]'); if(d){ e.preventDefault(); e.stopPropagation(); etfRemoveAny(d.dataset.edel); return; } if(etfEditOpen) return; const b = e.target.closest('[data-etf]'); if(!b || b.dataset.etf===etfUi.sel) return; etfUi.sel = b.dataset.etf; etfMenuOpen = false; saveEtfUi(); etfHeatKey = ''; renderEtf(); });   // v104: the tile map always stays open; the picked tile is marked and the holdings are below it
 $('etfHd').addEventListener('click', e=>{ if(e.target.closest('[data-ecissue]')){ const t = etfUi.sel; window.open(`https://github.com/${ISS_REPO}/issues/new?title=${encodeURIComponent('ETF: '+t)}&body=${encodeURIComponent('נוצר מהאפליקציה – לחצו Submit new issue. הקרן תתווסף לעדכון היומי מקובץ המנפיק.')}`, '_blank', 'noopener'); toast('נפתח GitHub – לחצו Submit new issue'); return; } if(e.target.closest('[data-ecdel]')){ etfRemoveCust(etfUi.sel); return; } if(e.target.closest('[data-ecm]')){ etfMenuOpen = !etfMenuOpen; drawEtf(); } });
 $('etfView').addEventListener('click', e=>{ const b = e.target.closest('[data-ev]'); if(!b || b.dataset.ev===etfUi.view) return; etfUi.view = b.dataset.ev; saveEtfUi(); etfHeatKey = ''; renderEtf(); });
@@ -4534,7 +4598,7 @@ function openDeleteAll(){
   };
 }
 function exportData(){
-  const data = {app:'portfolio-tracker', version:2, exported:new Date().toISOString(), watchlists:wlData, market:mktCfg, txs:state.txs, assets:state.assets, manual:state.manual, settings:state.settings, fx:state.fx, quotes:state.quotes, hiddenClosed:state.hiddenClosed||[], removedSymbols:state.removedSymbols||[], importMap:state.importMap||{}};
+  const data = {app:'portfolio-tracker', version:2, exported:new Date().toISOString(), watchlists:wlData, market:mktCfg, commodities:comCfg, txs:state.txs, assets:state.assets, manual:state.manual, settings:state.settings, fx:state.fx, quotes:state.quotes, hiddenClosed:state.hiddenClosed||[], removedSymbols:state.removedSymbols||[], importMap:state.importMap||{}};
   const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `portfolio-backup-${today()}.json`;
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href), 3000);
