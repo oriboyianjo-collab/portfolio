@@ -1,5 +1,43 @@
 [
   {
+    "כותרת": "CrowdStrike (CRWD): הסכמים לרכישת Fiddler AI ו-Dreadnode להרחבת אבטחת סוכני AI",
+    "תאריך": "2026-11-04 19:11",
+    "הועלה": "2026-11-04 19:11",
+    "טקסט": "3.11.2026 | הודעות רשמיות של החברה, מתווספות כעת לאפליקציה\n\nCrowdStrike הודיעה בנפרד על שני הסכמים מחייבים לרכישת Fiddler AI ו-Dreadnode. אלה הסכמי רכישה שטרם הושלמו, לא הודעות על סגירת העסקאות. בשתי ההודעות לא נמסר מחיר רכישה.\n\nFiddler AI מיועדת להוסיף לפלטפורמת Falcon ניטור והסבר של התנהגות סוכני AI: בדיקות לפני הפעלה, מעקב אחר פעולות וזיהוי סטייה מהמשימה. החברה מתכננת לשווק את היכולות בשם Falcon Observe, עם זמינות כללית ברבעון הרביעי של שנת הכספים FY27.\n\nDreadnode מיועדת להוסיף בדיקות אבטחה אוטומטיות למודלים, יישומים וסוכני AI לפני פריסה, לרבות איתור חולשות וניסיונות מניפולציה. גם זמינות יכולות אלה מתוכננת לרבעון הרביעי של FY27. אלה תוכניות החברה, לא נתוני אימוץ או הכנסות שכבר נרשמו.\n\nבשתי העסקאות התמורה מתוכננת להיות בעיקר במזומן, לצד רכיב מניות הכפוף לתנאי הבשלה. הסגירה צפויה ברבעון הרביעי של FY27, בכפוף לתנאי סגירה מקובלים. מדובר ברבעון בשנת הכספים של CrowdStrike, לא בהכרח ברבעון קלנדרי.",
+    "summary": "שני הסכמי רכישה נפרדים שטרם הושלמו. המחירים לא פורסמו; סגירה וזמינות היכולות מתוכננות ל-Q4 FY27.",
+    "קישור": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-to-acquire-fiddler-to-deliver-agent-observability/",
+    "מקורות": [
+      {
+        "label": "CrowdStrike: הסכם Fiddler AI, 3 בנובמבר",
+        "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-to-acquire-fiddler-to-deliver-agent-observability/"
+      },
+      {
+        "label": "CrowdStrike: הסכם Dreadnode, 3 בנובמבר",
+        "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-to-acquire-dreadnode-advance-ai-trust/"
+      }
+    ],
+    "category": "company"
+  },
+  {
+    "כותרת": "CrowdStrike (CRWD): הרחבת הגנת ה-AI ובדיקות תקיפה, עם זמינות שונה לכל יכולת",
+    "תאריך": "2026-11-04 19:11",
+    "הועלה": "2026-11-04 19:11",
+    "טקסט": "4.11.2026 | שתי הודעות רשמיות נפרדות מהסכמי הרכישה של 3 בנובמבר\n\nCrowdStrike הציגה יכולות לזיהוי התנהגות חריגה של סוכני AI ולבדיקת מסלולי תקיפה בפלטפורמת Falcon. לא כל היכולות זמינות כעת לכל לקוח.\n\nחקירות מתואמות באמצעות כמה סוכנים כבר זמינות באופן כללי, לאחר שהוצגו בספטמבר. זיהוי Agent Insider Threat Detection, המבקש לזהות סטייה בהתנהגות סוכן גם בלי הפרת כלל מפורשת, מסומן בהודעה ל-Q4. החברה מבחינה בינו לבין היכולות הזמינות היום. הגנות מפני סטייה מהמדיניות מסומנות למועד מאוחר יותר, Q1 FY28.\n\nבנפרד, Agentic Adversary Emulation משתמשת במודלי SafeMind כדי לדמות שרשור חולשות בסביבת בדיקה שהלקוח אישר, לתעדף תיקונים ולבדוק מחדש אם מסלול התקיפה נחסם. יכולת זו זמינה בגישה מוקדמת ללקוחות נבחרים דרך שותפי Project QuiltWorks, לא בזמינות כללית.\n\nאלה תיאורי מוצר ויעילות מטעם החברה. ההודעות אינן כוללות סכום חוזה, תוספת הכנסות, מספר לקוחות חדשים או התחייבות שכל יכולת עתידית כבר הושקה.",
+    "summary": "חקירות רב-סוכניות כבר בזמינות כללית; זיהוי איום פנימי מסומן ל-Q4; הדמיית תקיפה זמינה רק בגישה מוקדמת נבחרת.",
+    "קישור": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-extends-agentic-soc-detect-stop-agent-insider-threat/",
+    "מקורות": [
+      {
+        "label": "CrowdStrike: Agentic SOC, 4 בנובמבר",
+        "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-extends-agentic-soc-detect-stop-agent-insider-threat/"
+      },
+      {
+        "label": "CrowdStrike: Agentic Adversary Emulation, 4 בנובמבר",
+        "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-unveils-agentic-adversary-emulation-falcon-platform/"
+      }
+    ],
+    "category": "company"
+  },
+  {
     "כותרת": "לפי CBS, טראמפ מתייעץ על עתיד שר ההגנה פיט הגסת; לא התקבלה החלטת החלפה",
     "תאריך": "2026-11-04 18:45",
     "הועלה": "2026-11-04 18:45",
