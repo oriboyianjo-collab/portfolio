@@ -1,4 +1,4 @@
-// Savage Tracker alerts – shared detection rules (v187). Used by index.html, sw.js (importScripts) and copied into the Cloudflare Worker.
+// Savage Tracker alerts – shared detection rules (v187; v191: prefs.newsAll = every new news item, supersedes newsHold/newsWatch). Used by index.html, sw.js (importScripts) and copied into the Cloudflare Worker.
 // Input is only the public news.json / reports.json plus the user's own ticker lists; nothing here is stored on the site.
 (function(g){
   const TK = /^[A-Z][A-Z0-9.\-]{0,9}$/;
@@ -16,10 +16,12 @@
     const P = o.prefs||{}, hold = new Set(o.hold||[]), watch = new Set(o.watch||[]), muted = new Set(o.muted||[]), out = [];
     const want = sym => !muted.has(sym) && (hold.has(sym) || watch.has(sym));
     (Array.isArray(o.news)?o.news:[]).slice(0, 80).forEach(x=>{
-      const syms = newsSyms(x).filter(s=>!muted.has(s) && ((P.newsHold && hold.has(s)) || (P.newsWatch && watch.has(s))));
-      if(!syms.length) return;
+      const all = newsSyms(x);
+      if(P.newsAll && all.length && all.every(s=>muted.has(s))) return;   // v191: “every new item” – only skips items whose tickers are all muted
+      const syms = P.newsAll ? all.filter(s=>!muted.has(s)) : all.filter(s=>!muted.has(s) && ((P.newsHold && hold.has(s)) || (P.newsWatch && watch.has(s))));
+      if(!syms.length && !P.newsAll) return;
       const t = String(x['כותרת']||'').trim(); if(!t) return;
-      out.push({key:'n|'+H(t+'|'+(x['הועלה']||x['תאריך']||'')), kind:'news', sym:syms[0], title:'📰 חדשה על '+syms.join(', '), body:t.slice(0,180), base:true});
+      out.push({key:'n|'+H(t+'|'+(x['הועלה']||x['תאריך']||'')), kind:'news', sym:syms[0]||'', title:syms.length ? '📰 חדשה על '+syms.join(', ') : '📰 חדשה', body:t.slice(0,180), base:true});
     });
     const today = ilDate(0), tmr = ilDate(1), old = ilDate(-3), hr = ilHour();
     (Array.isArray(o.reports)?o.reports:[]).forEach(r=>{

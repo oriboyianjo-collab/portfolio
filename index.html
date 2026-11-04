@@ -858,7 +858,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=190">
+<link rel="stylesheet" href="chart-tools.css?v=191">
 
 </head>
 <body>
@@ -5803,7 +5803,7 @@ window.__portfolio = {get night(){ return {src:NIGHT.src, worker:{ok:NW.ok, poll
 // Everything is stored on this device (localStorage + a small cache shared with sw.js). Optional Web Push via the owner's Cloudflare Worker (OB_URL):
 // used only if <worker>/push/vapid answers; otherwise the in-app / periodic check below is the only source.
 var AL_KEY = 'portfolioTracker.alerts', AL_SEEN = 'portfolioTracker.alertsSeen', AL_LIST = 'portfolioTracker.alertsList', AL_CACHE = 'savage-alerts-v1', AL_CFG = './__alerts/cfg';
-var AL_DEF = {on:false, newsHold:true, newsWatch:false, repBefore:true, repMorning:true, repPub:true, pxOn:false, pxDef:5, px:{}, muted:[]};
+var AL_DEF = {on:false, newsHold:true, newsWatch:false, newsAll:false, repBefore:true, repMorning:true, repPub:true, pxOn:false, pxDef:5, px:{}, muted:[]};
 var alP = Object.assign({}, AL_DEF, loadJ(AL_KEY)||{}), alSeen = loadJ(AL_SEEN)||{init:false, keys:[]}, alList = Array.isArray(loadJ(AL_LIST)) ? loadJ(AL_LIST) : [];
 var alView = null, alFilter = 'all', alLastData = 0, alPushOk = false;
 // v190: inside the Android app wrapper (WebView) window.SavageNative exists: native notification permission + notify(), and the app runs the 15-minute background check itself
@@ -5848,6 +5848,9 @@ function alAdd(items){ const fresh = items.filter(it=>!alSeen.keys.includes(it.k
   alSave(); alBadge(); if(alView) alRender();
   if(document.hidden) fresh.slice(0,4).forEach(alNotify);
   else if(fresh.length) { fresh.slice(0,3).forEach(alNotify); } }
+async function alSwallowNews(){   // v191: “every new item” switched on – the current news backlog counts as seen (no flood); only items that arrive later alert
+  try{ const news = await fetch('news.json', {cache:'no-store'}).then(r=>r.ok ? r.json() : []), S = alSyms();
+    AlertsCore.detect({news, reports:[], prefs:{newsAll:true}, hold:S.hold, watch:S.watch, muted:alP.muted}).forEach(i=>{ if(!alSeen.keys.includes(i.key)) alSeen.keys.push(i.key); }); alSave(); }catch(e){} }
 async function alCheckData(force){   // news.json / reports.json – at most every 10 minutes while the app runs
   if(!alP.on || !window.AlertsCore) return; if(!force && Date.now()-alLastData < 10*60e3) return; alLastData = Date.now();
   const get = f => fetch(f, {cache:'no-store'}).then(r=>r.ok ? r.json() : []).catch(()=>[]);
@@ -5871,7 +5874,7 @@ async function alPush(sub){   // optional: Web Push through the owner's Worker; 
     const r = await fetch(OB_URL+'/push/vapid', {cache:'no-store'}); if(!r.ok) return; const j = await r.json(); if(!j || !j.key) return;
     const k = Uint8Array.from(atob(j.key.replace(/-/g,'+').replace(/_/g,'/')+'=='.slice(0,(4-j.key.length%4)%4)), c=>c.charCodeAt(0));
     let s = await reg.pushManager.getSubscription(); if(!s) s = await reg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:k});
-    const S = alSyms(), body = JSON.stringify({sub:s.toJSON(), prefs:{newsHold:alP.newsHold, newsWatch:alP.newsWatch, repBefore:alP.repBefore, repMorning:alP.repMorning, repPub:alP.repPub}, hold:S.hold, watch:S.watch, muted:alP.muted});
+    const S = alSyms(), body = JSON.stringify({sub:s.toJSON(), prefs:{newsHold:alP.newsHold, newsWatch:alP.newsWatch, newsAll:alP.newsAll, repBefore:alP.repBefore, repMorning:alP.repMorning, repPub:alP.repPub}, hold:S.hold, watch:S.watch, muted:alP.muted});
     const res = await fetch(OB_URL+'/push/subscribe', {method:'POST', headers:{'Content-Type':'application/json'}, body}); alPushOk = res.ok;
     if(alView==='set') alRender();
   }catch(e){ alPushOk = false; } }
@@ -5890,7 +5893,7 @@ function alBadge(){ const n = alUnread(), b = $('alRowN'); if(b){ b.textContent 
 function alOpen(v){ alView = v||'set'; const t = $('tab-settings'); if(!t) return; t.querySelector('.set-bar').style.display = 'none'; $('settingsCard').hidden = true; $('alertsCard').hidden = false; alRender(); window.scrollTo(0,0); }
 function alClose(){ if(alView==='list'){ alOpen('set'); return; } alView = null; const t = $('tab-settings'); if(!t) return; t.querySelector('.set-bar').style.display = ''; $('settingsCard').hidden = false; $('alertsCard').hidden = true; alBadge(); window.scrollTo(0,0); }
 var alTg = (id, on, dis)=>`<input type="checkbox" class="al-tg" data-al="${id}" ${on?'checked':''} ${dis?'disabled':''} aria-label="${id}">`;
-var alLi = (txt, sub, id)=>`<label class="al-li"><div>${txt}${sub?`<small>${sub}</small>`:''}</div>${alTg(id, alP[id], !alP.on)}</label>`;
+var alLi = (txt, sub, id, dim)=>`<label class="al-li"${dim?' style="opacity:.45"':''}><div>${txt}${sub?`<small>${sub}</small>`:''}</div>${alTg(id, alP[id], !alP.on || !!dim)}</label>`;
 var alIc = k => k==='news' ? '📰' : k==='rep' ? '📊' : k==='px' ? '📈' : '🔔';
 function alAgo(t){ const m = Math.round((Date.now()-t)/60e3); if(m<1) return 'עכשיו'; if(m<60) return 'לפני '+m+' ד׳'; const h = Math.round(m/60); if(h<24) return 'לפני '+h+' שע׳'; return new Date(t).toLocaleDateString('he-IL', {day:'numeric', month:'numeric'})+' '+new Date(t).toLocaleTimeString('he-IL', {hour:'2-digit', minute:'2-digit'}); }
 function alRender(){ const c = $('alertsCard'); if(!c || !alView) return;
@@ -5905,8 +5908,8 @@ function alRender(){ const c = $('alertsCard'); if(!c || !alView) return;
     const S = alSyms(), syms = S.hold.concat(S.watch), n = alUnread(), perm = alSN ? alSNPerm() : 'Notification' in window ? Notification.permission : 'unsupported';
     c.innerHTML = bar('🔔 התראות') + `
       <div class="set-sec al-row" id="alToList" role="button" tabindex="0"><div><h4>📬 רשימת ההתראות</h4><div class="al-sub">${n ? n+' שלא נקראו · ' : ''}${alList[0] ? 'אחרונה: '+esc(alList[0].title) : 'עדיין אין התראות'}</div></div>${n?`<span class="al-badge">${n}</span>`:'<span class="al-chev">‹</span>'}</div>
-      <div class="set-sec"><label class="al-li"><div><b>הפעלת התראות</b><small>${alSN ? (perm==='granted' ? 'התראות דרך האפליקציה פעילות' : perm==='denied' ? '⚠️ ההרשאה חסומה – אפשרו התראות בהגדרות האפליקציה' : 'התראות דרך האפליקציה (מבקש הרשאה)') : perm==='denied' ? '⚠️ ההרשאה חסומה בדפדפן – רק רשימה באפליקציה' : perm==='unsupported' ? 'הדפדפן לא תומך בהתראות – רק רשימה באפליקציה' : 'התראות למכשיר (מבקש הרשאה)'}</small></div>${alTg('on', alP.on)}</label></div>
-      <div class="set-sec"><h4>📰 חדשות</h4>${alLi('על המניות שלי','', 'newsHold')}${alLi('על רשימת המעקב','', 'newsWatch')}</div>
+      <div class="set-sec"><label class="al-li"><div><b>הפעלת התראות</b><small>${alSN ? (perm==='granted' ? 'התראות דרך האפליקציה פעילות' : perm==='denied' ? '⚠️ ההרשאה חסומה – אפשרו התראות בהגדרות האפליקציה' : 'התראות דרך האפליקציה (מבקש הרשאה)') : perm==='denied' ? '⚠️ ההרשאה חסומה בדפדפן – רק רשימה באפליקציה' : perm==='unsupported' ? 'צריך את גרסת האפליקציה 1.2 ומעלה' : 'התראות למכשיר (מבקש הרשאה)'}</small></div>${alTg('on', alP.on)}</label></div>
+      <div class="set-sec"><h4>📰 חדשות</h4>${alLi('על המניות שלי','', 'newsHold', alP.newsAll)}${alLi('על רשימת המעקב','', 'newsWatch', alP.newsAll)}${alLi('כל חדשה שעולה', alP.newsAll ? 'פעיל – מחליף את שתי האפשרויות למעלה' : 'גם על מניות שאין לי בתיק או במעקב', 'newsAll')}</div>
       <div class="set-sec"><h4>📊 דוחות כספיים</h4>${alLi('יום לפני הדוח','', 'repBefore')}${alLi('בבוקר יום הדוח','', 'repMorning')}${alLi('דוח פורסם','', 'repPub')}</div>
       <div class="set-sec"><h4>📈 תנועת מחיר יומית</h4>${alLi('התראה כשמניה זזה מעל הסף', '', 'pxOn')}
         <div class="al-li"><div>סף ברירת מחדל</div><input class="al-pct" id="alPxDef" inputmode="decimal" value="${num(alP.pxDef)||''}" placeholder="%" ${alP.on?'':'disabled'}></div></div>
@@ -5937,6 +5940,7 @@ window.SavageAlerts = {add:items=>alAdd(items), unread:()=>alUnread(), sync:()=>
     const it = e.target.closest('[data-i]'); if(it){ const a = alList.find(x=>x.key===it.dataset.i); if(a){ a.read = true; alSave(); alBadge(); alClose(); alClose(); alGoto(a.kind, a.sym); } } });
   document.addEventListener('change', e=>{ const t = e.target; const c = $('alertsCard'); if(!c || !c.contains(t)) return;
     if(t.dataset.al==='on'){ alMaster(t.checked); return; }
+    if(t.dataset.al==='newsAll'){ alP.newsAll = t.checked; alSave(); alRender(); (t.checked ? alSwallowNews() : Promise.resolve()).then(()=>{ alPushSoon(); alSync(); }); return; }
     if(t.dataset.al){ alP[t.dataset.al] = t.checked; alSave(); alPushSoon(); alSync(); if(t.dataset.al==='pxOn') alCheckPx(); else alCheckData(true); return; }
     if(t.dataset.mute){ const s = t.dataset.mute; alP.muted = alP.muted.filter(x=>x!==s); if(!t.checked) alP.muted.push(s); alSave(); alPushSoon(); alSync(); return; }
     if(t.id==='alPxDef'){ const v = num(t.value); alP.pxDef = v>0 ? v : 0; alSave(); alRender(); return; }
@@ -5955,7 +5959,7 @@ window.SavageAlerts = {add:items=>alAdd(items), unread:()=>alUnread(), sync:()=>
   b.addEventListener('click', e=>{ e.stopPropagation(); v=!v; try{ localStorage.setItem(K, v?'1':'0'); }catch(_){} ap(v); });
   top.addEventListener('click', e=>{ if(v && !e.target.closest('button')){ v=false; try{ localStorage.setItem(K,'0'); }catch(_){} ap(false); } }); })();
 </script>
-<script src="alerts-core.js?v=187"></script>
+<script src="alerts-core.js?v=191"></script>
 <style>
 .al-row{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:10px}
 .al-row h4{margin:0}.al-sub{font-size:.78rem;color:var(--muted);margin-top:3px}.al-chev{color:var(--primary);font-size:1.5rem;line-height:1}
