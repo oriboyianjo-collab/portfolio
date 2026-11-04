@@ -3414,6 +3414,31 @@ const GLB_CAT = [
   {k:'bvsp', s:'.BVSP', n:'Bovespa', c:'ברזיל', e:'brazil', dp:0},
   {k:'mxx', s:'.MXX', n:'IPC', c:'מקסיקו', e:'mexico', dp:2},
   {k:'dfm', s:'.DFMGI', n:'דובאי DFM', c:'איחוד האמירויות', e:'uae dubai emirates', dp:2},
+  {k:'nya', s:'.NYA', n:'NYSE Composite', c:'ארה"ב', e:'united states usa america ארצות הברית אמריקה', dp:2},
+  {k:'ndx100', s:'.NDX', n:'נאסדק 100', c:'ארה"ב', e:'united states usa america ארצות הברית אמריקה', dp:2},
+  {k:'djt', s:'.DJT', n:'Dow Jones Transportation', c:'ארה"ב', e:'united states usa america ארצות הברית אמריקה', dp:2},
+  {k:'dju', s:'.DJU', n:'Dow Jones Utility', c:'ארה"ב', e:'united states usa america ארצות הברית אמריקה', dp:2},
+  {k:'ftmc', s:'.FTMC', n:'FTSE 250', c:'בריטניה', e:'uk united kingdom england אנגליה', dp:2},
+  {k:'ftas', s:'.FTAS', n:'FTSE All-Share', c:'בריטניה', e:'uk united kingdom england אנגליה', dp:2},
+  {k:'mdax', s:'.MDAXI', n:'MDAX', c:'גרמניה', e:'germany', dp:2},
+  {k:'omxs', s:'.OMXS30', n:'OMX Stockholm 30', c:'שוודיה', e:'sweden', dp:2},
+  {k:'obx', s:'.OBX', n:'OBX', c:'נורווגיה', e:'norway', dp:2},
+  {k:'omxh', s:'.OMXH25', n:'OMX Helsinki 25', c:'פינלנד', e:'finland', dp:2},
+  {k:'omxc', s:'.OMXC20', n:'OMX Copenhagen 20', c:'דנמרק', e:'denmark', dp:2},
+  {k:'bfx', s:'.BFX', n:'BEL 20', c:'בלגיה', e:'belgium', dp:2},
+  {k:'iseq', s:'.ISEQ', n:'ISEQ', c:'אירלנד', e:'ireland', dp:2},
+  {k:'psi20', s:'.PSI20', n:'PSI 20', c:'פורטוגל', e:'portugal', dp:2},
+  {k:'px', s:'.PX', n:'PX 50', c:'צ\'כיה', e:'czech', dp:2},
+  {k:'bux', s:'.BUX', n:'BUX', c:'הונגריה', e:'hungary', dp:2},
+  {k:'topx', s:'.TOPX', n:'TOPIX', c:'יפן', e:'japan', dp:2},
+  {k:'szsc', s:'.SZSC', n:'שנזן', c:'סין', e:'china shenzhen', dp:2},
+  {k:'klse', s:'.KLSE', n:'KLCI', c:'מלזיה', e:'malaysia', dp:2},
+  {k:'seti', s:'.SETI', n:'SET', c:'תאילנד', e:'thailand', dp:2},
+  {k:'pse', s:'.PSI', n:'PSEi', c:'הפיליפינים', e:'philippines', dp:2},
+  {k:'vni', s:'.VNI', n:'VN-Index', c:'וייטנאם', e:'vietnam', dp:2},
+  {k:'ta35', s:'.TA35', n:'ת"א 35', c:'ישראל', e:'israel tel aviv', dp:2},
+  {k:'ta125', s:'.TA125', n:'ת"א 125', c:'ישראל', e:'israel tel aviv', dp:2},
+  {k:'colcap', s:'.COLCAP', n:'COLCAP', c:'קולומביה', e:'colombia', dp:2},
   {k:'xu100', s:'.XU100', n:'BIST 100', c:'טורקיה', e:'turkey', dp:2}];
 const GLB_BY = Object.fromEntries(GLB_CAT.map(x=>[x.k, x])), GLB_DEFAULT = ['spx','ndx','dji','ftse','dax','n225','hsi','kospi'], GLB_KEY = 'portfolioTracker.globalIdx.v1';
 let glbCfg = (()=>{ const j = loadJ(GLB_KEY); const ks = j && Array.isArray(j.keys) ? j.keys.filter((k,i,a)=>GLB_BY[k] && a.indexOf(k)===i) : GLB_DEFAULT.slice(); return {keys:ks}; })(), glbEditing = false;
@@ -3984,6 +4009,54 @@ function fxSearch(q){ const raw = String(q||'').trim().toLowerCase(), k = raw.re
   { const W = fxWordCodes(raw); if(W){ const hit = FX_DIR.filter(f=>{ const [x,y] = f.code.split('/'); return W.has(x) && W.has(y); }); if(hit.length) return hit; } }
   if(/^(מט"?״?ח|מטבע|מטבעות|fx|forex)$/.test(raw.replace(/\s/g,''))) return FX_DIR;
   return FX_DIR.filter(f=>{ const c = f.code.toLowerCase().replace('/',''); return (k.length>=3 && c.includes(k)) || (/^[a-z]{3}$/.test(k) && c.slice(0,3)===k) || f.n.includes(raw) || f.al.some(a=>a.includes(raw) || raw.includes(a) && raw.length>=a.length && a.length>=3); }); }
+const FX_MORE = `SA|SAR|ריאל סעודי|סעודיה,ערב הסעודית,ערב סעודית,סעודי,ריאל|4
+AE|AED|דירהם איחוד האמירויות|איחוד האמירויות,אמירויות,אבו דאבי,דובאי,דירהם|4
+QA|QAR|ריאל קטרי|קטר,קאטר,קטרי|4
+KW|KWD|דינר כוויתי|כווית,קווית,כוויתי,דינר|4
+BH|BHD|דינר בחרייני|בחריין|4
+OM|OMR|ריאל עומאני|עומאן|4
+JO|JOD|דינר ירדני|ירדן,ירדני,דינר|4
+EG|EGP|לירה מצרית|מצרים,מצרי,לירה|3
+IN|INR|רופי הודי|הודו,הודי,רופי|3
+KR|KRW|וון דרום קוריאני|קוריאה,דרום קוריאה,וון|2
+TW|TWD|דולר טייוואני|טייוואן,טייוואני|3
+TH|THB|באט תאילנדי|תאילנד,תאילנדי,באט|3
+MY|MYR|רינגיט מלזי|מלזיה,מלזי,רינגיט|4
+ID|IDR|רופיה אינדונזית|אינדונזיה,רופיה|0
+PH|PHP|פסו פיליפיני|פיליפינים,פסו|3
+VN|VND|דונג וייטנאמי|וייטנאם,דונג|0
+PK|PKR|רופי פקיסטני|פקיסטן,רופי|2
+BD|BDT|טאקה בנגלדשי|בנגלדש,טאקה|2
+LK|LKR|רופי סרילנקי|סרי לנקה,רופי|2
+KZ|KZT|טנגה קזחסטני|קזחסטן,טנגה|2
+SG|SGD|דולר סינגפורי|סינגפור|4
+HK|HKD|דולר הונג קונג|הונג קונג|4
+MX|MXN|פסו מקסיקני|מקסיקו,פסו|4
+BR|BRL|ריאל ברזילאי|ברזיל,ריאל|4
+CL|CLP|פסו צ'יליאני|צ'ילה,פסו|2
+CO|COP|פסו קולומביאני|קולומביה,פסו|1
+PE|PEN|סול פרואני|פרו,סול|4
+AR|ARS|פסו ארגנטינאי|ארגנטינה,פסו|2
+UY|UYU|פסו אורוגוואי|אורוגוואי,פסו|2
+ZA|ZAR|ראנד דרום אפריקאי|דרום אפריקה,ראנד|3
+NG|NGN|נאירה ניגרית|ניגריה,נאירה|2
+KE|KES|שילינג קנייתי|קניה,שילינג|2
+GH|GHS|סדי גאני|גאנה,סדי|2
+MA|MAD|דירהם מרוקאי|מרוקו,דירהם|3
+TN|TND|דינר תוניסאי|תוניסיה,דינר|3
+TR|TRY|לירה טורקית|טורקיה,לירה|3
+RU|RUB|רובל רוסי|רוסיה,רובל|2
+UA|UAH|גריבנה אוקראינית|אוקראינה,גריבנה|2
+CZ|CZK|קורונה צ'כית|צ'כיה,קורונה|2
+HU|HUF|פורינט הונגרי|הונגריה,פורינט|2
+RO|RON|לאו רומני|רומניה,לאו|3
+IS|ISK|קרונה איסלנדית|איסלנד,קרונה|2
+RS|RSD|דינר סרבי|סרביה,דינר|2
+SE|SEK|קרונה שוודית|שוודיה,קרונה|3
+DK|DKK|קרונה דנית|דנמרק,קרונה|3
+NO|NOK|קרונה נורווגית|נורווגיה,קרונה|3
+PL|PLN|זלוטי פולני|פולין,זלוטי|3`.split('\n').map(l=>{ const [cc,code,n,al,dp] = l.split('|'), fg = c=>String.fromCodePoint(...[...c].map(x=>127397+x.charCodeAt(0))); return {code:'USD/'+code, q:code+'=', n:'דולר / '+n, al:[...al.split(','), code.toLowerCase()], dp:+dp, fl:fg('US')+fg(cc)}; });
+FX_DIR.push(...FX_MORE.filter(f=>!FX_DIR.some(x=>x.code===f.code)), {code:'DXY', q:'.DXY', n:'מדד הדולר (DXY)', al:['מדד הדולר','dxy','dollar index','דולר אינדקס'], dp:3, fl:'🇺🇸'});
 const FX_BY = Object.fromEntries(FX_DIR.map(f=>[f.code, f]));
 function fxInst(f){ return {k:'fx:'+f.code, fx:true, type:'fx', sym:f.code, n:f.n, s:f.code+' · מט״ח'+(f.der ? ' · מחושב משערי הדולר' : ''), q: f.q || 'FX:'+f.code, der:f.der, dp:f.dp, g:'מט״ח', fl:f.fl}; }
 function srchInst(m){ return secInst({sym:m.sym, name:m.name||'', type:m.type||'stock', currency:m.currency}); }
