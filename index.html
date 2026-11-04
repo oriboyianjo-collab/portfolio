@@ -220,7 +220,10 @@ nav.bottom button.on{color:var(--primary)}
 html,body{overscroll-behavior-x:none;overscroll-behavior-y:contain}.xh-ok{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.xh-ok.xh{touch-action:none}.xh-ok.zoomed{touch-action:pan-y}.xh-ok .tv-lightweight-charts,.xh-ok .tv-lightweight-charts *{pointer-events:none!important}main .chart{transition:box-shadow .15s}main .chart.active{box-shadow:0 0 0 2px var(--accent,#3b82f6);border-radius:10px}
 .wl-to{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted);margin:6px 0 4px}.wl-to select{font:inherit;font-size:.85rem;padding:4px 8px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);max-width:60%}
 #wlNew{white-space:nowrap;flex:none}
-.wl-addbox{border:1px solid var(--border);border-radius:14px;padding:10px 12px;margin:8px 0}
+.wl-addbox{position:relative;border:1px solid var(--border);border-radius:14px;padding:10px 12px;margin:8px 0}
+.wl-addbox .wl-add{position:static}
+.wl-in{position:relative}
+.wl-addbox .wl-add .ac-list{left:12px;right:12px}
 .wl-addrow{display:flex;gap:12px;align-items:flex-end}
 .wl-fld{display:flex;flex-direction:column;gap:5px;min-width:0}
 .wl-fld-srch{flex:1 1 auto}
@@ -935,7 +938,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
       <div id="wlTabs"></div>
       <div class="wl-addbox"><div class="wl-addrow">
         <div class="wl-fld wl-fld-srch"><span class="wl-lab">הוספת נייר</span>
-          <div class="ac wl-add"><input id="wlSearch" placeholder="חיפוש נייר" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><div class="ac-list" id="wlAc"></div></div>
+          <div class="ac wl-add"><div class="wl-in"><input id="wlSearch" placeholder="חיפוש נייר" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></div><div class="ac-list" id="wlAc"></div></div>
         </div>
         <label class="wl-to wl-fld wl-fld-to"><span class="wl-lab">יתווסף לרשימה:</span><select id="wlTo"></select></label>
       </div></div>
