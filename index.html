@@ -878,7 +878,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 
 /* v-bubbles: ETF selector as bubbles, best -> worst (right to left, top to bottom); size = |daily move|, colour = direction */
 .ft-g{display:flex!important;flex-direction:column;gap:2px!important}
-.ft-row{display:flex;flex-direction:row;justify-content:center;align-items:center;gap:6px;min-height:84px;direction:rtl}
+.ft-row{display:flex;flex-direction:row;justify-content:center;align-items:center;gap:6px;min-height:66px;direction:rtl}
 .fb{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none}
 .ft{aspect-ratio:auto!important;border-radius:50%!important;flex:none;box-sizing:border-box;border:1px solid rgba(255,255,255,.28);padding:0!important;transition:transform .15s}
 .ft.on{border:2px solid #fff;box-shadow:0 0 0 3px var(--primary),0 0 18px var(--primary)!important}
@@ -3467,7 +3467,7 @@ const fsPct = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.pre
 const fsExt = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.ext ? q.ext : null; };   // v107: same extended-hours source as rows (preOf → iq().ext); null outside the session / without a fresh quote
 function drawEtfSel(){ const el = $('etfPick'); if(!el) return; const t = etfUi.sel;
   const ord = [...ETFS].sort((a,b)=>{ const pa = fsPct(a), pb = fsPct(b); return (pa==null)-(pb==null) || (pb||0)-(pa||0); });
-  const bsz = p=>Math.round(50 + Math.min(Math.abs(p==null?0:p), 9)*6.5);
+  const bsz = p=>Math.round(44 + Math.min(Math.abs(p==null?0:p), 9)*3.8);
   const tile = x=>{ const p = fsPct(x), e = fsExt(x), dm = bsz(p), col = heatColor(p); return `<div class="fb"><button class="ft${x===t?' on':''}" data-etf="${x}" aria-pressed="${x===t}" aria-label="${ETF_LBL[x]||x} ${p!=null ? fmtPct(p) : ''}${e ? ' '+e.kind+' '+fmtPct(e.pct) : ''}" style="width:${dm}px;height:${dm}px;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.3),rgba(255,255,255,0) 62%),${col};box-shadow:0 0 14px ${col.replace('rgb(','rgba(').replace(')',',.45)')}"><b class="ltr" style="font-size:${(0.6 + dm/330).toFixed(2)}rem">${ETF_LBL[x]||x}</b><span class="num" style="font-size:${(0.56 + dm/420).toFixed(2)}rem">${p!=null ? fmtPct(p) : '—'}</span>${etfEditOpen ? `<span class="ft-del" data-edel="${x}" role="button" aria-label="הסרת ${ETF_LBL[x]||x} מהרשימה">✕</span>` : ''}</button>${extLineHtml(e, 'ftx')}</div>`; };
   const rowsH = []; for(let i = 0; i < ord.length; i += 4) rowsH.push(`<div class="ft-row">${ord.slice(i, i+4).map(tile).join('')}</div>`);
   const h = `<div class="fs-bar"><b>מפת חום · הקרנות</b>${ib('ממוין מהעולה ביותר ליורד ביותר · גודל הבועה = עוצמת השינוי היומי · צבע = כיוון', 'איך ממופה מפת החום')}<small>${ETFS.length} קרנות</small><button type="button" class="fs-add${etfEditOpen ? ' on' : ''}" data-eedit aria-expanded="${etfEditOpen}">${etfEditOpen ? '✓ סיום עריכה' : '✏️ עריכה'}</button></div>`;
