@@ -107,7 +107,10 @@ const ORDER = ['ishares', 'roundhill', 'ssga', 'ark', 'direxion', 'defiance', 'f
     else { missing.push(t); log(`MISS ${t.padEnd(6)} (tried ${tried.join(',')})${funds[t] ? ' – keeping previous ' + funds[t].asOf : ''}`); } }
   Object.keys(funds).forEach(t => { if(!BUILTIN.hasOwnProperty(t) && !extra.includes(t)) delete funds[t]; });
   const out = {version: 1, generated: prev.generated || new Date().toISOString(), note: 'Public ETF holdings from each issuer\'s official file – see holdings/README.md. rows = [symbol, name, weight % of net assets]', funds, missing: missing.filter(t => !funds[t] || funds[t].stale)};
-  const same = JSON.stringify(prev.funds || {}) === JSON.stringify(funds) && JSON.stringify(prev.missing || []) === JSON.stringify(out.missing);
+  // total net assets (AUM) with as-of date from the issuers' own public data (scripts/net-assets.cjs); previous values stay when an issuer is unreachable
+  let na = prev.netAssets || {}; try{ const fresh = await require('./net-assets.cjs')(ROOT, log); if(Object.keys(fresh).length) na = Object.assign({}, na, fresh); }catch(e){ log('net assets error', e.message); }
+  out.netAssets = na;
+  const same = JSON.stringify(prev.funds || {}) === JSON.stringify(funds) && JSON.stringify(prev.missing || []) === JSON.stringify(out.missing) && JSON.stringify(prev.netAssets || {}) === JSON.stringify(na);
   if(!same) out.generated = new Date().toISOString();
   fs.mkdirSync(path.dirname(OUT), {recursive: true}); fs.writeFileSync(OUT, JSON.stringify(out) + '\n'); log(same ? 'no change' : 'written', OUT, Object.keys(funds).length, 'funds');
 })();
