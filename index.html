@@ -144,10 +144,11 @@ button{font-family:inherit}
 .pc-wd{grid-column:1/-1}.pc-u{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;background:var(--bg-f1f5f9);border-radius:10px;padding:6px 10px}.pc-u>span{font-weight:700;color:var(--muted)}.pc-u b:first-of-type{font-size:1.05rem}
 #posKv div.hl{background:var(--bg-eff6ff);border-radius:8px}#posKv div.hl b{font-size:1.05rem}
 .idxrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}
-.idx{background:var(--bg-fff);border:1px solid var(--border);border-radius:14px;padding:6px 10px;line-height:1.2;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto;column-gap:6px;align-items:center;min-height:56px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.idx{background:var(--bg-fff);border:1px solid var(--border);border-radius:14px;padding:6px 10px;line-height:1.2;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto auto;column-gap:6px;align-items:center;min-height:56px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
 .idx-n{font-size:.74rem;font-weight:700;color:var(--fg-334155);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.idx-n small{font-weight:500;color:var(--muted);font-size:.9em}
 .idx-v{font-size:.98rem;font-weight:800;direction:ltr;unicode-bidi:isolate;text-align:right;white-space:nowrap;letter-spacing:-.2px}
 .idx-c{font-size:.74rem;font-weight:700;direction:ltr;unicode-bidi:isolate;text-align:right;white-space:nowrap}
+.idx-f{grid-column:1/-1;font-size:.66rem;font-weight:700;direction:ltr;unicode-bidi:isolate;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.3px;margin-top:1px}.idx-f .xl{display:inline!important;float:none!important;width:auto!important;margin:0!important}.idx-f small{display:inline!important;font-weight:500;color:var(--muted);font-size:.92em}
 .idx .spark{grid-column:2;grid-row:1/4;width:58px;height:30px;display:block}.idx .spark path{fill:none;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}.idx .spark line{stroke:var(--fg-94a3b8);stroke-width:1;stroke-dasharray:2 2}
 @media (max-width:370px){.idx{padding:6px 8px}.idx .spark{width:44px}.idx-v{font-size:.92rem}}
 .heat{padding:10px}.heat-h{display:flex;align-items:center;gap:8px;min-height:30px}.heat-t{font-weight:700;font-size:.95rem}.heat-h small{color:var(--muted);font-size:.78rem}.heat-h small b{font-weight:700}.heat-h .mini-tgl{margin-inline-start:auto}
@@ -857,7 +858,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=187">
+<link rel="stylesheet" href="chart-tools.css?v=188">
 
 </head>
 <body>
@@ -2725,17 +2726,33 @@ const IDX = [{k:'spx', s:'.SPX', alt:'SPY', n:'S&P 500'}, {k:'ndx', s:'.NDX', al
 const IDX_KEY = 'portfolioTracker.idx.v1';
 let idxData = (()=>{ try{ return JSON.parse(localStorage.getItem(IDX_KEY)) || {q:{}, sp:{}}; }catch(e){ return {q:{}, sp:{}}; } })();
 if(!idxData.q) idxData.q = {}; if(!idxData.sp) idxData.sp = {};
+// v188: index futures line on the index tiles – ES=F (S&P 500) / NQ=F (Nasdaq 100), % vs the previous futures settle, all sessions.
+// Live ticks from the Yahoo streamer when it sends them; CNBC (@SP.1 / @ND.1, CORS-open, may be delayed) polled as the fallback / settle source.
+const FUT = [{k:'spx', y:'ES=F', c:'@SP.1', n:'ES'}, {k:'ndx', y:'NQ=F', c:'@ND.1', n:'NQ'}];
+if(!idxData.fut) idxData.fut = {};
+let futAt = 0, futBusy = false;
+async function futPoll(force){ if(futBusy || (!force && Date.now()-futAt < 20e3)) return; futBusy = true; futAt = Date.now();
+  try{ const url = 'https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols='+encodeURIComponent(FUT.map(f=>f.c).join('|'))+'&requestMethod=itv&noform=1&partnerId=2&fund=1&exthrs=1&output=json&events=1';
+    const j = await fetchJSON(url, 10000); let arr = j && j.FormattedQuoteResult && j.FormattedQuoteResult.FormattedQuote; if(arr && !Array.isArray(arr)) arr = [arr]; let ch = false;
+    (arr||[]).forEach(q=>{ const f = FUT.find(x=>x.c===q.symbol); if(!f || String(q.code)!=='0') return;
+      const p = num(String(q.last||'').replace(/,/g,'')), pv = num(String(q.settlePrice||q.previous_day_closing||'').replace(/,/g,'')), t = Date.parse(q.last_time||'') || 0; if(!(p>0)) return;
+      const d = idxData.fut[f.k] || {}; if(pv>0) d.prev = pv; if(!d.ts || t >= d.ts || d.src!=='y'){ d.price = p; d.ts = t || Date.now(); d.src = 'c'; } idxData.fut[f.k] = d; ch = true; });
+    if(ch){ idxSave(); renderIdx(); } }catch(e){} finally{ futBusy = false; } }
+setInterval(()=>{ if(!document.hidden) futPoll(); }, 30e3);
+function futLine(k){ const f = FUT.find(x=>x.k===k), d = idxData.fut[k]; if(!f || !d || !(d.price>0) || !(d.prev>0)) return '';
+  const pc = (d.price/d.prev-1)*100, ss = usSession(), kind = ss==='pre' ? 'pre' : ss==='post' ? 'after' : ss==='night' ? 'night' : '';
+  return `<div class="idx-f num ${pc>0?'pos':pc<0?'neg':''}" title="${f.y} · מול סטלמנט קודם ${fmtLvl(d.prev)}"><span class="xl ${kind?'is-'+kind:''}">${fmtPct(pc)}</span> <small>${f.n} ${fmtLvl(d.price)}</small></div>`; }
 function idxSave(){ try{ localStorage.setItem(IDX_KEY, JSON.stringify(idxData)); }catch(e){} }
 const fmtLvl = v=>v==null ? '—' : v.toLocaleString('en-US',{minimumFractionDigits:2, maximumFractionDigits:2});
 async function idxApply(q){
   const miss = IDX.filter(x=>!(q[x.s] && q[x.s].price!=null && q[x.s].prev));
   // v50: indices have no pre-market quote – during US pre-market the ETF's (SPY/QQQ) pre % vs its prior close is the proxy
-  const pre = !!extSess(), need = pre ? IDX : miss;   // v64: pre + after-hours proxy
+  const need = miss;   // v188: the SPY/QQQ pre/after stand-in is gone – the futures line (ES=F / NQ=F) shows the extended move
   let alt = {}; if(need.length){ try{ alt = await cnbcQuotes(need.map(x=>x.alt)); }catch(e){} }
   IDX.forEach(x=>{ const a = q[x.s], b = alt[x.alt], u = a && a.price!=null && a.prev ? a : b && b.price!=null && b.prev ? b : null; if(!u) return;
-    const ep = b && b.pre && b.pre.pct!=null ? {price:b.pre.price, pct:b.pre.pct, ts:b.pre.ts, kind:b.pre.kind||'pre', src:x.alt} : null;
+    const ep = null;
     idxData.q[x.k] = {last:u.price, prev:u.prev, sym: u===a ? x.s : x.alt, etf: u!==a, status:u.status||'', ts:u.ts||null, date:u.date||'', pre:ep}; yMergeIdx(x.k); });
-  idxSave(); renderIdx(); idxSpark().catch(e=>console.warn('index sparkline', e.message));
+  futPoll(); idxSave(); renderIdx(); idxSpark().catch(e=>console.warn('index sparkline', e.message));
 }
 async function idxSpark(){
   let ch = false;
@@ -2764,7 +2781,7 @@ function renderIdx(){
     let pts = sp && sp.sym===q.sym && sp.date===q.date ? sp.pts.slice() : null; if(pts && pts.length && !cl) pts.push(q.last);
     const name = q.etf ? `${x.n} <small>· ${x.alt}</small>` : x.n;
     return `<div class="idx" data-idx="${x.k}" role="button" tabindex="0" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}${pr ? ' · טרום מסחר לפי '+esc(pr.src) : ''}"><div class="idx-n"><span class="idx-nt">${name}${cl ? ' <small>· סגור</small>' : ''}</span>${extLineHtml(xe, 'idx-e')}</div>`+
-      `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(lvl)}</b><div class="idx-c num ${cls(c)}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${sparkSvg(pts, q.prev, up)}</div>`; }).join('');
+      `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(lvl)}</b><div class="idx-c num ${cls(c)}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${futLine(x.k)}${sparkSvg(pts, q.prev, up)}</div>`; }).join('');
 }
 // ---------- per-holding intraday sparkline (collapsed row) ----------
 // Today's regular session only: CNBC 5-minute bars (same free keyless source as the index tiles), kept for 09:30–16:00 New York /
@@ -5546,7 +5563,7 @@ function yDecode(b64){
     else throw 0; } }catch(e){}
   return o.id && o.p > 0 && o.t > 0 ? o : null;
 }
-function yOf(key){ const s = String(key || '').toUpperCase(); if(YIDX[s]) return YIDX[s];
+function yOf(key){ const s = String(key || '').toUpperCase(); if(YIDX[s]) return YIDX[s]; if(s==='ES=F' || s==='NQ=F') return s;
   if(!/^[A-Z][A-Z0-9]{0,5}([.-][A-Z]{1,2})?$/.test(s) || isCrypto(s) || marketOf(s) !== 'us') return null; return s.replace('.', '-'); }
 function yHoldKeys(){ const sig = state.txs.length + ':' + (state.txs.length ? state.txs[state.txs.length-1].id : '');
   if(sig !== yHoldSig || Date.now() - yHoldAt > 60000){ yHoldSig = sig; yHoldAt = Date.now(); try{ yHold = openSymbols(); }catch(e){} } return yHold; }
@@ -5554,6 +5571,7 @@ function yWanted(){   // yahoo symbol -> Set(app symbols); priority order = inse
   const keys = [], add = k=>{ if(k) keys.push(k); };
   yHoldKeys().forEach(add);
   IDX.forEach(x=>{ const q = idxData.q[x.k]; if(q && q.sym) add(q.sym); });
+  FUT.forEach(f=>add(f.y));   // v188: index futures (used when the streamer sends them)
   const yk = it=>it && !it.der ? (it.sec ? it.sym : YIDX[String(it.q || '').toUpperCase()] ? String(it.q).toUpperCase() : null) : null;   // securities by ticker; of the built-in tiles only the US indices have a Yahoo twin
   add(yk(instSheet && instSheet.it));
   if(posLive && posLive.sym) add(posLive.sym);
@@ -5615,6 +5633,7 @@ function yOne(q, kind, o, store){
 function yApply(o){
   const targets = YWS.subs.get(o.id); if(!targets) return;
   const now = Date.now(); if(o.t > now + 120000) return;
+  { const fu = FUT.find(f=>f.y===o.id); if(fu){ const d = idxData.fut[fu.k] || {}; if(o.t > (d.ts||0)){ d.price = o.p; d.ts = o.t; d.src = 'y'; if(!(d.prev>0) && o.chg!=null) d.prev = o.p - o.chg; idxData.fut[fu.k] = d; yDirtyIdx = true; yQueue(); } return; } }
   const ss = usSession(); let kind = o.mh === 1 ? 'reg' : o.mh === 0 ? 'pre' : o.mh === 2 ? 'post' : o.mh === 4 ? 'night' : o.mh === 3 ? (ss === 'pre' || ss === 'post' || ss === 'night' ? ss : null) : null;
   if(!kind || (kind !== 'reg' && (kind !== ss || o.id[0] === '^'))) return;   // extended ticks only inside their own session; indices have no extended line
   if(kind === 'reg' && ss !== 'reg') return;   // v176: the last regular tick (16:00:00) is a pre-auction print, not the official close – outside the regular session CNBC's close wins
