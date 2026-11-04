@@ -858,7 +858,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=192">
+<link rel="stylesheet" href="chart-tools.css?v=193">
 
 </head>
 <body>
@@ -5463,6 +5463,20 @@ document.querySelector('nav.bottom').addEventListener('click', e=>{ const b = e.
   if(!t || t===ui.tab || !document.getElementById('tab-'+t)) return;
   if(t==='settings'){ prevTab = pv && pv!=='settings' && document.getElementById('tab-'+pv) ? pv : 'portfolio'; }
   setTab(t); })();
+// v193: session UI state - remembered while the app lives (incl. reloads / WebView page reloads), gone after a full close (sessionStorage only)
+(()=>{ const K = 'portfolioTracker.uiState', ss = sessionStorage; let posSym = null, restoring = false;
+  const _op = openPosition; openPosition = function(sym){ posSym = sym; return _op.apply(this, arguments); };
+  const save = ()=>{ if(restoring) return; try{ const o = JSON.parse(ss.getItem(K)||'{}'); o.tab = ui.tab; o.perf = ui.perfRange; o.newsQ = $('newsQ').value; o.repQ = $('repQ').value;
+    o.pos = $('sheet').classList.contains('open') && posSym ? posSym : null; o.sy = o.sy || {}; o.sy[ui.tab] = Math.round(window.scrollY); ss.setItem(K, JSON.stringify(o)); }catch(e){ console.warn("uiState", e); } };
+  let st; const later = ()=>{ clearTimeout(st); st = setTimeout(save, 300); };
+  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) save(); }); window.addEventListener('pagehide', save);
+  window.addEventListener('scroll', later, {passive:true}); document.addEventListener('click', later, true); document.addEventListener('input', later, true);
+  let o = null; try{ o = JSON.parse(ss.getItem(K)||'null'); }catch(e){} if(!o) return; restoring = true;
+  try{ if(o.perf && o.perf!==ui.perfRange && (ui.tab==='perf'||ui.tab==='portfolio')){ const b = document.querySelector(`#perfRange button[data-v="${o.perf}"],#miniRange button[data-v="${o.perf}"]`); if(b) b.click(); } }catch(e){}
+  try{ if(o.newsQ){ $('newsQ').value = o.newsQ; $('newsQ').dispatchEvent(new Event('input')); } }catch(e){}
+  try{ if(o.repQ){ $('repQ').value = o.repQ; ntFil.q = o.repQ; } }catch(e){}
+  const y = o.sy && o.sy[ui.tab]; setTimeout(()=>{ try{ if(y) window.scrollTo(0, y); if(o.pos) openPosition(o.pos); }catch(e){} restoring = false; save(); }, 700);
+})();
 $('txNew').onclick = ()=>openTxForm(state.txs.length ? 'buy' : 'deposit');   // v84: replaces the floating + (deposit / withdraw / convert / dividend… are in the form's type selector)
 $('btnSet').onclick = ()=>openSettings();   // tapping the gear in settings keeps it open; leave via the back button / Android back
 $('setBack').onclick = ()=>closeSettings();
@@ -5978,7 +5992,7 @@ window.SavageAlerts = {add:items=>alAdd(items), unread:()=>alUnread(), sync:()=>
   b.addEventListener('click', e=>{ e.stopPropagation(); v=!v; try{ localStorage.setItem(K, v?'1':'0'); }catch(_){} ap(v); });
   top.addEventListener('click', e=>{ if(v && !e.target.closest('button')){ v=false; try{ localStorage.setItem(K,'0'); }catch(_){} ap(false); } }); })();
 </script>
-<script src="alerts-core.js?v=192"></script>
+<script src="alerts-core.js?v=193"></script>
 <style>
 .al-row{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:10px}
 .al-row h4{margin:0}.al-sub{font-size:.78rem;color:var(--muted);margin-top:3px}.al-chev{color:var(--primary);font-size:1.5rem;line-height:1}
