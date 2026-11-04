@@ -4259,7 +4259,7 @@ function posKvRows(p){
   const cur = p.cur, short = p.qty<0, open = Math.abs(p.qty)>1e-9, R = [];
   { const hl = open && !p.manual ? haltOf(state.quotes[p.sym]) : null; if(hl) R.push(['hlt','סטטוס מסחר', hl, 'hltv '+haltCls(hl)]); }   // v167
   if(open) R.push(['mv','שווי', fmtMoney(p.mv,cur) + (cur==='USD' && p.mvILS!=null ? ' · ' + fmtMoney(p.mvILS,'ILS',0) : ''), '', 'hl'], ['unreal','שינוי מעלות (ברוטו)', `${fmtPct(p.unrealPct)} · ${fmtSigned(p.unreal,cur)}`, cls(p.unreal), 'hl'], ['weight','% מהתיק', fmtW(p.weight), ''], ['price',`מחיר נוכחי${p.manual?' (ידני)':''}${p.pre?' · '+p.pre:''}`, fmtPrice(p.pre ? p.prePrice : p.price,cur), ''],
-    ['day', 'שינוי היום', p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
+    ['day', 'שינוי יומי', p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
     ['qty', short?'כמות בשורט':'כמות', fmtQtyP(Math.abs(p.qty)), ''], ['avg', short?'מחיר שורט ממוצע':'עלות ממוצעת', fmtMoney(p.avg,cur), ''],
     ['open','נפתחה', fmtDate(p.openDate), 'nonum'],
     ['costils','עלות בשקלים למס', taxPend() ? TXP : p.qty>0 && p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', ''],
@@ -4290,7 +4290,7 @@ function marketDate(m){ const am = Object.values(ASIA_MK).find(x=>x[0]===m); ret
 function renderPosRchg(price){
   const L = posLive, el = $('posRchg'); if(!el || !L || !(L.base>0) || price==null) return;
   const v = (price/L.base - 1)*100;
-  el.innerHTML = `<span>${L.day ? `שינוי היום <span class="muted">(מול סגירה קודמת <span class="num">${fmtMoneyRaw(L.base, L.hcur, 2)}</span>)</span>` : L.ytd ? `מתחילת השנה <span class="muted">(מול סגירת <span class="num">${fmtDate(L.baseDate)}</span>: <span class="num">${fmtMoneyRaw(L.base, L.hcur, 2)}</span>)</span>` : `שינוי בטווח <span class="muted">(מול <span class="num">${fmtDate(L.baseDate)}</span>)</span>`}</span><b id="posRchgPct" class="num ${cls(v)}">${fmtPct(v)}</b>`;
+  el.innerHTML = `<span>${L.day ? `שינוי יומי` : L.ytd ? `מתחילת השנה <span class="muted">(מול סגירת <span class="num">${fmtDate(L.baseDate)}</span>: <span class="num">${fmtMoneyRaw(L.base, L.hcur, 2)}</span>)</span>` : `שינוי בטווח <span class="muted">(מול <span class="num">${fmtDate(L.baseDate)}</span>)</span>`}</span><span style="display:flex;align-items:baseline;gap:8px"><b id="posRchgPct" class="num ${cls(v)}">${fmtPct(v)}</b>${L.day ? `<span class="num">${fmtMoneyRaw(price, L.hcur, 2)}</span>` : ''}</span>`;
 }
 function updatePosLive(){
   const L = posLive; if(!posChart || !L) return;
