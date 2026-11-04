@@ -30000,7 +30000,7 @@
     "מדד": [
       "S&P 400"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-04.11.2026: 786.68M דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל.",
+    "הערה": "שעת הפרסום הצפויה היא סביב 13:30 לפי לוח חיצוני, לפי שעון ישראל; אינה שעת שיחת המשקיעים.\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים לפי MarketBeat לדוח שבמקור מתוכנן ל-04.11.2026: 786.68M דולר. רבעון כספי לא צוין במקור; אין זה נתון בפועל.",
     "צפי_הכנסות": "786.68M",
     "בסיס_צפי_הכנסות": "Analyst consensus for report scheduled 04.11.2026; fiscal quarter not stated by source",
     "מטבע_צפי_הכנסות": "USD",
@@ -30009,7 +30009,12 @@
     "אימות_צפי_הכנסות": "MarketBeat dated table re-fetched 03.11.2026; existing forecasts preserved",
     "סטטוס_בדיקת_תחזית_חברה": "analyst_preview_mentions_quarter_not_company_guidance",
     "השוואה_הכנסות": "לא",
-    "הסבר_הכנסות": "צפי אנליסטים מיוחס ללוח המקור; התאמת מטבע והיקף לבפועל תיבדק עם פרסום התוצאות."
+    "הסבר_הכנסות": "צפי אנליסטים מיוחס ללוח המקור; התאמת מטבע והיקף לבפועל תיבדק עם פרסום התוצאות.",
+    "release_time_il": "13:30",
+    "release_time_approx": true,
+    "release_time_source": "https://www.tradingview.com/news/tradingview:95425b1045a81:0-esab-q3-26-earnings-revenue-estimate-is-786-68m-usd/",
+    "release_time_verified_date": "2026-11-04",
+    "release_time_basis": "third-party-estimate"
   },
   {
     "חברה": "Edwards Lifesciences Corporation",
