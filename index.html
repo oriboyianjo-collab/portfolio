@@ -935,7 +935,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
   <section class="tab" id="tab-tx"><div class="card"><div class="tx-h"><h2>היסטוריית עסקאות <small id="txCount"></small></h2><button class="btn btn-primary btn-sm" id="txNew">➕ עסקה חדשה</button></div><div class="hist-bar" id="txHistBar" style="margin-top:0"></div><div id="txList"></div></div></section>
   <section class="tab" id="tab-market">
     <div class="seg mkt-mode" id="mktMode" role="group" aria-label="תצוגת השווקים"><button data-mm="mk" class="on">🌐 שווקים</button><button data-mm="etf">🧩 מדדים</button></div>
-    <div class="mk-sub" id="mkSub" role="group" aria-label="סוג שוק"><button data-ms="glob">גלובל</button><button data-ms="com">סחורות</button></div>
+    <div class="mk-sub" id="mkSub" role="group" aria-label="סוג שוק"><button data-ms="glob">גלובל</button><button data-ms="com">סחורות</button><button data-ms="fx">מט״ח</button></div>
     <div class="card etf-card" id="etfCard" hidden>
       <div class="fsel" id="etfPick"></div>
       <form id="etfAdd" class="etf-add-w" autocomplete="off" novalidate></form>
@@ -950,6 +950,11 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
       <div class="com-edit" id="comEditBox" hidden><div id="comRows"></div><h5 class="com-h5">הוספת סחורה</h5><div class="mkt-cat" id="comAddList"></div>
         <div class="btn-row"><button class="btn btn-light btn-sm" id="comReset">↺ איפוס לברירת מחדל</button><button class="btn btn-primary btn-sm" id="comDone">✓ סיום</button></div></div>
       <div class="ib-src" id="comNote">מחירי חוזים עתידיים (החוזה הקרוב), בהשהיה. יחידת המידה מוצגת רק כשאומתה מול מפרט הבורסה; המחיר והשינוי כפי שמפורסמים.</div></div>
+    <div class="card com-card" id="fxCard" hidden><div class="h2row"><h2><span>מט״ח</span> <small id="fxUpd"></small></h2><button class="btn btn-light btn-sm" id="fxEdit" aria-pressed="false">✏️ עריכה</button></div>
+      <div class="com-g" id="fxGrid"></div>
+      <div class="com-edit" id="fxEditBox" hidden><input type="search" id="fxSearchIn" class="glb-search" placeholder="חיפוש צמד או מדינה" autocomplete="off"><div id="fxRows"></div><h5 class="com-h5">הוספת צמד</h5><div class="mkt-cat" id="fxAddList"></div>
+        <div class="btn-row"><button class="btn btn-light btn-sm" id="fxReset">↺ איפוס לברירת מחדל</button><button class="btn btn-primary btn-sm" id="fxDone">✓ סיום</button></div></div>
+      <div class="ib-src" id="fxNote">שערי CNBC; אם הציטוט ישן מ־15 דקות מוצגת שעת הציטוט האחרון.</div></div>
     <div class="card com-card" id="glbCard" hidden><div class="h2row"><h2><span>גלובל</span> <small id="glbUpd"></small></h2><button class="btn btn-light btn-sm" id="glbEdit" aria-pressed="false">✏️ עריכה</button></div>
       <div class="com-g" id="glbGrid"></div>
       <div class="com-edit" id="glbEditBox" hidden><input type="search" id="glbSearch" class="glb-search" placeholder="חיפוש מדד או מדינה" autocomplete="off"><div id="glbRows"></div><h5 class="com-h5">הוספת מדד</h5><div class="mkt-cat" id="glbAddList"></div>
@@ -3328,7 +3333,7 @@ function drawMarket(){ const g = $('mktGrid'); if(!g) return; const L = mktItems
   if(mktEditing){ const have = new Set(mktCfg.keys), groups = [...new Set(MKT_CAT.map(c=>c.g))];
     $('mktCat').innerHTML = groups.map(gname=>{ const xs = MKT_CAT.filter(c=>c.g===gname && !have.has(c.k)); return xs.length ? `<h5>${gname}</h5>` + xs.map(c=>`<button data-add="${c.k}">+ ${esc(c.n)}</button>`).join('') : ''; }).join('') || '<div class="note">כל הפריטים המובנים כבר במסך.</div>'; }
   const q0 = Object.values(mq).map(q=>q.ts||0).filter(Boolean); $('mktUpd').textContent = q0.length ? '· '+new Date(Math.max(...q0)).toLocaleTimeString('he-IL',{hour:'2-digit', minute:'2-digit'}) : ''; }
-async function renderMarket(){ applyMktMode(); if(etfUi.mode==='mk'){ ++mktSeq; return etfUi.sub==='com' ? renderCom() : renderGlb(); } if(etfUi.mode==='etf'){ ++mktSeq; return renderEtf(); }
+async function renderMarket(){ applyMktMode(); if(etfUi.mode==='mk'){ ++mktSeq; return etfUi.sub==='com' ? renderCom() : etfUi.sub==='fx' ? renderFx() : renderGlb(); } if(etfUi.mode==='etf'){ ++mktSeq; return renderEtf(); }
   const seq = ++mktSeq, L = mktItems(); drawMarket();
   if(L.some(it=>!iq(it))) { await instQuotes(L); if(seq===mktSeq) drawMarket(); }
   await Promise.all(L.map(it=>instBars(it, mktRange).then(()=>{ if(seq!==mktSeq) return; const el = $('mktGrid').querySelector(`[data-mk="${CSS.escape(it.k)}"]`); if(el) el.outerHTML = mktCardHtml(it); }).catch(()=>{})));
@@ -3336,6 +3341,7 @@ async function renderMarket(){ applyMktMode(); if(etfUi.mode==='mk'){ ++mktSeq; 
 async function mktTick(){ if(document.hidden) return;
   if(ui.tab==='market' && etfUi.mode==='etf'){ const d = etfData[etfUi.sel]; if(d){ await instQuotes([secInst({sym:etfUi.sel, type:'etf'}), ...etfItems(d)]); drawEtf(); } }
   else if(ui.tab==='market' && etfUi.sub==='com'){ await instQuotes(comItems()); drawCom(); }
+  else if(ui.tab==='market' && etfUi.sub==='fx'){ await instQuotes(fxItems()); drawFx(); }
   else if(ui.tab==='market'){ await instQuotes(glbItems()); drawGlb(); }
   else if(false){}
   else if(ui.tab==='market'){ const L = mktItems(); await instQuotes(L); if(mktRange==='1D' || mktRange==='1W') await Promise.all(L.map(it=>instBars(it, mktRange).catch(()=>{}))); drawMarket(); }
@@ -3651,10 +3657,10 @@ async function renderEtf(){ const seq = ++etfSeq, t = etfUi.sel; drawEtf(); etfI
   if(d && d.rows.length) etfLoadP0(t, d).then(()=>{ if(seq===etfSeq && ui.tab==='market' && etfUi.mode==='etf') drawEtf(); }).catch(()=>{});
   if(etfUi.view==='list') await Promise.all(etfItems(d).filter(it=>!it.nq).slice(0, ETF_SPARK).map(it=>instBars(it, '1D').catch(()=>{})));
   if(seq===etfSeq) drawEtf(); }
-function applyMktMode(){ if(etfUi.mode!=='etf') etfUi.mode = 'mk'; if(etfUi.sub!=='com') etfUi.sub = 'glob'; const etf = etfUi.mode==='etf', com = !etf && etfUi.sub==='com', glb = !etf && !com;
+function applyMktMode(){ if(etfUi.mode!=='etf') etfUi.mode = 'mk'; if(etfUi.sub!=='com' && etfUi.sub!=='fx') etfUi.sub = 'glob'; const etf = etfUi.mode==='etf', com = !etf && etfUi.sub==='com', fxs = !etf && etfUi.sub==='fx', glb = !etf && !com && !fxs;
   $('mktMode').querySelectorAll('button').forEach(b=>{ const on = (b.dataset.mm==='etf') === etf; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
   $('mkSub').hidden = etf; $('mkSub').querySelectorAll('button').forEach(b=>{ const on = b.dataset.ms===etfUi.sub; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
-  $('etfCard').hidden = !etf; $('mktCard').hidden = true; $('comCard').hidden = !com; $('glbCard').hidden = !glb; }
+  $('etfCard').hidden = !etf; $('mktCard').hidden = true; $('comCard').hidden = !com; $('glbCard').hidden = !glb; $('fxCard').hidden = !fxs; }
 $('mktMode').addEventListener('click', e=>{ const b = e.target.closest('[data-mm]'); if(!b) return; const to = b.dataset.mm==='etf' ? 'etf' : 'mk'; if(to===etfUi.mode) return; etfUi.mode = to; saveEtfUi(); applyMktMode(); renderMarket(); });
 $('mkSub').addEventListener('click', e=>{ const b = e.target.closest('[data-ms]'); if(!b || b.dataset.ms===etfUi.sub) return; etfUi.sub = b.dataset.ms; saveEtfUi(); applyMktMode(); renderMarket(); });
 $('etfCard').addEventListener('click', e=>{ if(e.target.closest('[data-eadd]')){ etfAddOpen = !etfAddOpen; drawEtfAdd(true); drawEtfSel(); return; } if(e.target.closest('[data-eedit]')){ etfEditOpen = !etfEditOpen; etfAddOpen = etfEditOpen; drawEtfAdd(); drawEtfSel(); return; } const d = e.target.closest('[data-edel]'); if(d){ e.preventDefault(); e.stopPropagation(); etfRemoveAny(d.dataset.edel); return; } if(etfEditOpen) return; const b = e.target.closest('[data-etf]'); if(!b || b.dataset.etf===etfUi.sel) return; etfUi.sel = b.dataset.etf; etfMenuOpen = false; saveEtfUi(); etfHeatKey = ''; renderEtf(); });   // v104: the tile map always stays open; the picked tile is marked and the holdings are below it
@@ -4059,6 +4065,32 @@ NO|NOK|קרונה נורווגית|נורווגיה,קרונה|3
 PL|PLN|זלוטי פולני|פולין,זלוטי|3`.split('\n').map(l=>{ const [cc,code,n,al,dp] = l.split('|'), fg = c=>String.fromCodePoint(...[...c].map(x=>127397+x.charCodeAt(0))); return {code:'USD/'+code, q:code+'=', n:'דולר / '+n, al:[...al.split(','), code.toLowerCase()], dp:+dp, fl:fg('US')+fg(cc)}; });
 FX_DIR.push(...FX_MORE.filter(f=>!FX_DIR.some(x=>x.code===f.code)), {code:'DXY', q:'.DXY', n:'מדד הדולר (DXY)', al:['מדד הדולר','dxy','dollar index','דולר אינדקס'], dp:3, fl:'🇺🇸'});
 const FX_BY = Object.fromEntries(FX_DIR.map(f=>[f.code, f]));
+// ---- FX tab (market > מט״ח): editable pairs from FX_DIR; default DXY, EUR/USD, USD/JPY ----
+const FXT_KEY = 'portfolioTracker.fxTab.v1', FXT_DEFAULT = ['DXY','EUR/USD','USD/JPY']; let fxCfgV = null, fxEditing = false;
+function fxCfg(){ if(!fxCfgV){ const j = loadJ(FXT_KEY); fxCfgV = {keys: j && Array.isArray(j.keys) ? j.keys.filter((k,i,a)=>FX_BY[k] && a.indexOf(k)===i) : FXT_DEFAULT.slice()}; } return fxCfgV; }
+const saveFxT = ()=>{ try{ localStorage.setItem(FXT_KEY, JSON.stringify(fxCfg())); }catch(e){} };
+const fxItems = ()=>fxCfg().keys.map(k=>fxInst(FX_BY[k]));
+const fxMatch = (f,qq)=>!qq || (f.code+' '+f.n+' '+f.al.join(' ')).toLowerCase().includes(qq);
+function fxTile(it){ const f = FX_BY[it.sym], q = iq(it), last = q ? q.price : null, prev = q ? q.prev : null, p = last!=null && prev ? (last/prev-1)*100 : null;
+  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}" data-fk="${esc(f.code)}"><span class="a1"><b class="ltr">${esc(f.code)}</b><small>${esc(f.n)}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:f.dp, maximumFractionDigits:f.dp}) : '—'}</span><span class="a2"><small>${esc(staleTag(q))}</small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
+function drawFx(){ const g = $('fxGrid'); if(!g) return; const L = fxItems(), K = fxCfg().keys;
+  g.innerHTML = L.length ? L.map(fxTile).join('') : '<div class="wl-empty" style="grid-column:1/-1">אין צמדים – הוסיפו בעריכה.</div>';
+  g.style.display = fxEditing ? 'none' : ''; $('fxEditBox').hidden = !fxEditing; $('fxEdit').textContent = fxEditing ? '✓ סיום' : '✏️ עריכה'; $('fxEdit').setAttribute('aria-pressed', String(fxEditing));
+  if(fxEditing){ const qq = (($('fxSearchIn')||{}).value||'').trim().toLowerCase();
+    $('fxRows').innerHTML = K.map((k,i)=>{ const f = FX_BY[k]; if(!fxMatch(f,qq)) return ''; return `<div class="cr" data-fk="${esc(k)}"><button class="x" data-fdel aria-label="הסרת ${esc(k)}">✕</button><div><b>${esc(k)}</b><small>${esc(f.n)}</small></div><button data-fmv="up" aria-label="למעלה" ${i===0?'disabled':''}>▲</button><button data-fmv="down" aria-label="למטה" ${i===K.length-1?'disabled':''}>▼</button></div>`; }).join('');
+    const rest = FX_DIR.filter(f=>!K.includes(f.code) && fxMatch(f,qq)); $('fxAddList').innerHTML = rest.length ? rest.map(f=>`<button data-fadd="${esc(f.code)}">+ ${esc(f.code)} · ${esc(f.n)}</button>`).join('') : '<div class="note">לא נמצאו צמדים.</div>'; }
+  const t = L.map(it=>{ const q = iq(it); return q && q.ts || 0; }).filter(Boolean); $('fxUpd').textContent = t.length ? '· '+new Date(Math.max(...t)).toLocaleTimeString('he-IL',{hour:'2-digit', minute:'2-digit'}) : ''; }
+async function renderFx(){ drawFx(); const L = fxItems(); await instQuotes(L); if(etfUi.mode==='mk' && etfUi.sub==='fx') drawFx(); }
+$('fxEdit').onclick = ()=>{ fxEditing = !fxEditing; drawFx(); };
+$('fxDone').onclick = ()=>{ fxEditing = false; drawFx(); };
+$('fxReset').onclick = ()=>{ if(!confirm('לאפס את המט״ח לברירת המחדל (DXY, EUR/USD, USD/JPY)?')) return; fxCfgV = {keys:FXT_DEFAULT.slice()}; saveFxT(); renderFx(); };
+$('fxGrid').addEventListener('click', e=>{ const b = e.target.closest('[data-fk]'); if(!b || !FX_BY[b.dataset.fk]) return; openInstSheet(fxInst(FX_BY[b.dataset.fk]), '1D'); });
+$('fxEditBox').addEventListener('click', e=>{ const r = e.target.closest('[data-fk]'), a = e.target.closest('[data-fadd]'), K = fxCfg().keys;
+  if(a){ if(FX_BY[a.dataset.fadd] && !K.includes(a.dataset.fadd)) K.push(a.dataset.fadd); saveFxT(); renderFx(); return; } if(!r) return; const i = K.indexOf(r.dataset.fk), m = e.target.closest('[data-fmv]');
+  if(e.target.closest('[data-fdel]')){ K.splice(i,1); } else if(m){ const j = m.dataset.fmv==='up' ? i-1 : i+1; if(j<0 || j>=K.length) return; [K[i], K[j]] = [K[j], K[i]]; } else return;
+  saveFxT(); renderFx(); });
+$('fxSearchIn').addEventListener('input', ()=>drawFx());
+
 function fxInst(f){ return {k:'fx:'+f.code, fx:true, type:'fx', sym:f.code, n:f.n, s:f.code+' · מט״ח'+(f.der ? ' · מחושב משערי הדולר' : ''), q: f.q || 'FX:'+f.code, der:f.der, dp:f.dp, g:'מט״ח', fl:f.fl}; }
 function srchInst(m){ return secInst({sym:m.sym, name:m.name||'', type:m.type||'stock', currency:m.currency}); }
 function srchRowHtml(m, i){ const it = srchInst(m), q = iq(it), pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
