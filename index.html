@@ -533,7 +533,7 @@ body.srch-on{overflow:hidden}
 .cfil button{flex:0 0 auto;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);border-radius:999px;padding:5px 11px;min-height:32px;font:inherit;font-size:.76rem;font-weight:600;cursor:pointer}.cfil button.on{border-color:var(--primary);color:var(--primary)}
 .rday{font-size:.78rem;font-weight:700;color:var(--muted);margin:12px 2px 6px}.rsec{font-size:.82rem;font-weight:800;margin:18px 2px 4px;padding-top:10px;border-top:1px dashed var(--border)}
 .rrow{display:grid;grid-template-columns:30px minmax(0,1fr) 62px 68px;align-items:center;gap:7px;padding:6px 4px;border-bottom:1px solid var(--border);cursor:pointer;position:relative}
-.rrow .logo{width:30px;height:30px;font-size:.62rem}.rrow .rn{min-width:0}.rrow .r1{display:flex;align-items:center;gap:4px;min-width:0;white-space:nowrap;overflow:hidden}.rrow .r1 b{font-size:.86rem}.rrow .rti{font-style:normal;font-size:.72rem}
+.rrow .logo{width:30px;height:30px;font-size:.62rem}.rrow .rn{min-width:0}.rrow .r1{display:flex;align-items:center;gap:4px;min-width:0;white-space:nowrap;overflow:hidden}.rrow .r1 b{font-size:.86rem}.rrow .rti{font-style:normal;font-size:.72rem}.rrow .rrelease{font-size:.66rem;font-weight:400;color:var(--muted);flex:0 0 auto;line-height:1.2}
 .rrow .rn small{display:block;direction:ltr;text-align:right;unicode-bidi:plaintext;color:var(--muted);font-size:.68rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.25}.rrow .rix{display:inline-flex;gap:2px;margin:0}.rrow .rix i{font-size:.56rem;padding:0 4px}
 .rrow .rtag{font-size:.58rem;padding:0 5px}.rrow .rv{text-align:center;line-height:1.15;min-width:0}.rrow .rv span{display:block;font-size:.56rem;color:var(--muted);white-space:nowrap}.rrow .rv b{display:block;font-size:.78rem;direction:ltr;white-space:normal;overflow:visible;overflow-wrap:anywhere}.rrow .rv small{display:block;font-size:.58rem;color:var(--muted);white-space:normal;overflow:visible}.rrow .rv bdi{direction:ltr;unicode-bidi:isolate}
 .rrow .rv .rs{display:block;font-style:normal;font-size:.58rem;font-weight:700;white-space:nowrap;margin-top:1px}.rrow .rv .rs.pos{color:var(--green)}.rrow .rv .rs.neg{color:var(--red)}
@@ -858,7 +858,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 </style>
-<link rel="stylesheet" href="chart-tools.css?v=188">
+<link rel="stylesheet" href="chart-tools.css?v=189">
 
 </head>
 <body>
@@ -5109,7 +5109,7 @@ $('newsQx').addEventListener('click', ()=>{ $('newsQ').value = ''; newsRender();
 $('newsRefresh').addEventListener('click', ()=>loadNewsTab());
 // ---- v66: news sub-tabs – חדשות (news.json) · דוחות (reports.json) · יומן כלכלי (calendar.json); same site, always fetched fresh ----
 // Keys (Hebrew or English) are documented in README-news.md. A missing / empty file → a friendly empty state.
-const REP_K = {company:['company','חברה'], symbol:['symbol','סימול'], quarter:['quarter','רבעון'], date:['date','תאריך'], time:['time','מועד','שעה'],
+const REP_K = {company:['company','חברה'], symbol:['symbol','סימול'], quarter:['quarter','רבעון'], date:['date','תאריך'], time:['time','מועד','שעה'], releaseTime:['release_time_il','שעת_פרסום_ישראל'], releaseApprox:['release_time_approx','שעת_פרסום_משוערת'],
   epsEst:['eps_est','epsEst','eps_estimate','EPS_צפי','EPS צפי','צפי רווח למניה','צפי_eps','צפי EPS'], eps:['eps','eps_actual','epsActual','actual_eps','eps_בפועל','EPS בפועל','EPS_בפועל_','רווח_למניה','רווח למניה','רווח למניה בפועל','בפועל_EPS'], revEst:['revenueEst','revenue_est','revenue_estimate','revEst','rev_est','צפי_הכנסות','צפי הכנסות'], rev:['revenue','rev','revenue_actual','revenueActual','actual_revenue','rev_actual','הכנסות','הכנסות_בפועל','הכנסות בפועל'], note:['note','הערה'], link:['link','קישור','reportUrl','report_url','reportLink','קישור_לדוח'],
   // v81: comparability (checked separately for EPS and revenue) – a surprise % is shown only when it is verified
   epsEstB:['בסיס_צפי_EPS','eps_est_basis'], epsB:['בסיס_בפועל_EPS','eps_basis'], epsCur:['מטבע_EPS','eps_currency'], epsEstCur:['מטבע_צפי_EPS','eps_est_currency'], epsActCur:['מטבע_בפועל_EPS','eps_actual_currency'], epsCmp:['השוואה_EPS','eps_comparable'], epsWhy:['הסבר_EPS','eps_explain'],
@@ -5218,7 +5218,10 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
   const up = M.filter(r=>!hasResults(r)), past = M.filter(hasResults).sort((a,b)=>(a.d>b.d?-1:a.d<b.d?1:0) || within(a,b));
   const shortN = n=>String(n||'').replace(/,?\s*(Inc\.?|Incorporated|Corporation|Corp\.?|Company|Co\.|Ltd\.?|Limited|plc|PLC|Holdings?|Group|N\.V\.|S\.A\.|SE|AG|L\.P\.|LP|Class [A-C]|Ordinary Shares?|Common Stock)\b\.?/g,'').replace(/[\s,.-]+$/,'').trim();
   const ixS = l=>String(l).replace(/^S&P\s*/i,'S&P').replace(/^Nasdaq\s*100$/i,'NDX').replace(/^נאסד"?ק\s*100$/,'NDX').replace(/^Dow( Jones| 30)?$/i,'DOW').replace(/^Russell\s*2000$/i,'R2K');
-  const card = r=>{ const ti = /^(before|pre|bmo|לפני)/i.test(r.time) ? '<i class="rti" title="לפני פתיחה">☀️</i>' : /^(after|post|amc|אחרי)/i.test(r.time) ? '<i class="rti" title="אחרי סגירה">🌙</i>' : r.time ? `<i class="rti num">${esc(r.time)}</i>` : '';
+  // Release clocks are issuer-confirmed scheduled publication times in Israel, never call times.
+  const card = r=>{ const clock = /^([01]\d|2[0-3]):[0-5]\d$/.test(r.releaseTime) ? r.releaseTime : '--:--', approx = /^(true|yes|1|כן)$/i.test(r.releaseApprox);
+    const releaseClock = `<small class="rrelease num" dir="ltr" title="${esc(clock==='--:--' ? 'שעת פרסום הדוח לא אומתה' : 'שעת פרסום מתוכננת לפי שעון ישראל'+(approx ? ' (משוערת)' : ''))}">${clock==='--:--' ? clock : (approx ? '≈' : '')+clock}</small>`;
+    const ti = /^(before|pre|bmo|לפני)/i.test(r.time) ? '<i class="rti" title="לפני פתיחה">☀️</i>' : /^(after|post|amc|אחרי)/i.test(r.time) ? '<i class="rti" title="אחרי סגירה">🌙</i>' : r.time ? `<i class="rti num">${esc(r.time)}</i>` : '';
     // v79: money with units ($950M vs $1.02B, מיליארד/מיליון) → one scale, so revenue beat/miss compares like with like
     const numU = v=>{ const t = String(v||'').replace(/,/g,''), m = t.match(/-?\d+(\.\d+)?/); if(!m) return null; const x = +m[0], u = t.slice(m.index+m[0].length).trim();
       return x * (/^(T|טריליון)/i.test(u) ? 1e12 : /^(B|bn|מיליארד|מיליארדים)/i.test(u) ? 1e9 : /^(M|mn|מיליון|מיליונים)/i.test(u) ? 1e6 : /^(K|אלף)/i.test(u) ? 1e3 : 1); };
@@ -5311,7 +5314,7 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     const whyL = [r.eps && !E.ok ? 'EPS: '+E.why : '', r.rev && !R.ok ? 'הכנסות: '+R.why : ''].filter(Boolean);
     const whyHtml = ()=> whyL.length ? ib(whyL.map(x=>`<div>${esc(x)}</div>`).join(''), 'למה אין השוואה לצפי', 'warn') : '';
     return `<article class="rrow${(ec||rc) ? ' r-'+(ec||rc) : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
-      `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span>${whyHtml(r)}</div><small class="rmeta"><span class="rcompany">${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}${ntFil.sort==='cap' && multiDay ? ' · '+esc(fmtDate(r.d)) : ''}</span>${ntFil.sort==='cap' ? '<bdi class="rcap num">'+(r.capV ? fmtCap(r.capV) : 'שווי לא ידוע')+'</bdi>' : ''}</small></div>`+
+      `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.company)}</b>${releaseClock}${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span>${whyHtml(r)}</div><small class="rmeta"><span class="rcompany">${esc(shortN(r.symbol ? r.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}${ntFil.sort==='cap' && multiDay ? ' · '+esc(fmtDate(r.d)) : ''}</span>${ntFil.sort==='cap' ? '<bdi class="rcap num">'+(r.capV ? fmtCap(r.capV) : 'שווי לא ידוע')+'</bdi>' : ''}</small></div>`+
       `<div class="rv">${val('EPS', r.epsEst, r.eps, ec, surp(e2, e1), E, tagB(r.epsEstB, r.epsB, r.epsCur||r.epsActCur))}</div><div class="rv">${val('הכנסות', r.revEst, r.rev, rc, surp(r2, r1), R, tagB(r.revEstB, r.revB, r.revCur||r.revActCur), true)}</div>${link}`+
             (/^https?:\/\//i.test(r.link) ? `<div class="rpl-row"><a class="news-l rpl-a" href="${esc(r.link)}" target="_blank" rel="noopener noreferrer">לדוח ↗</a></div>` : '')+
       (r.note ? `<div class="rnote2" role="button" tabindex="0" aria-expanded="false" data-rnote><span>${esc(r.note)}</span>${r.note.length > 90 || (r.note.match(/\n/g)||[]).length >= 2 ? '<i class="rmore2">עוד ▾</i>' : ''}</div>` : '')+`</article>`; };
