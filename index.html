@@ -1176,6 +1176,7 @@ function fmtW(v){ return v==null || !isFinite(v) ? '—' : (Math.abs(v) < 0.05 &
 function fmtPct(v){ if(v==null||!isFinite(v)) return '—'; return (v>0.0000001?'+':'') + v.toFixed(2) + '%'; }
 function fmtQty(v){ if(v==null) return '—'; return v.toLocaleString('en-US',{maximumFractionDigits:8}); }
 function fmtQtyP(v){ if(v==null) return '—'; return hidden() ? MASK : fmtQty(v); }
+function staleTag(q){ return q && q.ts && Date.now()-q.ts > 15*60e3 ? 'ציטוט אחרון '+fmtTime(q.ts) : ''; }
 function fmtTime(ts){ if(!ts) return '—'; return new Date(ts).toLocaleString('he-IL',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}); }
 function cls(v){ return v>0.0000001?'pos':(v<-0.0000001?'neg':''); }
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
@@ -3446,7 +3447,7 @@ const saveGlb = ()=>{ try{ localStorage.setItem(GLB_KEY, JSON.stringify(glbCfg))
 const glbInst = k=>{ const c = GLB_BY[k]; return c ? Object.assign({q:c.s, name:c.n, sym:c.s}, c, {u:''}) : null; };
 const glbItems = ()=>glbCfg.keys.map(glbInst).filter(Boolean);
 function glbTile(it){ const q = iq(it), last = q ? q.price : null, prev = q ? q.prev : null, p = last!=null && prev ? (last/prev-1)*100 : null, c = GLB_BY[it.k];
-  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}" data-gk="${esc(it.k)}"><span class="a1"><b>${esc(c.n)}</b><small>${esc(c.c)}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:c.dp, maximumFractionDigits:c.dp}) : '—'}</span><span class="a2"><small></small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
+  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}" data-gk="${esc(it.k)}"><span class="a1"><b>${esc(c.n)}</b><small>${esc(c.c)}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:c.dp, maximumFractionDigits:c.dp}) : '—'}</span><span class="a2"><small>${esc(staleTag(q))}</small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
 function drawGlb(){ const g = $('glbGrid'); if(!g) return; const L = glbItems();
   g.innerHTML = L.length ? L.map(glbTile).join('') : '<div class="wl-empty" style="grid-column:1/-1">אין מדדים – הוסיפו בעריכה.</div>';
   g.style.display = glbEditing ? 'none' : ''; $('glbEditBox').hidden = !glbEditing; $('glbEdit').textContent = glbEditing ? '✓ סיום' : '✏️ עריכה'; $('glbEdit').setAttribute('aria-pressed', String(glbEditing));
@@ -3851,7 +3852,7 @@ document.addEventListener('visibilitychange', ()=>{ if(!document.hidden && OB.t)
 let instSheet = null;
 function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p=>p.sym===it.sym);
   return `<h3><span>${it.sec ? logoHtml(it.sym, true) : it.fl ? `<span class="fxfl">${it.fl}</span>` : ''}<span>${esc(it.sec ? it.sym : it.n)}</span></span><button class="x" data-close aria-label="סגירה">✕</button></h3>
-    <div class="muted" style="margin:-8px 0 8px;font-size:.85rem">${esc(it.sec ? it.n : it.s)}</div>
+    <div class="muted" style="margin:-8px 0 8px;font-size:.85rem">${esc(it.sec ? it.n : it.s)}${it.sec ? '' : '<span id="isAsof"></span>'}</div>
     <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><div class="ishd"><b id="isV" class="num" style="font-size:1.5rem"></b><b id="isC" class="num"></b><span id="isXP" class="isx"></span><span id="isXC" class="isx"></span></div>${it.y ? '' : styleSegHtml('isStyle', 'candle')}</div>
     ${it.sec ? '<div class="is-trade"><button class="btn btn-primary" data-istx="buy">🛒 קנייה</button><button class="btn btn-light" data-istx="sell">💰 מכירה</button></div>' : ''}
     <div class="seg sm" id="isRange" style="margin-top:10px">${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div>
@@ -3937,7 +3938,7 @@ async function loadAv3m(it){ const sym = it.sym; if(sym in av3m) return; av3m[sy
   { const d = detItem(); if(d && d.sym===sym) drawDet(); } }
 document.addEventListener('click', e=>{ const b = e.target.closest('[data-det]'); if(!b) return; detOpen = !detOpen; try{ localStorage.setItem(DET_KEY, detOpen?'1':'0'); }catch(_){}
   b.setAttribute('aria-expanded', String(detOpen)); b.querySelector('i').textContent = detOpen ? '▴' : '▾'; $('isDetG').hidden = !detOpen; if(detOpen) drawDet(); });
-function instSheetLive(){ const S = instSheet; if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[instKey(it, S.range, S.iv)], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
+function instSheetLive(){ const S = instSheet; if(S && $('isV')){ const a = $('isAsof'), q0 = iq(S.it); if(a) a.textContent = q0 && q0.ts ? ' · ציטוט אחרון '+fmtTime(q0.ts) : ''; } if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[instKey(it, S.range, S.iv)], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
   const end=customRange(S.range)?(pts.length?pts[pts.length-1][1]:null):(q?q.price:null); const ch = chgInst(it, end, base); $('isV').textContent = fmtInst(it, end); $('isC').innerHTML = ch.t + (ch.sub ? `<small class="ybp ${cls(ch.c)}">${ch.sub}</small>` : ''); $('isC').className = 'num '+cls(ch.c)+''; { const _oh = $('obRchg'); if(_oh){ const _pc = q && q.prev ? (q.price/q.prev-1)*100 : null; _oh.innerHTML = _pc!=null ? `<b class="num ${cls(_pc)}">${fmtPct(_pc)}</b><span class="num">${fmtInst(it, q.price)}</span>` : ''; } } { const e = it.sec && q && q.ext && S.range==='1D' ? q.ext : null, hl = it.sec && q && q.hlt, xp = $('isXP'), xc = $('isXC'); if(xp && xc){ xp.innerHTML = e ? `<span class="xl num ${cls(e.chg)}">${fmtInst(it, e.price)}</span>` : ''; xc.innerHTML = hl ? `<span class="xl" style="display:inline-block">${haltChip(hl, q.hsym)}</span>` : e ? `<span class="xl num ${cls(e.chg)}"><i class="xbd xbd-${e.kind}">${e.kind}</i>${chgInst(it, e.price, e.price-e.chg).t}</span>` : ''; } }   // v165: extended-hours price right under the price, its change right under the daily change (aligned columns)
   const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [[customRange(S.range)?'סגירה ראשונה בטווח':'סגירה קודמת', fmtInst(it, customRange(S.range)?(pts.length?pts[0][1]:null):(q && q.prev))], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
   if($('isDetG') && detOpen){ drawDet(); loadAv3m(it); fundLoad(); }
@@ -4066,7 +4067,7 @@ function srchRowHtml(m, i){ const it = srchInst(m), q = iq(it), pct = q && q.pre
 function drawSrch(){ const q = $('srchQ').value.trim(), el = $('srchRes'), R = srchRecent(); $('srchQx').hidden = !$('srchQ').value;
   if(!q){ srchItems = R; el.innerHTML = R.length ? `<div class="slbl">חיפושים אחרונים <button class="lnk" id="srchClr">ניקוי</button></div><div class="srows">${R.map(srchRowHtml).join('')}</div>` : '<div class="news-empty">הקלידו סימול או שם – לחיצה על תוצאה פותחת את הגרף.</div>'; return; }
   const FXH = srchFx = fxSearch(q), fxRow = (f, i)=>{ const it = fxInst(f), x = iq(it), pct = x && x.prev ? (x.price/x.prev-1)*100 : null;
-    return `<div class="wr srow" role="button" tabindex="0" data-sfx="${i}"><span class="fxfl" aria-hidden="true">${f.fl}</span><div class="pc-n"><div class="psym"><span class="ltr">${esc(f.code)}</span><span class="sx">מט״ח</span></div><div class="pname">${esc(f.n)}</div></div>`+
+    return `<div class="wr srow" role="button" tabindex="0" data-sfx="${i}"><span class="fxfl" aria-hidden="true">${f.fl}</span><div class="pc-n"><div class="psym"><span class="ltr">${esc(f.code)}</span><span class="sx">מט״ח</span></div><div class="pname">${esc(f.n)}${staleTag(x) ? ' · '+staleTag(x) : ''}</div></div>`+
       `<div class="pcol pc-d"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : ''}</b><span class="wl-p v num">${x ? x.price.toFixed(f.dp) : ''}</span></div></div>`; };
   const fxH = FXH.length ? `<div class="slbl">מט״ח</div><div class="srows">${FXH.map(fxRow).join('')}</div>` : '';
   if(FXH.length && !FXH.every(f=>iq(fxInst(f)))) instQuotes(FXH.map(fxInst)).then(()=>{ if($('srchQ').value.trim()===q) drawSrch(); }).catch(()=>{});
