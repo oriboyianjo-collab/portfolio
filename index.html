@@ -3769,6 +3769,13 @@ function fwdCells(it, q){ const X = (q && q.x) || {}, px = q && q.price, B = s=>
   const gr = fe!=null && X.eps>0 ? (fe/X.eps-1)*100 : null;
   const epsCell = [fe==null ? '--' : epsTxt, gr==null ? '' : B((gr>=0?'+':'')+gr.toFixed(1)+'%')+' לעומת TTM', {ttl:'רווח למניה צפוי (Forward EPS)', tip:`<p><b>רווח למניה צפוי</b> = הערכת קונצנזוס האנליסטים לרווח למניה ב־12 החודשים הבאים. והיא הבסיס למכפיל הרווח הצפוי.</p>${gr!=null ? `<p>לעומת הרווח למניה ב־12 החודשים האחרונים (${B(fmtPrice(X.eps, cur))}): ${B((gr>=0?'+':'')+gr.toFixed(1)+'%')}.</p>` : ''}<p>תחזית – לא נתון מדווח, ועשויה להשתנות.</p>${src}`}];
   return {pe:peCell, eps:epsCell}; }
+// ETF "שווי שוק" = the fund's total net assets (AUM) as published by the issuer, with its as-of date (holdings/issuer.json "netAssets", written daily by scripts/net-assets.cjs).
+// A US ETF without a verified issuer value shows "--" (CNBC's cap for funds is not net assets); non-US funds keep the quote cap. Sorting / position-cap columns are untouched (q.mcap).
+function naInfo(it){ const t = String(it.sym||'').toUpperCase(), n = issData && issData.netAssets && issData.netAssets[t]; return n && n.v > 0 ? n : null; }
+function capCell(it, q, cur){ const n = naInfo(it), etf = it.type==='etf' || !!n;
+  if(n) return [fmtCap(n.v, 'USD'), n.asOf ? 'נכון ל־'+fmtDate(n.asOf) : '', {ttl:'שווי שוק של קרן', tip:'<p>בקרנות סל מוצג <b>סך הנכסים המנוהלים בקרן</b> (Net Assets), כפי שהמנפיק מפרסם, עם תאריך הנתון. זה לא שווי ליחידה (NAV).</p>'}];
+  if(etf && marketOf(it.sym)==='us'){ if(!issData) etfIssuer().then(()=>{ if(detItem()) drawDet(); }); return DET_DASH; }
+  return q && q.mcap ? fmtCap(q.mcap, cur) : DET_DASH; }
 function detRows(it, q){ const X = (q && q.x) || {}, FC = fundCells(it, q), FW = fwdCells(it, q), cur = it.cur, pr = v=>v==null || !isFinite(v) ? DET_DASH : fmtPrice(v, cur), pc = (X.high!=null && X.low!=null && q && q.prev) ? (X.high-X.low)/q.prev*100 : null;
   const a3 = av3m[it.sym]; return [
   ['פתיחה', pr(X.open)], ['סגירה קודמת', pr(q && q.prev)], ['טווח יומי %', pc!=null ? pc.toFixed(2)+'%' : DET_DASH],
@@ -3776,7 +3783,7 @@ function detRows(it, q){ const X = (q && q.x) || {}, FC = fundCells(it, q), FW =
   ['רווח למניה (EPS)', pr(X.eps)], ['מכפיל רווח (TTM)', detFmtN(X.pe, 2)], ['מכפיל רווח צפוי', FW.pe],
   ['רווח למניה צפוי', FW.eps], ['מכפיל הון (P/B)', FC.pb], ['מכפיל מכירות (P/S)', detFmtN(X.ps, 3)],
   ['הון עצמי למניה', FC.bv],
-  ['מניות במחזור', detFmtBig(X.shs)], ['שווי שוק', q && q.mcap ? fmtCap(q.mcap, cur) : DET_DASH], ['Free Float', FC.fl],
+  ['מניות במחזור', detFmtBig(X.shs)], ['שווי שוק', capCell(it, q, cur)], ['Free Float', FC.fl],
   ['דיבידנד', pr(X.div)], ['תשואת דיבידנד', X.dy!=null ? X.dy.toFixed(2)+'%' : DET_DASH], ['תאריך אקס-דיבידנד', detFmtDate(X.exd)],
   ['דוח הבא', detFmtDate(X.ne)], ['בטא', FC.beta]]; }
 // v161: the 'פרטים' grid is shared by the instrument sheet and the position sheet (תיק) – detItem() is whichever is open
