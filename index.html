@@ -1907,11 +1907,20 @@ async function cnbcQuotes(symbols){
       const ev = q.EventData || {}, px = v=>{ const n = num(v); return n==null ? null : n/k; }, pn = v=>{ const n = num(v); return n==null ? null : n; }, big = v=>parseCap(v);
       const X = {open:px(q.open), high:px(q.high), low:px(q.low), yh:px(q.yrhiprice), yl:px(q.yrloprice), av10:big(q.tendayavgvol), eps:px(q.eps), feps:px(q.feps), pe:pn(q.pe), fpe:pn(q.fpe), ps:k>1 ? null : pn(q.psales), shs:big(q.sharesout), div:px(q.dividend)||px(ev.div_amount), dy:pn(String(q.dividendyield||'').replace('%','')), beta:pn(q.beta), exd:ev.div_ex_date||'', ne:ev.next_earnings_date||'', vol:big(q.volume)};   // v102: key-stats for the 'details' section (CNBC fields; TASE prices are in agorot -> /100)
       out[String(orig).toUpperCase()] = {x:X, pre, mcap: mc!=null ? (pence ? mc : mc/k) : null, price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', halt: k===1 && (/suspend/i.test(q.curmktstatus||'') ? 'Suspended' : (String(ev.is_halted).toUpperCase()==='Y' || /halt/i.test(q.curmktstatus||'')) ? 'Halted' : ''), hsym:String(orig).toUpperCase(), source:'CNBC'};
+      { const o = out[String(orig).toUpperCase()], sy = String(orig).toUpperCase();   // v225: after the close CNBC reports change=UNCH and previous_day_closing=last -> keep the last regular session's prior close until the next session
+        if(k===1 && !/^[.@]|=/.test(sy) && o.date){ if(/^[+-]?[\d,.]+$/.test(String(q.change).trim())){ if(prev>0) pclSet(sy, o.date, prev); }
+          else { const c = pclGet(sy, o.date); if(c>0) o.prev = c; else o.pclPend = true; } } }
       { const o = out[String(orig).toUpperCase()]; if(o.halt) haltRefine(o.hsym); }   // v167: halted -> ask the Cboe book status (existing worker) whether it is a halt or a suspension
     });
   }
+  { const pend = Object.entries(out).filter(([s,o])=>o.pclPend);   // v225: no stored prior close -> daily bars (last bar before the quote's session date)
+    for(let i=0;i<pend.length;i+=6) await Promise.all(pend.slice(i,i+6).map(async ([s,o])=>{ try{ const bars = await cnbcBars(cnbcSymbol(s), addDays(today(),-12)); const pb = bars.filter(b=>b[0] < o.date).pop(); if(pb && pb[4]>0){ o.prev = pb[4]; pclSet(s, o.date, pb[4]); } }catch(e){} delete o.pclPend; })); }
   return out;
 }
+const PCL_KEY = 'ptPrevClose.v1';
+function pclAll(){ try{ return JSON.parse(localStorage.getItem(PCL_KEY)||'{}') || {}; }catch(e){ return {}; } }
+function pclGet(sym, d){ const e = pclAll()[sym]; return e && e.d===d ? e.p : null; }
+function pclSet(sym, d, p){ try{ const m = pclAll(); m[sym] = {d, p}; const ks = Object.keys(m); if(ks.length>600) ks.slice(0, ks.length-600).forEach(k=>delete m[k]); localStorage.setItem(PCL_KEY, JSON.stringify(m)); }catch(e){} }
 const cgIdCache = {};
 async function coingeckoId(sym){
   sym = sym.toUpperCase().replace(/-USD$/,'');
