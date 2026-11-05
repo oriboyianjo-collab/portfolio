@@ -3472,8 +3472,9 @@ async function mktTick(){ if(document.hidden) return;
   else if(ui.tab==='market'){ const L = mktItems(); await instQuotes(L); if(mktRange==='1D' || mktRange==='1W') await Promise.all(L.map(it=>instBars(it, mktRange).catch(()=>{}))); drawMarket(); }
   else if(ui.tab==='watch'){ const L = wlItems(); await instQuotes(L); await Promise.all(L.map(it=>instBars(it, '1D').catch(()=>{}))); drawWatch(); }
   if(instSheet) instSheetLive(); }
-function mktPoll(){ clearInterval(mktTimer); mktTimer = null; const iv = num(state.settings.refreshSec)||0;
-  if((ui.tab==='market' || ui.tab==='watch') && iv) mktTimer = setInterval(()=>mktTick().catch(()=>{}), Math.max(15, iv)*1000); }
+function mktPoll(){ clearInterval(mktTimer); mktTimer = null; const rs = num(state.settings.refreshSec)||0;
+  const iv = ui.tab==='market' ? (rs>0 && rs<=15 ? rs : 15) : (ui.tab==='watch' ? rs : 0);   // v234: Markets (FX/commodities/global) refresh every 15s even if the hidden saved refresh setting is 0/30/60; Watch keeps the saved setting
+  if(iv) mktTimer = setInterval(()=>mktTick().catch(()=>{}), Math.max(15, iv)*1000); }
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden && (ui.tab==='market' || ui.tab==='watch')) mktTick().catch(()=>{}); });
 $('mktRange').addEventListener('click', e=>{ const b = e.target.closest('button[data-v]'); if(!b) return; mktRange = b.dataset.v; renderMarket(); });
 $('mktEdit').onclick = ()=>{ mktEditing = !mktEditing; drawMarket(); };
