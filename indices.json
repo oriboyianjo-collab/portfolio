@@ -16,9 +16,9 @@
    "name": "QE Index"
   },
   "sensex": {
-   "price": 78962.93,
+   "price": 79035.61,
    "prev": 77301.4,
-   "ts": 1793862956000,
+   "ts": 1793863960000,
    "cur": "INR",
    "name": "S&P BSE SENSEX"
   }
