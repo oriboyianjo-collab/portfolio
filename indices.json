@@ -2,16 +2,16 @@
  "source": "Yahoo Finance",
  "quotes": {
   "tasi": {
-   "price": 10122.12,
+   "price": 10136.71,
    "prev": 10038.89,
-   "ts": 1793863296000,
+   "ts": 1793864288000,
    "cur": "SAR",
    "name": "Tadawul All Shares Index"
   },
   "qe": {
-   "price": 10014.05,
+   "price": 10023.67,
    "prev": 9884.17,
-   "ts": 1793863295000,
+   "ts": 1793864287000,
    "cur": "QAR",
    "name": "QE Index"
   },
