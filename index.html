@@ -5585,6 +5585,9 @@ function dnRatStr(x, sc){ if(x.n<0n) return null; const q = (x.n*1000n)/(x.d*sc)
 function dnRatRange(b){ const hi = b.hi.n/b.hi.d, sc = hi>=1000000000n ? 1000000000n : hi>=1000000n ? 1000000n : hi>=1000n ? 1000n : 1n, u = sc===1000000000n ? 'B' : sc===1000000n ? 'M' : sc===1000n ? 'K' : '';
   const a = dnRatStr(b.lo, sc), c = dnRatStr(b.hi, sc); return a!=null && c!=null ? a + u + '\u2013' + c + u : null; }
 function dnUnsafe(est){ const t = String(est||''); return !dnBounds(t) && ((t.match(/\d[\d,]*(?:\.\d+)?/g)||[]).length>1 || /[~\u2248<>\u2264\u2265\u00B1\u2013\u2014]|approx|about|\u05D1\u05E2\u05E8\u05DA|\u05D1\u05E7\u05D9\u05E8\u05D5\u05D1/i.test(t)); }   // range-like / approximate text that is not a recognised range: never compared as a scalar
+function dnRangePct(est, act){ const B = dnBounds(est), a = dnVal(act); if(!B || !a) return null; const ref = B.hi; if(ref.n<=0n || a.n<=0n) return null;
+  let n = a.n*ref.d - ref.n*a.d, d = ref.n*a.d; const neg = n<0n; if(neg) n = -n; const h = (n*20000n + d)/(2n*d), ip = (h/100n).toString(), fp = (h%100n).toString().padStart(2,'0');
+  return {t: (h===0n ? '' : neg ? '-' : '+') + dnCom(ip) + '.' + fp + '%', z: h===0n, neg}; }   // v231: ALWAYS against the upper bound (user rule 08:34), exact BigInt, max 2 decimals half-up
 function dnRange(est, act){ const B = dnBounds(est), a = dnVal(act); if(!B || !a) return null; return dnCmp(a, B.hi)>0 ? 'above' : dnCmp(a, B.lo)<0 ? 'below' : 'within'; }
 function repNoteHtml(n){ const e = esc(n); const NUM = '(?:(?:(?<![\\u0590-\\u05FF\\w])[+\\-\\u2212]|[+\\u2212])?[$\\u20AC\\u00A3\\u00A5\\u20AA]?\\d[\\d,]*(?:\\.\\d+)?[A-Za-z%]*(?:\\s?-\\s?[$\\u20AC\\u00A3\\u00A5\\u20AA]?\\d[\\d,]*(?:\\.\\d+)?[A-Za-z%]*)?)';
   const fmt = num=>{ const r = dnAny(num); return r!=null && r!==num ? `<bdi dir="ltr" title="${num}">${r}</bdi>` : null; };
@@ -5724,11 +5727,13 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     const fmtR = x=>{ const t = String(x||'').trim(), mm = t.match(/^(.*\d[BMK]?)\s+([A-Za-z]{3})$/); if(!mm) return fmtR0(t); const r = fmtR0(mm[1]); return r==null ? null : r + ' ' + mm[2]; };   // v230: trailing currency code ("4.407B EUR") kept after the rounded number
     const bdiR = (x, cls)=>{ const t = String(x||'').trim(); if(!t) return '—'; const s2 = fmtR(t);
       return s2 && s2!==t ? `<bdi${cls?' class="'+cls+'"':''} title="${esc(t)}">${esc(s2)}</bdi>` : `<bdi${cls?' class="'+cls+'"':''}>${esc(t)}</bdi>`; };
-    const rngB = (rr, est)=>{ const tt = `title="${esc('טווח תחזית החברה: '+est)}"`; return rr==='above' ? `<em class="rs pos" ${tt}>ביט · מעל הטווח</em>` : rr==='below' ? `<em class="rs neg" ${tt}>מיס · מתחת לטווח</em>` : rr==='within' ? `<em class="rs na" ${tt}>בתוך הטווח</em>` : '<em class="rs na">ללא %</em>'; };   // v228: company-guidance range: no scalar %, no midpoint
+    const rngB = (rr, est, act)=>{ const tt = `title="${esc('טווח תחזית החברה: '+est)}"`, pc = rr ? dnRangePct(est, act) : null;
+      if(!pc) return rr==='above' ? `<em class="rs pos" ${tt}>ביט · מעל הטווח</em>` : rr==='below' ? `<em class="rs neg" ${tt}>מיס · מתחת לטווח</em>` : rr==='within' ? `<em class="rs na" ${tt}>בתוך הטווח</em>` : '<em class="rs na">ללא %</em>';
+      return `<em class="rs ${pc.z?'na':pc.neg?'neg':'pos'}" ${tt}><bdi>${pc.t}</bdi>${pc.z?'':pc.neg?' מיס':' ביט'}</em><em class="rs na" ${tt}>טווח עליון</em>`; };   // v231
     const surp = (a, e)=>a!=null && e!=null && e!==0 ? (a-e)/Math.abs(e)*100 : null;
     const sp = x=>x==null ? '' : `<em class="rs ${x>=0?'pos':'neg'}"><bdi>${x>=0?'+':''}${Math.abs(x)>=100 ? x.toFixed(0) : x.toFixed(1)}%</bdi> ${x>=0?'ביט':'מיס'}</em>`;
     const val = (lbl, est, act, c, x, cm, tg, isRev, rr, isRng, uns)=>{ const vb = v=>bdiR(v,''), eb = v=>bdiR(v,'num');
-      return act ? `<span>${lbl} בפועל</span><b class="num ${c}">${vb(act)}</b><small>צפי ${eb(est)}</small>${tg}${cm.ok ? (uns ? '<em class="rs na">ללא %</em>' : isRng ? rngB(rr, est) : sp(x)) : '<em class="rs na">ללא %</em>'}` : `<span>${lbl} צפי</span><b class="num">${vb(est)}</b>${tg}`; };
+      return act ? `<span>${lbl} בפועל</span><b class="num ${c}">${vb(act)}</b><small>צפי ${eb(est)}</small>${tg}${cm.ok ? (uns ? '<em class="rs na">ללא %</em>' : isRng ? rngB(rr, est, act) : sp(x)) : '<em class="rs na">ללא %</em>'}` : `<span>${lbl} צפי</span><b class="num">${vb(est)}</b>${tg}`; };
     const whyL = [r.eps && !E.ok ? 'EPS: '+E.why : '', r.rev && !R.ok ? 'הכנסות: '+R.why : ''].filter(Boolean);
     const whyHtml = ()=> whyL.length ? ib(whyL.map(x=>`<div>${esc(x)}</div>`).join(''), 'למה אין השוואה לצפי', 'warn') : '';
     return `<article class="rrow${(ec||rc) ? ' r-'+(ec||rc) : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
