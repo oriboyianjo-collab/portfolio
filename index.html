@@ -465,6 +465,7 @@ body{font-size:15px}
 /* change pill: only the % change, full width of its column */
 .pc-d>b:first-child{display:block;width:100%;box-sizing:border-box;text-align:center;padding:4px 4px;border-radius:7px;font-size:.95rem;font-weight:800;color:#fff!important;background:#64748b;white-space:nowrap;letter-spacing:-.2px}
 .pc-d>b:first-child.pos{background:#10b981}.pc-d>b:first-child.neg{background:#ef4444}
+.wr .pc-d>.ybp,.pc-d>.ybp{width:100%;box-sizing:border-box;text-align:center}   /* v227: bp change sits centred under the % badge */
 .pc-d>b+b{font-size:.74rem;text-align:end}.pc-d .v,.pc-d [data-f="hp"]{font-size:.82rem;text-align:end;white-space:nowrap}
 @media (max-width:370px){
  .pgrid,.pc-h.pgrid{grid-template-columns:38px minmax(min-content,1fr) 60px 80px;grid-template-areas:"lg nm w d" "lg cp w d";column-gap:7px}
@@ -2085,9 +2086,9 @@ function applyQuotes(res, syms){
   return errors;
 }
 // live=true: background poll → patch the UI in place instead of re-rendering
-async function refreshPrices(silent, live){
+async function refreshPrices(silent, live, quiet){   // quiet: this call (pull-to-refresh) never shows the result toast
   const b = $('btnRefresh') || document.createElement('button');   // v58: no header refresh button (pull-to-refresh + polling remain)
-  if(refreshing){ if(!live){ b.classList.add('spin'); manualWaiting = true; } return null; }   // a refresh is already running → show spinner, toast when it ends
+  if(refreshing){ if(!live && !quiet){ b.classList.add('spin'); manualWaiting = true; } return null; }   // a refresh is already running → show spinner, toast when it ends
   refreshing = true;
   if(!live){ b.classList.add('spin'); b.disabled = true; }
   let errors = 0, ok = true;
@@ -2104,7 +2105,7 @@ async function refreshPrices(silent, live){
   save(); refreshing = false; b.classList.remove('spin'); b.disabled = false;
   if(!live && ok) setTimeout(()=>scanHeldSplits().catch(e=>console.warn('split scan', e.message)), 1500);
   if(live || (ui.tab==='perf' && perfLive && perfChart)) livePatch(); else renderAll();   // v97: a manual refresh on the performance tab patches in place too (renderAll rebuilt the whole chart: flash + scroll jump)
-  if(!silent || manualWaiting) toast(errors ? 'חלק מהמחירים לא עודכנו – אפשר להזין מחיר ידני' : 'המחירים עודכנו ✓');
+  if(!quiet && (!silent || manualWaiting)) toast(errors ? 'חלק מהמחירים לא עודכנו – אפשר להזין מחיר ידני' : 'המחירים עודכנו ✓');
   manualWaiting = false;
   return ok;
 }
@@ -6168,7 +6169,7 @@ window.__portfolio = {get night(){ return {src:NIGHT.src, worker:{ok:NW.ok, poll
     busy = true; el.classList.add('spin'); el.classList.remove('go'); el.style.transform = 'translateY('+(12+safeT()+14)+'px)'; el.style.opacity = '1'; el.classList.add('snap');
     const t0 = Date.now();
     try{
-      const jobs = [refreshPrices(false)];
+      const jobs = [refreshPrices(false, false, true)];
       if(ui.tab==='news') jobs.push(Promise.resolve().then(()=>loadNewsTab()));
       else if(ui.tab==='market' || ui.tab==='watch') jobs.push(Promise.resolve().then(()=>mktTick()));
       await Promise.race([Promise.allSettled(jobs), new Promise(r=>setTimeout(r, 15000))]);
