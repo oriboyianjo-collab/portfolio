@@ -9,9 +9,9 @@
    "name": "Tadawul All Shares Index"
   },
   "qe": {
-   "price": 9884.17,
-   "prev": 9614.07,
-   "ts": 1793787300000,
+   "price": 9911.351,
+   "prev": 9884.17,
+   "ts": 1793860285000,
    "cur": "QAR",
    "name": "QE Index"
   },
