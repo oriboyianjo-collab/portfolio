@@ -5569,12 +5569,12 @@ function dnTok(t){ const m = String(t).match(DN_RE); if(!m) return null;
   return sg + cur + dnCom(i2) + '.' + f2 + suf; }
 function dnAny(t){ const parts = String(t).split(/(\s?[-\u2013]\s?)/); if(parts.length>1 && parts.length%2===1){ const o = []; let ch = false; for(let k=0;k<parts.length;k++){ if(k%2){ o.push(parts[k]); continue; } const r = dnTok(parts[k].trim()); if(r!=null) ch = true; o.push(r!=null ? r : parts[k]); } return ch ? o.join('') : null; } return dnTok(t); }
 // exact rational value of an amount like "$2.055B", "768.193M", "1899M" (scale B/M/K) for range comparison
-function dnVal(t, defSuf){ const m = String(t||'').trim().match(/^([+\-\u2212]?)[$\u20AC\u00A3\u00A5\u20AA]?(\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d+))?\s*([BMK]?)$/i); if(!m) return null;
+function dnVal(t, defSuf){ const m = String(t||'').trim().replace(/\s+[A-Za-z]{3}$/,'').match(/^([+\-\u2212]?)[$\u20AC\u00A3\u00A5\u20AA]?(\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d+))?\s*([BMK]?)$/i); if(!m) return null;
   const f = m[3] || '', suf = (m[4] || defSuf || '').toUpperCase(), sc = suf==='B' ? 1000000000n : suf==='M' ? 1000000n : suf==='K' ? 1000n : 1n;
   return {n: (m[1]==='-'||m[1]==='\u2212' ? -1n : 1n) * BigInt(m[2].replace(/,/g,'') + f) * sc, d: 10n ** BigInt(f.length)}; }
 function dnCmp(a, b){ const x = a.n*b.d, y = b.n*a.d; return x>y ? 1 : x<y ? -1 : 0; }
 // company-guidance range → 'above' | 'below' | 'within' | null (not a recognised range / unparsable). Formats seen in reports.json: "a–b" (en dash, suffix may be only on b), "1885±25M", "13.5±0.5M", "520M±5%".
-function dnBounds(est){ const t = String(est||'').trim(), sfx = x=>(String(x).trim().match(/[BMK]$/i) || [''])[0];
+function dnBounds(est){ const t = String(est||'').trim().replace(/\s+[A-Za-z]{3}$/,''), sfx = x=>(String(x).trim().match(/[BMK]$/i) || [''])[0];
   const r = t.split('\u2013'); if(r.length===2){ const lo = dnVal(r[0], sfx(r[1])), hi = dnVal(r[1], sfx(r[0])); return lo && hi && dnCmp(lo, hi)<=0 ? {lo, hi} : null; }
   const q = t.split('\u00B1'); if(q.length===2){ const sb = sfx(q[0]), pc = /%\s*$/.test(q[1]); const b0 = dnVal(q[0], pc ? '' : sfx(q[1])); if(!b0) return null;
     let dl; if(pc){ const p = dnVal(q[1].replace(/%\s*$/,''), ''); if(!p) return null; dl = {n: b0.n*p.n, d: b0.d*p.d*100n}; } else { dl = dnVal(q[1], sb); if(!dl) return null; }
@@ -5588,7 +5588,7 @@ function dnUnsafe(est){ const t = String(est||''); return !dnBounds(t) && ((t.ma
 function dnRange(est, act){ const B = dnBounds(est), a = dnVal(act); if(!B || !a) return null; return dnCmp(a, B.hi)>0 ? 'above' : dnCmp(a, B.lo)<0 ? 'below' : 'within'; }
 function repNoteHtml(n){ const e = esc(n); const NUM = '(?:(?:(?<![\\u0590-\\u05FF\\w])[+\\-\\u2212]|[+\\u2212])?[$\\u20AC\\u00A3\\u00A5\\u20AA]?\\d[\\d,]*(?:\\.\\d+)?[A-Za-z%]*(?:\\s?-\\s?[$\\u20AC\\u00A3\\u00A5\\u20AA]?\\d[\\d,]*(?:\\.\\d+)?[A-Za-z%]*)?)';
   const fmt = num=>{ const r = dnAny(num); return r!=null && r!==num ? `<bdi dir="ltr" title="${num}">${r}</bdi>` : null; };
-  if(!/\*\*[^*]+\*\*/.test(n)){ return e.replace(new RegExp('(https?:\\/\\/\\S+|\\d{1,4}[./-]\\d{1,2}[./-]\\d{1,4})|(?<![\\w.\\/:@#-])('+NUM+')(?![\\w.@\\/])','g'),(m,skip,num)=> skip ? skip : (fmt(num) || num)); }
+  if(!/\*\*[^*]+\*\*/.test(n)){ return e.replace(new RegExp('(https?:\\/\\/\\S+|\\d{1,4}[./-]\\d{1,2}[./-]\\d{1,4})|(?<![\\w.\\/:@#])(?<![A-Za-z0-9]-)('+NUM+')(?![\\w.@\\/])','g'),(m,skip,num)=> skip ? skip : (fmt(num) || num)); }
   return e.replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(new RegExp('(<b>[^<]*</b>)|(https?:\\/\\/\\S+|\\d{1,4}[./-]\\d{1,2}[./-]\\d{1,4})|(\\bQ\\d\\s\\d{4}\\b|\\bFY\\d{4}\\b)|('+NUM+')','g'),(m,b,skip,per,num)=> b ? b : skip ? skip : per ? `<bdi dir="ltr">${per}</bdi>` : (fmt(num) || `<bdi dir="ltr">${num}</bdi>`)); }
 // v104: the report button comes from reports.json (field 'קישור' / 'link' / 'reportUrl'); the manual per-device link UI of v102 was removed
 try{ localStorage.removeItem('portfolioTracker.reportLinks.v1'); }catch(e){}
@@ -5713,15 +5713,15 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
     const link = '';
     const ix = r.ixs.length ? r.ixs.slice(0,2).map(x=>`<i class="${ixCls(x.k).trim()}">${esc(ixS(x.l))}</i>`).join('') + (r.ixs.length>2 ? `<i>+${r.ixs.length-2}</i>` : '') : '<i>אחר</i>';
     const fv = x=>{ const t = String(x||'').trim(); return t ? `<bdi>${esc(t)}</bdi>` : '—'; };   // v76: label line, then the value on its own line (LTR, no wrap)
-    const fmtR = x=>{ const t = String(x||'').trim(); if(!t) return null; if(t.includes('\u00B1')){ const bd = dnBounds(t); return bd ? dnRatRange(bd) : null; }
+    const fmtR0 = x=>{ const t = String(x||'').trim(); if(!t) return null; if(t.includes('\u00B1')){ const bd = dnBounds(t); return bd ? dnRatRange(bd) : null; }
       const fmt1 = s0=>dnTok(s0.trim());   // v228: shared display format (max 2 decimals, 1,000M+ -> B)
       const parts = t.split('–');
       if(parts.length===2){ const fa = fmt1(parts[0]), fb = fmt1(parts[1]); if(!fa && !fb) return null;
         const ra = fa || parts[0].trim(), rb2 = fb || parts[1].trim();
         const strip = v=>v.replace(/[BMK]$/,'').replace(/,/g,'');
-        if(fa && fb && strip(ra)===strip(rb2)) return null;
         return ra + '–' + rb2; }
       return fmt1(t); };
+    const fmtR = x=>{ const t = String(x||'').trim(), mm = t.match(/^(.*\d[BMK]?)\s+([A-Za-z]{3})$/); if(!mm) return fmtR0(t); const r = fmtR0(mm[1]); return r==null ? null : r + ' ' + mm[2]; };   // v230: trailing currency code ("4.407B EUR") kept after the rounded number
     const bdiR = (x, cls)=>{ const t = String(x||'').trim(); if(!t) return '—'; const s2 = fmtR(t);
       return s2 && s2!==t ? `<bdi${cls?' class="'+cls+'"':''} title="${esc(t)}">${esc(s2)}</bdi>` : `<bdi${cls?' class="'+cls+'"':''}>${esc(t)}</bdi>`; };
     const rngB = (rr, est)=>{ const tt = `title="${esc('טווח תחזית החברה: '+est)}"`; return rr==='above' ? `<em class="rs pos" ${tt}>ביט · מעל הטווח</em>` : rr==='below' ? `<em class="rs neg" ${tt}>מיס · מתחת לטווח</em>` : rr==='within' ? `<em class="rs na" ${tt}>בתוך הטווח</em>` : '<em class="rs na">ללא %</em>'; };   // v228: company-guidance range: no scalar %, no midpoint
