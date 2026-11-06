@@ -975,7 +975,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 </style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
-</head>
+<style>.pos-toolbar{display:flex;align-items:center;gap:12px;margin:8px 0 6px;min-width:0}.pos-toolbar .pos-sort{margin:0;flex:0 0 auto}.pos-toolbar .heat-sum{margin:0;flex:0 0 auto}.pos-toolbar:has(>#posSort[hidden]):has(>#heatSum[hidden]){display:none}</style></head>
 <body>
 <header class="top">
   <div class="wrap"><div class="hcard">
@@ -993,7 +993,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
     <div class="idxrow" id="idxRow" hidden></div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button><button data-view="heat">🔥 מפת חום</button></div></div><div class="heat-sum" id="heatSum" hidden></div><div class="pos-sort" id="posSort" hidden></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">גרף</span><span class="pcol pc-w" title="אחוז מהתיק">% בתיק</span><span class="pcol pc-m" title="שווי פוזיציה">שווי</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d" id="posColD"><span>יומי</span></span></div><div class="heat-map pos-heat" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי" hidden></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button><button data-view="heat">🔥 מפת חום</button></div></div><div class="pos-toolbar"><div class="pos-sort" id="posSort" hidden></div><div class="heat-sum" id="heatSum" hidden></div></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">גרף</span><span class="pcol pc-w" title="אחוז מהתיק">% בתיק</span><span class="pcol pc-m" title="שווי פוזיציה">שווי</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d" id="posColD"><span>יומי</span></span></div><div class="heat-map pos-heat" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי" hidden></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
