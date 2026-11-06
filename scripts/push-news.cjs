@@ -6,6 +6,7 @@
 // Never fails the caller (exit code 0 always): the Worker's */15 cron + the app's own checks are the fallback.
 const { execFileSync } = require('child_process');
 const fs = require('fs');
+require('../alerts-core.js');
 const URL_ = process.env.PUSH_NEWS_URL || 'https://savage-orderbook.oriboyianjo.workers.dev/push/news';
 const arg = (n) => { const i = process.argv.indexOf('--' + n); return i > 0 ? process.argv[i + 1] : ''; };
 const warn = (m) => console.log('::warning::push-news: ' + m);
@@ -23,7 +24,7 @@ const fromDisk = (f) => { try { return JSON.parse(fs.readFileSync(f, 'utf8')); }
   else {
     const n = show(after, 'news.json') || fromDisk('news.json');
     // newest 80 (same window the app / Worker look at): the Worker de-duplicates, so a run that was lost or re-sent is harmless
-    if (Array.isArray(n)) news = n.slice(0, 80).map((x) => ({ 'כותרת': x['כותרת'], 'תאריך': x['תאריך'], 'הועלה': x['הועלה'], 'חברה': x['חברה'] }));
+    if (Array.isArray(n)) news = globalThis.AlertsCore.newestNews(n).map((x) => ({ 'כותרת': x['כותרת'], 'תאריך': x['תאריך'], 'הועלה': x['הועלה'], 'חברה': x['חברה'] }));
     const r1 = show(after, 'reports.json') || fromDisk('reports.json'), r0 = show(before, 'reports.json');
     if (Array.isArray(r1) && Array.isArray(r0)) {   // only rows that are new or changed since the previous commit
       const k = (x) => x['סימול'] + '|' + x['תאריך'], old = new Map(r0.map((x) => [k(x), JSON.stringify(x)]));
