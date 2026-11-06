@@ -959,7 +959,12 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 @media(max-width:370px){.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-sp:39.2px}}
 @media(max-width:340px){.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-sp:34px}}
 .pcard .pgrid>.pc-n>.pname{font-size:.58rem;overflow:visible;text-overflow:clip;white-space:nowrap}@media(max-width:340px){.pcard .pgrid>.pc-n>.pname{font-size:.54rem}}.pgrid>.pc-s .spark{transform:scale(1.1);transform-origin:center}.pgrid>.pc-p,.pos-cols>.pc-p{transform:translateX(8px)}
-.pgrid>.pc-s,.pos-cols>.pc-s{translate:3px 0}@media(max-width:340px){.pgrid:not(.pos-cols)>.pc-p>.v{font-size:.62rem}}.pgrid:not(.pos-cols)>.pc-p>.v{font-size:.68rem}@media(max-width:340px){.pgrid:not(.pos-cols)>.pc-p>.v{font-size:.55rem}}</style>
+.pgrid>.pc-s,.pos-cols>.pc-s{translate:3px 0}@media(max-width:340px){.pgrid:not(.pos-cols)>.pc-p>.v{font-size:.62rem}}.pgrid:not(.pos-cols)>.pc-p>.v{font-size:.68rem}@media(max-width:340px){.pgrid:not(.pos-cols)>.pc-p>.v{font-size:.55rem}}/* Expanded Reports search field is the visual reference. Search IDs, listeners and query semantics are unchanged. */
+:is(#repQ,#newsQ,#srchQ,#bmSearch,#mktSearch,#wlSearch,#fxSearchIn,#glbSearch,#etfAddIn,#fSym,#txSecurityQuery,input[data-tick],.ix-s){box-sizing:border-box;min-width:0;height:48px!important;min-height:48px!important;border:1px solid var(--primary)!important;background:var(--bg-fff)!important;color:var(--text)!important;border-radius:999px!important;padding:0 14px!important;font:inherit!important;font-size:.82rem!important;box-shadow:none!important}
+:is(#bmSearch,#mktSearch,#wlSearch,#fxSearchIn,#glbSearch,#etfAddIn,#fSym,input[data-tick],.ix-s){width:100%}
+.wl-in .ac-ic{display:none}.news-sr{display:flex;align-items:center;gap:6px}.news-sr input{flex:1;width:auto}.news-sr button{position:static;transform:none;flex:0 0 auto;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted)}
+.tx-search-row{width:100%;display:flex;align-items:center;gap:8px}.tx-search-inline{flex:1;min-width:0}.tx-search-inline input{width:100%}
+</style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
 </head>
@@ -2810,16 +2815,17 @@ function txDesc(t){
 }
 function renderTxList(){
   let list = sortedTxs().reverse(), hiddenN = 0;
+  if(ui.txQuery){const q=ui.txQuery.trim().toLowerCase();list=list.filter(t=>[t.symbol,t.toSymbol,state.assets[t.symbol]?.name].filter(Boolean).some(v=>String(v).toLowerCase().includes(q)));}
   const years = [...new Set(state.txs.map(t=>String(t.date||'').slice(0,4)).filter(y=>/^\d{4}$/.test(y)))].sort().reverse();
   if(ui.txYear && !years.includes(ui.txYear)) ui.txYear = '';
   if(ui.txYear) list = list.filter(t=>String(t.date||'').slice(0,4)===ui.txYear);
   if(histHidden('tx')){ const cs = closedSymSet(); const all = list.length; list = list.filter(t=>!(t.symbol && (t.type==='buy'||t.type==='sell'||t.type==='split'||t.type==='sharebonus'||t.type==='fraczero') && cs.has(t.symbol))); hiddenN = all - list.length; }
   const yCnt = {}; state.txs.forEach(t=>{ const y=String(t.date||'').slice(0,4); if(/^\d{4}$/.test(y)) yCnt[y]=(yCnt[y]||0)+1; });
   const yrSel = years.length>1 ? `<span class="wl-to" style="width:134px;flex:none"><button type="button" class="wl-pick" style="flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;margin-top:0;background:var(--card)" data-txyearmenu aria-haspopup="listbox" aria-expanded="${!!ui.txYearMenu}"><span>📅 ${ui.txYear||'הכול'}</span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="wl-pm" role="listbox"${ui.txYearMenu?'':' hidden'}><button type="button" role="option" data-txyear="" class="${ui.txYear?'':'on'}" aria-selected="${ui.txYear?'false':'true'}"><span>הכול</span><small class="num">${state.txs.length}</small></button>${years.map(y=>`<button type="button" role="option" data-txyear="${y}" class="${ui.txYear===y?'on':''}" aria-selected="${ui.txYear===y}"><span class="num">${y}</span><small class="num">${yCnt[y]||0}</small></button>`).join('')}</div></span>` : '';
-  $('txHistBar').innerHTML = state.txs.length ? yrSel + histToggleHtml('tx') + (hiddenN ? `<span class="hist-note" id="txHiddenNote">מוסתרות ${hiddenN} עסקאות של פוזיציות סגורות · <button class="linkbtn" data-histshow data-hscope="tx">הצג</button></span>` : '') : '';
+  $('txHistBar').innerHTML = state.txs.length ? `<div class="tx-search-row">${yrSel}<div class="tx-search-inline"><input id="txSecurityQuery" type="search" autocomplete="off" placeholder="חיפוש לפי נייר" value="${esc(ui.txQuery||'')}" aria-label="חיפוש עסקאות לפי נייר"></div></div>` + histToggleHtml('tx') + (hiddenN ? `<span class="hist-note" id="txHiddenNote">מוסתרות ${hiddenN} עסקאות של פוזיציות סגורות · <button class="linkbtn" data-histshow data-hscope="tx">הצג</button></span>` : '') : '';
   $('txCount').textContent = list.length ? `${list.length} עסקאות` : '';
   if(!list.length && hiddenN){ $('txList').innerHTML = '<div class="empty">כל העסקאות שייכות לפוזיציות סגורות ומוסתרות.</div>'; return; }
-  if(!list.length){ $('txList').innerHTML = '<div class="empty"><div class="big">🧾</div>אין עדיין עסקאות. לחצו על + כדי להוסיף.</div>'; return; }
+  if(!list.length){ $('txList').innerHTML = ui.txQuery ? '<div class="empty">אין עסקאות התואמות לחיפוש.</div>' : '<div class="empty"><div class="big">🧾</div>אין עדיין עסקאות. לחצו על + כדי להוסיף.</div>'; return; }
   TXTAX = taxModel(state.txs); $('txList').innerHTML = list.map(txRowHtml).join(''); TXTAX = null;
 }
 
@@ -6454,6 +6460,7 @@ async function nightPoll(){
 setInterval(nightPoll, 1000);
 window.setReturnMethod=setReturnMethod;
 document.addEventListener('toggle',e=>{if(e.target.matches?.('.al-stock-fold'))alertStockOpen=e.target.open},true);
+document.addEventListener('input',e=>{if(e.target.id==='txSecurityQuery'){ui.txQuery=e.target.value;const pos=e.target.selectionStart;renderTxList();const q=$('txSecurityQuery');q.focus();q.setSelectionRange(pos,pos)}});
 // ====================== init ======================
 renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
