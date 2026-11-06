@@ -1,5 +1,28 @@
 [
   {
+    "כותרת": "NVIDIA (NVDA): לפי Reuters, כ-600 אלף שבבי H200 ממתינים בהונג קונג לאישור יבוא בהיקף גדול לסין",
+    "category": "micro",
+    "חברה": "NVDA",
+    "קישור": "https://www.investing.com/news/stock-market-news/exclusivenvidia-chips-pile-up-in-hong-kong-as-china-withholds-import-approval-5003223",
+    "טקסט": "לא מאומת מול מקור ראשוני\n5.11.2026 | התאריך המופיע בדאטליין של Reuters ב-Investing.com, ובהפצת The Economic Times. גרסה בהפצת Devdiscourse נושאת תאריך 6 בנובמבר; אין בכך אישור לאירוע חדש באותו יום. שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nReuters מדווחת, על סמך שני מקורות הבקיאים בנושא, כי כ-600 אלף שבבי H200 של NVIDIA מאוחסנים בהונג קונג וממתינים למשלוח לסין היבשתית, בזמן שבייג׳ינג טרם אישרה יבוא בהיקפים גדולים. זהו נתון מלאי המיוחס למקורות אנונימיים, לא דיווח רשמי של החברה, אישור להזמנה חדשה או הכנסה שכבר הוכרה.\n\nלפי שלושה מקורות בדיווח, סין אפשרה כניסה של חלק מהשבבים בחודשים האחרונים. אחד המקורות אמר שכמה חברות אינטרנט סיניות גדולות קיבלו כל אחת כ-10,000 שבבי H200. לכן אין להסיק איסור מוחלט על כל יבוא, סירוב סופי לכל המשלוחים או ביטול כל ההזמנות. הדיווח עוסק באישור יבוא סיני למשלוחים גדולים, ולא בהכרזה על איסור יצוא אמריקאי חדש.\n\nמשרדי הממשלה הסיניים שאליהם פנתה Reuters, NVIDIA והחברות Alibaba, ByteDance, DeepSeek ו-Tencent לא השיבו לבקשות התגובה. לא פורסמו מועד מובטח לשחרור המלאי, ערכו הכספי או השפעתו המדויקת על הכנסות NVIDIA.\n\nהנושא נפרד מהדיווח הקודם על שיחות Moonshot לשכירת מחשוב Blackwell באירופה: כאן מדובר במלאי פיזי של H200 בהונג קונג ובאישור הכנסתו לסין. אין לערבב בין גישה מרחוק למחשוב בחו״ל לבין משלוח שבבים לסין.",
+    "מקורות": [
+      {
+        "label": "Reuters: הדיווח המלא מ-5 בנובמבר דרך Investing.com",
+        "url": "https://www.investing.com/news/stock-market-news/exclusivenvidia-chips-pile-up-in-hong-kong-as-china-withholds-import-approval-5003223"
+      },
+      {
+        "label": "Reuters דרך The Economic Times: גרסה מתוארכת5בנובמבר",
+        "url": "https://m.economictimes.com/ai/ai-insights/nvidia-chips-pile-up-in-hong-kong-as-china-withholds-import-approval/amp_articleshow/135572143.cms"
+      },
+      {
+        "label": "Reuters דרך Devdiscourse: הפצה מתוארכת6בנובמבר",
+        "url": "https://www.devdiscourse.com/article/international/4002507-exclusive-nvidia-chips-pile-up-in-hong-kong-as-china-withholds-import-approval"
+      }
+    ],
+    "תאריך": "2026-11-06 11:51",
+    "הועלה": "2026-11-06 11:51"
+  },
+  {
     "כותרת": "Meta (META): הושלמה הנפקת אג\"ח דולריות בקרן כוללת של 15 מיליארד דולר; מומשה אופציה ל-6 מיליון מניות בהסכמי מכירה עתידית",
     "category": "micro",
     "חברה": "META",
