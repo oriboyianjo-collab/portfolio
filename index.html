@@ -256,6 +256,9 @@ html.dark .is-pre::before{background:#312e81;color:#c7d2fe}
 /* v64: after-hours badge mirrors pre */
 .is-after::before{content:'after';display:inline-block;font-size:.62em;font-weight:700;letter-spacing:.2px;padding:0 4px;margin-inline-end:3px;border-radius:5px;background:#fff7ed;color:#9a3412;vertical-align:middle;line-height:1.5;direction:ltr}
 html.dark .is-after::before{background:#7c2d12;color:#fed7aa}
+/* v235: 'now' badge for live-streaming US indices (VIX & co.) outside the regular session - mirrors pre/after */
+.is-now::before{content:'now';display:inline-block;font-size:.62em;font-weight:700;letter-spacing:.2px;padding:0 4px;margin-inline-end:3px;border-radius:5px;background:#ecfdf5;color:#065f46;vertical-align:middle;line-height:1.5;direction:ltr}
+html.dark .is-now::before{background:#064e3b;color:#a7f3d0}
 @media (max-width:370px){.is-after::before{font-size:.55em;padding:0 2px;margin-inline-end:1px;letter-spacing:0}.wgrid .pc-d .is-after,.pgrid .pc-d .is-after{letter-spacing:-.2px}}
 #hDayLbl{white-space:nowrap}.upd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tot-pre{min-height:1.2em;display:flex;align-items:baseline;gap:6px;font-size:.78rem;margin-top:1px;line-height:1.2}.tot-pre[hidden]{display:none}.tot-pre .pre-tag{font-size:.68rem;font-weight:800;padding:0 5px;border-radius:5px;background:rgba(255,255,255,.2);direction:ltr}.tot-pre b{font-weight:800}.tot-pre .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
@@ -512,7 +515,7 @@ html.dark .hltb{background:#78350f;color:#fde68a}html.dark .hltb.susp{background
 .kv b.hltv{font-weight:800;direction:ltr;color:#b45309}.kv b.hltv.susp{color:#dc2626}html.dark .kv b.hltv{color:#fbbf24}html.dark .kv b.hltv.susp{color:#f87171}
 .xl{display:none;font-size:.68rem;font-weight:600;line-height:1.25;white-space:nowrap;direction:ltr;unicode-bidi:isolate;text-align:end}
 html.ext-sess .xl{display:block;min-height:1.25em}
-.xl.is-pre::before,.xl.is-after::before{font-size:.85em;padding:0 3px;margin-inline-end:3px;line-height:1.3}
+.xl.is-pre::before,.xl.is-after::before,.xl.is-now::before{font-size:.85em;padding:0 3px;margin-inline-end:3px;line-height:1.3}
 .pc-d .xl{align-self:flex-end}.idx .xl{text-align:start}.mc .xl{font-size:.66rem}
 .idx-n:has(.xl){display:flex;align-items:center;justify-content:space-between;gap:4px}html.ext-sess .idx-n .xl{line-height:1}.idx-n .idx-nt{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}html.ext-sess .idx-n .xl{display:inline-block;min-height:0;flex:none;font-size:.64rem}
 .pstats{margin:2px 0 10px}.pstats .hst{background:var(--bg-f8fafc);border:1px solid var(--border)}.pstats .hst span{opacity:1;color:var(--muted)}
@@ -1974,7 +1977,7 @@ async function cnbcQuotes(symbols){
     let arr = j && j.FormattedQuoteResult && j.FormattedQuoteResult.FormattedQuote; if(arr && !Array.isArray(arr)) arr=[arr];
     (arr||[]).forEach(q=>{
       if(!q || String(q.code)!=='0') return;
-      let last = num(q.last), prev = num(q.previous_day_closing); if(last==null) return;
+      let last = num(q.last), prev = num(q.previous_day_closing), pdc = prev; if(last==null) return;
       // after the close CNBC rolls previous_day_closing to today's close (it then equals last), while "change" keeps the session's
       // move vs the real prior close – so the prior close is last − change whenever CNBC gives a change
       const chg = num(q.change); if(chg!=null && /^[+-]?[\d,.]+$/.test(String(q.change).trim())) prev = last - chg;
@@ -1982,27 +1985,44 @@ async function cnbcQuotes(symbols){
       let cur = q.currencyCode==='ILS'||q.currencyCode==='USD' ? q.currencyCode : (isTaIndex(orig)?'ILS':'USD');
       const pence = /^(GBp|GBX)$/.test(q.currencyCode||'') || (!q.currencyCode && euCur(orig)==='GBP'), k = isTaseSec(orig) || pence ? 100 : 1;
       if(isEuSec(orig)) cur = pence ? 'GBP' : (FXQ[q.currencyCode] ? q.currencyCode : euCur(orig));   // v66: listing currency (pence → pounds)
-      if(k>1){ last/=k; if(prev!=null) prev/=k; if(!pence) cur='ILS'; }
+      if(k>1){ last/=k; if(prev!=null) prev/=k; if(pdc!=null) pdc/=k; if(!pence) cur='ILS'; }
       const mc = parseCap(q.mktcapView), E = q.ExtendedMktQuote; let pre = null;
       // v49: US pre-market only (after-hours / overnight are ignored): change vs the prior close = regular "last" before the open
       if(k===1 && E && (E.type==='PRE_MKT' || E.type==='POST_MKT')){ const pl = num(E.last), ts = parseTs(E.last_time); if(pl!=null && pl>0 && ts){ const chg = pl - last; pre = {price:pl, chg, pct: last ? chg/last*100 : null, ts, kind: E.type==='POST_MKT' ? 'after' : 'pre', vol: parseCap(E.volume)}; } }   // v64: + after-hours; both vs the regular 'last' (pre: prior close, after: today's close)
       const ev = q.EventData || {}, px = v=>{ const n = num(v); return n==null ? null : n/k; }, pn = v=>{ const n = num(v); return n==null ? null : n; }, big = v=>parseCap(v);
       const X = {open:px(q.open), high:px(q.high), low:px(q.low), yh:px(q.yrhiprice), yl:px(q.yrloprice), av10:big(q.tendayavgvol), eps:px(q.eps), feps:px(q.feps), pe:pn(q.pe), fpe:pn(q.fpe), ps:k>1 ? null : pn(q.psales), shs:big(q.sharesout), div:px(q.dividend)||px(ev.div_amount), dy:pn(String(q.dividendyield||'').replace('%','')), beta:pn(q.beta), exd:ev.div_ex_date||'', ne:ev.next_earnings_date||'', vol:big(q.volume)};   // v102: key-stats for the 'details' section (CNBC fields; TASE prices are in agorot -> /100)
-      out[String(orig).toUpperCase()] = {x:X, pre, mcap: mc!=null ? (pence ? mc : mc/k) : null, price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', halt: k===1 && (/suspend/i.test(q.curmktstatus||'') ? 'Suspended' : (String(ev.is_halted).toUpperCase()==='Y' || /halt/i.test(q.curmktstatus||'')) ? 'Halted' : ''), hsym:String(orig).toUpperCase(), source:'CNBC'};
+      out[String(orig).toUpperCase()] = {x:X, pre, mcap: mc!=null ? (pence ? mc : mc/k) : null, price:last, prev, pdc, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', idx:/INDEX/i.test(String(q.type||''))||undefined, halt: k===1 && (/suspend/i.test(q.curmktstatus||'') ? 'Suspended' : (String(ev.is_halted).toUpperCase()==='Y' || /halt/i.test(q.curmktstatus||'')) ? 'Halted' : ''), hsym:String(orig).toUpperCase(), source:'CNBC'};
       { const o = out[String(orig).toUpperCase()], sy = String(orig).toUpperCase();   // v225: after the close CNBC reports change=UNCH and previous_day_closing=last -> keep the last regular session's prior close until the next session
         if(k===1 && !/^[.@]|=/.test(sy) && o.date){ if(/^[+-]?[\d,.]+$/.test(String(q.change).trim())){ if(prev>0) pclSet(sy, o.date, prev); }
           else { const c = pclGet(sy, o.date); if(c>0) o.prev = c; else o.pclPend = true; } } }
+      { const o = out[String(orig).toUpperCase()], sy = String(orig).toUpperCase();   // v235: VIX keeps streaming live outside the regular session
+        if(k===1 && o.idx && o.pdc>0 && o.date && isVixSym(sy)) iclTrack(sy, o.date, o.pdc); }
       { const o = out[String(orig).toUpperCase()]; if(o.halt) haltRefine(o.hsym); }   // v167: halted -> ask the Cboe book status (existing worker) whether it is a halt or a suspension
     });
   }
   { const pend = Object.entries(out).filter(([s,o])=>o.pclPend);   // v225: no stored prior close -> daily bars (last bar before the quote's session date)
     for(let i=0;i<pend.length;i+=6) await Promise.all(pend.slice(i,i+6).map(async ([s,o])=>{ try{ const bars = await cnbcBars(cnbcSymbol(s), addDays(today(),-12)); const pb = bars.filter(b=>b[0] < o.date).pop(); if(pb && pb[4]>0){ o.prev = pb[4]; pclSet(s, o.date, pb[4]); } }catch(e){} delete o.pclPend; })); }
+  { const pend = Object.entries(iclAll()).filter(([s,e])=>e.pend && out[s]);   // v235: missing close-before-last -> daily bars (the bar before the prior close's bar)
+    for(let i=0;i<pend.length;i+=6) await Promise.all(pend.slice(i,i+6).map(async ([s,e])=>{ try{ const bars = await cnbcBars(cnbcSymbol(s), addDays(today(),-12)); const pb = bars.filter(b=>b[0] < e.d); if(pb.length>=2 && pb[pb.length-2][4]>0 && Math.abs(pb[pb.length-1][4]-e.p) <= Math.abs(e.p)*0.001+1e-9){ const m = iclAll(); if(m[s] && m[s].d===e.d){ m[s].p2 = pb[pb.length-2][4]; delete m[s].pend; iclSave(m); } } }catch(e2){} })); }
   return out;
 }
 const PCL_KEY = 'ptPrevClose.v1';
 function pclAll(){ try{ return JSON.parse(localStorage.getItem(PCL_KEY)||'{}') || {}; }catch(e){ return {}; } }
 function pclGet(sym, d){ const e = pclAll()[sym]; return e && e.d===d ? e.p : null; }
 function pclSet(sym, d, p){ try{ const m = pclAll(); m[sym] = {d, p}; const ks = Object.keys(m); if(ks.length>600) ks.slice(0, ks.length-600).forEach(k=>delete m[k]); localStorage.setItem(PCL_KEY, JSON.stringify(m)); }catch(e){} }
+// v235: live US indices stream while the US is pre/post/night; the watchlist row then shows yesterday's session change like every
+// other instrument, which needs the close BEFORE the quote's prior close: {sym:{d:<quote date>, p:<prior close>, p2:<close before it>}}.
+// p2 comes from the day shift / a mid-day previous_day_closing roll, else one CNBC daily-bars call (same fallback pattern as v225).
+const ICL_KEY = 'ptIdxClose.v1';
+const isVixSym = s=>{ s = String(s).toUpperCase(); return s==='VIX' || s==='.VIX'; };   // v235: approved scope - VIX identities only
+function iclAll(){ try{ return JSON.parse(localStorage.getItem(ICL_KEY)||'{}') || {}; }catch(e){ return {}; } }
+function iclGet(sym, d, p){ const e = iclAll()[sym]; return e && e.d===d && e.p2>0 && p>0 && Math.abs(e.p-p) <= Math.abs(p)*0.001+1e-9 ? e.p2 : null; }   // the stored prior close must match the quote's own prev (0.1% covers CNBC's formatted live last-change wobble)
+function iclSave(m){ try{ const ks = Object.keys(m); if(ks.length>60) ks.slice(0, ks.length-60).forEach(k=>delete m[k]); localStorage.setItem(ICL_KEY, JSON.stringify(m)); }catch(e){} }
+function iclTrack(sym, d, p){ const m = iclAll(), e = m[sym];
+  if(!e || e.d!==d) m[sym] = {d, p, p2: e && e.d && e.p>0 ? e.p : null};
+  else if(e.p!==p) m[sym] = {d, p, p2: e.p>0 ? e.p : null};   // CNBC rolled previous_day_closing mid-day (overnight session)
+  if(!m[sym].p2) m[sym].pend = true; else delete m[sym].pend;
+  iclSave(m); }
 const cgIdCache = {};
 async function coingeckoId(sym){
   sym = sym.toUpperCase().replace(/-USD$/,'');
@@ -3941,10 +3961,14 @@ function wlCur(){ return wlData.lists.find(l=>l.id===wlData.cur) || wlData.lists
 function wlList(id){ return wlData.lists.find(l=>l.id===id); }
 function wlItems(){ const seen = new Set(), out = []; wlData.lists.forEach(l=>l.items.forEach(x=>{ if(!seen.has(x.sym)){ seen.add(x.sym); out.push(secInst(x)); } })); return out; }   // every list: header counts need quotes
 function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts = c ? withLive(it, '1D', c.pts) : null, up = q && q.prev ? q.price >= q.prev : true;
-  const pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
+  let pct = q && q.prev ? (q.price/q.prev-1)*100 : null, extO = q && q.ext;
+  if(q && q.idx && !q.ext && !q.hlt && q.pdc>0 && q.ts && Date.now()-q.ts < 6*3600e3 && isVixSym(it.q) && extAny()){   // v235: VIX streaming live outside the regular session
+    const p2 = iclGet(String(it.q).toUpperCase(), q.date, q.pdc);
+    if(p2){ pct = (q.pdc/p2-1)*100; extO = {kind:'now', chg:q.price-q.pdc, pct:(q.price/q.pdc-1)*100}; }   // pill = yesterday's session change off the exact previous_day_closing; line below = live change vs it
+  }
   return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${it.fx ? `<span class="fxfl" aria-hidden="true">${it.fl}</span>` : logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div>${it.fx && staleTag(q) ? `<div class="pname" style="font-size:.72rem;white-space:normal">${esc(staleTag(q))}</div>` : ''}</div>`+
     `<div class="pcol pc-s wl-live">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, up, 48, 24) : ''}</div><div class="pcol pc-m wl-live num">${capT(q && q.mcap, it.cur)}</div>`+
-    `<div class="pcol pc-p wl-live"><span class="wl-p v num">${q ? ((it.fx||it.y) ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div><div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${it.y && q && q.prev ? `<small class="ybp ${cls(pct)}">${chgInst(it, q.price, q.prev).sub}</small>` : ''}${extLineHtml(q && (q.hlt ? {halt:q.hlt} : q.ext))}</div>`+
+    `<div class="pcol pc-p wl-live"><span class="wl-p v num">${q ? ((it.fx||it.y) ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div><div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${it.y && q && q.prev ? `<small class="ybp ${cls(pct)}">${chgInst(it, q.price, q.prev).sub}</small>` : ''}${extLineHtml(q && (q.hlt ? {halt:q.hlt} : extO))}</div>`+
     `<div class="wl-ed" style="grid-column:3/-1"><button data-wm="up" aria-label="הזזה למעלה" ${i===0?'disabled':''}>▲</button><button data-wm="down" aria-label="הזזה למטה" ${i===n-1?'disabled':''}>▼</button><button data-wm="del" class="del" aria-label="הסרה מהרשימה">✕</button></div></div>`; }
 // v112: lists are horizontal tabs at the top; only the active list renders, without the old collapsible header
 function wlTabsHtml(){ const cur = wlCur().id;
