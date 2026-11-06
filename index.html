@@ -5696,6 +5696,11 @@ function dnRatStr(x, sc){ if(x.n<0n) return null; const q = (x.n*1000n)/(x.d*sc)
 function dnRatRange(b){ const hi = b.hi.n/b.hi.d, sc = hi>=1000000000n ? 1000000000n : hi>=1000000n ? 1000000n : hi>=1000n ? 1000n : 1n, u = sc===1000000000n ? 'B' : sc===1000000n ? 'M' : sc===1000n ? 'K' : '';
   const a = dnRatStr(b.lo, sc), c = dnRatStr(b.hi, sc); return a!=null && c!=null ? a + u + '\u2013' + c + u : null; }
 function dnUnsafe(est){ const t = String(est||''); return !dnBounds(t) && ((t.match(/\d[\d,]*(?:\.\d+)?/g)||[]).length>1 || /[~\u2248<>\u2264\u2265\u00B1\u2013\u2014]|approx|about|\u05D1\u05E2\u05E8\u05DA|\u05D1\u05E7\u05D9\u05E8\u05D5\u05D1/i.test(t)); }   // range-like / approximate text that is not a recognised range: never compared as a scalar
+// approximate single point estimate ("~230M", "\u2248$0.05"): exactly one number plus an approximation marker, no range/bound markers; compared as a scalar, rendered with \u2248
+function dnApprox(v){ const t = String(v||'').trim(); if(!t || dnBounds(t)) return false;
+  if((t.match(/\d[\d,]*(?:\.\d+)?/g)||[]).length!==1) return false;
+  if(/[<>\u2264\u2265\u00B1\u2013\u2014]/.test(t)) return false;
+  return /[~\u2248]/.test(t) || /approx|about|\u05D1\u05E2\u05E8\u05DA|\u05D1\u05E7\u05D9\u05E8\u05D5\u05D1/i.test(t); }
 function dnRangePct(est, act){ const B = dnBounds(est), a = dnVal(act); if(!B || !a) return null; const ref = B.hi; if(ref.n<=0n || a.n<=0n) return null;
   let n = a.n*ref.d - ref.n*a.d, d = ref.n*a.d; const neg = n<0n; if(neg) n = -n; const h = (n*20000n + d)/(2n*d), ip = (h/100n).toString(), fp = (h%100n).toString().padStart(2,'0');
   return {t: (h===0n ? '' : neg ? '-' : '+') + dnCom(ip) + '.' + fp + '%', z: h===0n, neg}; }   // v231: ALWAYS against the upper bound (user rule 08:34), exact BigInt, max 2 decimals half-up
@@ -5777,7 +5782,7 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
       return {ok:true}; };
     const E = cmpOf(r.epsEstB, r.epsB, r.epsCur, r.epsEstCur, r.epsActCur, r.epsCmp, r.epsWhy), R = cmpOf(r.revEstB, r.revB, r.revCur, r.revEstCur, r.revActCur, r.revCmp, r.revWhy);
     const e1 = numOf(r.epsEst), e2 = numOf(r.eps), r1 = numU(r.revEst), r2 = numU(r.rev);
-    const eu = dnUnsafe(r.epsEst) || !!dnBounds(r.epsEst), ru = dnUnsafe(r.revEst), ec = E.ok && !eu && e1!=null && e2!=null ? (e2>=e1?'pos':'neg') : '', isRng = !!dnBounds(r.revEst), RR = R.ok && isRng ? dnRange(r.revEst, r.rev) : null, rc = isRng ? (RR==='above' ? 'pos' : RR==='below' ? 'neg' : '') : (R.ok && !ru && r1!=null && r2!=null ? (r2>=r1?'pos':'neg') : '');
+    const eu = dnUnsafe(r.epsEst) && !dnApprox(r.epsEst) || !!dnBounds(r.epsEst), ru = dnUnsafe(r.revEst) && !dnApprox(r.revEst), ec = E.ok && !eu && e1!=null && e2!=null ? (e2>=e1?'pos':'neg') : '', isRng = !!dnBounds(r.revEst), RR = R.ok && isRng ? dnRange(r.revEst, r.rev) : null, rc = isRng ? (RR==='above' ? 'pos' : RR==='below' ? 'neg' : '') : (R.ok && !ru && r1!=null && r2!=null ? (r2>=r1?'pos':'neg') : '');
     const shortB = b0=>{ const t = String(b0||'').trim(); if(!t) return '';
       const kind = /analyst|אנליסט/i.test(t) ? 'אנליסטים' : (/company|guidance|תחזית חברה/i.test(t) ? 'חברה' : '');
       const rng = /range|טווח/i.test(t) ? ' (טווח)' : '';
@@ -5842,9 +5847,9 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
       if(!pc) return rr==='above' ? `<em class="rs pos" ${tt}>ביט · מעל הטווח</em>` : rr==='below' ? `<em class="rs neg" ${tt}>מיס · מתחת לטווח</em>` : rr==='within' ? `<em class="rs na" ${tt}>בתוך הטווח</em>` : '<em class="rs na">ללא %</em>';
       return `<em class="rs ${pc.z?'na':pc.neg?'neg':'pos'}" ${tt}><bdi>${pc.t}</bdi>${pc.z?'':pc.neg?' מיס':' ביט'}</em><em class="rs na" ${tt}>טווח עליון</em>`; };   // v231
     const surp = (a, e)=>a!=null && e!=null && e!==0 ? (a-e)/Math.abs(e)*100 : null;
-    const sp = x=>x==null ? '' : `<em class="rs ${x>=0?'pos':'neg'}"><bdi>${x>=0?'+':''}${Math.abs(x)>=100 ? x.toFixed(0) : x.toFixed(1)}%</bdi> ${x>=0?'ביט':'מיס'}</em>`;
-    const val = (lbl, est, act, c, x, cm, tg, isRev, rr, isRng, uns)=>{ const vb = v=>bdiR(v,''), eb = v=>bdiR(v,'num');
-      return act ? `<span>${lbl} בפועל</span><b class="num ${c}">${vb(act)}</b><small>צפי ${eb(est)}</small>${tg}${cm.ok ? (uns ? '<em class="rs na">ללא %</em>' : isRng ? rngB(rr, est, act) : sp(x)) : '<em class="rs na">ללא %</em>'}` : `<span>${lbl} צפי</span><b class="num">${vb(est)}</b>${tg}`; };
+    const sp = (x, ap)=>x==null ? '' : `<em class="rs ${x>=0?'pos':'neg'}"><bdi>${ap?'\u2248':''}${x>=0?'+':''}${Math.abs(x)>=100 ? x.toFixed(0) : x.toFixed(1)}%</bdi> ${x>=0?'ביט':'מיס'}</em>`;
+    const val = (lbl, est, act, c, x, cm, tg, isRev, rr, isRng, uns)=>{ const vb = v=>bdiR(v,''), eb = v=>bdiR(v,'num'), ap = dnApprox(est) || dnApprox(act);
+      return act ? `<span>${lbl} בפועל</span><b class="num ${c}">${vb(act)}</b><small>צפי ${eb(est)}</small>${tg}${cm.ok ? (uns ? '<em class="rs na">ללא %</em>' : isRng ? rngB(rr, est, act) : sp(x, ap)) : '<em class="rs na">ללא %</em>'}` : `<span>${lbl} צפי</span><b class="num">${vb(est)}</b>${tg}`; };
     const whyL = [r.eps && !E.ok ? 'EPS: '+E.why : '', r.rev && !R.ok ? 'הכנסות: '+R.why : ''].filter(Boolean);
     const whyHtml = ()=> whyL.length ? ib(whyL.map(x=>`<div>${esc(x)}</div>`).join(''), 'למה אין השוואה לצפי', 'warn') : '';
     return `<article class="rrow${(ec||rc) ? ' r-'+(ec||rc) : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.company)}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
