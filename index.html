@@ -953,7 +953,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pgrid,.pc-h.pgrid,.pos-cols.pgrid{column-gap:7px;--k-lg:28px;--k-sp:34px}
 @media(max-width:370px){.pgrid,.pc-h.pgrid,.pos-cols.pgrid{column-gap:6px;--k-lg:26px;--k-sp:32px}}
 @media(max-width:340px){.pgrid,.pc-h.pgrid,.pos-cols.pgrid{column-gap:4px;--k-lg:22px;--k-sp:28px}}
-</style>
+.ret-method-wrap{margin:12px 0 14px;padding:12px;background:#ffffff05;border:1px solid #ffffff14;border-radius:14px}.ret-method-head{font-size:13px;font-weight:700;margin-bottom:9px;display:flex;justify-content:space-between}.ret-method-head small{font-size:10px;font-weight:400;color:#94a3b8}.ret-method{display:flex;gap:5px}.ret-method button{flex:1;padding:9px 8px;font-size:14px}.ret-method button small{font-size:10px;margin-inline-start:6px}.ret-method-note{font-size:11px;line-height:1.7;color:#94a3b8;margin:9px 0 0}.ret-method button.on{color:#fff;background:#2563eb;border-color:#2563eb}.al-stock-fold>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;list-style:none;padding:4px 0}.al-stock-fold>summary::-webkit-details-marker{display:none}.al-stock-fold summary small{font-size:.7rem;font-weight:400;color:var(--muted);margin-inline-start:7px}.al-stock-fold summary span{font-size:.74rem;color:var(--muted)}.al-stock-fold .fold-hide{display:none}.al-stock-fold[open] .fold-show{display:none}.al-stock-fold[open] .fold-hide{display:inline}.al-stock-fold[open]>summary{margin-bottom:12px}</style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
 </head>
@@ -979,7 +979,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
   <section class="tab" id="tab-perf">
     <div class="card">
       <h2><span>ביצועי התיק <button type="button" class="ib" data-ib-for="perfNote" data-ib-t="איך מחושבת התשואה" aria-label="הסבר: איך מחושבת התשואה" aria-haspopup="dialog">i</button></span> <small id="perfSrc"></small></h2>
-      <div class="hstats pstats" id="hStats"></div>
+      <div class="ret-method-wrap"><div class="ret-method-head">שיטת תשואה <small>לכל התיק והטווחים</small></div><div class="seg ret-method" role="group" aria-label="שיטת חישוב תשואה"><button data-method="IRR" onclick="setReturnMethod('IRR')">IRR <small>משוקלל כסף</small></button><button class="on" data-method="TWR" onclick="setReturnMethod('TWR')">TWR יומי <small>משוקלל זמן</small></button></div><p class="ret-method-note"></p></div><div class="hstats pstats" id="hStats"></div>
       <div class="ytd" id="perfYtd"></div>
       <div class="ctrls"><div class="seg sm" id="perfRange"><button data-v="1W">שבוע</button><button data-v="1M">חודש</button><button data-v="3M">3 ח׳</button><button data-v="YTD" class="on">YTD</button><button data-v="1Y">שנה</button><button data-v="ALL">הכול</button></div></div>
       <div class="chart" id="perfChart"><div class="chart-msg" id="perfMsg">טוען…</div></div>
@@ -2171,16 +2171,65 @@ async function getHistory(sym, from){
   })());
 }
 
+// Dated money-weighted cumulative return. Nonconventional sign patterns are deliberately unavailable.
+function irrPeriod(flows){
+ const by=new Map();for(const [d,c]of flows){if(!/^\d{4}-\d{2}-\d{2}$/.test(d)||!Number.isFinite(Date.parse(d))||new Date(d).toISOString().slice(0,10)!==d||!Number.isFinite(c))return{pct:null,reason:'תזרים או תאריך לא תקין'};by.set(d,(by.get(d)||0)+c)}
+ const f=[...by].filter(x=>Math.abs(x[1])>1e-9).sort((a,b)=>a[0].localeCompare(b[0]));
+ if(f.length<2||!f.some(x=>x[1]<0)||!f.some(x=>x[1]>0))return{pct:null,reason:'אין תזרימים מתאימים לחישוב IRR'};
+ const sign=f.map(x=>Math.sign(x[1]));if(sign.slice(1).filter((x,i)=>x!==sign[i]).length!==1)return{pct:null,reason:'תזרים לא רגיל: לא אומת פתרון IRR יחיד'};
+ const d0=Date.parse(f[0][0]),days=(Date.parse(f.at(-1)[0])-d0)/864e5;if(!(days>0))return{pct:null,reason:'IRR דורש לפחות יום אחד'};
+ const scale=Math.max(...f.map(x=>Math.abs(x[1]))),v=f.map(([d,c])=>[(Date.parse(d)-d0)/864e5/days,c/scale]);
+ function value(x){let shift=Math.max(0,-x),sum=0,der=0,abs=0;for(const[t,c]of v){const z=c*Math.exp(-t*x-shift);sum+=z;der-=t*z;abs+=Math.abs(z)}return{f:sum,der,rel:abs?Math.abs(sum)/abs:1}}
+ let lo=-100,hi=100,fl=value(lo).f,fh=value(hi).f;if(!Number.isFinite(fl)||!Number.isFinite(fh)||fl*fh>=0)return{pct:null,reason:'לא נמצא פתרון IRR אמין בטווח החישוב'};
+ let x=0,z=value(x),ok=false;for(let i=0;i<90;i++){if(z.rel<1e-12){ok=true;break}if(fl*z.f<=0){hi=x;fh=z.f}else{lo=x;fl=z.f}let next=z.der?x-z.f/z.der:NaN;if(!Number.isFinite(next)||next<=lo||next>=hi)next=(lo+hi)/2;x=next;z=value(x)}
+ const pct=Math.expm1(x)*100;if(!ok||!Number.isFinite(pct)||pct<-100)return{pct:null,reason:'פתרון IRR לא התכנס'};return{pct,days};
+}
+const returnPeriodCaches=new WeakMap();
+function portfolioPeriod(points,start,end,method='TWR',usd=false,endValue=null){
+ if(!Array.isArray(points)||!points.length)return null;
+ let cache=returnPeriodCaches.get(points);if(!cache){cache=new Map();returnPeriodCaches.set(points,cache)}
+ const key=[start,end,method,usd,endValue==null?'':endValue].join('|');if(cache.has(key))return cache.get(key);
+ const rows=points.filter(p=>p.date<=end),before=rows.filter(p=>p.date<start).at(-1),active=rows.filter(p=>p.date>=start);if(!active.length)return null;
+ const val=p=>usd?p.c/p.fx:p.c,nd=p=>usd?p.netDepU:p.netDep,eps=1e-7;
+ const date0=before?before.date:active[0].date,V0=before?val(before):0;let prior=before?nd(before):0,prev=V0,product=1,F=0,valid=true,reason='',flows=V0?[[date0,-V0]]:[];
+ let dataValid=Number.isFinite(V0)&&V0>=0&&(!usd||!before||before.fx>0);if(!dataValid){valid=false;reason='אין שווי פתיחה או שער מטבע תקין'}
+ for(let i=0;i<active.length;i++){const p=active[i],flow=nd(p)-prior;prior=nd(p);const C=i===active.length-1&&endValue!=null?endValue:val(p);F+=flow;
+  if(!Number.isFinite(C)||!Number.isFinite(flow)||usd&&!(p.fx>0)){valid=false;dataValid=false;reason='אין שווי או שער מטבע תקין';break}
+  if(flow)flows.push([p.date,-flow]);let factor=1;
+  if(prev>eps)factor=(C-flow)/prev;else if(Math.abs(prev)<=eps&&flow>eps)factor=C/flow;else if(Math.abs(prev)>eps||Math.abs(C)>eps||Math.abs(flow)>eps){valid=false;reason='אין בסיס הון חיובי לחישוב התשואה'}
+  if(factor<0||!Number.isFinite(factor)){valid=false;reason='אין בסיס הון חיובי לחישוב התשואה'}product*=factor;prev=C;
+ }
+ flows.push([end,prev]);const gain=prev-V0-F;let result;
+ if(!dataValid)result={pct:null,gain:null,reason};
+ else if(method==='IRR'){
+  if(!valid)result={pct:null,gain,reason:reason||'אין בסיס הון חיובי לחישוב התשואה'};
+  else if(prev<0||!Number.isFinite(prev))result={pct:null,gain,reason:'שווי סיום שלילי או לא תקין'};
+  else if(Math.abs(prev)<=eps&&flows.every(x=>x[1]<=eps)&&flows.some(x=>x[1]<-eps)&&end>date0)result={pct:-100,gain};
+  else result={...irrPeriod(flows),gain};
+ }else result={pct:valid?(product-1)*100:null,gain,reason:valid?'':reason||'אין שווי פתיחה תקין'};
+ if(!Number.isFinite(gain))result.gain=null;
+ if(cache.size>6000)cache.clear();cache.set(key,result);return result;
+}
+let returnMethod=(()=>{try{return localStorage.getItem('portfolioTracker.returnMethod')==='IRR'?'IRR':'TWR'}catch(_){return 'TWR'}})(),returnPerf=null,returnPerfSignature='';
+function methodName(){return returnMethod==='IRR'?'IRR מצטבר':'TWR יומי'}
+function methodNote(){return returnMethod==='IRR'?'IRR לתקופה שנבחרה, לא שנתי. משקלל את גודל ותאריכי ההפקדות והמשיכות. אם אין פתרון יחיד ואמין, יוצג קו במקום אחוז.':'TWR יומי מקורב לפי שווי סוף יום. הפקדות ומשיכות נחשבות בסוף היום; ביום המימון הראשון ההפקדה היא שווי הפתיחה. אין שווי תיק בכל תזרים תוך־יומי, ולכן זה אינו TWR מדויק בזמן התזרים.'}
+function returnInputSignature(){return JSON.stringify(state.txs)}
+function chosenRet(start,end,usd,V){if(!returnPerf||returnPerfSignature!==returnInputSignature())return null;const r=portfolioPeriod(returnPerf.all,start,end||today(),returnMethod,usd,V);if(r&&(returnPerf.noHist.length||returnPerf.noFx&&(usd||returnPerf.usesFx)))return {...r,pct:null,reason:'אין היסטוריית מחירים מלאה לחישוב התשואה'};return r}
+
+function syncMethod(){document.querySelectorAll('.ret-method button').forEach(b=>b.classList.toggle('on',b.dataset.method===returnMethod));document.querySelectorAll('.ret-method-note').forEach(e=>e.textContent=methodNote());}
+function setReturnMethod(m){if(!['IRR','TWR'].includes(m))return;returnMethod=m;try{localStorage.setItem('portfolioTracker.returnMethod',m)}catch(_){}syncMethod();miniKey='';renderAll();if(ui.tab!=='perf')renderPerf();}
+
 // Reconstruct daily portfolio value (OHLC) + time-weighted return from the transaction log and historical prices
 async function buildPerformance(){
-  const txs = sortedTxs(); if(!txs.length) return null;
+  const inputSignature=returnInputSignature(),txs = sortedTxs(); if(!txs.length){returnPerf=null;return null;}
   const start = txs[0].date, end = today();
-  const syms = [...new Set(txs.filter(t=>t.symbol).map(t=>t.symbol))];
-  const first = {}; txs.forEach(t=>{ if(t.symbol && !first[t.symbol]) first[t.symbol] = t.date; });
+  const syms = [...new Set(txs.flatMap(t=>[t.symbol,t.toSymbol]).filter(Boolean))];
+  const first = {};txs.forEach(t=>[t.symbol,t.toSymbol].filter(Boolean).forEach(s=>{if(!first[s])first[s]=t.date}));
   const H = {};
   const [fxH] = await Promise.all([getHistory('ILS=', addDays(start,-7)), ...syms.map(async s=>{ H[s] = await getHistory(s, addDays(first[s],-7)); })]);
   const maps = {}; syms.forEach(s=>maps[s] = barMap(H[s])); const fxMap = barMap(fxH);
-  const noHist = syms.filter(s=>!H[s]);
+  const noHist=syms.filter(s=>!H[s]?.bars?.length||H[s].bars[0][0]>first[s]);
+  const noFx=!fxH?.bars?.length||fxH.bars[0][0]>start,usesFx=txs.some(t=>t.currency==='USD');
   const anyOHLC = syms.some(s=>H[s] && H[s].ohlc);
   const last = {};
   let lastFx = fxH && fxH.bars.length ? fxH.bars[0][4] : (fxNow()||3.7);
@@ -2217,7 +2266,9 @@ async function buildPerformance(){
     twr *= (1+r); prevV = C;
     pts.push({date:d, o:O, h:Hh, l:Ll, c:C, netDep:L.netDepILS, fx:(d===end && fxNow()) ? fxNow() : lastFx, netDepU:L.netDepUSD, twr:(twr-1)*100, show: traded || !held || d===end || d===start});
   }
-  return {pts: pts.filter(p=>p.show), all:pts, ytd:ytdBase(pts), noHist, anyOHLC, syms, sources:[...new Set(syms.map(s=>H[s]&&H[s].source).filter(Boolean))]};
+  if(inputSignature!==returnInputSignature())return null;
+  returnPerfSignature=inputSignature;
+  return returnPerf = {pts: pts.filter(p=>p.show), all:pts, ytd:ytdBase(pts), noHist, noFx, usesFx, anyOHLC, syms, sources:[...new Set(syms.map(s=>H[s]&&H[s].source).filter(Boolean))]};
 }
 
 // ====================== refresh ======================
@@ -2317,9 +2368,9 @@ function flash(el, dir){ if(!el || !dir) return; el.classList.remove('flash-up',
 //  So the $ and ₪ percentages differ by the shekel/dollar move since each deposit – both are correct, from different viewpoints.
 function hdrVals(S){
   const fx = fxNow(), usd = dispCur()==='USD' && fx > 0;
-  if(!usd) return {c:'ILS', eq:S.equity, pl:S.totalPL, plPct:S.totalPLPct, day:S.dayILS, dayPct:S.dayPct, net:S.netIfSoldAll};
+  if(!usd) return {c:'ILS', eq:S.equity, pl:S.totalPL, plPct:chosenRet('0000',today(),false,S.equity)?.pct??null, day:S.dayILS, dayPct:S.dayPct, net:S.netIfSoldAll};
   const eq = S.equity/fx, nd = S.L.netDepUSD, pl = eq - nd;
-  return {c:'USD', eq, pl, plPct: nd>0 ? pl/nd*100 : null, day:S.dayUSD, dayPct:S.dayPctUSD, net:S.netIfSoldAll/fx};
+  return {c:'USD', eq, pl, plPct:chosenRet('0000',today(),true,eq)?.pct??null, day:S.dayUSD, dayPct:S.dayPctUSD, net:S.netIfSoldAll/fx};
 }
 function renderHeader(S){ extSessMark();
   const has = state.txs.length>0, V = hdrVals(S), C = V.c;
@@ -2617,7 +2668,7 @@ document.addEventListener('click', e=>{
     toast(histHidden(sc) ? 'היסטוריית הפוזיציות הסגורות מוסתרת (המספרים לא השתנו)' : 'היסטוריית הפוזיציות הסגורות מוצגת'); }
 });
 function isRemoved(sym){ return (state.removedSymbols||[]).includes(sym); }
-function renderClosed(S){
+function renderClosed(S){ $('closedWrap').innerHTML=''; return; /* portfolio display only; all transactions retained */
   const cl = S.closed.filter(p=>!isRemoved(p.sym));      // fully removed securities never show (their trades stay in the ledger)
   if(histHidden()){ $('closedWrap').innerHTML = state.txs.length ? `<div class="hist-bar">${histToggleHtml()}${cl.length?`<span class="hist-note">${cl.length} פוזיציות סגורות מוסתרות · <button class="linkbtn" data-histshow>הצג</button></span>`:''}</div>` : ''; return; }
   const vis = cl.filter(p=>!isHiddenClosed(p.sym)), hid = cl.filter(p=>isHiddenClosed(p.sym));
@@ -2943,22 +2994,15 @@ function rangeBase(all, rStart){
   let prev = before ? before.netDep : 0, prevU = before ? (before.netDepU||0) : 0; const flows = [], flowsU = [];
   all.filter(x=>x.date > (before ? d0 : '')).forEach(x=>{ const f = x.netDep - prev, fu = (x.netDepU||0) - prevU; prev = x.netDep; prevU = x.netDepU||0;
     if(Math.abs(f) > 0.005) flows.push([x.date, f]); if(Math.abs(fu) > 0.005) flowsU.push([x.date, fu]); });
-  return {start, V0, flows, V0u, flowsU, fromStart: !before};
+  return {start, rStart, V0, flows, V0u, flowsU, fromStart: !before};
 }
-function ytdCalc(Y, V1, usd, end){
-  if(!Y || V1==null) return null;
-  end = end || today();
-  const T = Math.max(1, daysBetween(Y.start, end)), V0 = usd ? Y.V0u : Y.V0;
-  let F = 0, W = 0; (usd ? Y.flowsU : Y.flows).forEach(([d,f])=>{ if(d > end) return; const t = Math.min(T, Math.max(0, daysBetween(Y.start, d))); F += f; W += f*(T - t)/T; });
-  const gain = V1 - V0 - F, den = V0 + W;
-  return {gain, pct: den > 0 ? gain/den*100 : null, F, V0};
-}
+function ytdCalc(Y,V1,usd,end){if(!Y)return null;const r=chosenRet(Y.rStart,end||today(),usd,V1);return r?{...r,F:(usd?Y.flowsU:Y.flows).filter(x=>x[0]<=(end||today())).reduce((a,x)=>a+x[1],0),V0:usd?Y.V0u:Y.V0}:null;}
 function renderYtd(S){
   const el = $('perfYtd'); if(!el) return;
   S = S || computeAll(); const fx = fxNow(), C = dispCur()==='USD' && fx ? 'USD' : 'ILS';
   const r = ytdCalc(perfYtd, C==='USD' ? S.equity/fx : S.equity, C==='USD'); if(!r){ el.innerHTML = ''; return; }
   const y = today().slice(0,4);
-  el.innerHTML = `<div class="l">תשואה מתחילת השנה (${y})${ib(`<div>תשואה = רווח ÷ (שווי פתיחה + הפקדות משוקללות לפי הזמן שהושקעו) – שיטת Modified Dietz.</div><div>${perfYtd.fromStart ? `מאז פתיחת התיק ב-<span class="num">${fmtDate(perfYtd.start)}</span>` : `מול שווי 31.12.${Number(y)-1}: <span class="num">${fmtMoney(r.V0,C,0)}</span>`} · הפקדות נטו השנה <span class="num">${fmtSigned(r.F,C,0)}</span>${C==='USD'?' · בדולרים':''}</div>`, 'איך מחושבת התשואה מתחילת השנה')}</div>
+  el.innerHTML = `<div class="l">תשואה מתחילת השנה (${y}) · ${methodName()}${ib(`<div>${methodNote()}</div><div>${perfYtd.fromStart ? `מאז פתיחת התיק ב-<span class="num">${fmtDate(perfYtd.start)}</span>` : `מול שווי 31.12.${Number(y)-1}: <span class="num">${fmtMoney(r.V0,C,0)}</span>`} · הפקדות נטו השנה <span class="num">${fmtSigned(r.F,C,0)}</span>${C==='USD'?' · בדולרים':''}</div>`, 'איך מחושבת התשואה מתחילת השנה')}</div>
     <div class="v"><b id="ytdPct" class="num ${cls(r.gain)}">${r.pct!=null ? fmtPct(r.pct) : '—'}</b><span id="ytdAmt" class="num ${cls(r.gain)}">${fmtSigned(r.gain,C,0)}</span></div>`;
 }
 function updatePerfLive(S){
@@ -2969,28 +3013,28 @@ function updatePerfLive(S){
     if(L.mode==='candle'){ L.h = Math.max(L.h, eq); L.l = Math.min(L.l, eq); L.series.update({time:L.date, open:L.o, high:L.h, low:L.l, close:eq}); }
     else if(L.mode==='value') L.series.update({time:L.date, value:eq});
     const r = L.ret(eq, S);
+    if(L.mode==='ret' && (!r||r.pct==null)){L.series.update({time:L.date});}
     if(L.mode==='ret' && r && r.pct!=null){ L.series.update({time:L.date, value:r.pct}); if(perfLbl) perfLbl(); }
     const el = $('perfPortRet'); if(el && r){ el.textContent = r.pct!=null ? fmtPct(r.pct) : '—'; el.className = 'num '+cls(r.gain); }
     const lp = $('perfLegPort'); if(lp && r){ lp.textContent = r.pct!=null ? fmtPct(r.pct) : '—'; lp.className = 'num '+cls(r.pct); }
     const ea = $('perfPortAmt'); if(ea && r){ ea.textContent = fmtSigned(r.gain, L.cur, 0); ea.className = 'd num '+cls(r.gain); }
     // v97: the 'change in value' tile and each benchmark's 'portfolio ahead / behind by x%' line follow the live value too (they were fixed at the moment the tab was built)
     const cg = $('perfChg'); if(cg && L.V0!=null){ const ch = eq - L.V0; cg.textContent = fmtSigned(ch, L.cur, 0); cg.className = 'num '+cls(ch); }
-    if(r && r.pct!=null && L.diffs) L.diffs.forEach((bR,i)=>{ const e = $('perfDiff'+i); if(!e) return; const diff = r.pct - bR; e.textContent = `התיק ${diff>=0?'עדיף':'מפגר'} ב-${Math.abs(diff).toFixed(2)}%`; e.className = 'd num '+cls(diff); });
+    if(r && r.pct==null && L.diffs)L.diffs.forEach((_,i)=>{const e=$('perfDiff'+i);if(e)e.textContent='אין תשואת תיק להשוואה'});
+    if(r && r.pct!=null && L.diffs) L.diffs.forEach((bR,i)=>{ const e = $('perfDiff'+i); if(!e) return; const diff = r.pct - bR; e.textContent = `${diff==null?'אין תשואת תיק להשוואה':`התיק ${diff>=0?'עדיף':'מפגר'} ב-${Math.abs(diff).toFixed(2)}%`}`; e.className = 'd num '+cls(diff); });
   }catch(e){ console.warn('live chart update', e.message); }
 }
 async function renderPerf(S){
   S = S || computeAll();
   renderAlloc(S); renderPL(S); renderBenchUI();
-  // the chart plots % return over the selected range (not money): the portfolio's range return at each day (Modified Dietz from
-  // the range base, "הכול" = since-start on net deposits – the same formulas as the YTD box and the header), starting at 0% on
-  // the base day; benchmark lines on the same % scale from the same base day
+  // Keep every Performance panel; only the dated return method and its labels change.
   const pct = true;
   const el = $('perfChart'), msg = $('perfMsg'), token = ++perfToken;
   if(!state.txs.length){ perfYtd = null; $('perfYtd').innerHTML = ''; destroyPerf(); msg.style.display='flex'; msg.textContent='אין עדיין עסקאות – הגרף יופיע אחרי ההפקדה הראשונה'; $('perfLegend').innerHTML=''; $('perfCmp').innerHTML=''; $('perfNote').textContent=''; return; }
   if(!lwOk()){ msg.style.display='flex'; msg.textContent='לא ניתן לטעון את ספריית הגרפים (אין חיבור לאינטרנט?)'; return; }
   msg.style.display='flex'; msg.textContent='בונה היסטוריה מהעסקאות…';
   const perf = await buildPerformance();
-  if(token!==perfToken || !perf) return;
+  if(token!==perfToken)return;if(!perf||!perf.all.length){msg.textContent='אין נתונים בטווח הזה';return;}S=computeAll();
   perfYtd = perf.ytd; renderYtd(S);
   const isAll = ui.perfRange==='ALL';
   const rStart = isAll ? perf.all[0].date : ui.perfRange==='YTD' ? ytdStart() : addDays(today(), -RANGE_DAYS[ui.perfRange]);
@@ -3004,17 +3048,16 @@ async function renderPerf(S){
   const qRes = pct ? await Promise.all(bq.map(q=>quickBmHist(q, addDays(baseDate,-10)).then(r=>({q, sym:r.sym, h:r.h})))) : [];
   const qSyms = new Set(qRes.map(x=>x.sym));   // v66: a chip that's on always draws its own line (SPY next to S&P 500 is the user's choice)
   const bmRes = [...qRes.map(x=>[x.sym, x.h, x.q]), ...await Promise.all(bms.filter(b=>!qSyms.has(b)).map(b=>getHistory(b, addDays(baseDate,-10)).then(h=>[b,h]).catch(()=>[b,null])))];
-  if(token!==perfToken) return;
+  if(token!==perfToken) return;S=computeAll();
   destroyPerf(); msg.style.display='none';
   perfChart = makeChart(el, true, false);     // % axis: nothing to mask with the eye
   const legend = [], cmp = [];
   // values in the header's currency (₪/$ toggle): $ = each day's ILS value at that day's FX close; net deposits in $ at each deposit's own rate
   const C = dispCur()==='USD' && fxNow() ? 'USD' : 'ILS', usd = C==='USD';
   const vOf = (p, k='c') => usd ? p[k]/(p.fx||fxNow()) : p[k], ndOf = p => usd ? (p.netDepU||0) : p.netDep;
-  const RB = isAll ? null : rangeBase(perf.all, rStart), lastP = pts[pts.length-1];
-  // return at a point: "הכול" = the header's since-start ((V − net deposits)/net deposits); any other range = modified Dietz from the range base
-  // (YTD = the same rangeBase/ytdCalc as the YTD box, so the two always agree). The last point uses the live value and live net deposits.
-  const ret = (V, nd, end) => { if(isAll){ const g = V - nd; return {gain:g, pct: nd>0 ? g/nd*100 : null}; } return ytdCalc(RB, V, usd, end); };
+  const RB = rangeBase(perf.all, rStart), lastP = pts[pts.length-1];
+  // One period engine drives the series, selected-range tile, YTD, and P/L return.
+  const ret = (V, nd, end) => ytdCalc(RB,V,usd,end);
   const liveRet = (V, S2) => ret(V, isAll ? (usd ? S2.L.netDepUSD : S2.L.netDepILS) : null, today());
   const series = pts.map(p=>{ const V = p.date===lastP.date && lastP.date===today() ? (usd ? S.equity/fxNow() : S.equity) : vOf(p);
     const r = p.date===today() ? liveRet(V, S) : ret(V, ndOf(p), p.date); return {p, V, r}; });
@@ -3022,7 +3065,7 @@ async function renderPerf(S){
   {
     const s = perfChart.addLineSeries({color:chartTheme().line, lineWidth:3, priceLineVisible:false, lastValueVisible:false});
     s.setData([{time:baseDate, value:0}, ...series.filter(x=>x.r && x.r.pct!=null).map(({p,r})=>({time:p.date, value:r.pct}))]);
-    legend.push(['#2563eb', isAll ? 'התיק (תשואה על ההפקדות נטו)' : 'התיק (תשואה מתחילת הטווח)']); perfLive = {mode:'ret', series:s};
+    legend.push(['#2563eb','התיק · '+methodName()]); perfLive = {mode:'ret', series:s};
   }
   if(perfLive) Object.assign(perfLive, {date:lastP.date, usd, cur:C, ret:liveRet});
   const lblLines = perfLive ? [{series:perfLive.series, color:chartTheme().line}] : [];
@@ -3037,11 +3080,11 @@ async function renderPerf(S){
     const color = q ? q.color : bmColor(b), name = q ? q.n : bmName(b), key = q ? q.s : b;
     const bs = benchSeries(h, pts, bmBase, C);
     if(!bs){ cmp.push(`<div><span class="ltr">${esc(name)}</span><b class="muted">אין נתונים</b></div>`); bRet[key] = 'na'; return; }
-    const data = bs.data, bR = bs.ret, diff = portRet - bR;
+    const data = bs.data, bR = bs.ret, diff = portRet==null?null:portRet-bR;
     if(pct){ const s = perfChart.addLineSeries({color, lineWidth:2, priceLineVisible:false, lastValueVisible:false}); s.setData(data); lblLines.push({series:s, color}); legend.push([color, q ? `${q.n} (${b})` : b+(assetOf(b).name?' · '+assetOf(b).name:'')]); }
     bRet[key] = bs.ret;
     perfLive.diffs.push(bR);
-    cmp.push(`<div><span class="ltr">${esc(name)}</span><b class="num ${cls(bR)}">${fmtPct(bR)}</b><span id="perfDiff${perfLive.diffs.length-1}" class="d num ${cls(diff)}">התיק ${diff>=0?'עדיף':'מפגר'} ב-${Math.abs(diff).toFixed(2)}%</span></div>`);
+    cmp.push(`<div><span class="ltr">${esc(name)}</span><b class="num ${cls(bR)}">${fmtPct(bR)}</b><span id="perfDiff${perfLive.diffs.length-1}" class="d num ${cls(diff)}">${diff==null?'אין תשואת תיק להשוואה':`התיק ${diff>=0?'עדיף':'מפגר'} ב-${Math.abs(diff).toFixed(2)}%`}</span></div>`);
   });
   bmRetLast = bRet; renderBenchUI();
   perfChart.timeScale().fitContent();
@@ -3049,11 +3092,7 @@ async function renderPerf(S){
   $('perfLegend').innerHTML = legend.map(([c,t])=>`<span><i style="background:${c}"></i>${esc(t)}</span>`).join('');
   $('perfCmp').innerHTML = cmp.join('');
   $('perfSrc').textContent = perf.sources.length ? 'מקור: '+perf.sources.join(', ') : '';
-  $('perfNote').innerHTML = (isAll ? 'תשואת התיק בטווח "הכול" = רווח ÷ הפקדות נטו (כמו בראש המסך).' : 'תשואת התיק בטווח = רווח ÷ (שווי בתחילת הטווח + הפקדות משוקללות לפי הזמן שהושקעו) – Modified Dietz, כמו "מתחילת השנה".')
-    + (usd ? ' בדולרים: כל הפקדה לפי השער ביום שלה.' : '') + ` מדדים: תשואת מחיר ללא דיבידנדים, מאותו יום בסיס כמו התיק, מומרת ל${usd?'דולרים':'שקלים'} לפי שער הדולר היומי (השוואה הוגנת).`
-    + (pct && !bOn.length ? ' הוסיפו או הפעילו מדד השוואה מתחת לגרף.' : '')
-    + (perf.noHist.length ? `<br>⚠️ אין היסטוריית מחירים עבור <span class="ltr">${perf.noHist.map(esc).join(', ')}</span> – הוערך לפי מחיר העסקה/ידני.` : '')
-    + ' הגרף מציג תשואה באחוזים מתחילת הטווח (0% ביום הבסיס), כך שהפקדות ומשיכות לא נראות כרווח.';
+  $('perfNote').innerHTML=esc(methodNote())+(usd?' בדולרים: כל הפקדה לפי השער ביום שלה.':'')+(last.reason?' '+esc(last.reason)+'.':'')+' מדדים: תשואת מחיר ללא דיבידנדים, באותו מטבע ומאותו יום בסיס כמו התיק. ב־IRR: השקעה מדומה עם אותם תזרימים ותאריכים.'+(bOn.length?'':' הוסיפו או הפעילו מדד השוואה מתחת לגרף.')+(perf.noHist.length?'<br>⚠️ אין היסטוריית מחירים עבור <span class="ltr">'+perf.noHist.map(esc).join(', ')+'</span> - הוערך לפי מחיר העסקה/ידני.':'')+(perf.noFx&&(usd||perf.usesFx)?'<br>⚠️ אין היסטוריית שער מטבע מלאה לחישוב התשואה.':'')+' הגרף מציג תשואה מצטברת מתחילת הטווח, כך שהפקדות ומשיכות אינן רווח.';syncMethod();if(last.reason){const q=$('perfPortRet');if(q)q.title=last.reason;}renderHeader(S);renderPL(S);
 }
 // ---------- quick benchmarks (S&P 500 / נאסד"ק) – shared by the main-screen chart and the performance tab ----------
 // Data: CNBC daily history (free, no key) of the index itself (.SPX / .NDX); if it has no data, the ETF (SPY / QQQ).
@@ -3225,7 +3264,7 @@ async function quickBmHist(q, from){
 // dollar strengthens, exactly like a dollar holding in the portfolio. Base (I_0, X_0) = the close of the range's base day (the
 // day before the range starts – the same base the portfolio's range return uses; "הכול" = the portfolio's first day).
 // Price return only, no dividends.
-function benchSeries(h, pts, base, C){
+function priceBenchSeries(h, pts, base, C){
   if(!h || !h.bars || !h.bars.length || !pts.length) return null;
   const conv = (fx)=> h.cur===C ? 1 : (h.cur==='USD' && C==='ILS') ? fx : (h.cur==='ILS' && C==='USD') ? 1/fx : 1;
   let I0 = null; for(const x of h.bars){ if(x[0] <= base.date) I0 = x[4]; else break; }
@@ -3236,6 +3275,11 @@ function benchSeries(h, pts, base, C){
   if(base.date < pts[0].date) data.unshift({time:base.date, value:0});
   return {data, ret:data[data.length-1].value};
 }
+function benchSeries(h,pts,base,C){if(returnMethod==='IRR'&&h?.bars?.length&&pts.length&&h.bars[0][0]>pts[0].date)return null;const b=priceBenchSeries(h,pts,base,C);if(!b||returnMethod!=='IRR'||!returnPerf)return b;
+ const usd=C==='USD',start=pts[0].date,before=returnPerf.all.filter(p=>p.date<start).at(-1),V0=before?(usd?before.c/before.fx:before.c):0,nd=p=>usd?p.netDepU:p.netDep;let prev=before?nd(before):0,units=V0;
+ const prices=new Map(b.data.map(p=>[p.time,1+p.value/100])),synthetic=[];if(before)synthetic.push({...before,c:V0,fx:1,netDep:prev,netDepU:prev});
+ for(const p of returnPerf.all.filter(p=>p.date>=start)){let price=prices.get(p.date);if(price==null){const prior=b.data.filter(x=>x.time<=p.date).at(-1);price=prior?1+prior.value/100:1;}const flow=nd(p)-prev;prev=nd(p);if(!(price>0)||!Number.isFinite(flow))return null;units+=flow/price;if(units< -1e-7)return null;synthetic.push({date:p.date,c:units*price,fx:1,netDep:prev,netDepU:prev});}
+ const results=pts.map(p=>({time:p.date,value:portfolioPeriod(synthetic,start,p.date,'IRR',false)?.pct}));if(results.at(-1)?.value==null)return null;const data=results.filter(p=>p.value!=null);return data.length?{data,ret:results.at(-1).value}:null;}
 function bmLegHtml(items){ return items.map(([c,t,v,id])=>`<span><i style="background:${c}"></i>${esc(t)} <b${id?` id="${id}"`:''} class="num ${cls(v)}">${v!=null ? fmtPct(v) : '—'}</b></span>`).join('<span class="muted">·</span>'); }
 // ---------- main screen: compact performance chart ----------
 // The card can be collapsed to one slim row (title + the range return); remembered in localStorage (a UI preference only).
@@ -3251,7 +3295,7 @@ function applyMiniOpen(){ const o = miniOpen(), card = $('miniCard'), b = $('min
 // ("הכול" = since-start like the header). It is rebuilt only when its inputs change (range, currency, eye, transactions, day);
 // a live price tick only moves today's point (cheap), so it never slows the screen's live updates.
 let miniChart = null, miniLive = null, miniKey = '', miniToken = 0;
-function miniSig(){ const t = state.txs; return [ui.perfRange, dispCur(), bmQuick().join(','), t.length, t.reduce((a,x)=>Math.max(a, x.ts||0), 0), today()].join('|'); }
+function miniSig(){ const t = state.txs; return [returnMethod,ui.perfRange, dispCur(), bmQuick().join(','), t.length, t.reduce((a,x)=>Math.max(a, x.ts||0), 0), today()].join('|'); }
 function destroyMini(){ miniLbls = null; { const b = document.querySelector('#miniChart > .endlbls'); if(b) b.remove(); } if(miniChart){ miniChart.remove(); miniChart = null; } miniLive = null; miniKey = ''; }
 function syncRangeChips(){ ['perfRange','miniRange'].forEach(id=>{ const el = $(id); if(el) el.querySelectorAll('button[data-v]').forEach(b=>b.classList.toggle('on', b.dataset.v===ui.perfRange)); }); }
 function setMiniRet(r, C){ const p = $('miniPct'), a = $('miniAmt'); if(!p) return;
@@ -3277,15 +3321,15 @@ async function renderMini(S, force){
   msg.style.display = 'none';
   const C = dispCur()==='USD' && fxNow() ? 'USD' : 'ILS', usd = C==='USD', lastP = pts[pts.length-1];
   const vOf = p => usd ? p.c/(p.fx||fxNow()) : p.c, eqNow = S2 => usd ? S2.equity/fxNow() : S2.equity;
-  const RB = isAll ? null : rangeBase(perf.all, rStart);
-  const ret = (V, S2) => isAll ? (()=>{ const nd = usd ? S2.L.netDepUSD : S2.L.netDepILS, g = V - nd; return {gain:g, pct: nd>0 ? g/nd*100 : null}; })() : ytdCalc(RB, V, usd, today());
+  const RB = rangeBase(perf.all, rStart);
+  const ret = (V, S2) => ytdCalc(RB,V,usd,today());
   const el = $('miniChart'), pctMode = true; miniChart = makeChart(el, true, false);   // % return, like the tab
   miniChart.applyOptions({handleScroll:false, handleScale:false, timeScale:{borderVisible:false, fixLeftEdge:true, fixRightEdge:true}});
   let s;
   {
     // every line is a % return from the same base day (the portfolio: the same range return as the figure above it)
     const ndOf = p => usd ? (p.netDepU||0) : p.netDep;
-    const retAt = p => { if(p.date===today()) return ret(eqNow(S), S); const V = vOf(p); if(isAll){ const nd = ndOf(p), g = V - nd; return {gain:g, pct: nd>0 ? g/nd*100 : null}; } return ytdCalc(RB, V, usd, p.date); };
+    const retAt = p => p.date===today()?ret(eqNow(S),S):ytdCalc(RB,vOf(p),usd,p.date);
     s = miniChart.addLineSeries({color:chartTheme().line, lineWidth:3, priceLineVisible:false, lastValueVisible:false}); var mLines = [{series:s, color:chartTheme().line}];
     s.setData([{time:base.date, value:0}, ...pts.map(p=>({p, r:retAt(p)})).filter(x=>x.r && x.r.pct!=null).map(({p,r})=>({time:p.date, value:r.pct}))]);
     const leg = [['#2563eb','התיק', ret(eqNow(S), S)?.pct, 'miniLegPort']];
@@ -3324,7 +3368,7 @@ function renderAlloc(S){
 function renderPL(S){
   const rows = [
     ['רווח/הפסד כולל (ברוטו)', fmtSigned(S.totalPL,'ILS',0), S.totalPL],
-    ['תשואה על ההפקדות', fmtPct(S.totalPLPct), S.totalPLPct],
+    ['תשואה מאז הפתיחה · '+methodName(), fmtPct(chosenRet('0000',today(),dispCur()==='USD'&&fxNow()>0,dispCur()==='USD'&&fxNow()>0?S.equity/fxNow():S.equity)?.pct), chosenRet('0000',today(),dispCur()==='USD'&&fxNow()>0,dispCur()==='USD'&&fxNow()>0?S.equity/fxNow():S.equity)?.pct],
     ['רווח ממומש (ברוטו)', fmtSigned(S.realizedILS,'ILS',0), S.realizedILS],
     [`מס משוער על הממומש (${state.settings.taxRate}%, אחרי מגן מס)`, fmtMoney(-S.taxRealized,'ILS',0), -S.taxRealized],
     ...(S.hasFlows ? [['דיבידנדים שהתקבלו', fmtSigned(S.divILS,'ILS',0), S.divILS], ['ריבית והטבות', fmtSigned(S.intILS,'ILS',0), S.intILS],
@@ -6402,6 +6446,8 @@ async function nightPoll(){
   }finally{ NIGHT.busy = false; }
 }
 setInterval(nightPoll, 1000);
+window.setReturnMethod=setReturnMethod;
+document.addEventListener('toggle',e=>{if(e.target.matches?.('.al-stock-fold'))alertStockOpen=e.target.open},true);
 // ====================== init ======================
 renderAll();
 if(dispCur()==='USD' || state.txs.some(t=>t.type==='sell' || (t.type==='buy' && t.currency==='USD'))) loadTaxData().then(D=>{ if(D) renderAll(); });   // ~14 KB, cached by the service worker
@@ -6595,6 +6641,7 @@ var alTg = (id, on, dis)=>`<input type="checkbox" class="al-tg" data-al="${id}" 
 var alLi = (txt, sub, id, dim)=>`<label class="al-li"${dim?' style="opacity:.45"':''}><div>${txt}${sub?`<small>${sub}</small>`:''}</div>${alTg(id, alP[id], !alP.on || !!dim)}</label>`;
 var alIc = k => k==='news' ? '📰' : k==='rep' ? '📊' : k==='px' ? '📈' : '🔔';
 function alAgo(t){ const m = Math.round((Date.now()-t)/60e3); if(m<1) return 'עכשיו'; if(m<60) return 'לפני '+m+' ד׳'; const h = Math.round(m/60); if(h<24) return 'לפני '+h+' שע׳'; return new Date(t).toLocaleDateString('he-IL', {day:'numeric', month:'numeric'})+' '+new Date(t).toLocaleTimeString('he-IL', {hour:'2-digit', minute:'2-digit'}); }
+let alertStockOpen=false;
 function alRender(){ const c = $('alertsCard'); if(!c || !alView) return;
   const bar = t=>`<div class="set-bar"><h2>${t}</h2><button class="btn set-back" id="alBack" aria-label="חזרה">חזרה ←</button></div>`;
   if(alView==='list'){
@@ -6612,7 +6659,7 @@ function alRender(){ const c = $('alertsCard'); if(!c || !alView) return;
       <div class="set-sec"><h4>📊 דוחות כספיים</h4>${alLi('יום לפני הדוח','', 'repBefore')}${alLi('בבוקר יום הדוח','', 'repMorning')}${alLi('דוח פורסם','', 'repPub')}</div>
       <div class="set-sec"><h4>📈 תנועת מחיר יומית</h4>${alLi('התראה כשמניה זזה מעל הסף', '', 'pxOn')}
         <div class="al-li"><div>סף ברירת מחדל</div><input class="al-pct" id="alPxDef" inputmode="decimal" value="${num(alP.pxDef)||''}" placeholder="%" ${alP.on?'':'disabled'}></div></div>
-      <div class="set-sec"><h4>לפי מניה</h4>${syms.length ? `<div class="al-note">מתג = התראות למניה (חדשות, דוחות, מחיר). אחוז ריק = סף ברירת המחדל.</div>` + syms.map(s=>`<div class="al-li"><span class="al-sym">${esc(s)}</span><input class="al-pct" data-px="${esc(s)}" inputmode="decimal" value="${num(alP.px[s])!=null?num(alP.px[s]):''}" placeholder="${num(alP.pxDef)||'—'}%" ${alP.on?'':'disabled'}>${`<input type="checkbox" class="al-tg" data-mute="${esc(s)}" ${alP.muted.includes(s)?'':'checked'} ${alP.on?'':'disabled'} aria-label="${esc(s)}">`}</div>`).join('') : '<div class="al-note">אין עדיין מניות בתיק או ברשימת המעקב.</div>'}</div>
+      <details class="set-sec al-stock-fold" ${alertStockOpen?'open':''}><summary><b>לפי מניה <small>${syms.length} ניירות</small></b><span class="fold-show">הרחבה ▾</span><span class="fold-hide">כיווץ ▴</span></summary>${syms.length ? `<div class="al-note">מתג = התראות למניה (חדשות, דוחות, מחיר). אחוז ריק = סף ברירת המחדל.</div>` + syms.map(s=>`<div class="al-li"><span class="al-sym">${esc(s)}</span><input class="al-pct" data-px="${esc(s)}" inputmode="decimal" value="${num(alP.px[s])!=null?num(alP.px[s]):''}" placeholder="${num(alP.pxDef)||'—'}%" ${alP.on?'':'disabled'}>${`<input type="checkbox" class="al-tg" data-mute="${esc(s)}" ${alP.muted.includes(s)?'':'checked'} ${alP.on?'':'disabled'} aria-label="${esc(s)}">`}</div>`).join('') : '<div class="al-note">אין עדיין מניות בתיק או ברשימת המעקב.</div>'}</details>
       ${alSN ? `<div class="set-sec"><button class="btn btn-light btn-block" id="alTest">🔔 שליחת התראת בדיקה</button><button class="btn btn-light btn-block" id="alSys" style="margin-top:8px">⚙️ הגדרות התראות במערכת</button></div>
       <div class="al-note">ℹ️ ${perm==='granted' ? 'התראות דרך האפליקציה פעילות' : 'התראות דרך האפליקציה'} – ${alFcmOk ? '✓ מחובר להתראות מיידיות: חדשות ודוחות מגיעים תוך שניות, גם כשהאפליקציה סגורה. כגיבוי, בדיקה ברקע גם כל ~15 דקות.' : 'חדשות ודוחות נבדקים ברקע בערך כל 15 דקות, גם כשהאפליקציה סגורה (אנדרואיד עשוי לעכב במצב חיסכון בסוללה).'} התראות מחיר נבדקות רק כשהאפליקציה פתוחה.</div>` : `<div class="al-note">ℹ️ הבדיקה רצה כשהאפליקציה פתוחה, וגם ברקע כשהדפדפן מאפשר (אנדרואיד, אפליקציה מותקנת – לא בזמן קבוע). ${alPushOk ? '✓ מחובר לשרת ההתראות – התראות מגיעות גם כשהאפליקציה סגורה (חדשות ודוחות).' : 'שרת התראות (Cloudflare) עוד לא פעיל – ההתראות לא מובטחות כשהאפליקציה סגורה.'} התראות מחיר נבדקות רק כשהאפליקציה פתוחה.</div>`}`;
   }
