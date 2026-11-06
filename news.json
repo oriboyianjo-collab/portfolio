@@ -1,5 +1,19 @@
 [
   {
+    "כותרת": "תיקון לכתבת Reuters על הצעות חוק AI: שיוך הטיקר SPCX ל-SpaceX לא נתמך במקור",
+    "category": "macro",
+    "קישור": "https://www.channelnewsasia.com/business/democrats-planning-flood-ai-bills-when-they-take-control-congress-6530926",
+    "מקורות": [
+      {
+        "label": "Reuters דרך CNA, מקור הכתבה המקורית",
+        "url": "https://www.channelnewsasia.com/business/democrats-planning-flood-ai-bills-when-they-take-control-congress-6530926"
+      }
+    ],
+    "טקסט": "לא מאומת מול מקור ראשוני\nתיקון לכתבה \"ארה״ב: לפי Reuters, הדמוקרטים מתכננים הצעות חוק על עלויות חשמל, בדיקות AI ואחריות לנזק; טרם חקיקה\", שהועלתה ב-06.11.2026 בשעה 13:27.\n\nבגוף הכתבה נוסף בטעות הטיקר SPCX אחרי השם SpaceX. השיוך אינו נתמך בדיווח Reuters דרך CNA ואין להסתמך עליו. המקור מזכיר SpaceX בלי טיקר. התיקון אינו קובע טיקר חלופי ואינו הודעה חדשה של החברה.\n\nיתר הסיכום עסק בתכניות מחוקקים, לא בחקיקה שהושלמה. זהו תיקון לזיהוי החברה בכתבה הקודמת, לא שינוי במעמד הצעות החוק.",
+    "תאריך": "2026-11-06 13:31",
+    "הועלה": "2026-11-06 13:31"
+  },
+  {
     "כותרת": "Aptiv (APTV) חתמה על שיתופי פעולה ברובוטיקה עם TARS ו-Shanghai Electric; ייצור ראשוני מתוכנן לסוף 2026",
     "category": "micro",
     "קישור": "https://ir.aptiv.com/news/news-details/2026/Aptiv-Accelerates-Robotics-Expansion-With-Industry-Partners-2026-d-6_DOGBsW/default.aspx",
