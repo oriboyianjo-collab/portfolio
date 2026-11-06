@@ -3573,7 +3573,9 @@ function chgInst(it, a, b){ if(a==null || b==null || !b) return {t:'—', c:0};
 // ---- bars ----
 const instCache = {}, INST_TTL = {'1D':5*60e3, '1W':15*60e3, '1M':3*3600e3, 'YTD':3*3600e3, '1Y':6*3600e3, '5Y':12*3600e3, 'MAX':24*3600e3};
 let barQ = [], barRunning = 0;
-function barSlot(fn){ return new Promise((res, rej)=>{ const go = async()=>{ barRunning++; try{ res(await fn()); }catch(e){ rej(e); } finally{ barRunning--; const n = barQ.shift(); if(n) n(); } }; if(barRunning < 4) go(); else barQ.push(go); }); }
+const instPending=new Map();
+function barPromote(key){ const j=barQ.find(x=>x.key===key);if(j){j.priority=1;barQ.sort((a,b)=>b.priority-a.priority);} }
+function barSlot(fn,priority=0,key=''){ return new Promise((res,rej)=>{const job={priority,key,go:async()=>{barRunning++;try{res(await fn());}catch(e){rej(e);}finally{barRunning--;const n=barQ.shift();if(n)n.go();}}};if(barRunning<4)job.go();else{barQ.push(job);barQ.sort((a,b)=>b.priority-a.priority);} }); }
 const nyFmt = new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hourCycle:'h23'});
 function nyParts(ms){ const o = Object.fromEntries(nyFmt.formatToParts(new Date(ms)).map(p=>[p.type, p.value])); return {d:`${o.year}-${o.month}-${o.day}`, hm:+(o.hour+o.minute)}; }
 // v69: bar interval per range – only what CNBC serves (1M/5M/10M/30M/1H intraday ≈ last 3 months, 1D/1W/1MO) and sensible for the range
@@ -3597,11 +3599,17 @@ function splitFixes(cq, a, b, adjP){ const key = cq+'|'+a+'|'+b+'|'+today(); if(
     return out; }).catch(e=>{ delete SPLITFIX[key]; return []; })); }
 function applySplitFixes(bars, fixes){ if(!fixes || !fixes.length) return bars;
   return bars.map(b=>{ const d = String(b.tradeTime).slice(0,8); let f = 1; fixes.forEach(x=>{ if(d < x.d) f *= x.f; }); return f===1 ? b : Object.assign({}, b, ...['close','open','high','low'].map(k=>({[k]: +b[k]/f}))); }); }
-async function instBars(it, range, iv){
+function instBars(it,range,iv,priority=0){
+ iv=iv||(customRange(range)?'1D':IV_DEF[range]);const key=instKey(it,range,iv),c=instCache[key];
+ if(c&&Date.now()-c.at<(customRange(range)?24*3600e3:INST_TTL[range]))return Promise.resolve(c.pts);
+ if(instPending.has(key)){if(priority)barPromote(key);return instPending.get(key);}
+ const p=instBarsLoad(it,range,iv,priority).finally(()=>instPending.delete(key));instPending.set(key,p);return p;
+}
+async function instBarsLoad(it, range, iv, priority=0){
   iv = iv || (customRange(range)?'1D':IV_DEF[range]); const key = instKey(it, range, iv), c = instCache[key]; if(c && Date.now()-c.at < (customRange(range)?24*3600e3:INST_TTL[range])) return c.pts;
   if(it.der){ // v86: JPY/ILS, CHF/ILS – bar by bar from USD/ILS ÷ USD/JPY (or USD/CHF); each USD/ILS bar takes the latest other bar at or before its time
     // (within one bar step), so gaps never pair far-apart prices. High/low: the ratio's open/close extremes widened by the legs' own ranges (approximate)
-    const mk = s=>({k:'fxleg:'+s, q:s, n:s, dp:4}), [A, B] = await Promise.all([instBars(mk(it.der.a), range, iv), instBars(mk(it.der.b), range, iv)]), m = it.der.m;
+    const mk = s=>({k:'fxleg:'+s, q:s, n:s, dp:4}), [A, B] = await Promise.all([instBars(mk(it.der.a), range, iv, priority), instBars(mk(it.der.b), range, iv, priority)]), m = it.der.m;
     const step = A.length > 1 ? Math.max(...A.slice(1).map((p,i)=>p[0]-A[i][0]).sort((x,y)=>x-y).slice(0, Math.max(1, A.length>>1))) : 0;   // ~median spacing
     let j = 0; const pts = [];
     A.forEach(a=>{ while(j+1 < B.length && B[j+1][0] <= a[0]) j++; const b = B[j]; if(!b || b[0] > a[0] || (step && a[0]-b[0] > step*1.5)) return;
@@ -3640,7 +3648,7 @@ async function instBars(it, range, iv){
       if(ivIntra(iv) && it.stock) all = all.filter(p=>{ const x = nyParts(p[0]); return x.hm>=930 && x.hm<1600; });
       if(all.length){ const lastT = all[all.length-1][0], ld = it.stock ? nyParts(lastT).d : null; pts = all.filter(p=>ld ? nyParts(p[0]).d===ld : p[0] >= lastT - 12*3600e3); }
     }catch(e){ console.warn('bars 1D last session', it.q, e.message); } }
-    if(pts.length || !it.sec) instCache[key] = {at:Date.now(), pts}; return pts; }); }   // v87: an empty answer for a security (feed hiccup) isn't remembered – the next try asks again
+    if(pts.length || !it.sec) instCache[key] = {at:Date.now(), pts}; return pts; },priority,key); }   // v87: an empty answer for a security (feed hiccup) isn't remembered – the next try asks again
 // MAX means all records available from this feed, never a claim of complete IPO history.
 function customReturnOk(it,pts){if(!pts||pts.length<2)return false;const d=new Date(pts[0][0]).toISOString().slice(0,10);return ['AAPL','MSFT','NVDA','TSLA'].includes(it?.q)||(it?.q==='SQQQ')||({IBM:'2021-11-04',GE:'2024-04-02',F:'2023-02-10'}[it?.q]&&d>={IBM:'2021-11-04',GE:'2024-04-02',F:'2023-02-10'}[it.q]);}
 function rangeBasisPending(it,range,pts){
@@ -4177,8 +4185,16 @@ function drawWatch(){ if(wlGesture){ wlDrawPending = true; return; }   // v113: 
   if(switched || sl==null) wlTabsScroll(switched && sl!=null);   // v113: glide to the newly active tab (instant on first draw); same-list redraws leave the strip where the user put it
   else if(wlGlide!=null && bar1){ if(Math.abs(bar1.scrollLeft - wlGlide) > 2) bar1.scrollTo({left: wlGlide, behavior: wlReduced() ? 'auto' : 'smooth'}); else wlGlide = null; }   // v113: a rebuild cancelled the in-flight glide - resume it
 }
-async function renderWatch(){ drawWatch(); const all = wlItems(); if(!all.length) return; await instQuotes(all); if(ui.tab==='watch') drawWatch();
-  const its = wlCur().items.map(secInst); await Promise.all(its.map(it=>instBars(it, '1D').catch(()=>{}))); if(ui.tab==='watch') drawWatch(); }   // v112: bars for the visible list
+function wlPatchSpark(it,listId){if(ui.tab!=='watch'||wlCur().id!==listId)return;
+ if(wlPendingHtml!=null){wlPendingHtml=wlSecHtml(wlCur());return;}
+ const q=iq(it),c=instCache[instKey(it,'1D')],pts=c?withLive(it,'1D',c.pts):[];
+ const html=pts.length>1?sparkSvg(pts.map(p=>p[1]),q&&q.prev,!q||!q.prev||q.price>=q.prev,48,24):'';
+ document.querySelectorAll('#wlLists [data-ws="'+CSS.escape(it.sym)+'"] .pc-s').forEach(el=>{if(el.innerHTML!==html)el.innerHTML=html;});
+}
+async function renderWatch(){ drawWatch();const all=wlItems();if(!all.length)return;const listId=wlCur().id,its=wlCur().items.map(secInst);
+ const quotes=instQuotes(all).then(()=>{if(ui.tab==='watch'&&wlCur().id===listId)drawWatch();}).catch(()=>{});
+ await Promise.all(its.map(async it=>{if(!iq(it))await quotes;if(ui.tab!=='watch'||wlCur().id!==listId)return;await instBars(it,'1D',undefined,1).catch(()=>{});wlPatchSpark(it,listId);}));await quotes;
+} // Visible graphs start alongside quote refresh and paint independently as each completes.
 function wlNewList(){ const n = (prompt('שם הרשימה החדשה:', `רשימה ${wlData.lists.length+1}`)||'').trim(); if(!n) return; const id = 'w'+Date.now().toString(36);
   wlData.lists.push({id, name:n.slice(0,40), items:[]}); wlData.cur = id; wlOpen[id] = true; saveWlOpen(); saveWl(); renderWatch(); }
 $('wlNew').onclick = ()=>{ if(!wlSwapSettle()) return; wlNewList(); };   // v114: settle any staged swap before acting
