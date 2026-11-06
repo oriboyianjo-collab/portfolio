@@ -36296,13 +36296,29 @@
     "מדד": [
       "S&P 500"
     ],
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים להכנסות הרבעון הקרוב בפרסום 04.11: 794M USD. Newsquawk, סקירת שבוע 02–06.11.2026; עמודת Qtrly Exp Revenue USD, לא תחזית שנתית. לא תחזית הנהלה. התאמת היקף ההכנסות להשוואה לא אומתה; השוואה כבויה.",
+    "הערה": "תוצאות Q3 2026, שהסתיים ב-30.09.2026; פרסום 04.11.2026 בשעה 23:30 בישראל.\nהכנסות כוללות 1,193.530 מיליון דולר; הפסד GAAP מדולל למניה 1.27 דולר. FFO מדולל למניה 0.08 דולר ו-Core FFO מדולל למניה 1.03 דולר הם מדדים אחרים ואינם EPS לפי GAAP. הצפי המקורי 0.97 נשמר; לא אומת לאיזה מדד הוא מתייחס, ולכן אין חישוב הפתעה ב-EPS. צפי ההכנסות 794M נשמר; התאמתו להיקף החברה לאחר המיזוג לא אומתה ולכן אין השוואת הפתעה בהכנסות.\nהמיזוג בין EQR ל-AVB הושלם ב-17.08.2026. הנתונים הכספיים משקפים AVB לפני המועד ואת החברה המשולבת אחריו; תקופות ההשוואה ההיסטוריות הן AVB בלבד. החלפת מניות AVB לפי יחס 2.793 הוחלה לאחור על נתוני המניה.\nEPS ו-FFO כוללים עלויות מיזוג של 0.92 דולר למניה שמוחרגות מ-Core FFO. החברה העלתה את יעד החיסכון התפעולי השנתי בקצב מלא ל-135 מיליון דולר, עם יעד הגעה עד מרץ 2028; אומדן עלויות המיזוג הכולל כ-725 מיליון דולר, לא סכום חיסכון שכבר הושג.\nתחזית Q4 2026: הפסד EPS לפי GAAP של 0.91–0.95 דולר למניה, FFO למניה 0.92–0.96 ו-Core FFO למניה 1.01–1.05 דולר. תחזית שינוי הכנסות merged same-store לכל 2026 היא 2.0%–2.4%, לא צמיחה בכל ההכנסות המאוחדות ולא תוצאה שכבר פורסמה.",
     "צפי_הכנסות": "794M",
     "מטבע_צפי_הכנסות": "USD",
     "מקור_צפי_הכנסות": "https://www.newsquawk.com/content/research_sheets/production/original/000/042/553/Weekly_US_Earnings_Estimates__2nd-6th_November_2026.pdf",
     "אימות_תקופת_צפי_הכנסות": "הרבעון הקרוב בפרסום 04.11",
     "אימות_צפי_הכנסות": "Explicit-currency period-matched analyst revenue estimate; reporting-scope comparison pending",
-    "השוואה_הכנסות": "לא"
+    "השוואה_הכנסות": "לא",
+    "הערות_מקור_ארכיון": "\nBeforeActuals4170\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות; צפי EPS לפי Nasdaq; בסיס הצפי לא ידוע\nצפי אנליסטים להכנסות הרבעון הקרוב בפרסום 04.11: 794M USD. Newsquawk, סקירת שבוע 02–06.11.2026; עמודת Qtrly Exp Revenue USD, לא תחזית שנתית. לא תחזית הנהלה. התאמת היקף ההכנסות להשוואה לא אומתה; השוואה כבויה.",
+    "בפועל_EPS": "-1.27",
+    "מטבע_EPS": "USD",
+    "בסיס_בפועל_EPS": "GAAP diluted net loss per share Q3 2026; not FFO or Core FFO",
+    "השוואה_EPS": "לא",
+    "הסבר_EPS": "הנתון בפועל הוא הפסד למניה GAAP; לא אומת אם הצפי המקורי0.97 מתייחס ל-EPS, ל-FFO או ל-Core FFO. אין להשוות מדדים שונים.",
+    "הכנסות_בפועל": "1193.530M",
+    "מטבע_הכנסות": "USD",
+    "בסיס_בפועל_הכנסות": "Consolidated total revenues Q3 2026: AVB before merger and combined company after Aug17",
+    "הסבר_הכנסות": "הצפי המקורי794M נשמר; התאמתו להיקף המאוחד לפני ואחרי מיזוג EQR/AVB לא אומתה.",
+    "קישור_לדוח": "https://investors.vivmarkresidential.com/news-events/press-releases/detail/119/vivmark-residential-reports-third-quarter-2026-results-and-provides-fourth-quarter-and-full-year-2026-guidance",
+    "release_time_il": "23:30",
+    "release_time_approx": false,
+    "release_time_source": "https://investors.vivmarkresidential.com/news-events/press-releases/detail/119/vivmark-residential-reports-third-quarter-2026-results-and-provides-fourth-quarter-and-full-year-2026-guidance",
+    "release_time_verified_date": "2026-11-06",
+    "release_time_basis": "issuer-release-timestamp"
   },
   {
     "חברה": "Vishay Precision Group, Inc.",
