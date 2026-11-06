@@ -874,6 +874,10 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-bd{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:99px;background:#d1fae5;color:#065f46;white-space:nowrap}html.dark .ob-bd{background:#064e3b;color:#6ee7b7}
 .ob-bd.off,html.dark .ob-bd.off{background:var(--border);color:var(--muted)}
 .ob-live{display:flex;align-items:center;gap:10px}
+.ob-vcol{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+.ob-vol{font-size:.72rem;color:var(--muted);white-space:nowrap}
+.ob-vol bdi.num{color:var(--text);font-weight:700}
+.ob-vol .ib{width:17px;height:17px;min-width:17px;margin-inline-start:4px;font-size:11px}
 .ob-rchg{display:flex;align-items:baseline;gap:8px;font-size:.95rem;white-space:nowrap}
 .ob-rchg:empty{display:none}
 .ob-sp{display:flex;justify-content:flex-start;gap:8px;align-items:center;font-size:.74rem;color:var(--muted);margin:0 0 6px}.ob-sp b{color:var(--text);direction:ltr;unicode-bidi:isolate}
@@ -4065,11 +4069,11 @@ const OB = {t:null, sym:null, seq:0, fails:0, busy:false, last:null};
 const obFmt = p=>Number(p).toLocaleString('en-US',{minimumFractionDigits:p<1?4:2, maximumFractionDigits:p<1?4:2});
 function obHtml(sym){ if(!OB_URL || !sym || isCrypto(sym)) return '';
   const us = marketOf(sym)==='us';
-  return `<div class="ob" id="obBox" data-sym="${esc(sym)}"><div class="ob-h"><b>📖 ספר פקודות</b><div class="ob-live"><span class="ob-rchg" id="obRchg"></span><span class="ob-bd off" id="obBd">${us?'טוען…':'אין נתונים'}</span></div></div><div id="obBody">${us?'<div class="ob-msg">טוען ספר פקודות…</div>':'<div class="ob-msg">אין נתוני ספר פקודות לנייר זה – הספר זמין למניות ותעודות סל בארה״ב בלבד.</div>'}</div></div>`; }
+  return `<div class="ob" id="obBox" data-sym="${esc(sym)}"><div class="ob-h"><b>📖 ספר פקודות</b><div class="ob-live"><span class="ob-rchg" id="obRchg"></span><div class="ob-vcol"><span class="ob-bd off" id="obBd">${us?'טוען…':'אין נתונים'}</span><span class="ob-vol" id="obVol"></span></div></div></div><div id="obBody">${us?'<div class="ob-msg">טוען ספר פקודות…</div>':'<div class="ob-msg">אין נתוני ספר פקודות לנייר זה – הספר זמין למניות ותעודות סל בארה״ב בלבד.</div>'}</div></div>`; }
 function obStop(){ if(OB.t){ clearInterval(OB.t); OB.t = null; } OB.sym = null; OB.seq++; OB.busy = false; }
 const obLive = ()=>{ const s = usSession(); return s==='pre' || s==='reg' || s==='post'; };
 function obMount(sym){ obStop(); const box = document.getElementById('obBox'); if(!OB_URL || !box || !sym || marketOf(sym)!=='us') return;
-  OB.sym = sym; OB.fails = 0; OB.last = null; obTick(true); OB.t = setInterval(()=>obTick(false), 5000); }
+  OB.sym = sym; OB.fails = 0; OB.last = null; obVolDraw(); obTick(true); OB.t = setInterval(()=>obTick(false), 5000); }
 async function obTick(first){ const box = document.getElementById('obBox');
   if(!box || !box.isConnected || box.dataset.sym!==OB.sym || !$('sheet').classList.contains('open')){ obStop(); return; }
   if(document.hidden || OB.busy) return; if(!first && !obLive()) return;
@@ -4079,6 +4083,13 @@ async function obTick(first){ const box = document.getElementById('obBox');
   catch(e){ if(seq!==OB.seq) return; OB.fails++; if(OB.last) obDraw(OB.last, OB.fails>=3); else if(OB.fails>=2) obMsg('לא ניתן לטעון ספר פקודות כרגע.', 'שגיאה'); }
   finally{ clearTimeout(to); if(seq===OB.seq) OB.busy = false; } }
 function obMsg(t, badge){ const b = document.getElementById('obBody'), d = document.getElementById('obBd'); if(b) b.innerHTML = `<div class="ob-msg">${esc(t)}</div>`; if(d){ d.textContent = badge; d.className = 'ob-bd off'; } }
+// volume under the Cboe badge: today's volume + ⓘ -> average daily volume 3 months back (av3m / CNBC, same computation as the פרטים grid)
+function obVolDraw(){ const el = document.getElementById('obVol'); if(!el) return;
+  const it = detItem(), q = it && iq(it), X = (q && q.x) || {};
+  if(!it || marketOf(it.sym)!=='us' || X.vol==null){ el.innerHTML = ''; return; }
+  const a3 = av3m[it.sym], w = av3mWin[it.sym], B = s=>`<bdi dir="ltr">${s}</bdi>`, fD = d=>d ? d.split('-').reverse().join('.') : '';
+  const avgT = a3!=null && w ? `<b>ממוצע ווליום יומי, 3 חודשים אחורה: ${B(detFmtBig(a3))}</b></p><p>ימי מסחר מלאים בלבד (יום המסחר הנוכחי לא נכלל): ${B(fD(w.from)+' – '+fD(w.to))}, ${w.n} ימי מסחר` : (X.av10!=null ? `<b>ממוצע ווליום יומי, 10 ימי המסחר האחרונים: ${B(detFmtBig(X.av10))}</b> (ממוצע 3 חודשים לא זמין כרגע)` : '<b>ממוצע ווליום יומי, 3 חודשים אחורה: לא זמין</b>');
+  el.innerHTML = `ווליום <bdi class="num">${detFmtBig(X.vol)}</bdi>${ib(`<p>${avgT}</p><p><b>ווליום</b> = מספר המניות שנסחרו היום; במהלך המסחר מוצג הווליום של יום המסחר הנוכחי עד כה, ומחוץ לשעות המסחר – הווליום של יום המסחר האחרון.</p><p class="ib-f">מקור: ${B('CNBC')}</p>`, 'ווליום')}`; }
 function obDraw(j, stale){ const body = document.getElementById('obBody'), bd = document.getElementById('obBd'); if(!body || !bd) return;
   const bids = (j.bids||[]).slice(0,5), asks = (j.asks||[]).slice(0,5);
   if(!j.found){ obMsg('הנייר לא נמצא בספר של Cboe.', 'אין נתונים'); return; }
@@ -4111,7 +4122,7 @@ function instSheetHtml(it){ const held = it.sec && computeAll().positions.some(p
 
 // ---- v102: 'פרטים' – Webull-style key stats (3 columns, label above value). Only CNBC data the app already requests (+ 3M avg volume from the CNBC daily bars); '--' when missing ----
 const DET_KEY = 'portfolioTracker.detOpen.v1'; let detOpen = localStorage.getItem(DET_KEY)!=='0';
-const DET_DASH = '--', av3m = {};
+const DET_DASH = '--', av3m = {}, av3mWin = {};
 function detHtml(){ return `<div class="det" id="isDet"><button class="det-t" data-det aria-expanded="${detOpen}"><span>📊 פרטים</span><i aria-hidden="true">${detOpen?'▴':'▾'}</i></button><div class="det-g" id="isDetG"${detOpen?'':' hidden'}></div></div>`; }
 function detFmtN(v, d){ return v==null || !isFinite(v) ? DET_DASH : v.toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d}); }
 function detFmtBig(v){ if(v==null || !isFinite(v) || v<=0) return DET_DASH; const [d,u] = v>=1e12 ? [1e12,'T'] : v>=1e9 ? [1e9,'B'] : v>=1e6 ? [1e6,'M'] : v>=1e3 ? [1e3,'K'] : [1,'']; const x = v/d; return (x>=100 ? x.toFixed(0) : x>=10 ? x.toFixed(1) : x.toFixed(2)) + u; }
@@ -4134,8 +4145,9 @@ function fundCells(it, q){ const f = fundFor(it), px = q && q.price, X = (q && q
     out.bv = [bvTxt, `נכון ל־${fundDate(f.asof)}`, {ttl:'הון עצמי למניה (BVPS)', warn:stale, tip:`<p><b>הון עצמי למניה (BVPS)</b> = הון בעלי המניות (Stockholders' Equity) פחות מניות בכורה, חלקי מספר המניות במחזור (עמוד השער של הדוח; בחברות עם כמה סוגי מניות – סכום כולן).</p><p>מקור: הדוח האחרון שהוגש ל־SEC (${B(f.k)}, הוגש ${fundDate(f.filed)}), נכון לתאריך המאזן – <b>${fundDate(f.asof)}</b>. נבדק אוטומטית כל יום ומתעדכן כשמוגש דוח חדש.</p><p>זה ערך חשבונאי (עלות היסטורית), לא שווי שוק.${f.bv<0?' כאן ההון העצמי שלילי.':''}</p>${stale?'<p>⚠️ הדוח האחרון ישן יחסית – ייתכן שדוח חדש בדרך.</p>':''}${gen}`}];
     out.pb = [pb==null ? '--' : pb.toFixed(2)+'x', pb==null ? (f.bv<=0 ? 'הון שלילי' : '') : '<em class="lv">● חי</em> · '+fundDate(f.asof), {ttl:'מכפיל הון (P/B)', tip:`<p><b>P/B</b> = מחיר המניה הנוכחי ÷ הון עצמי למניה.</p><p>המחיר <b>חי</b> – המכפיל מחושב מחדש בכל עדכון מחיר. ההון העצמי הוא מהדוח האחרון (${fundDate(f.asof)}) ומשתנה רק עם דוח חדש.</p>${pb==null ? '' : `<p>${B(fmtInst(it, px)+' ÷ $'+f.bv.toFixed(2)+' = '+pb.toFixed(2)+'x')}</p>`}<p>P/B נמוך מ־1 = המניה נסחרת מתחת להון החשבונאי; גבוה = השוק מתמחר נכסים בלתי מוחשיים וצמיחה. לא מוצג כשההון העצמי שלילי או אפסי.</p>${gen}`}];
     out.fl = f.fl ? [detFmtBig(f.fl), `${B('≈'+pct.toFixed(1)+'%')} · הערכה`, {ttl:'מניות במסחר חופשי (Free Float)', tip:`<p><b>Free Float</b> = מניות שזמינות בפועל למסחר בציבור: סך המניות במחזור פחות החזקות של בעלי עניין (מייסדים, דירקטורים, בעלי שליטה).</p><p>מוצג כמספר מניות וכאחוז מכלל המניות במחזור (${B(f.sh.toLocaleString('en-US'))} לפי עמוד השער של הדוח). נכון ל־${fundDate(f.fld)}.</p><p><b>הערכה בלבד</b> – ההגדרה משתנה בין ספקי נתונים. ${f.fls==='S' ? 'כאן החישוב מנתוני SEC: שווי המניות של מי שאינם בעלי עניין (עמוד השער של הדוח השנתי) ÷ שער הסגירה באותו תאריך – מתעדכן פעם בשנה.' : 'מקור: Yahoo Finance, מתעדכן בסבב יומי.'}</p><p>float קטן = סחירות נמוכה ותנודתיות גבוהה יותר.</p>${gen}`}] : NA; }
-  const avg = av3m[it.sym] || X.av10 || null;
-  out.vol = [X.vol ? detFmtBig(X.vol) : '--', avg ? 'ממוצע '+B(detFmtBig(avg)) : '', {ttl:'ווליום', tip:`<p><b>ווליום</b> = מספר המניות שנסחרו היום. מתעדכן <b>בזמן אמת</b> יחד עם המחיר; מחוץ לשעות המסחר מוצג הווליום של המושב האחרון.</p><p><b>ממוצע</b> = ממוצע יומי של כ־3 חודשים (CNBC). ווליום גבוה בהרבה מהממוצע מעיד על עניין חריג במניה.</p><p class="ib-f">מקור: ${B('CNBC')}</p>`}];
+  const avg = av3m[it.sym] || X.av10 || null, w3 = av3mWin[it.sym], fD3 = d=>d ? d.split('-').reverse().join('.') : '';
+  const volAvgT = av3m[it.sym]!=null && w3 ? `<b>ממוצע</b> = ממוצע ווליום יומי, 3 חודשים אחורה; ימי מסחר מלאים בלבד (יום המסחר הנוכחי לא נכלל): ${B(fD3(w3.from)+' – '+fD3(w3.to))}, ${w3.n} ימי מסחר.` : (X.av10!=null ? `<b>ממוצע</b> = ממוצע ווליום יומי, 10 ימי המסחר האחרונים (ממוצע 3 חודשים לא זמין כרגע).` : '');
+  out.vol = [X.vol ? detFmtBig(X.vol) : '--', avg ? 'ממוצע '+B(detFmtBig(avg)) : '', {ttl:'ווליום', tip:`<p><b>ווליום</b> = מספר המניות שנסחרו היום. מתעדכן <b>בזמן אמת</b> יחד עם המחיר; במהלך המסחר מוצג הווליום של יום המסחר הנוכחי עד כה, ומחוץ לשעות המסחר – הווליום של יום המסחר האחרון.</p>${volAvgT?'<p>'+volAvgT+'</p>':''}<p class="ib-f">מקור: ${B('CNBC')}</p>`}];
   const bt = f && f.beta!=null ? f.beta : X.beta!=null ? X.beta : null;
   out.beta = [bt==null ? '--' : bt.toFixed(2), bt==null ? '' : (f && f.beta!=null ? '5 שנים · חודשי' : 'CNBC'), {ttl:'בטא', tip:`<p><b>בטא</b> = רגישות המניה לשוק (S&amp;P 500). 1.0 = זזה כמו השוק; מעל 1 = תנודתית יותר; מתחת ל־1 = רגועה יותר; שלילי = נעה נגד השוק.</p><p>${f && f.beta!=null ? 'מחושבת על 5 שנים של תשואות חודשיות (מקור: '+B('Yahoo Finance')+', מתעדכן בסבב יומי).' : 'מקור: '+B('CNBC')+' (אין חישוב 5 שנים זמין לנייר הזה).'}</p>`}];
   return out; }
@@ -4178,15 +4190,20 @@ function drawDet(){ const it = detItem(), g = $('isDetG'); if(!it || !g) return;
     return `<div><span>${l}</span><b class="num${v===DET_DASH||v==='…'?' na':''}">${v}</b></div>`; }).join('');
   { const pb = detRows(it, q).find(r=>r[0]==='מכפיל הון (P/B)'); g.dataset.pbv = pb ? pb[1][0] : ''; } }
 async function loadAv3m(it){ const sym = it.sym; if(sym in av3m) return; av3m[sym] = undefined;
-  try{ const from = addDays(today(), -92), j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/1D/${cnbcStamp(from)}/${cnbcStamp(addDays(today(),1))}/unadjusted/EST5EDT.json`, 15000);
-    const v = ((j.barData||{}).priceBars||[]).map(b=>num(b.volume)).filter(x=>x>0); av3m[sym] = v.length >= 20 ? v.reduce((a,b)=>a+b,0)/v.length : null; }catch(e){ av3m[sym] = null; }
-  { const d = detItem(); if(d && d.sym===sym) drawDet(); } }
+  try{ const to = new Date(), from = new Date(); from.setMonth(from.getMonth()-3); if(from.getDate()!==to.getDate()) from.setDate(0);   // exact 3 calendar months back, clamped to month end
+    const ymd = d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`, fromS = ymd(from);
+    const j = await fetchJSON(`https://ts-api.cnbc.com/harmony/app/bars/${encodeURIComponent(cnbcSymbol(it.q))}/1D/${cnbcStamp(fromS)}/${cnbcStamp(addDays(ymd(to),1))}/unadjusted/EST5EDT.json`, 15000);
+    const usD = marketDate('us').replace(/-/g,'');   // full sessions only: today's possibly-partial bar never enters the average
+    const rows = ((j.barData||{}).priceBars||[]).map(b=>({d:String(b.tradeTime).slice(0,8), v:num(b.volume)})).filter(x=>x.v>0 && x.d.length===8 && x.d<usD);
+    av3m[sym] = rows.length >= 20 ? rows.reduce((a,b)=>a+b.v,0)/rows.length : null;
+    av3mWin[sym] = {from: fromS, to: rows.length ? rows[rows.length-1].d.replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3') : ymd(to), n: rows.length}; }catch(e){ av3m[sym] = null; }
+  { const d = detItem(); if(d && d.sym===sym){ drawDet(); obVolDraw(); } } }
 document.addEventListener('click', e=>{ const b = e.target.closest('[data-det]'); if(!b) return; detOpen = !detOpen; try{ localStorage.setItem(DET_KEY, detOpen?'1':'0'); }catch(_){}
   b.setAttribute('aria-expanded', String(detOpen)); b.querySelector('i').textContent = detOpen ? '▴' : '▾'; $('isDetG').hidden = !detOpen; if(detOpen) drawDet(); });
 function instSheetLive(){ const S = instSheet; if(S && $('isV')){ const a = $('isAsof'), q0 = iq(S.it); if(a) a.textContent = q0 && q0.ts ? ' · ציטוט אחרון '+fmtTime(q0.ts) : ''; } if(!S || !$('isV')) return; const it = S.it, q = iq(it), c = instCache[instKey(it, S.range, S.iv)], pts = c ? withLive(it, S.range, c.pts) : [], base = S.range==='1D' ? (q && q.prev) : instRangeBase(it, S.range, pts);
   const end=customRange(S.range)?(pts.length?pts[pts.length-1][1]:null):(q?q.price:null); const ch = chgInst(it, end, base); $('isV').textContent = fmtInst(it, end); $('isC').innerHTML = ch.t + (ch.sub ? `<small class="ybp ${cls(ch.c)}">${ch.sub}</small>` : ''); $('isC').className = 'num '+cls(ch.c)+''; { const _oh = $('obRchg'); if(_oh){ const _pc = q && q.prev ? (q.price/q.prev-1)*100 : null; _oh.innerHTML = _pc!=null ? `<b class="num ${cls(_pc)}">${fmtPct(_pc)}</b><span class="num">${fmtInst(it, q.price)}</span>` : ''; } } { const e = it.sec && q && q.ext && S.range==='1D' ? q.ext : null, hl = it.sec && q && q.hlt, xp = $('isXP'), xc = $('isXC'); if(xp && xc){ xp.innerHTML = e ? `<span class="xl num ${cls(e.chg)}">${fmtInst(it, e.price)}</span>` : ''; xc.innerHTML = hl ? `<span class="xl" style="display:inline-block">${haltChip(hl, q.hsym)}</span>` : e ? `<span class="xl num ${cls(e.chg)}"><i class="xbd xbd-${e.kind}">${e.kind}</i>${chgInst(it, e.price, e.price-e.chg).t}</span>` : ''; } }   // v165: extended-hours price right under the price, its change right under the daily change (aligned columns)
   const vals = pts.map(p=>p[1]); $('isStats').innerHTML = [[customRange(S.range)?'סגירה ראשונה בטווח':'סגירה קודמת', fmtInst(it, customRange(S.range)?(pts.length?pts[0][1]:null):(q && q.prev))], ['שינוי בטווח', ch.t], ['גבוה בטווח', vals.length ? fmtInst(it, Math.max(...vals)) : '—'], ['נמוך בטווח', vals.length ? fmtInst(it, Math.min(...vals)) : '—']].map(([l,v])=>`<div><span>${l}</span><b>${v}</b></div>`).join('');
-  if($('isDetG') && detOpen){ drawDet(); loadAv3m(it); fundLoad(); }
+  if($('isDetG') && detOpen){ drawDet(); fundLoad(); } loadAv3m(it); obVolDraw();
   if(!customRange(S.range)&&S.series && S.bar && q && q.price!=null){ const b = S.bar; b.close = q.price; b.high = Math.max(b.high, q.price); b.low = Math.min(b.low, q.price); try{ S.series.update(Object.assign({}, b)); }catch(e){} }
   else if(!customRange(S.range)&&S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
 function drawIvSeg(){ const S = instSheet, el = $('isIv'); if(!S || !el) return; el.innerHTML = (customRange(S.range)?['1D']:IV_OPT[S.range]).map(v=>`<button data-iv="${v}" class="${v===S.iv?'on':''}">${IV_LBL[v]}</button>`).join(''); }
@@ -4702,7 +4719,7 @@ function openPosition(sym){ui.posRange='1D'; ui.posStyle='candle';
     <div id="posLots">${lotsHtml(sym, cur)}</div>
     <div class="sym-tx"><h4>העסקאות שלך ב-<span class="ltr">${esc(sym)}</span> <small class="muted" style="font-weight:500">(לחיצה לעריכה או מחיקה)</small></h4><div id="symTx">${symTxHtml(sym)}</div></div>`);
   sheetSym = sym; sheetPrice = p.price; obMount(sym);
-  if($('isDetG')){ posDet = secInst({sym, type:assetOf(sym).type||'stock', currency:assetOf(sym).currency}); posDetAt = Date.now(); drawDet(); if(detOpen){ loadAv3m(posDet); fundLoad(); } instQuotes([posDet]).then(()=>{ if(sheetSym===sym && posDet) drawDet(); }).catch(()=>{}); }   // v161: same details grid as the instrument sheet (public per-share data only)
+  if($('isDetG')){ posDet = secInst({sym, type:assetOf(sym).type||'stock', currency:assetOf(sym).currency}); posDetAt = Date.now(); drawDet(); loadAv3m(posDet); obVolDraw(); if(detOpen){ fundLoad(); } instQuotes([posDet]).then(()=>{ if(sheetSym===sym && posDet) drawDet(); }).catch(()=>{}); }   // v161: same details grid as the instrument sheet (public per-share data only)
   const body = $('sheetBody');
   const segs = (id, key)=>body.querySelector(id).addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return; ui[key]=b.dataset.v; body.querySelectorAll(id+' button').forEach(x=>x.classList.toggle('on',x===b)); drawPosChart(sym); });
   segs('#posRange','posRange'); segs('#posStyle','posStyle');
@@ -4766,7 +4783,7 @@ function updatePosSheet(S){
 }
 function marketDate(m){ const am = Object.values(ASIA_MK).find(x=>x[0]===m); return zoned(am ? am[1] : m==='tase' ? 'Asia/Jerusalem' : m==='eu' ? 'Europe/Berlin' : 'America/New_York').date; }
 function renderPosRchg(price){
-  const L = posLive, hd = $('obRchg'), el = $('posRchg'); if(!L || !(L.base>0) || price==null) return;
+  const L = posLive, hd = $('obRchg'), el = $('posRchg'); if(!L || !(L.base>0) || price==null) return; obVolDraw();
   const v = (price/L.base - 1)*100;
   if(L.day && hd){ hd.innerHTML = `<b id="posRchgPct" class="num ${cls(v)}">${fmtPct(v)}</b><span class="num">${fmtMoneyRaw(price, L.hcur, 2)}</span>`; if(el) el.innerHTML = ''; return; }
   if(hd) hd.innerHTML = '';
