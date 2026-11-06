@@ -907,6 +907,18 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .fb .xl.ftx{margin-top:2px}
 
 .pos-sort{position:relative;display:flex;justify-content:flex-start;margin:10px 0 6px;z-index:25}.pos-sort[hidden]{display:none}.pos-sort>.wl-to{width:200px;max-width:100%;display:block}.pos-sort .wl-pick{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;min-height:36px;padding:7px 10px;background:var(--card);margin:0}.pos-sort .wl-pick i{font-style:normal}.pos-sort .wl-pm{min-width:190px;text-align:start}
+/* v239 preview: one-line headings and intraday chart column; position value stays in details. */
+.pgrid,.pc-h.pgrid,.pos-cols.pgrid{grid-template-columns:var(--k-lg) minmax(0,1fr) var(--k-w) var(--k-sp) var(--k-p) var(--k-d);grid-template-areas:"lg nm w sp p d" "lg cp w sp p d";column-gap:var(--k-gap);row-gap:1px}
+.pgrid:not(.pos-cols)>.pc-v,.pos-cols>.pc-m{display:none}
+.pos-cols>.pc-w,.pos-cols>.pc-d,.pos-cols>.pc-p{white-space:nowrap;font-size:.64rem;line-height:1.25}
+.pgrid>.pc-s,.pc-h.pgrid>.pc-s,.pos-cols>.pc-s{grid-area:sp;display:flex;justify-content:center;align-items:center;height:26px;margin:0}
+.pos-cols>.pc-s{height:auto;font-size:.64rem;color:var(--muted)}
+.pgrid .pc-s .spark{width:100%;max-width:var(--k-sp);height:26px;display:block;overflow:visible}
+.pgrid .pc-s .spark path{stroke-width:1.6;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision}
+.pgrid .pc-s .spark line{vector-effect:non-scaling-stroke;stroke-width:1;opacity:.55}
+.pgrid:not(.pos-cols)>.pc-m{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:370px){.pcard .pgrid>.pc-d>b:first-child{font-size:.74rem;letter-spacing:-.25px;padding-inline:1px}.pos-cols>.pc-d{font-size:.56rem}.pos-cols>.pc-w{font-size:.59rem}}
+@media(max-width:340px){.pcard .pgrid>.pc-d>b:first-child{font-size:.67rem}.h2row:has(+.heat-sum){flex-wrap:wrap;row-gap:7px}}
 </style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
@@ -928,7 +940,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
     <div class="idxrow" id="idxRow" hidden></div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button><button data-view="heat">🔥 מפת חום</button></div></div><div class="heat-sum" id="heatSum" hidden></div><div class="pos-sort" id="posSort" hidden></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">היום</span><span class="pcol pc-w">% מהתיק</span><span class="pcol pc-m">שווי פוזיציה</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d" id="posColD"><span>יומי</span></span></div><div class="heat-map pos-heat" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי" hidden></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button><button data-view="heat">🔥 מפת חום</button></div></div><div class="heat-sum" id="heatSum" hidden></div><div class="pos-sort" id="posSort" hidden></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">גרף</span><span class="pcol pc-w" title="אחוז מהתיק">% בתיק</span><span class="pcol pc-m" title="שווי פוזיציה">שווי</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d" id="posColD"><span>יומי</span></span></div><div class="heat-map pos-heat" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי" hidden></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
