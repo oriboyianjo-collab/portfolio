@@ -905,6 +905,8 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ft.on{border:2px solid #fff;box-shadow:0 0 0 3px var(--primary),0 0 18px var(--primary)!important}
 .ft:active{transform:scale(.94)}
 .fb .xl.ftx{margin-top:2px}
+
+.pos-sort{position:relative;display:flex;justify-content:flex-start;margin:10px 0 6px;z-index:25}.pos-sort[hidden]{display:none}.pos-sort>.wl-to{width:200px;max-width:100%;display:block}.pos-sort .wl-pick{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;min-height:36px;padding:7px 10px;background:var(--card);margin:0}.pos-sort .wl-pick i{font-style:normal}.pos-sort .wl-pm{min-width:190px;text-align:start}
 </style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
@@ -926,7 +928,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
     <div class="idxrow" id="idxRow" hidden></div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
-    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button><button data-view="heat">🔥 מפת חום</button></div></div><div class="heat-sum" id="heatSum" hidden></div><div class="sortbar" id="posSort" role="group" aria-label="מיון פוזיציות" hidden><span>מיון:</span><button data-sort="weight" title="% מהתיק">% מהתיק</button><button data-sort="day" title="שינוי יומי %">יומי %</button><button data-sort="unreal" title="שינוי מעלות %">מעלות %</button><button data-sort="cap" title="שווי שוק">שווי שוק</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">היום</span><span class="pcol pc-w">% מהתיק</span><span class="pcol pc-m">שווי פוזיציה</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d" id="posColD"><span>יומי</span></span></div><div class="heat-map pos-heat" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי" hidden></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
+    <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button><button data-view="heat">🔥 מפת חום</button></div></div><div class="heat-sum" id="heatSum" hidden></div><div class="pos-sort" id="posSort" hidden></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">היום</span><span class="pcol pc-w">% מהתיק</span><span class="pcol pc-m">שווי פוזיציה</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d" id="posColD"><span>יומי</span></span></div><div class="heat-map pos-heat" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי" hidden></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
   </section>
   <section class="tab" id="tab-perf">
     <div class="card">
@@ -1549,14 +1551,15 @@ function sortPositions(list){ const {k,d} = effSort(), f = SORT_FIELDS[k], sg = 
   return list.slice().sort((a,b)=>{ const x = val(a), y = val(b), nx = x==null || !isFinite(x), ny = y==null || !isFinite(y);
     if(nx || ny) return nx===ny ? (a.sym<b.sym?-1:1) : (nx?1:-1);
     return (x-y)*sg || (a.sym<b.sym?-1:a.sym>b.sym?1:0); }); }
+// v238: holdings sorting in a floating list, matching the other app pickers; selecting the active choice reverses direction.
+let posSortMenu = false;
+const POS_SORT_NAMES = {weight:'% מהתיק',day:'יומי %',unreal:'מעלות %',cap:'שווי שוק'};
 function renderSortBar(n){ const bar = $('posSort'), {k,d} = effSort(); bar.hidden = n < 2;
-  bar.querySelectorAll('[data-sort]').forEach(b=>{ const on = b.dataset.sort===k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
-    let ar = b.querySelector('.ar'); if(ar && !on){ ar.remove(); ar = null; }   // v59: keep the arrow node on live polls (no detach under the finger)
-    if(on){ if(!ar){ ar = document.createElement('span'); ar.className = 'ar'; ar.setAttribute('aria-hidden','true'); b.appendChild(ar); } const t = d==='desc' ? '↓' : '↑'; if(ar.textContent!==t) ar.textContent = t;
-      b.setAttribute('aria-label', `מיון לפי ${b.title||b.firstChild.textContent} – ${d==='desc'?'מהגבוה לנמוך':'מהנמוך לגבוה'}`); } else b.setAttribute('aria-label', `מיון לפי ${b.title||b.firstChild.textContent}`); });
-  // v59: scroll ONLY the chip bar horizontally – scrollIntoView also scrolled the page (sort bar above the viewport → jump up) and cancelled flings on every live poll
-  const on = bar.querySelector('.on'); if(on && bar.scrollWidth > bar.clientWidth + 1){ const br = bar.getBoundingClientRect(), r = on.getBoundingClientRect();
-    if(r.left < br.left) bar.scrollLeft -= br.left - r.left; else if(r.right > br.right) bar.scrollLeft += r.right - br.right; } }
+  if(n < 2) posSortMenu = false;
+  const arrow = d==='desc' ? '↓' : '↑', direction = d==='desc' ? 'מהגבוה לנמוך' : 'מהנמוך לגבוה';
+  const html = `<span class="wl-to"><button type="button" class="wl-pick" data-possortmenu aria-haspopup="listbox" aria-expanded="${posSortMenu}" aria-label="מיון לפי ${POS_SORT_NAMES[k]} – ${direction}"><span>מיון: <b>${POS_SORT_NAMES[k]}</b> <i class="num">${arrow}</i></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="wl-pm" role="listbox" aria-label="מיון פוזיציות"${posSortMenu?'':' hidden'}>${Object.entries(POS_SORT_NAMES).map(([key,name])=>`<button type="button" role="option" data-sort="${key}" class="${key===k?'on':''}" aria-selected="${key===k}"><span>${name}</span><small>${key===k?arrow+' ✓':''}</small></button>`).join('')}</div></span>`;
+  if(bar.innerHTML!==html) bar.innerHTML = html;
+}
 // v67: line / candles choice for the price charts (instrument sheet and position sheet) – one remembered UI preference
 const CST_KEY = 'portfolioTracker.chartStyle.v1';
 const chartStyle = ()=>{ try{ return localStorage.getItem(CST_KEY)==='line' ? 'line' : localStorage.getItem(CST_KEY)==='candle' ? 'candle' : null; }catch(e){ return null; } };
@@ -6104,9 +6107,11 @@ $('btnEye').onclick = ()=>{ state.settings.hideAmounts = !hidden(); save(); rend
 $('cashHead').addEventListener('click', ()=>{ if(posView()!=='compact') return; try{ localStorage.setItem(CASH_KEY, cashOpen() ? '0' : '1'); }catch(_){} renderCash(computeAll()); });
 $('posView').addEventListener('click', e=>{ const b = e.target.closest('[data-view]'); if(!b) return; try{ localStorage.setItem(VIEW_KEY, b.dataset.view); }catch(_){} heatKey = ''; const S = computeAll(); renderPortfolio(S); renderHeat(S); });
 $('splitSug').addEventListener('click', splitSugClick);
-$('posSort').addEventListener('click', e=>{ const b = e.target.closest('[data-sort]'); if(!b) return; const cur = effSort();
+$('posSort').addEventListener('click', e=>{ e.stopPropagation(); if(e.target.closest('[data-possortmenu]')){ posSortMenu = !posSortMenu; renderSortBar(computeAll().positions.length); return; } const b = e.target.closest('[data-sort]'); if(!b) return; const cur = effSort();
   const d = cur.k===b.dataset.sort ? (cur.d==='desc' ? 'asc' : 'desc') : 'desc';
-  try{ localStorage.setItem(SORT_KEY, `${b.dataset.sort}:${d}`); }catch(_){} renderPortfolio(computeAll()); });
+  try{ localStorage.setItem(SORT_KEY, `${b.dataset.sort}:${d}`); }catch(_){} posSortMenu = false; renderPortfolio(computeAll()); });
+document.addEventListener('click', e=>{ if(posSortMenu && !e.target.closest('#posSort')){ posSortMenu = false; renderSortBar(computeAll().positions.length); } });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && posSortMenu){ posSortMenu = false; renderSortBar(computeAll().positions.length); $('posSort').querySelector('[data-possortmenu]')?.focus(); } });
 $('posList').addEventListener('pointerdown', ()=>{ listTouch = true; });
 ['pointerup','pointercancel'].forEach(ev=>document.addEventListener(ev, ()=>{ if(!listTouch) return; listTouch = false; if(sortPending) setTimeout(()=>{ if(sortPending && !listTouch) reorderCards(sortPending); }, 250); }));
 $('posList').addEventListener('click', e=>{ if(e.target.closest('.ct-expand')) return; const n = e.target.closest('[data-new]'); if(n) return openTxForm(n.dataset.new);
