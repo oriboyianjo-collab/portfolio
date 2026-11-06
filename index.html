@@ -870,14 +870,15 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 
 /* ---- v166: order book card (Cboe BZX+EDGX via Cloudflare Worker) ---- */
 .ob{margin-top:12px;background:var(--bg-f8fafc);border:1px solid var(--border);border-radius:14px;padding:10px 10px 8px}
-.ob-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.ob-h b{font-size:.95rem}
+.ob-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.ob-h b{font-size:.9rem;white-space:nowrap}
 .ob-bd{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:99px;background:#d1fae5;color:#065f46;white-space:nowrap}html.dark .ob-bd{background:#064e3b;color:#6ee7b7}
 .ob-bd.off,html.dark .ob-bd.off{background:var(--border);color:var(--muted)}
-.ob-live{display:flex;align-items:center;gap:10px}
+.ob-live{display:flex;align-items:center;gap:8px}
 .ob-vcol{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
 .ob-vol{font-size:.72rem;color:var(--muted);white-space:nowrap}
 .ob-vol bdi.num{color:var(--text);font-weight:700}
 .ob-vol .ib{width:17px;height:17px;min-width:17px;margin-inline-start:4px;font-size:11px}
+.ob-vph{font-size:.62rem;color:var(--muted);white-space:nowrap}.ob-vph:empty{display:none}
 .ob-rchg{display:flex;align-items:baseline;gap:8px;font-size:.95rem;white-space:nowrap}
 .ob-rchg:empty{display:none}
 .ob-sp{display:flex;justify-content:flex-start;gap:8px;align-items:center;font-size:.74rem;color:var(--muted);margin:0 0 6px}.ob-sp b{color:var(--text);direction:ltr;unicode-bidi:isolate}
@@ -1984,7 +1985,7 @@ async function cnbcQuotes(symbols){
       if(k>1){ last/=k; if(prev!=null) prev/=k; if(!pence) cur='ILS'; }
       const mc = parseCap(q.mktcapView), E = q.ExtendedMktQuote; let pre = null;
       // v49: US pre-market only (after-hours / overnight are ignored): change vs the prior close = regular "last" before the open
-      if(k===1 && E && (E.type==='PRE_MKT' || E.type==='POST_MKT')){ const pl = num(E.last), ts = parseTs(E.last_time); if(pl!=null && pl>0 && ts){ const chg = pl - last; pre = {price:pl, chg, pct: last ? chg/last*100 : null, ts, kind: E.type==='POST_MKT' ? 'after' : 'pre'}; } }   // v64: + after-hours; both vs the regular 'last' (pre: prior close, after: today's close)
+      if(k===1 && E && (E.type==='PRE_MKT' || E.type==='POST_MKT')){ const pl = num(E.last), ts = parseTs(E.last_time); if(pl!=null && pl>0 && ts){ const chg = pl - last; pre = {price:pl, chg, pct: last ? chg/last*100 : null, ts, kind: E.type==='POST_MKT' ? 'after' : 'pre', vol: parseCap(E.volume)}; } }   // v64: + after-hours; both vs the regular 'last' (pre: prior close, after: today's close)
       const ev = q.EventData || {}, px = v=>{ const n = num(v); return n==null ? null : n/k; }, pn = v=>{ const n = num(v); return n==null ? null : n; }, big = v=>parseCap(v);
       const X = {open:px(q.open), high:px(q.high), low:px(q.low), yh:px(q.yrhiprice), yl:px(q.yrloprice), av10:big(q.tendayavgvol), eps:px(q.eps), feps:px(q.feps), pe:pn(q.pe), fpe:pn(q.fpe), ps:k>1 ? null : pn(q.psales), shs:big(q.sharesout), div:px(q.dividend)||px(ev.div_amount), dy:pn(String(q.dividendyield||'').replace('%','')), beta:pn(q.beta), exd:ev.div_ex_date||'', ne:ev.next_earnings_date||'', vol:big(q.volume)};   // v102: key-stats for the 'details' section (CNBC fields; TASE prices are in agorot -> /100)
       out[String(orig).toUpperCase()] = {x:X, pre, mcap: mc!=null ? (pence ? mc : mc/k) : null, price:last, prev, cur, name:q.name||'', time:q.last_time||'', ts:parseTs(q.last_time), date:String(q.last_time||'').slice(0,10), realTime:String(q.realTime)==='true', status:q.curmktstatus||'', halt: k===1 && (/suspend/i.test(q.curmktstatus||'') ? 'Suspended' : (String(ev.is_halted).toUpperCase()==='Y' || /halt/i.test(q.curmktstatus||'')) ? 'Halted' : ''), hsym:String(orig).toUpperCase(), source:'CNBC'};
@@ -3402,7 +3403,7 @@ async function instQuotes(list){ const qs = [...new Set(list.flatMap(i=>i.der ? 
 function iq(it){ if(it.der){ const a = mq[it.der.a], b = mq[it.der.b]; return a && b && a.price && b.price ? {price:a.price/b.price*it.der.m, prev: a.prev && b.prev ? a.prev/b.prev*it.der.m : null} : null; }
   const q = mq[String(it.q).toUpperCase()] || null; if(!q || !it.sec || marketOf(it.sym)!=='us') return q;
   const hl = haltOf(q); if(hl) return Object.assign({}, q, {hlt:hl});
-  const pr = preOf(q); return pr ? Object.assign({}, q, {ext:{kind:pr.kind, price:pr.price, chg:pr.chg, pct:pr.pct}}) : q; }   // v65: regular quote kept (change pill); extended price/line from .ext   // v49: US pre-market view (prev = prior close)
+  const pr = preOf(q); return pr ? Object.assign({}, q, {ext:{kind:pr.kind, price:pr.price, chg:pr.chg, pct:pr.pct, vol:pr.vol!=null?pr.vol:null, ts:pr.ts||null}}) : q; }   // v65: regular quote kept (change pill); extended price/line from .ext   // v49: US pre-market view (prev = prior close)
 function fmtInst(it, v){ if(v==null || !isFinite(v)) return '—'; if(it.y) return v.toFixed(it.dp||3)+'%'; if(it.sec) return fmtPrice(v, it.cur);   // market price: never masked by the eye toggle
   return (it.u||'') + v.toLocaleString('en-US',{minimumFractionDigits:it.dp, maximumFractionDigits:it.dp}); }
 function chgInst(it, a, b){ if(a==null || b==null || !b) return {t:'—', c:0};
@@ -4069,7 +4070,7 @@ const OB = {t:null, sym:null, seq:0, fails:0, busy:false, last:null};
 const obFmt = p=>Number(p).toLocaleString('en-US',{minimumFractionDigits:p<1?4:2, maximumFractionDigits:p<1?4:2});
 function obHtml(sym){ if(!OB_URL || !sym || isCrypto(sym)) return '';
   const us = marketOf(sym)==='us';
-  return `<div class="ob" id="obBox" data-sym="${esc(sym)}"><div class="ob-h"><b>📖 ספר פקודות</b><div class="ob-live"><span class="ob-rchg" id="obRchg"></span><div class="ob-vcol"><span class="ob-bd off" id="obBd">${us?'טוען…':'אין נתונים'}</span><span class="ob-vol" id="obVol"></span></div></div></div><div id="obBody">${us?'<div class="ob-msg">טוען ספר פקודות…</div>':'<div class="ob-msg">אין נתוני ספר פקודות לנייר זה – הספר זמין למניות ותעודות סל בארה״ב בלבד.</div>'}</div></div>`; }
+  return `<div class="ob" id="obBox" data-sym="${esc(sym)}"><div class="ob-h"><b>📖 ספר פקודות</b><div class="ob-live"><span class="ob-rchg" id="obRchg"></span><div class="ob-vcol"><span class="ob-bd off" id="obBd">${us?'טוען…':'אין נתונים'}</span><span class="ob-vol" id="obVol"></span><span class="ob-vph" id="obVph"></span></div></div></div><div id="obBody">${us?'<div class="ob-msg">טוען ספר פקודות…</div>':'<div class="ob-msg">אין נתוני ספר פקודות לנייר זה – הספר זמין למניות ותעודות סל בארה״ב בלבד.</div>'}</div></div>`; }
 function obStop(){ if(OB.t){ clearInterval(OB.t); OB.t = null; } OB.sym = null; OB.seq++; OB.busy = false; }
 const obLive = ()=>{ const s = usSession(); return s==='pre' || s==='reg' || s==='post'; };
 function obMount(sym){ obStop(); const box = document.getElementById('obBox'); if(!OB_URL || !box || !sym || marketOf(sym)!=='us') return;
@@ -4086,10 +4087,19 @@ function obMsg(t, badge){ const b = document.getElementById('obBody'), d = docum
 // volume under the Cboe badge: today's volume + ⓘ -> average daily volume 3 months back (av3m / CNBC, same computation as the פרטים grid)
 function obVolDraw(){ const el = document.getElementById('obVol'); if(!el) return;
   const it = detItem(), q = it && iq(it), X = (q && q.x) || {};
-  if(!it || marketOf(it.sym)!=='us' || X.vol==null){ el.innerHTML = ''; return; }
+  const OB_VOL_POST_OK = false;   // POST_MKT ExtendedMktQuote.volume semantics not yet verified live (check scheduled tonight); flip to true only after confirmation
+  const ev = q && q.ext && q.ext.vol!=null && (q.ext.kind==='pre' || (OB_VOL_POST_OK && q.ext.kind==='after')) ? q.ext : null;   // fresh extended-session volume from CNBC (session-stamped via preOf)
+  const ph = ev ? ev.kind : (usSession()==='reg' ? 'reg' : 'last'), v = ev ? ev.vol : X.vol;
+  if(!it || marketOf(it.sym)!=='us' || v==null){ el.innerHTML = ''; return; }
   const a3 = av3m[it.sym], w = av3mWin[it.sym], B = s=>`<bdi dir="ltr">${s}</bdi>`, fD = d=>d ? d.split('-').reverse().join('.') : '';
+  const staleT = !!(ev && ev.ts && Date.now()-ev.ts > 10*60e3);   // extended volume older than 10 min: show as-of, not live-looking (poll backoff can outlast the session gate)
+  const phB = ph==='pre' ? 'טרום-מסחר' : ph==='after' ? 'מסחר מאוחר' : ph==='reg' ? '' : 'יום מסחר אחרון';
+  const phT0 = phB + (staleT ? ' · נכון ל־'+new Date(ev.ts).toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'}) : '');   // tag stays short (narrow column); stamp is always same-day via preOf
+  const phL = phT0 ? 'ווליום '+phB+(staleT ? ' · נכון ל־'+fmtTime(ev.ts) : '') : 'ווליום';   // popup has room for the full date+time
+  const phT = (ph==='pre' ? 'מספר המניות שנסחרו במסחר המוקדם (Pre-Market) היום עד כה.' : ph==='after' ? 'מספר המניות שנסחרו במסחר המאוחר (After-Hours) עד כה.' : ph==='reg' ? 'מספר המניות שנסחרו ביום המסחר הנוכחי עד כה.' : 'מספר המניות שנסחרו ביום המסחר הרגיל האחרון.') + (staleT ? ' הנתון אינו מתעדכן כרגע – מוצג הנתון האחרון שהתקבל מהמקור.' : '');
   const avgT = a3!=null && w ? `<b>ממוצע ווליום יומי, 3 חודשים אחורה: ${B(detFmtBig(a3))}</b></p><p>ימי מסחר מלאים בלבד (יום המסחר הנוכחי לא נכלל): ${B(fD(w.from)+' – '+fD(w.to))}, ${w.n} ימי מסחר` : (X.av10!=null ? `<b>ממוצע ווליום יומי, 10 ימי המסחר האחרונים: ${B(detFmtBig(X.av10))}</b> (ממוצע 3 חודשים לא זמין כרגע)` : '<b>ממוצע ווליום יומי, 3 חודשים אחורה: לא זמין</b>');
-  el.innerHTML = `ווליום <bdi class="num">${detFmtBig(X.vol)}</bdi>${ib(`<p>${avgT}</p><p><b>ווליום</b> = מספר המניות שנסחרו היום; במהלך המסחר מוצג הווליום של יום המסחר הנוכחי עד כה, ומחוץ לשעות המסחר – הווליום של יום המסחר האחרון.</p><p class="ib-f">מקור: ${B('CNBC')}</p>`, 'ווליום')}`; }
+  const pt = document.getElementById('obVph'); if(pt) pt.textContent = phT0;
+  el.innerHTML = `ווליום <bdi class="num">${detFmtBig(v)}</bdi>${ib(`<p>${avgT}</p><p><b>${phL}</b> = ${phT}</p><p class="ib-f">מקור: ${B('CNBC')}</p>`, 'ווליום')}`; }
 function obDraw(j, stale){ const body = document.getElementById('obBody'), bd = document.getElementById('obBd'); if(!body || !bd) return;
   const bids = (j.bids||[]).slice(0,5), asks = (j.asks||[]).slice(0,5);
   if(!j.found){ obMsg('הנייר לא נמצא בספר של Cboe.', 'אין נתונים'); return; }
@@ -4147,7 +4157,7 @@ function fundCells(it, q){ const f = fundFor(it), px = q && q.price, X = (q && q
     out.fl = f.fl ? [detFmtBig(f.fl), `${B('≈'+pct.toFixed(1)+'%')} · הערכה`, {ttl:'מניות במסחר חופשי (Free Float)', tip:`<p><b>Free Float</b> = מניות שזמינות בפועל למסחר בציבור: סך המניות במחזור פחות החזקות של בעלי עניין (מייסדים, דירקטורים, בעלי שליטה).</p><p>מוצג כמספר מניות וכאחוז מכלל המניות במחזור (${B(f.sh.toLocaleString('en-US'))} לפי עמוד השער של הדוח). נכון ל־${fundDate(f.fld)}.</p><p><b>הערכה בלבד</b> – ההגדרה משתנה בין ספקי נתונים. ${f.fls==='S' ? 'כאן החישוב מנתוני SEC: שווי המניות של מי שאינם בעלי עניין (עמוד השער של הדוח השנתי) ÷ שער הסגירה באותו תאריך – מתעדכן פעם בשנה.' : 'מקור: Yahoo Finance, מתעדכן בסבב יומי.'}</p><p>float קטן = סחירות נמוכה ותנודתיות גבוהה יותר.</p>${gen}`}] : NA; }
   const avg = av3m[it.sym] || X.av10 || null, w3 = av3mWin[it.sym], fD3 = d=>d ? d.split('-').reverse().join('.') : '';
   const volAvgT = av3m[it.sym]!=null && w3 ? `<b>ממוצע</b> = ממוצע ווליום יומי, 3 חודשים אחורה; ימי מסחר מלאים בלבד (יום המסחר הנוכחי לא נכלל): ${B(fD3(w3.from)+' – '+fD3(w3.to))}, ${w3.n} ימי מסחר.` : (X.av10!=null ? `<b>ממוצע</b> = ממוצע ווליום יומי, 10 ימי המסחר האחרונים (ממוצע 3 חודשים לא זמין כרגע).` : '');
-  out.vol = [X.vol ? detFmtBig(X.vol) : '--', avg ? 'ממוצע '+B(detFmtBig(avg)) : '', {ttl:'ווליום', tip:`<p><b>ווליום</b> = מספר המניות שנסחרו היום. מתעדכן <b>בזמן אמת</b> יחד עם המחיר; במהלך המסחר מוצג הווליום של יום המסחר הנוכחי עד כה, ומחוץ לשעות המסחר – הווליום של יום המסחר האחרון.</p>${volAvgT?'<p>'+volAvgT+'</p>':''}<p class="ib-f">מקור: ${B('CNBC')}</p>`}];
+  out.vol = [X.vol ? detFmtBig(X.vol) : '--', avg ? 'ממוצע '+B(detFmtBig(avg)) : '', {ttl:'ווליום יומי', tip:`<p><b>ווליום יומי</b> = מספר המניות שנסחרו היום. מתעדכן <b>בזמן אמת</b> יחד עם המחיר; במהלך המסחר מוצג הווליום של יום המסחר הנוכחי עד כה, ומחוץ לשעות המסחר – הווליום של יום המסחר האחרון.</p>${volAvgT?'<p>'+volAvgT+'</p>':''}<p class="ib-f">מקור: ${B('CNBC')}</p>`}];
   const bt = f && f.beta!=null ? f.beta : X.beta!=null ? X.beta : null;
   out.beta = [bt==null ? '--' : bt.toFixed(2), bt==null ? '' : (f && f.beta!=null ? '5 שנים · חודשי' : 'CNBC'), {ttl:'בטא', tip:`<p><b>בטא</b> = רגישות המניה לשוק (S&amp;P 500). 1.0 = זזה כמו השוק; מעל 1 = תנודתית יותר; מתחת ל־1 = רגועה יותר; שלילי = נעה נגד השוק.</p><p>${f && f.beta!=null ? 'מחושבת על 5 שנים של תשואות חודשיות (מקור: '+B('Yahoo Finance')+', מתעדכן בסבב יומי).' : 'מקור: '+B('CNBC')+' (אין חישוב 5 שנים זמין לנייר הזה).'}</p>`}];
   return out; }
@@ -4174,7 +4184,7 @@ function capCell(it, q, cur){ const n = naInfo(it), etf = it.type==='etf' || !!n
 function detRows(it, q){ const X = (q && q.x) || {}, FC = fundCells(it, q), FW = fwdCells(it, q), cur = it.cur, pr = v=>v==null || !isFinite(v) ? DET_DASH : fmtPrice(v, cur), pc = (X.high!=null && X.low!=null && q && q.prev) ? (X.high-X.low)/q.prev*100 : null;
   const a3 = av3m[it.sym]; return [
   ['פתיחה', pr(X.open)], ['סגירה קודמת', pr(q && q.prev)], ['טווח יומי %', pc!=null ? pc.toFixed(2)+'%' : DET_DASH],
-  ['שיא 52 שבועות', pr(X.yh)], ['שפל 52 שבועות', pr(X.yl)], ['ווליום', FC.vol],
+  ['שיא 52 שבועות', pr(X.yh)], ['שפל 52 שבועות', pr(X.yl)], ['ווליום יומי', FC.vol],
   ['רווח למניה (EPS)', pr(X.eps)], ['מכפיל רווח (TTM)', detFmtN(X.pe, 2)], ['מכפיל רווח צפוי', FW.pe],
   ['רווח למניה צפוי', FW.eps], ['מכפיל הון (P/B)', FC.pb], ['מכפיל מכירות (P/S)', detFmtN(X.ps, 3)],
   ['הון עצמי למניה', FC.bv],
@@ -6200,7 +6210,7 @@ function yOne(q, kind, o, store){
     if(store === 'H') q.updated = Date.now();
     return true; }
   if(!(q.price > 0) || (q.pre && q.pre.ts > ts)) return false;
-  q.pre = {price:px, chg:px - q.price, pct:(px / q.price - 1) * 100, ts, kind:yEk(kind)};
+  q.pre = {price:px, chg:px - q.price, pct:(px / q.price - 1) * 100, ts, kind:yEk(kind), vol:q.pre && q.pre.vol!=null ? q.pre.vol : null};
   return true;
 }
 function yApply(o){
@@ -6221,7 +6231,7 @@ function yApply(o){
 // a CNBC poll must not step a price back behind a newer tick
 function yMerge(key, q){ const y = yLast[String(key).toUpperCase()]; if(!y || !q || q.price == null || haltOf(q)) return;
   if(y.kind === 'reg'){ if(usSession() === 'reg' && y.ts > (q.ts || 0)){ q.price = y.price; q.ts = y.ts; q.realTime = true; } }   // v176: only inside the regular session
-  else if(q.price > 0 && y.kind === usSession() && y.ts > ((q.pre && q.pre.ts) || 0)) q.pre = {price:y.price, chg:y.price - q.price, pct:(y.price / q.price - 1) * 100, ts:y.ts, kind:yEk(y.kind)}; }
+  else if(q.price > 0 && y.kind === usSession() && y.ts > ((q.pre && q.pre.ts) || 0)) q.pre = {price:y.price, chg:y.price - q.price, pct:(y.price / q.price - 1) * 100, ts:y.ts, kind:yEk(y.kind), vol:q.pre && q.pre.vol!=null ? q.pre.vol : null}; }
 function yMergeAll(r){ for(const k in r) yMerge(k, r[k]); return r; }
 function yMergeIdx(k){ const q = idxData.q[k], y = q && yLast[String(q.sym).toUpperCase()]; if(y && y.kind === 'reg' && usSession() === 'reg' && y.ts > (q.ts || 0)){ q.last = y.price; q.ts = y.ts; } }
 // ---- coalesced, in-place repaint ----
