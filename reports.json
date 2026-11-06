@@ -42553,7 +42553,14 @@
     "סימול": "IPHA",
     "תאריך": "2026-11-05",
     "מועד": "before",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "עדכון פעילות ונתונים פיננסיים לתשעת החודשים שהסתיימו ב-30.09.2026. הכנסות לתשעה חודשים 3.4 מיליון אירו, לעומת 2.3 מיליון אירו בתקופה המקבילה; זה אינו נתון הכנסות לרבעון הבודד. מזומנים, שווי מזומנים ונכסים פיננסיים 96.8 מיליון אירו בסוף ספטמבר, ותחזית החברה למימון הפעילות עד סוף Q1 2028.\nנתוני הרבעון הבודד אינם מוחלפים כאן בנתוני תשעת החודשים או ביתרת המזומנים.\nפרסום 05.11.2026; שעת הפרסום המקורית בשעון ישראל אינה ידועה.",
+    "הערות_מקור_ארכיון": "\nBeforeActuals4268\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות",
+    "קישור_לדוח": "https://www.innate-pharma.com/media/all-press-releases/innate-pharma-reports-third-quarter-2026-business-and-financial-update",
+    "release_time_il": "--:--",
+    "release_time_approx": false,
+    "release_time_source": "https://www.innate-pharma.com/media/all-press-releases/innate-pharma-reports-third-quarter-2026-business-and-financial-update",
+    "release_time_verified_date": "2026-11-06",
+    "release_time_basis": "issuer-release-date-clock-unknown"
   },
   {
     "חברה": "IQM Quantum Computers Oyj",
@@ -47085,7 +47092,24 @@
     "סימול": "TAP.A",
     "תאריך": "2026-11-05",
     "מועד": "before",
-    "הערה": "מועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות"
+    "הערה": "תוצאות Q3 2026, הרבעון שהסתיים ב-30.09.2026. מכירות נטו לאחר מסי בלו 2926.5 מיליון דולר ו-EPS מדולל Underlying Non-GAAP של 1.46 דולר, לעומת GAAP מדולל 1.45 דולר. רווח נקי מיוחס 271.5 מיליון דולר. אלה נתוני החברה המאוחדת, לא פעילות נפרדת של Class A. מניות Class A (TAP.A) ו-Class B (TAP) חולקות זכויות שוות לדיבידנד ולנכסים בפירוק; Class A ניתנת להמרה ל-Class B ביחס 1:1. תוצאות למניה רגילה משותפות לשתי סדרות ההון, אך זכויות ההצבעה שלהן שונות.\nפרסום 05.11.2026; שעת הפרסום המקורית בשעון ישראל אינה ידועה.",
+    "הערות_מקור_ארכיון": "\nBeforeActuals4268\nמועד לפי לוח Nasdaq, שנבדק ב-31.10.2026; אינו אישור נפרד של החברה ועשוי להשתנות. טרם פורסמו תוצאות",
+    "בפועל_EPS": "1.46",
+    "הכנסות_בפועל": "2926.5M",
+    "מטבע_EPS": "USD",
+    "מטבע_הכנסות": "USD",
+    "בסיס_בפועל_EPS": "Non-GAAP underlying diluted EPS",
+    "בסיס_בפועל_הכנסות": "Net sales after excise taxes Q3 2026",
+    "השוואה_EPS": "לא",
+    "השוואה_הכנסות": "לא",
+    "הסבר_EPS": "אין צפי EPS שמור לשורת TAP.A.",
+    "הסבר_הכנסות": "אין צפי הכנסות מספרי שמור לשורת TAP.A.",
+    "קישור_לדוח": "https://ir.molsoncoors.com/news/news-details/2026/Molson-Coors-Beverage-Company-Reports-2026-Third-Quarter-Results/default.aspx",
+    "release_time_il": "--:--",
+    "release_time_approx": false,
+    "release_time_source": "https://ir.molsoncoors.com/news/news-details/2026/Molson-Coors-Beverage-Company-Reports-2026-Third-Quarter-Results/default.aspx",
+    "release_time_verified_date": "2026-11-06",
+    "release_time_basis": "issuer-release-date-clock-unknown"
   },
   {
     "חברה": "Turtle Beach Corporation",
