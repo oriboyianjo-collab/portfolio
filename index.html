@@ -6773,7 +6773,7 @@ window.SavageAlerts = {add:items=>alAdd(items), unread:()=>alUnread(), sync:()=>
   b.addEventListener('click', e=>{ e.stopPropagation(); v=!v; try{ localStorage.setItem(K, v?'1':'0'); }catch(_){} ap(v); });
   top.addEventListener('click', e=>{ if(v && !e.target.closest('button')){ v=false; try{ localStorage.setItem(K,'0'); }catch(_){} ap(false); } }); })();
 </script>
-<script src="alerts-core.js?v=247"></script>
+<script src="alerts-core.js?v=249"></script>
 <style>
 .al-row{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:10px}
 .al-row h4{margin:0}.al-sub{font-size:.78rem;color:var(--muted);margin-top:3px}.al-chev{color:var(--primary);font-size:1.5rem;line-height:1}

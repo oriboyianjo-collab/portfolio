@@ -31,7 +31,7 @@
       if(!syms.length && !P.newsAll) return;
       const t = String(x['כותרת']||'').trim(); if(!t) return;
       const key='n|'+H(t+'|'+(x['הועלה']||x['תאריך']||'')); if(NEWS_REPAIR_BASELINE.has(key))return;
-      out.push({key, kind:'news', sym:syms[0]||'', title:syms.length ? '📰 חדשה על '+syms.join(', ') : '📰 חדשה', body:t.slice(0,180), base:true});
+      out.push({key, kind:'news', sym:syms[0]||'', title:syms.length ? '📰 חדשות על '+syms.join(', ') : '📰 חדשות', body:t.slice(0,180), base:true});
     });
     const today = ilDate(0), tmr = ilDate(1), old = ilDate(-3), hr = ilHour();
     (Array.isArray(o.reports)?o.reports:[]).forEach(r=>{
