@@ -598,6 +598,7 @@ html.dark .rq{color:#a5b4fc}html.dark .rtag{color:#93c5fd}
 .pc-b2 .pc-sec>span{margin:0!important;position:static!important;transform:none!important;font-size:.64rem;padding:2px 8px;border-radius:999px;white-space:nowrap}
 .pc-b2 .pc-kv{display:grid;grid-template-columns:1fr 1fr;column-gap:14px;background:var(--bg-fff);border:1px solid var(--border);border-radius:12px;padding:2px 10px}
 .pc-b2 .pc-kv>div{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent);min-width:0}
+.pc-b2 .pc-kv>[data-pos-ext][hidden]{display:none}
 .pc-b2 .pc-kv>div.w{grid-column:1/-1}.pc-b2 .pc-kv>div:last-child,.pc-b2 .pc-kv>div:nth-last-child(2):not(.w){border-bottom:0}
 .pc-b2 .pc-kv span{font-size:.74rem;color:var(--muted);white-space:nowrap}.pc-b2 .pc-kv b{font-size:.84rem;white-space:nowrap;background:none!important;padding:0!important}
 .pc-b2 .pc-kv em{font-style:normal;display:flex;align-items:baseline;gap:8px;direction:ltr}.pc-b2 .pc-kv .sep{font-style:normal;color:var(--muted)}
@@ -2390,8 +2391,12 @@ function chgAmt(v, p, digits){ if(v==null||!isFinite(v)) return '—'; const toI
 function chgLines(F){ const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0]}</b>`;
   const row = (lbl, p, a)=>`<div class="chg"><span class="chg-l">${lbl}</span>${f(p)}<i class="chg-d">·</i>${f(a)}</div>`;
   return `<div class="pchg">${row('יומי','cdp','cda')}${row('מעלות','cup','cua')}</div>`; }
+// v237: holding P/L for the active extended session only; amount follows signed quantity, % follows long/short direction.
+function posExtChange(p){ const e = p && p.ext;
+  if(!e || !['pre','after','night'].includes(e.kind) || p.manual || !Number.isFinite(e.chg) || !Number.isFinite(e.pct) || !Number.isFinite(p.qty) || !p.qty) return null;
+  return {kind:e.kind, amt:p.qty*e.chg, pct:e.pct*(p.qty<0?-1:1)}; }
 function cardFields(p){
-  const cur = p.cur, a = ageInfo(p.sym, p), hlq = p.manual ? null : haltOf(state.quotes[p.sym]);
+  const ex = posExtChange(p), cur = p.cur, a = ageInfo(p.sym, p), hlq = p.manual ? null : haltOf(state.quotes[p.sym]);
   // collapsed row: share price + daily % (plus change-from-cost % while sorting by it); value, amounts and change-from-cost live in the details
   return {
     hd:[p.dayPct!=null ? fmtPct(p.dayPct) : '—', 'num '+cls(p.dayPct)],
@@ -2414,6 +2419,9 @@ function cardFields(p){
     dayp:[p.dayPct!=null?fmtPct(p.dayPct):'—', 'num '+cls(p.day)],
     he:[hlq ? hlq : p.ext ? fmtPct(p.ext.pct) : '', 'xl'+(hlq ? ' hltx '+haltCls(hlq) : p.ext ? ' num '+cls(p.ext.chg)+' is-'+p.ext.kind : '')],   // v65: extended line under the price
     daya:[p.day!=null?fmtSigned(p.day,cur):'', 'num '+cls(p.day)],
+    extl:[ex ? 'שינוי '+ex.kind : '', ''],
+    exta:[ex ? fmtSigned(ex.amt,cur) : '', 'num '+cls(ex && ex.amt)],
+    extp:[ex ? fmtPct(ex.pct) : '', 'num '+cls(ex && ex.pct)],
     mvs:[fmtMoney(p.mv,cur,0), 'num'],
     unra:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
     unrp:[fmtPct(p.unrealPct), 'num '+cls(p.unreal)],
@@ -2506,6 +2514,7 @@ function renderPortfolio(S){
           <div class="pc-kv">
             <div class="w"><span>שינוי מעלות</span><em>${f('unra')}${f('unrp')}</em></div>
             <div class="w"><span>שינוי יומי</span><em>${f('daya')}${f('dayp')}</em></div>
+            <div class="w" data-pos-ext${posExtChange(p)?'':' hidden'}>${f('extl','span')}<em>${f('exta')}${f('extp')}</em></div>
           </div>
           <div class="pc-sec"><h4>מס</h4></div>
           <div class="pc-kv"><div class="w"><span>עלות בשקלים למס</span>${f('costils')}</div></div>
@@ -2631,6 +2640,7 @@ function patchPortfolio(S){
     for(const k in F){ const el = c.querySelector(`[data-f="${k}"]`); if(!el) continue; if(el.textContent!==F[k][0]) el.textContent = F[k][0]; el.className = F[k][1]; }
     { const mc = c.querySelector('[data-mcap]'), t = capT(posCap(p), p.cur); if(mc && mc.textContent!==t) mc.textContent = t; }
     const old = shownPrice[p.sym];
+    const exRow = c.querySelector('[data-pos-ext]'); if(exRow) exRow.hidden = !posExtChange(p);
     if(old!=null && p.price!=null && Math.abs(p.price-old) > 1e-9){ flash(c.querySelector('[data-f="hp"]'), p.price-old); flash(c.querySelector('[data-f="price"]'), p.price-old); if(!hidden()) flash(c.querySelector('[data-f="mv"]'), (p.price-old)*(p.qty<0?-1:1)); }
     shownPrice[p.sym] = p.price;
   });
@@ -3950,8 +3960,17 @@ const saveWlSort = ()=>{ try{ localStorage.setItem(WLS_KEY, JSON.stringify(wlSor
 const wlSortOf = id => wlSortMap[id] || {k:'manual', dir:-1};
 let wlSortMenu = null;
 // sorting is only a view: L.items keeps the manual order; ties/missing values keep manual order (stable on live updates); edit mode always shows manual
+// v236: one daily-change value drives both the visible pill and the daily-change sort.
+function wlDayView(it, q){
+  let pct = q && q.prev ? (q.price/q.prev-1)*100 : null, extO = q && q.ext;
+  if(q && q.idx && !q.ext && !q.hlt && q.pdc>0 && q.ts && Date.now()-q.ts < 6*3600e3 && isVixSym(it.q) && extAny()){   // v235: VIX streaming live outside the regular session
+    const p2 = iclGet(String(it.q).toUpperCase(), q.date, q.pdc);
+    if(p2){ pct = (q.pdc/p2-1)*100; extO = {kind:'now', chg:q.price-q.pdc, pct:(q.price/q.pdc-1)*100}; }   // pill = yesterday's session change off the exact previous_day_closing; line below = live change vs it
+  }
+  return {pct, extO};
+}
 function wlSorted(its, ed, so){ so = so || {k:'manual', dir:-1}; if(ed || so.k==='manual') return its; const val = it=>{ const q = iq(it); if(!q) return null; const usd = v => v==null ? null : convertCur(v,it.cur,'USD');   // compare ₪ and $ in one currency
-    return so.k==='price' ? usd(q.ext ? q.ext.price : q.price) : so.k==='cap' ? usd(q.mcap||null) : (q.prev ? q.price/q.prev - 1 : null); };
+    return so.k==='price' ? usd(q.ext ? q.ext.price : q.price) : so.k==='cap' ? usd(q.mcap||null) : (()=>{ const p = wlDayView(it, q).pct; return p==null ? null : p/100; })(); };
   return its.map((it,i)=>({it, i, v:val(it)})).sort((a,b)=> (a.v==null) - (b.v==null) || (a.v!=null && b.v!=null && a.v!==b.v ? (a.v-b.v)*so.dir : 0) || a.i-b.i).map(x=>x.it); }
 const WL_SORT_IC = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16"/><path d="m3 16 4 4 4-4"/><path d="M17 20V4"/><path d="m13 8 4-4 4 4"/></svg>';
 const WLO_KEY = 'portfolioTracker.watchOpen.v1';
@@ -3961,11 +3980,7 @@ function wlCur(){ return wlData.lists.find(l=>l.id===wlData.cur) || wlData.lists
 function wlList(id){ return wlData.lists.find(l=>l.id===id); }
 function wlItems(){ const seen = new Set(), out = []; wlData.lists.forEach(l=>l.items.forEach(x=>{ if(!seen.has(x.sym)){ seen.add(x.sym); out.push(secInst(x)); } })); return out; }   // every list: header counts need quotes
 function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts = c ? withLive(it, '1D', c.pts) : null, up = q && q.prev ? q.price >= q.prev : true;
-  let pct = q && q.prev ? (q.price/q.prev-1)*100 : null, extO = q && q.ext;
-  if(q && q.idx && !q.ext && !q.hlt && q.pdc>0 && q.ts && Date.now()-q.ts < 6*3600e3 && isVixSym(it.q) && extAny()){   // v235: VIX streaming live outside the regular session
-    const p2 = iclGet(String(it.q).toUpperCase(), q.date, q.pdc);
-    if(p2){ pct = (q.pdc/p2-1)*100; extO = {kind:'now', chg:q.price-q.pdc, pct:(q.price/q.pdc-1)*100}; }   // pill = yesterday's session change off the exact previous_day_closing; line below = live change vs it
-  }
+  const {pct, extO} = wlDayView(it, q);
   return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${it.fx ? `<span class="fxfl" aria-hidden="true">${it.fl}</span>` : logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div>${it.fx && staleTag(q) ? `<div class="pname" style="font-size:.72rem;white-space:normal">${esc(staleTag(q))}</div>` : ''}</div>`+
     `<div class="pcol pc-s wl-live">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, up, 48, 24) : ''}</div><div class="pcol pc-m wl-live num">${capT(q && q.mcap, it.cur)}</div>`+
     `<div class="pcol pc-p wl-live"><span class="wl-p v num">${q ? ((it.fx||it.y) ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div><div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${it.y && q && q.prev ? `<small class="ybp ${cls(pct)}">${chgInst(it, q.price, q.prev).sub}</small>` : ''}${extLineHtml(q && (q.hlt ? {halt:q.hlt} : extO))}</div>`+
@@ -4805,6 +4820,7 @@ function posKvRows(p){
     ['taxable','רווח/הפסד לצורכי מס אם מוכרים', taxPend() ? TXP : p.qty>0 && p.hyp ? fmtSigned(p.taxableNow,'ILS') : '—', p.qty>0 && p.hyp ? cls(p.taxableNow) : ''],
     ['ptax','מס משוער אם מוכרים', taxPend() ? TXP : p.taxGross>0 ? fmtMoney(p.taxILS,'ILS') + (p.shieldUse>0.005 ? ` (קוזזו ${fmtMoney(p.shieldUse,'ILS')} ממגן מס)` : '') : (p.taxGross<0 ? `אין · יוסיף ${fmtMoney(-p.taxGross,'ILS')} למגן המס${p.refundP>0.005?` · החזר צפוי ${fmtMoney(p.refundP,'ILS')} (הערכה)`:''}` : '—'), ''],
     ['net',`נטו אם ${short?'מכסים':'מוכרים'} עכשיו`, taxPend() ? TXP : fmtSigned(p.netIfSold,cur), cls(p.netIfSold)]);
+  { const ex = open && posExtChange(p); if(ex){ const i = R.findIndex(r=>r[0]==='day'); R.splice(i+1,0,['ext','שינוי '+ex.kind,fmtSigned(ex.amt,cur)+' ('+fmtPct(ex.pct)+')',cls(ex.amt)]); } }
   R.push(['real','רווח ממומש', fmtSigned(p.realized,cur), cls(p.realized)], ['fees','עמלות ששולמו', fmtMoney(p.fees,cur), '']);
   return R;
 }
@@ -4818,7 +4834,7 @@ function updatePosSheet(S){
   const p = S.positions.find(x=>x.sym===sheetSym) || S.closed.find(x=>x.sym===sheetSym); if(!p) return;
   const rows = posKvRows(p);
   if(box.querySelectorAll('[data-k]').length !== rows.length) box.innerHTML = posKvHtml(p);
-  else rows.forEach(([k,,v,c])=>{ const el = box.querySelector(`[data-k="${k}"]`); if(!el) return; if(el.textContent!==v) el.textContent = v; const cn = c==='nonum'?'':'num '+c; if(el.className.replace(/ ?flash-(up|down)/g,'')!==cn) el.className = cn; });
+  else rows.forEach(([k,l,v,c])=>{ const el = box.querySelector(`[data-k="${k}"]`); if(!el) return; if(k==='ext'){ const label = el.parentElement.querySelector('span'); if(label && label.textContent!==l) label.textContent = l; } if(el.textContent!==v) el.textContent = v; const cn = c==='nonum'?'':'num '+c; if(el.className.replace(/ ?flash-(up|down)/g,'')!==cn) el.className = cn; });
   const info = $('posInfo'), ih = posInfoHtml(p); if(info && info.innerHTML!==ih) info.innerHTML = ih;
   if(sheetPrice!=null && p.price!=null && Math.abs(p.price-sheetPrice)>1e-9){ const dir = p.price-sheetPrice;
     flash(box.querySelector('[data-k="price"]'), dir); if(!hidden()) flash(box.querySelector('[data-k="mv"]'), dir*(p.qty<0?-1:1)); }
