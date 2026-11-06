@@ -35635,11 +35635,18 @@
     "חברה": "Toyota Motor Corp Ltd Ord",
     "סימול": "TM",
     "תאריך": "2026-11-05",
-    "הערה": "החברה אישרה פרסום תוצאות Q2 FY2027 ל-05.11.2026. טרם פורסמו תוצאות",
+    "הערה": "Q2 FY2027 | יולי–ספטמבר 2026 | IFRS\nנתונים במיליארדי ין, בקירוב.\nהכנסות: 13,437B JPY\nרווח תפעולי: 1,127.6B JPY\nשיעור רווח תפעולי: 8.4%\nרווח נקי המיוחס ל-Toyota: 759.4B JPY\nשיעור רווח נקי: 5.7%\nהשקעות הוניות: 471.9B JPY\nתחזית החברה לשנת FY2027: הכנסות 53,500B JPY; רווח תפעולי 3,900B JPY; רווח נקי המיוחס ל-Toyota 3,570B JPY.",
     "release_time_il": "06:55",
     "release_time_approx": false,
     "release_time_source": "https://global.toyota/en/newsroom/corporate/44911706.html",
-    "release_time_verified_date": "2026-11-04"
+    "release_time_verified_date": "2026-11-04",
+    "הערות_מקור_ארכיון": "\nהחברה אישרה פרסום תוצאות Q2 FY2027 ל-05.11.2026. טרם פורסמו תוצאות",
+    "הכנסות_בפועל": "13437000M",
+    "מטבע_הכנסות": "JPY",
+    "בסיס_בפועל_הכנסות": "Consolidated IFRS sales revenue, three months July–September 2026, approximately JPY13437.0 billion",
+    "מקור_הכנסות_בפועל": "https://global.toyota/pages/global_toyota/ir/financial-results/2027_2q_summary_en.pdf",
+    "השוואה_הכנסות": "לא",
+    "קישור_לדוח": "https://global.toyota/pages/global_toyota/ir/financial-results/2027_2q_summary_en.pdf"
   },
   {
     "חברה": "Teekay Tankers Ltd.",
