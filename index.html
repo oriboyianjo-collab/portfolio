@@ -964,7 +964,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 :is(#bmSearch,#mktSearch,#wlSearch,#fxSearchIn,#glbSearch,#etfAddIn,#fSym,input[data-tick],.ix-s){width:100%}
 .wl-in .ac-ic{display:none}.news-sr{display:flex;align-items:center;gap:6px}.news-sr input{flex:1;width:auto}.news-sr button{position:static;transform:none;flex:0 0 auto;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted)}
 .tx-search-row{width:100%;display:flex;align-items:center;gap:8px}.tx-search-inline{flex:1;min-width:0}.tx-search-inline input{width:100%}
-.pgrid>.pc-s .spark{transform:scale(1.21)}.pgrid>.pc-s,.pos-cols>.pc-s{translate:8px 0}</style>
+.pgrid>.pc-s .spark{transform:scale(1.21)}.pgrid>.pc-s,.pos-cols>.pc-s{translate:8px 0}.rep-date-summary{display:flex;align-items:center;justify-content:space-around;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:18px}.rep-date-summary div{display:flex;flex-direction:column;gap:5px;text-align:center}.rep-date-summary small{color:var(--muted)}.rep-date-summary b{direction:ltr}.rep-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.rep-month button{width:44px;height:44px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:var(--bg)}.rep-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center;direction:rtl}.rep-calendar>small{padding:8px 0;color:var(--muted)}.rep-calendar button{min-width:0;min-height:44px;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--text);font:inherit}.rep-calendar button.inrange{background:rgba(37,99,235,.15);color:#93b4ff}.rep-calendar button.edge{background:#2563eb;color:white;font-weight:700}.rep-calendar button.today{border-color:#60a5fa}.rep-date-actions{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap}.rep-date-actions .btn{flex:1;white-space:nowrap;padding-left:10px;padding-right:10px}.rep-date-strip{display:flex;align-items:stretch;gap:6px;min-width:0}.rep-date-strip>button{flex:0 0 74px;max-width:86px;border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 5px;gap:1px;font:inherit}.rep-date-strip>button small{font-size:.66rem}.rep-date-strip>button .dw{font-size:.72rem}.rep-date-strip>button.on{background:#2563eb;color:#fff;border-color:#2563eb}.rep-date-strip>#repDays{flex:1;min-width:0;margin-top:0}.rep-date-strip>#repDays .dcard{min-width:64px}</style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
 </head>
@@ -5798,7 +5798,7 @@ const CAL_K = {date:['date','תאריך'], time:['time','שעה'], country:['cou
 const pickK = (o, K, k)=>{ for(const n of K[k]){ for(const key of [n, n.toUpperCase()]) if(o[key]!=null && String(o[key]).trim()!=='') return String(o[key]).trim(); } return ''; };
 let newsTab = (()=>{ try{ const v = sessionStorage.getItem('portfolioTracker.newsTab'); return ['news','rep','cal'].includes(v) ? v : 'news'; }catch(e){ return 'news'; } })();
 let newsCat = (()=>{ try{ const v = sessionStorage.getItem('portfolioTracker.newsCat'); return ['all','micro','macro'].includes(v) ? v : 'all'; }catch(e){ return 'all'; } })(); // v110
-const ntData = {rep:null, cal:null}, ntFil = {rep:'all', cal:'all', day:'all', idx:'all', tm:'all', q:'', sort:(()=>{ try{ return localStorage.getItem('portfolioTracker.repSort.v1') || 'date'; }catch(e){ return 'date'; } })()};
+const ntData = {rep:null, cal:null}, ntFil = {rep:'all', cal:'all', day:'all', idx:'all', tm:'all', q:'', dateFrom:'', dateTo:'', sort:(()=>{ try{ return localStorage.getItem('portfolioTracker.repSort.v1') || 'date'; }catch(e){ return 'date'; } })()};
 // v82: report market caps – the file's שווי_שוק wins; otherwise CNBC quote mktcapView (same free source as the holdings), in USD, cached 24h.
 // Fetched only when the market-cap sort is chosen, only for the symbols in the current filter (≤400 → ≤10 batched requests). Unknown → sorted last, never guessed.
 const REPCAP_K = 'portfolioTracker.repCap.v1', REPCAP_TTL = 24*3600e3; let repCap = (()=>{ try{ return JSON.parse(localStorage.getItem(REPCAP_K)) || {}; }catch(e){ return {}; } })(), repCapBusy = false;
@@ -5893,6 +5893,20 @@ function repNoteHtml(n){ const e = esc(n); const NUM = '(?:(?:(?<![\\u0590-\\u05
   return e.replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(new RegExp('(<b>[^<]*</b>)|(https?:\\/\\/\\S+|\\d{1,4}[./-]\\d{1,2}[./-]\\d{1,4})|(\\bQ\\d\\s\\d{4}\\b|\\bFY\\d{4}\\b)|('+NUM+')','g'),(m,b,skip,per,num)=> b ? b : skip ? skip : per ? `<bdi dir="ltr">${per}</bdi>` : (fmt(num) || `<bdi dir="ltr">${num}</bdi>`)); }
 // v104: the report button comes from reports.json (field 'קישור' / 'link' / 'reportUrl'); the manual per-device link UI of v102 was removed
 try{ localStorage.removeItem('portfolioTracker.reportLinks.v1'); }catch(e){}
+
+function repWeek(d){const a=new Date(d+'T12:00:00Z');a.setUTCDate(a.getUTCDate()-a.getUTCDay());return Array.from({length:7},(_,i)=>addDays(a.toISOString().slice(0,10),i));}
+function repDateShort(d){return d?`${+d.slice(8)}.${+d.slice(5,7)}`:'';}
+let repDateDraft=null;
+function openRepDateRange(){const from=ntFil.day==='range'?ntFil.dateFrom:ntFil.day;repDateDraft={from:from||today(),to:ntFil.day==='range'?ntFil.dateTo:from||today(),month:(from||today()).slice(0,7),waiting:false};drawRepDateRange();}
+function drawRepDateRange(){const a=repDateDraft;if(!a)return;const first=new Date(a.month+'-01T12:00:00Z'),offset=first.getUTCDay(),count=new Date(Date.UTC(first.getUTCFullYear(),first.getUTCMonth()+1,0)).getUTCDate();
+ const title=first.toLocaleDateString('he-IL',{month:'long',year:'numeric',timeZone:'UTC'});const cells=Array.from({length:offset},()=>'<span></span>').join('')+Array.from({length:count},(_,i)=>{const d=a.month+'-'+String(i+1).padStart(2,'0'),edge=d===a.from||d===a.to,inRange=d>=a.from&&d<=a.to;return `<button type="button" data-repdate="${d}" class="${edge?'edge ':''}${inRange?'inrange ':''}${d===today()?'today':''}" aria-label="${d}" aria-pressed="${edge}">${i+1}</button>`;}).join('');
+ openSheet(`<h3>טווח תאריכים לדוחות</h3><p class="muted" style="margin:8px 0 18px">${a.waiting?'בחרו תאריך סיום':'בחרו תאריך התחלה ואז תאריך סיום'}</p><div class="rep-date-summary"><div><small>מתאריך</small><b>${repDateShort(a.from)}.${a.from.slice(0,4)}</b></div><span>←</span><div><small>עד תאריך</small><b>${repDateShort(a.to)}.${a.to.slice(0,4)}</b></div></div><div class="rep-month"><button type="button" data-rmonth="-1" aria-label="חודש קודם">❯</button><b>${esc(title)}</b><button type="button" data-rmonth="1" aria-label="חודש הבא">❮</button></div><div class="rep-calendar">${['א׳','ב׳','ג׳','ד׳','ה׳','ו׳','ש׳'].map(w=>'<small>'+w+'</small>').join('')}${cells}</div><div class="rep-date-actions"><button type="button" class="btn btn-light" data-rweek>השבוע</button><button type="button" class="btn btn-light" data-close>ביטול</button><button type="button" class="btn btn-primary" data-rapply>הצגת דוחות</button></div>`);
+ $('sheetBody').querySelectorAll('[data-repdate]').forEach(b=>b.onclick=()=>{const d=b.dataset.repdate;if(!a.waiting){a.from=d;a.to=d;a.waiting=true;}else{if(d<a.from){a.to=a.from;a.from=d;}else a.to=d;a.waiting=false;}drawRepDateRange();});
+ $('sheetBody').querySelectorAll('[data-rmonth]').forEach(b=>b.onclick=()=>{const d=new Date(a.month+'-01T12:00:00Z');d.setUTCMonth(d.getUTCMonth()+Number(b.dataset.rmonth));a.month=d.toISOString().slice(0,7);drawRepDateRange();});
+ $('sheetBody').querySelector('[data-rweek]').onclick=()=>{const w=repWeek(today());a.from=w[0];a.to=w[6];a.month=today().slice(0,7);a.waiting=false;drawRepDateRange();};
+ $('sheetBody').querySelector('[data-rapply]').onclick=()=>{ntFil.day='range';ntFil.dateFrom=a.from;ntFil.dateTo=a.to;repShow=60;closeSheet();drawReports();};
+}
+
 function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; if(!D.items.length){ $('repFil').innerHTML = ''; el.innerHTML = ntEmpty('rep', D.err); return; }
   const held = new Set(computeAll().positions.filter(p=>Math.abs(p.qty)>1e-9).map(p=>p.sym)), watched = new Set(wlData.lists.flatMap(l=>l.items.map(x=>x.sym)));
   const L = D.items.map(o=>{ const r = {}; for(const k in REP_K) r[k] = pickK(o, REP_K, k); r.symbol = r.symbol.toUpperCase(); r.d = ntDate(r.date); r.tag = held.has(r.symbol) ? 'בתיק' : watched.has(r.symbol) ? 'במעקב' : ''; r.ixs = idxOf(o); r.hasIdx = hasIdxKey(o); return r; }).filter(r=>r.company || r.symbol);
@@ -5901,20 +5915,20 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
   const ixL = {}; L.forEach(r=>{ r.ixs.forEach(x=>{ if(!ixL[x.k]) ixL[x.k] = x.l; }); r.ix = r.ixs.length ? r.ixs.map(x=>x.k) : ['other']; });
   const ixOrd = [...new Set(L.flatMap(r=>r.ixs.map(x=>x.k)))].sort((a,b)=>{ const i = k=>{ const j = IDX_AL.findIndex(x=>x[0]===k); return j<0 ? 99 : j; }; return i(a)-i(b) || (ixL[a]<ixL[b]?-1:1); });
   if(ntFil.idx!=='all' && ntFil.idx!=='other' && !ixOrd.includes(ntFil.idx)) ntFil.idx = 'all';
-  const days = [...new Set(L.map(r=>r.d))].sort(), t = today();
+  const days = [...new Set(L.map(r=>r.d))].sort(), t = today(), week = repWeek(t);
   // v88: every entry to the reports sub-tab (opening it, coming back to the News tab, re-opening the app) starts on TODAY – or, with no report
   // today, the nearest upcoming day (else the latest past one). The search text is cleared with it; the sort stays (it orders within the day).
   if(repEnter){ repEnter = false; ntFil.q = ''; $('repQ').value = ''; repShow = 60; repPopClose(); repSearchUi(false);
-    const dated = days.filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)); ntFil.day = dated.includes(t) ? t : (dated.find(d=>d>t) || dated[dated.length-1] || 'all'); }
-  if(ntFil.day!=='all' && !days.includes(ntFil.day)) ntFil.day = 'all';
+    const dated = days.filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)); ntFil.day = t; ntFil.dateFrom=''; ntFil.dateTo=''; }
+  if(ntFil.day!=='range' && !week.includes(ntFil.day)) ntFil.day=t;
   const dShort = d=>{ if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return d; const l = dayLbl(d); const w = new Date(d+'T12:00:00Z').toLocaleDateString('he-IL',{weekday:'short', timeZone:'UTC'}).replace('יום ',''); return `${l || w} ${+d.slice(8)}.${+d.slice(5,7)}`; };
   const qn = ntFil.q.trim().toLowerCase(), inQ = r=>!qn || r.symbol.toLowerCase().includes(qn) || String(r.company||'').toLowerCase().includes(qn);
   L.forEach(r=>{ const f = repCapParse(r.cap), c = repCap[r.symbol]; r.capV = f!=null && f>0 ? f : c && c.v ? c.v : null; });
   const cnt = (f)=>L.filter(r=>inQ(r) && f(r)).length;
-  const dayRow = [['all','הכל', cnt(()=>true)], ...days.map(d=>[d, dShort(d), cnt(r=>r.d===d)])];
+  const dayRow = week.map(d=>[d, dShort(d), cnt(r=>r.d===d)]);
   const tmOf = r=>/^(before|pre|bmo|לפני)/i.test(r.time) ? 'bmo' : /^(after|post|amc|אחרי)/i.test(r.time) ? 'amc' : (m=>m ? (+m[1]*60 + +m[2] < 16*60+30 ? 'bmo' : 'amc') : 'na')(String(r.time).match(/^(\d{1,2}):(\d{2})/));
   L.forEach(r=>{ r.tm = tmOf(r); });
-  const inDay = r=>ntFil.day==='all' || r.d===ntFil.day, inMine = r=>ntFil.rep!=='mine' || !!r.tag, inTm = r=>ntFil.tm==='all' || r.tm===ntFil.tm;
+  const inDay = r=>ntFil.day==='range' ? r.d>=ntFil.dateFrom && r.d<=ntFil.dateTo : r.d===ntFil.day, inMine = r=>ntFil.rep!=='mine' || !!r.tag, inTm = r=>ntFil.tm==='all' || r.tm===ntFil.tm;
   const idxRow = [['all','הכל'], ...ixOrd.map(k=>[k, ixL[k]]), ['other','אחר']].map(([k,l])=>[k, l, cnt(r=>inDay(r) && inMine(r) && inTm(r) && (k==='all' || r.ix.includes(k)))]).filter(x=>x[0]==='all' || x[2] || ntFil.idx===x[0]);
   // v89: compact filter bar – 🔍 + sideways-scrolling pills (מיון / זמן / מדד / ⭐ בתיק) that open a small popover; the day strip is date cards
   const tmRow = [['all','הכל'],['bmo','☀️ לפני פתיחה'],['amc','🌙 אחרי סגירה'],['na','לא ידוע']].map(([k,l])=>[k, l, cnt(r=>inDay(r) && inMine(r) && (ntFil.idx==='all' || r.ix.includes(ntFil.idx)) && (k==='all' || r.tm===k))]).filter(x=>x[0]==='all' || x[2] || ntFil.tm===x[0]);
@@ -5923,7 +5937,7 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
   const dayCard = ([k,l,n])=>{ const iso = /^\d{4}-\d{2}-\d{2}$/.test(k), all = k==='all';
     const w = all ? 'כל הימים' : iso ? (dayLbl(k) || new Date(k+'T12:00:00Z').toLocaleDateString('he-IL',{weekday:'short', timeZone:'UTC'}).replace('יום ','')) : '', dt = all ? 'הכל' : iso ? `${+k.slice(8)}.${+k.slice(5,7)}` : k;
     return `<button data-rd="${esc(k)}" class="dcard${ntFil.day===k?' on':''}"><span class="dw">${esc(w)||'&nbsp;'}</span><b class="num">${esc(dt)}</b><small>${n} דוחות</small></button>`; };
-  $('repFil').innerHTML = `<div class="cfil dcards" id="repDays">${dayRow.map(dayCard).join('')}</div>`;
+  $('repFil').innerHTML = `<div class="rep-date-strip"><button type="button" data-rdate class="dcard${ntFil.day==='range'?' on':''}" aria-label="בחירת טווח תאריכים" aria-haspopup="dialog"><span class="dw">סינון</span><b>▦</b><small>${ntFil.day==='range'?repDateShort(ntFil.dateFrom)+'–'+repDateShort(ntFil.dateTo):'טווח תאריכים'}</small></button><div class="cfil dcards" id="repDays">${dayRow.map(dayCard).join('')}</div></div>`;
   const pill = (id, lbl, val, on)=>`<button class="rpill${on?' on':''}" data-pill="${id}" aria-haspopup="menu" aria-expanded="${repPop===id}">${esc(on ? val : lbl)} <i>▾</i></button>`;
   const anyF = ntFil.sort!=='date' || ntFil.tm!=='all' || ntFil.idx!=='all' || ntFil.rep==='mine';
   $('repPills').innerHTML = pill('sort','מיון',SORT_L[ntFil.sort]||'', ntFil.sort!=='date') + pill('tm','זמן',(tmRow.find(x=>x[0]===ntFil.tm)||['',ntFil.tm])[1], ntFil.tm!=='all') + pill('idx','מדד', ntFil.idx==='other' ? 'אחר' : (ixL[ntFil.idx]||ntFil.idx), ntFil.idx!=='all')
@@ -6044,7 +6058,7 @@ function drawReports(){ const D = ntData.rep, el = $('repList'); if(!D) return; 
   const multiDay = new Set(M.map(r=>r.d)).size > 1;
   const grpCap = A=>A.map(card).join('');
   const capFlat = ntFil.sort==='cap', A = capFlat ? M : [...up, ...past], more = A.length - repShow, upS = capFlat ? [] : up.slice(0, repShow), pastS = capFlat ? [] : past.slice(0, Math.max(0, repShow - up.length));
-  el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day!=='all' || ntFil.tm!=='all' || qn ? ' בסינון' : ''}</div>` + (capFlat ? grpCap(M.slice(0, repShow)) : (upS.length ? '<div class="rsec">ללא תוצאות מאומתות</div>'+grp(upS) : '') + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '')) + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
+  el.innerHTML = `<div class="rcnt">${M.length} דוחות${ntFil.idx!=='all' || ntFil.day==='range' || ntFil.tm!=='all' || qn ? ' בסינון' : ''}</div>` + (capFlat ? grpCap(M.slice(0, repShow)) : (upS.length ? '<div class="rsec">ללא תוצאות מאומתות</div>'+grp(upS) : '') + (pastS.length ? `<div class="rsec">דוחות שפורסמו</div>${grp(pastS)}` : '')) + (more > 0 ? `<button class="btn btn-light rmore" data-rmore>הצגת עוד ${Math.min(60, more)} (מתוך ${more})</button>` : ''); }
 const FLAGS = {US:'🇺🇸', IL:'🇮🇱', EU:'🇪🇺', DE:'🇩🇪', GB:'🇬🇧', UK:'🇬🇧', FR:'🇫🇷', JP:'🇯🇵', CN:'🇨🇳', CA:'🇨🇦', CH:'🇨🇭', AU:'🇦🇺', 'ארה״ב':'🇺🇸', 'ארה"ב':'🇺🇸', 'ישראל':'🇮🇱', 'אירופה':'🇪🇺', 'גוש האירו':'🇪🇺', 'גרמניה':'🇩🇪', 'בריטניה':'🇬🇧', 'יפן':'🇯🇵', 'סין':'🇨🇳'};
 const CNAME = {US:'ארה״ב', IL:'ישראל', EU:'אירופה', DE:'גרמניה', GB:'בריטניה', UK:'בריטניה', FR:'צרפת', JP:'יפן', CN:'סין', CA:'קנדה', CH:'שווייץ', AU:'אוסטרליה'};
 function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; const enter = calEnter; calEnter = false; if(!D.items.length){ $('calFil').innerHTML = ''; el.innerHTML = ntEmpty('cal', D.err); return; }
@@ -6101,7 +6115,7 @@ window.addEventListener('resize', ()=>{ if(repPop){ repPopClose(); drawReports()
 function repSearchUi(open){ $('repQw').hidden = !open; $('repPills').hidden = open; $('repSi').hidden = open; }
 $('repSi').addEventListener('click', ()=>{ repPopClose(); repSearchUi(true); setTimeout(()=>$('repQ').focus(), 30); });
 $('repQx').addEventListener('click', ()=>{ $('repQ').value = ''; ntFil.q = ''; repShow = 60; repSearchUi(false); drawReports(); });
-$('repFil').addEventListener('click', e=>{ const b = e.target.closest('[data-rf],[data-rd],[data-ri],[data-rt]'); if(!b) return; repPopClose(); if(b.dataset.rt) ntFil.tm = b.dataset.rt; if(b.dataset.rf) ntFil.rep = b.dataset.rf; if(b.dataset.rd) ntFil.day = b.dataset.rd; if(b.dataset.ri) ntFil.idx = b.dataset.ri; repShow = 60; drawReports(); });
+$('repFil').addEventListener('click', e=>{ const b = e.target.closest('[data-rf],[data-rd],[data-ri],[data-rt],[data-rdate]'); if(!b) return; repPopClose(); if(b.hasAttribute('data-rdate')){openRepDateRange();return;} if(b.dataset.rt) ntFil.tm = b.dataset.rt; if(b.dataset.rf) ntFil.rep = b.dataset.rf; if(b.dataset.rd) ntFil.day = b.dataset.rd; if(b.dataset.ri) ntFil.idx = b.dataset.ri; repShow = 60; drawReports(); });
 $('repList').addEventListener('click', e=>{ const n = e.target.closest('[data-rnote]'); if(n){ e.preventDefault(); e.stopPropagation(); const o = !n.classList.contains('open'); n.classList.toggle('open', o); n.setAttribute('aria-expanded', String(o)); const mo = n.querySelector('.rmore2'); if(mo) mo.textContent = o ? 'פחות ▴' : 'עוד ▾'; return; } }, true);
 $('repList').addEventListener('click', e=>{ if(e.target.closest('[data-rnote]')) return; if(e.target.closest('[data-rmore]')){ repShow += 60; drawReports(); return; } if(e.target.closest('a')) return;
   const c = e.target.closest('[data-rsym]'); if(c) openInstSheet(srchInst({sym:c.dataset.rsym, name:c.dataset.rname||'', type:'stock'}), '1D'); });
