@@ -919,6 +919,17 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pgrid:not(.pos-cols)>.pc-m{max-width:100%;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:370px){.pcard .pgrid>.pc-d>b:first-child{font-size:.74rem;letter-spacing:-.25px;padding-inline:1px}.pos-cols>.pc-d{font-size:.56rem}.pos-cols>.pc-w{font-size:.59rem}}
 @media(max-width:340px){.pcard .pgrid>.pc-d>b:first-child{font-size:.67rem}.h2row:has(+.heat-sum){flex-wrap:wrap;row-gap:7px}}
+/* v240 preview: aligned percentage, chart and price centres on shared tracks. */
+.pgrid:not(.pos-cols)>.pc-w,.pos-cols>.pc-w,.pgrid:not(.pos-cols)>.pc-p,.pos-cols>.pc-p{justify-self:stretch;text-align:center}
+.pgrid>.pc-p>.v{display:inline-block;width:max-content;max-width:100%;text-align:center}
+.pgrid>.pc-s,.pc-h.pgrid>.pc-s{justify-self:stretch;width:100%;box-sizing:border-box;display:flex;justify-content:center;align-items:center}
+.pgrid>.pc-s .spark{flex:none;width:calc(100% - 8px);max-width:44px;height:24px;overflow:hidden}
+.pos-cols>.pc-s{justify-self:stretch;width:100%;text-align:center}
+
+/* Price flashes follow the number, never stretch across the reserved price track. */
+.pc-p>.v,.pc-p>.wl-p{display:inline-block;width:max-content;max-width:100%;box-sizing:border-box;padding-inline:2px}
+.wgrid>.pc-p{text-align:right}
+.pcard [data-f="hp"],.pcard [data-f="price"],#posKv [data-k="price"]{width:max-content;max-width:100%;box-sizing:border-box}
 </style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
