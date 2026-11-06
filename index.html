@@ -2189,12 +2189,30 @@ async function getHistory(sym, from){
   })());
 }
 
-// Dated money-weighted cumulative return. Nonconventional sign patterns are deliberately unavailable.
+// Dated money-weighted cumulative return. A number requires a certified unique solution.
+// Sufficient uniqueness certificate for otherwise nonconventional dated cash flows.
+// Uses exact dyadic sums of the grouped Number amounts to avoid sign errors from cancellation.
+// Positive total + nonpositive proper prefixes: one positive discount root below 1.
+// Negative total + nonnegative proper suffixes: reverse time/sign gives the same proof.
+// Zero total under either condition: the only positive discount root is exactly 1.
+// Other patterns remain unavailable; this deliberately does not classify every unique case.
+function irrUniqueByBalances(values){
+ try{
+  if(typeof BigInt!=='function')return false;
+  const view=new DataView(new ArrayBuffer(8));let min=Infinity;
+  const parts=values.map(v=>{view.setFloat64(0,v);const hi=view.getUint32(0),lo=view.getUint32(4),exp=(hi>>>20)&2047;let m=(BigInt(hi&1048575)<<32n)|BigInt(lo);if(exp)m|=1n<<52n;const e=exp?exp-1075:-1074;min=Math.min(min,e);return{m:hi>>>31?-m:m,e}});
+  const exact=parts.map(v=>v.m<<BigInt(v.e-min)),total=exact.reduce((a,b)=>a+b,0n);let sum=0n,prefix=true,suffix=true;
+  for(let i=0;i<exact.length-1;i++){sum+=exact[i];if(sum>0n)prefix=false}
+  sum=0n;for(let i=exact.length-1;i>0;i--){sum+=exact[i];if(sum<0n)suffix=false}
+  return(total>=0n&&prefix&&exact[0]<0n)||(total<=0n&&suffix&&exact.at(-1)>0n);
+ }catch(_){return false}
+}
+
 function irrPeriod(flows){
  const by=new Map();for(const [d,c]of flows){if(!/^\d{4}-\d{2}-\d{2}$/.test(d)||!Number.isFinite(Date.parse(d))||new Date(d).toISOString().slice(0,10)!==d||!Number.isFinite(c))return{pct:null,reason:'תזרים או תאריך לא תקין'};by.set(d,(by.get(d)||0)+c)}
  const f=[...by].filter(x=>Math.abs(x[1])>1e-9).sort((a,b)=>a[0].localeCompare(b[0]));
  if(f.length<2||!f.some(x=>x[1]<0)||!f.some(x=>x[1]>0))return{pct:null,reason:'אין תזרימים מתאימים לחישוב IRR'};
- const sign=f.map(x=>Math.sign(x[1]));if(sign.slice(1).filter((x,i)=>x!==sign[i]).length!==1)return{pct:null,reason:'תזרים לא רגיל: לא אומת פתרון IRR יחיד'};
+ const sign=f.map(x=>Math.sign(x[1]));if(sign.slice(1).filter((x,i)=>x!==sign[i]).length!==1&&!irrUniqueByBalances(f.map(x=>x[1])))return{pct:null,reason:'תזרים לא רגיל: לא אומת פתרון IRR יחיד'};
  const d0=Date.parse(f[0][0]),days=(Date.parse(f.at(-1)[0])-d0)/864e5;if(!(days>0))return{pct:null,reason:'IRR דורש לפחות יום אחד'};
  const scale=Math.max(...f.map(x=>Math.abs(x[1]))),v=f.map(([d,c])=>[(Date.parse(d)-d0)/864e5/days,c/scale]);
  function value(x){let shift=Math.max(0,-x),sum=0,der=0,abs=0;for(const[t,c]of v){const z=c*Math.exp(-t*x-shift);sum+=z;der-=t*z;abs+=Math.abs(z)}return{f:sum,der,rel:abs?Math.abs(sum)/abs:1}}
