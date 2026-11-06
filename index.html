@@ -941,7 +941,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
     <div class="card"><h2><span>רווח והפסד <button type="button" class="ib" data-ib-for="plInfoSrc" data-ib-t="איך מחושב המס המוערך" aria-label="הסבר: איך מחושב המס המוערך" aria-haspopup="dialog">i</button></span></h2><div class="kv" id="plKv"></div><div class="taxbox" id="taxBox"></div>
       <div class="ib-src" id="plInfoSrc">מס רווחי הון מוערך לפי השיעור בהגדרות, רק על רווח חיובי. החישוב משוער (ללא התאמה לאינפלציה/שער, ללא קיזוז הפסדים משנים קודמות) ואינו ייעוץ מס.</div></div>
   </section>
-  <section class="tab" id="tab-tx"><div class="card"><div class="tx-h"><h2>היסטוריית עסקאות <small id="txCount"></small></h2><button class="btn btn-primary btn-sm" id="txNew">➕ עסקה חדשה</button></div><div class="hist-bar" id="txHistBar" style="margin-top:0"></div><div id="txList"></div></div></section>
+  <section class="tab" id="tab-tx"><div class="card"><div class="tx-h"><h2>היסטוריית עסקאות <small id="txCount"></small></h2></div><div class="hist-bar" id="txHistBar" style="margin-top:0"></div><div id="txList"></div></div></section>
   <section class="tab" id="tab-market">
     <div class="seg mkt-mode" id="mktMode" role="group" aria-label="תצוגת השווקים"><button data-mm="mk" class="on">🌐 שווקים</button><button data-mm="etf">🧩 מדדים</button></div>
     <div class="mk-sub" id="mkSub" role="group" aria-label="סוג שוק"><button data-ms="glob">גלובל</button><button data-ms="com">סחורות</button><button data-ms="fx">מט״ח</button></div>
@@ -1559,7 +1559,7 @@ const chartStyle = ()=>{ try{ return localStorage.getItem(CST_KEY)==='line' ? 'l
 const setChartStyle = v=>{ try{ localStorage.setItem(CST_KEY, v); }catch(e){} };
 const styleSegHtml = (id, v)=>`<div class="seg sm cst" id="${id}"><button data-v="line" class="${v==='line'?'on':''}">קו</button><button data-v="candle" class="${v==='candle'?'on':''}">נרות</button></div>`;
 const candleOpts = ()=>{ const T = chartTheme(); return {upColor:T.up, downColor:T.down, borderVisible:false, wickUpColor:T.up, wickDownColor:T.down, priceLineVisible:false}; };
-const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'YTD', posRange:'1D', posStyle:'candle'};   // charts always open on 1D + candles (a manual choice lasts for that visit only); the performance tab keeps perfRange
+const ui = {expanded:new Set(), showHiddenClosed:false, tab:'portfolio', perfRange:'YTD', posRange:'1D', posStyle:'candle', txYear:'', txYearMenu:false};   // charts always open on 1D + candles (a manual choice lasts for that visit only); the performance tab keeps perfRange
 // A split must never be counted twice. The bank books some splits as bonus shares ('הטבה' rows → sharebonus), and the importer can
 // also add a split it detected in the price history. If the same security has a bonus row, or an earlier split, within ±5 days,
 // the later split is a duplicate: it stays in the list (visible, deletable) but is never applied (t.dupSkip).
@@ -2528,6 +2528,11 @@ function closedSymSet(){ const L = computeLedger(); return new Set(Object.values
 function histToggleHtml(sc){ const on = histHidden(sc);
   return `<button class="chip-b ${on?'on':''}" data-histtoggle${sc==='tx'?' data-hscope="tx"':''} aria-pressed="${on}">${on?'✓ ':''}🙈 הסתר היסטוריה של פוזיציות סגורות</button>`; }
 document.addEventListener('click', e=>{
+  const ym = e.target.closest('[data-txyearmenu]');
+  if(ym){ ui.txYearMenu = !ui.txYearMenu; renderAll(); return; }
+  const yb = e.target.closest('[data-txyear]');
+  if(yb){ ui.txYear = yb.dataset.txyear || ''; ui.txYearMenu = false; renderAll(); return; }
+  if(ui.txYearMenu && !e.target.closest('#txHistBar .wl-to')){ ui.txYearMenu = false; renderAll(); return; }
   const hb = e.target.closest('[data-histtoggle]') || e.target.closest('[data-histshow]');
   if(hb){ const sc = hb.dataset.hscope === 'tx' ? 'tx' : 'pos', key = sc==='tx' ? 'hideTxHistory' : 'hideHistory';
     state.settings[key] = e.target.closest('[data-histshow]') ? false : !histHidden(sc); save(); renderAll();
@@ -2669,8 +2674,13 @@ function txDesc(t){
 }
 function renderTxList(){
   let list = sortedTxs().reverse(), hiddenN = 0;
+  const years = [...new Set(state.txs.map(t=>String(t.date||'').slice(0,4)).filter(y=>/^\d{4}$/.test(y)))].sort().reverse();
+  if(ui.txYear && !years.includes(ui.txYear)) ui.txYear = '';
+  if(ui.txYear) list = list.filter(t=>String(t.date||'').slice(0,4)===ui.txYear);
   if(histHidden('tx')){ const cs = closedSymSet(); const all = list.length; list = list.filter(t=>!(t.symbol && (t.type==='buy'||t.type==='sell'||t.type==='split'||t.type==='sharebonus'||t.type==='fraczero') && cs.has(t.symbol))); hiddenN = all - list.length; }
-  $('txHistBar').innerHTML = state.txs.length ? histToggleHtml('tx') + (hiddenN ? `<span class="hist-note" id="txHiddenNote">מוסתרות ${hiddenN} עסקאות של פוזיציות סגורות · <button class="linkbtn" data-histshow data-hscope="tx">הצג</button></span>` : '') : '';
+  const yCnt = {}; state.txs.forEach(t=>{ const y=String(t.date||'').slice(0,4); if(/^\d{4}$/.test(y)) yCnt[y]=(yCnt[y]||0)+1; });
+  const yrSel = years.length>1 ? `<span class="wl-to" style="width:134px;flex:none"><button type="button" class="wl-pick" style="flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;margin-top:0;background:var(--card)" data-txyearmenu aria-haspopup="listbox" aria-expanded="${!!ui.txYearMenu}"><span>📅 ${ui.txYear||'הכול'}</span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="wl-pm" role="listbox"${ui.txYearMenu?'':' hidden'}><button type="button" role="option" data-txyear="" class="${ui.txYear?'':'on'}" aria-selected="${ui.txYear?'false':'true'}"><span>הכול</span><small class="num">${state.txs.length}</small></button>${years.map(y=>`<button type="button" role="option" data-txyear="${y}" class="${ui.txYear===y?'on':''}" aria-selected="${ui.txYear===y}"><span class="num">${y}</span><small class="num">${yCnt[y]||0}</small></button>`).join('')}</div></span>` : '';
+  $('txHistBar').innerHTML = state.txs.length ? yrSel + histToggleHtml('tx') + (hiddenN ? `<span class="hist-note" id="txHiddenNote">מוסתרות ${hiddenN} עסקאות של פוזיציות סגורות · <button class="linkbtn" data-histshow data-hscope="tx">הצג</button></span>` : '') : '';
   $('txCount').textContent = list.length ? `${list.length} עסקאות` : '';
   if(!list.length && hiddenN){ $('txList').innerHTML = '<div class="empty">כל העסקאות שייכות לפוזיציות סגורות ומוסתרות.</div>'; return; }
   if(!list.length){ $('txList').innerHTML = '<div class="empty"><div class="big">🧾</div>אין עדיין עסקאות. לחצו על + כדי להוסיף.</div>'; return; }
@@ -6043,7 +6053,6 @@ document.querySelector('nav.bottom').addEventListener('click', e=>{ const b = e.
   try{ if(o.repQ){ $('repQ').value = o.repQ; ntFil.q = o.repQ; } }catch(e){}
   const y = o.sy && o.sy[ui.tab]; setTimeout(()=>{ try{ if(y) window.scrollTo(0, y); if(o.pos) openPosition(o.pos); }catch(e){} restoring = false; save(); }, 700);
 })();
-$('txNew').onclick = ()=>openTxForm(state.txs.length ? 'buy' : 'deposit');   // v84: replaces the floating + (deposit / withdraw / convert / dividend… are in the form's type selector)
 $('btnSet').onclick = ()=>openSettings();   // tapping the gear in settings keeps it open; leave via the back button / Android back
 $('setBack').onclick = ()=>closeSettings();
 function renderEye(){ const h = hidden(), b = $('btnEye'); b.setAttribute('aria-pressed', h?'true':'false');   // v57: eye / eye-off icon follows aria-pressed (CSS)
