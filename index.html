@@ -968,7 +968,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pgrid:not(.pos-cols)>.pc-s{height:40px;align-self:center;overflow:visible}
 .pgrid:not(.pos-cols)>.pc-s .spark{height:34px;overflow:visible;transform:scaleX(1.386);transform-origin:center}
 .pgrid:not(.pos-cols)>.pc-s .spark path{stroke-width:1.1;vector-effect:non-scaling-stroke}
-</style>
+.irr-failure-info{margin-inline-start:8px;vertical-align:middle}.irr-pop-bg{background:transparent!important;backdrop-filter:none!important}.irr-pop-bg .ib-card{position:fixed;bottom:auto!important;margin:0!important;border:1px solid #64748b;border-radius:13px;padding:14px 16px;max-height:min(300px,70vh);overflow:auto;background:#1b2638!important;opacity:1!important;box-shadow:0 8px 28px #0008;transform:none!important;box-sizing:border-box}.irr-pop-bg .ib-card h4{font-size:13px;margin:0 0 9px;padding-inline-end:20px}.irr-pop-bg .ib-card h4>i{display:none}.irr-pop-bg .ib-b{font-size:12px;line-height:1.65}.irr-pop-bg .ib-b p{margin:6px 0 0}.irr-pop-close{position:absolute;top:6px;left:6px;width:26px;height:26px;padding:0;border:0;background:transparent;color:#cbd5e1;font-size:22px}</style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
 </head>
@@ -3382,6 +3382,8 @@ function renderAlloc(S){
     ${shorts.length?`<div class="note">פוזיציות שורט (התחייבות, לא בעוגה): ${shorts.map(p=>`<span class="ltr">${esc(p.sym)}</span> <span class="num">${fmtMoney(p.mvILS,'ILS',0)}</span>`).join(' · ')}</div>`:''}`;
 }
 function renderPL(S){
+  const cumulative=chosenRet('0000',today(),dispCur()==='USD'&&fxNow()>0,dispCur()==='USD'&&fxNow()>0?S.equity/fxNow():S.equity);
+  const why=cumulative?.reason || (!returnPerf ? 'היסטוריית התיק עדיין בטעינה' : 'ממתין לעדכון חישוב לאחר שינוי עסקאות');
   const rows = [
     ['רווח/הפסד כולל (ברוטו)', fmtSigned(S.totalPL,'ILS',0), S.totalPL],
     ['תשואה מאז הפתיחה · '+methodName(), fmtPct(chosenRet('0000',today(),dispCur()==='USD'&&fxNow()>0,dispCur()==='USD'&&fxNow()>0?S.equity/fxNow():S.equity)?.pct), chosenRet('0000',today(),dispCur()==='USD'&&fxNow()>0,dispCur()==='USD'&&fxNow()>0?S.equity/fxNow():S.equity)?.pct],
@@ -3394,7 +3396,7 @@ function renderPL(S){
     ['נטו אם מוכרים הכול עכשיו', taxPend() ? TXP : fmtSigned(S.netIfSoldAll,'ILS',0), S.netIfSoldAll],
     ['עמלות ששולמו', fmtMoney(S.feesILS,'ILS',0), 0],
     ['הפקדות נטו', fmtMoney(S.L.netDepILS,'ILS',0), 0]];
-  M($('plKv')).h = rows.map(([l,v,c])=>`<div><span>${l}</span><b class="num ${cls(c)}">${v}</b></div>`).join('');
+  M($('plKv')).h = rows.map(([l,v,c],i)=>`<div><span>${l}</span><b class="num ${cls(c)}">${v}${i===1 && returnMethod==='IRR' && cumulative?.pct==null ? ib('<b>תשואה מאז פתיחת התיק</b><p>'+esc(why)+'</p>','למה לא מוצגת תשואת IRR?','irr-failure-info') : ''}</b></div>`).join('');
   renderTaxBox(S);
 }
 function renderTaxBox(S){
@@ -5045,7 +5047,14 @@ function ib(html, title, cls){ return `<button type="button" class="ib${cls?' '+
     bg = document.createElement('div'); bg.className = 'ib-bg';
     bg.innerHTML = `<div class="ib-card" role="dialog" aria-modal="true"><div class="grab"></div><h4><i>i</i><span>${esc(btn.dataset.ibT||'הסבר')}</span></h4><div class="ib-b">${body}</div></div>`;
     bg.addEventListener('click', e=>{ if(!e.target.closest('.ib-card')) close(); });
-    document.body.appendChild(bg); requestAnimationFrame(()=>bg.classList.add('open')); document.addEventListener('keydown', onKey, true); }
+    document.body.appendChild(bg);
+    {
+      bg.classList.add('irr-pop-bg');const card=bg.querySelector('.ib-card');card.querySelector('.grab')?.remove();
+      const x=document.createElement('button');x.type='button';x.className='irr-pop-close';x.textContent='×';x.setAttribute('aria-label','סגירה');x.addEventListener('click',close);card.prepend(x);
+      const r=btn.getBoundingClientRect(),w=Math.min(280,innerWidth-24);card.style.width=w+'px';card.style.left=Math.min(innerWidth-w-12,Math.max(12,r.right-w))+'px';
+      const h=card.getBoundingClientRect().height;card.style.top=(r.bottom+h+10<innerHeight-12?r.bottom+8:Math.max(12,r.top-h-8))+'px';
+    }
+    requestAnimationFrame(()=>bg.classList.add('open')); document.addEventListener('keydown', onKey, true); }
   document.addEventListener('click', e=>{ const b = e.target.closest && e.target.closest('.ib'); if(!b) return; e.preventDefault(); e.stopPropagation(); open(b); }, true);
   window.closeIb = close; })();
 
