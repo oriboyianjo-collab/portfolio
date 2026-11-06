@@ -1452,6 +1452,71 @@ function loadState(){
   return s;
 }
 let state = loadState();
+// one-time CCXI\u2192AGLT rename: Churchill Capital Corp XI became Agility Robotics, Inc. on 2026-11-05 (business combination closed 2026-11-04; official Nasdaq notice ECA2026-791 is a pure name/symbol/CUSIP change - no ratio, no cash terms - so quantity and cost carry 1:1)
+try{
+  state.migrations = state.migrations || {};
+  if(!state.migrations.ccxiAglt){
+    const CUTOFF = '2022-10-21';   // before this, ticker CCXI was ChemoCentryx (acquired by Amgen Oct 2022); from Churchill XI's first trading day, CCXI meant the SPAC
+    const isCcxi = t => String(t.symbol||'').toUpperCase()==='CCXI';
+    const oldTxs = state.txs.filter(t=>isCcxi(t) && String(t.date||'') < CUTOFF);
+    const newTxs = state.txs.filter(t=>isCcxi(t) && String(t.date||'') >= CUTOFF);
+    const aRec = (state.assets && state.assets.CCXI) || null;
+    const aName = String(aRec && aRec.name || '');
+    const saysChurchill = /churchill/i.test(aName);   // stored asset name is the identity anchor; a stray tx note never authenticates
+    const saysAgility = /agility/i.test(aName);   // CNBC already re-aliases CCXI, so a refreshed stored name can read Agility
+    const saysChemo = /chemo|amgen/i.test(aName);
+    const migNotes = [];
+    let mode = 'skip';
+    if(newTxs.length){
+      if(saysChemo) mode = 'conflict';                                  // stored identity contradicts modern rows - touch nothing
+      else if(saysChurchill || (saysAgility && !oldTxs.length)) mode = 'rename';
+      else mode = 'ambiguous';                                          // not enough identity evidence - touch nothing
+    }
+    if(mode==='rename'){
+      newTxs.forEach(t=>{ t.symbol='AGLT'; });
+      const ccxiAsset = aRec || {name:'', type:'stock', currency:'USD'};
+      const ag = state.assets.AGLT || (state.assets.AGLT = {name:'', type:ccxiAsset.type||'stock', currency:ccxiAsset.currency||'USD'});
+      ['type','currency','cgId'].forEach(k=>{ if((ag[k]==null||ag[k]==='') && ccxiAsset[k]!=null && ccxiAsset[k]!=='') ag[k] = ccxiAsset[k]; });   // merge metadata, never overwrite existing AGLT data
+      ag.name = 'Agility Robotics, Inc.';
+      if(oldTxs.length){
+        if(/churchill|agility/i.test(aName)) aRec.name = 'ChemoCentryx, Inc.';   // the remaining pre-10/2022 rows are the old ChemoCentryx ticker - keep that identity instead of the CNBC alias
+        migNotes.push('old-era CCXI rows (before 10/2022) kept as CCXI/ChemoCentryx');
+      } else if(aRec){ migNotes.push('CCXI asset record renamed to AGLT (was "'+(aName||'unnamed')+'")'); delete state.assets.CCXI; }
+      if(state.manual && state.manual.CCXI!=null){
+        if(oldTxs.length){ migNotes.push('manual CCXI price kept (old-era rows remain)'); }
+        else {
+          if(state.manual.AGLT==null){ state.manual.AGLT = state.manual.CCXI; delete state.manual.CCXI; }
+          else if(num(state.manual.AGLT)!==num(state.manual.CCXI)) migNotes.push('manual CCXI price '+state.manual.CCXI+' left in place; existing AGLT manual '+state.manual.AGLT+' kept');
+          else delete state.manual.CCXI;
+        }
+      }
+      if(state.quotes && state.quotes.CCXI && !oldTxs.length) delete state.quotes.CCXI;
+      if(!oldTxs.length){
+        try{ const wl = JSON.parse(localStorage.getItem('portfolioTracker.watch.v1')||'null');
+          if(wl && Array.isArray(wl.lists)){ let w=0;
+            wl.lists.forEach(l=>(l.items||[]).forEach(x=>{ if(String(x.sym).toUpperCase()==='CCXI'){ x.sym='AGLT'; if(/churchill|agility/i.test(x.name||'')) x.name='Agility Robotics, Inc.'; w++; } }));
+            if(w) localStorage.setItem('portfolioTracker.watch.v1', JSON.stringify(wl)); } }catch(e){}
+        try{ const raw = localStorage.getItem('portfolioTracker.alerts');
+          if(raw){ const al = JSON.parse(raw); let ch=0;
+            if(al && typeof al==='object'){
+              if(al.px && al.px.CCXI!=null){ if(al.px.AGLT==null){ al.px.AGLT = al.px.CCXI; delete al.px.CCXI; } else if(al.px.AGLT!==al.px.CCXI){ migNotes.push('CCXI price alert left in place; a different AGLT alert already exists'); } else delete al.px.CCXI; ch++; }
+              if(Array.isArray(al.muted)){ const i = al.muted.findIndex(x=>String(x).toUpperCase()==='CCXI'); if(i>=0){ if(!al.muted.some(x=>String(x).toUpperCase()==='AGLT')) al.muted[i]='AGLT'; else migNotes.push('CCXI muted entry left in place; AGLT already muted'); ch++; } }
+            }
+            if(ch) localStorage.setItem('portfolioTracker.alerts', JSON.stringify(al)); } }catch(e){}
+      } else {
+        try{ if((localStorage.getItem('portfolioTracker.watch.v1')||'').indexOf('"CCXI"')>=0 || (localStorage.getItem('portfolioTracker.alerts')||'').indexOf('"CCXI"')>=0) migNotes.push('watchlist/alerts CCXI entries left unchanged (old-era rows remain)'); }catch(e){}
+      }
+      save();
+      toast('CCXI \u05e2\u05d5\u05d3\u05db\u05df \u05dc\u05beAGLT (Agility Robotics) \u05d1\u05e2\u05e7\u05d1\u05d5\u05ea \u05d4\u05de\u05d9\u05d6\u05d5\u05d2 \u2713' + (oldTxs.length ? ' \u00b7 \u05e8\u05e9\u05d5\u05de\u05d5\u05ea CCXI \u05d9\u05e9\u05e0\u05d5\u05ea \u05e0\u05e9\u05de\u05e8\u05d5' : ''));
+    } else if(mode==='conflict' || mode==='ambiguous'){
+      migNotes.push(mode+': identity check failed (name="'+aName+'", oldRows='+oldTxs.length+', newRows='+newTxs.length+') - nothing changed');
+      toast('CCXI: \u05d4\u05d6\u05d4\u05d5\u05ea \u05d0\u05d9\u05e0\u05d4 \u05d5\u05d3\u05d0\u05d9\u05ea - \u05dc\u05d0 \u05d1\u05d5\u05e6\u05e2 \u05e9\u05d9\u05e0\u05d5\u05d9');
+    }
+    state.migrations.ccxiAglt = '2026-11-05:'+mode;
+    if(migNotes.length) state.migrations.ccxiAgltNote = migNotes;
+    save();
+  }
+}catch(e){ console.warn('ccxi->aglt migration failed', e); }
 try{ if(markSplitDupes(state.txs)) localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){ console.warn('split check failed', e); }   // repairs portfolios imported before v18
 setTimeout(()=>{ try{ if(closeFractions()){ save(); renderAll(); } }catch(e){ console.warn('fraction check failed', e); } }, 0);   // closes leftover split fractions in existing portfolios (v21), after init
 let hist = (()=>{ try{ const h = JSON.parse(localStorage.getItem(HIST_KEY)||'{}')||{}; delete h['.IXIC']; return h; }catch(e){ return {}; } })();   // v48: Nasdaq benchmark is .NDX; drop the old Composite cache
@@ -2256,6 +2321,7 @@ const LOGO_SRC = [s=>`https://assets.parqet.com/logos/symbol/${encodeURIComponen
 //   '' = no logo (both sources show another company / a placeholder) → initials.  Verified one by one against the company name (Nov 2026).
 // LOGO_BG – symbols whose logo is a transparent PNG with a white (→ dark tile) or black (→ white tile) mark that would vanish on the theme background.
 const LOGO_FIX = {
+  'AGLT':'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjZmZmIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMy41LDgpIj48cGF0aCBkPSJNMC4yMDk4NTcgNC40NDkzMkgzLjQ1MDE5QzMuNTcwMiA0LjQ0OTMyIDMuNjY2NTEgNC40NzI2OSAzLjczNzYyIDQuNTkxMDVMNy44MTgwNCAxMC41ODA1QzguOTIxODYgMTIuMTkwNyA5LjgzNDU0IDEzLjExMjcgMTIuMTYyMiAxMy4xMTI3SDE1LjI1ODhDMTUuNDAyNSAxMy4xMTI3IDE1LjQ5ODggMTMuMTg0MyAxNS40OTg4IDEzLjM0OTRWMTUuNzYzM0MxNS40OTg4IDE1LjkwNSAxNS40MDI1IDE2IDE1LjI1ODggMTZIMTEuNjgyMUM4LjA4MTc3IDE2IDYuNjQxNjIgMTQuNDE0NiA1LjIwMTQ4IDEyLjMwNzZMMC4wNDI0MzIyIDQuNzM0MjVDLTAuMDUzODczOSA0LjU5MjUxIDAuMDE4NzI2MSA0LjQ1MDc4IDAuMjA5ODU3IDQuNDUwNzhWNC40NDkzMlpNMjQuNzg4NyAxMS41NTIxSDIxLjU0ODNDMjEuNDI4MyAxMS41NTIxIDIxLjMzMiAxMS41Mjg4IDIxLjI2MDkgMTEuNDEwNEwxNy4xODA1IDUuNDIxQzE2LjA3NjcgMy44MTA3OCAxNS4xNjQgMi44ODg3NyAxMi44MzYzIDIuODg4NzdIOS43Mzk3MkM5LjU5NiAyLjg4ODc3IDkuNDk5NjkgMi43OTM3OSA5LjQ5OTY5IDIuNjUyMDVWMC4yMzY3MTJDOS40OTk2OSAwLjA5NDk3NzIgOS41OTYgMCA5LjczOTcyIDBIMTMuMzE2NEMxNi45MTY3IDAgMTguMzU2OSAxLjU4NTM5IDE5Ljc5NyAzLjY5MjQyTDI0Ljk1NzYgMTEuMjY3MkMyNS4wNTM5IDExLjQwODkgMjQuOTgxMyAxMS41NTA3IDI0Ljc5MDEgMTEuNTUwN0wyNC43ODg3IDExLjU1MjFaTTkuNDk4MjEgOEM5LjQ5ODIxIDYuMzQzMDEgMTAuODE4MyA1LjA0MTEgMTIuNDk4NSA1LjA0MTFDMTQuMTc4NyA1LjA0MTEgMTUuNDk4OCA2LjM0MzAxIDE1LjQ5ODggOEMxNS40OTg4IDkuNjU2OTkgMTQuMTc4NyAxMC45NTg5IDEyLjQ5ODUgMTAuOTU4OUMxMC44MTgzIDEwLjk1ODkgOS40OTgyMSA5LjY1Njk5IDkuNDk4MjEgOFoiIGZpbGw9IiMzOTM4MzciLz48L2c+PC9zdmc+',   // official Agility Robotics mark (inline SVG from agilityrobotics.com, Nov 2026); parqet/FMP have no AGLT logo yet
   'SPCX':'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0zIC0xMCA2MiA2MiI+PHJlY3QgeD0iLTMiIHk9Ii0xMCIgd2lkdGg9IjYyIiBoZWlnaHQ9IjYyIiBmaWxsPSIjMDAwIi8+PGcgZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIuMTIgMy40MikiPjxwYXRoIGQ9Ik0gMTUuMTcyODM3LDExLjU2NDY4OCBIIDMuNjIxODM2OSBsIC0wLjYyNywxLjE5MyAxMi44MjgwMDAxLDkuMzUxIGMgMi40MywtMS40MDcgNS4wNzQsLTIuODMzIDcuOTUsLTQuMjQiLz48cGF0aCBkPSJtIDI1LjUyMjgzNywyOS4xNzk2ODggMTEuMjc1LDguMjIyIGggMTEuNjkyIGwgMC40ODQsLTEuMDg5IC0xNi44MzYsLTEyLjMyMyBjIC0yLjIzNiwxLjY0MSAtNC40NDUsMy4zNzQgLTYuNjE1LDUuMTkiLz48cGF0aCBkPSJNIDEzLjQ1MzgzNywzNy4zODI2ODggSCAzLjAwMjgzNjkgbCAtMC44ODMsLTEuMzgzIGMgNy4xMDYsLTYuODYxIDM4Ljg4ODAwMDEsLTM2LjI3MjAwMDMgMTA3Ljk3MjAwMzEsLTM5LjQyMzAwMDMgMCwwIC01Ny45ODYwMDMsMS45NTYgLTk2LjYzODAwMyw0MC44MDYwMDAzIi8+PC9nPjwvc3ZnPg==',
   'NOK':'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZmZiIvPjxnIGZpbGw9IiMxYzQ1OTgiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDExIDQzKSBzY2FsZSguMTExKSI+CjxwYXRoIGQ9Ik0zOC41MiAxMzMuMThIMFYyLjE4SDY2LjYyTDE0My4wNSA5OS45OFYyLjE4SDE4MS41N1YxMzMuMThIMTE2LjNMMzguNTIgMzMuNzFWMTMzLjE4Ii8+CjxwYXRoIGQ9Ik0zNjUuODcgOTIuNjdDMzY1Ljg3IDExMC44OCAzNjIuNjUgMTE3LjE2IDM1Ny4zMiAxMjMuMThDMzQ5LjE1IDEzMi4xNCAzMzcuMjYgMTM0Ljg0IDMxNC4zNSAxMzQuODRMMjQ4LjU4IDEzNC44NEMyMjUuNjcgMTM0Ljg0IDIxMy43NiAxMzIuMTQgMjA1LjYgMTIzLjE4QzIwMC4yNyAxMTcuMTYgMTk3LjA1IDExMC44OCAxOTcuMDUgOTIuNjdMMTk3LjA1IDQyLjE3QzE5Ny4wNSAyMy45NyAyMDAuMjcgMTcuNyAyMDUuNiAxMS42N0MyMTMuNzcgMi43IDIyNS42NyAwIDI0OC41OCAwTDMxNC4zNSAwQzMzNy4yNiAwIDM0OS4xNSAyLjcgMzU3LjMyIDExLjY3QzM2Mi42NSAxNy43IDM2NS44NyAyMy45NyAzNjUuODcgNDIuMTdMMzY1Ljg3IDkyLjY3TTMxMi43MyAxMDEuNjVDMzIxLjUzIDEwMS42NSAzMjQuNjMgMTAxLjEzIDMyNi43NCA5OS4yMUMzMjguNzEgOTcuNDIgMzI5LjU4IDk1LjExIDMyOS41OCA4Ny40MUwzMjkuNTggNDcuNDNDMzI5LjU4IDM5LjczIDMyOC43MSAzNy40NCAzMjYuNzQgMzUuNjRDMzI0LjYzIDMzLjcxIDMyMS41MyAzMy4yIDMxMi43MyAzMy4yTDI1MC4xOSAzMy4yQzI0MS4zOSAzMy4yIDIzOC4yOSAzMy43MSAyMzYuMTkgMzUuNjRDMjM0LjIxIDM3LjQ0IDIzMy4zNCAzOS43MyAyMzMuMzQgNDcuNDNMMjMzLjM0IDg3LjQxQzIzMy4zNCA5NS4xMSAyMzQuMjEgOTcuNDIgMjM2LjE5IDk5LjIxQzIzOC4yOSAxMDEuMTMgMjQxLjM5IDEwMS42NSAyNTAuMTkgMTAxLjY1TDMxMi43MyAxMDEuNjVWMTAxLjY1Ii8+CjxwYXRoIGQ9Ik00MjEuODUgMi4xOFYxMzMuMThIMzgxLjZWMi4xOEg0MjEuODVNNDg5Ljg1IDIuMThINTQyLjk5TDQ3MS4yNyA2My40NSA1NTIuMTYgMTMzLjE4SDQ5NS4zTDQyMS44NSA2NC44NiA0ODkuODUgMi4xOCIvPgo8cGF0aCBkPSJNNTU5LjU4IDIuMThINTk5Ljg0VjEzMy4xOEg1NTkuNTgiLz4KPHBhdGggZD0iTTc1My4zMSAxMzMuMTggNzQxLjQgMTEwLjM2SDY2My41MUw2NTEuNzQgMTMzLjE3SDYwNy4yN0w2NzguNjIgMi4xOEg3MjguNjZMODAwIDEzMy4xOEg3NTMuMzFNNjc3LjUgODEuOTFINzI3LjU1TDcwMi41MiAzNC40OCA2NzcuNSA4MS45MSIvPgo8L2c+PC9zdmc+',
   'DJT':'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZmZiIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDkgNDEuNSkgc2NhbGUoLjE2NCkiPgogPGRlZnM+CiAgPGxpbmVhckdyYWRpZW50IHgxPSI1MCUiIHkxPSIxMDAlIiB4Mj0iNTAlIiB5Mj0iMCUiIGlkPSJsaW5lYXJHcmFkaWVudC0xIj4KICAgPHN0b3Agc3RvcC1jb2xvcj0iIzAwMDA1MSIgb2Zmc2V0PSIwJSIvPgogICA8c3RvcCBzdG9wLWNvbG9yPSIjNkY3NEREIiBvZmZzZXQ9IjEwMCUiLz4KICA8L2xpbmVhckdyYWRpZW50PgogPC9kZWZzPgogPHBhdGggc3Ryb2tlPSJub25lIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjIsIDAuOSkiIGZpbGw9InVybCgjbGluZWFyR3JhZGllbnQtMSkiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTQ0Ni4yLDAgQzQ2Ny45LDAgNDgzLjMsNi43IDQ5Ni40LDE4IEw0NzYuMiw0Mi4yIEM0NjcuNCwzNC44IDQ1OC41LDMwLjUgNDQ2LjMsMzAuNSBDNDI4LjUsMzAuNSA0MTQuNyw0NS41IDQxNC43LDY0LjQgTDQxNC43LDY0LjggQzQxNC43LDg0LjggNDI4LjcsOTkuMSA0NDguMyw5OS4xIEM0NTYuNiw5OS4xIDQ2Myw5Ny4zIDQ2OC4xLDk0IEw0NjguMSw3OSBMNDQzLjcsNzkgTDQ0My43LDUzLjkgTDUwMC42LDUzLjkgTDUwMC42LDEwOS42IEM0ODcuNSwxMjAuNCA0NjkuMywxMjguNyA0NDYuOSwxMjguNyBDNDA4LjQsMTI4LjYgMzc5LjYsMTAyLjEgMzc5LjYsNjQuNyBMMzc5LjYsNjQuMyBDMzc5LjYsMjguMyA0MDcuOSwwIDQ0Ni4yLDAgWiBNMTA4LjUsMi40IEwxMDguNSwzMi41IEw3MS40LDMyLjUgTDcxLjQsMTI2LjIgTDM3LjEsMTI2LjIgTDM3LjEsMzIuNSBMMCwzMi41IEwwLDIuNCBMMTA4LjUsMi40IFogTTM3OC41LDIuNCBMMzc4LjUsMzIuNSBMMzQxLjQsMzIuNSBMMzQxLjQsMTI2LjIgTDMwNy4xLDEyNi4yIEwzMDcuMiwzMi41IEwyNzAsMzIuNSBMMjcwLDIuNCBMMzc4LjUsMi40IFogTTE1OS43LDIuNCBMMTg5LjIsNTAuMyBMMjE4LjcsMi40IEwyNTUsMi40IEwyNTUsMTI2LjEgTDIyMC45LDEyNi4xIEwyMjAuOSw1NSBMMTg5LjMsMTAzLjQgTDE4OC42LDEwMy40IEwxNTcuMSw1NS4zIEwxNTcuMSwxMjYgTDEyMy41LDEyNiBMMTIzLjUsMi40IEwxNTkuNywyLjQgWiIvPgo8L2c+PC9zdmc+',
@@ -2268,7 +2334,7 @@ const LOGO_FIX = {
   'BROS':1,'COR':1,'MFIC':1,'BMRN':1,'NOW':1,'WAT':1,'APD':1,'ARES':1,'HRL':1,'JPM':1,'DTE':1,'BNY':1,'TCPC':1,'HUT':1,'SITE':1,'INGM':1,'FELE':1,'ATYR':1,'ALEC':1,'FRAF':1,'FBRT':1,'ATRL.CA':1,'NVGS':1,'NEPH':1,'STAA':1,'SD':1,
   'LIFE':'','OCUL':'','FSP':'','NGVT':'','AIRO':'','VOYG':'','SLDE':'','HNGE':'','SMA':'','OMDA':'','EQH':'','PPLI':''
 };
-const LOGO_BG = {'BROS':'#fff','COR':'#fff','MFIC':'#fff','BMRN':'#fff','ARES':'#fff','ASPI':'#0f172a','ATRO':'#fff','AUUD':'#0f172a','BRFH':'#0f172a','CAMP':'#0f172a','CELZ':'#0f172a','COHR':'#fff','CORZ':'#0f172a','DTE':'#fff','ECX':'#0f172a','EVCM':'#fff','EVR':'#fff','EVTL':'#0f172a','FBRT':'#fff','HNST':'#fff','HUT':'#0f172a','ICFI':'#fff','J':'#fff','JXN':'#fff','KOSS':'#0f172a','LAW':'#0f172a','LYG':'#fff','MKTW':'#0f172a','MRSH':'#fff','MSI':'#fff','MUR':'#fff','NEPH':'#fff','NVGS':'#fff','OUST':'#fff','PRME':'#0f172a','PSTL':'#fff','Q':'#fff','RDW':'#fff','RKDA':'#0f172a','RL':'#fff','STAA':'#fff','TEM':'#fff','TSN':'#fff','TZOO':'#fff','XCUR':'#0f172a'};
+const LOGO_BG = {'AGLT':'#fff','BROS':'#fff','COR':'#fff','MFIC':'#fff','BMRN':'#fff','ARES':'#fff','ASPI':'#0f172a','ATRO':'#fff','AUUD':'#0f172a','BRFH':'#0f172a','CAMP':'#0f172a','CELZ':'#0f172a','COHR':'#fff','CORZ':'#0f172a','DTE':'#fff','ECX':'#0f172a','EVCM':'#fff','EVR':'#fff','EVTL':'#0f172a','FBRT':'#fff','HNST':'#fff','HUT':'#0f172a','ICFI':'#fff','J':'#fff','JXN':'#fff','KOSS':'#0f172a','LAW':'#0f172a','LYG':'#fff','MKTW':'#0f172a','MRSH':'#fff','MSI':'#fff','MUR':'#fff','NEPH':'#fff','NVGS':'#fff','OUST':'#fff','PRME':'#0f172a','PSTL':'#fff','Q':'#fff','RDW':'#fff','RKDA':'#0f172a','RL':'#fff','STAA':'#fff','TEM':'#fff','TSN':'#fff','TZOO':'#fff','XCUR':'#0f172a'};
 
 const LOGO_KEY = 'portfolioTracker.logoSrc';
 let logoMemoC = null;
