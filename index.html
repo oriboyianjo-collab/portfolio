@@ -930,6 +930,25 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pc-p>.v,.pc-p>.wl-p{display:inline-block;width:max-content;max-width:100%;box-sizing:border-box;padding-inline:2px}
 .wgrid>.pc-p{text-align:right}
 .pcard [data-f="hp"],.pcard [data-f="price"],#posKv [data-k="price"]{width:max-content;max-width:100%;box-sizing:border-box}
+/* v241 preview: slightly larger holding price and portfolio percentage. */
+.pgrid:not(.pos-cols)>.pc-w>[data-f="hw"]{font-size:.76rem}
+.pgrid:not(.pos-cols)>.pc-p>.v{font-size:.76rem}
+.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-p:62px}
+@media(max-width:370px){.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-w:38px;--k-p:60px}}
+@media(max-width:340px){.pgrid:not(.pos-cols)>.pc-w>[data-f="hw"]{font-size:.70rem}.pgrid:not(.pos-cols)>.pc-p>.v{font-size:.68rem}.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-w:34px;--k-p:54px}}
+/* v242 preview: subtitle visible text is shortened by three measured characters. */
+.pcard .pgrid>.pc-n .psym .ltr{max-width:none;overflow:visible}
+.pcard .pgrid>.pc-n>.pname{width:max-content;min-width:0;max-width:none;overflow:visible;text-overflow:clip}
+.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-w:48px;--k-sp:56px}
+@media(max-width:370px){.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-w:42px;--k-sp:48px}}
+@media(max-width:340px){.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-w:38px;--k-sp:38px}}
+/* v243 preview: shorter portfolio sorting control, choices unchanged. */
+.pos-sort>.wl-to{width:100px;max-width:100%}.pos-sort .wl-pick{gap:2px;padding-inline:4px;font-size:.66rem}.pos-sort .wl-pick svg{width:10px;height:10px;flex:none}
+/* v244 preview: fourteen letters/spaces, then literal dots, no second clipping. */
+.pcard .pgrid>.pc-n>.pname{font-size:.60rem;width:max-content;min-width:0;max-width:none;overflow:visible;text-overflow:clip}
+.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-w:44px;--k-sp:40px;--k-d:74px;column-gap:4px}
+@media(max-width:370px){.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-w:38px;--k-sp:36px;--k-d:62px;column-gap:3px}}
+@media(max-width:340px){.pcard .pgrid>.pc-n>.pname{font-size:.60rem}.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-lg:24px;--k-w:34px;--k-sp:30px;--k-d:56px;column-gap:2px}}
 </style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
@@ -2520,7 +2539,7 @@ function renderPortfolio(S){
       return `<div class="pcard pc${open?' open':''}" data-sym="${esc(p.sym)}">
         <button class="pc-h pgrid" data-ctoggle aria-expanded="${open}">
           ${logoHtml(p.sym)}
-          <div class="pc-n"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tag}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
+          <div class="pc-n"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tag}</div><div class="pname" title="${esc(p.asset.name||'')}">${esc(Array.from(p.asset.name||'').slice(0,14).join(''))}${Array.from(p.asset.name||'').length>14?'...':''}</div></div>
           <div class="pcol pc-s" data-spark="${esc(p.sym)}">${sparkCell(p)}</div>
           <div class="pcol pc-w">${f('hw','span')}</div>
           <div class="pcol pc-v"><span data-f="mvr" class="${F.mvr[1]}">${F.mvr[0]}</span></div><div class="pcol pc-m num" data-mcap>${capT(posCap(p), cur)}</div>
@@ -2560,7 +2579,7 @@ function renderPortfolio(S){
       shownPrice[p.sym] = p.price;
       const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0]}</b>`;
       return `<button class="pcard" data-sym="${esc(p.sym)}">
-        <div class="pgrid">${logoHtml(p.sym)}<div class="pc-n" style="min-width:0"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tags.join('')}</div><div class="pname">${esc(p.asset.name||'')}</div></div>
+        <div class="pgrid">${logoHtml(p.sym)}<div class="pc-n" style="min-width:0"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tags.join('')}</div><div class="pname" title="${esc(p.asset.name||'')}">${esc(Array.from(p.asset.name||'').slice(0,14).join(''))}${Array.from(p.asset.name||'').length>14?'...':''}</div></div>
           <div class="pcol pc-s" data-spark="${esc(p.sym)}">${sparkCell(p)}</div><div class="pcol pc-w"><span data-f="hw" class="${F.hw[1]}">${F.hw[0]}</span></div><div class="pcol pc-v"><span data-f="mvr" class="${F.mvr[1]}">${F.mvr[0]}</span></div><div class="pcol pc-m num" data-mcap>${capT(posCap(p), cur)}</div>
           <div class="pcol pc-p"><span data-f="hp" class="${F.hp[1]}">${F.hp[0]}</span></div><div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}<span data-f="he" class="${F.he[1]}">${F.he[0]}</span></div></div>
         <div class="pmeta">
