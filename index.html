@@ -3267,7 +3267,10 @@ attachAutocomplete($('idxSearch'), $('idxAc'), it=>{ $('idxSearch').value = ''; 
   const cr = it.type==='crypto';
   IDX.push({k:'sec:'+sym, s: cr ? sym+'.CM=' : sym, sym, n: it.name||sym, type: it.type||'stock'});
   idxListSave(); renderIdx();
-  cnbcQuotes([cr ? sym+'.CM=' : sym]).then(q=>idxApply(q||{})).catch(e=>console.warn('index tile add', e.message)); });
+  const qs = cr ? sym+'.CM=' : sym, nk = 'sec:'+sym;
+  cnbcQuotes([qs]).then(q=>{ const u = q && q[qs];
+    if(u && u.price!=null && u.prev){ idxData.q[nk] = {last:u.price, prev:u.prev, sym:qs, etf:false, status:u.status||'', ts:u.ts||null, date:u.date||'', pre:null}; yMergeIdx(nk); idxSave(); idxSpark().catch(e=>console.warn('index sparkline', e.message)); }
+    renderIdx(); }).catch(e=>{ console.warn('index tile add', e.message); renderIdx(); }); });
 function renderIdx(){
   const wrap = $('idxWrap'), row = $('idxRow'); if(!wrap || !row) return; const have = IDX.filter(x=>idxData.q[x.k]);
   wrap.hidden = !(have.length || idxEditing); row.hidden = !have.length;
