@@ -975,7 +975,23 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 </style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
-<style>.pos-toolbar{display:flex;align-items:center;gap:12px;margin:8px 0 6px;min-width:0}.pos-toolbar .pos-sort{margin:0;flex:0 0 auto}.pos-toolbar .heat-sum{margin:0;flex:0 0 auto}.pos-toolbar:has(>#posSort[hidden]):has(>#heatSum[hidden]){display:none}</style></head>
+<style>.pos-toolbar{display:flex;align-items:center;gap:12px;margin:8px 0 6px;min-width:0}.pos-toolbar .pos-sort{margin:0;flex:0 0 auto}.pos-toolbar .heat-sum{margin:0;flex:0 0 auto}.pos-toolbar:has(>#posSort[hidden]):has(>#heatSum[hidden]){display:none}</style><style id="meta-change-preview">
+#posList>.pcard:not(.pc) .pchg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:8px;color:var(--muted);font-size:.8rem}
+#posList>.pcard:not(.pc) .pchg .chg{flex:0 0 auto;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:5px 10px;padding:0;border:0;border-radius:0;background:transparent;min-width:0;white-space:normal}
+#posList>.pcard:not(.pc) .pchg .chg-l{flex:0 0 auto;font-size:.8rem;font-weight:400;line-height:1.3}
+#posList>.pcard:not(.pc) .pchg .chg-l::after{content:':' }
+#posList>.pcard:not(.pc) .pchg .chg-p{flex-shrink:0;font-size:.8rem;line-height:1.2;padding:2px 5px;border-radius:6px;color:white!important;background:#64748b;white-space:nowrap}
+#posList>.pcard:not(.pc) .pchg .chg-p.pos{background:#10b981}
+#posList>.pcard:not(.pc) .pchg .chg-p.neg{background:#ef4444}
+#posList>.pcard:not(.pc) .pchg .chg-a{flex-shrink:0;font-size:.8rem;font-weight:600;line-height:1.3;color:var(--text)!important;white-space:nowrap}
+#posList>.pcard:not(.pc) .pchg .chg-d{display:none}
+</style>
+<style>
+#posList>.pcard:not(.pc) .pchg{display:flex;flex-wrap:nowrap;gap:6px;justify-content:space-between;overflow:hidden;max-width:100%;min-width:0}
+#posList>.pcard:not(.pc) .pchg .chg{flex:0 0 auto;gap:3px;align-items:baseline}
+#posList>.pcard:not(.pc) .pchg .chg :is(.chg-l,.chg-p,.chg-a){font-size:8.5px}
+#posList>.pcard:not(.pc) .pchg .chg-p{padding:2px 3px}
+</style></head>
 <body>
 <header class="top">
   <div class="wrap"><div class="hcard">
@@ -2527,7 +2543,7 @@ function chgAmt(v, p, digits){ if(v==null||!isFinite(v)) return '—'; const toI
   return fmtSigned(toILSv ? toILS(v,'USD') : v, toILSv ? 'ILS' : p.cur, digits); }
 function chgLines(F){ const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0]}</b>`;
   const row = (lbl, p, a)=>`<div class="chg"><span class="chg-l">${lbl}</span>${f(p)}<i class="chg-d">·</i>${f(a)}</div>`;
-  return `<div class="pchg">${row('יומי','cdp','cda')}${row('מעלות','cup','cua')}</div>`; }
+  return `<div class="pchg">${row('שינוי יומי','cdp','cda')}${row('שינוי מעלות','cup','cua')}</div>`; }
 // v237: holding P/L for the active extended session only; amount follows signed quantity, % follows long/short direction.
 function posExtChange(p){ const e = p && p.ext;
   if(!e || !['pre','after','night'].includes(e.kind) || p.manual || !Number.isFinite(e.chg) || !Number.isFinite(e.pct) || !Number.isFinite(p.qty) || !p.qty) return null;
