@@ -998,7 +998,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #posList>.pcard:not(.pc) .pchg :is(.chg-l,.chg-p,.chg-a){line-height:14.2px!important}
 #posList>.pcard:not(.pc) .pchg .chg-p{padding:0 3px!important;height:14.2px;box-sizing:border-box}
 </style>
-<style>.full-inline-head{display:block;width:100%;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:inherit;cursor:pointer}.full-inline.open>.pc-b{display:block}</style></head>
+<style>.full-inline-head{display:block;width:100%;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:inherit;cursor:pointer}.full-inline.open>.pc-b{display:block}</style><style>.ct2 .tile-quote{font-size:.58rem;opacity:.9;align-self:stretch;margin-top:5px;padding-top:4px;border-top:1px solid #ffffff30;line-height:1.35;text-align:right}.ct2 .a2{gap:8px}.ct2 .a2 small{line-height:1.3;min-width:0}.ct2 .a2 b{flex-shrink:0}#fxGrid .ct2 .a2 small,#glbGrid .ct2 .a2 small{max-width:68%}#fxGrid .ct2 .a1 b{flex-shrink:0}#fxGrid .ct2 .a1 small{min-width:0}</style></head>
 <body>
 <header class="top">
   <div class="wrap"><div class="hcard">
@@ -1393,6 +1393,13 @@ function fmtW(v){ return v==null || !isFinite(v) ? '—' : (Math.abs(v) < 0.05 &
 function fmtPct(v){ if(v==null||!isFinite(v)) return '—'; return (v>0.0000001?'+':'') + v.toFixed(2) + '%'; }
 function fmtQty(v){ if(v==null) return '—'; return v.toLocaleString('en-US',{maximumFractionDigits:8}); }
 function fmtQtyP(v){ if(v==null) return '—'; return hidden() ? MASK : fmtQty(v); }
+function tileQuoteStamp(it,q){
+  if(it.der){const a=mq[it.der.a],b=mq[it.der.b];if(!(a?.ts>0&&b?.ts>0))return 'זמן מקור לא זמין';if(Math.max(a.ts,b.ts)>Date.now()+300000)return 'זמן מקור חריג '+fmtTime(Math.max(a.ts,b.ts));return 'מחושב · מקור ישן '+fmtTime(Math.min(a.ts,b.ts));}
+  if(q?.ts>Date.now()+300000)return 'זמן מקור חריג '+fmtTime(q.ts);
+  if(q?.ts>0)return 'ציטוט אחרון '+fmtTime(q.ts);
+  if(/^\d{4}-\d{2}-\d{2}$/.test(q?.date||'')){const [y,m,d]=q.date.split('-');return 'ציטוט אחרון '+d+'.'+m+' · שעה לא זמינה';}
+  return 'זמן ציטוט לא זמין';
+}
 function staleTag(q){ return q && q.ts && Date.now()-q.ts > 15*60e3 ? 'ציטוט אחרון '+fmtTime(q.ts) : ''; }
 function fmtTime(ts){ if(!ts) return '—'; return new Date(ts).toLocaleString('he-IL',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}); }
 function cls(v){ return v>0.0000001?'pos':(v<-0.0000001?'neg':''); }
@@ -3793,7 +3800,7 @@ const COM_CR = [["זהב", "Gold Ingots on white background", "Wikimedia Commons
 (function(){ const g = document.getElementById('comGrid'); if(!g || document.getElementById('comCr')) return; const d = document.createElement('details'); d.id = 'comCr'; d.className = 'com-cr'; d.innerHTML = '<summary>קרדיט תמונות</summary>' + COM_CR.map(r=>`<div><b>${esc(r[0])}</b>: <a href="${r[4]}" target="_blank" rel="noopener noreferrer">${esc(r[1])}</a> · ${esc(r[2])} · ${r[5] ? `<a href="${r[5]}" target="_blank" rel="noopener noreferrer">${esc(r[3])}</a>` : esc(r[3])}</div>`).join('') + '<div class="cr-n">התמונות הותאמו בגודל ובחיתוך.</div>'; g.after(d); })();
 function comTile(it){ const q = iq(it), last = q ? q.price : null, prev = q ? q.prev : null, p = last!=null && prev ? (last/prev-1)*100 : null, c = COM_BY[it.k];
   const im = COM_IMG[it.k];
-  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}${im ? ' cm' : ''}"${im ? ` style="--ic:url(cm2/${im}.jpg)"` : ''} data-ck="${esc(it.k)}"><span class="a1"><b>${esc(c.n)}</b><small>${esc(c.s.replace('.1',''))}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:c.dp, maximumFractionDigits:c.dp}) : '—'}</span><span class="a2"><small>${esc(c.u)}</small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
+  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}${im ? ' cm' : ''}"${im ? ` style="--ic:url(cm2/${im}.jpg)"` : ''} data-ck="${esc(it.k)}"><span class="a1"><b>${esc(c.n)}</b><small>${esc(c.s.replace('.1',''))}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:c.dp, maximumFractionDigits:c.dp}) : '—'}</span><span class="a2"><small>${esc(c.u)}</small><b>${p!=null ? fmtPct(p) : '—'}</b></span><small class="tile-quote">${esc(tileQuoteStamp(it,q))}</small></button>`; }
 function drawCom(){ const g = $('comGrid'); if(!g) return; const L = comItems();
   g.innerHTML = L.length ? L.map(comTile).join('') : '<div class="wl-empty" style="grid-column:1/-1">אין סחורות – הוסיפו בעריכה.</div>';
   g.style.display = comEditing ? 'none' : ''; $('comEditBox').hidden = !comEditing; $('comEdit').textContent = comEditing ? '✓ סיום' : '✏️ עריכה'; $('comEdit').setAttribute('aria-pressed', String(comEditing));
@@ -3911,7 +3918,7 @@ async function loadIdxFile(){ if(Date.now()-idxFileAt < 60e3 && mq['IDXF:TASI'])
 const GLB_FLAG = {"ארה\"ב": "us", "בריטניה": "gb", "גרמניה": "de", "צרפת": "fr", "ספרד": "es", "איטליה": "it", "הולנד": "nl", "שוויץ": "ch", "אירופה": "eu", "יפן": "jp", "הונג קונג": "hk", "סין": "cn", "דרום קוריאה": "kr", "טאיוואן": "tw", "הודו": "in", "אוסטרליה": "au", "סינגפור": "sg", "קנדה": "ca", "ברזיל": "br", "מקסיקו": "mx", "איחוד האמירויות": "ae", "שוודיה": "se", "נורווגיה": "no", "פינלנד": "fi", "דנמרק": "dk", "בלגיה": "be", "אירלנד": "ie", "פורטוגל": "pt", "צ'כיה": "cz", "הונגריה": "hu", "מלזיה": "my", "תאילנד": "th", "הפיליפינים": "ph", "וייטנאם": "vn", "ישראל": "il", "קולומביה": "co", "ערב הסעודית": "sa", "קטאר": "qa", "טורקיה": "tr"};
 function glbTile(it){ const q = iq(it), last = q ? q.price : null, prev = q ? q.prev : null, p = last!=null && prev ? (last/prev-1)*100 : null, c = GLB_BY[it.k];
   const fi = GLB_FLAG[c.c];
-  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}${fi ? ' fg' : ''}"${fi ? ` style="--f:url(flags/${fi}.png)"` : ''} data-gk="${esc(it.k)}"><span class="a1"><b>${esc(c.n)}</b><small>${esc(c.c)}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:c.dp, maximumFractionDigits:c.dp}) : '—'}</span><span class="a2"><small>${esc(q && q.fileSrc && q.ts ? 'ציטוט אחרון '+fmtTime(q.ts) : staleTag(q))}</small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
+  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}${fi ? ' fg' : ''}"${fi ? ` style="--f:url(flags/${fi}.png)"` : ''} data-gk="${esc(it.k)}"><span class="a1"><b>${esc(c.n)}</b><small>${esc(c.c)}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:c.dp, maximumFractionDigits:c.dp}) : '—'}</span><span class="a2"><small>${esc(tileQuoteStamp(it,q))}</small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
 function drawGlb(){ const g = $('glbGrid'); if(!g) return; const L = glbItems();
   g.innerHTML = L.length ? L.map(glbTile).join('') : '<div class="wl-empty" style="grid-column:1/-1">אין מדדים – הוסיפו בעריכה.</div>';
   g.style.display = glbEditing ? 'none' : ''; $('glbEditBox').hidden = !glbEditing; $('glbEdit').textContent = glbEditing ? '✓ סיום' : '✏️ עריכה'; $('glbEdit').setAttribute('aria-pressed', String(glbEditing));
@@ -4570,7 +4577,7 @@ const fxItems = ()=>fxCfg().keys.map(k=>fxInst(FX_BY[k]));
 const fxMatch = (f,qq)=>!qq || (f.code+' '+f.n+' '+f.al.join(' ')).toLowerCase().includes(qq);
 function fxTile(it){ const f = FX_BY[it.sym], q = iq(it), last = q ? q.price : null, prev = q ? q.prev : null, p = last!=null && prev ? (last/prev-1)*100 : null;
   const rl = [...(f.fl||'')].map(c=>c.codePointAt(0)).filter(x=>x>=127462&&x<=127487).map(x=>String.fromCharCode(x-127397).toLowerCase()), ff = []; for(let i=0;i+1<rl.length;i+=2) ff.push(rl[i]+rl[i+1]); const fsty = ff.length ? ` style="--f1:url(flags/${ff[0]}.png)${ff[1] ? `;--f2:url(flags/${ff[1]}.png)` : ''}"` : '';
-  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}${ff.length ? ' fx2' : ''}${ff.length===1 ? ' fx1' : ''}"${fsty} data-fk="${esc(f.code)}"><span class="a1"><b class="ltr">${esc(f.code)}</b><small>${esc(f.n)}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:f.dp, maximumFractionDigits:f.dp}) : '—'}</span><span class="a2"><small>${esc(staleTag(q))}</small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
+  return `<button type="button" class="ct2 ${p==null ? 'fl' : p>=0 ? 'up' : 'dn'}${ff.length ? ' fx2' : ''}${ff.length===1 ? ' fx1' : ''}"${fsty} data-fk="${esc(f.code)}"><span class="a1"><b class="ltr">${esc(f.code)}</b><small>${esc(f.n)}</small></span><span class="pv">${last!=null && isFinite(last) ? last.toLocaleString('en-US',{minimumFractionDigits:f.dp, maximumFractionDigits:f.dp}) : '—'}</span><span class="a2"><small>${esc(tileQuoteStamp(it,q))}</small><b>${p!=null ? fmtPct(p) : '—'}</b></span></button>`; }
 function drawFx(){ const g = $('fxGrid'); if(!g) return; const L = fxItems(), K = fxCfg().keys;
   g.innerHTML = L.length ? L.map(fxTile).join('') : '<div class="wl-empty" style="grid-column:1/-1">אין צמדים – הוסיפו בעריכה.</div>';
   g.style.display = fxEditing ? 'none' : ''; $('fxEditBox').hidden = !fxEditing; $('fxEdit').textContent = fxEditing ? '✓ סיום' : '✏️ עריכה'; $('fxEdit').setAttribute('aria-pressed', String(fxEditing));
