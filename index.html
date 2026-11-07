@@ -980,7 +980,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 </style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
-<style>.pos-toolbar{display:flex;align-items:center;gap:12px;margin:8px 0 6px;min-width:0}.pos-toolbar .pos-sort{margin:0;flex:0 0 auto}.pos-toolbar .heat-sum{margin:0;flex:0 0 auto}.pos-toolbar:has(>#posSort[hidden]):has(>#heatSum[hidden]):not(:has(>#btnPerfTop)){display:none}#btnPerfTop{display:flex;align-items:center;gap:6px;font:inherit;font-size:.76rem;font-weight:700;padding:7px 12px;min-height:36px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;flex:0 0 auto;margin:0;margin-inline-start:auto}#btnPerfTop:active{opacity:.8}</style><style id="meta-change-preview">
+<style>.pos-toolbar{display:flex;align-items:center;gap:12px;margin:8px 0 6px;min-width:0}.pos-toolbar .pos-sort{margin:0;flex:0 0 auto}.pos-toolbar .heat-sum{margin:0;flex:0 0 auto}.pos-toolbar:has(>#posSort[hidden]):has(>#heatSum[hidden]):not(:has(>#btnPerfTop)){display:none}#btnPerfTop{display:flex;align-items:center;gap:6px;font:inherit;font-size:.76rem;font-weight:700;padding:7px 12px;min-height:36px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;flex:0 0 auto;margin:0;margin-inline-start:auto}#btnPerfTop:active{opacity:.8}</style><style>.fin-sort{margin:0;flex:0 0 auto}.fin-sort>.wl-to{width:130px;display:block}.fin-sort .wl-pick{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;min-height:36px;padding:7px 10px;background:var(--card);margin:0;width:100%}.fin-sort .wl-pick i{font-style:normal}.fin-sort .wl-pm{min-width:120px;text-align:start}.fin-note{font-size:.68rem;color:var(--muted);margin:0 2px 8px}.fin-h{direction:ltr;display:grid;grid-template-columns:40px minmax(0,1fr) auto auto auto;column-gap:10px;padding:2px 10px 6px;font-size:.68rem;font-weight:600;color:var(--muted)}.fin-h .pcol{text-align:center;direction:ltr;white-space:nowrap}.fin-r{direction:ltr;display:grid;grid-template-columns:40px minmax(0,1fr) auto auto auto;align-items:center;column-gap:10px;padding:9px 10px;background:var(--card);border:1px solid var(--border);border-radius:14px;cursor:pointer}.fin-r:active{opacity:.85}.fin-r .pcol{text-align:center;direction:ltr;white-space:nowrap;font-variant-numeric:tabular-nums}.fin-r .pc-mcap{font-weight:600;font-size:.84rem;color:#94a3b8}.fin-r .pc-p{font-size:.84rem;font-weight:600}.fin-more{display:block;margin:10px auto 4px}.fin-dhead{display:flex;align-items:center;gap:12px}.fin-dhead .fin-dp{margin-inline-start:auto;text-align:left;direction:ltr}.fin-tpl .fin-tpl-grid{display:grid;gap:3px;direction:rtl;text-align:right}</style><style id="meta-change-preview">
 #posList>.pcard:not(.pc) .pchg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:8px;color:var(--muted);font-size:.8rem}
 #posList>.pcard:not(.pc) .pchg .chg{flex:0 0 auto;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:5px 10px;padding:0;border:0;border-radius:0;background:transparent;min-width:0;white-space:normal}
 #posList>.pcard:not(.pc) .pchg .chg-l{flex:0 0 auto;font-size:.8rem;font-weight:400;line-height:1.3}
@@ -1091,11 +1091,12 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
   </section>
   <section class="tab" id="tab-settings"><div class="set-bar"><h2>הגדרות</h2><button class="btn set-back" id="setBack" aria-label="חזרה">חזרה ←</button></div><div class="card" id="settingsCard"></div></section>
   <section class="tab" id="tab-news"><div class="card"><div class="news-h"><h2>חדשות</h2><button class="btn sm" id="newsRefresh" aria-label="רענון חדשות">🔄</button></div><div class="seg nseg" id="newsSeg" role="tablist" aria-label="סוג תוכן"><button data-nt="news" class="on">📰 חדשות</button><button data-nt="rep">📊 דוחות</button><button data-nt="cal">🗓️ יומן כלכלי</button></div><div id="ntNews"><div class="seg nsub" id="newsCatSeg" role="tablist" aria-label="סינון סוג חדשות"><button data-nc="all" class="on">📰 הכל</button><button data-nc="micro">🏢 מיקרו</button><button data-nc="macro">🌍 מאקרו</button></div><div class="news-sr"><input type="search" id="newsQ" placeholder="חיפוש בחדשות" autocomplete="off" enterkeyhint="search" aria-label="חיפוש בחדשות"><button id="newsQx" aria-label="ניקוי חיפוש" hidden>✕</button></div><div class="news-cnt" id="newsCnt" hidden></div><div id="newsBulk" style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0"><button class="btn btn-light btn-sm" id="newsExpandAll" style="min-height:44px">הרחבת הכל</button><button class="btn btn-light btn-sm" id="newsCollapseAll" style="min-height:44px">כיווץ הכל</button></div><div id="newsList" aria-live="polite"><div class="muted">טוען…</div></div></div><div id="ntRep" hidden><div class="rbar"><button class="rsi" id="repSi" aria-label="חיפוש דוחות">🔍</button><div class="rqw" id="repQw" hidden><input id="repQ" type="text" inputmode="search" autocomplete="off" enterkeyhint="search" placeholder="חיפוש סימול / חברה" aria-label="חיפוש דוחות"><button id="repQx" aria-label="סגירת חיפוש">✕</button></div><div class="rpills" id="repPills" role="toolbar" aria-label="סינון ומיון דוחות"></div></div><div class="rpop" id="repPop" hidden role="menu"></div><div class="rfil" id="repFil"></div><div id="repList"><div class="muted">טוען…</div></div></div><div id="ntCal" hidden><div class="cfil" id="calFil"></div><div id="calList"><div class="muted">טוען…</div></div></div></div></section>
+  <section class="tab" id="tab-fin"><div id="finWrap"><div class="card"><div class="h2row"><h2>פיננסים</h2><div class="pos-sort fin-sort"><span class="wl-to"><button type="button" class="wl-pick" id="finSortBtn" aria-haspopup="listbox" aria-expanded="false"><span>מיון: <b id="finSortName">שווי שוק</b> <i class="num">↓</i></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="wl-pm" role="listbox" id="finSortMenu" hidden><button type="button" role="option" data-fsort="cap" class="on" aria-selected="true"><span>שווי שוק</span><small>↓ ✓</small></button><button type="button" role="option" data-fsort="az" aria-selected="false"><span>א-ב</span><small></small></button></div></span></div></div><div class="fin-note" id="finNote" hidden></div><div class="fin-h"><span></span><span>נייר</span><span class="pcol">שווי שוק</span><span class="pcol">מחיר</span><span class="pcol">יומי</span></div><div class="pos-list" id="finList"><div class="muted">טוען…</div></div><button type="button" class="btn btn-light fin-more" id="finMore" hidden>הצג עוד</button></div></div><div id="finDetail" hidden><div class="set-bar"><h2 id="finDTitle"></h2><button class="btn set-back" id="finBack" aria-label="חזרה">חזרה ←</button></div><div class="card fin-dhead" id="finDHead"></div><div class="card" id="finDReports" hidden></div><div class="card fin-tpl" id="finDTpl"></div></div></section>
 </main>
 
 <nav class="bottom"><div class="in">
   <button data-tab="tx"><span class="i">🧾</span>עסקאות</button>
-  <button data-tab="perf"><span class="i">📊</span>ביצועים</button>
+  <button data-tab="fin"><span class="i">📊</span>פיננסים</button>
   <button data-tab="news"><span class="i">📰</span>חדשות</button>
   <button class="nav-srch" id="navSearch" aria-label="חיפוש נייר" title="חיפוש נייר"><span><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></span></button>
   <button data-tab="market"><span class="i">🌐</span>שוק</button>
@@ -5839,6 +5840,7 @@ function setTab(tab){ try{ repPopClose(); }catch(_){}
   const gs = $('btnSet'); if(gs){ gs.classList.toggle('on', tab==='settings'); gs.setAttribute('aria-pressed', String(tab==='settings')); }
   window.scrollTo({top:0});
   if(tab==='perf') renderPerf(); else destroyPerf();
+  if(tab==='fin'){ finSel=null; renderFin(); }
   if(tab==='portfolio'){ renderMini(); heatKey = ''; renderHeat(computeAll()); } else destroyMini();
   if(tab==='settings') renderSettings();
   if(tab==='market') renderMarket(); if(tab==='watch'){ renderWatch(); const bar = $('wlTabs').querySelector('.wltabs'); if(bar) bar.scrollTo({left:0,behavior:'instant'}); } if(tab==='news'){ if(newsTab==='rep') repEnter = true; if(newsTab==='cal') calEnter = true; loadNewsTab(); }
@@ -6028,6 +6030,74 @@ function reportPdfTargets(p){return ((REPORT_PDFS[p.dataset.pdfSymbol]||{})[p.qu
 document.addEventListener('change',e=>{const p=e.target.closest('.report-pick');if(!p)return;e.stopPropagation();p.querySelector('[data-pdf-actions]').innerHTML=reportPdfActions(reportPdfTargets(p));},true);
 document.addEventListener('click',e=>{const p=e.target.closest('.report-pick');if(!p){document.querySelectorAll('.report-qmenu:not([hidden])').forEach(m=>{m.hidden=true;m.parentElement.querySelector('[data-pdf-q]').setAttribute('aria-expanded','false');});return;}e.stopImmediatePropagation();const q=e.target.closest('[data-pdf-q]');if(q){e.preventDefault();const m=p.querySelector('.report-qmenu');m.hidden=!m.hidden;q.setAttribute('aria-expanded',String(!m.hidden));return;}const n=e.target.closest('[data-pdf-quarter]'),fy=e.target.closest('[data-pdf-fy]');if(!n&&!fy)return;e.preventDefault();const url=reportPdfTargets(p)[fy?'FY':'Q'+n.dataset.pdfQuarter];if(url){const w=window.open(url,'_blank','noopener,noreferrer');if(w)w.opener=null;}p.querySelectorAll('.report-qmenu').forEach(m=>m.hidden=true);const b=p.querySelector('[data-pdf-q]');if(b)b.setAttribute('aria-expanded','false');},true);
 document.addEventListener('keydown',e=>{if(e.target.closest('.report-pick')){e.stopPropagation();if(e.key==='Escape'){const p=e.target.closest('.report-pick');p.querySelectorAll('.report-qmenu').forEach(m=>m.hidden=true);const b=p.querySelector('[data-pdf-q]');if(b)b.setAttribute('aria-expanded','false');}}},true);
+
+// ---- Finance tab: qualified US-listed common stocks, sort by market cap or A-Z (mcap-rank.json, ranked at build time; prices from the app's quote feed) ----
+let finData=null, finLoading=false, finSort='cap', finShown=60, finSel=null, finQuotedSyms=new Set(), finQuotedAt=0;
+const FIN_PAGE=60;
+async function loadFin(){ if(finData||finLoading) return; finLoading=true;
+  try{ const r=await fetch('mcap-rank.json'); if(!r.ok) throw new Error('http '+r.status); finData=await r.json(); }
+  catch(e){ finData={error:String(e&&e.message||e)}; }
+  finLoading=false; }
+function finSorted(){ const a=((finData&&finData.ranked)||[]).slice();
+  if(finSort==='cap') a.sort((x,y)=>(y[1]||0)-(x[1]||0)); else a.sort((x,y)=>(x[2]||x[0]).localeCompare(y[2]||y[0],'en'));
+  return a; }
+function finCap(v){ if(v==null||!isFinite(v)||v<=0) return '—'; const p=v>=1e12?[1e12,'T']:v>=1e9?[1e9,'B']:v>=1e6?[1e6,'M']:[1e3,'K']; const x=v/p[0], t=x>=100?x.toFixed(0):x>=10?x.toFixed(1):x.toFixed(2); return t+p[1]+'$'; }
+function finInst(r){ return secInst({sym:r[0], name:r[2]||r[0], type:'stock', currency:'USD'}); }
+function finRowHtml(r){ const it=finInst(r), q=iq(it), price=q&&q.price, pct=(price!=null&&q.prev)?(price/q.prev-1)*100:null;
+  return `<div class="fin-r" data-finsym="${esc(r[0])}" role="button" tabindex="0">`
+    + logoHtml(r[0])
+    + `<div class="pc-n" style="min-width:0"><div class="psym"><span class="ltr">${esc(r[0])}</span></div><div class="pname" title="${esc(r[2]||'')}">${esc(r[2]||r[0])}</div></div>`
+    + `<div class="pcol pc-mcap num">${finCap(r[1])}</div>`
+    + `<div class="pcol pc-p num">${price!=null?fmtPrice(price,'USD'):'—'}</div>`
+    + `<div class="pcol pc-d"><b class="num ${pct==null?'':pct>0.0000001?'pos':pct<-0.0000001?'neg':''}">${pct==null?'—':chgPct(pct)}</b></div>`
+    + `</div>`; }
+async function finQuoteVisible(){ const items=finSorted(); const upto=Math.min(finShown, items.length);
+  const need=items.slice(0, upto).filter(r=>!finQuotedSyms.has(r[0])); if(!need.length) return;   // covers paging, sort changes, and stale-entry refresh; instQuotes chunks by 40
+  await instQuotes(need.map(finInst)); need.forEach(r=>finQuotedSyms.add(r[0])); finQuotedAt=Date.now();
+  if(ui.tab==='fin' && !finSel) drawFinList(); }
+function drawFinList(){ const items=finSorted(); const el=$('finList'); if(!el) return;
+  const page=items.slice(0, Math.min(finShown, items.length));
+  el.innerHTML = page.map(finRowHtml).join('') || '<div class="muted">אין נתונים</div>';
+  $('finMore').hidden = finShown>=items.length;
+  const n=$('finNote'); if(finData&&finData.generated){ n.hidden=false; const d=new Date(finData.generated);
+    const wcap=(finData.stats&&finData.stats.with_cap)||0, nocap=items.length-wcap;
+    const qt=finQuotedAt?`ציטוטים נכון ל-${new Date(finQuotedAt).toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'})}`:'מחירים לפי עדכון הציטוטים האחרון';
+    n.textContent=`${items.length.toLocaleString('en-US')} מניות מוסמכות · דירוג שווי שוק נכון לעדכון ${d.toLocaleDateString('he-IL')}${nocap?` · ${nocap.toLocaleString('en-US')} ללא שווי ידוע`:''} · ${qt}`; } }
+async function renderFin(){ $('finDetail').hidden=true; $('finWrap').hidden=false;
+  if(!finData){ $('finList').innerHTML='<div class="muted">טוען…</div>'; await loadFin(); }
+  if(finData&&finData.error){ $('finList').innerHTML=`<div class="muted">לא ניתן לטעון את רשימת המניות (${esc(finData.error)})</div>`; return; }
+  const iv=num(state.settings.refreshSec)||0;   // tab entry re-quotes visible rows, throttled by the app's own refresh preference (0 = auto refresh off); never faster than 15s
+  if(finQuotedAt && iv && Date.now()-finQuotedAt>=Math.max(15,iv)*1000) finQuotedSyms=new Set();
+  drawFinList(); finQuoteVisible(); }
+function finTplHtml(){ const L=t=>`<div><b>${t}</b>: <span style="color:var(--muted)">—</span></div>`;
+  const VQQ=t=>L(t)+L('Q/Q')+L('Y/Y'), MARG=t=>L(t)+L('שיעור (מחושב)')+L('Q/Q')+L('Y/Y');
+  return '<div style="color:var(--muted);font-size:.66rem;margin-bottom:4px">תבנית בלבד — טרם הוזנו נתונים</div><div class="fin-tpl-grid">'
+    + VQQ('הכנסות')+L('ביט/מיס מול צפי')+MARG('רווח תפעולי')+MARG('רווח נקי')+MARG('EBITDA')+L('EPS')+VQQ('CAPEX')+VQQ('מיסים ששולמו')+L('תזרים מפעילות שוטפת')
+    + '<div style="margin-top:3px"><b>עיקרי העסק</b>: <span style="color:var(--muted)">—</span></div>'
+    + '<div style="margin-top:6px"><b>תחזית החברה</b></div>'+L('הכנסות')+L('EPS')+'</div>'; }
+async function drawFinDetail(){ const r=(finSorted().find(x=>x[0]===finSel))||[finSel,null,finSel];
+  $('finWrap').hidden=true; $('finDetail').hidden=false;
+  $('finDTitle').textContent=r[2]||r[0];
+  const it=finInst(r), q=iq(it), price=q&&q.price, pct=(price!=null&&q.prev)?(price/q.prev-1)*100:null;
+  $('finDHead').innerHTML = logoHtml(r[0],true)
+    + `<div style="min-width:0"><div class="psym"><span class="ltr">${esc(r[0])}</span></div><div class="pname">${esc(r[2]||'')}</div></div>`
+    + `<div class="fin-dp"><div class="pc-p num">${price!=null?fmtPrice(price,'USD'):'—'}</div><b class="num ${pct==null?'':pct>0.0000001?'pos':pct<-0.0000001?'neg':''}">${pct==null?'':chgPct(pct)}</b></div>`;
+  const ctrl=reportPdfControls(r[0]); const rd=$('finDReports'); rd.hidden=!ctrl; rd.innerHTML=ctrl||'';
+  $('finDTpl').innerHTML=finTplHtml();
+  window.scrollTo({top:0});
+  if(!q){ await instQuotes([it]); if(finSel===r[0]&&ui.tab==='fin'&&iq(it)) drawFinDetail(); } }   // redraw only if a quote actually arrived - otherwise keep '—' (no retry loop on unavailable quotes)
+document.addEventListener('click', e=>{ const row=e.target.closest('.fin-r[data-finsym]'); if(row){ finSel=row.dataset.finsym; drawFinDetail(); return; } });
+document.addEventListener('keydown', e=>{ if(e.key==='Enter'){ const row=e.target.closest&&e.target.closest('.fin-r[data-finsym]'); if(row){ finSel=row.dataset.finsym; drawFinDetail(); } } }, true);
+document.addEventListener('click', e=>{
+  const sb=e.target.closest('#finSortBtn'); if(sb){ e.stopPropagation(); const m=$('finSortMenu'), open=m.hidden; m.hidden=!open; sb.setAttribute('aria-expanded', String(open)); return; }
+  const so=e.target.closest('#finSortMenu [data-fsort]'); if(so){ finSort=so.dataset.fsort;
+    $('finSortName').textContent = finSort==='cap'?'שווי שוק':'א-ב';
+    $('finSortMenu').querySelectorAll('button').forEach(x=>{ const on=x===so; x.classList.toggle('on',on); x.setAttribute('aria-selected',String(on)); x.querySelector('small').textContent = on?(finSort==='cap'?'↓ ✓':'✓'):''; });
+    $('finSortMenu').hidden=true; $('finSortBtn').setAttribute('aria-expanded','false'); drawFinList(); finQuoteVisible(); return; }
+  if(!e.target.closest('.fin-sort')){ const m=$('finSortMenu'); if(m&&!m.hidden){ m.hidden=true; $('finSortBtn').setAttribute('aria-expanded','false'); } }
+  const fm=e.target.closest('#finMore'); if(fm){ finShown+=FIN_PAGE; drawFinList(); finQuoteVisible(); return; }
+  const fb=e.target.closest('#finBack'); if(fb){ finSel=null; renderFin(); return; }
+});
 
 function drawReports(){ const repReset=repEnter; const D = ntData.rep, el = $('repList'); if(!D) return; if(!D.items.length){ $('repFil').innerHTML = ''; el.innerHTML = ntEmpty('rep', D.err); return; }
   const held = new Set(computeAll().positions.filter(p=>Math.abs(p.qty)>1e-9).map(p=>p.sym)), watched = new Set(wlData.lists.flatMap(l=>l.items.map(x=>x.sym)));
