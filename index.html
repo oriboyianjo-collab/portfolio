@@ -4293,7 +4293,7 @@ function obMsg(t, badge){ const b = document.getElementById('obBody'), d = docum
 // volume under the Cboe badge: today's volume + ⓘ -> average daily volume 3 months back (av3m / CNBC, same computation as the פרטים grid)
 function obVolDraw(){ const el = document.getElementById('obVol'); if(!el) return;
   const it = detItem(), q = it && iq(it), X = (q && q.x) || {};
-  const OB_VOL_POST_OK = false;   // POST_MKT ExtendedMktQuote.volume semantics not yet verified live (check scheduled tonight); flip to true only after confirmation
+  const OB_VOL_POST_OK = true;   // POST_MKT session volume verified live against separately stable regular-session volume, 2026-11-06
   const ev = q && q.ext && q.ext.vol!=null && (q.ext.kind==='pre' || (OB_VOL_POST_OK && q.ext.kind==='after')) ? q.ext : null;   // fresh extended-session volume from CNBC (session-stamped via preOf)
   const ph = ev ? ev.kind : (usSession()==='reg' ? 'reg' : 'last'), v = ev ? ev.vol : X.vol;
   if(!it || marketOf(it.sym)!=='us' || v==null){ el.innerHTML = ''; return; }
@@ -6104,7 +6104,7 @@ function drawReports(){ const repReset=repEnter; const D = ntData.rep, el = $('r
       return `<em class="rs ${pc.z?'na':pc.neg?'neg':'pos'}" ${tt}><bdi>${pc.t}</bdi>${pc.z?'':pc.neg?' מיס':' ביט'}</em><em class="rs na" ${tt}>טווח עליון</em>`; };   // v231
     const surp = (a, e)=>a!=null && e!=null && e!==0 ? (a-e)/Math.abs(e)*100 : null;
     const sp = (x, ap)=>x==null ? '' : `<em class="rs ${x>=0?'pos':'neg'}"><bdi>${ap?'\u2248':''}${x>=0?'+':''}${Math.abs(x)>=100 ? x.toFixed(0) : x.toFixed(1)}%</bdi> ${x>=0?'ביט':'מיס'}</em>`;
-    const val = (lbl, est, act, c, x, cm, tg, isRev, rr, isRng, uns)=>{ const vb = v=>bdiR(v,''), eb = v=>bdiR(v,'num'), ap = dnApprox(est) || dnApprox(act);
+    const val = (lbl, est, act, c, x, cm, tg, isRev, rr, isRng, uns)=>{ const vb = v=>{const h=bdiR(v,''), t=String(fmtR(v)||v||''); return /^[~≈+-]?[\d,.]+[BMK]?$/.test(t) && t.length>8 ? h.replace('<bdi', '<bdi style="font-size:'+Math.min(.78,6.1/t.length).toFixed(3)+'rem;white-space:nowrap;overflow-wrap:normal"') : h;}, eb = v=>bdiR(v,'num'), ap = dnApprox(est) || dnApprox(act);
       return act ? `<span>${lbl} בפועל</span><b class="num ${c}">${vb(act)}</b><small>צפי ${eb(est)}</small>${tg}${cm.ok ? (uns ? '<em class="rs na">ללא %</em>' : isRng ? rngB(rr, est, act) : sp(x, ap)) : '<em class="rs na">ללא %</em>'}` : `<span>${lbl} צפי</span><b class="num">${vb(est)}</b>${tg}`; };
     const whyL = [r.eps && !E.ok ? 'EPS: '+E.why : '', r.rev && !R.ok ? 'הכנסות: '+R.why : ''].filter(Boolean);
     const whyHtml = ()=> whyL.length ? ib(whyL.map(x=>`<div>${esc(x)}</div>`).join(''), 'למה אין השוואה לצפי', 'warn') : '';
