@@ -991,7 +991,14 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #posList>.pcard:not(.pc) .pchg .chg{flex:0 0 auto;gap:3px;align-items:baseline}
 #posList>.pcard:not(.pc) .pchg .chg :is(.chg-l,.chg-p,.chg-a){font-size:8.5px}
 #posList>.pcard:not(.pc) .pchg .chg-p{padding:2px 3px}
-</style></head>
+</style>
+<style id="adaptive-change-style">
+#posList>.pcard:not(.pc) .pchg{height:14.2px}
+#posList>.pcard:not(.pc) .pchg .chg{align-items:center;height:14.2px}
+#posList>.pcard:not(.pc) .pchg :is(.chg-l,.chg-p,.chg-a){line-height:14.2px!important}
+#posList>.pcard:not(.pc) .pchg .chg-p{padding:0 3px!important;height:14.2px;box-sizing:border-box}
+</style>
+</head>
 <body>
 <header class="top">
   <div class="wrap"><div class="hcard">
@@ -6828,6 +6835,33 @@ html.dark .al-tg{background:#334155}.al-tg::after{content:"";position:absolute;t
 .al-it b{font-size:.88rem}.al-it p{margin:3px 0;color:var(--muted);font-size:.8rem;line-height:1.4}.al-it .t{font-size:.7rem;color:var(--muted)}
 </style>
 
+
+<script id="adaptive-change-fit">
+(()=>{
+  const init=()=>{
+    const list=document.getElementById('posList');if(!list)return;
+    let pending=false;
+    const fit=()=>{
+      pending=false;
+      const rows=[...list.querySelectorAll(':scope>.pcard:not(.pc) .pchg')].filter(e=>e.clientWidth>0);
+      if(!rows.length)return;
+      const fields=rows.flatMap(row=>[...row.querySelectorAll('.chg-l,.chg-p,.chg-a')]);
+      for(let step=120;step>=85;step--){
+        const size=(step/10).toFixed(1)+'px';
+        fields.forEach(e=>{if(e.style.fontSize!==size)e.style.fontSize=size;});
+        if(rows.every(row=>[...row.children].reduce((sum,g)=>sum+g.getBoundingClientRect().width,0)+6<=row.clientWidth)||step===85)break;
+      }
+    };
+    const schedule=()=>{if(!pending){pending=true;requestAnimationFrame(fit);}};
+    new MutationObserver(schedule).observe(list,{childList:true,subtree:true,characterData:true});
+    if(window.ResizeObserver)new ResizeObserver(schedule).observe(list);
+    window.addEventListener('resize',schedule,{passive:true});
+    document.fonts?.ready.then(schedule);
+    schedule();
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+</script>
 </body>
 </html>
 
