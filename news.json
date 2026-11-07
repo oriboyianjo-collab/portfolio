@@ -12855,20 +12855,20 @@
     "טקסט": "המגעים לשינוי מבנה העסקה: לא מאומתים מול מקור ראשוני\n5.11.2026 | הודעת ABB המקורית על האיסור; 6.11.2026 | אישור SoftBank. דיווח המשך על מגעי הפרדה: 7.11.2026. שעות הפרסום בשעון ישראל לא אומתו.\n\nהחברות אישרו כי רשות בדיקת הביטחון של השקעות זרות בסין אסרה על רכישת פעילות הרובוטיקה של ABB בסין בידי SoftBank. בהודעתה מ-6 בנובמבר ציינה SoftBank כי קיבלה את ההודעה מהרשות ב-4 בנובמבר. מדובר בפעילות בסין: החברות לא הודיעו כי העסקה העולמית כולה בוטלה.\n\nההסכם המקורי למכירת חטיבת הרובוטיקה נחתם באוקטובר 2025, לפי שווי פעילות של 5.375 מיליארד דולר. בהודעותיהן העדכניות אמרו החברות שהן ממשיכות בשיח הדוק ועובדות על העסקה, שעדיין כפופה לאישורים רגולטוריים ולתנאי סגירה מקובלים.\n\nבדיווח המשך מ-7 בנובמבר, Investing.com מצטטת דיווח Bloomberg המבוסס על אנשים המכירים את המגעים, שלפיו נבחנת הפרדת הפעילות הסינית לישות בבעלות נפרדת כדי לאפשר מכירה של יתר הפעילות. לפי אותו דיווח, המגעים ראשוניים ועלולים שלא להוביל להסכם. זהו דיווח משני: אין כאן אישור רשמי למבנה חדש, למחיר מעודכן או להסכמת הרשות למתווה כזה.\n\nהאיסור המאומת מוסיף סיכון לסגירת עסקת הרובוטיקה. דיווח המגעים מתאר ניסיון אפשרי להתמודד עם המכשול, ולא הסרה שלו. לא פורסם במקורות הראשוניים שנבדקו מועד סגירה חלופי או אישור להשלמת העסקה.",
     "מקורות": [
       {
-        "שם": "ABB: עדכון רשמי על איסור רכישת הפעילות בסין",
-        "קישור": "https://www.abb.com/global/en/news/140154/update-on-divestment-of-abb-robotics"
+        "label": "ABB: עדכון רשמי על איסור רכישת הפעילות בסין",
+        "url": "https://www.abb.com/global/en/news/140154/update-on-divestment-of-abb-robotics"
       },
       {
-        "שם": "SoftBank: אישור רשמי מ-6 בנובמבר, הודעת הרשות התקבלה ב-4 בנובמבר",
-        "קישור": "https://group.softbank/en/news/press/20261106"
+        "label": "SoftBank: אישור רשמי מ-6 בנובמבר, הודעת הרשות התקבלה ב-4 בנובמבר",
+        "url": "https://group.softbank/en/news/press/20261106"
       },
       {
-        "שם": "Investing.com: דיווח משני מ-7 בנובמבר המצטט את Bloomberg",
-        "קישור": "https://www.investing.com/news/company-news/softbank-abb-consider-china-carveout-to-rescue-54bn-robotics-deal--bloomberg-5009777"
+        "label": "Investing.com: דיווח משני מ-7 בנובמבר המצטט את Bloomberg",
+        "url": "https://www.investing.com/news/company-news/softbank-abb-consider-china-carveout-to-rescue-54bn-robotics-deal--bloomberg-5009777"
       },
       {
-        "שם": "ABB: סימול ADR נוכחי ABBNY בשוק OTC",
-        "קישור": "https://www.abb.com/global/en/company/investors/equity-info/share-listing/adrs"
+        "label": "ABB: סימול ADR נוכחי ABBNY בשוק OTC",
+        "url": "https://www.abb.com/global/en/company/investors/equity-info/share-listing/adrs"
       }
     ],
     "תאריך": "2026-11-07 12:22",
