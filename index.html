@@ -998,7 +998,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #posList>.pcard:not(.pc) .pchg :is(.chg-l,.chg-p,.chg-a){line-height:14.2px!important}
 #posList>.pcard:not(.pc) .pchg .chg-p{padding:0 3px!important;height:14.2px;box-sizing:border-box}
 </style>
-</head>
+<style>.full-inline-head{display:block;width:100%;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:inherit;cursor:pointer}.full-inline.open>.pc-b{display:block}</style></head>
 <body>
 <header class="top">
   <div class="wrap"><div class="hcard">
@@ -2633,6 +2633,29 @@ function splitSugClick(e){
     toast(`נרשם ${splitLabel(x.ratio)} ב-${x.sym}`); }
   splitSug = splitSug.filter(y=>y.key!==key); save(); renderAll(); if(sheetSym===x.sym && $('posSplitSug')) openPosition(x.sym);
 }
+function positionInlineBody(p,F){const cur=p.cur,short=p.qty<0,f=(k,tag='b')=>`<${tag} data-f="${k}" class="${F[k][1]}">${F[k][0]}</${tag}>`;return `        <div class="pc-b pc-b2">
+          <div class="pc-sec"><h4>פוזיציה</h4>${f('age','span')}</div>
+          <div class="pc-kv">
+            <div><span>${short?'כמות בשורט':'כמות'}</span><b class="num">${fmtQtyP(Math.abs(p.qty))}</b></div>
+            <div><span>מחיר</span>${f('price')}</div>
+            <div><span>${short?'מחיר שורט':'עלות ממוצעת'}</span><b class="num">${fmtMoney(p.avg,cur)}</b></div>
+            <div><span>עלות</span>${f('cost')}</div>
+            <div class="w"><span>שווי</span><em>${f('mv')}${cur==='USD'?'<i class="sep">·</i>'+f('mvils2'):''}</em></div>
+            <div class="w"><span>% מהתיק</span>${f('hwd')}</div>
+          </div>
+          <div class="pc-sec"><h4>ביצועים</h4></div>
+          <div class="pc-kv">
+            <div class="w"><span>שינוי מעלות</span><em>${f('unra')}${f('unrp')}</em></div>
+            <div class="w"><span>שינוי יומי</span><em>${f('daya')}${f('dayp')}</em></div>
+            <div class="w" data-pos-ext${posExtChange(p)?'':' hidden'}>${f('extl','span')}<em>${f('exta')}${f('extp')}</em></div>
+          </div>
+          <div class="pc-sec"><h4>מס</h4></div>
+          <div class="pc-kv"><div class="w"><span>עלות בשקלים למס</span>${f('costils')}</div></div>
+          <div class="pc-sec"><h4>גרף</h4></div>
+          <div class="pc-ch" data-rch="${esc(p.sym)}"><div class="pc-ch-t"><button class="btn btn-sm btn-light" data-custom-chart="${esc(p.sym)}">טווח תאריכים</button><div class="seg sm" data-rcr>${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div></div>
+            <div class="pc-ch-t"><div class="seg sm ivseg" data-rci></div><div class="seg sm cst" data-rcs><button data-v="line">קו</button><button data-v="candle">נרות</button></div></div>
+            <div class="chart pc-chart" style="height:180px"><div class="chart-msg">טוען גרף…</div></div><div class="note" data-rccoverage hidden></div></div>
+          <div class="pc-btn"><button class="btn btn-light btn-sm" data-cact="open">📄 פרטים מלאים</button><button class="btn btn-light btn-sm" data-cact="buy">🛒 קנייה</button><button class="btn btn-light btn-sm" data-cact="sell">💰 מכירה</button></div></div>`;}
 function renderPortfolio(S){
   renderCash(S); renderSplitSug(); renderSortBar(S.positions.length);
   S = Object.assign({}, S, {positions: sortPositions(S.positions)}); sortPending = null;
@@ -2660,29 +2683,7 @@ function renderPortfolio(S){
           <div class="pcol pc-v"><span data-f="mvr" class="${F.mvr[1]}">${F.mvr[0]}</span></div><div class="pcol pc-m num" data-mcap>${capT(posCap(p), cur)}</div>
           <div class="pcol pc-p">${f('hp','span')}</div><div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}${f('he','span')}</div>
         </button>
-        <div class="pc-b pc-b2">
-          <div class="pc-sec"><h4>פוזיציה</h4>${f('age','span')}</div>
-          <div class="pc-kv">
-            <div><span>${short?'כמות בשורט':'כמות'}</span><b class="num">${fmtQtyP(Math.abs(p.qty))}</b></div>
-            <div><span>מחיר</span>${f('price')}</div>
-            <div><span>${short?'מחיר שורט':'עלות ממוצעת'}</span><b class="num">${fmtMoney(p.avg,cur)}</b></div>
-            <div><span>עלות</span>${f('cost')}</div>
-            <div class="w"><span>שווי</span><em>${f('mv')}${cur==='USD'?'<i class="sep">·</i>'+f('mvils2'):''}</em></div>
-            <div class="w"><span>% מהתיק</span>${f('hwd')}</div>
-          </div>
-          <div class="pc-sec"><h4>ביצועים</h4></div>
-          <div class="pc-kv">
-            <div class="w"><span>שינוי מעלות</span><em>${f('unra')}${f('unrp')}</em></div>
-            <div class="w"><span>שינוי יומי</span><em>${f('daya')}${f('dayp')}</em></div>
-            <div class="w" data-pos-ext${posExtChange(p)?'':' hidden'}>${f('extl','span')}<em>${f('exta')}${f('extp')}</em></div>
-          </div>
-          <div class="pc-sec"><h4>מס</h4></div>
-          <div class="pc-kv"><div class="w"><span>עלות בשקלים למס</span>${f('costils')}</div></div>
-          <div class="pc-sec"><h4>גרף</h4></div>
-          <div class="pc-ch" data-rch="${esc(p.sym)}"><div class="pc-ch-t"><button class="btn btn-sm btn-light" data-custom-chart="${esc(p.sym)}">טווח תאריכים</button><div class="seg sm" data-rcr>${INST_RANGES.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('')}</div></div>
-            <div class="pc-ch-t"><div class="seg sm ivseg" data-rci></div><div class="seg sm cst" data-rcs><button data-v="line">קו</button><button data-v="candle">נרות</button></div></div>
-            <div class="chart pc-chart" style="height:180px"><div class="chart-msg">טוען גרף…</div></div><div class="note" data-rccoverage hidden></div></div>
-          <div class="pc-btn"><button class="btn btn-light btn-sm" data-cact="open">📄 פרטים מלאים</button><button class="btn btn-light btn-sm" data-cact="buy">🛒 קנייה</button><button class="btn btn-light btn-sm" data-cact="sell">💰 מכירה</button></div></div></div>`;
+        ${positionInlineBody(p,F)}</div>`;
     }).join('');
     requestAnimationFrame(rowChartsSync);
   } else {
@@ -2693,7 +2694,7 @@ function renderPortfolio(S){
       if(p.manual) tags.push('<span class="tag manual">מחיר ידני</span>'); else if(p.est) tags.push('<span class="tag err">אין מחיר</span>');
       shownPrice[p.sym] = p.price;
       const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0]}</b>`;
-      return `<button class="pcard" data-sym="${esc(p.sym)}">
+      return `<div class="pcard full-inline${ui.expanded.has(p.sym)?' open':''}" data-sym="${esc(p.sym)}"><button class="full-inline-head" data-ctoggle aria-expanded="${ui.expanded.has(p.sym)}">
         <div class="pgrid">${logoHtml(p.sym)}<div class="pc-n" style="min-width:0"><div class="psym"><span class="ltr">${esc(p.sym)}</span>${tags.join('')}</div><div class="pname" title="${esc(p.asset.name||'')}">${esc(Array.from(p.asset.name||'').slice(0,14).join(''))}${Array.from(p.asset.name||'').length>14?'...':''}</div></div>
           <div class="pcol pc-s" data-spark="${esc(p.sym)}">${sparkCell(p)}</div><div class="pcol pc-w"><span data-f="hw" class="${F.hw[1]}">${F.hw[0]}</span></div><div class="pcol pc-v"><span data-f="mvr" class="${F.mvr[1]}">${F.mvr[0]}</span></div><div class="pcol pc-m num" data-mcap>${capT(posCap(p), cur)}</div>
           <div class="pcol pc-p"><span data-f="hp" class="${F.hp[1]}">${F.hp[0]}</span></div><div class="pcol pc-d${showU?' two':''}">${f('hd')}${showU?f('hu'):''}<span data-f="he" class="${F.he[1]}">${F.he[0]}</span></div></div>
@@ -2701,8 +2702,9 @@ function renderPortfolio(S){
           ${TYPE_LABELS[p.asset.type] ? `<span class="tag">${esc(TYPE_LABELS[p.asset.type])}</span>` : ''}
           <span>${short?'כמות בשורט':'כמות'}: <b class="num">${fmtQtyP(Math.abs(p.qty))}</b></span>
           <span>${short?'מחיר שורט':'עלות ממוצעת'}: <b class="num">${fmtMoney(p.avg,cur)}</b></span>
-        </div>${chgLines(F)}</button>`;
+        </div>${chgLines(F)}</button>${positionInlineBody(p,F)}</div>`;
     }).join('');
+    requestAnimationFrame(rowChartsSync);
   }
   $('posList').classList.toggle('compact', posView()==='compact');
   document.documentElement.classList.toggle('pv-heat', posView()==='heat');
@@ -2981,7 +2983,7 @@ function xhAttach(el, c){ el.classList.add('xh-ok'); el.classList.remove('zoomed
 // long-press crosshair, pinch-zoom); one live chart per open row, redrawn from the bar cache when the list is rebuilt
 const rowCharts = new Map(), rowRange = {}, rowStyle = {};   // rowRange / rowStyle: per-visit choices; every expand resets them to 1D + candles
 function rowChartsSync(){ rowCharts.forEach((c, el)=>{ if(!el.isConnected){ try{ c.remove(); }catch(e){} rowCharts.delete(el); } });
-  document.querySelectorAll('#posList .pcard.pc.open .pc-ch').forEach(b=>{ const el = b.querySelector('.pc-chart'); if(!rowCharts.has(el)) drawRowChart(b); }); }
+  document.querySelectorAll('#posList .pcard.pc.open .pc-ch,#posList .pcard.full-inline.open .pc-ch').forEach(b=>{ const el = b.querySelector('.pc-chart'); if(!rowCharts.has(el)) drawRowChart(b); }); }
 async function drawRowChart(box){ const sym = box.dataset.rch, a = assetOf(sym) || {}, it = secInst({sym, type:a.type||'stock', currency:a.currency}), R = rowRange[sym] || '1D', iv = ivOf(R), el = box.querySelector('.pc-chart');
   const seq = (box.__seq = (box.__seq||0) + 1), cnd = (rowStyle[sym] || 'candle')==='candle';
   box.querySelectorAll('[data-rcr] button').forEach(b=>b.classList.toggle('on', b.dataset.v===R)); box.querySelectorAll('[data-rcs] button').forEach(b=>b.classList.toggle('on', b.dataset.v===(cnd?'candle':'line')));
@@ -6314,7 +6316,7 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape' && posSortMenu){ p
 $('posList').addEventListener('pointerdown', ()=>{ listTouch = true; });
 ['pointerup','pointercancel'].forEach(ev=>document.addEventListener(ev, ()=>{ if(!listTouch) return; listTouch = false; if(sortPending) setTimeout(()=>{ if(sortPending && !listTouch) reorderCards(sortPending); }, 250); }));
 $('posList').addEventListener('click', e=>{ if(e.target.closest('.ct-expand')) return; const n = e.target.closest('[data-new]'); if(n) return openTxForm(n.dataset.new);
-  const cm = e.target.closest('.pcard.pc');
+  const cm = e.target.closest('.pcard.pc,.pcard.full-inline');
   if(cm){ const sym = cm.dataset.sym;
     if(e.target.closest('[data-ctoggle]')){ const o = !cm.classList.contains('open'); cm.classList.toggle('open', o); cm.querySelector('[data-ctoggle]').setAttribute('aria-expanded', o); if(o){rowRange[sym]='1D';rowStyle[sym]='candle';const el=cm.querySelector('.pc-chart'),old=rowCharts.get(el);if(old){old.remove();rowCharts.delete(el)}ui.expanded.add(sym)} else ui.expanded.delete(sym); rowChartsSync(); return; }
     const rb = e.target.closest('.pc-ch button'); if(rb){ const box = rb.closest('.pc-ch'), g = rb.parentElement.dataset;
