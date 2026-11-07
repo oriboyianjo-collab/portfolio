@@ -980,7 +980,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 </style>
 <link rel="stylesheet" href="chart-tools.css?v=193">
 
-<style>.pos-toolbar{display:flex;align-items:center;gap:12px;margin:8px 0 6px;min-width:0}.pos-toolbar .pos-sort{margin:0;flex:0 0 auto}.pos-toolbar .heat-sum{margin:0;flex:0 0 auto}.pos-toolbar:has(>#posSort[hidden]):has(>#heatSum[hidden]):not(:has(>#btnPerfTop)){display:none}#btnPerfTop{display:flex;align-items:center;gap:6px;font:inherit;font-size:.76rem;font-weight:700;padding:7px 12px;min-height:36px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;flex:0 0 auto;margin:0;margin-inline-start:auto}#btnPerfTop:active{opacity:.8}</style><style>.fin-sort{margin:0;flex:0 0 auto}.fin-sort>.wl-to{width:130px;display:block}.fin-sort .wl-pick{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;min-height:36px;padding:7px 10px;background:var(--card);margin:0;width:100%}.fin-sort .wl-pick i{font-style:normal}.fin-sort .wl-pm{min-width:120px;text-align:start}.fin-note{font-size:.68rem;color:var(--muted);margin:0 2px 8px}.fin-h{direction:ltr;display:grid;grid-template-columns:40px minmax(0,1fr) auto auto auto;column-gap:10px;padding:2px 10px 6px;font-size:.68rem;font-weight:600;color:var(--muted)}.fin-h .pcol{text-align:center;direction:ltr;white-space:nowrap}.fin-r{direction:ltr;display:grid;grid-template-columns:40px minmax(0,1fr) auto auto auto;align-items:center;column-gap:10px;padding:9px 10px;background:var(--card);border:1px solid var(--border);border-radius:14px;cursor:pointer}.fin-r:active{opacity:.85}.fin-r .pcol{text-align:center;direction:ltr;white-space:nowrap;font-variant-numeric:tabular-nums}.fin-r .pc-mcap{font-weight:600;font-size:.84rem;color:#94a3b8}.fin-r .pc-p{font-size:.84rem;font-weight:600}.fin-more{display:block;margin:10px auto 4px}.fin-dhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.fin-dhead .rpl-row{flex:0 0 100%;display:flex;justify-content:flex-start}.fin-dhead .fin-dp{margin-inline-start:auto;text-align:left;direction:ltr}.fin-tpl .fin-tpl-grid{display:grid;gap:3px;direction:rtl;text-align:right}</style><style id="meta-change-preview">
+<style>.pos-toolbar{display:flex;align-items:center;gap:12px;margin:8px 0 6px;min-width:0}.pos-toolbar .pos-sort{margin:0;flex:0 0 auto}.pos-toolbar .heat-sum{margin:0;flex:0 0 auto}.pos-toolbar:has(>#posSort[hidden]):has(>#heatSum[hidden]):not(:has(>#btnPerfTop)){display:none}#btnPerfTop{display:flex;align-items:center;gap:6px;font:inherit;font-size:.76rem;font-weight:700;padding:7px 12px;min-height:36px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;flex:0 0 auto;margin:0;margin-inline-start:auto}#btnPerfTop:active{opacity:.8}</style><style>.fin-sort{margin:0;flex:0 0 auto}.fin-sort>.wl-to{width:130px;display:block}.fin-sort .wl-pick{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;min-height:36px;padding:7px 10px;background:var(--card);margin:0;width:100%}.fin-sort .wl-pick i{font-style:normal}.fin-sort .wl-pm{min-width:120px;text-align:start}.fin-note{font-size:.68rem;color:var(--muted);margin:0 2px 8px}.fin-h{direction:ltr;display:grid;grid-template-columns:40px minmax(0,1fr) 44px 52px 54px;column-gap:7px;padding:2px 10px 6px;font-size:.66rem;font-weight:600;color:var(--muted)}.fin-h .pcol{text-align:center;direction:ltr;white-space:nowrap}.fin-r{direction:ltr;display:grid;grid-template-columns:40px minmax(0,1fr) 44px 52px 54px;align-items:center;column-gap:7px;padding:9px 10px;background:var(--card);border:1px solid var(--border);border-radius:14px;cursor:pointer}.fin-r:active{opacity:.85}.fin-r .pcol{text-align:center;direction:ltr;white-space:nowrap;font-variant-numeric:tabular-nums}.fin-more{display:block;margin:10px auto 4px}.fin-dhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.fin-dhead .rpl-row{flex:0 0 100%;display:flex;justify-content:flex-start}.fin-dhead .fin-dp{margin-inline-start:auto;text-align:left;direction:ltr}.fin-tpl .fin-tpl-grid{display:grid;gap:3px;direction:rtl;text-align:right}</style><style id="meta-change-preview">
 #posList>.pcard:not(.pc) .pchg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:8px;color:var(--muted);font-size:.8rem}
 #posList>.pcard:not(.pc) .pchg .chg{flex:0 0 auto;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:center;gap:5px 10px;padding:0;border:0;border-radius:0;background:transparent;min-width:0;white-space:normal}
 #posList>.pcard:not(.pc) .pchg .chg-l{flex:0 0 auto;font-size:.8rem;font-weight:400;line-height:1.3}
@@ -4676,7 +4676,7 @@ let posChart = null, posLive = null;
 let sheetSym = null, sheetPrice = null;   // symbol of the open position sheet (for live updates)
 // ---- v87: screen stack for the back button ----
 const NAV = []; let navRestoring = false, sheetOpener = null, srchRet = null;
-function navPush(e){ NAV.push(e); if(NAV.length > 60) NAV.splice(0, NAV.length - 60); }
+function navPush(e){ NAV.push(e); if(NAV.length > 60) NAV.splice(0, NAV.length - 60); if(window.__backInterrupt) window.__backInterrupt(); }   // v240: an intervening action breaks the exit double-press
 function navDrop(t){ const e = NAV[NAV.length-1]; if(e && e.t===t) NAV.pop(); }
 function navBack(){ if(ChartTools.isOpen()){ChartTools.close();return true;} const e = NAV.pop(); if(!e) return false; navRestoring = true;
   try{ if(e.t==='tab'){ if($('sheet').classList.contains('open')) closeSheet(); setTab(e.tab); }
@@ -6056,8 +6056,8 @@ function finRowHtml(r){ const it=finInst(r), q=iq(it), price=q&&q.price, pct=(pr
   return `<div class="fin-r" data-finsym="${esc(r[0])}" role="button" tabindex="0">`
     + logoHtml(r[0])
     + `<div class="pc-n" style="min-width:0"><div class="psym"><span class="ltr">${esc(r[0])}</span></div><div class="pname" title="${esc(r[2]||'')}">${esc(r[2]||r[0])}</div></div>`
-    + `<div class="pcol pc-mcap num">${finCap(r[1])}</div>`
-    + `<div class="pcol pc-p num">${price!=null?fmtPrice(price,'USD'):'—'}</div>`
+    + `<div class="pcol pc-m num">${finCap(r[1])}</div>`
+    + `<div class="pcol pc-p num"><span class="wl-p v num">${price!=null?fmtPrice(price,'USD'):'—'}</span></div>`
     + `<div class="pcol pc-d"><b class="num ${pct==null?'':pct>0.0000001?'pos':pct<-0.0000001?'neg':''}">${pct==null?'—':chgPct(pct)}</b></div>`
     + `</div>`; }
 async function finQuoteVisible(){ const items=finSorted(); const upto=Math.min(finShown, items.length);
@@ -6684,21 +6684,25 @@ window.__portfolio = {get night(){ return {src:NIGHT.src, worker:{ok:NW.ok, poll
 // v77: Android back button – never leave the app on one press. History: [base, top(+ overlay entries)]. Popping back to 'base' =
 // v87: the back button retraces the user's own steps. NAV is the app's screen stack (tab switches, the search, each sheet level, the image
 // viewer); the browser history only keeps 'base' + 'top' so a back press can be caught: each press undoes the latest step, and with nothing
-// left it goes to תיק; on תיק the first press shows a toast and stays on 'base' for 2 s, so a second press leaves the app.
+// left it goes to תיק; on תיק the first press shows a toast and stays on 'base' for 100 ms, so only an immediate second press leaves the app (v240).
 // An open keyboard is closed by Android itself first (no history event).
 // v157: Chrome's history-manipulation intervention makes the Android back button SKIP the entry before a sentinel pushed without user
 // interaction (the app then exited on one press). So the sentinel is created on the first real interaction (sticky user activation), not at load.
 (()=>{ const mk = ()=>{ const st = history.state; if(!(st && st.g)){ history.replaceState({g:'base'}, ''); history.pushState({g:'top'}, ''); } };
   if(!(history.state && history.state.g)){ const once = ()=>{ ['click','keydown','touchend'].forEach(t=>removeEventListener(t, once, true)); mk(); }; ['click','keydown','touchend'].forEach(t=>addEventListener(t, once, {capture:true, passive:true})); }
+  // v240: exit only on a real double-press - two consecutive backs at most 100 ms apart on תיק; any navigation in between disarms
+  const EXIT_MS = 100;
   let armT = null;
+  const disarm = ()=>{ if(armT){ clearTimeout(armT); armT = null; } };
+  window.__backInterrupt = ()=>{ if(armT){ disarm(); rearm(); } };   // called from navPush: an intervening action breaks the double-press
   const rearm = ()=>{ if(!(history.state && history.state.g==='base')) return; history.pushState({g:'top'}, ''); };
   window.addEventListener('popstate', ()=>{ const s = history.state;
     if(s && s.g==='base'){
-      if(armT){ clearTimeout(armT); armT = null; history.back(); return; }   // second press within 2 s → leave
+      if(armT){ disarm(); history.back(); return; }   // second press within 100 ms → leave
       if(navBack()){ rearm(); return; }
       if(ui.tab!=='portfolio'){ navRestoring = true; try{ setTab('portfolio'); }finally{ navRestoring = false; } rearm(); return; }
-      toast('לחץ שוב אחורה ליציאה'); armT = setTimeout(()=>{ armT = null; rearm(); }, 2000); return; }
-    if(armT){ clearTimeout(armT); armT = null; } });
+      toast('לחץ שוב אחורה ליציאה'); armT = setTimeout(()=>{ armT = null; rearm(); }, EXIT_MS); return; }
+    disarm(); });
 })();
 // v164: pull-to-refresh. At the very top of the page, a single-finger downward drag past the threshold runs the same refresh as the old refresh button
 // (prices + FX; on the news tab also the news/reports/calendar reload). Never starts on charts, in sheets / modals / viewers / the expanded chart, on form fields, or inside a scrolled inner list.
