@@ -4681,6 +4681,8 @@ function navDrop(t){ const e = NAV[NAV.length-1]; if(e && e.t===t) NAV.pop(); }
 function navBack(){ if(ChartTools.isOpen()){ChartTools.close();return true;} const e = NAV.pop(); if(!e) return false; navRestoring = true;
   try{ if(e.t==='tab'){ if($('sheet').classList.contains('open')) closeSheet(); setTab(e.tab); }
     else if(e.t==='srch') srchHide();
+    else if(e.t==='finD'){ finSel=null; renderFin(); }   // v239: the finance detail is a back step
+    else if(e.t==='alerts') alClose();   // v239: the alerts views are back steps (list -> alerts -> settings)
     else if(e.t==='imgv') imgvHide();
     else if(e.t==='rpop') repPopClose(true);
     else if(e.t==='sheet'){ if(e.reopen) e.reopen(); else closeSheet(); }
@@ -5829,6 +5831,7 @@ function closeSettings(){ const e = NAV[NAV.length-1]; if(e && e.t==='tab'){ nav
 function setTab(tab){ try{ repPopClose(); }catch(_){}
   if(!$('srchOv').hidden) srchClose();   // v66: a tab tap closes the search overlay
   try{ sessionStorage.setItem(TAB_KEY, tab); }catch(e){}
+  if(!navRestoring && (tab!=='fin' || finSel)) navDrop('finD');   // v239: closing the finance detail by a tab switch is not a back step
   if(!navRestoring && tab!==ui.tab) navPush({t:'tab', tab:ui.tab});   // v87: tab switches are steps the back button retraces
   if(tab==='watch'){ wlSwapCancel(); wlMenu = null; wlGlide = null; wlLastCur = null; const strip = $('wlTabs').querySelector('.wltabs'); if(strip) strip.scrollLeft = 0; const first = wlData.lists[0]; if(first && wlData.cur!==first.id){ wlData.cur = first.id; saveWl(); } }   // v122: every watch-tab entry starts on the leftmost saved list; redraws and list swipes keep their selection
   if(tab==='market' && ui.tab!=='market') mktRange = '1D';
@@ -6088,8 +6091,8 @@ async function drawFinDetail(){ const r=(finSorted().find(x=>x[0]===finSel))||[f
   $('finDTpl').innerHTML=finTplHtml();
   window.scrollTo({top:0});
   if(!q){ await instQuotes([it]); if(finSel===r[0]&&ui.tab==='fin'&&iq(it)) drawFinDetail(); } }   // redraw only if a quote actually arrived - otherwise keep '—' (no retry loop on unavailable quotes)
-document.addEventListener('click', e=>{ const row=e.target.closest('.fin-r[data-finsym]'); if(row){ finSel=row.dataset.finsym; drawFinDetail(); return; } });
-document.addEventListener('keydown', e=>{ if(e.key==='Enter'){ const row=e.target.closest&&e.target.closest('.fin-r[data-finsym]'); if(row){ finSel=row.dataset.finsym; drawFinDetail(); } } }, true);
+document.addEventListener('click', e=>{ const row=e.target.closest('.fin-r[data-finsym]'); if(row){ finSel=row.dataset.finsym; if(!navRestoring) navPush({t:'finD'}); drawFinDetail(); return; } });
+document.addEventListener('keydown', e=>{ if(e.key==='Enter'){ const row=e.target.closest&&e.target.closest('.fin-r[data-finsym]'); if(row){ finSel=row.dataset.finsym; if(!navRestoring) navPush({t:'finD'}); drawFinDetail(); } } }, true);
 document.addEventListener('click', e=>{
   const sb=e.target.closest('#finSortBtn'); if(sb){ e.stopPropagation(); const m=$('finSortMenu'), open=m.hidden; m.hidden=!open; sb.setAttribute('aria-expanded', String(open)); return; }
   const so=e.target.closest('#finSortMenu [data-fsort]'); if(so){ finSort=so.dataset.fsort;
@@ -6098,7 +6101,7 @@ document.addEventListener('click', e=>{
     $('finSortMenu').hidden=true; $('finSortBtn').setAttribute('aria-expanded','false'); drawFinList(); finQuoteVisible(); return; }
   if(!e.target.closest('.fin-sort')){ const m=$('finSortMenu'); if(m&&!m.hidden){ m.hidden=true; $('finSortBtn').setAttribute('aria-expanded','false'); } }
   const fm=e.target.closest('#finMore'); if(fm){ finShown+=FIN_PAGE; drawFinList(); finQuoteVisible(); return; }
-  const fb=e.target.closest('#finBack'); if(fb){ finSel=null; renderFin(); return; }
+  const fb=e.target.closest('#finBack'); if(fb){ navDrop('finD'); finSel=null; renderFin(); return; }
 });
 
 function drawReports(){ const repReset=repEnter; const D = ntData.rep, el = $('repList'); if(!D) return; if(!D.items.length){ $('repFil').innerHTML = ''; el.innerHTML = ntEmpty('rep', D.err); return; }
@@ -6858,7 +6861,8 @@ async function alMaster(on){
   alP.on = on; alSave(); if(on && 'Notification' in window && Notification.permission==='denied') toast('ההרשאה להתראות חסומה בדפדפן – ההתראות יופיעו רק ברשימה באפליקציה');
   alPeriodic(on); alPush(on); alSync(); if(on) alCheckData(true); alRender(); }
 function alBadge(){ const n = alUnread(), b = $('alRowN'); if(b){ b.textContent = n; b.hidden = !n; } const s = $('alRowSub'); if(s) s.textContent = 'חדשות, דוחות, תנועות מחיר' + (alP.on ? '' : ' · כבוי') + (n ? ' · '+n+' חדשות' : ''); }
-function alOpen(v){ alView = v||'set'; const t = $('tab-settings'); if(!t) return; t.querySelector('.set-bar').style.display = 'none'; $('settingsCard').hidden = true; $('alertsCard').hidden = false; alRender(); window.scrollTo(0,0); }
+function alOpen(v){ const t = $('tab-settings'); if(!t) return; const wasH = $('alertsCard').hidden, wasV = alView; alView = v||'set'; if(!navRestoring && (wasH || (wasV==='set' && alView==='list'))) navPush({t:'alerts'});   // v239: alerts views are back steps
+ t.querySelector('.set-bar').style.display = 'none'; $('settingsCard').hidden = true; $('alertsCard').hidden = false; alRender(); window.scrollTo(0,0); }
 function alClose(){ if(alView==='list'){ alOpen('set'); return; } alView = null; const t = $('tab-settings'); if(!t) return; t.querySelector('.set-bar').style.display = ''; $('settingsCard').hidden = false; $('alertsCard').hidden = true; alBadge(); window.scrollTo(0,0); }
 var alTg = (id, on, dis)=>`<input type="checkbox" class="al-tg" data-al="${id}" ${on?'checked':''} ${dis?'disabled':''} aria-label="${id}">`;
 var alLi = (txt, sub, id, dim)=>`<label class="al-li"${dim?' style="opacity:.45"':''}><div>${txt}${sub?`<small>${sub}</small>`:''}</div>${alTg(id, alP[id], !alP.on || !!dim)}</label>`;
@@ -6886,7 +6890,7 @@ function alRender(){ const c = $('alertsCard'); if(!c || !alView) return;
       ${alSN ? `<div class="set-sec"><button class="btn btn-light btn-block" id="alTest">🔔 שליחת התראת בדיקה</button><button class="btn btn-light btn-block" id="alSys" style="margin-top:8px">⚙️ הגדרות התראות במערכת</button></div>
       <div class="al-note">ℹ️ ${perm==='granted' ? 'התראות דרך האפליקציה פעילות' : 'התראות דרך האפליקציה'} – ${alFcmOk ? '✓ מחובר להתראות מיידיות: חדשות ודוחות מגיעים תוך שניות, גם כשהאפליקציה סגורה. כגיבוי, בדיקה ברקע גם כל ~15 דקות.' : 'חדשות ודוחות נבדקים ברקע בערך כל 15 דקות, גם כשהאפליקציה סגורה (אנדרואיד עשוי לעכב במצב חיסכון בסוללה).'} התראות מחיר נבדקות רק כשהאפליקציה פתוחה.</div>` : `<div class="al-note">ℹ️ הבדיקה רצה כשהאפליקציה פתוחה, וגם ברקע כשהדפדפן מאפשר (אנדרואיד, אפליקציה מותקנת – לא בזמן קבוע). ${alPushOk ? '✓ מחובר לשרת ההתראות – התראות מגיעות גם כשהאפליקציה סגורה (חדשות ודוחות).' : 'שרת התראות (Cloudflare) עוד לא פעיל – ההתראות לא מובטחות כשהאפליקציה סגורה.'} התראות מחיר נבדקות רק כשהאפליקציה פתוחה.</div>`}`;
   }
-  $('alBack').onclick = ()=>alClose(); }
+  $('alBack').onclick = ()=>{ navDrop('alerts'); alClose(); }; }
 function alGoto(kind, sym){
   if(kind==='px' || (!kind && sym)){ try{ const S = computeAll(); if(S.positions.some(p=>p.sym===sym) || S.closed.some(p=>p.sym===sym)){ if(ui.tab==='settings') setTab('portfolio'); openPosition(sym); return; } }catch(e){} setTab('watch'); return; }
   setTab('news'); const b = document.querySelector('#newsSeg [data-nt="'+(kind==='rep'?'rep':'news')+'"]'); if(b && !b.classList.contains('on')) b.click(); }
