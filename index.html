@@ -965,7 +965,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 @media(max-width:340px){.pgrid,.pc-h.pgrid,.pos-cols.pgrid{--k-sp:34px}}
 .pcard .pgrid>.pc-n>.pname{font-size:.58rem;overflow:visible;text-overflow:clip;white-space:nowrap}@media(max-width:340px){.pcard .pgrid>.pc-n>.pname{font-size:.54rem}}.pgrid>.pc-s .spark{transform:scale(1.1);transform-origin:center}.pgrid>.pc-p,.pos-cols>.pc-p{transform:translateX(8px)}
 .pgrid>.pc-s,.pos-cols>.pc-s{translate:3px 0}@media(max-width:340px){.pgrid:not(.pos-cols)>.pc-p>.v{font-size:.62rem}}.pgrid:not(.pos-cols)>.pc-p>.v{font-size:.68rem}@media(max-width:340px){.pgrid:not(.pos-cols)>.pc-p>.v{font-size:.55rem}}/* Expanded Reports search field is the visual reference. Search IDs, listeners and query semantics are unchanged. */
-:is(#repQ,#newsQ,#srchQ,#bmSearch,#mktSearch,#wlSearch,#fxSearchIn,#glbSearch,#etfAddIn,#fSym,#txSecurityQuery,input[data-tick],.ix-s){box-sizing:border-box;min-width:0;height:48px!important;min-height:48px!important;border:1px solid var(--primary)!important;background:var(--bg-fff)!important;color:var(--text)!important;border-radius:999px!important;padding:0 14px!important;font:inherit!important;font-size:.82rem!important;box-shadow:none!important}
+:is(#repQ,#newsQ,#srchQ,#bmSearch,#mktSearch,#wlSearch,#fxSearchIn,#glbSearch,#etfAddIn,#fSym,#txSecurityQuery,#idxSearch,input[data-tick],.ix-s){box-sizing:border-box;min-width:0;height:48px!important;min-height:48px!important;border:1px solid var(--primary)!important;background:var(--bg-fff)!important;color:var(--text)!important;border-radius:999px!important;padding:0 14px!important;font:inherit!important;font-size:.82rem!important;box-shadow:none!important}
 :is(#bmSearch,#mktSearch,#wlSearch,#fxSearchIn,#glbSearch,#etfAddIn,#fSym,input[data-tick],.ix-s){width:100%}
 #tab-watch #wlSearch{height:36px!important;min-height:36px!important;border-radius:10px!important}
 .wl-in .ac-ic{display:none}.news-sr{display:flex;align-items:center;gap:6px}.news-sr input{flex:1;width:auto}.news-sr button{position:static;transform:none;flex:0 0 auto;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted)}
@@ -976,6 +976,21 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pgrid:not(.pos-cols)>.pc-s .spark path{stroke-width:1.1;vector-effect:non-scaling-stroke}
 /* v247 approved: weight column (header + values) 9px toward the spark. */
 .pgrid>.pc-w{transform:translateX(-9px)}
+/* v248 approved: same sparkline enlargement in the watchlist (x1.2075 wider, proportional height; columns untouched). */
+.wr.wgrid .pc-s .spark{transform:scaleX(1.2075);transform-origin:center}
+.wr.wgrid:not(.egrid) .pc-s .spark{height:28px}
+.wr.egrid .pc-s .spark{height:32.3px}
+/* v250 approved: editable index tiles - one small magnifier toggles edit mode (remove badges on tiles + add-search bar). */
+.idxwrap{position:relative}
+#idxEdit{position:absolute;top:-13px;right:2px;z-index:3;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#idxEdit svg{width:16px;height:16px}
+#idxEdit.on{color:var(--primary);border-color:var(--primary)}
+.idx{position:relative}
+.idx-x{position:absolute;top:-9px;left:-7px;z-index:2;width:24px;height:24px;border-radius:50%;background:#ef4444;color:#fff;border:2px solid var(--bg);font:inherit;font-size:12px;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+.idx-editbar{margin:2px 0 10px}
+.idx-editbar .ac{position:relative}
+.idx-editbar input{width:100%;padding-inline-start:36px!important}
+.idx-editbar .ac-ic2{position:absolute;inset-inline-start:11px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--muted);pointer-events:none}
 .irr-failure-info{margin-inline-start:8px;vertical-align:middle}.irr-pop-bg{background:transparent!important;backdrop-filter:none!important}.irr-pop-bg .ib-card{position:fixed;bottom:auto!important;margin:0!important;border:1px solid #64748b;border-radius:13px;padding:14px 16px;max-height:min(300px,70vh);overflow:auto;background:#1b2638!important;opacity:1!important;box-shadow:0 8px 28px #0008;transform:none!important;box-sizing:border-box}.irr-pop-bg .ib-card h4{font-size:13px;margin:0 0 9px;padding-inline-end:20px}.irr-pop-bg .ib-card h4>i{display:none}.irr-pop-bg .ib-b{font-size:12px;line-height:1.65}.irr-pop-bg .ib-b p{margin:6px 0 0}.irr-pop-close{position:absolute;top:6px;left:6px;width:26px;height:26px;padding:0;border:0;background:transparent;color:#cbd5e1;font-size:22px}.srow .pc-d{align-items:center;text-align:center;justify-content:center;gap:2px}.srow .pc-d>b.num{width:max-content;max-width:100%;min-width:0;padding:2px 7px;box-sizing:border-box;align-self:center}.srow .pc-d>.wl-p{align-self:center;width:max-content;max-width:100%;text-align:center}.srow .pc-d>.ext-line{align-self:center;text-align:center}.rep-date-strip{display:flex;gap:8px;align-items:stretch}.rep-date-strip>button{flex:0 0 72px;max-width:72px;box-sizing:border-box;background:#24364f;color:#cbd5e1;border-color:#445b78;border-radius:14px;min-height:66px;padding:6px 3px;line-height:1.15}.rep-date-strip>button b{color:#93c5fd;display:flex;align-items:center;justify-content:center;font-size:1rem;margin:1px 0}.rep-date-strip>button small{font-size:.57rem;white-space:nowrap}.rep-date-strip>button.on{background:#2563eb;color:white;border-color:#2563eb}.rep-date-strip>button.on b{color:white}.rep-date-strip>#repDays{margin:0;position:relative;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;gap:6px;isolation:isolate}.rep-date-strip>#repDays .dcard{flex:0 0 calc((100% - 12px)/3);box-sizing:border-box;min-width:0;max-width:none;padding:6px 2px;scroll-snap-align:start;min-height:66px}.rep-date-strip>#repDays .dcard small{white-space:nowrap;font-size:.55rem}.rep-date-strip>#repDays .dcard b{font-size:.98rem}
 
 .rrow .rn .rmeta{flex-wrap:wrap;column-gap:5px;row-gap:2px}.rrow .rcompany{flex-basis:100%;width:100%}.rrow .rdate{flex:0 0 auto;color:var(--text);white-space:nowrap}.rrow .rn .rmeta .rdate{font-size:.65rem}.rrow .rcap::before{content:"·"}
@@ -1021,7 +1036,11 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 </header>
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
-    <div class="idxrow" id="idxRow" hidden></div>
+    <div class="idxwrap" id="idxWrap" hidden>
+    <div class="idxrow" id="idxRow"></div>
+    <button type="button" id="idxEdit" aria-pressed="false" aria-label="עריכת האריחים" title="עריכת האריחים"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button>
+    <div class="idx-editbar" id="idxEditBar" hidden><div class="ac"><input id="idxSearch" placeholder="חיפוש נייר להוספה" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><div class="ac-list" id="idxAc"></div></div></div>
+    </div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
     <div class="card"><div class="h2row"><h2>פוזיציות <small id="posCount"></small></h2><div class="viewtgl" id="posView" role="group" aria-label="תצוגת פוזיציות"><button data-view="compact">☰ מקוצר</button><button data-view="full">▦ מלא</button><button data-view="heat">🔥 מפת חום</button></div></div><div class="pos-toolbar"><div class="pos-sort" id="posSort" hidden></div><div class="heat-sum" id="heatSum" hidden></div><button type="button" id="btnPerfTop" aria-label="מעבר למסך הביצועים" title="ביצועי התיק">📊 ביצועים</button></div><div class="pos-cols pgrid" id="posCols" aria-hidden="true" hidden><span class="hlg"></span><span class="pc-n">נייר</span><span class="pcol pc-s">גרף</span><span class="pcol pc-w" title="אחוז מהתיק">% בתיק</span><span class="pcol pc-m" title="שווי פוזיציה">שווי</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d" id="posColD"><span>יומי</span></span></div><div class="heat-map pos-heat" id="heatMap" role="list" aria-label="מפת חום – גודל לפי אחוז מהתיק, צבע לפי השינוי היומי" hidden></div><div class="pos-list" id="posList"></div><div id="closedWrap"></div></div>
@@ -3183,7 +3202,11 @@ async function renderPerf(S){
 // previous_day_closing to today's close after the bell). Indices only trade the regular session, so pre/after/overnight never
 // show up. Sparkline = the last session's 5-minute bars, regular hours only (09:30–16:00 ET), refetched at most every 5 min while
 // the market is open. If CNBC gives no index quote, SPY / QQQ are shown instead, labelled as such. Market data only is cached.
-const IDX = [{k:'spx', s:'.SPX', alt:'SPY', n:'S&P 500'}, {k:'ndx', s:'.NDX', alt:'QQQ', n:'נאסד"ק 100'}];
+const IDX_DEFAULT = [{k:'spx', s:'.SPX', alt:'SPY', n:'S&P 500'}, {k:'ndx', s:'.NDX', alt:'QQQ', n:'נאסד"ק 100'}];
+const IDX_LIST_KEY = 'portfolioTracker.idxList.v1';
+let IDX = (()=>{ try{ const j = JSON.parse(localStorage.getItem(IDX_LIST_KEY)); if(Array.isArray(j) && j.length && j.every(x=>x && x.k && x.s && x.n)) return j; }catch(e){} return IDX_DEFAULT.map(x=>Object.assign({}, x)); })();
+let idxEditing = false;
+function idxListSave(){ try{ localStorage.setItem(IDX_LIST_KEY, JSON.stringify(IDX)); }catch(e){} }
 const IDX_KEY = 'portfolioTracker.idx.v1';
 let idxData = (()=>{ try{ return JSON.parse(localStorage.getItem(IDX_KEY)) || {q:{}, sp:{}}; }catch(e){ return {q:{}, sp:{}}; } })();
 if(!idxData.q) idxData.q = {}; if(!idxData.sp) idxData.sp = {};
@@ -3209,8 +3232,8 @@ async function idxApply(q){
   const miss = IDX.filter(x=>!(q[x.s] && q[x.s].price!=null && q[x.s].prev));
   // v50: indices have no pre-market quote – during US pre-market the ETF's (SPY/QQQ) pre % vs its prior close is the proxy
   const need = miss;   // v188: the SPY/QQQ pre/after stand-in is gone – the futures line (ES=F / NQ=F) shows the extended move
-  let alt = {}; if(need.length){ try{ alt = await cnbcQuotes(need.map(x=>x.alt)); }catch(e){} }
-  IDX.forEach(x=>{ const a = q[x.s], b = alt[x.alt], u = a && a.price!=null && a.prev ? a : b && b.price!=null && b.prev ? b : null; if(!u) return;
+  let alt = {}; const alts = need.map(x=>x.alt).filter(Boolean); if(alts.length){ try{ alt = await cnbcQuotes(alts); }catch(e){} }
+  IDX.forEach(x=>{ const a = q[x.s], b = x.alt ? alt[x.alt] : null, u = a && a.price!=null && a.prev ? a : b && b.price!=null && b.prev ? b : null; if(!u) return;
     const ep = null;
     idxData.q[x.k] = {last:u.price, prev:u.prev, sym: u===a ? x.s : x.alt, etf: u!==a, status:u.status||'', ts:u.ts||null, date:u.date||'', pre:ep}; yMergeIdx(x.k); });
   futPoll(); idxSave(); renderIdx(); idxSpark().catch(e=>console.warn('index sparkline', e.message));
@@ -3231,17 +3254,35 @@ function sparkSvg(pts, prev, up, W = 58, H = 30){
   const d = pts.map((v,i)=>(i?'L':'M')+(i/(pts.length-1)*W).toFixed(1)+' '+y(v)).join(' ');
   return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${prev ? `<line x1="0" x2="${W}" y1="${y(prev)}" y2="${y(prev)}"/>` : ''}<path d="${d}" stroke="${up ? 'var(--green)' : 'var(--red)'}"/></svg>`;
 }
-$('idxRow').addEventListener('click', e=>{ const t = e.target.closest('[data-idx]'); if(!t) return; const it = mktInst(t.dataset.idx); if(it) openInstSheet(it, '1D'); });
+$('idxRow').addEventListener('click', e=>{ const del = e.target.closest('[data-idxdel]');
+  if(del){ const k = del.dataset.idxdel, i = IDX.findIndex(x=>x.k===k); if(i>=0){ IDX.splice(i,1); delete idxData.q[k]; delete idxData.sp[k]; idxListSave(); idxSave(); renderIdx(); } return; }
+  if(idxEditing) return;
+  const t = e.target.closest('[data-idx]'); if(!t) return; const k = t.dataset.idx;
+  let it = mktInst(k);
+  if(!it){ const x = IDX.find(v=>v.k===k); if(x) it = secInst({sym:(x.sym||x.s).replace(/\.CM=$/,''), name:x.n, type:x.type||'stock'}); }
+  if(it) openInstSheet(it, '1D'); });
+$('idxEdit').addEventListener('click', ()=>{ idxEditing = !idxEditing; renderIdx(); if(idxEditing) setTimeout(()=>{ const s = $('idxSearch'); if(s) s.focus(); }, 30); });
+attachAutocomplete($('idxSearch'), $('idxAc'), it=>{ $('idxSearch').value = ''; $('idxSearch').blur(); if(!it || (it.free && !it.sym)) return;
+  const sym = it.sym.toUpperCase(); if(IDX.some(x=>((x.sym||x.s).toUpperCase()===sym) || x.s.toUpperCase()===sym)){ toast('הנייר כבר באריחים'); return; }
+  const cr = it.type==='crypto';
+  IDX.push({k:'sec:'+sym, s: cr ? sym+'.CM=' : sym, sym, n: it.name||sym, type: it.type||'stock'});
+  idxListSave(); renderIdx();
+  cnbcQuotes([cr ? sym+'.CM=' : sym]).then(q=>idxApply(q||{})).catch(e=>console.warn('index tile add', e.message)); });
 function renderIdx(){
-  const row = $('idxRow'); if(!row) return; const have = IDX.filter(x=>idxData.q[x.k]); row.hidden = !have.length; if(!have.length) return;
-  M(row).h = IDX.map(x=>{ const q = idxData.q[x.k]; if(!q) return `<div class="idx" data-idx="${x.k}"><div class="idx-n">${x.n}</div><b class="idx-v num">—</b><div class="idx-c num"></div></div>`;
+  const wrap = $('idxWrap'), row = $('idxRow'); if(!wrap || !row) return; const have = IDX.filter(x=>idxData.q[x.k]);
+  wrap.hidden = !(have.length || idxEditing); row.hidden = !have.length;
+  const eb = $('idxEditBar'); if(eb) eb.hidden = !idxEditing;
+  const be = $('idxEdit'); if(be){ be.classList.toggle('on', idxEditing); be.setAttribute('aria-pressed', String(idxEditing)); }
+  if(!have.length){ row.innerHTML = ''; return; }
+  const xb = x=>idxEditing ? `<button type="button" class="idx-x" data-idxdel="${x.k}" aria-label="הסרת ${esc(x.n)}">✕</button>` : '';
+  M(row).h = IDX.map(x=>{ const q = idxData.q[x.k]; if(!q) return `<div class="idx" data-idx="${x.k}">${xb(x)}<div class="idx-n">${esc(x.n)}</div><b class="idx-v num">—</b><div class="idx-c num"></div></div>`;
     const pr = preOf(q), sp = idxData.sp[x.k], cl = !pr && q.status && q.status!=='REG_MKT';
     // pre-market: implied level = last close × (1 + ETF pre %), change vs that close (badge 'pre'); otherwise the regular session move
     const lvl = q.last, c = lvl - q.prev, pc = c/q.prev*100, up = c >= 0;   // v65: regular session level/change; extended move on its own line
     const xe = pr ? (()=>{ const xl = q.etf ? pr.price : q.last*(1+pr.pct/100); return {kind:pr.kind, price:xl, chg:xl-q.last, pct:pr.pct}; })() : null;
     let pts = sp && sp.sym===q.sym && sp.date===q.date ? sp.pts.slice() : null; if(pts && pts.length && !cl) pts.push(q.last);
-    const name = q.etf ? `${x.n} <small>· ${x.alt}</small>` : x.n;
-    return `<div class="idx" data-idx="${x.k}" role="button" tabindex="0" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}${pr ? ' · טרום מסחר לפי '+esc(pr.src) : ''}"><div class="idx-n"><span class="idx-nt">${name}${cl ? ' <small>· סגור</small>' : ''}</span>${extLineHtml(xe, 'idx-e')}</div>`+
+    const name = q.etf ? `${esc(x.n)} <small>· ${esc(x.alt)}</small>` : esc(x.n);
+    return `<div class="idx" data-idx="${x.k}" role="button" tabindex="0" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}${pr ? ' · טרום מסחר לפי '+esc(pr.src) : ''}">${xb(x)}<div class="idx-n"><span class="idx-nt">${name}${cl ? ' <small>· סגור</small>' : ''}</span>${extLineHtml(xe, 'idx-e')}</div>`+
       `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(lvl)}</b><div class="idx-c num ${cls(c)}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${futLine(x.k)}${sparkSvg(pts, q.prev, up)}</div>`; }).join('');
 }
 // ---------- per-holding intraday sparkline (collapsed row) ----------
