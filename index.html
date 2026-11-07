@@ -1397,7 +1397,7 @@ function tileQuoteStamp(it,q){
   if(it.der){const a=mq[it.der.a],b=mq[it.der.b];if(!(a?.ts>0&&b?.ts>0))return 'זמן מקור לא זמין';if(Math.max(a.ts,b.ts)>Date.now()+300000)return 'זמן מקור חריג '+fmtTime(Math.max(a.ts,b.ts));return 'מחושב · מקור ישן '+fmtTime(Math.min(a.ts,b.ts));}
   if(q?.ts>Date.now()+300000)return 'זמן מקור חריג '+fmtTime(q.ts);
   if(q?.ts>0)return 'ציטוט אחרון '+fmtTime(q.ts);
-  if(/^\d{4}-\d{2}-\d{2}$/.test(q?.date||'')){const [y,m,d]=q.date.split('-');return 'ציטוט אחרון '+d+'.'+m+' · שעה לא זמינה';}
+  if(/^\d{4}-\d{2}-\d{2}$/.test(q?.date||'')){const [y,m,d]=q.date.split('-');return 'ציטוט אחרון '+d+'.'+m;}
   return 'זמן ציטוט לא זמין';
 }
 function staleTag(q){ return q && q.ts && Date.now()-q.ts > 15*60e3 ? 'ציטוט אחרון '+fmtTime(q.ts) : ''; }
