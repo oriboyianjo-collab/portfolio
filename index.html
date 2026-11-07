@@ -1395,7 +1395,7 @@ function fmtQty(v){ if(v==null) return '—'; return v.toLocaleString('en-US',{m
 function fmtQtyP(v){ if(v==null) return '—'; return hidden() ? MASK : fmtQty(v); }
 function tileQuoteStamp(it,q){
   if(it.der){const a=mq[it.der.a],b=mq[it.der.b];if(!(a?.ts>0&&b?.ts>0)||Math.max(a.ts,b.ts)>Date.now()+300000)return '';return 'מחושב · מקור ישן '+fmtTime(Math.min(a.ts,b.ts));}
-  if(it.commodityQuote){const d=q?comQuoteDate(it,q):null;return d?'ציטוט אחרון '+d.slice(8,10)+'.'+d.slice(5,7):'';}
+  if(it.commodityQuote){const d=q?comQuoteDate(it,q):null;return d?'ציטוט אחרון '+new Date(d).toLocaleString('he-IL',{timeZone:'Asia/Jerusalem',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';}
   if(q?.ts>Date.now()+300000)return '';
   if(q?.ts>0)return 'ציטוט אחרון '+fmtTime(q.ts);
   if(/^\d{4}-\d{2}-\d{2}$/.test(q?.date||'')){const [y,m,d]=q.date.split('-');return 'ציטוט אחרון '+d+'.'+m;}
@@ -3801,7 +3801,7 @@ const COM_CR = [["זהב", "Gold Ingots on white background", "Wikimedia Commons
 (function(){ const g = document.getElementById('comGrid'); if(!g || document.getElementById('comCr')) return; const d = document.createElement('details'); d.id = 'comCr'; d.className = 'com-cr'; d.innerHTML = '<summary>קרדיט תמונות</summary>' + COM_CR.map(r=>`<div><b>${esc(r[0])}</b>: <a href="${r[4]}" target="_blank" rel="noopener noreferrer">${esc(r[1])}</a> · ${esc(r[2])} · ${r[5] ? `<a href="${r[5]}" target="_blank" rel="noopener noreferrer">${esc(r[3])}</a>` : esc(r[3])}</div>`).join('') + '<div class="cr-n">התמונות הותאמו בגודל ובחיתוך.</div>'; g.after(d); })();
 const comQuoteDates={},comDatePending=new Map(),comDateAttempts={};
 function comDateKey(q){return [q.contract,q.time,q.price].join('|');}
-function comQuoteDate(it,q){const r=comQuoteDates[it.q];return r&&r.key===comDateKey(q)?r.date:null;}
+function comQuoteDate(it,q){const r=comQuoteDates[it.q];return r&&r.key===comDateKey(q)?r.ts:null;}
 async function verifyComQuoteDates(list){await Promise.all(list.map(it=>{
  const q=iq(it);if(!q||!q.contract||!(q.price>0))return;
  const hm=String(q.time).match(/T(\d{2}):(\d{2}):/);if(!hm)return;
@@ -3809,10 +3809,10 @@ async function verifyComQuoteDates(list){await Promise.all(list.map(it=>{
  const p=barSlot(async()=>{try{
   const day=nyParts(Date.now()).d,ymd=d=>d.replace(/-/g,'')+'000000',url='https://ts-api.cnbc.com/harmony/app/bars/'+encodeURIComponent(cnbcSymbol(it.q))+'/1M/'+ymd(addDays(day,-7))+'/'+ymd(addDays(day,1))+'/unadjusted/EST5EDT.json',j=await fetchJSON(url,12000);
   if(String(j?.barData?.symbol)!==q.contract)return;
-  const dates=new Set((j.barData.priceBars||[]).filter(b=>{
+  const matches=(j.barData.priceBars||[]).filter(b=>{
    const t=String(b.tradeTime),ms=+b.tradeTimeinMills,px=num(b.close);return /^\d{14}$/.test(t)&&t.slice(8,12)===hm[1]+hm[2]&&ms>0&&ms<=Date.now()&&nyParts(ms).d.replace(/-/g,'')===t.slice(0,8)&&nyParts(ms).hm===+(hm[1]+hm[2])&&Math.abs(px-q.price)<=Math.max(1e-8,q.price*1e-8);
-  }).map(b=>{const p=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jerusalem',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(+b.tradeTimeinMills)).map(p=>[p.type,p.value]));return p.year+p.month+p.day;}));
-  if(dates.size!==1)return;const d=[...dates][0],date=d.slice(0,4)+'-'+d.slice(4,6)+'-'+d.slice(6,8);comQuoteDates[it.q]={key,date};
+  });
+  const times=new Set(matches.map(b=>+b.tradeTimeinMills));if(times.size!==1)return;comQuoteDates[it.q]={key,ts:[...times][0]};
  }catch(e){console.warn('commodity quote date',it.q,e.message);}}).finally(()=>comDatePending.delete(slot));comDatePending.set(slot,p);return p;
 }));}
 function comTile(it){ const q = iq(it), last = q ? q.price : null, prev = q ? q.prev : null, p = last!=null && prev ? (last/prev-1)*100 : null, c = COM_BY[it.k];
