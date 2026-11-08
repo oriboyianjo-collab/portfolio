@@ -904,14 +904,20 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ob-ft{font-size:.66rem;color:var(--muted);margin-top:7px;line-height:1.4}.ob-ft.warn{color:var(--amber)}
 .ob-msg{font-size:.82rem;color:var(--muted);padding:6px 2px}
 
-/* v-bubbles: ETF selector as bubbles, best -> worst (right to left, top to bottom); size = |daily move|, colour = direction */
-.ft-g{display:flex!important;flex-direction:column;gap:2px!important}
+/* v-bubbles: ETF selector as bubbles, best -> worst (right to left, top to bottom); size = |daily move|, colour = direction. Scoped to bubble mode (v263) - without .bub the selector keeps the rectangular heat tiles. */
+.ft-g.bub{display:flex!important;flex-direction:column;gap:2px!important}
 .ft-row{display:flex;flex-direction:row;justify-content:center;align-items:center;gap:6px;min-height:66px;direction:rtl}
-.fb{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none}
-.ft{aspect-ratio:auto!important;border-radius:50%!important;flex:none;box-sizing:border-box;border:1px solid rgba(255,255,255,.28);padding:0!important;transition:transform .15s}
-.ft.on{border:2px solid #fff;box-shadow:0 0 0 3px var(--primary),0 0 18px var(--primary)!important}
-.ft:active{transform:scale(.94)}
-.fb .xl.ftx{margin-top:2px}
+.ft-g.bub .fb{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none}
+.ft-g.bub .ft{aspect-ratio:auto!important;border-radius:50%!important;flex:none;box-sizing:border-box;border:1px solid rgba(255,255,255,.28);padding:0!important;transition:transform .15s}
+.ft-g.bub .ft.on{border:2px solid #fff;box-shadow:0 0 0 3px var(--primary),0 0 18px var(--primary)!important}
+.ft-g.bub .ft:active{transform:scale(.94)}
+.ft-g.bub .fb .xl.ftx{margin-top:2px}
+/* v263: map settings - gear button + map-type / bubbles-per-row pickers inside the open settings row */
+.fs-gear{padding:4px 8px;font-size:.95rem;line-height:1.2}
+.ft-cfg{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;width:100%;box-sizing:border-box;padding:4px 4px 8px}
+.ft-cfg .viewtgl button{min-height:32px}
+.ft-rp{display:inline-flex;align-items:center;gap:6px}
+.ft-rp>small{color:var(--muted);font-size:.72rem;font-weight:600}
 
 .pos-sort{position:relative;display:flex;justify-content:flex-start;margin:10px 0 6px;z-index:25}.pos-sort[hidden]{display:none}.pos-sort>.wl-to{width:200px;max-width:100%;display:block}.pos-sort .wl-pick{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;min-height:36px;padding:7px 10px;background:var(--card);margin:0}.pos-sort .wl-pick i{font-style:normal}.pos-sort .wl-pm{min-width:133px;text-align:start}
 /* v239 preview: one-line headings and intraday chart column; position value stays in details. */
@@ -4155,22 +4161,29 @@ function etfRemoveCust(t){ if(ETFS.length <= 1){ toast('חייבת להישאר 
   if(etfUi.sel===t){ etfUi.sel = ETFS[0]; saveEtfUi(); } etfMenuOpen = false; etfHeatKey = ''; toast(`${t} הוסרה מהרשימה`); renderEtf(); }
 // v111: edit mode – any tile (built-in or custom) can be removed from the fund selector; a hidden built-in can be re-added via + הוסף קרן
 let etfEditOpen = false;
+// v263 approved (Ori, 2026-11-08 10:33): the selector's edit button becomes a settings gear with no "עריכה" text; the open settings row offers a map-type choice (rectangular heat map / bubble map) and, for the bubble map, 2-6 bubbles per row. Saved on the device.
+const ETF_MAP_KEY = 'portfolioTracker.etfMapCfg.v1';
+let etfMap = (()=>{ const o = Object.assign({t:'bub', n:4}, loadJ(ETF_MAP_KEY)||{}); if(o.t!=='heat' && o.t!=='bub') o.t = 'bub'; o.n = Math.min(6, Math.max(2, Math.round(+o.n)||4)); return o; })();
+const saveEtfMap = ()=>{ try{ localStorage.setItem(ETF_MAP_KEY, JSON.stringify(etfMap)); }catch(e){} };
 function etfRemoveAny(t){ if(ETFS.length <= 1){ toast('חייבת להישאר לפחות קרן אחת'); return; }
   if(etfCust.some(x=>x.t===t)){ etfRemoveCust(t); return; }
   etfHidden.push(t); saveEtfHidden();
   if(etfUi.sel===t){ etfUi.sel = ETFS[0]; saveEtfUi(); }
-  etfMenuOpen = false; etfHeatKey = ''; toast(`${t} הוסרה מהרשימה – אפשר להוסיף אותה שוב דרך ״עריכה״`); renderEtf(); }
+  etfMenuOpen = false; etfHeatKey = ''; toast(`${t} הוסרה מהרשימה – אפשר להוסיף אותה שוב דרך ההגדרות ⚙️`); renderEtf(); }
 // v103/v104: fund selector = heat tiles (equal size, best -> worst, colour = daily %); always open, the picked tile is marked, holdings + summary below
 const fsPct = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.prev ? (q.price/q.prev-1)*100 : null; };
 const fsExt = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.ext ? q.ext : null; };   // v107: same extended-hours source as rows (preOf → iq().ext); null outside the session / without a fresh quote
 function drawEtfSel(){ const el = $('etfPick'); if(!el) return; const t = etfUi.sel;
   const ord = [...ETFS].sort((a,b)=>{ const pa = fsPct(a), pb = fsPct(b); return (pa==null)-(pb==null) || (pb||0)-(pa||0); });
-  const bsz = p=>Math.round(44 + Math.min(Math.abs(p==null?0:p), 9)*3.8);
-  const tile = x=>{ const p = fsPct(x), e = fsExt(x), dm = bsz(p), col = heatColor(p); return `<div class="fb"><button class="ft${x===t?' on':''}" data-etf="${x}" aria-pressed="${x===t}" aria-label="${ETF_LBL[x]||x} ${p!=null ? fmtPct(p) : ''}${e ? ' '+e.kind+' '+fmtPct(e.pct) : ''}" style="width:${dm}px;height:${dm}px;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.3),rgba(255,255,255,0) 62%),${col};box-shadow:0 0 14px ${col.replace('rgb(','rgba(').replace(')',',.45)')}"><b class="ltr" style="font-size:${(0.6 + dm/330).toFixed(2)}rem">${ETF_LBL[x]||x}</b><span class="num" style="font-size:${(0.56 + dm/420).toFixed(2)}rem">${p!=null ? fmtPct(p) : '—'}</span>${etfEditOpen ? `<span class="ft-del" data-edel="${x}" role="button" aria-label="הסרת ${ETF_LBL[x]||x} מהרשימה">✕</span>` : ''}</button>${extLineHtml(e, 'ftx')}</div>`; };
-  const rowsH = []; for(let i = 0; i < ord.length; i += 4) rowsH.push(`<div class="ft-row">${ord.slice(i, i+4).map(tile).join('')}</div>`);
-  const h = `<div class="fs-bar"><b>מפת חום · הקרנות</b>${ib('ממוין מהעולה ביותר ליורד ביותר · גודל הבועה = עוצמת השינוי היומי · צבע = כיוון', 'איך ממופה מפת החום')}<small>${ETFS.length} קרנות</small><button type="button" class="fs-add${etfEditOpen ? ' on' : ''}" data-eedit aria-expanded="${etfEditOpen}">${etfEditOpen ? '✓ סיום עריכה' : '✏️ עריכה'}</button></div>`;
+  const bub = etfMap.t!=='heat', perRow = etfMap.n;
+  const bsz = p=>Math.round((44 + Math.min(Math.abs(p==null?0:p), 9)*3.8) * 4/perRow);   // v263: size = |daily move| as before, scaled so perRow bubbles fit a row
+  const btile = x=>{ const p = fsPct(x), e = fsExt(x), dm = bsz(p), col = heatColor(p); return `<div class="fb"><button class="ft${x===t?' on':''}" data-etf="${x}" aria-pressed="${x===t}" aria-label="${ETF_LBL[x]||x} ${p!=null ? fmtPct(p) : ''}${e ? ' '+e.kind+' '+fmtPct(e.pct) : ''}" style="width:${dm}px;height:${dm}px;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.3),rgba(255,255,255,0) 62%),${col};box-shadow:0 0 14px ${col.replace('rgb(','rgba(').replace(')',',.45)')}"><b class="ltr" style="font-size:${(0.6 + dm/330).toFixed(2)}rem">${ETF_LBL[x]||x}</b><span class="num" style="font-size:${(0.56 + dm/420).toFixed(2)}rem">${p!=null ? fmtPct(p) : '—'}</span>${etfEditOpen ? `<span class="ft-del" data-edel="${x}" role="button" aria-label="הסרת ${ETF_LBL[x]||x} מהרשימה">✕</span>` : ''}</button>${extLineHtml(e, 'ftx')}</div>`; };
+  const htile = x=>{ const p = fsPct(x), e = fsExt(x); return `<button class="ft${x===t?' on':''}" data-etf="${x}" aria-pressed="${x===t}" aria-label="${ETF_LBL[x]||x} ${p!=null ? fmtPct(p) : ''}${e ? ' '+e.kind+' '+fmtPct(e.pct) : ''}" style="background:${heatColor(p)}"><b class="ltr">${ETF_LBL[x]||x}</b><span class="num">${p!=null ? fmtPct(p) : '—'}</span>${extLineHtml(e, 'ftx')}${etfEditOpen ? `<span class="ft-del" data-edel="${x}" role="button" aria-label="הסרת ${ETF_LBL[x]||x} מהרשימה">✕</span>` : ''}</button>`; };
+  const rowsH = []; if(bub) for(let i = 0; i < ord.length; i += perRow) rowsH.push(`<div class="ft-row">${ord.slice(i, i+perRow).map(btile).join('')}</div>`);
+  const cfg = !etfEditOpen ? '' : `<div class="ft-cfg"><div class="viewtgl" role="group" aria-label="סוג המפה"><button type="button" data-mapt="heat" class="${bub?'':'on'}" aria-pressed="${!bub}">▦ מפת חום</button><button type="button" data-mapt="bub" class="${bub?'on':''}" aria-pressed="${bub}">⚪ מפת עיגולים</button></div>${bub ? `<span class="ft-rp"><small>עיגולים בשורה</small><span class="viewtgl" role="group" aria-label="מספר עיגולים בשורה">${[2,3,4,5,6].map(n=>`<button type="button" data-rows="${n}" class="${n===perRow?'on':''}" aria-pressed="${n===perRow}">${n}</button>`).join('')}</span></span>` : ''}</div>`;
+  const h = `<div class="fs-bar"><b>${bub ? 'מפת עיגולים' : 'מפת חום'} · הקרנות</b>${ib(bub ? 'ממוין מהעולה ביותר ליורד ביותר · גודל הבועה = עוצמת השינוי היומי · צבע = כיוון' : 'ממוין מהעולה ביותר ליורד ביותר · צבע = שינוי יומי', 'איך ממופה מפת הקרנות')}<small>${ETFS.length} קרנות</small><button type="button" class="fs-add fs-gear${etfEditOpen ? ' on' : ''}" data-eedit aria-expanded="${etfEditOpen}" aria-label="הגדרות המפה" title="הגדרות">⚙️</button></div>${cfg}`;
   if(el.innerHTML!==h) el.innerHTML = h;
-  const tiles = $('etfTiles'), grid = `<div class="ft-g">${rowsH.join('')}</div>`; if(tiles.innerHTML!==grid) tiles.innerHTML = grid; }
+  const tiles = $('etfTiles'), grid = bub ? `<div class="ft-g bub">${rowsH.join('')}</div>` : `<div class="ft-g">${ord.map(htile).join('')}</div>`; if(tiles.innerHTML!==grid) tiles.innerHTML = grid; }
 function drawEtf(){ const t = etfUi.sel, d = etfData[t], ei = secInst({sym:t, type:'etf'}), q = iq(ei), pct = q && q.prev ? (q.price/q.prev-1)*100 : null;
   drawEtfSel(); $('etfView').querySelectorAll('button').forEach(b=>{ const on = b.dataset.ev===etfUi.view; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
   const isCust = etfCust.some(x=>x.t===t), hdH = `<div class="etfhd" role="button" tabindex="0" data-es="${t}">${logoHtml(t)}<div class="t"><b class="ltr">${ETF_LBL[t]||t}</b><small>${esc((d && d.name) || (q && q.name) || '')}</small></div><div class="r"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b><span class="num muted">${q ? fmtPrice(q.ext ? q.ext.price : q.price, q.cur||'USD') : ''}</span>${extLineHtml(q && q.ext, 'etfx')}</div></div>`;
@@ -4224,7 +4237,7 @@ function applyMktMode(){ if(etfUi.mode!=='etf') etfUi.mode = 'mk'; if(etfUi.sub!
   $('etfCard').hidden = !etf; $('mktCard').hidden = true; $('comCard').hidden = !com; $('glbCard').hidden = !glb; $('fxCard').hidden = !fxs; }
 $('mktMode').addEventListener('click', e=>{ const b = e.target.closest('[data-mm]'); if(!b) return; const to = b.dataset.mm==='etf' ? 'etf' : 'mk'; if(to===etfUi.mode) return; etfUi.mode = to; saveEtfUi(); applyMktMode(); renderMarket(); });
 $('mkSub').addEventListener('click', e=>{ const b = e.target.closest('[data-ms]'); if(!b || b.dataset.ms===etfUi.sub) return; etfUi.sub = b.dataset.ms; saveEtfUi(); applyMktMode(); renderMarket(); });
-$('etfCard').addEventListener('click', e=>{ if(e.target.closest('[data-eadd]')){ etfAddOpen = !etfAddOpen; drawEtfAdd(true); drawEtfSel(); return; } if(e.target.closest('[data-eedit]')){ etfEditOpen = !etfEditOpen; etfAddOpen = etfEditOpen; drawEtfAdd(); drawEtfSel(); return; } const d = e.target.closest('[data-edel]'); if(d){ e.preventDefault(); e.stopPropagation(); etfRemoveAny(d.dataset.edel); return; } if(etfEditOpen) return; const b = e.target.closest('[data-etf]'); if(!b || b.dataset.etf===etfUi.sel) return; etfUi.sel = b.dataset.etf; etfMenuOpen = false; saveEtfUi(); etfHeatKey = ''; renderEtf(); });   // v104: the tile map always stays open; the picked tile is marked and the holdings are below it
+$('etfCard').addEventListener('click', e=>{ const mt = e.target.closest('[data-mapt]'); if(mt){ etfMap.t = mt.dataset.mapt==='heat' ? 'heat' : 'bub'; saveEtfMap(); drawEtfSel(); return; } const rw = e.target.closest('[data-rows]'); if(rw){ etfMap.n = Math.min(6, Math.max(2, Math.round(+rw.dataset.rows)||4)); saveEtfMap(); drawEtfSel(); return; } if(e.target.closest('[data-eadd]')){ etfAddOpen = !etfAddOpen; drawEtfAdd(true); drawEtfSel(); return; } if(e.target.closest('[data-eedit]')){ etfEditOpen = !etfEditOpen; etfAddOpen = etfEditOpen; drawEtfAdd(); drawEtfSel(); return; } const d = e.target.closest('[data-edel]'); if(d){ e.preventDefault(); e.stopPropagation(); etfRemoveAny(d.dataset.edel); return; } if(etfEditOpen) return; const b = e.target.closest('[data-etf]'); if(!b || b.dataset.etf===etfUi.sel) return; etfUi.sel = b.dataset.etf; etfMenuOpen = false; saveEtfUi(); etfHeatKey = ''; renderEtf(); });   // v104: the tile map always stays open; the picked tile is marked and the holdings are below it
 $('etfHd').addEventListener('click', e=>{ if(e.target.closest('[data-ecissue]')){ const t = etfUi.sel; window.open(`https://github.com/${ISS_REPO}/issues/new?title=${encodeURIComponent('ETF: '+t)}&body=${encodeURIComponent('נוצר מהאפליקציה – לחצו Submit new issue. הקרן תתווסף לעדכון היומי מקובץ המנפיק.')}`, '_blank', 'noopener'); toast('נפתח GitHub – לחצו Submit new issue'); return; } if(e.target.closest('[data-ecdel]')){ etfRemoveCust(etfUi.sel); return; } if(e.target.closest('[data-ecm]')){ etfMenuOpen = !etfMenuOpen; drawEtf(); } });
 $('etfView').addEventListener('click', e=>{ const b = e.target.closest('[data-ev]'); if(!b || b.dataset.ev===etfUi.view) return; etfUi.view = b.dataset.ev; saveEtfUi(); etfHeatKey = ''; renderEtf(); });
 $('etfCard').addEventListener('click', e=>{ const r = e.target.closest('[data-es]'); if(!r || r.dataset.es.charAt(0)==='~') return; const sym = r.dataset.es, d = etfData[etfUi.sel], row = d && d.rows.find(x=>x[0]===sym);
