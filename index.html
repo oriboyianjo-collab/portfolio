@@ -1048,34 +1048,31 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 @media(max-width:340px){#posList .pcard .pgrid>.pc-d>b:first-child{font-size:.737rem}}
 @media(max-width:370px){#posList .pcard .pgrid>.pc-d>b:first-child{padding-inline:0}}
 @media(max-width:370px){#posList .pcard .pgrid>.pc-d>b:first-child{letter-spacing:-.45px}}
-</style><style id="compact-session-price-layout">.pos-cols>.pc-v{display:none}
-#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:28px minmax(0,1fr) 82px 40px 42px 73px;grid-template-areas:"lg nm v w sp d" "lg cp v w sp d";column-gap:4px}
-#posList .pcard.pc .pgrid>.pc-v{display:flex;grid-area:v;justify-content:center;text-align:center;min-width:0;direction:ltr}
-#posList .pcard.pc .pgrid>.pc-v [data-f=mvr]{font-size:.70rem;white-space:nowrap;font-weight:600}
-#posList .pcard.pc .pgrid>.pc-d{display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center}
+</style><style id="compact-session-price-layout">
+/* Position value remains in the expanded details; price stays below the daily/session change. */
+#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:var(--k-lg) minmax(0,1fr) var(--k-w) var(--k-sp) var(--k-d);grid-template-areas:"lg nm w sp d" "lg cp w sp d";column-gap:var(--k-gap)}
+#posList .pcard.pc .pgrid>.pc-v,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-v,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-p{display:none!important}
+#posList .pcard.pc .pgrid>.pc-d{display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;min-width:0}
 #posList .pcard.pc .pgrid>.pc-d>[data-f=hp]{font-size:.748rem;font-weight:700;line-height:1.2;white-space:nowrap;max-width:100%;width:max-content}
 #posList .pcard.pc .pgrid>.pc-d>[data-f=he]:empty{display:none}
-#posList .pcard.pc .pgrid>.pc-d>[data-f=he]{font-size:.61rem;white-space:nowrap;line-height:1.3}
-.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-p{display:none}.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-v{display:block;grid-area:v;font-size:.6rem;text-align:center;color:var(--muted)}
-@media(max-width:370px){#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:25px minmax(0,1fr) 80px 35px 35px 69px;column-gap:3px}}
-@media(max-width:340px){#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:24px minmax(0,1fr) 76px 33px 28px 64px;column-gap:2px}#posList .pcard.pc .pgrid>.pc-v [data-f=mvr]{font-size:.65rem}#posList .pcard.pc .pgrid>.pc-d>[data-f=hp]{font-size:.605rem}}
-#posList .pcard.pc .pgrid>.pc-s .spark{max-width:100%;width:100%;overflow:hidden}#posList .pcard.pc .pgrid>.pc-s{min-width:0;overflow:hidden}#posList .pcard.pc .pgrid>.pc-d>[data-f=he]:not(:empty){display:block!important}#posList .pcard.pc .pgrid>.pc-v [data-f=mvr]{font-size:.64rem}@media(max-width:340px){#posList .pcard.pc .pgrid>.pc-v [data-f=mvr]{font-size:.58rem}}#posList .pcard.pc .pgrid>.pc-s,#posList .pcard.pc .pgrid>.pc-s>*{width:100%!important;min-width:0!important;max-width:100%!important;box-sizing:border-box;overflow:hidden!important}#posList .pcard.pc .pgrid>.pc-d>[data-f=he]{font-size:.50rem!important}#posList .pcard.pc .pgrid>.pc-d>[data-f=he]::before{font-size:.48rem!important;padding:0 2px!important;margin:0 3px 0 0!important}#posList .pcard.pc .pgrid>.pc-d{min-width:0}#posList .pcard.pc .pgrid>.pc-s,#posList .pcard.pc .pgrid>.pc-s .spark,#posList .pcard.pc .pgrid>.pc-w,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-s{transform:none!important;translate:none!important}#posList .pcard.pc .pgrid>.pc-n .pname{max-width:100%;overflow:hidden;text-overflow:ellipsis}
-.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-v{justify-self:stretch;width:100%;min-width:0;box-sizing:border-box;text-align:center}
-.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-w{transform:none;translate:none}
+#posList .pcard.pc .pgrid>.pc-d>[data-f=he]:not(:empty){display:block!important;font-size:.50rem!important;white-space:nowrap;line-height:1.3}
+#posList .pcard.pc .pgrid>.pc-d>[data-f=he]::before{font-size:.48rem!important;padding:0 2px!important;margin:0 3px 0 0!important}
+@media(max-width:340px){#posList .pcard.pc .pgrid>.pc-d>[data-f=hp]{font-size:.605rem}}
 
-/* Restore the former inter-column air, including when position amounts are hidden. */
-#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:28px minmax(0,1fr) 76px 44px 42px 73px;column-gap:7px}
-body:has(#btnEye[aria-pressed=true]) #posList .pcard.pc .pgrid,body:has(#btnEye[aria-pressed=true]) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:28px minmax(0,1fr) 48px 44px 42px 73px}
-@media(max-width:370px){#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:25px minmax(0,1fr) 76px 40px 35px 69px;column-gap:6px}body:has(#btnEye[aria-pressed=true]) #posList .pcard.pc .pgrid,body:has(#btnEye[aria-pressed=true]) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:25px minmax(0,1fr) 44px 40px 35px 69px}}
-@media(max-width:340px){#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:24px minmax(0,1fr) 76px 36px 28px 64px;column-gap:4px}body:has(#btnEye[aria-pressed=true]) #posList .pcard.pc .pgrid,body:has(#btnEye[aria-pressed=true]) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:24px minmax(0,1fr) 40px 36px 28px 64px}}
+#posList .pcard.pc .pgrid>.pc-s,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-s{transform:none!important;translate:none!important;min-width:0;overflow:hidden;width:100%;max-width:100%}
+#posList .pcard.pc .pgrid>.pc-s .spark{transform:none!important;width:100%!important;max-width:100%!important;overflow:hidden;box-sizing:border-box}
+</style><style id="watch-session-price-layout">
+#wlLists .wr.wgrid:not(.egrid),#wlLists .wl-cols.wgrid{grid-template-columns:var(--k-lg) minmax(0,1fr) var(--k-sp) calc(var(--k-d) + 12px);grid-template-areas:"lg nm sp d" "lg cp sp d"}
+#wlLists .wl-cols>.pc-p{display:none}
+#wlLists .wr.wgrid:not(.egrid)>.pc-d{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0}
+#wlLists .wr.wgrid:not(.egrid)>.pc-d>.pc-p{display:block;text-align:center;min-width:0;width:100%;overflow:visible}
+#wlLists .wr.wgrid:not(.egrid)>.pc-d .wl-p{display:inline-block;max-width:100%;width:max-content;font-size:.748rem;font-weight:700;line-height:1.2;white-space:nowrap;text-align:center}
+#wlLists .wr.wgrid:not(.egrid)>.pc-d>.ext-line{font-size:.50rem;white-space:nowrap;line-height:1.3}
+@media(max-width:340px){#wlLists .wr.wgrid:not(.egrid)>.pc-d .wl-p{font-size:.605rem}}
 
-/* Preview interpretation: percentages of each column's own width. */
-#posList .pcard.pc .pgrid>.pc-v,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-v{transform:translateX(-50%)!important;translate:none!important}
-#posList .pcard.pc .pgrid>.pc-w,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-w{transform:translateX(-25%)!important;translate:none!important}
-#posList .pcard.pc .pgrid>.pc-s,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-s{transform:translateX(-12.5%)!important;translate:none!important}
-body:not(:has(#btnEye[aria-pressed=true])) #posList .pcard.pc .pgrid>.pc-v,body:not(:has(#btnEye[aria-pressed=true])) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-v{transform:translateX(-10px)!important}
-@media(max-width:370px){body:not(:has(#btnEye[aria-pressed=true])) #posList .pcard.pc .pgrid>.pc-v,body:not(:has(#btnEye[aria-pressed=true])) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-v{transform:translateX(-6px)!important}}
-@media(max-width:340px){body:not(:has(#btnEye[aria-pressed=true])) #posList .pcard.pc .pgrid>.pc-v,body:not(:has(#btnEye[aria-pressed=true])) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-v{transform:translateX(-2px)!important}}
+#wlLists .wr.wgrid:not(.egrid)>.pc-d>b:first-child{font-size:.88rem;max-width:100%;box-sizing:border-box;padding-inline:2px}
+@media(max-width:370px){#wlLists .wr.wgrid:not(.egrid)>.pc-d>b:first-child{font-size:.814rem;letter-spacing:-.25px}}
+@media(max-width:340px){#wlLists .wr.wgrid:not(.egrid)>.pc-d>b:first-child{font-size:.737rem}}
 </style></head>
 <body>
 <header class="top">
@@ -4311,7 +4308,7 @@ function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts =
   const {pct, extO} = wlDayView(it, q);
   return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${it.fx ? `<span class="fxfl" aria-hidden="true">${it.fl}</span>` : logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div>${it.fx && staleTag(q) ? `<div class="pname" style="font-size:.72rem;white-space:normal">${esc(staleTag(q))}</div>` : ''}</div>`+
     `<div class="pcol pc-s wl-live">${pts && pts.length > 1 ? sparkSvg(pts.map(p=>p[1]), q && q.prev, up, 48, 24) : ''}</div><div class="pcol pc-m wl-live num">${capT(q && q.mcap, it.cur)}</div>`+
-    `<div class="pcol pc-p wl-live"><span class="wl-p v num">${q ? ((it.fx||it.y) ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div><div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${it.y && q && q.prev ? `<small class="ybp ${cls(pct)}">${chgInst(it, q.price, q.prev).sub}</small>` : ''}${extLineHtml(q && (q.hlt ? {halt:q.hlt} : extO))}</div>`+
+    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${it.y && q && q.prev ? `<small class="ybp ${cls(pct)}">${chgInst(it, q.price, q.prev).sub}</small>` : ''}${extLineHtml(q && (q.hlt ? {halt:q.hlt} : extO))}<div class="pcol pc-p wl-live"><span class="wl-p v num">${q ? ((it.fx||it.y) ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div></div>`+
     `<div class="wl-ed" style="grid-column:3/-1"><button data-wm="up" aria-label="הזזה למעלה" ${i===0?'disabled':''}>▲</button><button data-wm="down" aria-label="הזזה למטה" ${i===n-1?'disabled':''}>▼</button><button data-wm="del" class="del" aria-label="הסרה מהרשימה">✕</button></div></div>`; }
 // v112: lists are horizontal tabs at the top; only the active list renders, without the old collapsible header
 function wlTabsHtml(){ const cur = wlCur().id;
