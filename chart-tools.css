@@ -86,4 +86,4 @@ html.meas-lock,html.meas-lock body,html.meas-lock .sheet,html.meas-lock #sheetBo
 
 .ct-tools [data-xi]{position:relative;padding-inline-end:30px}.ct-tools .ix-bx{position:absolute;inset-inline-end:4px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;line-height:1;background:rgba(148,163,184,.25);color:inherit}.ct-tools .ix-bx:active{background:rgba(239,68,68,.45)}
 /* v242: pill-rounded buttons like the markets category chips (border-radius only) */
-.ct-expand,.ct-work button,.ct-time select,.ix-s,.ix-add button{border-radius:99px}
+.ct-expand,.ct-work button,.ix-add button{border-radius:99px}
