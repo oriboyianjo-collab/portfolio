@@ -1000,8 +1000,8 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .idx-editbar .ac-list{left:auto;right:0;width:333.34%;z-index:30}
 .idx-editbar input#idxSearch{width:100%;box-sizing:border-box;height:26px!important;min-height:26px!important;padding-top:0!important;padding-bottom:0!important;padding-inline-start:32px!important;padding-inline-end:10px!important;font-size:.8rem!important;line-height:1}
 .idx-editbar .ac-ic2{position:absolute;inset-inline-start:10px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--muted);pointer-events:none}
-/* v260 approved: reset button beside the add-search row (Ori, 2026-11-08) - restores the two original tiles only (S&P 500 / נאסד"ק 100); same ↺ איפוס לברירת מחדל wording as the market/FX/commodities/global resets, 26px high like the search field so the tiles stay pixel-fixed. */
-.idx-reset{flex:0 0 auto;height:26px;min-height:26px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font:inherit;font-size:.76rem;font-weight:700;cursor:pointer;white-space:nowrap}
+/* v261: reset button beside the add-search row (Ori, 2026-11-08) - restores the two original tiles only (S&P 500 / נאסד"ק 100); short "איפוס" label, 26px high like the search field so the tiles stay pixel-fixed. */
+.idx-reset{flex:0 0 auto;height:26px;min-height:26px;padding:0 10px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);font:inherit;font-size:.76rem;font-weight:700;cursor:pointer;white-space:nowrap}
 .idx-reset:active{opacity:.8}
 .irr-failure-info{margin-inline-start:8px;vertical-align:middle}.irr-pop-bg{background:transparent!important;backdrop-filter:none!important}.irr-pop-bg .ib-card{position:fixed;bottom:auto!important;margin:0!important;border:1px solid #64748b;border-radius:13px;padding:14px 16px;max-height:min(300px,70vh);overflow:auto;background:#1b2638!important;opacity:1!important;box-shadow:0 8px 28px #0008;transform:none!important;box-sizing:border-box}.irr-pop-bg .ib-card h4{font-size:13px;margin:0 0 9px;padding-inline-end:20px}.irr-pop-bg .ib-card h4>i{display:none}.irr-pop-bg .ib-b{font-size:12px;line-height:1.65}.irr-pop-bg .ib-b p{margin:6px 0 0}.irr-pop-close{position:absolute;top:6px;left:6px;width:26px;height:26px;padding:0;border:0;background:transparent;color:#cbd5e1;font-size:22px}.srow .pc-d{align-items:center;text-align:center;justify-content:center;gap:2px}.srow .pc-d>b.num{width:max-content;max-width:100%;min-width:0;padding:2px 7px;box-sizing:border-box;align-self:center}.srow .pc-d>.wl-p{align-self:center;width:max-content;max-width:100%;text-align:center}.srow .pc-d>.ext-line{align-self:center;text-align:center}.rep-date-strip{display:flex;gap:8px;align-items:stretch}.rep-date-strip>button{flex:0 0 72px;max-width:72px;box-sizing:border-box;background:#24364f;color:#cbd5e1;border-color:#445b78;border-radius:14px;min-height:66px;padding:6px 3px;line-height:1.15}.rep-date-strip>button b{color:#93c5fd;display:flex;align-items:center;justify-content:center;font-size:1rem;margin:1px 0}.rep-date-strip>button small{font-size:.57rem;white-space:nowrap}.rep-date-strip>button.on{background:#2563eb;color:white;border-color:#2563eb}.rep-date-strip>button.on b{color:white}.rep-date-strip>#repDays{margin:0;position:relative;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;gap:6px;isolation:isolate}.rep-date-strip>#repDays .dcard{flex:0 0 calc((100% - 12px)/3);box-sizing:border-box;min-width:0;max-width:none;padding:6px 2px;scroll-snap-align:start;min-height:66px}.rep-date-strip>#repDays .dcard small{white-space:nowrap;font-size:.55rem}.rep-date-strip>#repDays .dcard b{font-size:.98rem}
 
@@ -1050,7 +1050,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
   <section class="tab on" id="tab-portfolio">
     <div class="idxwrap" id="idxWrap" hidden>
     <div class="idx-tools" id="idxTools" hidden>
-    <div class="idx-editbar" id="idxEditBar"><div class="ac"><input id="idxSearch" placeholder="חיפוש נייר" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><div class="ac-list" id="idxAc"></div></div></div><button type="button" class="idx-reset" id="idxReset" title="איפוס לברירת המחדל - שני האריחים המקוריים">↺ איפוס לברירת מחדל</button></div>
+    <div class="idx-editbar" id="idxEditBar"><div class="ac"><input id="idxSearch" placeholder="חיפוש נייר" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><div class="ac-list" id="idxAc"></div></div></div><button type="button" class="idx-reset" id="idxReset" title="איפוס לברירת המחדל - שני האריחים המקוריים">איפוס</button></div>
     <div class="idxrow" id="idxRow"></div>
     </div>
     <div id="splitSug"></div>
@@ -3275,11 +3275,13 @@ $('idxRow').addEventListener('click', e=>{ if(e.target.closest('.idx-arrowbtn'))
   if(it) openInstSheet(it, '1D'); });
 $('idxSearch').addEventListener('keydown', e=>{ if(e.key==='Escape' && idxEditing){ idxEditing = false; renderIdx(); } });
 // v260 approved: reset to the two original tiles only (Ori, 2026-11-08: "רק ל2 המקוריים") - added tiles are removed; same confirm pattern as the market/global resets.
+// v261: label shortened to "איפוס" and the tools row closes once the two original tiles are restored (Ori, 2026-11-08 10:15) - added tiles are removed; same confirm pattern as the market/global resets.
 $('idxReset').onclick = ()=>{ if(!confirm('לאפס את האריחים לברירת המחדל (S&P 500 ונאסד"ק 100)?')) return;
   IDX = IDX_DEFAULT.map(x=>Object.assign({}, x));
   const keep = {}; IDX_DEFAULT.forEach(x=>{ keep[x.k] = 1; });
   Object.keys(idxData.q).forEach(k=>{ if(!keep[k]) delete idxData.q[k]; });
   Object.keys(idxData.sp).forEach(k=>{ if(!keep[k]) delete idxData.sp[k]; });
+  idxEditing = false;   // tiles are back - the reset row hides until the arrow is tapped again or every tile is deleted
   idxListSave(); idxSave(); renderIdx();
   cnbcQuotes(IDX.map(x=>x.s)).then(q=>idxApply(q||{})).catch(e=>{ console.warn('index reset fetch', e.message); renderIdx(); }); };
 attachAutocomplete($('idxSearch'), $('idxAc'), it=>{ $('idxSearch').value = ''; $('idxSearch').blur(); if(!it || (it.free && !it.sym)) return;
