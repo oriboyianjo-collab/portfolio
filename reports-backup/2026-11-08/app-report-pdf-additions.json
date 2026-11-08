@@ -1,0 +1,22 @@
+{
+  "AMZN": {
+    "2025": {
+      "FY": "https://s2.q4cdn.com/299287126/files/doc_financials/2026/ar/Amazon-2025-Annual-Report.pdf"
+    }
+  },
+  "SBC": {
+    "2025": {
+      "FY": "https://ir.sbc-holdings.com/assets/uploads/2026/07/SBC-Medical-Group-Holdings-Incorporated-05-25-2026-Form-Typeset-Version-3.pdf"
+    }
+  },
+  "TIMB": {
+    "2025": {
+      "FY": "https://api.mziq.com/mzfilemanager/v2/d/4c4aa51f-1235-4aa1-8b83-adc92e8dacc3/e1834246-e52b-df54-9a82-cbb79e29f934?origin=2"
+    }
+  },
+  "DELL": {
+    "2026": {
+      "FY": "https://investors.delltechnologies.com/sec-filings/all-sec-filings/content/0001193125-26-226755/0001193125-26-226755.pdf"
+    }
+  }
+}
