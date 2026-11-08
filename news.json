@@ -1769,14 +1769,24 @@
   "מקורות": [
    {
     "label": "Cepheid: הודעה רשמית מ-3 בנובמבר",
-    "url": "https://cepheid.mediaroom.com/2026-11-03-Cepheid-Receives-FDA-Clearance-for-Xpert-R-Hemorrhagic-Fever-Panel-Test"
+    "url": "https://cepheid.mediaroom.com/2026-11-03-Cepheid-Receives-FDA-Clearance-for-Xpert-R-Hemorrhagic-Fever-Panel-Test",
+    "label_en": "Cepheid: official release of November 3"
    }
   ],
   "תקציר": "בדיקה אחת מזהה נגיפי אבולה, מרבורג, לאסה וקרים-קונגו בכ-61 דקות; זהו כלי אבחון, לא טיפול.",
   "טקסט": "⁦3.11.2026⁩ | הודעת ⁦Cepheid,⁩ חברה בת של דנהר; שעת הפרסום המקורית אינה מצוינת במקור שנבדק.\n\nהחברה הודיעה שה-⁦FDA⁩ העניק אישור שיווק מסוג ⁦clearance⁩ לפאנל בדיקות מולקולרי לזיהוי חומר גנטי של נגיפים הגורמים לקדחות דימומיות מתוך דגימה יחידה. הבדיקה כוללת נגיפי אבולה, מרבורג, לאסה וקדחת קרים-קונגו.\n\nהפאנל פועל במערכות ⁦GeneXpert Dx⁩ ומספק תוצאה בכ-⁦61⁩ דקות לפי החברה. הוא מזהה ארבעה נגיפי אבולה ברמת קבוצה ואינו מבדיל ביניהם. המחסנית הסגורה נועדה לצמצם זיהום בין דגימות, ושלב ההכנה כולל נטרול נגיפי לתמיכה בעבודת המעבדה.\n\nזהו אישור למכשור אבחוני, לא אישור לתרופה או לחיסון ולא הבטחה שהבדיקה זמינה בכל מדינה. החברה מציינת שבספטמבר קיבל הפאנל גם רישום לשימוש חירום של ארגון הבריאות העולמי; ההודעה הנוכחית עוסקת באישור האמריקאי הנפרד.\n\nלא פורסמו בהודעה שווי חוזה, תחזית מכירות או השפעה כמותית על תוצאות דנהר. האישור עשוי לתמוך בזיהוי מוקדם ובפעולות בריאות הציבור, אך אינו תחליף להערכה רפואית או לנהלי בטיחות. ההכרזה המקורית היא מ-⁦3⁩ בנובמבר.",
   "תאריך": "2026-11-07 12:10",
   "הועלה": "2026-11-07 12:10",
-  "מזהה": "n-0065"
+  "מזהה": "n-0065",
+  "כותרת_en": "Danaher (DHR): Cepheid announced FDA clearance for a PCR panel detecting several hemorrhagic fever viruses",
+  "טקסט_en": "Nov 3, 2026 | release of Cepheid, a Danaher subsidiary; the original publication time is not specified in the source checked.\n\nThe company announced that the FDA granted marketing clearance for a molecular test panel detecting genetic material of viruses that cause hemorrhagic fevers from a single sample. The test covers Ebola, Marburg, Lassa and Crimean-Congo fever viruses.\n\nThe panel runs on GeneXpert Dx systems and delivers a result in about 61 minutes per the company. It detects four Ebola viruses at group level and does not distinguish between them. The closed cartridge is designed to reduce cross-sample contamination, and the preparation step includes viral inactivation to support lab work.\n\nThis is clearance for a diagnostic device, not approval of a drug or vaccine and no promise that the test is available in every country. The company notes that in September the panel also received World Health Organization emergency use listing; the current release concerns the separate American clearance.\n\nNo contract value, sales forecast or quantitative effect on Danaher's results was published in the release. The clearance may support early detection and public health actions, but is no substitute for medical evaluation or safety procedures. The original announcement is from November 3.",
+  "תקציר_en": "One test detects Ebola, Marburg, Lassa and Crimean-Congo viruses in about 61 minutes; this is a diagnostic tool, not a treatment.",
+  "_translation": {
+   "en": {
+    "source_hash": "e78bd74c470fb3440a816407712c1365152decdfa58ac72d788a5a5e3870f15b",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Fluor (FLR): אישור מלא להתקדם בהרחבת מכרה Sierra Gorda בצ'ילה; שווי החוזה לא פורסם",
@@ -1786,14 +1796,24 @@
   "מקורות": [
    {
     "label": "הודעת Fluor דרך Business Wire, עותק מלא ב-StockTitan",
-    "url": "https://www.stocktitan.net/news/FLR/fluor-granted-full-notice-to-proceed-on-sierra-gorda-s-fourth-xbp2jrazbj8b.html"
+    "url": "https://www.stocktitan.net/news/FLR/fluor-granted-full-notice-to-proceed-on-sierra-gorda-s-fourth-xbp2jrazbj8b.html",
+    "label_en": "Fluor release via Business Wire, full copy on StockTitan"
    }
   ],
   "תקציר": "תוספת קו עיבוד רביעי מיועדת להגדיל קיבולת מכ-130 אלף לכ-165 אלף טונות ביום; הבנייה מתוכננת ל-2027.",
   "טקסט": "⁦5.11.2026⁩ | ⁦01:32⁩ שעון ישראל, הודעת החברה שפורסמה ב-⁦4.11⁩ בשעה ⁦18:32 EST.⁩\n\nפלואור הודיעה שקיבלה אישור מלא להתקדם במסגרת חוזה לתכנון, לרכש ולניהול ההקמה של קו הטחינה הרביעי במכרה הנחושת והמוליבדן ⁦Sierra Gorda⁩ בצ'ילה. שווי החוזה לא נמסר, ולכן אין בסיס לייחס לפרויקט סכום כספי מסוים.\n\nההרחבה במתקן קיים כוללת קו תהליך נוסף, מגרסה ראשית, מערכת כתישה בלחץ גבוה, טחינה, הצפה ומתקנים תומכים. יעד התכנון הוא להגדיל את קיבולת עיבוד העפרות של המתקן מכ-⁦130⁩ אלף לכ-⁦165⁩ אלף טונות ביום. זו קיבולת עפרות מעובדות, לא כמות נחושת טהורה ולא תפוקה שכבר הושגה.\n\nתחילת עבודות הבנייה מתוכננת ל-⁦2027.⁩ האישור להתקדם הוא שלב בחוזה ההקמה, לא הודעה שההרחבה הסתיימה או החלה לפעול.\n\nקשור לפריט שנשלח ב-⁦4.11⁩ בשעה ⁦16:11⁩ על הסכם ההקמה של פלואור עם ⁦TeraWulf.⁩ מה חדש: פרויקט כרייה נפרד בצ'ילה, ללא קשר להיקף חוזי מרכזי הנתונים או לתמיכת האשראי של גוגל. ההודעה המקורית פורסמה ב-⁦5⁩ בנובמבר לפי שעון ישראל.",
   "תאריך": "2026-11-07 12:10",
   "הועלה": "2026-11-07 12:10",
-  "מזהה": "n-0066"
+  "מזהה": "n-0066",
+  "כותרת_en": "Fluor (FLR): full approval to proceed with the Sierra Gorda mine expansion in Chile; contract value not published",
+  "טקסט_en": "Nov 5, 2026 | 01:32 Israel time, the company release published Nov 4 at 18:32 EST.\n\nFluor announced it received full notice to proceed under a contract for the engineering, procurement and construction management of the fourth grinding line at the Sierra Gorda copper and molybdenum mine in Chile. The contract value was not disclosed, so there is no basis to attribute a specific monetary amount to the project.\n\nThe expansion at the existing facility includes an additional process line, a primary crusher, a high-pressure grinding rolls system, milling, flotation and supporting facilities. The design goal is to raise the plant's ore processing capacity from about 130 thousand to about 165 thousand tonnes per day. That is processed ore capacity, not an amount of pure copper and not output already achieved.\n\nStart of construction work is planned for 2027. The notice to proceed is a stage in the construction contract, not a statement that the expansion is complete or has begun operating.\n\nRelated to the item sent on Nov 4 at 16:11 on Fluor's construction agreement with TeraWulf. What's new: a separate mining project in Chile, unrelated to the data center contract scope or Google's credit support. The original release was published November 5 Israel time.",
+  "תקציר_en": "The added fourth processing line is meant to raise capacity from about 130 thousand to about 165 thousand tonnes per day; construction is planned for 2027.",
+  "_translation": {
+   "en": {
+    "source_hash": "2504976e3b6e5c6a49168a42673f5c68b80fd3f5cabc0283bf23dd36c6265a3c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "מחקר בטייוואן: מכשיר ידני מזהה סוג דם ואומד שיעור תאי דם אדומים בדקה, ללא חשמל",
@@ -1804,20 +1824,32 @@
   "מקורות": [
    {
     "label": "National Taiwan University: הודעת המחקר",
-    "url": "https://labspotlight.ntu.edu.tw/en/vision/cmvrjnseg01iga9bgmcummpjk"
+    "url": "https://labspotlight.ntu.edu.tw/en/vision/cmvrjnseg01iga9bgmcummpjk",
+    "label_en": "National Taiwan University: research release"
    },
    {
     "label": "Biosensors and Bioelectronics: תקציר ושיטות המחקר המקורי",
-    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0956566326008481"
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0956566326008481",
+    "label_en": "Biosensors and Bioelectronics: abstract and methods of the original study"
    },
    {
     "label": "ScienceAlert: כתבת ההסבר מ-3 בנובמבר",
-    "url": "https://www.sciencealert.com/this-hand-cranked-device-can-tell-you-your-blood-type-and-red-cell-levels-in-a-minute"
+    "url": "https://www.sciencealert.com/this-hand-cranked-device-can-tell-you-your-blood-type-and-red-cell-levels-in-a-minute",
+    "label_en": "ScienceAlert: explainer article of November 3"
    }
   ],
   "תאריך": "2026-11-07 12:05",
   "הועלה": "2026-11-07 12:05",
-  "מזהה": "n-0067"
+  "מזהה": "n-0067",
+  "כותרת_en": "Taiwan study: a hand-powered device identifies blood type and estimates red blood cell share in a minute, without electricity",
+  "טקסט_en": "Oct 14, 2026 | National Taiwan University release; publication time not shown. The ScienceAlert article was published Nov 3 at 13:00 Israel time. This is earlier research, not a new announcement of November 7. The journal issue date, Jan 1, 2027, is not the device invention date.\n\nUniversity researchers developed a microfluidic chip powered by a small hand crank. Per the paper and the university release, about three microliters of blood are enough to identify blood groups in the ABO and Rh systems and in the same test estimate hematocrit, the volume share of red blood cells in the blood. Test time is about one minute and no power connection is needed.\n\nTurning the crank pushes the blood through channels containing reagents. Clumped blood cells are trapped in tiny grooves; the strip's position helps identify the blood type and its length is used to estimate hematocrit. In an experiment on 21 clinical samples, high agreement was found with automated hospital testing devices.\n\nThe sample is small. Per the paper, the quantitative validation covers a hematocrit range of 10%-60%; that is no validation for every rare blood type or every extreme condition. Larger studies and field-condition tests are needed before wide use. The sources present no regulatory approval for clinical use, no approved substitute for transfusion matching, and no deployment already begun in ambulances. Use in places without infrastructure is a future possibility, not an achieved result.",
+  "תקציר_en": "Tested on only 21 samples. A promising research result, not approval for clinical use or a device already deployed in the field.",
+  "_translation": {
+   "en": {
+    "source_hash": "603ef39a49e547fa1076fe8270f48f90a0a02bae62c0c822c8d6e6676ea47b0a",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "מחקר בטלוויזיות חכמות: בחלק מהדגמים נמשכה תעבורה חשודה גם אחרי ביטול זיהוי תוכן אוטומטי",
@@ -1828,16 +1860,27 @@
   "מקורות": [
    {
     "label": "Watching the Watchers: אתר צוות המחקר המקורי",
-    "url": "https://watchingthewatchers.github.io/watchingthewatchers/"
+    "url": "https://watchingthewatchers.github.io/watchingthewatchers/",
+    "label_en": "Watching the Watchers: the original research team site"
    },
    {
     "label": "The Verge: שיטת המחקר ותגובת Vizio",
-    "url": "https://www.theverge.com/tech/1026088/northeastern-university-acr-tracking-study"
+    "url": "https://www.theverge.com/tech/1026088/northeastern-university-acr-tracking-study",
+    "label_en": "The Verge: the study method and Vizio's response"
    }
   ],
   "תאריך": "2026-11-07 12:05",
   "הועלה": "2026-11-07 12:05",
-  "מזהה": "n-0068"
+  "מזהה": "n-0068",
+  "כותרת_en": "Smart TV study: in some models, suspicious traffic continued even after automatic content recognition was disabled",
+  "טקסט_en": "The original study's publication date is not shown on the research site checked. The Verge article was published Nov 4, 2026 at 16:00 Israel time and updated November 5 with Vizio's response.\n\nNortheastern researchers examined 12 televisions using 5,943 automated experiments, across several operating systems and viewing scenarios. The study examined automatic content recognition (ACR), technology that identifies content shown on the screen based on samples or digital fingerprints of audio and video.\n\nAfter disabling the option in settings, in some experiments on Samsung, Roku and Vizio models, traffic matching ACR patterns continued. That is an observation of network activity, not proof that the companies stored the viewing content without consent: the researchers stress that most traffic is encrypted and they cannot confirm its contents or whether the data was processed and stored on servers.\n\nIn the LG webOS system tested, and also in certain Sony, Amazon and VIDAA systems, disabling the option worked in the experiments. At Roku, disabling does not apply to the company's own streaming service. This should not be generalized to every model, software version or country.\n\nVizio told The Verge that the encrypted traffic observed is not ACR data but routine operational data, such as diagnostics and performance. That is the company's response, alongside the inference limits the researchers themselves note.\n\nSeparately, an exposure of unencrypted viewing data was identified in the VIDAA system. Per the researchers, after the report a login terms page was added to the server, but sending the messages without encryption remained a problem. This is not proof that all televisions record conversations in the room, and not a verdict or a sales ban. Separate legal claims from Portugal are not findings of this study.",
+  "תקציר_en": "Most traffic is encrypted, so its contents cannot be determined from it. At the LG unit tested, disabling actually worked.",
+  "_translation": {
+   "en": {
+    "source_hash": "3d02bab4d6e79f153b7358a68264438cf4464c19fe04a1faa1682c78e2fe7521",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "ONYX: סקירת רכיבה של RCR 80V מציגה כלי חשמלי חזק עם דוושות, לצד מגבלות בלימה ורישוי",
@@ -1848,12 +1891,22 @@
   "מקורות": [
    {
     "label": "New Atlas: סקירת רכיבה מקורית של Kevin Fanady",
-    "url": "https://newatlas.com/bicycles/onyx-rcr-80v-review/"
+    "url": "https://newatlas.com/bicycles/onyx-rcr-80v-review/",
+    "label_en": "New Atlas: Kevin Fanady's original ride review"
    }
   ],
   "תאריך": "2026-11-07 12:05",
   "הועלה": "2026-11-07 12:05",
-  "מזהה": "n-0069"
+  "מזהה": "n-0069",
+  "כותרת_en": "ONYX: a ride review of the RCR 80V presents a powerful electric two-wheeler with pedals, alongside braking and licensing limits",
+  "טקסט_en": "Nov 6, 2026 | Kevin Fanady's review in New Atlas; publication time not shown.\n\nA ride review of the RCR 80V model describes an electric vehicle sitting between a bicycle and a motorcycle, weighing about 68 kilograms. The article cites peak power of 21 kilowatts and a claimed top speed of about 120 km/h in the unrestricted configuration. Peak power is not continuous power, and the figure is no confirmation that the reviewer measured the top speed in controlled conditions.\n\nThe reviewer describes a comfortable riding position, smooth power delivery and a stable frame, but the pedals do not drive electric assist and are less suited to everyday pedaling on such a heavy vehicle. These are impressions from a single review unit, not safety data for the whole fleet.\n\nAn important limit in the review: the front brake on the tested unit was weak, and the company sent an upgraded caliper and hardware. Per the explanation given in the article, the original braking tune was also meant to reduce lock-ups for inexperienced riders, but the vehicle has no ABS, and the reviewer noted that on his unit the brake did not feel right even relative to that intention.\n\nPer the founder interview in the article, the company is working to ease registering the vehicle as a motorcycle. Licensing rules vary from place to place. The presence of pedals is no proof it is permitted for use as an electric bicycle in Israel or any other jurisdiction, and the review contains no approval to ride in the fast configuration without a suitable license. This is not a stock company with a ticker added here, and there is no announcement of a new launch on November 7.",
+  "תקציר_en": "A first-hand review, not a launch from today or confirmation that the vehicle is legal as a bicycle everywhere.",
+  "_translation": {
+   "en": {
+    "source_hash": "1a11e92e1e1fb4aea04ca0b236f0389db1e5a2fe91e4e6946c2452525ae2f2fc",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Coherent (COHR): ספקית סינית חתמה על מכתב כוונות לאספקת מצעי InP בהיקף צפוי של לפחות 601 מיליון דולר",
@@ -1862,7 +1915,8 @@
   "מקורות": [
    {
     "label": "Guangzhi Technology: הודעה 2026-069 על מכתב הכוונות",
-    "url": "https://static.cninfo.com.cn/finalpage/2026-11-06/1225660893.PDF"
+    "url": "https://static.cninfo.com.cn/finalpage/2026-11-06/1225660893.PDF",
+    "label_en": "Guangzhi Technology: notice 2026-069 on the letter of intent"
    }
   ],
   "תקציר": "תוכנית אספקה ל-2027-2029, לא הזמנה סופית: ההסכם הסופי ורישיון היצוא עדיין תנאים מהותיים.",
@@ -1870,7 +1924,16 @@
   "חברה": "COHR",
   "תאריך": "2026-11-07 12:03",
   "הועלה": "2026-11-07 12:03",
-  "מזהה": "n-0070"
+  "מזהה": "n-0070",
+  "כותרת_en": "Coherent (COHR): a Chinese supplier signed a letter of intent to supply InP substrates at an expected volume of at least $601 million",
+  "טקסט_en": "Nov 6, 2026 | Guangzhi Technology notice to the exchange in China; the original publication time does not appear in the document checked.\n\nPer the Chinese supplier's notice, its subsidiary Guangdong Xianrui signed with Coherent a letter of intent to supply six-inch indium phosphide (InP) substrates to Coherent's plants in Switzerland and Sweden in 2027-2029. The expected transaction volume per the document is at least $601 million. That is an estimate of future supply volume, not revenue already recorded at Coherent and not a completed final purchase order.\n\nThe parties still need to negotiate and sign a final supply agreement. Its signing date and terms are not certain, and performance will be determined by the final agreement and the orders that follow it. The supplier is also required to obtain an export license for the substrates; a delay or failure to receive the license could prevent performance and even lead to cancellation.\n\nThe document allows a one-year extension only upon agreement on price and quantities. It does not guarantee supply, payments or financial contribution already achieved.\n\nRelated to the item sent on Nov 5 at 03:28 on the PhotonLink agreement Coherent presented. What's new: a separate letter of intent on the raw materials side, published by the supplier. Do not link the $601 million to the roughly $20 billion revenue estimate of the other agreement, or present the two documents as one deal.",
+  "תקציר_en": "A supply plan for 2027-2029, not a final order: the final agreement and the export license are still material conditions.",
+  "_translation": {
+   "en": {
+    "source_hash": "7c4678bb73444bc26a154337f2ec0f593b385781af887a7a4dd87b395368e99f",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Shift4 Payments (FOUR): רכישת Paramount Commerce עדיין בהמתנה להשלמה, לצורך הרחבת תשלומים בנקאיים בקנדה",
@@ -1879,11 +1942,13 @@
   "מקורות": [
    {
     "label": "Shift4: מכתב בעלי המניות Q3 2026, רכישה בהמתנה",
-    "url": "https://d1io3yog0oux5.cloudfront.net/_f28129066f1ecca5cca9f7126587b59d/shift4/db/3583/33872/pdf/Shareholder_Letter_Q3_2026.pdf"
+    "url": "https://d1io3yog0oux5.cloudfront.net/_f28129066f1ecca5cca9f7126587b59d/shift4/db/3583/33872/pdf/Shareholder_Letter_Q3_2026.pdf",
+    "label_en": "Shift4: Q3 2026 shareholder letter, pending acquisition"
    },
    {
     "label": "Shift4: הודעת התוצאות ומועד פרסום המכתב",
-    "url": "https://investors.shift4.com/news-events/press-releases/detail/310/shift4-announces-third-quarter-2026-results"
+    "url": "https://investors.shift4.com/news-events/press-releases/detail/310/shift4-announces-third-quarter-2026-results",
+    "label_en": "Shift4: results release and letter publication time"
    }
   ],
   "תקציר": "מכתב בעלי המניות מ-5 בנובמבר מציג עסקה מתוכננת, עם תמורה נוספת התלויה בצמיחה ובהתרחבות.",
@@ -1891,7 +1956,16 @@
   "חברה": "FOUR",
   "תאריך": "2026-11-07 12:03",
   "הועלה": "2026-11-07 12:03",
-  "מזהה": "n-0071"
+  "מזהה": "n-0071",
+  "כותרת_en": "Shift4 Payments (FOUR): the Paramount Commerce acquisition is still pending completion, to expand bank payments in Canada",
+  "טקסט_en": "Nov 5, 2026 | 14:00 Israel time, the company release published at 07:00 EST, referring to the Q3 shareholder letter.\n\nShift4's shareholder letter presents a planned acquisition of the Canadian payments company Paramount Commerce under the heading 'Pending Acquisition'. Therefore later headlines about an 'acquisition' should not be read as confirmation that the deal has already closed.\n\nPer the company, the business is meant to add direct bank-to-bank payments and instant transfers in Canada to the platform. The company letter lists among the business's clients FanDuel, DraftKings, Bet365, MoonPay, Lenovo and Telus. These are clients the company attributes to the acquired business, not announcements of new contracts signed today.\n\nThe company cites an initial consideration multiple of less than eight times EBITDA. That is a deal multiple, not a purchase price of eight million dollars. The contingent consideration is tied to gross profit growth and geographic expansion; no total dollar amount was given in this section.\n\nRelated to the item sent on Nov 5 at 14:17 on Shift4's results. What's new: details of the bank payments deal from the shareholder letter, separate from the quarter's figures. The original release is from November 5, not a new announcement of November 7; the completion and future benefits are still not achieved results.",
+  "תקציר_en": "The November 5 shareholder letter presents a planned deal, with additional consideration contingent on growth and expansion.",
+  "_translation": {
+   "en": {
+    "source_hash": "ee0a20a54c8fe1ab584c753cca837c16b55ca4bbc9d8e3a38d34283bf4fdf32a",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Alcoa (AA): לפי דיווח, Trimet מבקשת לחסום או לשנות את עסקת South32 בשל חשש לפגיעה בתחרות באלומינה",
@@ -1900,7 +1974,8 @@
   "מקורות": [
    {
     "label": "AlCircle: דיווח משני על בקשת Trimet",
-    "url": "https://www.alcircle.com/news/trimet-seeks-changes-to-alcoa-south32-deal-concerned-over-reduced-independent-alumina-supply-in-brazil-121881"
+    "url": "https://www.alcircle.com/news/trimet-seeks-changes-to-alcoa-south32-deal-concerned-over-reduced-independent-alumina-supply-in-brazil-121881",
+    "label_en": "AlCircle: secondary report on Trimet's request"
    }
   ],
   "תקציר": "התנגדות מצד לקוחה של חומר הגלם אינה החלטה של רשות התחרות הברזילאית או ביטול העסקה.",
@@ -1908,7 +1983,16 @@
   "חברה": "AA",
   "תאריך": "2026-11-07 12:03",
   "הועלה": "2026-11-07 12:03",
-  "מזהה": "n-0072"
+  "מזהה": "n-0072",
+  "כותרת_en": "Alcoa (AA): per a report, Trimet seeks to block or modify the South32 deal over concern about harm to alumina competition",
+  "טקסט_en": "Not verified against a primary source\nNov 7, 2026 | AlCircle report; publication time not shown. The original request to the competition authority was not checked directly, and its exact filing date was not verified.\n\nPer the report, German aluminum producer Trimet asked the Brazilian competition authority CADE to block Alcoa's purchase of South32's alumina and bauxite assets, or to demand changes that would protect independent supply. Among the options it proposes: selling integrated assets in Brazil or Western Australia, changes in ownership stakes in the Alumar and MRN assets, and transparency and oversight of alumina price reporting.\n\nTrimet argues the deal would reduce the number of independent alumina suppliers to the Brazilian market from three to two. That is a claim by the side objecting to the deal, not a determination the regulator has already adopted. The company requests an in-depth review instead of a fast track, and an examination of sales to third parties separately from production consumed within integrated companies.\n\nPer the article, the concern relates to raw material availability and prices for producers that do not own their own refineries. The report contains no new CADE decision, no order to stop the deal, no final approval conditions and no cancellation notice. Do not infer from the request alone that the purchase will not be completed.",
+  "תקציר_en": "An objection from a raw material customer is not a decision by the Brazilian competition authority or a cancellation of the deal.",
+  "_translation": {
+   "en": {
+    "source_hash": "caf689bdf4ebbad084a8eb4a714e2c34be19c018a32be733b417669c0526be9c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Eli Lilly (LLY): המלצה חיובית בקנדה למימון Kisunla לחולי אלצהיימר מוקדם המתאימים לטיפול",
