@@ -24986,5 +24986,31 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "הפיצוצים בדרום איראן: הטלוויזיה הממלכתית מייחסת אותם לפעילות צבאית איראנית; סוכנות טסנים טוענת לשני טילים שפגעו בקישם",
+    "category": "macro",
+    "קישור": "https://www.reuters.com/3fec1b0a85a0/world/middle-east/iran-suggests-blasts-are-not-us-attacks-both-sides-report-ships-hit-2026-11-08/",
+    "מקורות": [
+      {
+        "label": "Reuters, 8.11.2026, 14:20 UTC",
+        "url": "https://www.reuters.com/3fec1b0a85a0/world/middle-east/iran-suggests-blasts-are-not-us-attacks-both-sides-report-ships-hit-2026-11-08/",
+        "label_en": "Reuters, Nov 8, 2026, 2:20 PM UTC"
+      }
+    ],
+    "טקסט": "עדכון לידיעה שפורסמה ב-13:31 (8.11.2026), שבה צוין שסיבת הפיצוצים טרם ברורה: בדיווח Reuters נוספו ייחוסים חדשים וסותרים ממקורות איראניים.\nפרסום המקור: 8.11.2026, 14:20 UTC (16:20 לפי שעון ישראל).\n\nהטלוויזיה הממלכתית של איראן מסרה כי גורמים רשמיים לא אישרו תקיפות טילים כלשהן בשטח איראן בעקבות הפיצוצים שנשמעו בכמה אזורים, לרבות באי קישם, והעלתה אפשרות שהפיצוצים בערב קשורים לפעילות צבאית איראנית בתעלת הורמוז. סוכנות הידיעות טסנים דיווחה מנגד כי שני טילים פגעו באי קישם, ללא מידע רשמי על נזק אפשרי; לפי Reuters, לא איראן ולא ארה\"ב הגיבו לדיווח טסנים. הסיבה לפיצוצים טרם אושרה רשמית.",
+    "תקציר": "לפי Reuters, הטלוויזיה הממלכתית האיראנית: גורמים רשמיים לא אישרו תקיפות טילים בשטח איראן; ייתכן שהפיצוצים קשורים לפעילות צבאית איראנית בתעלת הורמוז. טסנים טוענת לשני טילים שפגעו בקישם; לאיראן ולא ארה\"ב הגיבו לדיווח. הסיבה טרם אושרה רשמית.",
+    "מזהה": "n-1053",
+    "תאריך": "2026-11-09 00:31",
+    "הועלה": "2026-11-09 00:31",
+    "כותרת_en": "Southern Iran blasts: Iranian state TV attributes them to Iranian military activity; Tasnim claims two missiles struck Qeshm",
+    "טקסט_en": "Update to the item published at 1:31 PM (Nov 8, 2026), which said the cause of the explosions was not yet clear: a Reuters report added new and conflicting attributions from Iranian sources.\nSource publication: Nov 8, 2026, 2:20 PM UTC.\n\nIranian state television said officials had not confirmed any missile strikes on Iranian territory following blasts heard in several areas, including Qeshm Island, and suggested the evening explosions might be related to Iranian military activity in the waterway. Tasnim news agency reported, in contrast, that two missiles had struck Qeshm Island, with no official information on possible damage; according to Reuters, neither Iran nor the US commented on the Tasnim report. The cause of the explosions has not been officially confirmed.",
+    "תקציר_en": "Per Reuters, Iranian state TV said officials had not confirmed missile strikes on Iranian territory and suggested the blasts may be linked to Iranian military activity in the waterway; Tasnim claims two missiles struck Qeshm; neither Iran nor the US commented. The cause remains officially unconfirmed.",
+    "_translation": {
+      "en": {
+        "source_hash": "700b2e1cedab929727905de35a484128fed8363c44c22c2cd616a72b4e506d15",
+        "schema_version": 1
+      }
+    }
   }
 ]
