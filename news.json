@@ -24789,5 +24789,31 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "NVIDIA (NVDA), בלומברג: חקירת הדירקטוריון בעקבות הודאת הואנג בפני העובדים שבגד באשתו; במזכר לעובדים כתב שהוא ״מצטער עמוקות״",
+    "category": "micro",
+    "קישור": "https://www.bloomberg.com/news/articles/2026-11-08/nvidia-board-to-probe-spying-case-after-ceo-jensen-huang-admits-infidelity",
+    "מקורות": [
+      {
+        "label": "בלומברג, 8.11.2026",
+        "url": "https://www.bloomberg.com/news/articles/2026-11-08/nvidia-board-to-probe-spying-case-after-ceo-jensen-huang-admits-infidelity",
+        "label_en": "Bloomberg, Nov 8, 2026"
+      }
+    ],
+    "טקסט": "עדכון לידיעה שפורסמה ב-22:08: פרטים חדשים מבלומברג על רקע החקירה והודאת המנכ״ל.\nפרסום המקור: 8.11.2026 בשעה 22:00 שעון ישראל (עודכן 22:06).\n\nבלומברג (איאן קינג) דיווחה שדירקטוריון אנבידיה פותח בחקירה בשאלה אם המנכ״ל ג׳נסן הואנג היה מטרה של מזימת ריגול זרה, לאחר שהואנג הודה בפני עובדי החברה שבגד באשתו. לפי ההודעה מיום ראשון, הדירקטוריון יקים ועדה של דירקטורים בלתי תלויים, שתפעל עם יועצים חיצוניים, לפיקוח על החקירה. במזכר משלו לעובדים כתב הואנג שהוא ״מצטער עמוקות״ על הפרשה.",
+    "תקציר": "בלומברג: דירקטוריון אנבידיה חוקר אם הואנג היה מטרת ריגול זרה לאחר שהודה בפני העובדים שבגד באשתו; ועדת דירקטורים בלתי תלויים עם יועצים חיצוניים תפקח על החקירה; במזכר לעובדים כתב ״מצטער עמוקות״.",
+    "מזהה": "n-1046",
+    "תאריך": "2026-11-08 23:36",
+    "הועלה": "2026-11-08 23:36",
+    "כותרת_en": "NVIDIA (NVDA), Bloomberg: the board investigation follows Huang's admission to employees that he was unfaithful to his wife; in a staff memo he wrote he is \"deeply sorry\"",
+    "טקסט_en": "Update to the item published at 10:08 PM: new details from Bloomberg on the background of the investigation and the CEO's admission.\nSource publication: Nov 8, 2026 at 10:00 PM Israel time (updated 10:06 PM).\n\nBloomberg (Ian King) reported that Nvidia's board is launching an investigation into whether CEO Jensen Huang was targeted by a foreign espionage plot, after Huang admitted to company employees that he was unfaithful to his wife. According to Sunday's statement, the board will assemble a committee of independent directors, working with outside counsel, to oversee the investigation. In his own memo to staff, Huang wrote that he is \"deeply sorry\" for the affair.",
+    "תקציר_en": "Bloomberg: Nvidia's board is investigating whether Huang was the target of a foreign espionage plot after he admitted to employees that he was unfaithful to his wife; a committee of independent directors with outside counsel will oversee the investigation; in a staff memo he wrote he is \"deeply sorry\".",
+    "_translation": {
+      "en": {
+        "source_hash": "b7cfb20157ed2f179ea6acdef32ceb2d83b8679ec27ac8d42fbb3f63afd9638c",
+        "schema_version": 1
+      }
+    }
   }
 ]
