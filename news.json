@@ -24815,5 +24815,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "דובר משרד החשמל הכורדי: עצירת אספקת הגז מחור מור תוריד את ייצור החשמל ברשת בכ-2,500 עד 2,800 מגה-ואט; חמש תחנות כוח ללא גז",
+    "category": "macro",
+    "קישור": "https://www.kurdistan24.net/ar/story/951681",
+    "מקורות": [
+      {
+        "label": "כורדיסטן 24 (ערבית), 8.11.2026",
+        "url": "https://www.kurdistan24.net/ar/story/951681",
+        "label_en": "Kurdistan24 (Arabic), Nov 8, 2026"
+      },
+      {
+        "label": "כורדיסטן 24 (אנגלית), 8.11.2026",
+        "url": "https://www.kurdistan24.net/en/story/951677/khor-mor-gas-field-targeted-in-drone-attack",
+        "label_en": "Kurdistan24 (English), Nov 8, 2026"
+      }
+    ],
+    "טקסט": "עדכון לידיעה שפורסמה ב-23:01: נתון רשמי של דובר משרד החשמל על היקף הפגיעה ברשת החשמל.\nפרסום המקור: 8.11.2026 (כורדיסטן 24, מהדורת ערבית ואנגלית).\n\nעומיד אחמד, דובר משרד החשמל של ממשלת כורדיסטן האזורית, מסר בהצהרה בלעדית לכורדיסטן 24 שהתקיפה בשדה חור מור ועצירת אספקת הגז לתחנות הכוח יורידו את ייצור החשמל ברשת הארצית בכ-2,500 עד 2,800 מגה-ואט. לדבריו, אספקת הגז לתחנות הייצור בארביל, א-סולימאניה, בזיאן, צ׳מצ׳מאל ודוהוק נעצרה בעקבות התקיפה, ומלוא ההשפעה של מחסור החשמל על האזרחים תורגש החל מחצות. למניעת הפסקת חשמל כוללת, המשרד מפעיל את התחנות ההידרו-חשמליות בסכרי דוכאן ודרבנדיכאן וכן תחנות הניתנות להפעלה בדלק חלופי, כדי לספק חשמל לאתרים חיוניים כמו בתי חולים ותחנות מים. לדברי הדובר, חזרה למצב הרגיל קשורה כולה בחידוש שאיבת הגז מחור מור לתחנות, והוא מעריך שאספקת החשמל תחזור בהדרגה לשגרה החל מצהרי מחר לכל המוקדם.",
+    "תקציר": "דובר משרד החשמל הכורדי בהצהרה בלעדית לכורדיסטן 24: ייצור החשמל ברשת יירד בכ-2,500–2,800 מגה-ואט; הגז נעצר לתחנות בארביל, א-סולימאניה, בזיאן, צ׳מצ׳מאל ודוהוק; הידרו-חשמל ודלק חלופי מופעלים; חזרה הדרגתית לשגרה מצהרי מחר לכל המוקדם.",
+    "מזהה": "n-1047",
+    "תאריך": "2026-11-09 00:01",
+    "הועלה": "2026-11-09 00:01",
+    "כותרת_en": "KRG electricity ministry spokesperson: the halt of gas supply from Khor Mor will cut national grid power generation by about 2,500 to 2,800 megawatts; five power stations without gas",
+    "טקסט_en": "Update to the item published at 11:01 PM: an official figure from the electricity ministry spokesperson on the extent of the grid impact.\nSource publication: Nov 8, 2026 (Kurdistan24, Arabic and English editions).\n\nOmed Ahmad, spokesperson for the Kurdistan Regional Government's Ministry of Electricity, said in an exclusive statement to Kurdistan24 that the attack on the Khor Mor field and the halt of gas supply to power stations will reduce national grid electricity generation by about 2,500 to 2,800 megawatts. He said gas supply to the generation stations in Erbil, Sulaymaniyah, Bazian, Chamchamal and Duhok stopped after the attack, and the full effect of the electricity shortage on citizens will be felt from midnight. To prevent a total blackout, the ministry is operating the hydropower stations at the Dukan and Darbandikhan dams as well as stations that can run on alternative fuel, to supply electricity to vital sites such as hospitals and water stations. The spokesperson said a return to normal depends entirely on the resumption of gas pumping from Khor Mor to the stations, and he expects electricity supply to gradually return to normal from tomorrow noon at the earliest.",
+    "תקציר_en": "The KRG electricity ministry spokesperson, in an exclusive statement to Kurdistan24: grid power generation will fall by about 2,500-2,800 megawatts; gas stopped to stations in Erbil, Sulaymaniyah, Bazian, Chamchamal and Duhok; hydropower and alternative fuel activated; gradual return to normal from tomorrow noon at the earliest.",
+    "_translation": {
+      "en": {
+        "source_hash": "465e4f91f0695e4865998ad6cd8e022379017b9160e08e6af25dc8bffe38db0c",
+        "schema_version": 1
+      }
+    }
   }
 ]
