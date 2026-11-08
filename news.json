@@ -1448,6 +1448,24 @@
     "הועלה": "2026-11-08 13:24"
   },
   {
+    "כותרת": "Goldman Sachs (GS): בית המשפט העליון של ארה\"ב הסכים לדון במחלוקת הארביטרציה Goldman Sachs Bank USA נגד Brown",
+    "category": "micro",
+    "קישור": "https://www.supremecourt.gov/orders/courtorders/110626zr_q8l1.pdf",
+    "מקורות": [
+      {
+        "label": "צו בית המשפט העליון של ארה\"ב, 6 בנובמבר",
+        "url": "https://www.supremecourt.gov/orders/courtorders/110626zr_q8l1.pdf"
+      },
+      {
+        "label": "SCOTUSblog, 6 בנובמבר",
+        "url": "https://www.scotusblog.com/2026/11/supreme-court-agrees-to-weigh-in-on-goldman-sachs-arbitration-dispute/"
+      }
+    ],
+    "טקסט": "6.11.2026 | צו בית המשפט העליון (certiorari); שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nבית המשפט העליון של ארה״ב הסכים לדון בתיק Goldman Sachs Bank USA v. Brown (25-1408), במחלוקת על היקף הארביטרציה בחובות כרטיסי אשראי במסגרת הליכי פשיטת רגל שהוגשו על ידי Rhea Brown ו-Gregory Maze.\n\nזוהי החלטה לדון בערר (מתן סרטיוררי), לא פסק דין במחלוקת עצמה; לא נקבעו כאן זכויות הצדדים.",
+    "תאריך": "2026-11-06",
+    "הועלה": "2026-11-08 13:27"
+  },
+  {
     "כותרת": "TD SYNNEX (SNX) לקחה הלוואת תרם בלתי מובטחת של 1.75 מיליארד דולר עד נובמבר 2029; 750 מיליון דולר שימשו לפרעון הלוואה קיימת",
     "category": "micro",
     "קישור": "https://www.sec.gov/Archives/edgar/data/1177394/000162828026071079/snx-20261102.htm",
@@ -3840,6 +3858,24 @@
     "טקסט": "5.11.2026 | הודעת החברה; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nMattel (NASDAQ: MAT) הודיעה על מינוי Steve Totzke לנשיא ומנהל התפעול הראשי (COO), בתוקף מ-11 בנובמבר 2026, עם אחריות על תיק המותגים העולמי, המכירות והפעילות המסחרית ומוצרי הצריכה והחוויות. Totzke ידווח ליו״ר ולמנכ״ל Roger Lynch.\n\nRoberto Stanichi, נשיא ומנהל השיווק והמותג הראשי, פורש מתפקידו ב-10 בנובמבר 2026 לטובת הזדמנות אחרת. Totzke כיהן קודם כנשיא ומנהל המסחרי הראשי ומילא שורת תפקידי הובלה בינלאומיים במהלך 30 שנה בחברה.",
     "תאריך": "2026-11-05",
     "הועלה": "2026-11-08 13:24"
+  },
+  {
+    "כותרת": "Digital Realty (DLR) ו-Ascenty פתחו את מעבדת ה-DRIL הראשונה באמריקה הלטינית לבדיקות תשתית AI, בקמפוס Vinhedo II בסאו פאולו",
+    "category": "micro",
+    "קישור": "https://www.globenewswire.com/news-release/2026/11/05/3396675/0/en/digital-realty-innovation-lab-s%C3%A3o-paulo-expands-ai-infrastructure-testing-in-latin-america.html",
+    "מקורות": [
+      {
+        "label": "Digital Realty / Ascenty, הודעה ב-GlobeNewswire",
+        "url": "https://www.globenewswire.com/news-release/2026/11/05/3396675/0/en/digital-realty-innovation-lab-s%C3%A3o-paulo-expands-ai-infrastructure-testing-in-latin-america.html"
+      },
+      {
+        "label": "Ascenty, הודעת המפעיל",
+        "url": "https://ascenty.com/en/blog/news-ascenty-en/ascenty-opens-first-digital-realty-innovation-lab-dril-in-latin-america/"
+      }
+    ],
+    "טקסט": "5.11.2026 | הודעה משותפת; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nDigital Realty (NYSE: DLR) ו-Ascenty הודיעו על פתיחת מעבדת Digital Realty Innovation Lab (DRIL) הראשונה באמריקה הלטינית, בקמפוס Vinhedo II בסאו פאולו, ברזיל. המעבדה מאפשרת ללקוחות לבדוק ולכוונן תצורות של מחשוב, רשת, קירור, צורה וטכנולוגיות שותפים בסביבת מרכז נתונים חיה, לפני מעבר לייצור, עם נתוני דמה בלבד.\n\nזוהי הרחבה של רשת מעבדות ה-DRIL הקיימת; ההודעה מציינת שימוש בלידע של Ascenty מהפעלת מרכז ה-OCP Experience הראשון באמריקה הלטינית.",
+    "תאריך": "2026-11-05",
+    "הועלה": "2026-11-08 13:27"
   },
   {
     "כותרת": "Microsoft (MSFT): דיווח SEC מאשר שהונפקו האגח בהיקף 25 מיליארד דולר",
@@ -7878,6 +7914,20 @@
       }
     ],
     "category": "macro"
+  },
+  {
+    "כותרת": "Northrop Grumman (NOC): חוזה ייצור ראשוני לשלוש שנים למערכת הניווט AN/WSN-12 עבור צי הספינות של צי ארה\"ב",
+    "category": "micro",
+    "קישור": "https://news.northropgrumman.com/navigation-systems/northrop-grumman-partnering-with-us-navy-to-transition-fleet-to-automated-digital-navigation-and-mission-planning",
+    "מקורות": [
+      {
+        "label": "Northrop Grumman, הודעת החברה",
+        "url": "https://news.northropgrumman.com/navigation-systems/northrop-grumman-partnering-with-us-navy-to-transition-fleet-to-automated-digital-navigation-and-mission-planning"
+      }
+    ],
+    "טקסט": "2.11.2026 | הודעת החברה; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nNorthrop Grumman (NYSE: NOC) הודיעה על חוזה ייצור ראשוני בקצב נמוך (LRIP) לשלוש שנים לספק את מודול מעבד הניווט AN/WSN-12 (NPM) עבור צי הספינות של צי ארה״ב, במסגרת המעבר של הצי לניווט ותכנון משימה דיגיטליים ואוטומטיים.\n\nלפי ההודעה, המערכת מיועדת לספק פתרון ניווט מדויק וגמיש יותר לציים הימיים והתת-ימיים, וממשיכה את פיתוח יכולות הניווט מהדור הבא של הצי.",
+    "תאריך": "2026-11-02",
+    "הועלה": "2026-11-08 13:27"
   },
   {
     "כותרת": "טראמפ אומר שיש \"קונספט להסכם\" עם קנדה; צינור הנפט והמכסים לחקלאים בשיחות",
