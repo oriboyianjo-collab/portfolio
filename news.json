@@ -24732,5 +24732,31 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "שאפאק ניוז: כטב״מ תקף את שדה הגז חור מור בכורדיסטן עיראק; אין פרטים על נזק או נפגעים",
+    "category": "macro",
+    "קישור": "https://shafaq.com/en/Kurdistan/Drone-targets-Khor-Mor-gas-field-in-Al-Sulaymaniyah",
+    "מקורות": [
+      {
+        "label": "שאפאק ניוז, 8.11.2026",
+        "url": "https://shafaq.com/en/Kurdistan/Drone-targets-Khor-Mor-gas-field-in-Al-Sulaymaniyah",
+        "label_en": "Shafaq News, Nov 8, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 8.11.2026 בשעה 20:17 UTC (22:17 שעון ישראל).\n\nשאפאק ניוז דיווחה בידיעה קצרה שכטב״מ תקף הערב את שדה הגז חור מור במחוז א-סולימאניה שבאזור כורדיסטן בעיראק. נכון לעת הפרסום, הדיווח הוגדר כידיעה מתפתחת ואינו כולל פרטים על נזק, נפגעים או זהות המשגר, ולא נמסרה הודעה רשמית של הרשויות.\n\nהדיווח מיוחס לשאפאק ניוז בלבד וטרם אומת על ידי גורם נוסף או מקור רשמי. טענות במקורות משניים על פגיעה במכל אחסון ועל שרפה אינן מאומתות ואינן נכללות כאן.",
+    "תקציר": "דיווח מתפתח של שאפאק ניוז בלבד; ללא פרטי נזק, נפגעים או אחריות, וללא הודעה רשמית.",
+    "מזהה": "n-1044",
+    "תאריך": "2026-11-08 22:23",
+    "הועלה": "2026-11-08 22:23",
+    "כותרת_en": "Shafaq News: a drone attacked the Khor Mor gas field in Iraqi Kurdistan; no details on damage or casualties",
+    "טקסט_en": "Source publication: Nov 8, 2026 at 8:17 PM UTC (10:17 PM Israel time).\n\nShafaq News reported in a brief item that a drone attacked the Khor Mor gas field in Al-Sulaymaniyah province in the Kurdistan Region of Iraq this evening. As of publication, the report was marked as developing and includes no details on damage, casualties or who launched it, and no official statement from the authorities has been issued.\n\nThe report is attributed to Shafaq News only and has not been verified by another party or an official source. Claims in secondary sources about a hit to a storage tank and a fire are unverified and are not included here.",
+    "תקציר_en": "A developing Shafaq News report only; no damage, casualty or responsibility details, and no official statement.",
+    "_translation": {
+      "en": {
+        "source_hash": "b824a1f3309f68bdff5e7b288ace2230489ad517ff8f06300fb355e0d2068881",
+        "schema_version": 1
+      }
+    }
   }
 ]
