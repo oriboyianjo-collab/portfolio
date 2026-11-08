@@ -21,8 +21,8 @@ const perfBlock = html.slice(html.indexOf('portfolioTracker.uiState'), html.inde
 ok('stored perf range assigned directly', perfBlock.includes('ui.perfRange = o.perf') && !perfBlock.includes('b.click()'));
 
 // 3-4. visible version, shell cache and stylesheet query agree.
-ok('settings shows v296', html.includes('גרסת האפליקציה: <b class="ltr">v296</b>'));
-ok('shell cache v296', sw.includes("const CACHE = 'portfolio-shell-v296'"));
+ok('settings shows v298', html.includes('גרסת האפליקציה:') && html.includes('>v298</b>') && read('i18n-en.js').includes('App version:') && read('i18n-en.js').includes('>v298</b>'));
+ok('shell cache v298', sw.includes("const CACHE = 'portfolio-shell-v298'"));
 ok('page and worker request the same chart css', html.includes('chart-tools.css?v=267') && sw.includes("'./chart-tools.css?v=267'"));
 ok('alerts script query matches', html.includes('alerts-core.js?v=269') && sw.includes('alerts-core.js?v=269'));
 
