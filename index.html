@@ -1102,8 +1102,10 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #wlSortBtn span{flex:1;min-width:0;text-align:start}#wlSortBtn:disabled{opacity:.55;cursor:default}
 #wlSortPick{min-width:155px;inset-inline-start:auto;inset-inline-end:0}
 #tab-watch .wl-addrow>.wl-fld{flex:1 1 0;min-width:0}
+</style><style>#tab-watch #wlTabs .wltabs-w{display:none}#tab-watch #wlTabs{display:block}.wl-editcontrol{flex:0 0 22px;align-self:stretch;display:flex;align-items:flex-end}#wlEditBtn{width:22px;height:36px;min-height:36px;border:0;padding:0;font:inherit;font-size:1.55rem;line-height:1;background:none;color:var(--muted);cursor:pointer}#wlEditBtn[aria-expanded="true"]{color:var(--primary)}#tab-watch #wlTabs .wl-menu{position:absolute;inset-inline-start:10px;inset-inline-end:10px;top:calc(100% + 4px);z-index:32;border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,.4)}#tab-watch .wl-fld-sort{order:1}#tab-watch .wl-fld-to{order:2}</style><style>
+#wlOrderDialog{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:20px;width:calc(100% - 32px);max-width:420px;padding:20px;max-height:85dvh;overflow:auto;box-sizing:border-box;direction:rtl}#wlOrderDialog::backdrop{background:rgba(0,0,0,.72)}#wlOrderDialog h3{margin:0 0 6px;font-size:1.15rem}#wlOrderDialog p{color:var(--muted);font-size:.82rem;margin:0 0 16px}.wl-draghandle{touch-action:none;cursor:grab!important;font-size:1.5rem!important}.wl-orderrow.dragging{opacity:.25}.wl-orderghost{background:var(--card);border:1px solid var(--primary)!important;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.5);opacity:.97}.wl-orderrow{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--border)}.wl-ordername{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}.wl-orderpos{font-size:.8rem;color:var(--muted);min-width:16px}#wlOrderDialog button{min-height:40px;min-width:40px;border:1px solid var(--border);border-radius:10px;background:var(--bg-slate-800,var(--card));color:var(--text);font:inherit;cursor:pointer}#wlOrderDialog button:disabled{opacity:.25}.wl-orderactions{display:flex;gap:10px;margin-top:18px}.wl-orderactions button{flex:1}#wlOrderSave{background:var(--primary)!important;color:white!important;border-color:var(--primary)!important}
 </style></head>
-<body>
+<body><dialog id="wlOrderDialog" aria-labelledby="wlOrderTitle"><h3 id="wlOrderTitle">סדר הרשימות</h3><p>גררו את הידית כדי לשנות את סדר הרשימות</p><div id="wlOrderRows"></div><div class="wl-orderactions"><button type="button" id="wlOrderSave">שמירה</button><button type="button" id="wlOrderCancel">ביטול</button></div></dialog>
 <header class="top">
   <div class="wrap"><div class="hcard">
     <div class="top-row"><h1 class="brand"><img src="logo.svg?v=33" alt="" width="40" height="40"><span>Savage Tracker</span></h1></div>
@@ -1182,8 +1184,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
   </section>
   <section class="tab" id="tab-watch">
     <div class="card"><div class="h2row"><h2>רשימות מעקב <small id="wlCount"></small></h2><button class="btn btn-light btn-sm" id="wlNew" aria-label="רשימה חדשה" title="רשימה חדשה"><span aria-hidden="true" style="display:inline-block;transform:scale(2)">+</span></button></div>
-      <div id="wlTabs"></div>
-      <div class="wl-addbox"><div class="wl-addrow">
+      <div class="wl-addbox"><div class="wl-addrow"><div class="wl-editcontrol"><button type="button" id="wlEditBtn" aria-label="אפשרויות עריכת הרשימה" aria-haspopup="menu" aria-expanded="false">⋮</button><div id="wlTabs"></div></div>
         <div class="wl-fld wl-fld-srch"><span class="wl-lab">הוספת נייר</span>
           <div class="ac wl-add"><div class="wl-in"><input id="wlSearch" placeholder="חיפוש נייר" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></div><div class="ac-list" id="wlAc"></div></div>
         </div>
@@ -4399,7 +4400,7 @@ function wlTabsScroll(glide){ const w = $('wlTabs'), bar = w && w.querySelector(
   wlGlide = bh==='smooth' ? t : null; bar.scrollTo({left: t, behavior: bh}); }
 function wlMenuHtml(L, li, nL){ if(wlMenu!==L.id) return ''; const ed = wlEditing===L.id, so = wlSortOf(L.id);
 
-  return `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button><button data-la="rename">🏷️ שינוי שם</button><button data-la="up" ${li===0?'disabled':''}>◀ שמאלה</button><button data-la="down" ${li===nL-1?'disabled':''}>▶ ימינה</button><button data-la="del" class="del">🗑️ מחיקה</button></div>`; }
+  return `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button><button data-la="rename">🏷️ שינוי שם</button><button data-la="order">↕ סדר הרשימות</button><button data-la="del" class="del">🗑️ מחיקה</button></div>`; }
 function wlSecHtml(L){ const ed = wlEditing===L.id, so = wlSortOf(L.id), its = wlSorted(L.items.map(secInst), ed, so);
   return `<div class="wls open" data-l="${esc(L.id)}"><div class="wlb">${its.length ? `<div class="wl-cols wgrid" aria-hidden="true"${ed?' hidden':''}><span></span><span>נייר</span><span class="pcol pc-s">היום</span><span class="pcol">שווי שוק</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d"><span>יומי</span></span></div><div class="wl-rows${ed?' editing':''}">${its.map((it,i)=>wlRowHtml(it, i, its.length)).join('')}</div>` : '<div class="wl-empty">הרשימה ריקה – חפשו נייר בשדה למעלה כדי להוסיף.</div>'}</div></div>`; }
 const WL_ALL_IC = {collapse:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 20 5-5 5 5"/><path d="m7 4 5 5 5-5"/></svg>', expand:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>'};   // v100: chevrons toward / away from each other
@@ -4411,7 +4412,7 @@ function drawWatchSort(){const L=wlCur();if(wlSortMenu&&wlSortMenu!==L.id)wlSort
  $('wlSortPick').innerHTML=Object.entries(WLS_NAME).map(([k,n])=>`<button type="button" role="option" data-wlsort="${k}" class="${so.k===k?'on':''}" aria-selected="${so.k===k}"><span>${n}</span><small>${so.k===k?(k==='manual'?'✓':(so.dir<0?'↓':'↑')+' ✓'):''}</small></button>`).join('');
 }
 function drawWatch(){ watchPaintSignature=watchSignature();if(wlGesture){ wlDrawPending = true; return; }   // v113: never rebuild the rows under an active touch - a poll redraw mid-swipe ate the gesture
-  const n = wlItems().length; drawWlAll(); drawWatchSort();
+  const n = wlItems().length; drawWlAll(); drawWatchSort(); $('wlEditBtn').setAttribute('aria-expanded',String(wlMenu===wlCur().id));
   $('wlCount').textContent = `· ${wlData.lists.length} רשימות · ${n} ניירות`;
   { const cu = wlCur(); $('wlToTxt').textContent = cu ? cu.name : ''; $('wlToMenu').innerHTML = wlData.lists.map(l=>`<button type="button" role="option" data-wto="${esc(l.id)}" class="${l.id===cu.id?'on':''}" aria-selected="${l.id===cu.id}"><span>${esc(l.name)}</span><small>${l.items.length}</small></button>`).join(''); }
   $('wlTo').innerHTML = wlData.lists.map(l=>`<option value="${esc(l.id)}"${l.id===wlCur().id?' selected':''}>${esc(l.name)}</option>`).join('');
@@ -4474,6 +4475,23 @@ function wlNewList(){ const n = (prompt('שם הרשימה החדשה:', `רשי
 $('wlNew').onclick = ()=>{ if(!wlSwapSettle()) return; wlNewList(); };   // v114: settle any staged swap before acting
 $('wlAll').onclick = ()=>{ if(!wlSwapSettle()) return;   // v114
   const any = wlData.lists.some(l=>wlOpen[l.id]); wlOpen = {}; if(!any) wlData.lists.forEach(l=>{ wlOpen[l.id] = true; }); saveWlOpen(); wlMenu = null; renderWatch(); };   // v100: any open -> collapse all, else expand all (same watchOpen storage as the per-group toggle)
+
+let wlOrderDraft=[];
+let wlOrderDrag=null,wlOrderAuto=null;
+function wlOrderDraw(){document.getElementById('wlOrderRows').innerHTML=wlOrderDraft.map((id,i)=>{const l=wlList(id);return `<div class="wl-orderrow${wlOrderDrag?.id===id?' dragging':''}" data-orderid="${esc(id)}"><span class="wl-orderpos">${i+1}</span><span class="wl-ordername">${esc(l.name)}</span><button type="button" class="wl-draghandle" data-dragid="${esc(id)}" aria-label="גרירת ${esc(l.name)} לשינוי הסדר">⠿</button></div>`}).join('');}
+function wlOrderStart(){wlOrderDraft=wlData.lists.map(l=>l.id);wlOrderDraw();document.getElementById('wlOrderDialog').showModal();}
+function wlOrderMove(y){if(!wlOrderDrag)return;const d=wlOrderDrag;d.y=y;d.ghost.style.top=(y-d.offset)+'px';const rows=[...document.querySelectorAll('#wlOrderRows .wl-orderrow')],target=rows.find(r=>{const b=r.getBoundingClientRect();return y>=b.top&&y<=b.bottom});if(target&&target.dataset.orderid!==d.id){const from=wlOrderDraft.indexOf(d.id),to=wlOrderDraft.indexOf(target.dataset.orderid);wlOrderDraft.splice(from,1);wlOrderDraft.splice(to,0,d.id);d.ghost.querySelector('.wl-orderpos').textContent=String(to+1);wlOrderDraw();}}
+function wlOrderStop(){if(!wlOrderDrag)return;const d=wlOrderDrag;wlOrderDrag=null;d.ghost.remove();cancelAnimationFrame(wlOrderAuto);wlOrderDraw();}
+const wlOrderRows=document.getElementById('wlOrderRows');
+wlOrderRows.addEventListener('pointerdown',e=>{const h=e.target.closest('[data-dragid]');if(!h||e.button!==0)return;e.preventDefault();const row=h.closest('.wl-orderrow'),r=row.getBoundingClientRect(),ghost=row.cloneNode(true);ghost.className='wl-orderrow wl-orderghost';ghost.style.cssText=`position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;box-sizing:border-box;pointer-events:none;z-index:10000`;document.getElementById('wlOrderDialog').appendChild(ghost);wlOrderDrag={id:h.dataset.dragid,ghost,offset:e.clientY-r.top,y:e.clientY};wlOrderRows.setPointerCapture(e.pointerId);wlOrderDraw();const auto=()=>{if(!wlOrderDrag)return;const box=document.getElementById('wlOrderDialog'),b=box.getBoundingClientRect(),y=wlOrderDrag.y;if(y<b.top+70)box.scrollTop-=10;else if(y>b.bottom-85)box.scrollTop+=10;wlOrderMove(y);wlOrderAuto=requestAnimationFrame(auto)};wlOrderAuto=requestAnimationFrame(auto);});
+wlOrderRows.addEventListener('pointermove',e=>{if(wlOrderDrag){e.preventDefault();wlOrderMove(e.clientY)}});
+wlOrderRows.addEventListener('pointerup',wlOrderStop);wlOrderRows.addEventListener('pointercancel',wlOrderStop);
+document.getElementById('wlOrderDialog').addEventListener('close',wlOrderStop);
+document.getElementById('wlOrderCancel').onclick=()=>document.getElementById('wlOrderDialog').close();
+document.getElementById('wlOrderSave').onclick=()=>{wlOrderStop();if(!wlSwapSettle())return;const byId=new Map(wlData.lists.map(l=>[l.id,l]));wlData.lists=[...wlOrderDraft.map(id=>byId.get(id)).filter(Boolean),...wlData.lists.filter(l=>!wlOrderDraft.includes(l.id))];saveWl();drawWatch();document.getElementById('wlOrderDialog').close();};
+
+$('wlEditBtn').onclick=e=>{e.stopPropagation();if(!wlSwapSettle())return;const L=wlCur();wlMenu=wlMenu===L.id?null:L.id;wlSortMenu=null;$('wlToMenu').hidden=true;$('wlToBtn').setAttribute('aria-expanded','false');drawWatch();};
+document.addEventListener('click',e=>{if(wlMenu&&!e.target.closest('.wl-editcontrol')){wlMenu=null;drawWatch();}});
 $('wlSortBtn').onclick=e=>{e.stopPropagation();if(!wlSwapSettle())return;const L=wlCur();if(wlEditing===L.id)return;wlSortMenu=wlSortMenu===L.id?null:L.id;$('wlToMenu').hidden=true;$('wlToBtn').setAttribute('aria-expanded','false');drawWatchSort();};
 $('wlSortPick').onclick=e=>{const b=e.target.closest('[data-wlsort]');if(!b)return;const L=wlCur();if(wlEditing===L.id)return;const k=b.dataset.wlsort,cur=wlSortOf(L.id);if(k==='manual')delete wlSortMap[L.id];else wlSortMap[L.id]=k===cur.k?{k,dir:-cur.dir}:{k,dir:-1};saveWlSort();wlSortMenu=null;drawWatch();};
 document.addEventListener('click',e=>{if(wlSortMenu&&!e.target.closest('.wl-fld-sort')){wlSortMenu=null;drawWatchSort();}});
@@ -4512,6 +4530,7 @@ $('wlTabs').addEventListener('click', e=>{   // v112: tab strip + active-list me
   const ls = e.target.closest('[data-ls]');
   if(ls){ const k = ls.dataset.ls, cur = wlSortOf(L.id); if(k==='manual') delete wlSortMap[L.id]; else wlSortMap[L.id] = k===cur.k ? {k, dir:-cur.dir} : {k, dir:-1}; saveWlSort(); wlSortMenu = null; wlMenu = null; drawWatch(); return; }
   const a = e.target.closest('[data-la]'); if(!a) return; const k = a.dataset.la, i = wlData.lists.indexOf(L);
+  if(k==='order'){wlMenu=null;drawWatch();wlOrderStart();return;}
   if(k==='add'){ wlMenu = null; renderWatch(); $('wlSearch').focus(); return; }
   if(k==='edit'){ wlEditing = wlEditing===L.id ? null : L.id; wlMenu = null; renderWatch(); return; }
   if(k==='rename'){ const n = (prompt('שם חדש לרשימה:', L.name)||'').trim(); if(n){ L.name = n.slice(0,40); saveWl(); } wlMenu = null; drawWatch(); return; }
@@ -7198,7 +7217,8 @@ html.dark .al-tg{background:#334155}.al-tg::after{content:"";position:absolute;t
  function queue(){if(!frame)frame=requestAnimationFrame(fit)}
  const list=document.querySelector('#posList');if(list){new MutationObserver(records=>{if(records.some(r=>r.target===list||r.target.nodeType===1&&r.target.matches?.('.pcard,.pgrid,.pc-h,.pc-d,[data-f="hp"]')||r.target.parentElement?.closest('[data-f="hp"]')))queue();}).observe(list,{childList:true,characterData:true,subtree:true});new ResizeObserver(queue).observe(list);document.fonts?.ready.then(queue);queue();}
 })();
-</script></body>
+</script>
+</body>
 </html>
 
 
