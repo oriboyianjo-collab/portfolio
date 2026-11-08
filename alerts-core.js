@@ -12,7 +12,21 @@
     String(x['חברה']||'').split(/[,\s/]+/).forEach(t=>{ t=t.trim().toUpperCase(); if(TK.test(t)) s.add(t); });
     (String(x['כותרת']||'').match(/\(([A-Z][A-Z0-9.\-]{0,9})\)/g)||[]).forEach(m=>s.add(m.slice(1,-1)));
     return [...s]; }
-  function newsCategory(x){for(const k of ['category','סוג','קטגוריה']){if(x[k]!=null&&String(x[k]).trim()!==''){const v=String(x[k]).trim().toLowerCase();return v==='macro'||v==='מאקרו'?'macro':v==='micro'||v==='מיקרו'?'micro':'';}}return '';}
+  function newsCategory(x){
+    let raw='';
+    for(const k of ['category','סוג','קטגוריה']){if(x&&x[k]!=null&&String(x[k]).trim()!==''){raw=String(x[k]).trim().toLowerCase();break;}}
+    if(raw==='macro'||raw==='מאקרו')return 'macro';
+    if(raw==='micro'||raw==='מיקרו')return 'micro';
+    // Legacy labels and blanks are not a category. Map only when the item itself is a company story or a macro release; other topics stay under הכל.
+    const legacy=!raw||raw==='stocks'||raw==='stock'||raw==='tech'||raw==='technology'||raw==='markets'||raw==='market'||raw==='דוחות';
+    if(!legacy)return '';
+    const title=String((x&&(x['כותרת']||x.title))||''), body=String((x&&(x['טקסט']||x.text||x['תוכן']))||''), blob=title+' '+body, syms=newsSyms(x);
+    if(!syms.length&&/אופ["״']?ק\+|OPEC\+|מכסות תפוקת הנפט/i.test(blob))return 'macro';
+    if(syms.length)return 'micro';
+    if((raw==='markets'||raw==='market')&&/\([A-Z][A-Z0-9.\-]{0,9}\)/.test(body))return 'micro';
+    if(/^(OpenAI|ONYX)\b/.test(title))return 'micro';
+    return '';
+  }
   const has = v => v!=null && String(v).trim()!=='' && !/^(לא|n\/?a|-|—)$/i.test(String(v).trim());
   const when = m => m==='before' ? 'לפני פתיחת המסחר' : m==='after' ? 'אחרי סגירת המסחר' : '';
   // -> [{key, kind:'news'|'rep', sym, title, body, base}]  (base=true: “already happened” type, swallowed on the very first run)

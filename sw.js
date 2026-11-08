@@ -1,10 +1,10 @@
 // Simple service worker: caches the app shell for offline use. Price APIs are never cached.
 // Company logos (Parqet / FMP image URLs – only a ticker in the URL) go to their own runtime cache, cache-first, capped at
 // LOGO_MAX entries (oldest dropped). It survives app updates (not tied to the shell version).
-const CACHE = 'portfolio-shell-v295';
+const CACHE = 'portfolio-shell-v296';
 const LOGO_CACHE = 'portfolio-logos-v1', LOGO_MAX = 120;
 const AL_CACHE = 'savage-alerts-v1', AL_CFG = './__alerts/cfg';   // v187: alerts state shared with the page (prefs, ticker lists, seen keys, pending items) – on this device only
-const SHELL = ['./chart-tools.css?v=193','./', './index.html', './manifest.json', './icon-192.png?v=33', './icon-512.png?v=33', './icon-maskable-512.png?v=33', './apple-touch-icon.png?v=33', './logo.svg?v=33', './favicon-32.png?v=33', './tax-data.json?v=33', './alerts-core.js?v=268', './badge-mono-96.png',
+const SHELL = ['./chart-tools.css?v=267','./', './index.html', './manifest.json', './icon-192.png?v=33', './icon-512.png?v=33', './icon-maskable-512.png?v=33', './apple-touch-icon.png?v=33', './logo.svg?v=33', './favicon-32.png?v=33', './tax-data.json?v=33', './alerts-core.js?v=269', './badge-mono-96.png',
   'https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js',
   'https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js'];   // Excel reader for the bank-file import (code only; files are parsed on the device)
 self.addEventListener('install', e => {
@@ -51,7 +51,7 @@ self.addEventListener('fetch', e => {
 });
 
 // ---- v187: alerts (news / earnings reports / price moves) ----
-try{ importScripts('./alerts-core.js?v=268'); }catch(e){}
+try{ importScripts('./alerts-core.js?v=269'); }catch(e){}
 const alGet = () => caches.open(AL_CACHE).then(c=>c.match(AL_CFG)).then(r=>r ? r.json() : null).catch(()=>null);
 const alPut = cfg => caches.open(AL_CACHE).then(c=>c.put(AL_CFG, new Response(JSON.stringify(cfg), {headers:{'Content-Type':'application/json'}}))).catch(()=>null);
 const alShow = it => self.registration.showNotification(it.title, {body: it.body||'', icon:'icon-192.png', badge:'badge-mono-96.png', tag: it.key, lang:'he', dir:'rtl',
@@ -63,8 +63,8 @@ async function alAdd(items, fromPush){   // record in the shared state (the page
   cfg.seen = cfg.seen.slice(-800); cfg.pending = cfg.pending.slice(-60);
   await alPut(cfg);
   await Promise.all(fresh.slice(0, 4).map(alShow));
-  return fresh.length;
   if(fresh.length > 4) await alShow({key:'more|'+Date.now(), kind:'news', title:'🔔 עוד '+(fresh.length-4)+' התראות', body:'פתחו את האפליקציה לרשימה המלאה'});
+  return fresh.length;
 }
 async function alPeriodic(){   // background check (Chrome/Android installed PWA only; the browser decides how often)
   const cfg = await alGet(); if(!cfg || !cfg.prefs || !cfg.prefs.on || !self.AlertsCore) return;
