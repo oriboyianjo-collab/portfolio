@@ -255,17 +255,27 @@
   "מקורות": [
    {
     "label": "Tasnim, 7 בנובמבר",
-    "url": "https://www.tasnimnews.ir/en/news/2026/11/07/3742388/restrictions-on-range-of-iranian-missiles-lifted-irgc-spokesman"
+    "url": "https://www.tasnimnews.ir/en/news/2026/11/07/3742388/restrictions-on-range-of-iranian-missiles-lifted-irgc-spokesman",
+    "label_en": "Tasnim, November 7"
    },
    {
     "label": "AP, 7 בנובמבר",
-    "url": "https://apnews.com/article/mideast-news-november-7-2026-c26759ac66e6c022a3256adeae40c965"
+    "url": "https://apnews.com/article/mideast-news-november-7-2026-c26759ac66e6c022a3256adeae40c965",
+    "label_en": "AP, November 7"
    }
   ],
   "טקסט": "הצהרה מדינית בלבד; לא דווח על יכולת מודגשת או טיל חדש בפועל\n7.11.2026 | לפי Tasnim; פורסם 13:13 לפי שעון האתר, אזור זמן לא צוין ולא הומר לשעון ישראל.\n\nתא\"ל חוסיין מוהבי, דובר משמרות המהפכה (IRGC), מסר בשולי מסיבת עיתונאים כי ההגבלה על טווח הטילים של איראן \"הוסרה עבורנו\", בתשובה לשאלה אם ההנחיה האחרונה של מנהיג המהפכה, מוג'תבא ח'אמנאי, לתגובה מיידית לכל איום \"ללא מגבלות גאוגרפיות\" משמעה הסרת מגבלת הטווח. איראן שמרה שנים על מגבלה עצמית מוצהרת של 2,000 ק\"מ על טווח טיליה הבליסטיים.\n\nמוהבי הדגיש שאיראן צריכה להדגים את היכולות בשטח ולא בהצהרות: \"תפקידנו להראות את היכולות שלנו בשדה הקרב\". לפי Tasnim, ח'אמנאי גם הורה על עדכון מקיף של מאגר המטרות הצבאי. AP אישרה את מהדורת הדיווח.",
   "תאריך": "2026-11-08 13:49",
   "הועלה": "2026-11-08 13:49",
-  "מזהה": "n-0009"
+  "מזהה": "n-0009",
+  "כותרת_en": "IRGC spokesman: the self-imposed limit on Iran's missile range (2,000 km) has been removed",
+  "טקסט_en": "A policy statement only; no demonstrated capability or actual new missile was reported\nNov 7, 2026 | per Tasnim; published 13:13 per the site clock, time zone not specified and not converted to Israel time.\n\nBrigadier General Hossein Mohebi, spokesman for the Revolutionary Guards (IRGC), said on the sidelines of a press conference that the limit on Iran's missile range 'has been removed for us', in response to a question whether the latest directive from the revolution's leader, Mojtaba Khamenei, for an immediate response to any threat 'without geographic limits' meant lifting the range cap. Iran has for years maintained a declared self-imposed limit of 2,000 km on its ballistic missile range.\n\nMohebi stressed that Iran needs to demonstrate its capabilities in the field rather than in statements: 'Our role is to show our capabilities on the battlefield'. Per Tasnim, Khamenei also ordered a comprehensive update of the military target bank. AP confirmed the report's edition.",
+  "_translation": {
+   "en": {
+    "source_hash": "5069985f46cf41c0a22779bff2f6cb558870552021039a044910b2ee0218e2b0",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "לפי Bloomberg: פקידים אירופיים צפויים להיות נוכחים באבו דאבי בזמן השיחות המשולשות על אוקראינה",
@@ -274,17 +284,27 @@
   "מקורות": [
    {
     "label": "Gazeta (מקור: Bloomberg), 8 בנובמבר",
-    "url": "https://www.gazeta.press/politics/news/2026/11/08/29696983.shtml"
+    "url": "https://www.gazeta.press/politics/news/2026/11/08/29696983.shtml",
+    "label_en": "Gazeta (source: Bloomberg), November 8"
    },
    {
     "label": "Flank, 8 בנובמבר",
-    "url": "https://flank.bg/en/news/russian-foreign-ministry-rejects-european-role-talks"
+    "url": "https://flank.bg/en/news/russian-foreign-ministry-rejects-european-role-talks",
+    "label_en": "Flank, November 8"
    }
   ],
   "טקסט": "לא אומת מול מקור ראשוני; הדיווח המקורי של Bloomberg לא נקרא ישירות\n8.11.2026 | לפי Bloomberg כפי שדווח ב-Gazeta; פורסם 09:53 לפי שעון האתר, אזור זמן לא צוין ולא הומר לשעון ישראל.\n\nלפי Bloomberg, המצטט מקורות, פקידים אירופיים צפויים ככל הנראה להיות נוכחים באבו דאבי בזמן השיחות המשולשות בין משלחות ארה\"ב, אוקראינה ורוסיה ב-10-11 בנובמבר, אך ישתתפו בתהליך הדיפלומטי רק אם תושג התקדמות מספקת. זאת בניגוד לדיווחים מ-6 בנובמבר, לפיהם האירופיים יודרו מהשיחות.\n\nלפי אותם מקורות, רוסיה ממשיכה לדרוש נסיגת כוחות אוקראיניים מהחלק הנותר של דונבאס ואינה מגלמת סימני שינוי בעמדה. ב-7 בנובמבר מסרה דוברת משרד החוץ הרוסי זכרובה, בציטוט TASS, שלאירופאים אין מקום בשולחן המשא ומתן, תוך קישור לתרגיל Koalicja של \"קואליציית הנחושים\" שיתקיים בפולין ב-9-22 בנובמבר; משרד ההגנה הבריטי אישר את התרגיל אך לא קישר אותו ללוח הזמנים של השיחות.",
   "תאריך": "2026-11-08 13:46",
   "הועלה": "2026-11-08 13:46",
-  "מזהה": "n-0010"
+  "מזהה": "n-0010",
+  "כותרת_en": "Per Bloomberg: European officials are expected to be present in Abu Dhabi during the trilateral talks on Ukraine",
+  "טקסט_en": "Not verified against a primary source; Bloomberg's original report was not read directly\nNov 8, 2026 | per Bloomberg as reported in Gazeta; published 09:53 per the site clock, time zone not specified and not converted to Israel time.\n\nPer Bloomberg, citing sources, European officials are expected in all likelihood to be present in Abu Dhabi during the trilateral talks between the US, Ukrainian and Russian delegations on November 10-11, but will take part in the diplomatic process only if sufficient progress is achieved. This contrasts with November 6 reports that the Europeans would be excluded from the talks.\n\nPer the same sources, Russia continues to demand a withdrawal of Ukrainian forces from the remaining part of Donbas and shows no signs of changing its position. On November 7, Russian Foreign Ministry spokeswoman Zakharova said, quoted by TASS, that the Europeans have no place at the negotiating table, while linking this to the Koalicja exercise of the 'coalition of the willing' to be held in Poland on November 9-22; the British Ministry of Defence confirmed the exercise but did not link it to the talks' timetable.",
+  "_translation": {
+   "en": {
+    "source_hash": "4a0f9fecf4fae3dd46b71bdabcb4843310e7b7724fe023ce2f34504962896275",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Nokia (NOK): לפי דיווחים, מודי'ס העלתה את הדירוג ל-Baa3 עם אופק חיובי, בזכות ביקוש לתשתיות ענן ו-AI",
@@ -293,13 +313,22 @@
   "מקורות": [
    {
     "label": "Ad-hoc-news (boerse-global), 7 בנובמבר",
-    "url": "https://www.ad-hoc-news.de/boerse/news/unternehmensnachrichten/nokia-secures-investment-grade-rating-and-jefferies-backing-as-ai-infrastructure-bet-pays-off/70474745"
+    "url": "https://www.ad-hoc-news.de/boerse/news/unternehmensnachrichten/nokia-secures-investment-grade-rating-and-jefferies-backing-as-ai-infrastructure-bet-pays-off/70474745",
+    "label_en": "Ad-hoc-news (boerse-global), November 7"
    }
   ],
   "טקסט": "לא מאומת מול מקור ראשוני; הודעת מודי'ס המקורית לא נבדקה\n7.11.2026 | לפי Ad-hoc-news המצטט דיווחי תקשורת; פורסם 14:51 לפי שעון האתר, אזור זמן לא צוין ולא הומר לשעון ישראל.\n\nלפי הדיווחים, סוכנות הדירוג מודי'ס העלתה את דירוג המנפיק ארוך הטווח של נוקיה ואת דירוג חובותיה הבכירים הבלתי מובטחים מ-Ba1 ל-Baa3, מדרגת השקעה, עם אופק חיובי. הנימוק: ביקוש לתשתיות ענן ו-AI והתרחבות עסקי תשתיות הרשת של החברה. מועד ההעלאה המדויק לא צוין בדיווח.",
   "תאריך": "2026-11-08 13:41",
   "הועלה": "2026-11-08 13:41",
-  "מזהה": "n-0011"
+  "מזהה": "n-0011",
+  "כותרת_en": "Nokia (NOK): per reports, Moody's upgraded the rating to Baa3 with a positive outlook, on demand for cloud and AI infrastructure",
+  "טקסט_en": "Not verified against a primary source; Moody's original notice was not checked\nNov 7, 2026 | per Ad-hoc-news quoting media reports; published 14:51 per the site clock, time zone not specified and not converted to Israel time.\n\nPer the reports, rating agency Moody's raised Nokia's long-term issuer rating and senior unsecured debt ratings from Ba1 to Baa3, investment grade, with a positive outlook. The rationale: demand for cloud and AI infrastructure and the expansion of the company's network infrastructure business. The exact date of the upgrade was not given in the report.",
+  "_translation": {
+   "en": {
+    "source_hash": "1bd7fedb56d65c24d313fd9cea825c92fa3fffca921e33305a8e3a6921667aae",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "ארה\"ב: תקנה סופית של משרד העבודה להקלת נכסים אלטרנטיביים בקרנות 401(k) הגיעה לבית הלבן לבדיקה אחרונה",
@@ -308,13 +337,22 @@
   "מקורות": [
    {
     "label": "Bloomberg Law, 6 בנובמבר",
-    "url": "https://news.bloomberglaw.com/employee-benefits/401k-private-asset-rule-lands-at-white-house-for-final-review"
+    "url": "https://news.bloomberglaw.com/employee-benefits/401k-private-asset-rule-lands-at-white-house-for-final-review",
+    "label_en": "Bloomberg Law, November 6"
    }
   ],
   "טקסט": "6.11.2026 | לפי Bloomberg Law; פורסם 14:22 UTC (16:22 לפי שעון ישראל).\n\nתקנה סופית של משרד העבודה האמריקאי, שתקל על שילוב נכסים אלטרנטיביים - כמו השקעות פרטיות (private equity), נדל\"ן וקריפטו - בתוכניות פרישה מסוג 401(k), הגיעה ביום חמישי לבית הלבן לבדיקה אחרונה לפני פרסום.",
   "תאריך": "2026-11-08 13:41",
   "הועלה": "2026-11-08 13:41",
-  "מזהה": "n-0012"
+  "מזהה": "n-0012",
+  "כותרת_en": "US: final Labor Department rule easing alternative assets in 401(k) plans reached the White House for final review",
+  "טקסט_en": "Nov 6, 2026 | per Bloomberg Law; published 14:22 UTC (16:22 Israel time).\n\nA final US Department of Labor rule that would ease the inclusion of alternative assets - such as private equity, real estate and crypto - in 401(k) retirement plans reached the White House on Thursday for final review before publication.",
+  "_translation": {
+   "en": {
+    "source_hash": "d752dfeaae6dfacbaff9505c5b6bcdfd2672cc7eaf9feea8810e991f43331427",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "גאורגייבה (קרן המטבע): האטה בצמיחה המונעת מ-AI תהיה שיקול לבנקים המרכזיים במלחמה באינפלציה",
@@ -323,13 +361,22 @@
   "מקורות": [
    {
     "label": "Reuters (בפרסום Investing.com), 6 בנובמבר",
-    "url": "https://www.investing.com/news/economy-news/imfs-georgieva-says-any-slowdown-in-aidriven-growth-would-be-factor-for-central-banks-5009427"
+    "url": "https://www.investing.com/news/economy-news/imfs-georgieva-says-any-slowdown-in-aidriven-growth-would-be-factor-for-central-banks-5009427",
+    "label_en": "Reuters (in an Investing.com publication), November 6"
    }
   ],
   "טקסט": "6.11.2026 | לפי Reuters; פורסם 18:52 לפי שעון האתר, אזור זמן לא צוין ולא הומר לשעון ישראל.\n\nנגידת קרן המטבע הבינלאומית, קריסטלינה גאורגייבה, אמרה ביום שישי כי בנקאים מרכזיים ברחבי העולם יצטרכו לשקול כל האטה בצמיחה המונעת מהשקעות AI כשהם מעריכים את הצעדים במלחמה באינפלציה. לדבריה, החששות לגבי התלות בבום ההשקעות ב-AI והשווים הגבוהים משפיעים על השווקים, והתנודתיות צפויה להימשך.\n\nגאורגייבה ציינה שבום ההשקעות ממריץ צמיחה במדינות מסוימות ומקזז חלקית את הלם ההיצע בנפט מהמלחמה במזרח התיכון, אך מוסיף ללחצים אינפלציוניים ולחששות ליציבות פיננסית. היא לא חזרה על תחזית החיסול מחודש אוקטובר, שלפיה נפילה חדה בהשקעות AI עלולה לקצץ 1.1% מהתוצר העולמי עד 2028.",
   "תאריך": "2026-11-08 13:41",
   "הועלה": "2026-11-08 13:41",
-  "מזהה": "n-0013"
+  "מזהה": "n-0013",
+  "כותרת_en": "Georgieva (IMF): a slowdown in AI-driven growth will be a consideration for central banks in the fight against inflation",
+  "טקסט_en": "Nov 6, 2026 | per Reuters; published 18:52 per the site clock, time zone not specified and not converted to Israel time.\n\nInternational Monetary Fund managing director Kristalina Georgieva said on Friday that central banks around the world will have to weigh any slowdown in growth driven by AI investment when assessing their moves in the fight against inflation. In her words, concerns about reliance on the AI investment boom and high valuations are affecting the markets, and volatility is expected to continue.\n\nGeorgieva noted that the investment boom is driving growth in certain countries and partially offsets the oil supply shock from the Middle East war, but adds to inflationary pressures and financial stability concerns. She did not repeat October's 'wipeout' forecast, under which a sharp fall in AI investment could cut 1.1% off global output by 2028.",
+  "_translation": {
+   "en": {
+    "source_hash": "0d838e65b2b44919b79c39b3ffe7a8a0df7af4b2929e9a00234eca414199bf09",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "בנק רוסיה אישר: ביטקוין, אתר ו-USDT יותרו למשקיעים לא מוסמכים מ-17 בנובמבר, עד תקרה שנתית של 300 אלף רובל",
@@ -338,13 +385,22 @@
   "מקורות": [
    {
     "label": "הודעת בנק רוסיה הרשמית, 6 בנובמבר",
-    "url": "https://www.cbr.ru/eng/press/event/?id=32966"
+    "url": "https://www.cbr.ru/eng/press/event/?id=32966",
+    "label_en": "Official Bank of Russia release, November 6"
    }
   ],
   "טקסט": "6.11.2026 | הודעת בנק רוסיה הרשמית; שעת הפרסום לא צוינה.\n\nבנק רוסיה אישר את רשימת המטבעות הקריפטוגרפיים הזמינים למשקיעים לא מוסמכים: ביטקוין, אתר ו-USDT. הצו ייכנס לתוקף ב-17 בנובמבר 2026, ומאותו מועד הנכסים יורשו למסחר ציבורי בבורסות.\n\nמשקיעים לא מוסמכים יוכלו לרכוש דרך מתווכים (ברוקרים, מנהלי נאמנות או משרדי מטבעות), במסחר בורסתי ומחוץ לבורסה, עד תקרה של 300,000 רובל בשנה דרך מתווך יחיד. משקיעים מוסמכים יקבלו גישה לכל נכסי הקריפטו ללא הגבלה. כל משקיע יידרש לעבור מבחן ולקרוא על סיכוני ההשקעה. הרשימה כוללת רק נכסים נזילים בעלי ותק תמחור של חמש שנים לפחות בבורסות זרות.",
   "תאריך": "2026-11-08 13:41",
   "הועלה": "2026-11-08 13:41",
-  "מזהה": "n-0014"
+  "מזהה": "n-0014",
+  "כותרת_en": "Bank of Russia approved: bitcoin, ether and USDT will be permitted for non-qualified investors from November 17, up to an annual cap of 300 thousand rubles",
+  "טקסט_en": "Nov 6, 2026 | official Bank of Russia release; publication time not given.\n\nThe Bank of Russia approved the list of cryptocurrencies available to non-qualified investors: bitcoin, ether and USDT. The order takes effect on November 17, 2026, and from that date the assets will be permitted for public trading on exchanges.\n\nNon-qualified investors will be able to buy through intermediaries (brokers, trust managers or currency offices), in exchange and off-exchange trading, up to a cap of 300,000 rubles per year through a single intermediary. Qualified investors will receive access to all crypto assets without restriction. Every investor will be required to pass a test and read about the investment risks. The list includes only liquid assets with at least five years of pricing history on foreign exchanges.",
+  "_translation": {
+   "en": {
+    "source_hash": "e4c55555be9e4664a553e0e1c220629a1ec753bb55f4d101327c8dd08bff7e7d",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "סין: המועצה הממלכתית הבטיחה לחזק את יציבות שוק המניות לאחר גל מכירות נוסף",
@@ -353,13 +409,22 @@
   "מקורות": [
    {
     "label": "SCMP, 6 בנובמבר",
-    "url": "https://www.scmp.com/business/markets/article/3373602/beijing-calls-more-efforts-stabilise-stock-market-after-renewed-sell"
+    "url": "https://www.scmp.com/business/markets/article/3373602/beijing-calls-more-efforts-stabilise-stock-market-after-renewed-sell",
+    "label_en": "SCMP, November 6"
    }
   ],
   "טקסט": "6.11.2026 | לפי South China Morning Post; פורסם 22:00 לפי שעון האתר, אזור זמן לא צוין ולא הומר לשעון ישראל.\n\nהמועצה הממלכתית של סין הבטיחה מנגנוני מדיניות משופרים לייצוב שוק המניות, לאחר שהמניות ירדו שוב ביום שישי בעקבות הקריסה בשווקים האמריקאיים. בישיבת המועצה בראשות ראש הממשלה לי צ'יאנג נמסר: \"נחזק את היציבות המובנית של שוק המניות ונקדם התפתחות יציבה ובריאה של שוק ההון\". מדד CSI 300 ירד ביום שישי ב-1.4%.",
   "תאריך": "2026-11-08 13:41",
   "הועלה": "2026-11-08 13:41",
-  "מזהה": "n-0015"
+  "מזהה": "n-0015",
+  "כותרת_en": "China: the State Council promised to strengthen stock market stability after another wave of selling",
+  "טקסט_en": "Nov 6, 2026 | per South China Morning Post; published 22:00 per the site clock, time zone not specified and not converted to Israel time.\n\nChina's State Council promised improved policy mechanisms to stabilize the stock market, after stocks fell again on Friday following the rout in US markets. The Council meeting chaired by Premier Li Qiang stated: 'We will strengthen the inherent stability of the stock market and promote steady and healthy development of the capital market'. The CSI 300 index fell 1.4% on Friday.",
+  "_translation": {
+   "en": {
+    "source_hash": "ce08a337509e20348aee82bf7b8a94f78b77fb9ddfd245852c2662d9c8007317",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "מחלקת המדינה האמריקאית קוראת לפעולה בינלאומית מתואמת נגד איומי הסייבר של צפון קוריאה בעקבות פריצת Binance",
@@ -368,17 +433,27 @@
   "מקורות": [
    {
     "label": "Yonhap, 8 בנובמבר",
-    "url": "https://en.yna.co.kr/view/AEN20261108000200315?section=national/diplomacy"
+    "url": "https://en.yna.co.kr/view/AEN20261108000200315?section=national/diplomacy",
+    "label_en": "Yonhap, November 8"
    },
    {
     "label": "Korea Times, 8 בנובמבר",
-    "url": "https://www.koreatimes.co.kr/foreignaffairs/20261108/us-calls-for-coordinated-action-against-n-korean-cyber-threats-following-binance-hack"
+    "url": "https://www.koreatimes.co.kr/foreignaffairs/20261108/us-calls-for-coordinated-action-against-n-korean-cyber-threats-following-binance-hack",
+    "label_en": "Korea Times, November 8"
    }
   ],
   "טקסט": "לא אומת מול הודעת מחלקת המדינה המקורית\n8.11.2026 | לפי Yonhap; פורסם 07:50 לפי שעון קוריאה, KST (01:50 לפי שעון ישראל). הדיווח מתוארך בוושינגטון ל-7 בנובמבר.\n\nדובר מחלקת המדינה האמריקאית מסר בתשובה בכתב ל-Yonhap כי \"בעקבות פריצת Binance, קריטי שממשלות יפעלו יחד\" כדי לצמצם את איום הסייבר של צפון קוריאה ולרסן יצירת הכנסות בלתי חוקיות. הדובר קרא לכל מדינות האו\"ם לאכוף את הסנקציות הקיימות ולמנוע מפיונגיאנג מימון תוכניות הנשק שלה, וציין שסנקציות חד-צדדיות מתואמות הן \"כלי חזק\".\n\nהדברים נמסרו בעקבות ייחוס ה-FBI את גניבת הקריפטו לגורמים צפון קוריאנים. משרד החוץ של דרום קוריאה מסר כי הוא בוחן צעדים נוספים, לרבות סנקציות סייבר חד-צדדיות, אך לא התקבלה החלטה.",
   "תאריך": "2026-11-08 13:33",
   "הועלה": "2026-11-08 13:33",
-  "מזהה": "n-0016"
+  "מזהה": "n-0016",
+  "כותרת_en": "The US State Department calls for coordinated international action against North Korea's cyber threats following the Binance hack",
+  "טקסט_en": "Not verified against the original State Department statement\nNov 8, 2026 | per Yonhap; published 07:50 Korea time, KST (01:50 Israel time). The report is dated in Washington to November 7.\n\nA US State Department spokesperson said in a written response to Yonhap that 'following the Binance hack, it is critical that governments act together' to reduce North Korea's cyber threat and curb illicit revenue generation. The spokesperson called on all UN member states to enforce the existing sanctions and prevent Pyongyang from funding its weapons programs, and noted that coordinated unilateral sanctions are a 'powerful tool'.\n\nThe remarks followed the FBI's attribution of the crypto theft to North Korean actors. South Korea's foreign ministry said it is examining additional steps, including unilateral cyber sanctions, but no decision has been made.",
+  "_translation": {
+   "en": {
+    "source_hash": "cb949ddc5dd85328d4e31623fcb84b50047c6cb0c75161ba9ede2a8628389f5b",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "תיקון לפריט יירוט הטילים בסעודיה מ-8 בנובמבר",
