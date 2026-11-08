@@ -1764,7 +1764,19 @@
    "https://www.federalreserve.gov/releases/g19/data/FRB_g19_xml.zip"
   ],
   "תאריך_עדכון_בפועל": "2026-11-06 22:02",
-  "מזהה": "c-0076"
+  "מזהה": "c-0076",
+  "אירוע_en": "Consumer credit",
+  "תקופה_en": "September · monthly",
+  "הערה_en": "Fed schedule 15:00 ET; estimate and prior ForexFactory; monthly change in billions of dollars, not an annual rate\nSource update Nov 3, 2026: MarketWatch 11.5B; ForexFactory 13.4B. 12B is stale. The original estimate in the field was retained, not replaced.\nSeptember 2026: consumer credit grew by 27.84 billion USD in seasonally adjusted monthly terms. Revolving credit grew by 16.30 billion and nonrevolving credit by 11.54 billion. August was revised to 8.19 billion; the original prior figure in the field was retained. The annual growth rate in September was 6.4%, a figure separate from the dollar monthly change. The data excludes loans secured by real estate.",
+  "קודם_en": "8.3 billion USD",
+  "צפי_en": "12.0 billion USD",
+  "בפועל_en": "27.84 billion USD",
+  "_translation": {
+   "en": {
+    "source_hash": "4f978e1e49feef21f9de52116a073f3273a1ef7792cf38f34c9f20abe1e2abb9",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
@@ -1777,7 +1789,17 @@
   "בפועל": "פורסם",
   "מקור": "https://www.federalreserve.gov/releases/h8/current/default.htm",
   "תקופה": "שבוע שהסתיים ב-28.10.2026",
-  "מזהה": "c-0077"
+  "מזהה": "c-0077",
+  "אירוע_en": "Assets and liabilities of commercial banks (H.8)",
+  "תקופה_en": "Week ended Oct 28, 2026",
+  "הערה_en": "Fed H.8 release dated Nov 6, 2026. Latest weekly observation in table 2: week ended Oct 28, 2026. These are seasonally adjusted levels across all US commercial banks, in billions of dollars, not weekly flows or annual growth rates. Total assets 26,076.4; total liabilities 23,595.9; deposits 19,798.2; bank credit 20,023.6; loans and leases in bank credit 14,220.0. Table 3 separately shows data not seasonally adjusted and must not be confused with table 2. No single actual figure or single estimate for comparison.",
+  "בפועל_en": "Published",
+  "_translation": {
+   "en": {
+    "source_hash": "adc8c8fd10844c35646566fa9eb5e9f7b2e7fb980c8caaf80631d1bafcdf8ee3",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
@@ -1790,7 +1812,17 @@
   "בפועל": "פורסם",
   "מקור": "https://www.federalreserve.gov/releases/h15/",
   "תקופה": "נתוני יום העסקים 05.11.2026",
-  "מזהה": "c-0078"
+  "מזהה": "c-0078",
+  "אירוע_en": "Selected interest rates (H.15) - Fed",
+  "תקופה_en": "Business day Nov 5, 2026 data",
+  "הערה_en": "Fed release dated Nov 6, 2026; business-day Nov 5, 2026 observations, not Nov 6 closing data. Annual rates in percent: effective fed funds 3.88%; prime rate 7.00%; primary credit rate 4.00%. Nominal constant maturity Treasury yields: 2-year 4.46%, 10-year 4.84%, 30-year 5.25%. 10-year inflation-indexed yield 2.60%. Separate series, no single actual figure or single consensus. n.a. marks unavailable data, not zero.",
+  "בפועל_en": "Published",
+  "_translation": {
+   "en": {
+    "source_hash": "ca808c8aa5a7c807be25242b8a7b7f646e855a74b4db1e910000ae8fd2c3ddf1",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-09",
@@ -1800,7 +1832,15 @@
   "חשיבות": 1,
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד הרשמי, שורת 9.11.2026 בשעה 08:40 ניו יורק. נושא האירוע אינו הבטחה לדיון בריבית. ",
-  "מזהה": "c-0079"
+  "מזהה": "c-0079",
+  "אירוע_en": "Michelle W. Bowman - community banking",
+  "הערה_en": "Official Fed calendar, Nov 9, 2026 row at 08:40 New York. The event topic is no promise of a rate discussion.",
+  "_translation": {
+   "en": {
+    "source_hash": "c4c45cb0454d37e425a1f579a9112e57b00fcd7f123f736df51d75fb6f447d95",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-09",
@@ -1824,7 +1864,16 @@
    "https://www.forexfactory.com/calendar?week=nov8.2026"
   ],
   "תאריך_בדיקה_עדכנית": "2026-11-07",
-  "מזהה": "c-0080"
+  "מזהה": "c-0080",
+  "אירוע_en": "Wholesale inventories (final)",
+  "תקופה_en": "September · monthly",
+  "הערה_en": "Prior per the advance estimate of Oct 28; may be revised in the final release\nUpdate Nov 7, 2026: estimate per ForexFactory 0.6%. Its source was not verified against a primary source. Estimate history and notes were retained; there is no new actual figure here.",
+  "_translation": {
+   "en": {
+    "source_hash": "281162062b845e7cdde2c15713e151fa8e3d3632bf2fe98e02f1c7b3f71eaa31",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-09",
@@ -1834,7 +1883,15 @@
   "חשיבות": 1,
   "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
-  "מזהה": "c-0081"
+  "מזהה": "c-0081",
+  "אירוע_en": "Survey of Consumer Expectations - SCE",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "c0f2dd6dfa1802392e7caa7a34ce2509cfac1e01fed702db1aea69fc78444932",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-09",
@@ -1844,7 +1901,15 @@
   "מקור": "https://home.treasury.gov/news/press-releases/sb0678",
   "הערה": "הודעת ההחזר הרבעוני מ-4.11: מכרז בשעה13:00ניו יורק=20:00ישראל; היקף הצעה 58 מיליארד דולר. זהו היקף הנפקה מתוכנן, לא תשואת תוצאת המכרז או צפי לתשואה. סליקה ב-16.11.",
   "שעה": "20:00",
-  "מזהה": "c-0082"
+  "מזהה": "c-0082",
+  "אירוע_en": "US Treasury 3-year note auction",
+  "הערה_en": "Quarterly refunding announcement of Nov 4: auction at 13:00 New York = 20:00 Israel; offering size 58 billion USD. This is a planned issuance size, not an auction result yield or a yield estimate. Settlement Nov 16.",
+  "_translation": {
+   "en": {
+    "source_hash": "5214099d6f9669a3f5cd98bef85e486003d781f198256fb44445491cda65f2f9",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-09",
@@ -1854,7 +1919,15 @@
   "חשיבות": 1,
   "הערה": "המשך סדרות שכבר ביומן ל2–6.11; לוח הפד13:00/16:15ET. CP בדרך כלל13:00 אך השעה אינה מובטחת; אין צפי יחיד",
   "מקור": "https://federalreserve.gov/newsevents/2026-november.htm",
-  "מזהה": "c-0083"
+  "מזהה": "c-0083",
+  "אירוע_en": "Commercial paper (CP) data - Fed",
+  "הערה_en": "Continuation of series already in the calendar for Nov 2-6; Fed schedule 13:00/16:15 ET. CP usually at 13:00 but the time is not guaranteed; no single estimate",
+  "_translation": {
+   "en": {
+    "source_hash": "27668d5114f6a01e6b6724d319c47d5deeb5a8f6e0043dd04f8343121c55163e",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-09",
@@ -1864,7 +1937,15 @@
   "חשיבות": 1,
   "הערה": "המשך סדרות שכבר ביומן ל2–6.11; לוח הפד13:00/16:15ET. CP בדרך כלל13:00 אך השעה אינה מובטחת; אין צפי יחיד",
   "מקור": "https://federalreserve.gov/newsevents/2026-november.htm",
-  "מזהה": "c-0084"
+  "מזהה": "c-0084",
+  "אירוע_en": "Selected interest rates (H.15) - Fed",
+  "הערה_en": "Continuation of series already in the calendar for Nov 2-6; Fed schedule 13:00/16:15 ET. CP usually at 13:00 but the time is not guaranteed; no single estimate",
+  "_translation": {
+   "en": {
+    "source_hash": "3b42b62c8c79d986a4ec579826403226df6261fb058244ced0088bb3fb1c14db",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-09",
@@ -1874,7 +1955,15 @@
   "חשיבות": 1,
   "הערה": "לוח הפד:9.11בשעה16:15ET; אין צפי יחיד",
   "מקור": "https://federalreserve.gov/newsevents/2026-november.htm",
-  "מזהה": "c-0085"
+  "מזהה": "c-0085",
+  "אירוע_en": "Weekly foreign exchange rates (H.10) - Fed",
+  "הערה_en": "Fed schedule: Nov 9 at 16:15 ET; no single estimate",
+  "_translation": {
+   "en": {
+    "source_hash": "615be5a384e2dabc1e462452bfef85d61154793cf7b1fffe0cff8789e2c8bbd7",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-09",
@@ -1883,7 +1972,15 @@
   "חשיבות": 1,
   "הערה": "לוח EIA:יום שני עד17ET=עד00:00ב10.11ישראל; ללא שעה מדויקת/צפי יחיד.",
   "מקור": "https://www.eia.gov/reports/upcoming.php",
-  "מזהה": "c-0086"
+  "מזהה": "c-0086",
+  "אירוע_en": "Weekly coal market review (EIA)",
+  "הערה_en": "EIA schedule: Monday by 17:00 ET = by 00:00 Israel on Nov 10; no exact time/single estimate.",
+  "_translation": {
+   "en": {
+    "source_hash": "2e5fe7a6ffca7628e368027cf90126ce5483addf6b888a751293700b0872704b",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -1893,7 +1990,15 @@
   "חשיבות": 1,
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד הרשמי, שורת 10.11.2026 בשעה 04:00 ניו יורק. נושא האירוע אינו הבטחה לדיון בריבית. ",
-  "מזהה": "c-0087"
+  "מזהה": "c-0087",
+  "אירוע_en": "Christopher J. Waller - economic outlook",
+  "הערה_en": "Official Fed calendar, Nov 10, 2026 row at 04:00 New York. The event topic is no promise of a rate discussion.",
+  "_translation": {
+   "en": {
+    "source_hash": "a17fdbf9d3af0ed96bf991ad750b0dc56b115286d253fa555ba77ae9ed5ba1da",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -1918,7 +2023,16 @@
    "https://www.forexfactory.com/calendar?week=nov8.2026"
   ],
   "תאריך_בדיקה_עדכנית": "2026-11-07",
-  "מזהה": "c-0088"
+  "מזהה": "c-0088",
+  "אירוע_en": "NFIB small business optimism index",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "NFIB: second Tuesday of the month; 11:00 UTC per FXStreet (06:00 EST). Estimate unavailable in the source checked\nUpdate Nov 7, 2026: estimate per ForexFactory 97.7. Its source was not verified against a primary source. Estimate history and notes were retained; there is no new actual figure here.",
+  "_translation": {
+   "en": {
+    "source_hash": "cdc298440d54dff2a45d6a398e0f73443407153ab821a492623edd1ac77b11bb",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -1929,7 +2043,16 @@
   "חשיבות": 1,
   "קודם": "16.75K",
   "הערה": "ADP הודיעה ב-27.10 שה-NER Pulse הבא יפורסם ב-10.11, סמוך לאחר 08:15 ניו יורק (15:15 בישראל). אין פרסום שבועי בשבוע שבו מתפרסם דוח ADP החודשי; הפרסום החודשי ב-4.11 הוא סדרה נפרדת.",
-  "מזהה": "c-0089"
+  "מזהה": "c-0089",
+  "אירוע_en": "Employment change - ADP weekly",
+  "תקופה_en": "Weekly",
+  "הערה_en": "ADP announced on Oct 27 that the next NER Pulse will be published on Nov 10, shortly after 08:15 New York (15:15 Israel). There is no weekly release in the week the monthly ADP report is published; the Nov 4 monthly release is a separate series.",
+  "_translation": {
+   "en": {
+    "source_hash": "d48dae242cd341e7722e982e9b063147f0a3dd5f1c8652fe54ae905f752427dc",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -1945,7 +2068,16 @@
    "https://www.forexfactory.com/calendar?week=nov8.2026"
   ],
   "תאריך_בדיקה_עדכנית": "2026-11-06",
-  "מזהה": "c-0090"
+  "מזהה": "c-0090",
+  "אירוע_en": "Consumer price index - monthly",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "BLS timing: 08:30 ET; prior from the September release. Estimate not yet collected\nUpdate Nov 6, 2026: estimate per ForexFactory 0.3%. Its source was not verified against a primary source. The previous source note was kept for the record; no new actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "73d68b456c6a748fbd6e7ce6d4aa8d02b2be458f2ab214f7fe2a951e94d5f57c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -1956,7 +2088,16 @@
   "חשיבות": 3,
   "קודם": "3.7%",
   "הערה": "מועד BLS: 08:30 ET; קודם מפרסום ספטמבר. צפי טרם נאסף",
-  "מזהה": "c-0091"
+  "מזהה": "c-0091",
+  "אירוע_en": "Consumer price index - annual",
+  "תקופה_en": "October · annual",
+  "הערה_en": "BLS timing: 08:30 ET; prior from the September release. Estimate not yet collected",
+  "_translation": {
+   "en": {
+    "source_hash": "c72e318e7417676947e3134439798a99627f4fdcef0436994ceae9fa67598c04",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -1972,7 +2113,16 @@
    "https://www.forexfactory.com/calendar?week=nov8.2026"
   ],
   "תאריך_בדיקה_עדכנית": "2026-11-06",
-  "מזהה": "c-0092"
+  "מזהה": "c-0092",
+  "אירוע_en": "Core consumer price index - monthly",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "BLS timing: 08:30 ET; prior from the September release. Estimate not yet collected\nUpdate Nov 6, 2026: estimate per ForexFactory 0.2%. Its source was not verified against a primary source. The previous source note was kept for the record; no new actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "6a11a41e0f5bfcd0613301a2b3c28fd8d8443cb331ab65c20c302737217b3cf9",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -1983,7 +2133,16 @@
   "חשיבות": 3,
   "קודם": "2.6%",
   "הערה": "מועד BLS: 08:30 ET; קודם מפרסום ספטמבר. צפי טרם נאסף",
-  "מזהה": "c-0093"
+  "מזהה": "c-0093",
+  "אירוע_en": "Core consumer price index - annual",
+  "תקופה_en": "October · annual",
+  "הערה_en": "BLS timing: 08:30 ET; prior from the September release. Estimate not yet collected",
+  "_translation": {
+   "en": {
+    "source_hash": "c02d31f98ad33532b48325dada329bba17f9e3a7d0e28ca41fccc64c79467f5c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -1993,7 +2152,16 @@
   "תקופה": "אוקטובר · חודשי",
   "חשיבות": 1,
   "הערה": "מועד רשמי BLS, יחד עם CPI; צפי וקודם טרם נאספו",
-  "מזהה": "c-0094"
+  "מזהה": "c-0094",
+  "אירוע_en": "Real earnings",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "Official BLS timing, together with CPI; estimate and prior not yet collected",
+  "_translation": {
+   "en": {
+    "source_hash": "40bd94fc5113c9a510f7587125defe759be3925ea7989f9eb5312729603267a5",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -2003,7 +2171,15 @@
   "הערה": "לוח EIA:שלישי10ET=17ישראל; סדרת מחירים, לא מלאי נפט; בלי צפי יחיד.",
   "מקור": "https://www.eia.gov/reports/upcoming.php",
   "שעה": "17:00",
-  "מזהה": "c-0095"
+  "מזהה": "c-0095",
+  "אירוע_en": "Weekly gasoline and diesel price update (EIA)",
+  "הערה_en": "EIA schedule: Tuesday 10 ET = 17:00 Israel; a price series, not oil inventories; no single estimate.",
+  "_translation": {
+   "en": {
+    "source_hash": "3ef11b49380a964e2aa9081ebe4d209b4c7b72abb77a87294f618b4d3b2d98ae",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -2013,7 +2189,15 @@
   "חשיבות": 1,
   "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
-  "מזהה": "c-0096"
+  "מזהה": "c-0096",
+  "אירוע_en": "Consumer Credit Panel",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "637bfe694842c66b247c9270816b85a50914c92ebb3d7a47111b2d9d422b441c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -2024,7 +2208,16 @@
   "חשיבות": 1,
   "הערה": "EIA קובע10.11; בדרך כלל12:00–12:15EST. זהו חלון ולא שעה מדויקת; אין נתון צפי יחיד",
   "מקור": "https://www.eia.gov/outlooks/steo/release_schedule.php",
-  "מזהה": "c-0097"
+  "מזהה": "c-0097",
+  "אירוע_en": "Short-Term Energy Outlook - EIA STEO",
+  "תקופה_en": "November",
+  "הערה_en": "EIA sets Nov 10; usually 12:00-12:15 EST. This is a window, not an exact time; no single estimate figure",
+  "_translation": {
+   "en": {
+    "source_hash": "7ca8d498e046fca331dbdc5afe7106b8f55b98d7212c2cdabb29c06c7d3cb01f",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -2034,7 +2227,15 @@
   "מקור": "https://home.treasury.gov/news/press-releases/sb0678",
   "הערה": "הודעת ההחזר הרבעוני מ-4.11: מכרז בשעה13:00ניו יורק=20:00ישראל; היקף הצעה 42 מיליארד דולר. זהו היקף הנפקה מתוכנן, לא תשואת תוצאת המכרז או צפי לתשואה. סליקה ב-16.11.",
   "שעה": "20:00",
-  "מזהה": "c-0098"
+  "מזהה": "c-0098",
+  "אירוע_en": "US Treasury 10-year note auction",
+  "הערה_en": "Quarterly refunding announcement of Nov 4: auction at 13:00 New York = 20:00 Israel; offering size 42 billion USD. This is a planned issuance size, not an auction result yield or a yield estimate. Settlement Nov 16.",
+  "_translation": {
+   "en": {
+    "source_hash": "4841a5cbec63ac401c00e1e594cba2e1a31474f43307b3486c5432a5e48c83aa",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -2044,7 +2245,15 @@
   "חשיבות": 1,
   "הערה": "המשך סדרות שכבר ביומן ל2–6.11; לוח הפד13:00/16:15ET. CP בדרך כלל13:00 אך השעה אינה מובטחת; אין צפי יחיד",
   "מקור": "https://federalreserve.gov/newsevents/2026-november.htm",
-  "מזהה": "c-0099"
+  "מזהה": "c-0099",
+  "אירוע_en": "Commercial paper (CP) data - Fed",
+  "הערה_en": "Continuation of series already in the calendar for Nov 2-6; Fed schedule 13:00/16:15 ET. CP usually at 13:00 but the time is not guaranteed; no single estimate",
+  "_translation": {
+   "en": {
+    "source_hash": "0750ab7f03c8586ca1435eadf67aab1bfa75d45a3efa8af655252b14c5b9460f",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
@@ -2054,7 +2263,15 @@
   "חשיבות": 1,
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד הרשמי, שורת 10.11.2026 בשעה 15:30 ניו יורק. נושא האירוע אינו הבטחה לדיון בריבית. ",
-  "מזהה": "c-0100"
+  "מזהה": "c-0100",
+  "אירוע_en": "Michelle W. Bowman - economic outlook",
+  "הערה_en": "Official Fed calendar, Nov 10, 2026 row at 15:30 New York. The event topic is no promise of a rate discussion.",
+  "_translation": {
+   "en": {
+    "source_hash": "7783cb03de2b04be30d29b18fc4a39fe7cd7ca748f4756237402577fe22a6dbf",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-10",
