@@ -4436,7 +4436,7 @@ async function renderWatch(reuse=false){
  const listId=wlCur().id,its=wlCur().items.map(secInst);if(!its.length)return;
  const active=()=>epoch===watchLoadEpoch&&ui.tab==='watch'&&wlCur().id===listId;
  const queue=wlSorted(its.filter(it=>!!iq(it)),wlEditing===listId,wlSortOf(listId)),waiting=its.filter(it=>!iq(it));let quoteDone=false;
- const quotes=instQuotes(its,active).catch(()=>{}).then(()=>{quoteDone=true;if(active()){queue.push(...wlSorted(waiting,wlEditing===listId,wlSortOf(listId)));drawWatch();}});
+ const quotes=instQuotes(its,active).catch(()=>{}).then(()=>{quoteDone=true;if(active()){queue.push(...waiting);queue.splice(0,queue.length,...wlSorted(queue,wlEditing===listId,wlSortOf(listId)));drawWatch();}});
  const load=async it=>{if(!active())return;const ss=spkSession(it.sym),e=spk[it.sym],q=iq(it);
   if(it.sec&&!it.fx&&!it.y&&!it.der&&ss&&e?.d===ss.date&&q?.date===ss.date&&e.pts?.length>1&&!spkNeed(it.sym)){wlPatchSpark(it,listId);return;}
   await instBars(it,'1D',undefined,1).catch(()=>{});if(active())wlPatchSpark(it,listId);
