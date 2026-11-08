@@ -2237,18 +2237,29 @@
   "מקורות": [
    {
     "label": "הודעת GE Vernova מ-6 בנובמבר",
-    "url": "https://www.gevernova.com/news/press-releases/ge-vernova-support-india-energy-transition-6-gw-hvdc-transmission-project"
+    "url": "https://www.gevernova.com/news/press-releases/ge-vernova-support-india-energy-transition-6-gw-hvdc-transmission-project",
+    "label_en": "GE Vernova release of November 6"
    },
    {
     "label": "דיווח החברה ההודית לבורסה מ-4 בנובמבר",
-    "url": "https://nsearchives.nseindia.com/corporate/GETDIL1_04112026082105_GEVTDILAwardofcontractnov2026signed.pdf"
+    "url": "https://nsearchives.nseindia.com/corporate/GETDIL1_04112026082105_GEVTDILAwardofcontractnov2026signed.pdf",
+    "label_en": "The Indian company's exchange filing of November 4"
    }
   ],
   "תקציר": "החברה תספק תכנון, ציוד ותחנות המרה למסדרון HVDC. זו זכייה בפרויקט עתידי, לא קיבולת שכבר הופעלה או הכנסה שהוכרה.",
   "טקסט": "⁦3.11.2026⁩ | תאריך מכתב הזכייה; דווח לבורסה ב-⁦4⁩ בנובמבר. הודעת החברה האם פורסמה ב-⁦6⁩ בנובמבר. שעות הפרסום אינן מצוינות.\n\nהחברה נבחרה בידי תאגיד רשת החשמל ההודי, ⁦PGCIL,⁩ למסירת פרויקט הולכה בזרם ישר במתח גבוה, ⁦HVDC,⁩ בין ⁦Barmer II⁩ במדינת רג'סטאן לבין ⁦South Kalamb.⁩ הקיבולת המתוכננת היא ⁦6,000⁩ מגה-ואט, בתצורה של ⁦2x3,000⁩ מגה-ואט, במתח של ⁦±800⁩ קילו-וולט.\n\nלפי הודעת החברה האם, הפרויקט נרשם כהזמנה ברבעון הרביעי של ⁦2026.⁩ היקף העבודה כולל תכנון מלא, הקמת תחנות המרה, אספקת הציוד העיקרי וניהול ההקמה באתר, הבדיקות וההפעלה. שסתומי ההמרה ייוצרו במפעל החברה ב-⁦Pallavaram⁩ שבהודו, והפרויקט יכלול את מערכת הבקרה ⁦eLumina.⁩\n\nדיווח החברה ההודית לבורסה מבחין בין השלבים: מעמד המציע הזול ביותר, ⁦L1,⁩ דווח ב-⁦7⁩ בספטמבר; מכתב הזכייה מתוארך ל-⁦3⁩ בנובמבר; ובהודעת ⁦4⁩ בנובמבר נאמר שההסכם הסופי ייחתם בהמשך. לכן אין להציג את הודעת ⁦6⁩ בנובמבר כאילו המתקן כבר הושלם או שכל שלבי ההתקשרות הסתיימו.\n\nהמסדרון מיועד להעברת חשמל מאזור עשיר באנרגיה מתחדשת אל מוקדי ביקוש ברשת ההודית. בהודעות שנבדקו לא נמסרו מחיר החוזה או תאריך השלמת הפרויקט. רישום הזמנה אינו הכרה מיידית בהכנסה, ו-⁦6⁩ גיגה-ואט הם קיבולת הולכה מתוכננת, לא כושר ייצור חדש של תחנת כוח.",
   "תאריך": "2026-11-07 08:38",
   "הועלה": "2026-11-07 08:38",
-  "מזהה": "n-0081"
+  "מזהה": "n-0081",
+  "כותרת_en": "GE Vernova (GEV): won a 6 GW power transmission project in India; the award letter is dated November 3",
+  "טקסט_en": "Nov 3, 2026 | the award letter date; reported to the exchange on November 4. The parent company's release was published November 6. Publication hours are not specified.\n\nThe company was selected by the Indian power grid corporation, PGCIL, to deliver a high-voltage direct current transmission project, HVDC, between Barmer II in the state of Rajasthan and South Kalamb. The planned capacity is 6,000 MW, in a 2x3,000 MW configuration, at a voltage of +/-800 kV.\n\nPer the parent company's release, the project was recorded as an order in the fourth quarter of 2026. The scope of work includes full design, construction of converter stations, supply of the main equipment and management of on-site construction, testing and commissioning. The converter valves will be manufactured at the company's plant in Pallavaram, India, and the project will include the eLumina control system.\n\nThe Indian company's exchange filing distinguishes between the stages: lowest bidder status, L1, was reported on September 7; the award letter is dated November 3; and the November 4 release says the final agreement will be signed later. Therefore the November 6 release should not be presented as if the facility is already complete or all contracting stages have finished.\n\nThe corridor is meant to carry electricity from a renewable-energy-rich region to demand centers on the Indian grid. The releases checked did not provide the contract price or the project completion date. Recording an order is not immediate revenue recognition, and 6 GW is planned transmission capacity, not new generation capacity of a power plant.",
+  "תקציר_en": "The company will supply design, equipment and converter stations for the HVDC corridor. This is a win in a future project, not capacity already activated or revenue recognized.",
+  "_translation": {
+   "en": {
+    "source_hash": "0d9b00d68fc35b4944dde00c0ce494daa5bdfd82945cb6fdfc127c3063387d37",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Google (GOOGL): השקת Gemini Omni 1.2 Flash עם וידאו עד 15 שניות והוזלת מחיר של 30%",
@@ -2258,18 +2269,29 @@
   "מקורות": [
    {
     "label": "הודעת Google מ-5 בנובמבר",
-    "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/"
+    "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+    "label_en": "Google release of November 5"
    },
    {
     "label": "כרטיס המודל של Google DeepMind",
-    "url": "https://deepmind.google/models/model-cards/gemini-omni-1-2-flash/"
+    "url": "https://deepmind.google/models/model-cards/gemini-omni-1-2-flash/",
+    "label_en": "Google DeepMind's model card"
    }
   ],
   "תקציר": "הגרסה מוסיפה עריכת סרטונים בשיחה רב-שלבית ומרחיבה זמינות למפתחים ולעסקים. מחיר 720p המוצהר הוא 0.07 דולר לשניית וידאו.",
   "טקסט": "⁦5.11.2026⁩ | הודעה רשמית של ⁦Google⁩; שעת הפרסום אינה מוצגת.\n\nהחברה השיקה את ⁦Gemini Omni 1.2 Flash⁩ והודיעה על זמינות כללית דרך ⁦Gemini API⁩ ופתרונותיה לעסקים. המודל מאפשר יצירה ועריכה של סרטונים באורך של עד ⁦15⁩ שניות, לעומת עד ⁦10⁩ שניות בגרסה ⁦1.1,⁩ ובחירת משך בטווח ⁦3⁩ עד ⁦15⁩ שניות בקפיצות של שנייה.\n\nלפי הודעת ההשקה, המחיר ירד ב-⁦30%⁩ לעומת ⁦Omni 1.1,⁩ ל-⁦0.07⁩ דולר לכל שניית וידאו ברזולוציית ⁦720p.⁩ זהו מחיר שמציינת החברה למסלול ולרזולוציה האלה, לא הבטחה שכל עריכה, כלי או חבילת מנוי מתומחרים באותו אופן.\n\nהחידושים כוללים עריכת אותו קטע באמצעות כמה הודעות המשך, שימוש בתמונות דמויות ומוצרים ובקטעי תנועה קצרים כמקורות ייחוס, ושיפור מוצהר בשמירת הדמויות, האובייקטים והסצנה לאורך הסרטון. החברה מציגה גם אפשרות להכין טיוטות ב-⁦360p⁩ או ⁦720p⁩ ולהגדיל קטעים נבחרים ל-⁦1080p⁩ או ⁦4K.⁩\n\nההשקה כוללת פריסה מדורגת בחלק ממוצרי ⁦Google,⁩ לצד הזמינות למפתחים ולעסקים; באפליקציית ⁦Gemini⁩ מוזכרים מנויי ⁦AI Ultra.⁩ אין להסיק מכך שכל משתמש בכל מוצר מקבל מיד את מלוא היכולות. הפלטים כוללים סימון מים בלתי נראה מסוג ⁦SynthID.⁩\n\nאלה יכולות ומחירים לפי החברה, לא מבחן איכות עצמאי. ⁦Google⁩ מציינת שעדיין נדרשת התקדמות בתנועות ספורט מהירות, שינויי תסריט חדים ופיזיקה מורכבת. ההודעה אינה כוללת תחזית הכנסות חדשה.",
   "תאריך": "2026-11-07 08:38",
   "הועלה": "2026-11-07 08:38",
-  "מזהה": "n-0082"
+  "מזהה": "n-0082",
+  "כותרת_en": "Google (GOOGL): launches Gemini Omni 1.2 Flash with video up to 15 seconds and a 30% price cut",
+  "טקסט_en": "Nov 5, 2026 | an official Google release; the publication time is not shown.\n\nThe company launched Gemini Omni 1.2 Flash and announced general availability through the Gemini API and its business solutions. The model enables creating and editing videos of up to 15 seconds, versus up to 10 seconds in version 1.1, and choosing a duration in the 3 to 15 second range in one-second steps.\n\nPer the launch release, the price fell 30% versus Omni 1.1, to $0.07 per second of video at 720p resolution. That is a price the company states for this track and resolution, not a promise that every edit, tool or subscription bundle is priced the same way.\n\nWhat's new includes editing the same clip through several follow-up messages, using character and product images and short motion clips as reference sources, and a stated improvement in preserving the characters, objects and scene across the video. The company also presents an option to prepare drafts at 360p or 720p and upscale selected clips to 1080p or 4K.\n\nThe launch includes a staged rollout in some Google products, alongside availability for developers and businesses; in the Gemini app, AI Ultra subscribers are mentioned. Do not infer that every user in every product immediately gets the full capabilities. Outputs include an invisible SynthID watermark.\n\nThese are capabilities and prices per the company, not an independent quality test. Google notes that progress is still needed in fast sports movements, abrupt script changes and complex physics. The release includes no new revenue forecast.",
+  "תקציר_en": "The version adds multi-turn conversational video editing and expands availability for developers and businesses. The stated 720p price is $0.07 per second of video.",
+  "_translation": {
+   "en": {
+    "source_hash": "ddd415068a425677885b1789e1692766565ac31cae6a8fb32711f007e24d3446",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "CACI International (CACI): חוזה לחמש שנים בהיקף 108 מיליון דולר לתחזוקה ולמודרניזציה של מערכת הכספים של חיל האוויר האמריקאי",
@@ -2279,14 +2301,24 @@
   "מקורות": [
    {
     "label": "הודעת CACI מ-3 בנובמבר",
-    "url": "https://investor.caci.com/2026-11-03-CACI-Advances-U-S-Air-Force-Financial-Transparency-and-Mission-Readiness"
+    "url": "https://investor.caci.com/2026-11-03-CACI-Advances-U-S-Air-Force-Financial-Transparency-and-Mission-Readiness",
+    "label_en": "CACI release of November 3"
    }
   ],
   "תקציר": "הזכייה נוגעת למערכת החשבונאות DEAMS. סכום החוזה מתפרס על חמש שנים ואינו הכנסה או תשלום מיידיים.",
   "טקסט": "3.11.2026 | הודעה רשמית של החברה; שעת הפרסום אינה מוצגת.\n\nהחברה הודיעה שחיל האוויר האמריקאי העניק לה חוזה לחמש שנים בהיקף 108 מיליון דולר לתחזוקה ולמודרניזציה של מערכת החשבונאות וניהול הכספים שלו, המכונה ⁦DEAMS.⁩\n\nהעבודה כוללת המשך הפעלת המערכת ושיפורה, פיתוח בשיטות ⁦Agile,⁩ בדיקות אוטומטיות, אבטחת סייבר ותפעול בסביבת ענן. המטרה המתוארת בהודעה היא לשפר את השקיפות הפיננסית ואת המידע הזמין לקבלת החלטות בחיל האוויר.\n\nזו הודעת זכייה בחוזה מ-3 בנובמבר, לא חוזה שנחתם היום. 108 מיליון הדולר הם היקף חוזה לחמש שנים, לא הכנסה רבעונית חדשה, תשלום שכבר התקבל או צבר שמומש במלואו. ההודעה אינה מפרטת את קצב ההכרה בהכנסה או מוסיפה תחזית כספית חדשה.",
   "תאריך": "2026-11-07 08:37",
   "הועלה": "2026-11-07 08:37",
-  "מזהה": "n-0083"
+  "מזהה": "n-0083",
+  "כותרת_en": "CACI International (CACI): a five-year $108 million contract for maintenance and modernization of the US Air Force financial system",
+  "טקסט_en": "Nov 3, 2026 | an official company release; the publication time is not shown.\n\nThe company announced that the US Air Force awarded it a five-year $108 million contract for maintenance and modernization of its accounting and financial management system, called DEAMS.\n\nThe work includes continued operation of the system and its improvement, Agile development, automated testing, cybersecurity and operation in a cloud environment. The goal described in the release is to improve financial transparency and the information available for decision-making in the Air Force.\n\nThis is a November 3 contract win announcement, not a contract signed today. The $108 million is a five-year contract scope, not new quarterly revenue, a payment already received or a fully exercised backlog. The release does not detail the revenue recognition pace or add a new financial forecast.",
+  "תקציר_en": "The win concerns the DEAMS accounting system. The contract amount is spread over five years and is not immediate revenue or payment.",
+  "_translation": {
+   "en": {
+    "source_hash": "9047fccab5cff6251c4ff4c1c2bb5a105c1800024fda47d0c2d646fb979f4eb4",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "NVIDIA (NVDA): ארבעה מודלים פתוחי משקולות במשפחת Cosmos 3 לסימולציית נהיגה ורובוטיקה",
@@ -2296,18 +2328,29 @@
   "מקורות": [
    {
     "label": "פרסום NVIDIA ב-Hugging Face מ-5 בנובמבר",
-    "url": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation"
+    "url": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation",
+    "label_en": "NVIDIA's Hugging Face publication of November 5"
    },
    {
     "label": "הבלוג הטכני של NVIDIA מ-2 בנובמבר",
-    "url": "https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/"
+    "url": "https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/",
+    "label_en": "NVIDIA's technical blog of November 2"
    }
   ],
   "תקציר": "המודלים מייצרים תצפיות מצלמה ו-LiDAR וסרטונים בתגובה לפעולות. הם כלי לפיתוח ובדיקה בסימולציה, לא אישור לבטיחות נהיגה או רובוטים בעולם האמיתי.",
   "טקסט": "5.11.2026 | פרסום ⁦NVIDIA⁩ ב-⁦Hugging Face⁩; שעת הפרסום אינה מוצגת. מדריך טכני נלווה של החברה מתוארך ל-2 בנובמבר.\n\nהחברה פרסמה ארבע נקודות בדיקה פתוחות משקולות של משפחת ⁦Cosmos 3,⁩ המבוססות על ⁦Cosmos 3 Nano⁩ עם 16 מיליארד פרמטרים הניתנים לאימון. המודלים נועדו ליצירת עולמות ותצפיות סינתטיות עבור פיתוח נהיגה אוטונומית ורובוטיקה.\n\nשני מודלים מתמקדים בנהיגה: ⁦Transfer-Auto⁩ מייצר נתוני נהיגה סינתטיים מכמה זוויות מצלמה, עד 11 תצוגות מסונכרנות, עם אפשרות לשילוב ⁦LiDAR⁩; ⁦Sim-Auto⁩ מייצר רצפים של תצפיות מצלמה ו-⁦LiDAR⁩ בהזרמה, בהתאם לבקרות הסצנה ולתצפיות שנוצרו קודם.\n\nשני האחרים מתמקדים בסימולציה ורובוטיקה: ⁦Sim-Transfer⁩ הופך בקרות של סימולטור והנחיית טקסט לווידאו; ⁦Sim-Bimanual⁩ חוזה תצפיות וידאו בתגובה לפעולות של רובוט בעל שתי זרועות או של מצלמה. אלה מודלים לדוגמה שעברו אימון נוסף, ולצדם מתכונים להתאמה לנתונים ולחיישנים של מפתחים.\n\nהרישיון ⁦OpenMDW1.1⁩ מאפשר שימוש מסחרי ולא מסחרי בכפוף לתנאיו. משקולות פתוחות אינן מבטיחות שכל חלק במערכת הוא קוד פתוח או שכל שימוש מותר ללא תנאים.\n\nהחברה מדגישה שיש לבדוק היכן הסימולציה נאמנה מספיק לצורכי אימון והערכה. פרסום המודלים אינו הוכחה לבטיחות רכב או רובוט בעולם האמיתי, ואינו כולל הודעה על חוזה לקוח או תחזית הכנסות חדשה.",
   "תאריך": "2026-11-07 08:37",
   "הועלה": "2026-11-07 08:37",
-  "מזהה": "n-0084"
+  "מזהה": "n-0084",
+  "כותרת_en": "NVIDIA (NVDA): four open-weight models in the Cosmos 3 family for driving simulation and robotics",
+  "טקסט_en": "Nov 5, 2026 | an NVIDIA publication on Hugging Face; the publication time is not shown. An accompanying company technical guide is dated November 2.\n\nThe company published four open-weight checkpoints of the Cosmos 3 family, based on Cosmos 3 Nano with 16 billion trainable parameters. The models are meant for creating synthetic worlds and observations for autonomous driving and robotics development.\n\nTwo models focus on driving: Transfer-Auto generates synthetic driving data from several camera angles, up to 11 synchronized views, with an option to integrate LiDAR; Sim-Auto generates streams of camera and LiDAR observations, according to scene controls and previously generated observations.\n\nThe other two focus on simulation and robotics: Sim-Transfer turns simulator controls and a text prompt into video; Sim-Bimanual predicts video observations in response to actions of a two-armed robot or a camera. These are example models that underwent further training, alongside recipes for adaptation to developers' data and sensors.\n\nThe OpenMDW1.1 license allows commercial and non-commercial use subject to its terms. Open weights do not guarantee that every part of the system is open source or that every use is unconditionally permitted.\n\nThe company stresses the need to check where the simulation is faithful enough for training and evaluation purposes. Publishing the models is no proof of vehicle or robot safety in the real world, and includes no announcement of a customer contract or a new revenue forecast.",
+  "תקציר_en": "The models generate camera and LiDAR observations and videos in response to actions. They are a tool for simulation development and testing, not an approval for driving or robot safety in the real world.",
+  "_translation": {
+   "en": {
+    "source_hash": "6907e6d624c185198ec554e816110618cae6086d9dc7d4f353b6fdee5cd4b0f4",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Tesla (TSLA): אישור מוגבל ל-14 חודשים לפעילות ייצור מוצרי אגירת אנרגיה במסגרת אזור סחר חופשי בטקסס",
@@ -2317,18 +2360,29 @@
   "מקורות": [
    {
     "label": "Federal Register, הודעת האישור מ-2 בנובמבר",
-    "url": "https://www.federalregister.gov/documents/2026/11/02/2026-22301/foreign-trade-zone-ftz-84-authorization-of-production-activity-tesla-inc-battery-storage-products"
+    "url": "https://www.federalregister.gov/documents/2026/11/02/2026-22301/foreign-trade-zone-ftz-84-authorization-of-production-activity-tesla-inc-battery-storage-products",
+    "label_en": "Federal Register, the approval notice of November 2"
    },
    {
     "label": "Federal Register, תיאור הבקשה מ-8 ביוני",
-    "url": "https://www.federalregister.gov/documents/2026/06/08/2026-11431/foreign-trade-zone-ftz-84-notification-of-proposed-production-activity-tesla-inc-battery-storage"
+    "url": "https://www.federalregister.gov/documents/2026/06/08/2026-11431/foreign-trade-zone-ftz-84-notification-of-proposed-production-activity-tesla-inc-battery-storage",
+    "label_en": "Federal Register, the request description of June 8"
    }
   ],
   "תקציר": "ההחלטה נמסרה לחברה ב-28 באוקטובר. מדובר בהרשאה מוגבלת במסגרת FTZ, לא בפטור גורף ממכסים או באישור שקיבולת הייצור כבר פועלת.",
   "טקסט": "2.11.2026 | פרסום הודעת Foreign-Trade Zones Board ברשומות הפדרליות. ההחלטה נמסרה למבקשת ב-28 באוקטובר. שעת הפרסום הסופי אינה מצוינת; אין לערבב אותה עם שעת הפקדת המסמך לעיון מוקדם ב-30 באוקטובר.\n\nהמועצה אישרה על בסיס מוגבל פעילות ייצור של Tesla במתקן ב-Brookshire, טקסס, במסגרת FTZ 84. האישור כפוף לחוק אזורי הסחר החופשי, לתקנות המועצה ולתקופה של 14 חודשים. זהו אישור שניתן באוקטובר ופורסם בתחילת נובמבר, לא החלטה חדשה ב-7 בנובמבר.\n\nהבקשה המקורית התקבלה ב-20 במאי ותוארה בפרסום מ-8 ביוני. המוצרים הסופיים שהוצעו בה הם Megapacks וממירי Bento; רשימת הרכיבים כוללת בין היתר תאי סוללה, ממירים, מערכות קירור ורכיבים חשמליים. היקף הפעילות במסגרת FTZ מוגבל למוצרים ולרכיבים שפורטו ושאושרו, ולא לכל פעילות Tesla.\n\nהודעת האישור אינה מעניקה פטור בלתי מוגבל מכל מכס. בתיאור הבקשה נאמר כי סחורות מסוימות הכפופות למכסים לפי סעיפים 122, 232 או 301, בהתאם לארץ המקור, חייבות להיכנס לאזור במעמד מכס של privileged foreign status לפי ההחלטות החלות עליהן. לכן עצם קיומו של FTZ אינו מוכיח שמכסים אלה בוטלו.\n\nהמסמכים אינם מאמתים את תמהיל תאי הסוללה המשמש כיום במפעל, חיסכון כספי מסוים או שיעור מכס אחיד שיחול על כל המוצרים. אין להסיק מהם שכל יבוא מסין פטור ממכס או שהרשאה זו לבדה מבטיחה יתרון עלות מסוים.\n\nזהו עדכון רגולטורי על תנאי פעילות הייצור במסגרת FTZ. הוא אינו דיווח על השלמת מפעל, תחילת ייצור בהיקף מסחרי או קיבולת שכבר נכנסה לפעולה. מגבלת 14 החודשים ותנאי ההרשאה נשארים חלק מהאישור.",
   "תאריך": "2026-11-07 08:04",
   "הועלה": "2026-11-07 08:04",
-  "מזהה": "n-0085"
+  "מזהה": "n-0085",
+  "כותרת_en": "Tesla (TSLA): a 14-month limited approval for energy storage product manufacturing activity under a free trade zone in Texas",
+  "טקסט_en": "Nov 2, 2026 | publication of the Foreign-Trade Zones Board notice in the Federal Register. The decision was delivered to the applicant on October 28. The final publication time is not specified; do not confuse it with the document's filing time for early review on October 30.\n\nThe board approved on a limited basis Tesla's manufacturing activity at a facility in Brookshire, Texas, under FTZ 84. The approval is subject to the Foreign-Trade Zones Act, the board's regulations and a 14-month period. This is an approval granted in October and published in early November, not a new decision on November 7.\n\nThe original request was received on May 20 and described in a June 8 publication. The final products proposed in it are Megapacks and Bento converters; the component list includes battery cells, converters, cooling systems and electrical components, among others. The scope of FTZ activity is limited to the detailed and approved products and components, not all of Tesla's activity.\n\nThe approval notice does not grant an unlimited exemption from every tariff. The request description says certain goods subject to tariffs under sections 122, 232 or 301, depending on the country of origin, must enter the zone under privileged foreign status tariff status per the decisions applying to them. Therefore the very existence of an FTZ does not prove these tariffs were canceled.\n\nThe documents do not verify the battery cell mix currently used at the plant, a specific monetary saving or a uniform tariff rate that will apply to all products. Do not infer from them that all imports from China are tariff-exempt or that this authorization alone guarantees a specific cost advantage.\n\nThis is a regulatory update on manufacturing activity conditions under the FTZ. It is not a report of a completed plant, the start of commercial-scale production or capacity already in operation. The 14-month limit and the authorization conditions remain part of the approval.",
+  "תקציר_en": "The decision was delivered to the company on October 28. This is a limited authorization under the FTZ, not a sweeping tariff exemption or approval that production capacity is already running.",
+  "_translation": {
+   "en": {
+    "source_hash": "73995c483559183f62e1e43f4e18b71c3677132055f3ab060183c5bb021d3478",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Toast (TOST): Michael Senno יחליף את Elena Gomez כסמנכ\"ל הכספים ב-1 בינואר 2027",
@@ -2338,14 +2392,24 @@
   "מקורות": [
    {
     "label": "Toast, הודעת החברה מ-3 בנובמבר שהוגשה ל-SEC",
-    "url": "https://www.sec.gov/Archives/edgar/data/1650164/000165016426000214/tost-20260930xexhibit991.htm"
+    "url": "https://www.sec.gov/Archives/edgar/data/1650164/000165016426000214/tost-20260930xexhibit991.htm",
+    "label_en": "Toast, the company release of November 3 filed with the SEC"
    }
   ],
   "תקציר": "Gomez תסיים את תפקידי הנשיאה וסמנכ\"לית הכספים בסוף השנה ותמשיך בתפקיד ייעוץ כעובדת לא-ביצועית עד 2 ביולי 2027. המינוי של Senno הוא לתפקיד CFO.",
   "טקסט": "3.11.2026 | עדכון הנהלה בהודעת Toast שהוגשה ל-SEC במסגרת תוצאות הרבעון השלישי. שעת הפרסום המקורית אינה מצוינת במסמך שנבדק. זהו גילוי מ-3 בנובמבר, לא חילופי תפקידים שנכנסו לתוקף ב-7 בנובמבר.\n\nToast הודיעה כי Elena Gomez החליטה לסיים את תפקידי הנשיאה וסמנכ״לית הכספים בסוף השנה הקלנדרית. Michael Senno, סגן הנשיא הבכיר לכספים של החברה, ייכנס לתפקיד סמנכ״ל הכספים ב-1 בינואר 2027.\n\nGomez לא תעזוב מיד את כל פעילותה בחברה: החל מהמעבר היא תכהן בתפקיד ייעוץ כעובדת לא-ביצועית עד 2 ביולי 2027, כדי לתמוך בהעברת האחריות. ההודעה מגדירה את Senno כמחליף בתפקיד CFO, ולא קובעת שהוא מקבל גם את תפקיד הנשיא.\n\nלפי החברה, Gomez עבדה ב-Toast כחמש שנים וחצי והובילה אותה לאורך ההנפקה ב-2021 ותקופת צמיחה לאחריה. בדבריה בהודעה אמרה שהגיע הזמן לקחת הפסקה לפני השלב הבא. הדירקטוריון הציג זאת כהחלטה אישית ותמך במעבר.\n\nהחברה מציגה את הבחירה ב-Senno כקידום פנימי של מנהל שמכיר את הפעילות והמערכת הפיננסית שלה. אין בהודעה קביעה שמדובר במינוי זמני עד למציאת מועמד חיצוני.\n\nעדכון ההנהלה נפרד ממספרי התוצאות של הרבעון. הוא אינו הודעה על פיטורים מיידיים, אינו קביעה על בעיה חשבונאית ואינו מוכיח קשר סיבתי להליך משפטי כלשהו. מועדי המעבר העתידיים הם אלה שנמסרו בהודעת החברה.",
   "תאריך": "2026-11-07 07:58",
   "הועלה": "2026-11-07 07:58",
-  "מזהה": "n-0086"
+  "מזהה": "n-0086",
+  "כותרת_en": "Toast (TOST): Michael Senno will replace Elena Gomez as CFO on January 1, 2027",
+  "טקסט_en": "Nov 3, 2026 | a management update in Toast's release filed with the SEC as part of Q3 results. The original publication time is not specified in the document checked. This is a November 3 disclosure, not a role change that took effect on November 7.\n\nToast announced that Elena Gomez decided to end her roles as president and CFO at the end of the calendar year. Michael Senno, the company's senior vice president of finance, will step into the CFO role on January 1, 2027.\n\nGomez will not immediately leave all her activity at the company: from the transition she will serve in an advisory role as a non-executive employee until July 2, 2027, to support the handover of responsibility. The release defines Senno as the replacement in the CFO role, and does not state that he also receives the president role.\n\nPer the company, Gomez worked at Toast for about five and a half years and led it through the 2021 IPO and a growth period afterward. In her remarks in the release she said the time had come to take a break before the next stage. The board presented this as a personal decision and supported the transition.\n\nThe company presents the choice of Senno as an internal promotion of a manager who knows its operations and financial system. The release does not state that this is an interim appointment until an external candidate is found.\n\nThe management update is separate from the quarter's results figures. It is not an announcement of immediate layoffs, not a determination of an accounting problem and does not prove a causal link to any legal proceeding. The future transition dates are those given in the company's release.",
+  "תקציר_en": "Gomez will end her roles as president and CFO at the end of the year and continue in an advisory role as a non-executive employee until July 2, 2027. Senno's appointment is to the CFO role.",
+  "_translation": {
+   "en": {
+    "source_hash": "d63c427f92b9efad2dcca330f022e17d55d67526891766a9ec829bcce86c2c99",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Viper Energy (VNOM): רכישת זכויות McElroy בכ-529 מיליון דולר הושלמה בספטמבר; עסקת Buckhorn עדיין ממתינה",
@@ -2355,14 +2419,24 @@
   "מקורות": [
    {
     "label": "Viper Energy, הודעת 2 בנובמבר 2026",
-    "url": "https://ir.viperenergy.com/news-releases/news-release-details/viper-energy-inc-subsidiary-diamondback-energy-inc-reports-8/"
+    "url": "https://ir.viperenergy.com/news-releases/news-release-details/viper-energy-inc-subsidiary-diamondback-energy-inc-reports-8/",
+    "label_en": "Viper Energy, release of November 2, 2026"
    }
   ],
   "תקציר": "מחיר McElroy כולל 49 מיליון דולר בתשלומים נדחים. Buckhorn היא עסקה נפרדת תמורת 280 מיליון דולר וכ-1.8 מיליון מניות, שהשלמתה צפויה ברבעון הרביעי בכפוף לתנאים.",
   "טקסט": "2.11.2026 | גילוי של Viper Energy בהודעת הרבעון השלישי; שעת הפרסום המקורית אינה מצוינת בעמוד שנבדק. העסקאות המתוארות החלו בספטמבר, ולא בוצעו לראשונה ב-7 בנובמבר.\n\nViper, חברה בת של Diamondback Energy, מסרה כי השלימה בספטמבר שתי עסקאות קשורות לרכישת זכויות מינרלים ותמלוגים ב-McElroy Ranch במחוזות Upton ו-Crane בטקסס. המחיר הכולל הוא כ-529 מיליון דולר, כפוף להתאמות מקובלות לאחר ההשלמה.\n\nהסכום כולל עלויות עסקה מסוימות ו-49 מיליון דולר בתמורה נדחית, שתשולם בתשלומים רבעוניים שווים עד יוני 2029. אין להוסיף את התמורה הנדחית שוב ל-529 מיליון, ואין לפרש את כל המחיר כמזומן שכבר שולם במועד אחד.\n\nהזכויות שנרכשו משתרעות על כ-7,359 אקרים נטו של זכויות תמלוגים, עם החזקה מרוכזת של כ-12% על פני כ-60 אלף אקרים ברוטו. אלה זכויות מינרלים ותמלוגים, לא רכישה של כל קרקעות החווה או בעלות מלאה בכל הבארות. החברה מתארת 96% מהנכס כלא מפותח, ולכן אין לראות בכל פוטנציאל הפיתוח הפקה שכבר קיימת.\n\nבנפרד, Viper חתמה ב-14 בספטמבר על הסכם מחייב לרכישת זכויות מישויות Buckhorn Minerals תמורת 280 מיליון דולר במזומן וכ-1.8 מיליון מניות Class A. עסקה זו עדיין מתוארת בהודעת 2 בנובמבר כממתינה להשלמה ברבעון הרביעי של 2026, בכפוף לתנאי סגירה ולהתאמות.\n\nעסקת Buckhorn כוללת 1,552 אקרים נטו של זכויות תמלוגים, כמעט כולם ב-Midland Basin; כ-80% מהם חופפים לאזורי הזכויות הקיימים של Viper. החברה צופה לממן את רכיב המזומן משילוב של מזומן בקופה ואשראי מתחדש. אין בהודעה אישור שהמימון כבר נמשך או שהעסקה כבר נסגרה.\n\nהפרדה בין העסקאות חשובה: McElroy הושלמה בספטמבר, ואילו Buckhorn נותרה עסקה ממתינה במועד הדיווח. תחזיות לפיתוח ולהפקה עתידית אינן תוצאות שכבר הושגו, ולא פורסמה בהודעה התחייבות לתשואה מובטחת מהרכישות.",
   "תאריך": "2026-11-07 07:53",
   "הועלה": "2026-11-07 07:53",
-  "מזהה": "n-0087"
+  "מזהה": "n-0087",
+  "כותרת_en": "Viper Energy (VNOM): the roughly $529 million McElroy rights purchase was completed in September; the Buckhorn deal is still pending",
+  "טקסט_en": "Nov 2, 2026 | a Viper Energy disclosure in the Q3 release; the original publication time is not specified on the page checked. The deals described began in September and were not first executed on November 7.\n\nViper, a subsidiary of Diamondback Energy, said it completed in September two deals related to purchasing mineral and royalty rights at McElroy Ranch in Upton and Crane counties, Texas. The total price is about $529 million, subject to customary post-closing adjustments.\n\nThe sum includes certain transaction costs and $49 million in deferred consideration, to be paid in equal quarterly payments through June 2029. Do not add the deferred consideration again to the $529 million, and do not read the entire price as cash already paid at one time.\n\nThe rights purchased span about 7,359 net acres of royalty rights, with a concentrated holding of about 12% across about 60 thousand gross acres. These are mineral and royalty rights, not a purchase of all the ranch's lands or full ownership of all the wells. The company describes 96% of the asset as undeveloped, so not all development potential should be seen as production already existing.\n\nSeparately, Viper signed on September 14 a binding agreement to purchase rights from Buckhorn Minerals for $280 million in cash and about 1.8 million Class A shares. This deal is still described in the November 2 release as pending completion in the fourth quarter of 2026, subject to closing conditions and adjustments.\n\nThe Buckhorn deal includes 1,552 net acres of royalty rights, almost all in the Midland Basin; about 80% of them overlap Viper's existing rights areas. The company expects to finance the cash component from a combination of cash on hand and revolving credit. The release contains no confirmation that the financing has already been drawn or that the deal has already closed.\n\nThe distinction between the deals matters: McElroy was completed in September, while Buckhorn remained a pending deal at the reporting date. Development and future production forecasts are not results already achieved, and no commitment to a guaranteed return from the purchases was published in the release.",
+  "תקציר_en": "The McElroy price includes $49 million in deferred payments. Buckhorn is a separate deal for $280 million and about 1.8 million shares, whose completion is expected in Q4 subject to conditions.",
+  "_translation": {
+   "en": {
+    "source_hash": "0f1b6b44b3a19879c9a2f077ec3cf9dfa07678b6155a55739cf55f891acbd9c5",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Lantheus (LNTH): לפי החברה, כללי CMS ל-2027 משמרים תשלום נפרד לחומרי הדמיה אבחוניים זכאים",
@@ -2372,14 +2446,24 @@
   "מקורות": [
    {
     "label": "Lantheus, הודעת 5 בנובמבר 2026",
-    "url": "https://investor.lantheus.com/news-releases/news-release-details/lantheus-welcomes-cms-cy27-final-rule-advancing-access"
+    "url": "https://investor.lantheus.com/news-releases/news-release-details/lantheus-welcomes-cms-cy27-final-rule-advancing-access",
+    "label_en": "Lantheus, release of November 5, 2026"
    }
   ],
   "תקציר": "החברה דיווחה על מעמד תשלום מעבר ל-PYLARIFY TruVu עד 30 בספטמבר 2029 ועל קוד חיוב קבוע A9613 שנכנס לתוקף ב-1 באוקטובר 2026.",
   "טקסט": "5.11.2026 | הודעת Lantheus; שעת הפרסום המקורית אינה מצוינת בעמוד שנבדק. המידע להלן מבוסס על הודעת החברה המתארת את הכלל הסופי של CMS, ולא על בדיקה נפרדת של מלוא נוסח הכלל.\n\nLantheus מסרה כי הכלל הסופי של CMS לשנת 2027 במסגרת מערכת התשלום לשירותי חוץ בבתי חולים, OPPS, משמר תשלום נפרד לחומרים רדיופרמצבטיים אבחוניים שעומדים בתנאים. אין בכך קביעה שכל בדיקת הדמיה או כל מוצר של החברה זכאים לאותו תשלום.\n\nלפי החברה, CMS אישר כי PYLARIFY TruVu, חומר הזרקה מסוג piflufolastat F 18 המשמש בהדמיית PSMA PET, יקבל מעמד תשלום מעבר, Transitional Pass-Through, עד 30 בספטמבר 2029. החברה מתארת זאת כמלוא תקופת שלוש השנים הזמינה במסגרת שירותי חוץ בבתי חולים.\n\nלמוצר ניתן גם קוד חיוב קבוע HCPCS A9613, שנכנס לתוקף כבר ב-1 באוקטובר 2026. יש להפריד בין קביעות הקוד לבין מעמד תשלום המעבר המוגבל בזמן: קוד קבוע אינו הבטחה שמעמד המעבר נמשך ללא הגבלה או שכל מבטח ישלם בכל מצב.\n\nהחברה מעריכה כי ההסדרה מספקת לבתי חולים ודאות נוספת בהחזר התשלום ועשויה לתמוך בגישה להדמיה. ההודעה אינה מפרסמת תחזית מכירות חדשה או כימות של הגידול בהכנסות שינבע מהכלל, ולכן אין להסיק ממנה תוספת הכנסות מובטחת.\n\nזהו עדכון על החזרי תשלום וקידוד. הוא אינו הודעה על אישור FDA חדש, אינו שינוי בהתוויות הטיפול ואינו אישור להשלמת עסקת Curium. החברה מציינת גם סיכונים להטמעת קודי החיוב במערכות משלמים, לאימוץ המוצר ולזמינות האספקה.",
   "תאריך": "2026-11-07 07:47",
   "הועלה": "2026-11-07 07:47",
-  "מזהה": "n-0088"
+  "מזהה": "n-0088",
+  "כותרת_en": "Lantheus (LNTH): per the company, CMS's 2027 rules preserve separate payment for eligible diagnostic imaging agents",
+  "טקסט_en": "Nov 5, 2026 | a Lantheus release; the original publication time is not specified on the page checked. The information below is based on the company's release describing CMS's final rule, not on a separate review of the rule's full text.\n\nLantheus said CMS's final rule for 2027 under the hospital outpatient prospective payment system, OPPS, preserves separate payment for qualifying diagnostic radiopharmaceuticals. That is no determination that every imaging test or every company product is entitled to the same payment.\n\nPer the company, CMS confirmed that PYLARIFY TruVu, a piflufolastat F 18 injection used in PSMA PET imaging, will receive transitional pass-through payment status through September 30, 2029. The company describes this as the full three-year period available under hospital outpatient services.\n\nThe product also received a permanent HCPCS billing code A9613, which took effect already on October 1, 2026. The code determinations should be separated from the time-limited pass-through payment status: a permanent code is no guarantee that pass-through status continues without limit or that every insurer will pay in every situation.\n\nThe company estimates the arrangement gives hospitals additional certainty in reimbursement and may support access to imaging. The release does not publish a new sales forecast or a quantification of the revenue growth that will result from the rule, so no guaranteed revenue addition should be inferred from it.\n\nThis is an update on reimbursement and coding. It is not an announcement of a new FDA approval, not a change in treatment indications and no confirmation of completing the Curium deal. The company also notes risks in implementing the billing codes in payer systems, in product adoption and in supply availability.",
+  "תקציר_en": "The company reported transitional pass-through payment status for PYLARIFY TruVu through September 30, 2029 and a permanent billing code A9613 effective October 1, 2026.",
+  "_translation": {
+   "en": {
+    "source_hash": "db1bf6fa763a917c3e064b4b6b44c421a2104b8a227e45701878c06509bf594c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "ServiceNow (NOW): הרחבת השותפות עם OpenAI ותוסף לביצוע תהליכי עבודה מתוך ChatGPT",
