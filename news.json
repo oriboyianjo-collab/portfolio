@@ -6,13 +6,22 @@
   "מקורות": [
    {
     "label": "הודעת החברה הרשמית, 8.11.2026 (PRNewswire)",
-    "url": "https://www.prnewswire.com/news-releases/johnson--johnson-reports-73-psa-response-rate-with-investigational-pasritamig-based-immunotherapy-combination-in-advanced-prostate-cancer-302932750.html"
+    "url": "https://www.prnewswire.com/news-releases/johnson--johnson-reports-73-psa-response-rate-with-investigational-pasritamig-based-immunotherapy-combination-in-advanced-prostate-cancer-302932750.html",
+    "label_en": "Official company release, Nov 8, 2026 (PRNewswire)"
    }
   ],
   "טקסט": "הודעת החברה: 8.11.2026 | 18:00 שעון ישראל (11:00 שעון החוף המזרחי). פרסום אפליקציה: 8.11.2026\n\nג'ונסון אנד ג'ונסון דיווחה על תוצאות ראשונות של שלב 1 (ניסוי פתוח, רב-מרכזי, first-in-human) לשילוב הניסיוני של שתי נוגדנים דו-ספציפיים, pasritamig (מכוון KLK2) ו-JNJ-9401 (מכוון PSMA), בחולי סרטן ערמונית גרורתי עמיד לקסטרציה (mCRPC). התוצאות הוצגו במושב מאוחר-שבירה בכנס SITC 2026 (תקציר מספר 1175).\n\nבמינון המומלץ (15 מטופלים מתוך 144 שנרשמו לניסוי נכון ל-15 ביוני 2026): 11 מתוך 15 (73%) השיגו הפחתה של 50% לפחות ב-PSA, ו-7 מתוך 15 (47%) השיגו הפחתה של 90% לפחות; ארבעה מטופלים הגיעו ל-PSA בלתי-ניתן לזיהוי. כל שבעת המטופלים עם הפחתה של 90%+ נותרו בטיפול למעלה משישה חודשים ללא התקדמות מחלה. המטופלים בקבוצה זו טופלו בעבר בחציון של ארבעה קווי טיפול קודמים (טווח 2-6).\n\nבטיחות במינון המומלץ, לפי החברה: לא דווחו אירועים לוואי חמורים (דרגה 3 ומעלה) הקשורים לטיפול, לא רעילויות מגבילות מינון ולא אירועים הקשורים לטיפול שהובילו להפסקתו או למוות. תסמונת שחרור ציטוקינים (CRS) נצפתה בשלושה מטופלים (20%), כולן בדרגה 1 בלבד וללא צורך ב-tocilizumab; לא דווחו מקרי ICANS.\n\nלהבהיר: PSA הוא סמן ביולוגי למעקב אחר פעילות המחלה, לא הוכחת תועלת בהישרדות או בריפוי. מדובר בקבוצה קטנה מאוד (15 מטופלים) בשלב מוקדם, בנתונים שדיווחה החברה עצמה, והחברה עצמה מציינת שנדרשת הערכה נוספת. לפי החברה השילוב כבר נמצא בפיתוח שלב 3; התרופות ניסיוניות ואינן מאושרות.",
   "תאריך": "2026-11-08 18:07",
   "הועלה": "2026-11-08 18:07",
-  "מזהה": "n-0001"
+  "מזהה": "n-0001",
+  "כותרת_en": "Johnson & Johnson (JNJ): with the investigational pasritamig and JNJ-9401 combination in metastatic prostate cancer, 73% of patients at the recommended dose achieved a 50%+ PSA reduction; phase 1 data in only 15 patients",
+  "טקסט_en": "Company release: Nov 8, 2026 | 18:00 Israel time (11:00 Eastern). App publication: Nov 8, 2026\n\nJohnson & Johnson reported initial phase 1 results (open-label, multicenter, first-in-human trial) for the investigational combination of two bispecific antibodies, pasritamig (KLK2-targeted) and JNJ-9401 (PSMA-targeted), in patients with metastatic castration-resistant prostate cancer (mCRPC). The results were presented in a late-breaking session at the SITC 2026 conference (abstract number 1175).\n\nAt the recommended dose (15 patients out of 144 enrolled in the trial as of June 15, 2026): 11 of 15 (73%) achieved a PSA reduction of at least 50%, and 7 of 15 (47%) achieved a reduction of at least 90%; four patients reached undetectable PSA. All seven patients with a 90%+ reduction remained on treatment for more than six months without disease progression. Patients in this group had previously received a median of four prior lines of therapy (range 2-6).\n\nSafety at the recommended dose, per the company: no severe adverse events (grade 3 or higher) related to treatment, no dose-limiting toxicities, and no treatment-related events leading to discontinuation or death were reported. Cytokine release syndrome (CRS) was observed in three patients (20%), all grade 1 only and with no need for tocilizumab; no ICANS cases were reported.\n\nTo be clear: PSA is a biomarker for tracking disease activity, not proof of survival benefit or cure. This is a very small cohort (15 patients) at an early stage, in data reported by the company itself, and the company itself notes that further evaluation is required. Per the company the combination is already in phase 3 development; the drugs are investigational and not approved.",
+  "_translation": {
+   "en": {
+    "source_hash": "79285f9213f5cd5fccc30efc821af5d8c32c6f2f83177e5e7d9a8d8f0af4c4c2",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Becton, Dickinson (BDX): הדיבידנד הרבעוני הועלה ב-1.0% ל-1.06 דולר, העלייה השנתית ה-55 ברציפות; הדירקטוריון אישר רכישה חוזרת של עד 10 מיליון מניות נוספות",
@@ -21,13 +30,22 @@
   "מקורות": [
    {
     "label": "הודעת החברה הרשמית, 5.11.2026",
-    "url": "https://investors.bd.com/news-events/press-releases/detail/983/bd-board-increases-dividend-for-55th-consecutive-year-authorizes-10-million-additional-share-repurchases"
+    "url": "https://investors.bd.com/news-events/press-releases/detail/983/bd-board-increases-dividend-for-55th-consecutive-year-authorizes-10-million-additional-share-repurchases",
+    "label_en": "Official company release, Nov 5, 2026"
    }
   ],
   "טקסט": "הודעת החברה: 5.11.2026 | 13:25 שעון ישראל (06:25 שעון החוף המזרחי). פרסום אפליקציה: 8.11.2026\n\nדירקטוריון BD (בקטון, דיקינסון) הכריז על דיבידנד רבעוני של 1.06 דולר למניה, עלייה של 1.0% לעומת הרבעון הקודם. הדיבידנד ישולם ב-31 בדצמבר 2026 לבעלי המניות הרשומים ב-10 בדצמבר 2026; השיעור השנתי המשוער הוא 4.24 דולר למניה. זו השנה הפיסקלית ה-55 ברציפות שבה החברה מעלה את הדיבידנד, ולדברי היו\"ר והמנכ\"ל טום פולן החברה שומרת על מקומה במדד האצילים של S&P 500.\n\nבנוסף, הדירקטוריון אישר לחברה מסגרת לרכישה חוזרת של עד 10 מיליון מניות נוספות, מעבר ליתרה שנותרה באישור הקודם מ-2026. מדובר באישור מסגרת בלבד, לא ברכישה שבוצעה בפועל: העיתוי, האופן, המספר והשווי של רכישות בפועל ייקבעו לפי שיקול דעת ההנהלה וכפופים לתנאי השוק.",
   "תאריך": "2026-11-08 17:56",
   "הועלה": "2026-11-08 17:56",
-  "מזהה": "n-0002"
+  "מזהה": "n-0002",
+  "כותרת_en": "Becton, Dickinson (BDX): quarterly dividend raised 1.0% to $1.06, the 55th consecutive annual increase; the board authorized repurchase of up to 10 million additional shares",
+  "טקסט_en": "Company release: Nov 5, 2026 | 13:25 Israel time (06:25 Eastern). App publication: Nov 8, 2026\n\nThe BD (Becton, Dickinson) board declared a quarterly dividend of $1.06 per share, a 1.0% increase versus the prior quarter. The dividend will be paid on December 31, 2026 to shareholders of record on December 10, 2026; the indicated annual rate is $4.24 per share. This is the 55th consecutive fiscal year in which the company has raised its dividend, and according to chairman and CEO Tom Polen the company maintains its place in the S&P 500 Dividend Aristocrats index.\n\nIn addition, the board authorized the company to repurchase up to 10 million additional shares, beyond the balance remaining under the prior 2026 authorization. This is a framework authorization only, not an executed repurchase: the timing, manner, number and value of actual repurchases will be determined at management's discretion and subject to market conditions.",
+  "_translation": {
+   "en": {
+    "source_hash": "38abb76fc8132946bcf6e59375f828cf4b748be493d4795b581384271712ab5f",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "NVIDIA (NVDA): יושבי-ראש שלוש ועדות בבית הנבחרים מבקשים מג'נסן הואנג תדריך חסוי ב-18 בנובמבר על פרוטוקולי האבטחה מול ריגול זר",
@@ -36,25 +54,37 @@
   "מקורות": [
    {
     "label": "המכתב הרשמי, 4.11.2026 (PDF, ועדת החוץ של בית הנבחרים)",
-    "url": "https://foreignaffairs.house.gov/sites/evo-subsites/republicans-foreignaffairs.house.gov/files/evo-media-document/11.4.26nvidialetter.pdf"
+    "url": "https://foreignaffairs.house.gov/sites/evo-subsites/republicans-foreignaffairs.house.gov/files/evo-media-document/11.4.26nvidialetter.pdf",
+    "label_en": "The official letter, Nov 4, 2026 (PDF, House Foreign Affairs Committee)"
    },
    {
     "label": "הודעת ועדת החוץ, 5.11.2026",
-    "url": "https://foreignaffairs.house.gov/news/press-releases/chairmen-mast-moolenaar-and-crawford-request-jensen-huang-brief-congress-on-link-to-chinese-intelligence-asset"
+    "url": "https://foreignaffairs.house.gov/news/press-releases/chairmen-mast-moolenaar-and-crawford-request-jensen-huang-brief-congress-on-link-to-chinese-intelligence-asset",
+    "label_en": "Foreign Affairs Committee release, Nov 5, 2026"
    },
    {
     "label": "הודעת הוועדה המיוחדת לסין, 5.11.2026",
-    "url": "https://chinaselectcommittee.house.gov/media/press-releases/moolenaar-mast-and-crawford-seek-briefing-from-jensen-huang-on-ties-to-chinese-intelligence-asset"
+    "url": "https://chinaselectcommittee.house.gov/media/press-releases/moolenaar-mast-and-crawford-seek-briefing-from-jensen-huang-on-ties-to-chinese-intelligence-asset",
+    "label_en": "Select Committee on China release, Nov 5, 2026"
    },
    {
     "label": "Reuters (דרך Investing.com): סיקור הבקשה",
-    "url": "https://www.investing.com/news/stock-market-news/key-republicans-seek-briefing-from-nvidia-ceo-over-chinese-spy-allegationsdocument-5005367"
+    "url": "https://www.investing.com/news/stock-market-news/key-republicans-seek-briefing-from-nvidia-ceo-over-chinese-spy-allegationsdocument-5005367",
+    "label_en": "Reuters (via Investing.com): coverage of the request"
    }
   ],
   "טקסט": "מכתב רשמי: 4.11.2026 | הודעות הוועדות: 5.11.2026 | פרסום אפליקציה: 8.11.2026\n\nיושבי-ראש שלוש ועדות בבית הנבחרים - בריאן מאסט (ועדת החוץ), ג'ון מולינאר (הוועדה המיוחדת לסין) וריק קרופורד (ועדת המודיעין) - שלחו ב-4 בנובמבר מכתב למייסד ומנכ\"ל אנבידיה ג'נסן הואנג, ובו בקשה שיופיע לתדריך חסוי משותף ב-18 בנובמבר 2026 בחדר 2172 בבניין רייבורן. נדרש מענה עד 11 בנובמבר: אישור המועד או הצעת מועד חלופי ביום מושב.\n\nנושא התדריך, לפי המכתב: פרוטוקולי האבטחה של אנבידיה מול ריגול של גורמים זרים עוינים, והמגעים של הואנג עם בכירת Megaspeed אליס הואנג, שהמכתב מתאר כ\"גורם מודיעין של הרפובליקה העממית של סין שדווח בפרסומים פומביים\". החותמים מציינים שדיווחים אחרונים מעלים חששות ביטחון-לאומי בנוגע לגישת סין לטכנולוגיה אמריקאית רגישה.\n\nלהבהיר: טענות הריגול הן טענות שפורסמו ונותרו בגדר טענות; הבקשה לתדריך אינה ממצא ואינה קביעה, ואין במכתב ראיה שאנבידיה או הואנג שיתפו ביודעין מידע סודי. החדשות כאן הן הבקשה הקונגרסיונלית עצמה, לא הטענות שבבסיסה.",
   "תאריך": "2026-11-08 17:02",
   "הועלה": "2026-11-08 17:02",
-  "מזהה": "n-0003"
+  "מזהה": "n-0003",
+  "כותרת_en": "NVIDIA (NVDA): chairs of three House committees request a classified briefing from Jensen Huang on November 18 on security protocols against foreign espionage",
+  "טקסט_en": "Official letter: Nov 4, 2026 | Committee releases: Nov 5, 2026 | App publication: Nov 8, 2026\n\nThe chairs of three House committees - Brian Mast (Foreign Affairs), John Moolenaar (the Select Committee on China) and Rick Crawford (Intelligence) - sent a letter on November 4 to NVIDIA founder and CEO Jensen Huang, requesting that he appear for a joint classified briefing on November 18, 2026 in room 2172 of the Rayburn Building. A response is required by November 11: confirmation of the date or a proposed alternative date on a session day.\n\nThe briefing's subject, per the letter: NVIDIA's security protocols against espionage by hostile foreign actors, and Huang's contacts with Megaspeed executive Alice Huang, whom the letter describes as a 'People's Republic of China intelligence actor reported in public publications'. The signatories note that recent reports raise national security concerns regarding China's access to sensitive American technology.\n\nTo be clear: the espionage claims are published claims and remain allegations; the briefing request is not a finding or a determination, and the letter contains no evidence that NVIDIA or Huang knowingly shared classified information. The news here is the congressional request itself, not the claims behind it.",
+  "_translation": {
+   "en": {
+    "source_hash": "948d907590c4e71c1ac4a498070c669771013fad168ef05d976cbc63e1255dd7",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Boeing (BA), ServiceNow (NOW) ו-Nebius (NBIS) נוספו למתנגדות למסחר בגרסאות בלוקצ'יין של מניותיהן ב-OKXICE; הרשימה עלתה ל-66 חברות",
@@ -63,25 +93,37 @@
   "מקורות": [
    {
     "label": "הודעת OKXICE הרשמית, 4.11.2026 (PDF, רשימת המתנגדות המלאה)",
-    "url": "https://www.okx.com/cdn/assets/okfe/web3-activities/okxicetsv/notices/OKXICE_Tokenized_Securities_Venue_Public_Notice_26.11.04.pdf"
+    "url": "https://www.okx.com/cdn/assets/okfe/web3-activities/okxicetsv/notices/OKXICE_Tokenized_Securities_Venue_Public_Notice_26.11.04.pdf",
+    "label_en": "Official OKXICE notice, Nov 4, 2026 (PDF, full objector list)"
    },
    {
     "label": "הודעת OKXICE הרשמית, 5.11.2026 (PDF)",
-    "url": "https://www.okx.com/cdn/assets/okfe/web3-activities/okxicetsv/notices/OKXICE_Tokenized_Securities_Venue_Public_Notice_26.11.05.pdf"
+    "url": "https://www.okx.com/cdn/assets/okfe/web3-activities/okxicetsv/notices/OKXICE_Tokenized_Securities_Venue_Public_Notice_26.11.05.pdf",
+    "label_en": "Official OKXICE notice, Nov 5, 2026 (PDF)"
    },
    {
     "label": "הודעת OKXICE הרשמית, 3.11.2026 (PDF)",
-    "url": "https://www.okx.com/cdn/assets/okfe/web3-activities/okxicetsv/notices/OKXICE_Tokenized_Securities_Venue_Public_Notice_26.11.03.pdf"
+    "url": "https://www.okx.com/cdn/assets/okfe/web3-activities/okxicetsv/notices/OKXICE_Tokenized_Securities_Venue_Public_Notice_26.11.03.pdf",
+    "label_en": "Official OKXICE notice, Nov 3, 2026 (PDF)"
    },
    {
     "label": "Unchained: דיווח על תוספת 4.11, 62 מתנגדות",
-    "url": "https://unchainedcrypto.com/boeing-servicenow-and-nebius-keep-their-stock-off-ice-okx-token-venue-lifting-objectors-to-62/"
+    "url": "https://unchainedcrypto.com/boeing-servicenow-and-nebius-keep-their-stock-off-ice-okx-token-venue-lifting-objectors-to-62/",
+    "label_en": "Unchained: report on the Nov 4 addition, 62 objectors"
    }
   ],
   "טקסט": "הודעת הפלטפורמה: 4-5.11.2026 | שעת הפרסום המקורית אינה ידועה. פרסום אפליקציה: 8.11.2026.\n\nבדיקה ישירה של ההודעות הרשמיות של OKXICE: ההודעה מ-4 בנובמבר הוסיפה שלוש מתנגדות - נביוס (NBIS), בואינג (BA) וסרביסנאו (NOW) - ומספר המתנגדות עלה מ-59 ל-62. זאת לאחר שההודעה מ-3 בנובמבר הוסיפה את אפל (AAPL), הום דיפו (HD) ו-GE Vernova ‏(GEV). בהודעה מ-5 בנובמבר נוספו ארבע חברות נוספות - S&P גלובל (SPGI), KLA ‏(KLAC), סופר מיקרו קומפיוטר (SMCI) ומטא (META) - והרשימה עומדת כעת על 66 מתנגדות.\n\nההתנגדויות נוגעות למסחר בגרסאות מטובנות של המניות בזירה הספציפית הזאת, ולא להפסקת המסחר במניות הרגילות בבורסות. לפי מנגנון פטור ה-SEC מ-17 בספטמבר 2026, כאשר מנפיקה מגישה התנגדות בכתב בתוך 30 יום מקבלת ההודעה, הזירה אינה רשאית להציע את הגרסה המטובנת של מנייתה במסגרת הפטור. ההודעות מפרטות את ההתנגדויות אך אינן מסבירות את הסיבות להן.\n\nOKXICE היא יוזמה משותפת בבעלות שווה של חברה בקבוצת OKX ושל חברה בקבוצת Intercontinental Exchange ‏(ICE). הזירה טרם הודיעה על מועד השקה.",
   "תאריך": "2026-11-08 16:57",
   "הועלה": "2026-11-08 16:57",
-  "מזהה": "n-0004"
+  "מזהה": "n-0004",
+  "כותרת_en": "Boeing (BA), ServiceNow (NOW) and Nebius (NBIS) joined the objectors to trading blockchain versions of their shares on OKXICE; the list rose to 66 companies",
+  "טקסט_en": "Platform notices: Nov 4-5, 2026 | Original publication time unknown. App publication: Nov 8, 2026.\n\nDirect review of OKXICE's official notices: the November 4 notice added three objectors - Nebius (NBIS), Boeing (BA) and ServiceNow (NOW) - and the objector count rose from 59 to 62. That followed the November 3 notice, which added Apple (AAPL), Home Depot (HD) and GE Vernova (GEV). The November 5 notice added four more companies - S&P Global (SPGI), KLA (KLAC), Super Micro Computer (SMCI) and Meta (META) - and the list now stands at 66 objectors.\n\nThe objections concern trading tokenized versions of the shares on that specific venue, not a halt to trading the ordinary shares on exchanges. Under the SEC exemption mechanism of September 17, 2026, when an issuer files a written objection within 30 days of receiving the notice, the venue may not offer the tokenized version of its share under the exemption. The notices detail the objections but do not explain the reasons.\n\nOKXICE is a joint venture equally owned by a company in the OKX group and a company in the Intercontinental Exchange (ICE) group. The venue has not yet announced a launch date.",
+  "_translation": {
+   "en": {
+    "source_hash": "3745614e46fc1b570839a7dbbe39850954c93e506101ccff7c8d46f93ff0b684",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "ה-BIS האריך את השהיית \"חוק החברות הקשורות\" (כלל ה-50%) עד 10 בינואר 2027; השהיה, לא ביטול",
@@ -90,26 +132,39 @@
   "מקורות": [
    {
     "label": "gov.house (אתר מסחרי למעקב רגולטורי, אינו גוף ממשלתי): פירוט הכלל עם ציטוט מסעיף DATES",
-    "url": "https://gov.house/trade/bis-affiliates-rule-suspension-extended-january/"
+    "url": "https://gov.house/trade/bis-affiliates-rule-suspension-extended-january/",
+    "label_en": "gov.house (a commercial regulatory-tracking site, not a government body): rule details quoting the DATES section"
    },
    {
     "label": "Baker McKenzie: ניתוח משפטי, 5.11.2026",
-    "url": "https://sanctionsnews.bakermckenzie.com/bis-extends-suspension-of-the-affiliates-rule-through-january-10-2027/"
+    "url": "https://sanctionsnews.bakermckenzie.com/bis-extends-suspension-of-the-affiliates-rule-through-january-10-2027/",
+    "label_en": "Baker McKenzie: legal analysis, Nov 5, 2026"
    },
    {
     "label": "KPMG: TaxNewsFlash, 5.11.2026",
-    "url": "https://kpmg.com/us/en/taxnewsflash/news/2026/11/bis-affiliates-rule-suspension.html"
+    "url": "https://kpmg.com/us/en/taxnewsflash/news/2026/11/bis-affiliates-rule-suspension.html",
+    "label_en": "KPMG: TaxNewsFlash, Nov 5, 2026"
    },
    {
     "label": "Nixon Peabody: התראה ללקוחות, 6.11.2026",
-    "url": "https://www.nixonpeabody.com/insights/alerts/2026/11/06/bis-formally-suspends-the-affiliates-rule-until-january-10-2027"
+    "url": "https://www.nixonpeabody.com/insights/alerts/2026/11/06/bis-formally-suspends-the-affiliates-rule-until-january-10-2027",
+    "label_en": "Nixon Peabody: client alert, Nov 6, 2026"
    }
   ],
   "טקסט": "לא מאומת מול מקור ראשוני; הכלל צפוי להתפרסם ב-Federal Register ב-9.11.2026, ואז תושלם הבדיקה.\n08.11.2026 | פרסום אפליקציה. הכלל נרשם לעיון הציבור ב-5.11.2026 בשעה 16:15 ארה\"ב (FR Doc. 2026-22793, Docket 261027-0002, RIN 0694-AK34); שעון מקור משני ראשון (mlq.ai) לא צוין, ולכן נשענים על תאריכי המקורות המקצועיים.\n\nלפי שישה מקורות מקצועיים עצמאיים ועקביים (Baker McKenzie, KPMG, Nixon Peabody, Thompson Hine, Kelley Drye, gov.house), ה-BIS מפרסם כלל סופי המאריך את ההשהיה של \"חוק החברות הקשורות\" (⁦Affiliates Rule⁩) מ-9 בנובמבר 2026, מועד פקיעתה המקורי, עד 10 בינואר 2027. הכלל, שנחתם על ידי תת-המזכיר לתעשייה וביטחון ג'פרי קסלר, מסומן כ-⁦Final rule; stay⁩: הארכת שהיה בלבד, ללא שינוי במהות, ללא הסרת גופים מרשימות וללא התייחסות להערות הציבור, שיידונו בחקיקה עתידית.\n\n\"חוק החברות הקשורות\" (כלל ביניים מ-30.9.2025, ⁦90 FR 47201⁩) מחיל אוטומטית דרישות רישוי ייצוא של ה-⁦EAR⁩ על חברות זרות בבעלות של 50% ומעלה של גופים הרשומים ב-⁦Entity List⁩, ב-⁦MEU List⁩ וגופי ⁦SDN⁩ מסוימים. ההשהיה הראשונה לשנה (⁦90 FR 50857⁩, בתוקף מ-10.11.2025) ניתנה במסגרת הפשרה הסחרית ארה\"ב-סין; ההארכה ל-10 בינואר עולה בקנה אחד עם הארכת הפשרה שהוכרזה בספטמבר 2026.\n\nמשמעות: הכלל נותר מושהה ולא מבוטל. חברות צפויות להמשיך להיערך לסינון מבוסס-בעלות לקראת חזרתו האפשרית בינואר 2027, אם לא תהיה הארכה נוספת.",
   "תאריך": "2026-11-08 16:50",
   "הועלה": "2026-11-08 16:50",
   "תקציר": "לא מאומת מול מקור ראשוני: לפי שישה מקורות משניים עקביים, ה-BIS מאריך את השהיית \"חוק החברות הקשורות\" (כלל ה-50%) עד 10 בינואר 2027; השהיה, לא ביטול.",
-  "מזהה": "n-0005"
+  "מזהה": "n-0005",
+  "כותרת_en": "BIS extended the stay of the 'Affiliates Rule' (the 50% rule) until January 10, 2027; a stay, not a repeal",
+  "טקסט_en": "Not verified against a primary source; the rule is expected to be published in the Federal Register on Nov 9, 2026, when the check will be completed.\nNov 8, 2026 | App publication. The rule was filed for public inspection on Nov 5, 2026 at 16:15 US time (FR Doc. 2026-22793, Docket 261027-0002, RIN 0694-AK34); no time was given for the first secondary source (mlq.ai), so we rely on the professional sources' dates.\n\nPer six independent and consistent professional sources (Baker McKenzie, KPMG, Nixon Peabody, Thompson Hine, Kelley Drye, gov.house), BIS is publishing a final rule extending the stay of the 'Affiliates Rule' from November 9, 2026, its original expiry date, until January 10, 2027. The rule, signed by Under Secretary for Industry and Security Jeffrey Kessler, is marked 'Final rule; stay': an extension of the stay only, with no change in substance, no removal of entities from lists, and no response to public comments, which will be addressed in future rulemaking.\n\nThe 'Affiliates Rule' (interim rule of Sep 30, 2025, 90 FR 47201) automatically applies EAR export licensing requirements to foreign companies 50% or more owned by entities on the Entity List, the MEU List and certain SDN parties. The first one-year stay (90 FR 50857, effective Nov 10, 2025) was given as part of the US-China trade truce; the extension to January 10 aligns with the extension of the truce announced in September 2026.\n\nSignificance: the rule remains stayed, not repealed. Companies are expected to keep preparing for ownership-based screening ahead of its possible return in January 2027, absent a further extension.",
+  "תקציר_en": "Not verified against a primary source: per six consistent secondary sources, BIS is extending the stay of the 'Affiliates Rule' (the 50% rule) until January 10, 2027; a stay, not a repeal.",
+  "_translation": {
+   "en": {
+    "source_hash": "62764f8fe04a80518a2e42b81f5597f00e7ff152bcbf467ae84c171631e9be2b",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "נאס\"א הכריזה על חבילת חוזים לתוכנית Moon Base: מסגרת CLPS 2 בתקרה של 10 מיליארד דולר, ורובר גרעיני PROMISE לשיגור בסוף 2028",
@@ -118,13 +173,22 @@
   "מקורות": [
    {
     "label": "NASA, 7 בנובמבר",
-    "url": "https://www.nasa.gov/news-release/nasa-awards-moon-base-transportation-technology-science-projects/"
+    "url": "https://www.nasa.gov/news-release/nasa-awards-moon-base-transportation-technology-science-projects/",
+    "label_en": "NASA, November 7"
    }
   ],
   "טקסט": "7.11.2026 | הודעת נאס\"א; פורסמה ביום שבת, שעה לא צוינה. ההודעה נמסרה בתערוכת MAX POWER במרכז החלל קנדי. סכומי המסגרות להלן הם תקרות חוזה, לא כסף שהוקצה בפועל.\n\nCLPS 2: שמונה חברות נבחרו לשלב הבא של יוזמת ההובלות המסחריות לירח - Blue Origin, Firefly Aerospace, Intuitive Machines, ispace-U.S., Lockheed Martin Space, Northrop Grumman Space Systems, SpaceX ו-Voyager Technologies. החברות זכאיות להתמודד על משימות עתידיות במסגרת חוזה מרובה-זוכים ל-10 שנים בתקרה מצטברת של 10 מיליארד דולר; בשלב זה לא הוקצו משימות. מסגרת CLPS 1.0 הקיימת הוגדלה מ-2.6 ל-4.2 מיליארד דולר.\n\nPROMISE: רובר בהנעה גרעינית שייבנה במעבדת JPL מרכיבי גיבוי של הרוברים Curiosity ו-Perseverance, לניטור קרח ומשאבים בקוטב הדרומי של הירח; שיגור מתוכנן לסוף 2028 למשימה של 18 חודשים. Blue Origin קיבלה חוזה בסיס של 94 מיליון דולר להובלת הרובר עם אופציה של 140 מיליון דולר נוספים.\n\nשיגור והובלה: שישה צווי משימה בהיקף מצטבר של כ-1.3 מיליארד דולר הוקצו ל-Arrow Science and Technology, Blue Origin ו-Impulse Space במסגרת חוזה VADR (תקרה כוללת של 5 מיליארד דולר), להדגמות הובלה בין-כדורית, סריקת פני הירח במל\"טים (MoonFall) וניסויי ניווט. בין המשגרים: New Glenn, Terran R ו-Falcon 9.\n\nבנוסף, SpaceX נבחרה להדגמת פריסת לווייני תקשורת בחלל ציס-ירחי על גבי Starship ב-2028, ולתשתית האנרגיה והתקשורת miniCAST נבחרו Honeybee Robotics (חברת בת של Blue Origin), Redwire ו-Yank Technologies.",
   "תאריך": "2026-11-08 14:32",
   "הועלה": "2026-11-08 14:32",
-  "מזהה": "n-0006"
+  "מזהה": "n-0006",
+  "כותרת_en": "NASA announced a package of contracts for the Moon Base program: a CLPS 2 framework with a $10 billion ceiling, and a nuclear-powered PROMISE rover for launch in late 2028",
+  "טקסט_en": "Nov 7, 2026 | NASA release; published on Saturday, no time given. The release was delivered at the MAX POWER expo at the Kennedy Space Center. The framework amounts below are contract ceilings, not money actually allocated.\n\nCLPS 2: eight companies were selected for the next phase of the commercial lunar delivery initiative - Blue Origin, Firefly Aerospace, Intuitive Machines, ispace-U.S., Lockheed Martin Space, Northrop Grumman Space Systems, SpaceX and Voyager Technologies. The companies are eligible to compete for future missions under a 10-year multiple-award contract with a cumulative ceiling of $10 billion; no missions were allocated at this stage. The existing CLPS 1.0 framework was increased from $2.6 to $4.2 billion.\n\nPROMISE: a nuclear-powered rover to be built at JPL from spare components of the Curiosity and Perseverance rovers, to monitor ice and resources at the Moon's south pole; launch planned for late 2028 for an 18-month mission. Blue Origin received a $94 million base contract to deliver the rover with an option for an additional $140 million.\n\nLaunch and delivery: six task orders totaling about $1.3 billion were allocated to Arrow Science and Technology, Blue Origin and Impulse Space under the VADR contract (total ceiling of $5 billion), for interplanetary delivery demonstrations, lunar surface mapping with drones (MoonFall) and navigation experiments. Among the launchers: New Glenn, Terran R and Falcon 9.\n\nIn addition, SpaceX was selected to demonstrate deployment of communications satellites in cis-lunar space aboard Starship in 2028, and Honeybee Robotics (a Blue Origin subsidiary), Redwire and Yank Technologies were selected for the miniCAST power and communications infrastructure.",
+  "_translation": {
+   "en": {
+    "source_hash": "cc552eaf8402b9e467993b84d1d2a5ef4a752d200f96a8d21c7f6a969272c271",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "CNBC: התשואה על אגרת 2032 של CoreWeave (CRWV) עלתה מעל 16%, וה-CDS שלה זינק מעל שיא אוקטובר",
@@ -133,13 +197,22 @@
   "מקורות": [
    {
     "label": "CNBC, 6 בנובמבר",
-    "url": "https://www.cnbc.com/2026/11/06/coreweave-bond-yield-tops-16percent-as-ai-credit-stress-rises.html"
+    "url": "https://www.cnbc.com/2026/11/06/coreweave-bond-yield-tops-16percent-as-ai-credit-stress-rises.html",
+    "label_en": "CNBC, November 6"
    }
   ],
   "טקסט": "6.11.2026 | 19:02 שעון ישראל (12:02 EST), פרסום CNBC; עודכן 12:09 EST. כל המספרים להלן הם צילומי מצב מתוארכים מהכתבה, לא שערים נוכחיים.\n\nלפי CNBC, התשואה על אגרת החוב של קורוויב לפירעון 2032 (קופון 9.625%) עלתה מעל 16%. לפי דויטשה בנק שמצוטט בכתבה, חוזי הביטוח מפני חדלות פירעון (CDS) לחמש שנים של החברה זינקו ביום חמישי מעל 1,289 נקודות בסיס, מעבר לשיא אוקטובר, וביום שישי נרגעו בכ-8% לכ-1,155. להשוואה מתוארכת: בכרטיס מ-21.10 דווח שהאגרת ל-2031 (קופון 9.75%) נסחרה אז בתשואה של כ-15.97% ואגרת נוספת בקופון 9.625% ב-15.70%; CNBC מזהה את אגרת ה-9.625% כאגרת 2032.\n\nההתייקרות אינה ייחודית לקורוויב: לפי הכתבה, ה-CDS של אנבידיה עלה 76% בחודש האחרון לכ-139 נקודות בסיס, ברודקום עלה 49% ואמזון 44%; אורקל עמד על כ-298 נקודות בסיס, לעומת כ-1,100 לקורוויב. ג'ים ריד מדויטשה בנק נמסר כאומר שהיו \"לא מעט אזהרות מהאשראי\", וכריסטופר ווד מג'פריס כתב שהדרך הסבירה שבה מירוץ ההון בענן תסתיים היא \"שכרטיס האשראי יילקח\".\n\nלפי גולדמן זאקס שמצוטט בכתבה: חמש עסקאות אג\"ח AI בהיקף 67 מיליארד דולר נסגרו מאז 29.10, והנפקות החוב של ההיפרסקיילרים השנה הסתכמו ב-296 מיליארד דולר; התחזית לשנה הבאה היא 440 מיליארד דולר, בתוספת כ-300 מיליארד ברמת פרויקטים. עוד לפי גולדמן, מורטוריומים עלולים לפגוע ב-45% מהקיבולת המתוכננת בארה\"ב, וההיפרסקיילרים דיווחו ברבעון השלישי על תזרים חופשי שלילי. בנק אוף אמריקה מעריך שהנפקות אשראי בתחום ה-AI יגיעו ל-685 מיליארד דולר ב-2027 וירדו ל-531 מיליארד ב-2028. מנהל המועצה הכלכלית הלאומית, קווין הסט, אמר ל-CNBC ביום שישי שהוא מצפה שצמיחת מרכזי הנתונים תימשך כמתוכנן למרות תוצאות הבחירות.",
   "תאריך": "2026-11-08 14:14",
   "הועלה": "2026-11-08 14:14",
-  "מזהה": "n-0007"
+  "מזהה": "n-0007",
+  "כותרת_en": "CNBC: the yield on CoreWeave's (CRWV) 2032 bond rose above 16%, and its CDS jumped above its October peak",
+  "טקסט_en": "Nov 6, 2026 | 19:02 Israel time (12:02 EST), CNBC publication; updated 12:09 EST. All figures below are dated snapshots from the article, not current quotes.\n\nPer CNBC, the yield on CoreWeave's bond maturing 2032 (9.625% coupon) rose above 16%. Per Deutsche Bank quoted in the article, the company's five-year credit default swaps (CDS) jumped on Thursday above 1,289 basis points, past the October peak, and on Friday eased about 8% to around 1,155. Dated comparison: the October 21 card reported the 2031 bond (9.75% coupon) was then trading at a yield of about 15.97% and another bond with a 9.625% coupon at 15.70%; CNBC identifies the 9.625% bond as the 2032 issue.\n\nThe repricing is not unique to CoreWeave: per the article, NVIDIA's CDS rose 76% over the past month to about 139 basis points, Broadcom rose 49% and Amazon 44%; Oracle stood at about 298 basis points, versus about 1,100 for CoreWeave. Jim Reid of Deutsche Bank was quoted saying there had been 'quite a few warnings from credit', and Christopher Wood of Jefferies wrote that the likely way the cloud capital race ends is 'the credit card gets taken away'.\n\nPer Goldman Sachs quoted in the article: five AI bond deals totaling $67 billion have closed since Oct 29, and hyperscaler debt issuance this year reached $296 billion; the forecast for next year is $440 billion, plus about $300 billion at the project level. Also per Goldman, moratoria could hit 45% of planned capacity in the US, and the hyperscalers reported negative free cash flow in the third quarter. Bank of America estimates AI-related credit issuance will reach $685 billion in 2027 and fall to $531 billion in 2028. National Economic Council director Kevin Hassett told CNBC on Friday that he expects data center growth to continue as planned despite the election results.",
+  "_translation": {
+   "en": {
+    "source_hash": "992e7d83ef050be844081d3353197f17bf338753a2d290d943cafc0e2c30bc2f",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "תימן: לפי מקורות חות'ים, לפחות 33 בני אדם נהרגו בתקיפות אוויריות סעודיות מזרחית לצנעא",
@@ -148,21 +221,32 @@
   "מקורות": [
    {
     "label": "BBC, 7 בנובמבר",
-    "url": "https://www.bbc.com/news/articles/c65yn1v99ypmo"
+    "url": "https://www.bbc.com/news/articles/c65yn1v99ypmo",
+    "label_en": "BBC, November 7"
    },
    {
     "label": "RTE, 8 בנובמבר",
-    "url": "https://www.rte.ie/news/world/2026/1108/1598395-33-dead-yemen/"
+    "url": "https://www.rte.ie/news/world/2026/1108/1598395-33-dead-yemen/",
+    "label_en": "RTE, November 8"
    },
    {
     "label": "JPost, 8 בנובמבר",
-    "url": "https://www.jpost.com/middle-east/article-914167"
+    "url": "https://www.jpost.com/middle-east/article-914167",
+    "label_en": "JPost, November 8"
    }
   ],
   "טקסט": "ספירת ההרוגים והפצועים מיוחסת למקורות חות'ים בלבד ולא אומתה מול גורם ניטרלי; אין תגובה מהקואליציה הסעודית\n7.11.2026 | לפי BBC; האירוע ביום שבת. מקורות נוספים: RTE ו-JPost, 8 בנובמבר.\n\nמקורות מדיה חות'ים (רשת אל-מסירה וסוכנות הידיעות סבא) דיווחו שלפחות 33 בני אדם, בהם נשים וילדים, נהרגו בתקיפות אוויריות סעודיות בעיירה א-שאריעה, מזרחית לבירה צנעא. לפי סוכנות סבא, 39 בני אדם נפצעו. הקואליציה בהובלת סעודיה לא הגיבה לדיווחים. בכיר חות'י, מהדי אל-משאת, הבטיח נקמה.\n\nשעות ספורות קודם לכן הודיעה הקואליציה על יירוט טיל ששוגר לעבר ריאד (אירוע נפרד שפורסם הבוקר בכרטיס נפרד).\n\nרקע, לפי BBC: שביתת הנשק בתימן התפרקה בשבוע שעבר לאחר שסעודיה תקפה את נמל התעופה של צנעא, לטענתה כדי למנוע נחיתת מטוס איראני; החות'ים תקפו בתגובה את נמל התעופה אבחא שבסעודיה וספינות סעודיות בים האדום. ביום שישי נהרגו כ-30 בני אדם בתקיפה על שוק בפרובינציית תעז, והאחריות לה במחלוקת בין הצדדים. לפי האו\"ם, מאז חידוש הלחימה נהרגו מעל 1,600 בני אדם ולמעלה מ-300,000 עקרו מבתיהם.",
   "תאריך": "2026-11-08 14:09",
   "הועלה": "2026-11-08 14:09",
-  "מזהה": "n-0008"
+  "מזהה": "n-0008",
+  "כותרת_en": "Yemen: per Houthi sources, at least 33 people were killed in Saudi airstrikes east of Sanaa",
+  "טקסט_en": "The casualty and injury counts are attributed to Houthi sources only and were not verified against a neutral party; there is no response from the Saudi-led coalition\nNov 7, 2026 | per the BBC; the event on Saturday. Additional sources: RTE and JPost, November 8.\n\nHouthi media sources (the Al-Masirah network and the Saba news agency) reported that at least 33 people, including women and children, were killed in Saudi airstrikes on the town of Al-Shari'ah, east of the capital Sanaa. Per the Saba agency, 39 people were wounded. The Saudi-led coalition did not respond to the reports. A senior Houthi figure, Mahdi al-Mashat, promised revenge.\n\nA few hours earlier the coalition announced the interception of a missile launched toward Riyadh (a separate event published this morning in a separate card).\n\nBackground, per the BBC: the ceasefire in Yemen collapsed last week after Saudi Arabia struck Sanaa airport, claiming to prevent the landing of an Iranian plane; the Houthis in response attacked Abha airport in Saudi Arabia and Saudi ships in the Red Sea. On Friday about 30 people were killed in a strike on a market in Taiz province, with responsibility disputed between the sides. Per the UN, since fighting resumed more than 1,600 people have been killed and over 300,000 displaced from their homes.",
+  "_translation": {
+   "en": {
+    "source_hash": "b2d1eae990951052e0b1da43739907cf8ed451d2ffde4eb9c87580c90249b3cf",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "דובר משמרות המהפכה: ההגבלה העצמית על טווח הטילים של איראן (2,000 ק\"מ) הוסרה",
