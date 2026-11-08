@@ -25043,5 +25043,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "SpaceX (SPCX): מיסיסיפי מפרטת קנסות נגד SpaceXAI על תחילת בנייה בסאות'הייבן ללא היתרי זיהום מים; החברה העריכה חשיפה של עד 6.1 מיליון דולר",
+    "category": "micro",
+    "קישור": "https://apnews.com/article/spacexai-data-center-mississippi-water-pollution-46bb5e5e9fe4798531b2544f1fb0e224",
+    "מקורות": [
+      {
+        "label": "AP (בשיתוף Mississippi Today), 6.11.2026",
+        "url": "https://apnews.com/article/spacexai-data-center-mississippi-water-pollution-46bb5e5e9fe4798531b2544f1fb0e224",
+        "label_en": "AP (in partnership with Mississippi Today), Nov 6, 2026"
+      },
+      {
+        "label": "Mississippi Today, 6.11.2026",
+        "url": "https://mississippitoday.org/2026/11/06/spacexai-southaven-data-center-fines-mdeq/",
+        "label_en": "Mississippi Today, Nov 6, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 6.11.2026 (AP, בשיתוף Mississippi Today).\n\nהרגולטור הסביבתי של מיסיסיפי (MDEQ) פרסם השבוע פרטי סנקציות נגד SpaceXAI, חברת מרכזי הנתונים שבבעלות אילון מאסק, בגין הפרת חוקי זיהום המים של המדינה: החברה החלה בנייה במתקניה בסאות'הייבן בלא ההיתרים הנדרשים. SpaceXAI גילתה את הקנסות האפשריים למשקיעים כשבועיים קודם לכן, בדיווח ל-SEC מ-22 באוקטובר, והעריכה שהסכום עלול להגיע עד 6.1 מיליון דולר; לפי AP, MDEQ סירבה לומר אם הסכום מדויק, בנימוק של מדיניות נגד תגובה בהליכי אכיפה תלויים ועומדים.\n\nלפי רשומות MDEQ, בפגישת יולי בין הרשות לחברת הבת MZX Tech LLC \"התברר\" שהבנייה בקרקע כבר החלה, בפגיעה בשטח של כ-30 דונם. ביקורת של צוות הרשות ב-16 ביולי אישרה את ההפרות, וב-10 באוגוסט נשלחו שתי הודעות הפרה, שכל אחת מהן \"תהיה כפופה לעונש החוקי המרבי\" של 25,000 דולר לכל יום שבו הבנייה נמשכת ללא ההיתרים. בנכס הגובל ב-Horn Lake Creek נמצא שלא ננקטו צעדים להגנה על תשתיות מי סופה, וברחוב Stateline 2400 — אתר מרכז הנתונים MACROHARDRR בהשקעה מתוכננת של 20 מיליארד דולר — לא נמצאו בקרות סביב פתחי ניקוז; לפי המפקחים הבנייה נראתה כמי שהחלה בראשית 2026, בעוד היתר מי הסופה האחרון לנכס פג תוקף ב-2023. בדיווח ל-SEC נכתב כי החברה \"משתפת פעולה עם MDEQ ונמצאת בדיונים ליישוב הנושאים בהסכם יחיד\".\n\nלפרסום האפליקציה מ-1 בנובמבר (12:25) בנושא הרצת הטורבינות ותביעת זיהום האוויר באתר; החדש כעת הוא פרטי הסנקציות בגין היתרי המים והחשיפה המוערכת שדיווחה החברה.",
+    "תקציר": "MDEQ פרסם שתי הודעות הפרה נגד SpaceXAI על בנייה בסאות'הייבן ללא היתרי מי סופה — עד 25,000 דולר ליום לכל הפרה; החברה העריכה בדיווח ל-SEC מ-22.10 חשיפה של עד 6.1 מיליון דולר; הרשות לא אישרה את הסכום.",
+    "מזהה": "n-1055",
+    "תאריך": "2026-11-09 00:41",
+    "הועלה": "2026-11-09 00:41",
+    "כותרת_en": "SpaceX (SPCX): Mississippi details penalties against SpaceXAI for starting Southaven construction without water permits; company estimated up to $6.1M exposure",
+    "טקסט_en": "Source publication: Nov 6, 2026 (AP, in partnership with Mississippi Today).\n\nMississippi's environmental regulator (MDEQ) released details this week of penalties against SpaceXAI, Elon Musk's data-center company, for violating state water-pollution laws by starting construction on its Southaven facilities without the required permits. SpaceXAI first disclosed the potential fines to investors about two weeks earlier, in an Oct 22 SEC filing, estimating the amount could reach up to $6.1 million; per AP, MDEQ declined to say whether the figure was accurate, citing its policy of not commenting on pending enforcement matters.\n\nPer MDEQ records, during a July meeting between the agency and subsidiary MZX Tech LLC \"it became apparent\" that construction on the land had already begun, impacting about 30 acres. An agency staff visit on July 16 confirmed the infractions, and on Aug 10 two notices of violation were sent, each \"subject to the maximum statutory penalty\" of $25,000 for each day construction continues without the needed permits. At the property bordering Horn Lake Creek, no steps had been taken to protect stormwater infrastructure; at 2400 Stateline Road, the site of the MACROHARDRR data center with a planned $20 billion investment, inspectors found no controls around storm inlets. Construction appeared to have started around the beginning of 2026, while the property's last construction stormwater permit expired in 2023. In the SEC filing the company wrote it \"is cooperating with MDEQ and is in discussions to resolve the matters through a single agreed order.\"\n\nFor the app's Nov 1 (12:25) publication on the turbine operations and air-pollution lawsuit at the site; the new information now is the water-permit penalty details and the company's estimated exposure.",
+    "תקציר_en": "MDEQ detailed two notices of violation against SpaceXAI for building in Southaven without stormwater permits - up to $25,000 per day per violation; the company estimated up to $6.1M exposure in an Oct 22 SEC filing; the agency declined to confirm the figure.",
+    "_translation": {
+      "en": {
+        "source_hash": "e52a1a7e7db4d13c97922964e592e70876abe6b9238fb1cb8411373141a4c25b",
+        "schema_version": 1
+      }
+    }
   }
 ]
