@@ -1065,6 +1065,10 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{--k-d:74px}
 @media(max-width:370px){#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{--k-d:69px}}
 @media(max-width:340px){#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{--k-d:64px}}
+
+/* Requested additional left displacement from the current no-value layout. */
+#posList .pcard.pc .pgrid>.pc-w,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-w{translate:-70% 0!important}
+#posList .pcard.pc .pgrid>.pc-s,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-s{translate:-35% 0!important}
 </style><style id="watch-session-price-layout">
 #wlLists .wr.wgrid:not(.egrid),#wlLists .wl-cols.wgrid{grid-template-columns:var(--k-lg) minmax(0,1fr) var(--k-sp) calc(var(--k-d) + 12px);grid-template-areas:"lg nm sp d" "lg cp sp d"}
 #wlLists .wl-cols>.pc-p{display:none}
@@ -1077,6 +1081,8 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #wlLists .wr.wgrid:not(.egrid)>.pc-d>b:first-child{font-size:.88rem;max-width:100%;box-sizing:border-box;padding-inline:2px}
 @media(max-width:370px){#wlLists .wr.wgrid:not(.egrid)>.pc-d>b:first-child{font-size:.814rem;letter-spacing:-.25px}}
 @media(max-width:340px){#wlLists .wr.wgrid:not(.egrid)>.pc-d>b:first-child{font-size:.737rem}}
+
+#wlLists .wr.wgrid:not(.egrid)>.pc-s,#wlLists .wl-cols.wgrid>.pc-s{translate:-35% 0}
 </style></head>
 <body>
 <header class="top">
