@@ -462,13 +462,22 @@
   "מקורות": [
    {
     "label": "סוכנות הידיעות הסעודית (SPA), 8 בנובמבר",
-    "url": "https://spa.gov.sa/en/N2720568"
+    "url": "https://spa.gov.sa/en/N2720568",
+    "label_en": "Saudi Press Agency (SPA), November 8"
    }
   ],
   "טקסט": "תיקון לפריט שפורסם היום, 8.11.2026, על יירוט טילים בליסטיים לעבר ריאד.\n\nבגרסה שפורסמה לזמן קצר נכללו פרטים נוספים - טיל שכוון למחוז המזרחי, שני טילים באזור הדרומי וכטב\"ם - שמקורם בפוסטים ברשת X. פרטים אלה לא אומתו ממקור רשמי או מדיווח עצמאי והם אינם עומדים בכללי האימות של היישום, ולכן הוסרו מהפריט.\n\nהפריט העדכני מתבסס על הודעת סוכנות הידיעות הסעודית הרשמית (SPA) ועל AFP בלבד: מערכות ההגנה האווירית יירטו והשמידו שני טילים בליסטיים ששוגרו על ידי המיליציה החות'ית לעבר ריאד.",
   "תאריך": "2026-11-08 13:32",
   "הועלה": "2026-11-08 13:32",
-  "מזהה": "n-0017"
+  "מזהה": "n-0017",
+  "כותרת_en": "Correction to the November 8 Saudi missile interception item",
+  "טקסט_en": "Correction to the item published today, Nov 8, 2026, on the interception of ballistic missiles toward Riyadh.\n\nThe version published briefly included additional details - a missile aimed at the Eastern Province, two missiles in the southern region and a drone - sourced from posts on the X network. These details were not verified by an official source or independent reporting and do not meet the app's verification standards, so they were removed from the item.\n\nThe current item is based solely on the official Saudi Press Agency (SPA) statement and AFP: air defense systems intercepted and destroyed two ballistic missiles launched by the Houthi militia toward Riyadh.",
+  "_translation": {
+   "en": {
+    "source_hash": "b79f060ac269d84417f53c0a24861901ca11340ad7b59112ac644595da4d4ca8",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "משמר הלאומי של איחוד האמירויות חילץ 22 בני אדם מאוניית משא בוערת בים עומאן",
@@ -477,13 +486,22 @@
   "מקורות": [
    {
     "label": "סוכנות הידיעות האמירותית (WAM), 8 בנובמבר",
-    "url": "https://www.wam.ae/en/article/17ijsig-uae-national-guard-rescues-people-from-cargo-ship"
+    "url": "https://www.wam.ae/en/article/17ijsig-uae-national-guard-rescues-people-from-cargo-ship",
+    "label_en": "Emirates News Agency (WAM), November 8"
    }
   ],
   "טקסט": "8.11.2026 | הודעת WAM הרשמית; פורסם 07:04 לפי שעון איחוד האמירויות, UTC+4 (05:04 לפי שעון ישראל).\n\nאגף משמר החופים של פיקוד המשמר הלאומי של איחוד האמירויות חילץ 22 אזרחים ערבים לאחר שפרצה שריפה באוניית משא בים עומאן. לפי ההודעה, הפעולה היא חלק ממאמצי המשמר הלאומי להגנה על חיי אדם ולביטחון ימי. לא צוין זיהוי האונייה או סיבת השריפה, ולא נמסר קשר לאירועים אחרים באזור.",
   "תאריך": "2026-11-08 13:31",
   "הועלה": "2026-11-08 13:31",
-  "מזהה": "n-0018"
+  "מזהה": "n-0018",
+  "כותרת_en": "UAE National Guard rescued 22 people from a burning cargo ship in the Sea of Oman",
+  "טקסט_en": "Nov 8, 2026 | official WAM release; published 07:04 UAE time, UTC+4 (05:04 Israel time).\n\nThe Coast Guard division of the UAE National Guard Command rescued 22 Arab nationals after a fire broke out on a cargo ship in the Sea of Oman. Per the statement, the operation is part of the National Guard's efforts to protect lives and maritime safety. The ship's identity and the cause of the fire were not given, and no link to other events in the region was provided.",
+  "_translation": {
+   "en": {
+    "source_hash": "14358b09a14a0022e2ac37d5219667405f099044b4290dbe2470144133a067f7",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "טענה איראנית חדשה: משמרות המהפכה מסרו ששתי מכליות נפט \"מפרות\" פגעו במוקשים בהורמוז ועלו באש",
@@ -492,17 +510,27 @@
   "מקורות": [
    {
     "label": "Anadolu, 8 בנובמבר",
-    "url": "https://www.aa.com.tr/en/middle-east/iran-s-revolutionary-guards-say-2-oil-tankers-hit-mines-caught-fire-near-strait-of-hormuz/4115596"
+    "url": "https://www.aa.com.tr/en/middle-east/iran-s-revolutionary-guards-say-2-oil-tankers-hit-mines-caught-fire-near-strait-of-hormuz/4115596",
+    "label_en": "Anadolu, November 8"
    },
    {
     "label": "Xinhua, 8 בנובמבר",
-    "url": "https://english.news.cn/20261108/dc021ec57e444eee9730b0370f184243/c.html"
+    "url": "https://english.news.cn/20261108/dc021ec57e444eee9730b0370f184243/c.html",
+    "label_en": "Xinhua, November 8"
    }
   ],
   "טקסט": "לא מאומת מול מקור ראשוני; טענה בלבד, ללא אישור עצמאי לפגיעה במכליות או למוקשים. אין לקשר לאירוע השביתה של ה-M/V Huda על ידי CENTCOM - לא אומת שמדובר באותו אירוע.\n8.11.2026 | לפי Anadolu ו-Xinhua, המצטטות את ההצהרה ב-Sepah News של משמרות המהפכה; שעות הפרסום המקוריות לא צוינו.\n\nזרוע הים של משמרות המהפכה האיראניים (IRGC) מסרה בליל שבת כי שתי מכליות נפט עלו באש לאחר שפגעו לטענתה במוקשים ימיים בתוך מיצר הורמוז וממזרח לו. לפי ההצהרה, שתי המכליות כיבו את מערכות הניווט והמיקום וניסו לחצות בנתיב \"לא מורשה\"; האחת נפגעה ממזרח למיצר והשנייה בתוך המעבר. משמרות המהפכה הזהירו שכל כלי שיט המשתף פעולה עם הצבא האמריקאי ונכנס לאזור \"הלא מורשה\" \"בהחלט\" יפגע במוקשים.",
   "תאריך": "2026-11-08 13:31",
   "הועלה": "2026-11-08 13:31",
-  "מזהה": "n-0019"
+  "מזהה": "n-0019",
+  "כותרת_en": "New Iranian claim: the Revolutionary Guards said two 'violating' oil tankers struck mines in Hormuz and caught fire",
+  "טקסט_en": "Not verified against a primary source; a claim only, with no independent confirmation of damage to tankers or of mines. Do not link to the CENTCOM seizure of the M/V Huda - it was not verified that this is the same event.\nNov 8, 2026 | per Anadolu and Xinhua, quoting the statement on the Revolutionary Guards' Sepah News; original publication times not given.\n\nThe naval arm of Iran's Revolutionary Guards (IRGC) said on Saturday night that two oil tankers caught fire after allegedly striking naval mines inside the Strait of Hormuz and east of it. Per the statement, the two tankers switched off their navigation and positioning systems and tried to cross via an 'unauthorized' lane; one was hit east of the strait and the other inside the passage. The Revolutionary Guards warned that any vessel cooperating with the US military entering the 'unauthorized' area would 'definitely' strike mines.",
+  "_translation": {
+   "en": {
+    "source_hash": "5c7217d42be5101b3f769a5e5d4422fdd70589b7a244a3b0ce03900400b383bd",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "דיווחים על פיצוצים בכמה אתרים לאורך חוף המפרץ הפרסי של איראן; הסיבה טרם ברורה",
@@ -511,13 +539,22 @@
   "מקורות": [
    {
     "label": "איראן אינטרנשיונל, 7 בנובמבר",
-    "url": "https://www.iranintl.com/en/202611072374"
+    "url": "https://www.iranintl.com/en/202611072374",
+    "label_en": "Iran International, November 7"
    }
   ],
   "טקסט": "לא מאומת מול מקור ראשוני\n7.11.2026 | לפי איראן אינטרנשיונל; פורסם 20:27 לפי שעון GMT (22:27 לפי שעון ישראל).\n\nצלילים דמוייי פיצוץ נשמעו בערב שבת בכמה אתרים לאורך חוף המפרץ הפרסי של איראן, לרבות האי קישם, סיריק, ג'אסק ובנדאר עבאס, כך דיווחה הטלוויזיה הממלכתית האיראנית. סוכנות הידיעות הממלכתית IRNA דיווחה על שני פיצוצים במזרח האי קישם, ותושבים דיווחו גם על פיצוצים בג'אסק. סיבת הצלילים טרם ברורה; כתב של הטלוויזיה הממלכתית העלה אפשרות שהם קשורים לפעילות צבאית איראנית להגנת מיצר הורמוז.",
   "תאריך": "2026-11-08 13:31",
   "הועלה": "2026-11-08 13:31",
-  "מזהה": "n-0020"
+  "מזהה": "n-0020",
+  "כותרת_en": "Reports of explosions at several sites along Iran's Persian Gulf coast; the cause is not yet clear",
+  "טקסט_en": "Not verified against a primary source\nNov 7, 2026 | per Iran International; published 20:27 GMT (22:27 Israel time).\n\nExplosion-like sounds were heard on Saturday evening at several sites along Iran's Persian Gulf coast, including Qeshm Island, Sirik, Jask and Bandar Abbas, Iranian state television reported. The state news agency IRNA reported two explosions in eastern Qeshm Island, and residents also reported explosions in Jask. The cause of the sounds is not yet clear; a state television correspondent raised the possibility that they are linked to Iranian military activity to defend the Strait of Hormuz.",
+  "_translation": {
+   "en": {
+    "source_hash": "beacc59ddef296a76268b93481f6c6d46239384ae266f403b04d3b512e3666e9",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Meta (META): סמנכ\"ל האסטרטגיה דייב ווהנר עוזב לתפקיד ה-CFO של סטארט-אפ ה-AI Fireworks",
@@ -526,13 +563,22 @@
   "מקורות": [
    {
     "label": "CNBC, 7 בנובמבר",
-    "url": "https://www.cnbc.com/2026/11/07/dave-wehner-meta-fireworks-cfo.html"
+    "url": "https://www.cnbc.com/2026/11/07/dave-wehner-meta-fireworks-cfo.html",
+    "label_en": "CNBC, November 7"
    }
   ],
   "טקסט": "7.11.2026 | לפי CNBC; פורסם 12:51 לפי שעון EST (19:51 לפי שעון ישראל).\n\nדייב ווהנר, סמנכ\"ל האסטרטגיה של Meta, עוזב את החברה ומצטרף כמנכ\"ל כספים (CFO) ל-Fireworks, סטארט-אפ בן ארבע שנים לתשתיות AI (הסקה ואימון מודלים פתוחים), שהוערך ב-17.5 מיליארד דולר בסבב D ביולי. ווהנר הודיע על המעבר ב-X ביום שישי. ווהנר הצטרף לפייסבוק ב-2012 ושימש CFO בין 2014 ל-2022. סמנכ\"ל התפעול של Meta, חאבייר אוליבאן, אמר ל-CNBC שווהנר \"הוביל את Meta דרך צמיחה ומורכבות עצומות במשך 14 שנים\". לפי Business Insider, Fireworks בשיחות מוקדמות לגיוס נוסף בשווי אפשרי של 30-40 מיליארד דולר.",
   "תאריך": "2026-11-08 13:31",
   "הועלה": "2026-11-08 13:31",
-  "מזהה": "n-0021"
+  "מזהה": "n-0021",
+  "כותרת_en": "Meta (META): strategy VP Dave Wehner is leaving for the CFO role at AI startup Fireworks",
+  "טקסט_en": "Nov 7, 2026 | per CNBC; published 12:51 EST (19:51 Israel time).\n\nDave Wehner, Meta's VP of strategy, is leaving the company and joining as chief financial officer (CFO) of Fireworks, a four-year-old AI infrastructure startup (inference and training of open models), which was valued at $17.5 billion in a July Series D round. Wehner announced the move on X on Friday. Wehner joined Facebook in 2012 and served as CFO from 2014 to 2022. Meta's VP of operations, Javier Olivan, told CNBC that Wehner 'led Meta through enormous growth and complexity over 14 years'. Per Business Insider, Fireworks is in early talks for an additional raise at a possible valuation of $30-40 billion.",
+  "_translation": {
+   "en": {
+    "source_hash": "5be161645d73545da6992639f5e8d6dec716fa27c54eb75860a806f4578aa5fe",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "תחנת הכוח הגרעינית בזפוריז'יה איבדה את אספקת החשמל החיצונית; גנרטורים מפעילים את מערכות הבטיחות",
@@ -541,13 +587,22 @@
   "מקורות": [
    {
     "label": "RTE (AFP/Reuters), 8 בנובמבר",
-    "url": "https://www.rte.ie/news/2026/1108/1598404-ukraine-russia/"
+    "url": "https://www.rte.ie/news/2026/1108/1598404-ukraine-russia/",
+    "label_en": "RTE (AFP/Reuters), November 8"
    }
   ],
   "טקסט": "לא אומת מול הודעת סוכנות האנרגיה האטומית (IAEA)\n8.11.2026 | לפי RTE (AFP/Reuters); פורסם 09:20 לפי שעון האתר; אזור הזמן לא צוין במקור ולא הומר לשעון ישראל.\n\nהנהלת תחנת הכוח הגרעינית בזפוריז'יה, הממונית על ידי רוסיה, מסרה כי קו החשמל Ferosplavna נותק על ידי מערכות הגנה אוטומטיות עקב נזק, וכי גנרטורי דיזל מספקים חשמל לציוד הנדרש להפעלה בטוחה של התחנה. לפי ההודעה, רמות הקרינה באתר ובאזור הניטור תקינות.",
   "תאריך": "2026-11-08 13:29",
   "הועלה": "2026-11-08 13:29",
-  "מזהה": "n-0022"
+  "מזהה": "n-0022",
+  "כותרת_en": "The Zaporizhzhia nuclear power plant lost external power supply; generators are running the safety systems",
+  "טקסט_en": "Not verified against an International Atomic Energy Agency (IAEA) statement\nNov 8, 2026 | per RTE (AFP/Reuters); published 09:20 per the site clock; the time zone was not specified in the source and was not converted to Israel time.\n\nThe management of the Zaporizhzhia nuclear power plant, appointed by Russia, said the Ferosplavna power line was disconnected by automatic protection systems due to damage, and that diesel generators are supplying power to the equipment required for the plant's safe operation. Per the statement, radiation levels at the site and in the monitoring area are normal.",
+  "_translation": {
+   "en": {
+    "source_hash": "8dab99490ab71a9dda3e7bec9c07b284c9a89722db3b3b7527f4f88a192a8819",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "סעודיה: הקואליציה הודיעה שמערכות ההגנה האווירית יירטו שני טילים בליסטיים חות'ים לעבר ריאד",
@@ -556,17 +611,27 @@
   "מקורות": [
    {
     "label": "סוכנות הידיעות הסעודית (SPA), 8 בנובמבר",
-    "url": "https://spa.gov.sa/en/N2720568"
+    "url": "https://spa.gov.sa/en/N2720568",
+    "label_en": "Saudi Press Agency (SPA), November 8"
    },
    {
     "label": "AFP, 8 בנובמבר",
-    "url": "https://www.afp.com/en/riyadh-financial-district-targeted-aramco-skyscraper-damaged"
+    "url": "https://www.afp.com/en/riyadh-financial-district-targeted-aramco-skyscraper-damaged",
+    "label_en": "AFP, November 8"
    }
   ],
   "טקסט": "8.11.2026 | סוכנות הידיעות הסעודית הרשמית (SPA); שעת הפרסום לא צוינה.\n\nדובר הקואליציה, טורכי אל-מאלכי, הודיע כי מערכות ההגנה האווירית יירטו והשמידו שני טילים בליסטיים ששוגרו על ידי המיליציה החות'ית לעבר ריאד. לפי AFP, פיצוצים חזקים נשמעו בבירה הסעודית.",
   "תאריך": "2026-11-08 13:29",
   "הועלה": "2026-11-08 13:29",
-  "מזהה": "n-0023"
+  "מזהה": "n-0023",
+  "כותרת_en": "Saudi Arabia: the coalition announced that air defenses intercepted two Houthi ballistic missiles toward Riyadh",
+  "טקסט_en": "Nov 8, 2026 | official Saudi Press Agency (SPA); publication time not given.\n\nCoalition spokesman Turki al-Maliki announced that air defense systems intercepted and destroyed two ballistic missiles launched by the Houthi militia toward Riyadh. Per AFP, loud explosions were heard in the Saudi capital.",
+  "_translation": {
+   "en": {
+    "source_hash": "8ae979142f381f82ed2914353dd8fd13dc2bc885dca0d057108ab6265e1c26d5",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "משרד האנרגיה הסעודי: בניין מינהלי של אראמקו בריאד נפגע מרסיסים ב\"ניסיון תקיפה\"; לא דווח על נפגעים",
@@ -575,13 +640,22 @@
   "מקורות": [
    {
     "label": "AFP, 8 בנובמבר",
-    "url": "https://www.afp.com/en/riyadh-financial-district-targeted-aramco-skyscraper-damaged"
+    "url": "https://www.afp.com/en/riyadh-financial-district-targeted-aramco-skyscraper-damaged",
+    "label_en": "AFP, November 8"
    }
   ],
   "טקסט": "לא אומת מול הודעת משרד האנרגיה המקורית\n8.11.2026 | לפי AFP; שעת הפרסום באתר 11:31, אזור הזמן לא צוין ולא הומר לשעון ישראל.\n\nמשרד האנרגיה הסעודי מסר כי \"בניין מינהלי השייך לאראמקו הסעודית בריאד נחשף לניסיון תקיפה\", וכי רסיסים שנפלו גרמו נזק קל לבניין ללא נפגעים. עדי ראייה מסרו ל-AFP כי מספר קומות בגורד השחקים של אראמקו במתחם KAFD (מרכז המלך עבדאללה הפיננסי) ניזוקו, עם שברי זכוכית ונזק לחזית. הדיווח הגיע שעות לאחר שהקואליציה הודיעה על יירוט שני טילים בליסטיים ששוגרו לעבר ריאד.",
   "תאריך": "2026-11-08 13:29",
   "הועלה": "2026-11-08 13:29",
-  "מזהה": "n-0024"
+  "מזהה": "n-0024",
+  "כותרת_en": "Saudi Energy Ministry: an Aramco administrative building in Riyadh was hit by debris in an 'attack attempt'; no casualties reported",
+  "טקסט_en": "Not verified against the original Energy Ministry statement\nNov 8, 2026 | per AFP; site publication time 11:31, time zone not specified and not converted to Israel time.\n\nThe Saudi Energy Ministry said that 'an administrative building belonging to Saudi Aramco in Riyadh was exposed to an attack attempt', and that falling debris caused minor damage to the building with no casualties. Eyewitnesses told AFP that several floors of Aramco's skyscraper in the KAFD complex (King Abdullah Financial District) were damaged, with shattered glass and damage to the facade. The report came hours after the coalition announced the interception of two ballistic missiles launched toward Riyadh.",
+  "_translation": {
+   "en": {
+    "source_hash": "8a5471cb02c9be87eb5cbe44d0d30b42411eca61f87b25e2e75e1eded50f1212",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "CENTCOM: כוחות ארה\"ב השביתו כלי שיט מסחרי שניסה להפר את הסגר הימי על איראן",
