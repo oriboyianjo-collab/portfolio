@@ -981,16 +981,18 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .wr.wgrid:not(.egrid) .pc-s .spark{height:28px}
 .wr.egrid .pc-s .spark{height:32.3px}
 /* v250 approved: editable index tiles - one small magnifier toggles edit mode (remove badges on tiles + add-search bar). */
+/* v251 approved: search tools row moved above the tiles - small magnifier; thin short add-search field (30% width) opens in that same row; tiles stay fixed and unobscured. */
 .idxwrap{position:relative}
-#idxEdit{position:absolute;top:-13px;right:2px;z-index:3;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
-#idxEdit svg{width:16px;height:16px}
+.idx-tools{display:flex;align-items:center;gap:8px;margin:0 0 8px}
+#idxEdit{flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#idxEdit svg{width:13px;height:13px}
 #idxEdit.on{color:var(--primary);border-color:var(--primary)}
 .idx{position:relative}
 .idx-x{position:absolute;top:-9px;left:-7px;z-index:2;width:24px;height:24px;border-radius:50%;background:#ef4444;color:#fff;border:2px solid var(--bg);font:inherit;font-size:12px;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
-.idx-editbar{margin:2px 0 10px}
+.idx-editbar{flex:0 0 auto;width:30%;min-width:0;margin:0}
 .idx-editbar .ac{position:relative}
-.idx-editbar input{width:100%;padding-inline-start:36px!important}
-.idx-editbar .ac-ic2{position:absolute;inset-inline-start:11px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--muted);pointer-events:none}
+.idx-editbar input{width:100%;box-sizing:border-box;height:29px;min-height:29px;padding-top:0;padding-bottom:0;padding-inline-start:32px!important;padding-inline-end:10px;font-size:.8rem;border-radius:15px;line-height:1}
+.idx-editbar .ac-ic2{position:absolute;inset-inline-start:10px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--muted);pointer-events:none}
 .irr-failure-info{margin-inline-start:8px;vertical-align:middle}.irr-pop-bg{background:transparent!important;backdrop-filter:none!important}.irr-pop-bg .ib-card{position:fixed;bottom:auto!important;margin:0!important;border:1px solid #64748b;border-radius:13px;padding:14px 16px;max-height:min(300px,70vh);overflow:auto;background:#1b2638!important;opacity:1!important;box-shadow:0 8px 28px #0008;transform:none!important;box-sizing:border-box}.irr-pop-bg .ib-card h4{font-size:13px;margin:0 0 9px;padding-inline-end:20px}.irr-pop-bg .ib-card h4>i{display:none}.irr-pop-bg .ib-b{font-size:12px;line-height:1.65}.irr-pop-bg .ib-b p{margin:6px 0 0}.irr-pop-close{position:absolute;top:6px;left:6px;width:26px;height:26px;padding:0;border:0;background:transparent;color:#cbd5e1;font-size:22px}.srow .pc-d{align-items:center;text-align:center;justify-content:center;gap:2px}.srow .pc-d>b.num{width:max-content;max-width:100%;min-width:0;padding:2px 7px;box-sizing:border-box;align-self:center}.srow .pc-d>.wl-p{align-self:center;width:max-content;max-width:100%;text-align:center}.srow .pc-d>.ext-line{align-self:center;text-align:center}.rep-date-strip{display:flex;gap:8px;align-items:stretch}.rep-date-strip>button{flex:0 0 72px;max-width:72px;box-sizing:border-box;background:#24364f;color:#cbd5e1;border-color:#445b78;border-radius:14px;min-height:66px;padding:6px 3px;line-height:1.15}.rep-date-strip>button b{color:#93c5fd;display:flex;align-items:center;justify-content:center;font-size:1rem;margin:1px 0}.rep-date-strip>button small{font-size:.57rem;white-space:nowrap}.rep-date-strip>button.on{background:#2563eb;color:white;border-color:#2563eb}.rep-date-strip>button.on b{color:white}.rep-date-strip>#repDays{margin:0;position:relative;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;gap:6px;isolation:isolate}.rep-date-strip>#repDays .dcard{flex:0 0 calc((100% - 12px)/3);box-sizing:border-box;min-width:0;max-width:none;padding:6px 2px;scroll-snap-align:start;min-height:66px}.rep-date-strip>#repDays .dcard small{white-space:nowrap;font-size:.55rem}.rep-date-strip>#repDays .dcard b{font-size:.98rem}
 
 .rrow .rn .rmeta{flex-wrap:wrap;column-gap:5px;row-gap:2px}.rrow .rcompany{flex-basis:100%;width:100%}.rrow .rdate{flex:0 0 auto;color:var(--text);white-space:nowrap}.rrow .rn .rmeta .rdate{font-size:.65rem}.rrow .rcap::before{content:"·"}
@@ -1037,9 +1039,9 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
     <div class="idxwrap" id="idxWrap" hidden>
+    <div class="idx-tools"><button type="button" id="idxEdit" aria-pressed="false" aria-label="עריכת האריחים" title="עריכת האריחים"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button>
+    <div class="idx-editbar" id="idxEditBar" hidden><div class="ac"><input id="idxSearch" placeholder="חיפוש נייר להוספה" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><div class="ac-list" id="idxAc"></div></div></div></div>
     <div class="idxrow" id="idxRow"></div>
-    <button type="button" id="idxEdit" aria-pressed="false" aria-label="עריכת האריחים" title="עריכת האריחים"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button>
-    <div class="idx-editbar" id="idxEditBar" hidden><div class="ac"><input id="idxSearch" placeholder="חיפוש נייר להוספה" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><div class="ac-list" id="idxAc"></div></div></div>
     </div>
     <div id="splitSug"></div>
     <div class="card" id="cashCard"><h2 id="cashHead"><span class="logo" style="--lc:#0f766e" aria-hidden="true"><span>₪$</span></span><span>מזומן</span> <small id="fxSmall"></small><span class="chev" id="cashChev" aria-hidden="true"></span></h2><div class="cash-row" id="cashRow"></div></div>
