@@ -23,6 +23,9 @@
     return (Array.isArray(a)?a:[]).map((x,i)=>({x,i,t:stamp(x)})).sort((a,b)=>b.t.localeCompare(a.t)||b.i-a.i).slice(0,limit).map(v=>v.x);
   }
   function detect(o){
+    const en=o.lang==='en', ready=new Set(o.englishReadyIds||[]);
+    const displayNews=x=>en&&ready.has(x['מזהה'])&&String(x['כותרת_en']||'').trim()?String(x['כותרת_en']).trim():String(x['כותרת']||'').trim();
+    const timing=m=>en?(m==='before'?'Before market open':m==='after'?'After market close':''):when(m);
     const P = o.prefs||{}, hold = new Set(o.hold||[]), watch = new Set(o.watch||[]), muted = new Set(o.muted||[]), out = [];
     const want = sym => !muted.has(sym) && (hold.has(sym) || watch.has(sym));
     newestNews(o.news).forEach(x=>{
@@ -33,15 +36,15 @@
       if(!syms.length && !broad) return;
       const t = String(x['כותרת']||'').trim(); if(!t) return;
       const key='n|'+H(t+'|'+(x['הועלה']||x['תאריך']||'')); if(NEWS_REPAIR_BASELINE.has(key))return;
-      out.push({key, kind:'news', sym:syms[0]||'', title:syms.length ? '📰 חדשות על '+syms.join(', ') : '📰 חדשות', body:t.slice(0,180), base:true});
+      out.push({key, kind:'news', sym:syms[0]||'', title:syms.length ? (en?'📰 News about ':'📰 חדשות על ')+syms.join(', ') : (en?'📰 News':'📰 חדשות'), body:displayNews(x).slice(0,180), base:true});
     });
     const today = ilDate(0), tmr = ilDate(1), old = ilDate(-3), hr = ilHour();
     (Array.isArray(o.reports)?o.reports:[]).forEach(r=>{
       const sym = String(r['סימול']||'').toUpperCase(), d = String(r['תאריך']||'').slice(0,10); if(!sym || !d || !want(sym)) return;
       const pub = has(r['בפועל_EPS']) || has(r['הכנסות_בפועל']), nm = r['חברה']||sym;
-      if(!pub && P.repBefore && d===tmr) out.push({key:'rb|'+sym+'|'+d, kind:'rep', sym, title:'⏰ מחר דוח: '+sym, body:[nm, when(r['מועד']), has(r['צפי_EPS'])?'צפי EPS '+r['צפי_EPS']:''].filter(Boolean).join(' · ')});
-      if(!pub && P.repMorning && d===today && hr>=7) out.push({key:'rm|'+sym+'|'+d, kind:'rep', sym, title:'📊 דוח היום: '+sym, body:[nm, when(r['מועד']), has(r['צפי_EPS'])?'צפי EPS '+r['צפי_EPS']:''].filter(Boolean).join(' · ')});
-      if(pub && P.repPub && d>=old && d<=today) out.push({key:'rp|'+sym+'|'+d, kind:'rep', sym, title:'✅ דוח פורסם: '+sym, body:[nm, has(r['בפועל_EPS'])?'EPS '+r['בפועל_EPS']+(has(r['צפי_EPS'])?' מול צפי '+r['צפי_EPS']:''):''].filter(Boolean).join(' · '), base:true});
+      if(!pub && P.repBefore && d===tmr) out.push({key:'rb|'+sym+'|'+d, kind:'rep', sym, title:(en?'⏰ Earnings tomorrow: ':'⏰ מחר דוח: ')+sym, body:[nm, timing(r['מועד']), has(r['צפי_EPS'])?(en?'EPS estimate ':'צפי EPS ')+r['צפי_EPS']:''].filter(Boolean).join(' · ')});
+      if(!pub && P.repMorning && d===today && hr>=7) out.push({key:'rm|'+sym+'|'+d, kind:'rep', sym, title:(en?'📊 Earnings today: ':'📊 דוח היום: ')+sym, body:[nm, timing(r['מועד']), has(r['צפי_EPS'])?(en?'EPS estimate ':'צפי EPS ')+r['צפי_EPS']:''].filter(Boolean).join(' · ')});
+      if(pub && P.repPub && d>=old && d<=today) out.push({key:'rp|'+sym+'|'+d, kind:'rep', sym, title:(en?'✅ Earnings released: ':'✅ דוח פורסם: ')+sym, body:[nm, has(r['בפועל_EPS'])?'EPS '+r['בפועל_EPS']+(has(r['צפי_EPS'])?(en?' vs estimate ':' מול צפי ')+r['צפי_EPS']:''):''].filter(Boolean).join(' · '), base:true});
     });
     return out;
   }
