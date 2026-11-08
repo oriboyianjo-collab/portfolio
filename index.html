@@ -983,7 +983,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 /* v250 approved: editable index tiles - one small magnifier toggles edit mode (remove badges on tiles + add-search bar). */
 /* v251 approved: search tools row moved above the tiles - small magnifier; thin short add-search field (30% width) opens in that same row; tiles stay fixed and unobscured. */
 /* v252: scoped #idxSearch override so the approved thin field actually renders slim (shared 48px search-field rule otherwise wins via !important). v253: 26px exactly matches the magnifier row so tiles stay pixel-fixed. */
-/* v254 approved: right-chevron toggle merged into the left edge of the left index tile (full tile height, part of the tile, no separate button); magnifier circle removed - the tools row above the tiles holds the 30% search field only and hides when closed; search focus uses preventScroll so the screen does not jump. v255 fix: the change % line (.idx-c) spans the full tile width below the spark so the arrow zone no longer squeezes it out of the tile; the spark now spans only the name/value rows. */
+/* v254 approved: right-chevron toggle merged into the left edge of the left index tile (full tile height, part of the tile, no separate button); magnifier circle removed - the tools row above the tiles holds the 30% search field only and hides when closed. v255 fix: the change % line (.idx-c) spans the full tile width below the spark so the arrow zone no longer squeezes it out of the tile; the spark now spans only the name/value rows. v256 fix: the arrow no longer auto-focuses the field - the tap only opens/closes the row, so no keyboard opens, no kb-on header collapse and no lift scroll (the "screen jump"); tapping the field focuses it like every other search in the app. */
 .idxwrap{position:relative}
 .idx-tools{display:flex;align-items:center;gap:8px;margin:0 0 8px}
 .idx-arrowbtn{position:absolute;left:0;top:0;bottom:0;z-index:1;width:20px;border:none;border-right:1px solid var(--border);border-radius:13px 0 0 13px;background:rgba(148,163,184,.08);color:var(--muted);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;font:inherit}
@@ -3259,7 +3259,7 @@ function sparkSvg(pts, prev, up, W = 58, H = 30){
   const d = pts.map((v,i)=>(i?'L':'M')+(i/(pts.length-1)*W).toFixed(1)+' '+y(v)).join(' ');
   return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${prev ? `<line x1="0" x2="${W}" y1="${y(prev)}" y2="${y(prev)}"/>` : ''}<path d="${d}" stroke="${up ? 'var(--green)' : 'var(--red)'}"/></svg>`;
 }
-$('idxRow').addEventListener('click', e=>{ if(e.target.closest('.idx-arrowbtn')){ idxEditing = !idxEditing; renderIdx(); if(idxEditing) setTimeout(()=>{ const s = $('idxSearch'); if(s) s.focus({preventScroll:true}); }, 30); return; } const del = e.target.closest('[data-idxdel]');
+$('idxRow').addEventListener('click', e=>{ if(e.target.closest('.idx-arrowbtn')){ idxEditing = !idxEditing; renderIdx(); return; } const del = e.target.closest('[data-idxdel]');
   if(del){ const k = del.dataset.idxdel, i = IDX.findIndex(x=>x.k===k); if(i>=0){ IDX.splice(i,1); delete idxData.q[k]; delete idxData.sp[k]; idxListSave(); idxSave(); renderIdx(); } return; }
   if(idxEditing) return;
   const t = e.target.closest('[data-idx]'); if(!t) return; const k = t.dataset.idx;
