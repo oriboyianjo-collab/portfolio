@@ -8,7 +8,15 @@
   "חשיבות": 1,
   "קודם": "18.5K",
   "בפועל": "16.75K",
-  "מזהה": "c-0001"
+  "מזהה": "c-0001",
+  "אירוע_en": "Employment change - ADP weekly",
+  "תקופה_en": "Weekly",
+  "_translation": {
+   "en": {
+    "source_hash": "af0f23c5581cdad44ef59f8594ac071b450702bcb724cbdb4de3006563505fa1",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-27",
@@ -21,7 +29,16 @@
   "צפי": "2.0%",
   "בפועל": "1.8%",
   "הערה": "הצפי נשמר מהיומן הקודם ומקורו לא אומת; מקורות מדווחים 1.2% (סקר WSJ) עד 1.9%. אוגוסט תוקן ל־0.1% (מ־-0.1%) לפי Census",
-  "מזהה": "c-0002"
+  "מזהה": "c-0002",
+  "אירוע_en": "Durable goods orders (incl. transportation)",
+  "תקופה_en": "September · monthly",
+  "הערה_en": "The estimate was retained from the previous calendar and its source was not verified; reported sources range from 1.2% (WSJ survey) to 1.9%. August was revised to 0.1% (from -0.1%) per Census",
+  "_translation": {
+   "en": {
+    "source_hash": "12616a0e532e042c60c376d531e5365b576f52ceaeab4990b8ce7bc3582e036e",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-27",
@@ -34,7 +51,16 @@
   "קודם": "0.3%",
   "בפועל": "0.5%",
   "הערה": "בפועל: Census. צפי: קונצנזוס כפי שדווח (FXStreet). קודם: 0.3% לא מתוקן (globaltradereview)",
-  "מזהה": "c-0003"
+  "מזהה": "c-0003",
+  "אירוע_en": "Durable goods orders ex-transportation (core)",
+  "תקופה_en": "September · monthly",
+  "הערה_en": "Actual: Census. Estimate: consensus as reported (FXStreet). Prior: 0.3% unrevised (globaltradereview)",
+  "_translation": {
+   "en": {
+    "source_hash": "f86eb244b786c1a11d0ca3c9ac4139f10d4a2f8b6c3df821fa8c4371292a4e69",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-27",
@@ -46,7 +72,15 @@
   "צפי": "0.2%",
   "קודם": "0.3%",
   "בפועל": "0.3%",
-  "מזהה": "c-0004"
+  "מזהה": "c-0004",
+  "אירוע_en": "House Price Index (FHFA)",
+  "תקופה_en": "August · monthly",
+  "_translation": {
+   "en": {
+    "source_hash": "aaf1e29ec090af3ac8f053803f26728042617eb16758727a749f21f32461484a",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-27",
@@ -59,7 +93,16 @@
   "הערה": "בפועל: S&P Cotality. צפי וקודם: 0.3% (Seeking Alpha)",
   "בפועל": "0.3%",
   "קודם": "0.3%",
-  "מזהה": "c-0005"
+  "מזהה": "c-0005",
+  "אירוע_en": "S&P/Case-Shiller Home Price Index (20 cities) - monthly",
+  "תקופה_en": "August · monthly (seasonally adjusted)",
+  "הערה_en": "Actual: S&P Cotality. Estimate and prior: 0.3% (Seeking Alpha)",
+  "_translation": {
+   "en": {
+    "source_hash": "26e96617cbad42f3ea43850dd791d7ccf4d92450960a3162c2862dbba707ebc8",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-27",
@@ -72,7 +115,16 @@
   "קודם": "2.5%",
   "בפועל": "2.7%",
   "הערה": "החזק ממאי 2025",
-  "מזהה": "c-0006"
+  "מזהה": "c-0006",
+  "אירוע_en": "S&P/Case-Shiller Home Price Index (20 cities) - annual",
+  "תקופה_en": "August · annual (y/y)",
+  "הערה_en": "Held steady from May 2025",
+  "_translation": {
+   "en": {
+    "source_hash": "e58a85c738c005aba4e482140b5e7ac396aaa31946079391d0eeb794f5880a3e",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-27",
@@ -85,7 +137,16 @@
   "בפועל": "91.7",
   "הערה": "ספטמבר תוקן כלפי מעלה ל-84.2 (מ-81.9); מצב נוכחי 120.4, ציפיות 72.6",
   "צפי": "81.2",
-  "מזהה": "c-0007"
+  "מזהה": "c-0007",
+  "אירוע_en": "Consumer confidence (Conference Board)",
+  "תקופה_en": "October",
+  "הערה_en": "September revised upward to 84.2 (from 81.9); present situation 120.4, expectations 72.6",
+  "_translation": {
+   "en": {
+    "source_hash": "f2f71a21d398710dcafb8ce80479d763136338ac03a0462d582c402f9b9a826b",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-27",
@@ -98,7 +159,16 @@
   "קודם": "-2",
   "בפועל": "-2",
   "הערה": "ללא שינוי מספטמבר; הזמנות חדשות -8, תעסוקה 3, משלוחים 0",
-  "מזהה": "c-0008"
+  "מזהה": "c-0008",
+  "אירוע_en": "Richmond Fed manufacturing index",
+  "תקופה_en": "October",
+  "הערה_en": "Unchanged from September; new orders -8, employment 3, shipments 0",
+  "_translation": {
+   "en": {
+    "source_hash": "a85f65b96997127221de04870668d2d8b23e06e29cdb460c5b63ffe261a575a3",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-27",
@@ -111,7 +181,16 @@
   "בפועל": "676K",
   "הערה": "נתון אוגוסט תוקן ל-680K (מ-684K); ירידה חודשית 0.6%",
   "צפי": "651K",
-  "מזהה": "c-0009"
+  "מזהה": "c-0009",
+  "אירוע_en": "New home sales",
+  "תקופה_en": "September · monthly",
+  "הערה_en": "August figure revised to 680K (from 684K); monthly decline 0.6%",
+  "_translation": {
+   "en": {
+    "source_hash": "aaad5f344d913c26a46401383ba46b4edfb4c38079f3bcbbb592dc157adbdd6a",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-28",
@@ -123,7 +202,18 @@
   "קודם": "-132.1 מיליארד דולר",
   "צפי": "-130.8 מיליארד דולר",
   "בפועל": "-134.9 מיליארד דולר",
-  "מזהה": "c-0010"
+  "מזהה": "c-0010",
+  "אירוע_en": "Goods trade balance (advance)",
+  "תקופה_en": "September",
+  "קודם_en": "-$132.1 billion",
+  "צפי_en": "-$130.8 billion",
+  "בפועל_en": "-$134.9 billion",
+  "_translation": {
+   "en": {
+    "source_hash": "ce9d70d03cad6f4195fa748dfbec72866e72e6396dcb7fe8f0d8f777a58e782c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-28",
@@ -135,7 +225,15 @@
   "צפי": "0.4%",
   "קודם": "0.5%",
   "בפועל": "0.6%",
-  "מזהה": "c-0011"
+  "מזהה": "c-0011",
+  "אירוע_en": "Wholesale inventories (advance)",
+  "תקופה_en": "September · monthly",
+  "_translation": {
+   "en": {
+    "source_hash": "4fae4a12512ff73abebfb11ee703ff0425fedab9b7d52fecadf73906e31c8a28",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-28",
@@ -147,7 +245,16 @@
   "קודם": "0.3%",
   "בפועל": "0.3%",
   "הערה": "אין צפי זמין; נתון אוגוסט תוקן בפרסום זה מ־0.2% ל־0.3%",
-  "מזהה": "c-0012"
+  "מזהה": "c-0012",
+  "אירוע_en": "Retail inventories (advance)",
+  "תקופה_en": "September · monthly",
+  "הערה_en": "No estimate available; August figure revised in this release from 0.2% to 0.3%",
+  "_translation": {
+   "en": {
+    "source_hash": "638656061005c6500a8f3a6d9045e38d47cf7c67c33c09a97bb8d075fd999164",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-28",
@@ -160,7 +267,19 @@
   "קודם": "-3.1 מיליון חביות",
   "בפועל": "-1.9 מיליון חביות",
   "הערה": "הצפי נשמר מהיומן הקודם; מקורו לא אומת ואינו קונצנזוס מאומת. בנזין +3.9M, תזקיקים -1.5M",
-  "מזהה": "c-0013"
+  "מזהה": "c-0013",
+  "אירוע_en": "Weekly crude oil inventories (EIA)",
+  "תקופה_en": "Weekly",
+  "הערה_en": "The estimate was retained from the previous calendar; its source was not verified and it is not a verified consensus. Gasoline +3.9M, distillates -1.5M",
+  "קודם_en": "-3.1 million barrels",
+  "צפי_en": "-0.3 million barrels",
+  "בפועל_en": "-1.9 million barrels",
+  "_translation": {
+   "en": {
+    "source_hash": "24957a879329a154612e326927cb9a957780388923cdf05b87cdcbba2217e255",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-28",
@@ -173,7 +292,18 @@
   "קודם": "3.75%-4.00%",
   "הערה": "הוחלט ברוב של 10 מול 2: קוק והאמק התנגדו וביקשו להעלות את הריבית ב-0.25 נקודת אחוז. הצפי נשמר מהיומן הקודם; מקורו לא אומת. מסיבת עיתונאים של וורש ב-20:30",
   "בפועל": "3.75%-4.00% (ללא שינוי)",
-  "מזהה": "c-0014"
+  "מזהה": "c-0014",
+  "אירוע_en": "FOMC interest rate decision",
+  "תקופה_en": "October",
+  "הערה_en": "Decided by a 10-2 vote: Cook and Hammack dissented, favoring a 0.25 percentage point rate hike. The estimate was retained from the previous calendar; its source was not verified. Warsh press conference at 20:30",
+  "צפי_en": "3.75%-4.00% (unchanged)",
+  "בפועל_en": "3.75%-4.00% (unchanged)",
+  "_translation": {
+   "en": {
+    "source_hash": "5cb13cd5d9160a7d960b48c153030d9ab4e8aa8ffb779ebef5a6a7466a0cd6a8",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-29",
@@ -186,7 +316,16 @@
   "קודם": "0.9%",
   "בפועל": "0.5%",
   "הערה": "מקור: BEA, Personal Income and Outlays, September 2026 (פורסם 29.10)",
-  "מזהה": "c-0015"
+  "מזהה": "c-0015",
+  "אירוע_en": "Consumer spending (nominal PCE)",
+  "תקופה_en": "September · monthly",
+  "הערה_en": "Source: BEA, Personal Income and Outlays, September 2026 (released Oct 29)",
+  "_translation": {
+   "en": {
+    "source_hash": "ad2756095cf87b0d072b86f63a44d3e721772f5c1867ecb59bcc9f703cfae7f3",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-29",
@@ -199,7 +338,16 @@
   "קודם": "0.3%",
   "בפועל": "0.2%",
   "הערה": "מקור: BEA, Personal Income and Outlays, September 2026 (פורסם 29.10). קודם: אוגוסט לפי טבלת ההודעה",
-  "מזהה": "c-0016"
+  "מזהה": "c-0016",
+  "אירוע_en": "Personal income",
+  "תקופה_en": "September · monthly",
+  "הערה_en": "Source: BEA, Personal Income and Outlays, September 2026 (released Oct 29). Prior: August per the release table",
+  "_translation": {
+   "en": {
+    "source_hash": "a0f6fb487a58cbe8e2afd87e40a5cb1377bb4c1982740c167bfbf230f6030a8c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-29",
@@ -212,7 +360,16 @@
   "קודם": "0.3%",
   "הערה": "צפי: חציון סקר WSJ. מקור: BEA, Personal Income and Outlays, September 2026 (פורסם 29.10)",
   "בפועל": "0.5%",
-  "מזהה": "c-0017"
+  "מזהה": "c-0017",
+  "אירוע_en": "Headline PCE index - monthly (m/m)",
+  "תקופה_en": "September · monthly",
+  "הערה_en": "Estimate: WSJ survey median. Source: BEA, Personal Income and Outlays, September 2026 (released Oct 29)",
+  "_translation": {
+   "en": {
+    "source_hash": "9e83e159873cecc6b2735ac5525f037b207125d1f574875f23b5c2b404ccd7a3",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-29",
@@ -225,7 +382,16 @@
   "קודם": "3.4%",
   "הערה": "צפי: חציון סקר WSJ (3 תחזיות בלבד). מקור: BEA, Personal Income and Outlays, September 2026 (פורסם 29.10)",
   "בפועל": "3.6%",
-  "מזהה": "c-0018"
+  "מזהה": "c-0018",
+  "אירוע_en": "Headline PCE index - annual (y/y)",
+  "תקופה_en": "September · annual (y/y)",
+  "הערה_en": "Estimate: WSJ survey median (only 3 forecasts). Source: BEA, Personal Income and Outlays, September 2026 (released Oct 29)",
+  "_translation": {
+   "en": {
+    "source_hash": "331a0b66b67bee4a51da1de8e9bb03aaa233b95f5b4321bf45e40640dac697dd",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-29",
@@ -238,7 +404,16 @@
   "קודם": "0.3%",
   "הערה": "פורסם יחד עם הכנסה אישית והוצאות. מקור: BEA, Personal Income and Outlays, September 2026 (פורסם 29.10). קודם: אוגוסט לפי טבלת ההודעה",
   "בפועל": "0.3%",
-  "מזהה": "c-0019"
+  "מזהה": "c-0019",
+  "אירוע_en": "Core PCE index - monthly (m/m)",
+  "תקופה_en": "September · monthly",
+  "הערה_en": "Released together with personal income and spending. Source: BEA, Personal Income and Outlays, September 2026 (released Oct 29). Prior: August per the release table",
+  "_translation": {
+   "en": {
+    "source_hash": "3b465ea7555d4ca9aa6d00e623dda2553815b5626a4d69ecd9c14c478702bd3b",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-29",
@@ -251,7 +426,16 @@
   "קודם": "3.0%",
   "בפועל": "3.1%",
   "הערה": "מקור: BEA, Personal Income and Outlays, September 2026 (פורסם 29.10)",
-  "מזהה": "c-0020"
+  "מזהה": "c-0020",
+  "אירוע_en": "Core PCE index - annual (y/y)",
+  "תקופה_en": "September · annual (y/y)",
+  "הערה_en": "Source: BEA, Personal Income and Outlays, September 2026 (released Oct 29)",
+  "_translation": {
+   "en": {
+    "source_hash": "822775c5b5658f663fe7e5fac225aff631310a41ce6bc7307fc94148e8328971",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-29",
@@ -263,7 +447,16 @@
   "קודם": "6.1%",
   "הערה": "אין צפי קונצנזוס מאומת. קודם: רבעון 2, אומדן שלישי (BEA). בפועל: BEA, טבלה 1.6.7 (שורת Gross domestic product, שינוי אחוזי בקצב שנתי); מתיישב עם רמות המדד בטבלה 1.1.4 (134.168 מול 133.416)",
   "בפועל": "2.3%",
-  "מזהה": "c-0021"
+  "מזהה": "c-0021",
+  "אירוע_en": "GDP price index (advance estimate)",
+  "תקופה_en": "Q3 · annualized rate (q/q annualized)",
+  "הערה_en": "No verified consensus estimate. Prior: Q2, third estimate (BEA). Actual: BEA, table 1.6.7 (Gross domestic product row, percent change at annual rate); consistent with index levels in table 1.1.4 (134.168 vs 133.416)",
+  "_translation": {
+   "en": {
+    "source_hash": "a3d689f1f35de0d495e6a2ab9a9e4ce175d774f73b1202b9c066c0b505c34ebd",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-29",
@@ -276,7 +469,16 @@
   "צפי": "198K",
   "בפועל": "194K",
   "הערה": "שבוע שהסתיים ב-24.10, נתון מקדים מותאם עונתית. השבוע הקודם תוקן מ-194K ל-195K. מקור: DOL",
-  "מזהה": "c-0022"
+  "מזהה": "c-0022",
+  "אירוע_en": "Weekly jobless claims",
+  "תקופה_en": "Weekly",
+  "הערה_en": "Week ended Oct 24, advance seasonally adjusted figure. Prior week revised from 194K to 195K. Source: DOL",
+  "_translation": {
+   "en": {
+    "source_hash": "ea2a05bff17353de87589f67a097d9b3f1ee3b29d2561dee1aab969a326e9ade",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-29",
@@ -289,7 +491,16 @@
   "קודם": "2.2%",
   "הערה": "צמיחה ריאלית. צפי: חציון סקר WSJ (9 תחזיות). קודם: רבעון 2, אומדן שלישי (BEA). בפועל: BEA, הערכה ראשונה לרבעון 3 2026; ברבעון 2 עודכן ל-2.2%",
   "בפועל": "3.4%",
-  "מזהה": "c-0023"
+  "מזהה": "c-0023",
+  "אירוע_en": "Real GDP (advance estimate)",
+  "תקופה_en": "Q3 · annualized rate (q/q annualized)",
+  "הערה_en": "Real growth. Estimate: WSJ survey median (9 forecasts). Prior: Q2, third estimate (BEA). Actual: BEA, advance estimate for Q3 2026; Q2 updated to 2.2%",
+  "_translation": {
+   "en": {
+    "source_hash": "4e2e74f20ff91083c36721d367e6d9b57301461893d526f4de620e6079d4c397",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-29",
@@ -302,7 +513,19 @@
   "בפועל": "+80 מיליארד רגל מעוקבת",
   "הערה": "צפי: סקר אנליסטים (MarketWatch, 28.10). בפועל: EIA, שבוע שהסתיים 23.10.2026: עלייה נטו של 80 Bcf; המלאי הכולל 3,724 Bcf (147 Bcf מתחת לשנה שעברה, 38 Bcf מעל ממוצע 5 השנים).",
   "צפי": "+70 מיליארד רגל מעוקבת",
-  "מזהה": "c-0024"
+  "מזהה": "c-0024",
+  "אירוע_en": "Weekly natural gas inventories (EIA)",
+  "תקופה_en": "Weekly",
+  "הערה_en": "Estimate: analyst survey (MarketWatch, Oct 28). Actual: EIA, week ended Oct 23, 2026: net increase of 80 Bcf; total stocks 3,724 Bcf (147 Bcf below a year ago, 38 Bcf above the 5-year average)",
+  "קודם_en": "+77 Bcf",
+  "צפי_en": "+70 Bcf",
+  "בפועל_en": "+80 Bcf",
+  "_translation": {
+   "en": {
+    "source_hash": "f34d9825e75374a16093d08311728c04617d1d61f843f97e164cfb3a94f615c3",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-30",
@@ -316,7 +539,16 @@
   "בפועל": "0.8%",
   "הערה": "רבעון 3 2026, בניכוי עונתיות. שכר: +0.7%; הטבות: +0.9%. מקור: BLS, פרסום 30.10.2026 ב-14:30 שעון ישראל.",
   "קישור": "https://www.bls.gov/news.release/eci.htm",
-  "מזהה": "c-0025"
+  "מזהה": "c-0025",
+  "אירוע_en": "Employment Cost Index (ECI)",
+  "תקופה_en": "Q3 · quarterly",
+  "הערה_en": "Q3 2026, seasonally adjusted. Wages: +0.7%; benefits: +0.9%. Source: BLS, released Oct 30, 2026 at 14:30 Israel time",
+  "_translation": {
+   "en": {
+    "source_hash": "509c7d33a26a7145c1c40f2c0203f8dc0919ec5b430b99145c417588cce43f3f",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-10-30",
