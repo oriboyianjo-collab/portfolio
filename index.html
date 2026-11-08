@@ -6550,8 +6550,9 @@ if(/^https?:$/.test(location.protocol)){
     }).catch(err=>console.warn('SW registration failed', err));
     let shown = false; // Never interrupt a screen, typing, chart, or form with an automatic update reload.
     navigator.serviceWorker.addEventListener('controllerchange', ()=>{ if(!had || shown) return; shown = true;
-      const b = document.createElement('div'); b.className = 'upd-bar'; b.setAttribute('role','status'); b.innerHTML = I18n.p("ui-1434","גרסה חדשה של האפליקציה מוכנה <button class=\"btn btn-primary\" id=\"updReload\">רענון</button>");
-      document.body.appendChild(b); $('updReload').onclick = ()=>location.reload(); });
+      const b = document.createElement('div'); b.className = 'upd-bar'; b.setAttribute('role','status');
+      const drawUpdate=()=>{b.innerHTML = I18n.p("ui-1434","גרסה חדשה של האפליקציה מוכנה <button class=\"btn btn-primary\" id=\"updReload\">רענון</button>"); b.querySelector('#updReload').onclick=()=>location.reload();};
+      drawUpdate();document.body.appendChild(b);I18n.bind(drawUpdate); });
   });
 }
 
