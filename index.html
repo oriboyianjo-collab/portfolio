@@ -1061,6 +1061,10 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 
 #posList .pcard.pc .pgrid>.pc-s,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-s{transform:none!important;translate:none!important;min-width:0;overflow:hidden;width:100%;max-width:100%}
 #posList .pcard.pc .pgrid>.pc-s .spark{transform:none!important;width:100%!important;max-width:100%!important;overflow:hidden;box-sizing:border-box}
+
+#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{--k-d:74px}
+@media(max-width:370px){#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{--k-d:69px}}
+@media(max-width:340px){#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{--k-d:64px}}
 </style><style id="watch-session-price-layout">
 #wlLists .wr.wgrid:not(.egrid),#wlLists .wl-cols.wgrid{grid-template-columns:var(--k-lg) minmax(0,1fr) var(--k-sp) calc(var(--k-d) + 12px);grid-template-areas:"lg nm sp d" "lg cp sp d"}
 #wlLists .wl-cols>.pc-p{display:none}
