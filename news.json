@@ -25012,5 +25012,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "דקסקום (DXCM): הדירקטוריון אישר תוכנית רכישה עצמית של עד מיליארד דולר, בתוקף עד סוף 2027",
+    "category": "micro",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000193/dxcm-20261029.htm",
+    "מקורות": [
+      {
+        "label": "דוח 8-K ל-SEC, 29.10.2026",
+        "url": "https://www.sec.gov/Archives/edgar/data/1093557/000109355726000193/dxcm-20261029.htm",
+        "label_en": "SEC Form 8-K, Oct 29, 2026"
+      },
+      {
+        "label": "דקסקום (אתר החברה), 29.10.2026",
+        "url": "https://investors.dexcom.com/news/news-details/2026/Dexcom-Reports-Third-Quarter-2026-Financial-Results/default.aspx",
+        "label_en": "Dexcom (company site), Oct 29, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 29.10.2026 (דוח שוטף 8-K לרשות ני\"ע האמריקאית והודעת החברה).\n\nדקסקום (Dexcom, Nasdaq: DXCM) הודיעה ב-29 באוקטובר כי דירקטוריון החברה אישר תוכנית רכישה עצמית של עד מיליארד דולר ממניות החברה, עם תקופת רכישה המסתיימת לא יאוחר מ-31 בדצמבר 2027 — כך נמסר בפריט 8.01 של דוח השוטף שהוגש ל-SEC. זוהי הרשאה בלבד: לפי הדיווח, התוכנית אינה מחייבת את דקסקום לרכוש סכום דולרי או מספר מניות כלשהו, והיא עשויה להיות מוארכת, שונהה, מושעית או מופסקת בכל עת. הרכישות יבוצעו מעת לעת בשוק הפתוח, בעסקאות משא ומתן פרטי או בדרכים אחרות, לרבות באמצעות תוכניות מסחר מתוכננות (10b5-1), לפי שיקול דעתה של החברה ובהתאם לתנאי השוק.",
+    "תקציר": "דירקטוריון דקסקום אישר ב-29.10 רכישה עצמית של עד מיליארד דולר, בתוקף עד 31.12.2027; הרשאה בלבד ולא רכישות שבוצעו; אין התחייבות לסכום או למספר מניות.",
+    "מזהה": "n-1054",
+    "תאריך": "2026-11-09 00:34",
+    "הועלה": "2026-11-09 00:34",
+    "כותרת_en": "Dexcom (DXCM): board authorized a share repurchase program of up to $1 billion, valid through end-2027",
+    "טקסט_en": "Source publication: Oct 29, 2026 (Form 8-K filed with the SEC and the company's release).\n\nDexcom (Nasdaq: DXCM) announced on October 29 that its Board of Directors authorized a share repurchase program of up to $1.0 billion of the company's common stock, with a repurchase period ending no later than December 31, 2027, per Item 8.01 of the Form 8-K filed with the SEC. This is an authorization only: per the filing, the program does not obligate Dexcom to repurchase any dollar amount or number of shares, and it may be extended, modified, suspended or discontinued at any time. Repurchases may be made from time to time in the open market, in privately negotiated transactions or by other methods, including Rule 10b5-1 trading plans, at the company's discretion and depending on market conditions.",
+    "תקציר_en": "Dexcom's board authorized on Oct 29 a share repurchase of up to $1 billion, valid through Dec 31, 2027; an authorization only, not completed repurchases; no obligation to any amount or share count.",
+    "_translation": {
+      "en": {
+        "source_hash": "db9ac3c143753d529862fd1bd3b530ead49df73d3174876bd05aa4e9196a8a47",
+        "schema_version": 1
+      }
+    }
   }
 ]
