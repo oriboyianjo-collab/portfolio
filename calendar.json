@@ -1167,7 +1167,16 @@
   "הערות_מקור_ארכיון": "\nצפי שונה: Newsquawk 54.7; TD 54.8; ForexFactory 54.9\nעדכון מקורות 03.11.2026: MarketWatch54.6; ForexFactory54.8.54.9 בFFישן;54.7Newsquawkישן לא אומת מחדש. הצפי המקורי בשדה נשמר, לא הוחלף.",
   "בפועל": "54.5",
   "קישור": "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/services/october/",
-  "מזהה": "c-0051"
+  "מזהה": "c-0051",
+  "אירוע_en": "ISM services index",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "Estimate varied: Newsquawk 54.7; TD 54.8; ForexFactory 54.9\nSource update Nov 3, 2026: MarketWatch 54.6; ForexFactory 54.8. 54.9 on FF is stale; Newsquawk's older 54.7 was not re-verified. The original estimate in the field was retained, not replaced.\nActual 54.5 for October 2026, per the ISM primary report read in a browser. Prior September 54.9. The original estimate 54.7-54.9 was retained; the figure is below that entire range. An index above 50 indicates expansion. The 17:00 time is the calendar release time, not a timestamp from the report.",
+  "_translation": {
+   "en": {
+    "source_hash": "cc29eb93d05dc96e7b69dd9290caed5d3a01fd18851cb07e08a18e3602f1f5a5",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-04",
@@ -1187,7 +1196,19 @@
   "בפועל": "-0.9 מיליון חביות",
   "קישור": "https://ir.eia.gov/wpsr/summary.txt",
   "הערות_מקור_ארכיון": "\nצפי ForexFactory מעודכן ל-04.11.2026: ירידה של 1.7 מיליון חביות; נתון בפועל טרם פורסם",
-  "מזהה": "c-0052"
+  "מזהה": "c-0052",
+  "אירוע_en": "Weekly crude oil inventories (EIA)",
+  "תקופה_en": "Weekly",
+  "הערה_en": "ForexFactory estimate updated to Nov 4, 2026: a draw of 1.7 million barrels\nWeek ended Oct 30, 2026: commercial crude inventories excluding the Strategic Petroleum Reserve fell by about 0.9 million barrels, to 409.8 million barrels. Figure rounded from the EIA primary summary. The original -1.7 million estimate and -1.9 million prior were retained. This is not the Cushing figure.\nPrecision per EIA data: commercial inventories ex-SPR of 409.760 million barrels on Oct 30 versus 410.625 million on Oct 23, a draw of 0.865 million barrels. The actual field shows -0.9 million per the official summary rounding.",
+  "קודם_en": "-1.9 million barrels",
+  "צפי_en": "-1.7 million barrels",
+  "בפועל_en": "-0.9 million barrels",
+  "_translation": {
+   "en": {
+    "source_hash": "b4833d16067c3e40ab23eb25be26b3dfccb2ec1aa9e8c650a1fa5a5d882f39f3",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-04",
@@ -1198,7 +1219,16 @@
   "הערה": "פורסם באתר הפד ב-04.11.2026, נתונים ל-03.11.2026; נבדק ב-20:02 ישראל. אין נתון יחיד להשוואה. ריבית שנתית באחוזים: AA nonfinancial ל-30 יום 3.98%, A2/P2 nonfinancial ל-30 יום 4.16%, AA financial ל-90 יום 4.10%, AA asset-backed ל-30 יום 4.03%. n.a. פירושו מעט מדי עסקאות לחישוב, לא אפס. הסדרות היומיות מתייחסות ל-03.11; יתרות שבועיות או חודשיות שבאותו פרסום מתייחסות לתקופות אחרות. ללא קונצנזוס יחיד או סיווג טוב/רע.",
   "בפועל": "פורסם · נתוני 03.11",
   "מקור": "https://www.federalreserve.gov/releases/cp/",
-  "מזהה": "c-0053"
+  "מזהה": "c-0053",
+  "אירוע_en": "Commercial paper (CP) data - Fed",
+  "הערה_en": "Published on the Fed's site on Nov 4, 2026, data for Nov 3, 2026; checked at 20:02 Israel. No single figure for comparison. Annual rates in percent: AA nonfinancial 30-day 3.98%, A2/P2 nonfinancial 30-day 4.16%, AA financial 90-day 4.10%, AA asset-backed 30-day 4.03%. n.a. means too few trades to compute, not zero. The daily series refer to Nov 3; weekly or monthly outstandings in the same release refer to other periods. No single consensus or good/bad classification.",
+  "בפועל_en": "Published · Nov 3 data",
+  "_translation": {
+   "en": {
+    "source_hash": "0dc307657e4c420744cdb9c46aa23360d54feb61d90aed225b86414e19283c9d",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-04",
@@ -1209,7 +1239,16 @@
   "הערה": "נבדק באתר EIA ב-04.11.2026 20:02 ישראל. מחירים שבועיים ל-02.11.2026 בדולר לגלון, ללא מסים: פרופאן למגורים 2.820, שינוי שבועי +0.089; פרופאן סיטונאי 1.440, שינוי +0.149; נפט לחימום למגורים 6.138, שינוי -0.092; נפט לחימום סיטונאי 5.100, שינוי -0.218. אלה השינויים שמפרסם EIA; נתוני השבוע הקודם עשויים להתעדכן ולכן אין לחשבם מחדש מתמונה ישנה. נתוני אספקה נפרדים ל-30.10: מלאי פרופאן/פרופילן 104.108 מיליון חביות; מלאי דיסטילטים 99.3 מיליון חביות. אלה תקופות ומדדים שונים ממחירי 02.11, לא מחירי נפט גולמי. אין קונצנזוס יחיד או סיווג טוב/רע.",
   "בפועל": "פורסם · מחירי 02.11",
   "מקור": "https://www.eia.gov/petroleum/heatingoilpropane/",
-  "מזהה": "c-0054"
+  "מזהה": "c-0054",
+  "אירוע_en": "Heating oil and propane price update (EIA)",
+  "הערה_en": "Checked on the EIA site Nov 4, 2026 20:02 Israel. Weekly prices for Nov 2, 2026 in USD per gallon, excluding taxes: residential propane 2.820, weekly change +0.089; wholesale propane 1.440, change +0.149; residential heating oil 6.138, change -0.092; wholesale heating oil 5.100, change -0.218. These are the changes EIA publishes; prior-week figures may be updated and should not be recomputed from an old snapshot. Separate supply data for Oct 30: propane/propylene stocks 104.108 million barrels; distillate stocks 99.3 million barrels. These are different periods and metrics from the Nov 2 prices, and are not crude oil prices. No single consensus or good/bad classification.",
+  "בפועל_en": "Published · Nov 2 prices",
+  "_translation": {
+   "en": {
+    "source_hash": "68eb45749f70e22502c7a0ded98757f89f98d399b6cfeec252328cc2097f2825",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-04",
@@ -1221,7 +1260,16 @@
   "בפועל": "פורסם · נתוני 03.11",
   "מקור": "https://www.federalreserve.gov/releases/h15/",
   "הערות_מקור_ארכיון": "\nלוח הפד16:15ET; סדרת נתונים ללא קונצנזוס יחיד",
-  "מזהה": "c-0055"
+  "מזהה": "c-0055",
+  "אירוע_en": "Selected interest rates (H.15) - Fed",
+  "הערה_en": "Published on the Fed's site on Nov 4, 2026; data for business day Nov 3, 2026. Checked at 23:16 Israel. No single figure for comparison. Annual rates in percent: Federal funds effective 3.88%; prime loan 7.00%; discount window primary credit 4.00%. Nominal constant maturity Treasury yields: 2-year 4.61%, 10-year 4.95%, 30-year 5.32%. 10-year inflation-indexed yield: 2.65%. Data refer to Nov 3, not the publication day. n.a. is unavailable data, not zero. A series release with no good/bad classification.",
+  "בפועל_en": "Published · Nov 3 data",
+  "_translation": {
+   "en": {
+    "source_hash": "bd0100b7b39a842fd0aabd011afb5a9bddf975c9cd66e878640b29456d431c31",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-05",
@@ -1237,7 +1285,16 @@
    "https://www.challengergray.com/blog/october-layoffs-at-three-year-low-seasonal-hiring-plans-up-26/"
   ],
   "תאריך_בדיקה_עדכנית": "2026-11-05",
-  "מזהה": "c-0056"
+  "מזהה": "c-0056",
+  "אירוע_en": "Job cut plans - Challenger",
+  "תקופה_en": "October · number of announced job cuts",
+  "הערה_en": "A private report on layoff announcements, not executed layoffs or an employment change. Prior September. Monthly change +2% and annual -71% per the source's rounding; no verified consensus estimate. Timing per the source release Nov 5, 12:30 Israel.",
+  "_translation": {
+   "en": {
+    "source_hash": "0990efd74c41364b831c7cf9fb907f0e9177d4ce0d4741ae5ff0bbcbea0999be",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-05",
@@ -1257,7 +1314,16 @@
   "הערות_מקור_ארכיון": "שינוי רבעוני בקצב שנתי, לא שינוי שנתי. צפי וקודם ForexFactory; מועד BLS.",
   "בפועל": "-0.7%",
   "מקור_בפועל": "https://www.forexfactory.com/calendar?day=nov5.2026",
-  "מזהה": "c-0057"
+  "מזהה": "c-0057",
+  "אירוע_en": "Unit labor costs - preliminary",
+  "תקופה_en": "Q3 · quarterly change at annual rate",
+  "הערה_en": "Not verified against a primary source. Per ForexFactory: nonfarm unit labor costs Q3 preliminary -0.7% versus estimate 0.3%. Prior 1.2% with a possible revision mark but the same rounded value; not verified at BLS whether or what was revised. Quarterly change at a seasonally adjusted annual rate, not a year-over-year change. The original data and forecasts were retained; no uniform good/bad classification.",
+  "_translation": {
+   "en": {
+    "source_hash": "1fc3aff38a02077ae93e0b7ae39ca52fb5390af6b57c415ae95645c4fade175a",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-05",
@@ -1294,7 +1360,16 @@
   "הערות_מקור_ארכיון": "שינוי רבעוני בקצב שנתי, לא שינוי שנתי. צפי ForexFactory2.8%; MarketWatch2.5%בבדיקה03.11. הצפי המשולב המקורי נשמר בארכיון הנתונים.",
   "בפועל": "3.6%",
   "מקור_בפועל": "https://www.forexfactory.com/calendar?day=nov5.2026",
-  "מזהה": "c-0058"
+  "מזהה": "c-0058",
+  "אירוע_en": "Nonfarm productivity - preliminary",
+  "תקופה_en": "Q3 · quarterly change at annual rate",
+  "הערה_en": "Not verified against a primary source. Per ForexFactory: nonfarm productivity Q3 preliminary 3.6% versus estimate 2.8%. Prior 2.1% with a possible revision mark, versus the original 1.4% kept in the field; the 2.1% revision was not verified at BLS. Quarterly change at a seasonally adjusted annual rate, not a year-over-year change. The original data and forecasts were retained; no uniform good/bad classification.",
+  "_translation": {
+   "en": {
+    "source_hash": "e5c6f687cfcfe881392ba39b71ce0a3ae86fc4f8f913fd086161f61b9807650f",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-05",
@@ -1307,7 +1382,16 @@
   "הערות_מקור_ארכיון": "כלול בפרסוםDOL08:30ET; צפי וקודם לא אומתו בבדיקה זו",
   "בפועל": "1.718M",
   "מקור_בפועל": "https://www.dol.gov/ui/data.pdf",
-  "מזהה": "c-0059"
+  "מזהה": "c-0059",
+  "אירוע_en": "Continuing jobless claims",
+  "תקופה_en": "Weekly",
+  "הערה_en": "Week ended Oct 24, 2026; seasonally adjusted. Actual 1.718M, up 23K versus revised prior 1.695M (revised from 1.701M). Estimate not verified. A different period from initial claims.",
+  "_translation": {
+   "en": {
+    "source_hash": "1a27a7b2673cc67b294bccd264b273f7b1719ed0e45dabb37244100fb76ac01c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-05",
@@ -1327,7 +1411,16 @@
   "הערות_מקור_ארכיון": "קודם: פרסום 29.10; צפי ForexFactory\nעדכון מקורות 03.11.2026: ForexFactory197K; MarketWatch198K. הצפי המקורי בשדה נשמר, לא הוחלף.",
   "בפועל": "189K",
   "מקור_בפועל": "https://www.dol.gov/ui/data.pdf",
-  "מזהה": "c-0060"
+  "מזהה": "c-0060",
+  "אירוע_en": "Weekly jobless claims",
+  "תקופה_en": "Weekly",
+  "הערה_en": "Week ended Oct 31, 2026; seasonally adjusted. Actual 189K versus estimate 197K. Revised prior 195K versus the original 194K, which is kept in the field. Down 6K versus the revised prior.",
+  "_translation": {
+   "en": {
+    "source_hash": "d6ea26cc805b138fad8f09902c348b5c1c4aff479a3f6a42a776124f47a84df6",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-05",
@@ -1347,7 +1440,19 @@
   "הערות_מקור_ארכיון": "קודם: +80 מיליארד רגל מעוקבת (פרסום 29.10, שבוע שהסתיים 23.10)\nצפי ForexFactory מ-05.11; שבוע שהסתיים ב-30.10. מועד EIA הרגיל10:30ET=17:30ישראל; לא מועד חריג13.11.",
   "בפועל": "+77 מיליארד רגל מעוקבת",
   "מקור_בפועל": "https://ir.eia.gov/ngs/ngs.html",
-  "מזהה": "c-0061"
+  "מזהה": "c-0061",
+  "אירוע_en": "Weekly natural gas inventories (EIA)",
+  "תקופה_en": "Weekly",
+  "הערה_en": "EIA release Nov 5, 2026 at 17:30 Israel, for the week ended Oct 30. Actual build of 77 Bcf versus estimate 81 Bcf and prior 80 Bcf, both retained. The build was 4 Bcf below the estimate; no good/bad rating. Total stocks 3,801 Bcf versus 3,724 a week earlier, 109 below a year ago and 54 above the 5-year average. This is not a production volume or a gas price.",
+  "קודם_en": "+80 Bcf",
+  "צפי_en": "+81 Bcf",
+  "בפועל_en": "+77 Bcf",
+  "_translation": {
+   "en": {
+    "source_hash": "53ee098711a6cb51df946d582aa3a366274d7344da6ee905d76d4c5381d0d9b1",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-05",
@@ -1358,7 +1463,16 @@
   "הערה": "פורסם באתר הפד ב-05.11.2026, נתונים ל-04.11.2026; נבדק ב-20:00 ישראל. אין נתון יחיד להשוואה. ריבית שנתית באחוזים: AA nonfinancial ל-30 יום 3.95%, A2/P2 nonfinancial ל-30 יום 4.15%, AA financial ל-90 יום 4.11%, AA asset-backed ל-30 יום 4.10%. n.a. משמעו מעט מדי עסקאות לחישוב, לא אפס. יתרה שבועית ל-04.11: 1503.3 מיליארד USD מנוכה עונתיות ו-1438.2 מיליארד USD ללא ניכוי עונתיות; אלה נתוני שבוע, לא זרם הנפקות יומי. פרסום סדרות, ללא סיווג טוב/רע.",
   "בפועל": "פורסם · נתוני 4.11",
   "מקור": "https://www.federalreserve.gov/releases/cp/",
-  "מזהה": "c-0062"
+  "מזהה": "c-0062",
+  "אירוע_en": "Commercial paper (CP) data - Fed",
+  "הערה_en": "Published on the Fed's site on Nov 5, 2026, data for Nov 4, 2026; checked at 20:00 Israel. No single figure for comparison. Annual rates in percent: AA nonfinancial 30-day 3.95%, A2/P2 nonfinancial 30-day 4.15%, AA financial 90-day 4.11%, AA asset-backed 30-day 4.10%. n.a. means too few trades to compute, not zero. Weekly outstandings for Nov 4: 1503.3 billion USD seasonally adjusted and 1438.2 billion USD not seasonally adjusted; these are weekly figures, not a daily issuance flow. A data series release, no good/bad classification.",
+  "בפועל_en": "Published · Nov 4 data",
+  "_translation": {
+   "en": {
+    "source_hash": "dc8e714e3acc76eb83e06f7de93e1dd6ee9d42a2fecba7bcd42cb4a533075d1e",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-05",
@@ -1368,7 +1482,15 @@
   "חשיבות": 1,
   "הערה": "לוח הפד16:15ET; סדרת נתונים ללא קונצנזוס יחיד\nפורסם ב-5.11.2026; נתוני ריבית עד4.11.2026. תשואות שנתיות: אג״ח אוצר לשנתיים4.58%, לעשר שנים4.90%, לשלושים שנה5.28%; ריבית פד אפקטיבית3.88%. סדרת נתונים ללא קונצנזוס או נתון בפועל יחיד.",
   "קישור": "https://www.federalreserve.gov/releases/h15/",
-  "מזהה": "c-0063"
+  "מזהה": "c-0063",
+  "אירוע_en": "Selected interest rates (H.15) - Fed",
+  "הערה_en": "Fed schedule 16:15 ET; a data series with no single consensus\nPublished Nov 5, 2026; rate data through Nov 4, 2026. Annual yields: 2-year Treasury 4.58%, 10-year 4.90%, 30-year 5.28%; effective fed funds 3.88%. A data series with no consensus or single actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "cf586062cb670e87720e4af0baa4300a4df91f51aee7d3a533ab0add58e29f71",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-05",
@@ -1378,7 +1500,15 @@
   "חשיבות": 1,
   "הערה": "לוח הפד16:30ET\nפורסם05.11.2026; הנתונים ליום רביעי04.11.2026, במיליוניUSD. סך נכסי הפד:6,748,145, עלייה שבועית2,510. יתרות בנקים בפד ביום רביעי:2,962,804; ממוצע שבועי:2,930,088, עלייה36,318 בממוצע לעומת השבוע הקודם. חשבון האוצרTGA ביום רביעי:936,248; ממוצע שבועי957,175. עסקאותReverse repoכולן ביום רביעי:334,503; מתוכןOthers225. הנתונים היומיים אינם הממוצע השבועי, ו-Othersאינו סך ה-reverse repo. אין נתון בפועל יחיד או צפי מאומת לאירוע המרובה הזה.",
   "קישור": "https://www.federalreserve.gov/releases/h41/current/default.htm",
-  "מזהה": "c-0064"
+  "מזהה": "c-0064",
+  "אירוע_en": "Fed balance sheet and reserve factors (H.4.1)",
+  "הערה_en": "Fed schedule 16:30 ET\nPublished Nov 5, 2026; data for Wednesday Nov 4, 2026, in millions of USD. Total Fed assets: 6,748,145, weekly increase 2,510. Bank reserves at the Fed on Wednesday: 2,962,804; weekly average: 2,930,088, up 36,318 on average versus the prior week. Treasury General Account (TGA) on Wednesday: 936,248; weekly average 957,175. Total reverse repo transactions on Wednesday: 334,503; of which Others 225. The daily figures are not the weekly average, and Others is not total reverse repo. No single actual figure or verified estimate for this multi-part event.",
+  "_translation": {
+   "en": {
+    "source_hash": "bd0a13f99b2446d5586d72bc8f2f534cd4197c1dbf3e8c748c8eaa4979be0e11",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-05",
@@ -1386,7 +1516,15 @@
   "אירוע": "ייצור פחם שבועי (EIA)",
   "חשיבות": 1,
   "הערה": "לוח EIA: חמישי עד17:00ET, כלומר עד00:00ישראל ביום6.11; אין שעת פרסום מדויקת",
-  "מזהה": "c-0065"
+  "מזהה": "c-0065",
+  "אירוע_en": "Weekly coal production (EIA)",
+  "הערה_en": "EIA schedule: Thursday by 17:00 ET, i.e. by 00:00 Israel on Nov 6; no exact release time",
+  "_translation": {
+   "en": {
+    "source_hash": "a9278239b5cba8181ba16db05f7a4b643ad74cdb43cb17bc7f8a737d8cf9b5b0",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-05",
@@ -1394,7 +1532,15 @@
   "אירוע": "תוספת לדוח מלאי הגז הטבעי (EIA)",
   "חשיבות": 1,
   "הערה": "לוחEIA: חמישי עד17:00ET, כלומר עד00:00ישראל ביום6.11; אין שעת פרסום מדויקת",
-  "מזהה": "c-0066"
+  "מזהה": "c-0066",
+  "אירוע_en": "Natural gas storage report supplement (EIA)",
+  "הערה_en": "EIA schedule: Thursday by 17:00 ET, i.e. by 00:00 Israel on Nov 6; no exact release time",
+  "_translation": {
+   "en": {
+    "source_hash": "fa299609fe6c7a5e00785f260e9998e2a0c0735e892082e4dbd2ff44c67e86fa",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
@@ -1412,7 +1558,16 @@
   ],
   "תאריך_בדיקה_עדכנית": "2026-11-03",
   "בפועל": "165K",
-  "מזהה": "c-0067"
+  "מזהה": "c-0067",
+  "אירוע_en": "Employment report - nonfarm payrolls",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "Estimate varied: ForexFactory 63K; TD 65K; prior 29K. Do not alter historical consensus\nSource update Nov 3, 2026: MarketWatch 55K; ForexFactory 65K. 63K on FF is stale; TD's earlier 65K was not re-verified. The original estimate in the field was retained, not replaced.\nBLS: September updated to 60K from 29K (+31K); August to 186K from 133K (+53K), together 84K of upward revisions. The original prior in the field was retained. ForexFactory at release time: estimate 65K, versus the retained original estimate range 63K-65K.",
+  "_translation": {
+   "en": {
+    "source_hash": "54aee8b72b11db26c1c6b9dc831d0625d5d6bbe361d52a483e9e163e4441f271",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
@@ -1425,7 +1580,16 @@
   "צפי": "4.2%",
   "הערה": "מועד BLS במסגרת דוח התעסוקה; צפי TD ו-ForexFactory\nאוקטובר2026 לפיBLS; ספטמבר4.2%. הצפי המקורי4.2% נשמר.",
   "בפועל": "4.1%",
-  "מזהה": "c-0068"
+  "מזהה": "c-0068",
+  "אירוע_en": "Unemployment rate",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "BLS timing within the employment report; estimate TD and ForexFactory\nOctober 2026 per BLS; September 4.2%. The original 4.2% estimate was retained.",
+  "_translation": {
+   "en": {
+    "source_hash": "2b0fe5fc7aa4da263fc4c6f99847ec4f21bb697f97ba0a7631932f0535529bea",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
@@ -1438,7 +1602,16 @@
   "צפי": "0.3%",
   "הערה": "מועד BLS במסגרת דוח התעסוקה; צפי TD ו-ForexFactory\nשינוי חודשי באוקטובר2026 לפיBLS; תוספת14סנט לשכר38.00דולר לשעה. אין לערבב עם קצב שנתי3.1%. צפי0.3% נשמר. קודם0.1% הוא הנתון המקורי שנשמר בהיסטוריה, לא הנתון המתוקן הנוכחי. ספטמבר עודכן לכ-0.3%: שכר אוגוסט37.76דולר וספטמבר37.86דולר בטבלתBLS, ושדה קודם מתוקן0.3% ב-ForexFactory.",
   "בפועל": "0.4%",
-  "מזהה": "c-0069"
+  "מזהה": "c-0069",
+  "אירוע_en": "Average hourly earnings - monthly",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "BLS timing within the employment report; estimate TD and ForexFactory\nMonthly change in October 2026 per BLS; a 14-cent increase to 38.00 USD per hour. Not to be confused with the 3.1% annual rate. Estimate 0.3% retained. Prior 0.1% is the original figure kept in the history, not the current revised figure. September updated to about 0.3%: August wage 37.76 USD and September 37.86 USD in the BLS table, and a revised prior field of 0.3% on ForexFactory.",
+  "_translation": {
+   "en": {
+    "source_hash": "9dfb70dad5fe6b13fcbcf04b2e7609b85e7502cc16c1759d51d1010264ed3202",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
@@ -1451,7 +1624,16 @@
   "קודם": "3.0%",
   "הערה": "מועדBLS; צפי וקודם Newsquawk. לא לערבב עם השינוי החודשי\nשינוי שנתי באוקטובר2026 לפיBLS; נתון חודשי0.4% בנפרד. צפי המקורי2.9% ממקורNewsquawk נשמר אך לא אומת מחדש בעת הפרסום; אין להציגו כצפי עדכני מאומת.",
   "בפועל": "3.1%",
-  "מזהה": "c-0070"
+  "מזהה": "c-0070",
+  "אירוע_en": "Average hourly earnings - annual",
+  "תקופה_en": "October · annual",
+  "הערה_en": "BLS timing; estimate and prior Newsquawk. Not to be confused with the monthly change\nAnnual change in October 2026 per BLS; the 0.4% monthly figure is separate. The original 2.9% estimate from Newsquawk was retained but not re-verified at release time; it must not be presented as a verified current estimate.",
+  "_translation": {
+   "en": {
+    "source_hash": "f76b96a5319ebe895cdc8cc9473caae3c2ce0df8ad68e3847eb4f84484b7a78e",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
@@ -1469,7 +1651,16 @@
   ],
   "תאריך_בדיקה_עדכנית": "2026-11-03",
   "בפועל": "51.0",
-  "מזהה": "c-0071"
+  "מזהה": "c-0071",
+  "אירוע_en": "University of Michigan consumer sentiment index - preliminary",
+  "תקופה_en": "November · preliminary",
+  "הערה_en": "Estimate and prior ForexFactory; existing timing retained\nSource update Nov 3, 2026: ForexFactory 48.1/48.0. MarketWatch 47.2/46.3 does not match the official prior; do not use it to correct the prior. The original estimate in the field was retained, not replaced.\nOfficial November preliminary figure 51.0, versus final October 48.0. The original 47.8 estimate was retained; ForexFactory's pre-release 48.1 is a separate estimate, not a replacement of the original. Current conditions component 51.0 versus 46.7, and expectations component 50.9 versus 48.8. Interviews ran Oct 20-Nov 2, not a survey response to the election results.",
+  "_translation": {
+   "en": {
+    "source_hash": "1670db0aeac4d5dfe58c7f400c6c38806acca8d5acb3848e269495ec3019f9b5",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
@@ -1482,7 +1673,16 @@
   "קודם": "3.5%",
   "מקור_קודם": "https://www.sca.isr.umich.edu/",
   "בפועל": "3.4%",
-  "מזהה": "c-0072"
+  "מזהה": "c-0072",
+  "אירוע_en": "Long-run inflation expectations - University of Michigan",
+  "תקופה_en": "November · preliminary",
+  "הערה_en": "In the same 10 ET release; estimate and prior not collected\nOfficial prior for final October 2026: 3.5% long-run; the year-ahead figure is a different series. University of Michigan source, checked Nov 3, 2026.\nLong-run inflation expectations in November preliminary 3.4%, versus 3.5% in October. Year-ahead expectations of 4.3% are a separate series. No estimate was fabricated.",
+  "_translation": {
+   "en": {
+    "source_hash": "9263351db596472ee0149300c6ebad167f69fc03b844bc40d7a1f7d0e7627c79",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
@@ -1494,7 +1694,16 @@
   "קודם": "4.7%",
   "הערה": "באותו פרסום סנטימנט10ET; קודםForexFactory; צפי לא נאסף\nציפיות אינפלציה לשנה בנובמבר מקדמי4.3%, לעומת אוקטובר4.7%. ציפיות ארוכות טווח3.4% הן סדרה נפרדת. אין צפי שהומצא.",
   "בפועל": "4.3%",
-  "מזהה": "c-0073"
+  "מזהה": "c-0073",
+  "אירוע_en": "Year-ahead inflation expectations - University of Michigan",
+  "תקופה_en": "November · preliminary",
+  "הערה_en": "In the same 10 ET sentiment release; prior ForexFactory; no estimate collected\nYear-ahead inflation expectations in November preliminary 4.3%, versus 4.7% in October. Long-run expectations of 3.4% are a separate series. No estimate was fabricated.",
+  "_translation": {
+   "en": {
+    "source_hash": "17b183bb23b3471061dc7c1245c5ac64333c3e426d1d24ba6c133e25e5cbf9dd",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
@@ -1504,7 +1713,15 @@
   "חשיבות": 1,
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד הרשמי, שורת 6.11.2026 בשעה 12:15 ניו יורק. נושא האירוע אינו הבטחה לדיון בריבית. ",
-  "מזהה": "c-0074"
+  "מזהה": "c-0074",
+  "אירוע_en": "Michelle W. Bowman - banking supervision and regulation",
+  "הערה_en": "Official Fed calendar, Nov 6, 2026 row at 12:15 New York. The event topic is no promise of a rate discussion.",
+  "_translation": {
+   "en": {
+    "source_hash": "4fe61305a62697e045a84f264afa5e1cb94e9dd808abcff58590500e207cab97",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
@@ -1514,7 +1731,16 @@
   "חשיבות": 1,
   "הערה": "לוח הפד13:00ET; סדרת נתונים ללא קונצנזוס יחיד\nפרסום הפד ב-06.11.2026 בשעה20:00ישראל; נתוני05.11.2026, לא נתוני יום הפרסום. ריביות ניירות ערך מסחריים באחוזים שנתיים: AA לא-פיננסי ליום3.93%, ל-30יום3.98% ול-90יום4.11%; A2/P2 לא-פיננסי ל-30יום4.17%; AA פיננסי ל-90יום3.97%; AA מגובה נכסים ל-90יום4.48%. מדובר בסדרות שונות לפי דירוג, סוג ומועד לפירעון, לא ריבית מדיניות אחת. אין קונצנזוס יחיד או השוואת טוב/רע שהומצאו. נתוני יתרות שלא הופיע בהם עדכון לא תויגו כחדשים.",
   "בפועל": "AA לא-פיננסי ל-30 יום: 3.98%",
-  "מזהה": "c-0075"
+  "מזהה": "c-0075",
+  "אירוע_en": "Commercial paper (CP) data - Fed",
+  "הערה_en": "Fed schedule 13:00 ET; a data series with no single consensus\nFed release Nov 6, 2026 at 20:00 Israel; data for Nov 5, 2026, not the publication day. Commercial paper rates in annual percent: AA nonfinancial 1-day 3.93%, 30-day 3.98% and 90-day 4.11%; A2/P2 nonfinancial 30-day 4.17%; AA financial 90-day 3.97%; AA asset-backed 90-day 4.48%. These are different series by rating, type and maturity, not a single policy rate. No single consensus or good/bad comparison was fabricated. Outstanding-balance data with no update was not tagged as new.",
+  "בפועל_en": "AA nonfinancial 30-day: 3.98%",
+  "_translation": {
+   "en": {
+    "source_hash": "2e277978655c2b4e9801c9be7dc02600a85352528bfd51b5db8daecc644b592b",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-06",
