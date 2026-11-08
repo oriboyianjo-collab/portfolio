@@ -1282,14 +1282,24 @@
   "מקורות": [
    {
     "label": "Nasdaq: הודעת Equity Trader Alert 2026-66, 6 בנובמבר",
-    "url": "https://www.nasdaqtrader.com/TraderNews.aspx?id=ETA2026-66"
+    "url": "https://www.nasdaqtrader.com/TraderNews.aspx?id=ETA2026-66",
+    "label_en": "Nasdaq: Equity Trader Alert 2026-66 notice, November 6"
    }
   ],
   "תקציר": "ההודעה מתארת בדיקות והסמכה למשתתפים מאז 1 בנובמבר, עם ביטול כל ההוראות הפתוחות בסיום חלון הבדיקה; אין בה תאריך עלייה חדש לאוויר.",
   "טקסט": "⁦6.11.2026⁩ | תאריך הודעת ⁦Nasdaq.⁩ שעת הפרסום המקורית ואזור הזמן שלה אינם מופיעים במקור שנבדק.\n\nנאסד״ק הודיעה שתקופת הבדיקות המקדימה להרחבת שעות המסחר, ⁦Global Trading Hours,⁩ מתקיימת מאז ⁦1⁩ בנובמבר ⁦2026.⁩ חברי הבורסה וספקים נקראים לבצע הסמכה ובדיקות של חיבורי הזנת הוראות ונתוני שוק חדשים.\n\nהמסחר המתואר בהודעה זמין לסימולי בדיקה בלבד. חלון הבדיקה הוא בימים ראשון עד חמישי מ-⁦21:00⁩ שעון ניו יורק עד ⁦03:55⁩ למחרת. בשעות נובמבר הנוכחיות אלה ⁦04:00⁩ עד ⁦10:55⁩ בישראל בימים שני עד שישי. בסיום החלון כל ההוראות הפתוחות מבוטלות, וגם נתוני השוק משודרים עבור סימולי הבדיקה.\n\nהצורך בחיבורי הזנת הוראות ונתוני שוק של סביבת הייצור אינו אומר שמסחר לילה חי בכל ניירות הערך כבר החל. ההודעה מבהירה שהפעילות בתקופה הזאת היא בסימולי בדיקה, ושעת הסיום עשויה להשתנות בהודעה עתידית.\n\nקשור לפריט מ-⁦30.10.2026⁩ בשעה ⁦23:03⁩ על כללי פתיחת המסחר במוצרי השקעה חדשים, ולעדכון מ-⁦21.10⁩ בשעה ⁦17:54⁩ על ההרחבה המתוכננת. החידוש כאן הוא שלב בדיקות והסמכה שכבר מתקיים, לא אישור רגולטורי חדש ולא מועד השקה חדש.\n\nהודעה זו אינה מאשרת שהמסחר הלילי הרגיל כבר נפתח לציבור ואינה קובעת תאריך עלייה לאוויר. יעד עתידי שהופיע בפריטים הקודמים אינו תוצאה שכבר הושגה. הודעת הבדיקות נושאת את התאריך ⁦6⁩ בנובמבר, לא הכרזה חדשה מ-⁦7⁩ בנובמבר.",
   "תאריך": "2026-11-07 15:06",
   "הועלה": "2026-11-07 15:06",
-  "מזהה": "n-0049"
+  "מזהה": "n-0049",
+  "כותרת_en": "Nasdaq (NDAQ): the testing period ahead of overnight trading opened for test symbols only, not a live trading launch",
+  "טקסט_en": "Nov 6, 2026 | date of the Nasdaq notice. The original publication time and its time zone do not appear in the source checked.\n\nNasdaq announced that the preliminary testing period for the extended trading hours, Global Trading Hours, has been running since November 1, 2026. Exchange members and vendors are called to certify and test new order-entry and market data connections.\n\nThe trading described in the notice is available for test symbols only. The test window runs Sunday through Thursday from 21:00 New York time until 03:55 the next day. In current November hours, that is 04:00 to 10:55 in Israel, Monday through Friday. At the end of the window all open orders are cancelled, and market data is also broadcast for the test symbols.\n\nThe need for production-environment order-entry and market data connections does not mean live overnight trading in all securities has already begun. The notice makes clear that activity during this period is in test symbols, and that the end time may change in a future notice.\n\nRelated to the item from Oct 30, 2026 at 23:03 on trading opening rules in new investment products, and to the October 21 17:54 update on the planned expansion. What is new here is a testing and certification phase already underway, not a new regulatory approval or a new launch date.\n\nThis notice does not confirm that regular overnight trading has already opened to the public and does not set a go-live date. A future target that appeared in previous items is not a result already achieved. The testing notice is dated November 6, not a new announcement of November 7.",
+  "תקציר_en": "The notice describes testing and certification for participants since November 1, with all open orders cancelled at the end of the test window; it contains no new go-live date.",
+  "_translation": {
+   "en": {
+    "source_hash": "22c2696d9cf3f327fc037c90d97dfb2f9f65a77aeb4bd6eb53aada9c98ebde4c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Google (GOOGL): תביעה שהוגשה ב-2 בנובמבר טוענת לנזק נפשי בעקבות שימוש בתכונות AI במחשב לימודי",
@@ -1299,22 +1309,34 @@
   "מקורות": [
    {
     "label": "The New York Times: דיווח מ-5 בנובמבר",
-    "url": "https://www.nytimes.com/2026/11/05/technology/ai-safety-school-chromebooks-google-lawsuit.html"
+    "url": "https://www.nytimes.com/2026/11/05/technology/ai-safety-school-chromebooks-google-lawsuit.html",
+    "label_en": "The New York Times: report of November 5"
    },
    {
     "label": "עותק כתב התביעה באתר עורכי הדין, לא מאגר בית המשפט",
-    "url": "https://edtech.law/wp-content/uploads/2026/10/2026.11.04-Dkt-001-1-Emma-v-Google-Complaint.pdf"
+    "url": "https://edtech.law/wp-content/uploads/2026/10/2026.11.04-Dkt-001-1-Emma-v-Google-Complaint.pdf",
+    "label_en": "Complaint copy on the attorneys' site, not a court database"
    },
    {
     "label": "CNBC: סקירה מ-7 בנובמבר",
-    "url": "https://www.cnbc.com/2026/11/07/snap-social-media-teen-safety-lawsuits.html"
+    "url": "https://www.cnbc.com/2026/11/07/snap-social-media-teen-safety-lawsuits.html",
+    "label_en": "CNBC: review of November 7"
    }
   ],
   "תקציר": "עותק התביעה מציג חותמת הגשה לבית משפט בקליפורניה; טענות ההורים לגבי בטיחות המוצר לא הוכרעו, וגוגל מסרה שהיא בוחנת אותן.",
   "טקסט": "⁦2.11.2026⁩ | מועד ההגשה לבית משפט בקליפורניה לפי החותמת המוצגת בעותק כתב התביעה. חותמת השעה לא הומרה לשעון ישראל ללא אימות אזור הזמן. דיווח ניו יורק טיימס פורסם ב-⁦5⁩ בנובמבר, וסקירת ⁦CNBC⁩ פורסמה ב-⁦7⁩ בנובמבר ב-⁦14:00⁩ בישראל; אין זו תביעה חדשה שהוגשה ב-⁦7⁩ בנובמבר.\n\nהורים הגישו בשם בתם הקטינה תביעה נגד ⁦Google LLC⁩ ו-⁦Alphabet,⁩ בטענה ששימוש בתכונות בינה מלאכותית דרך מחשב ⁦Chromebook⁩ שהונפק לה בבית הספר תרם למשבר נפשי. הטענות מתמקדות בתכנון המוצר, באזהרות להורים ובהגנות למשתמשים צעירים. אלה טענות התובעים, לא מסקנה רפואית עצמאית או הכרעה שיפוטית באחריות החברה.\n\nעותק כתב התביעה שאליו מפנה ⁦CNBC⁩ מוצג באתר עורכי הדין. בחזיתו מופיעה חותמת בית המשפט במחוז סנטה קלרה מ-⁦2⁩ בנובמבר ⁦2026⁩ ומספר התיק ⁦26CV507724.⁩ העותק כולל גם חותמת מסמך בתיק פדרלי מ-⁦4⁩ בנובמבר; אין להתייחס לכך כתאריך המקורי של הגשת התביעה במדינה. העותק נמצא באתר עורכי הדין ולא ברישום בית המשפט, ולכן פרטי ההגשה מיוחסים לעותק ולדיווח העיתונאי, ולא לאימות עצמאי של מאגר התיקים.\n\nלפי תגובת גוגל בדיווחים, החברה בוחנת את התביעה ומתייחסת אליה ברצינות. החברה מסרה שהיא פועלת עם אנשי מקצוע בתחום הבריאות ומומחים אקדמיים, ובנתה תכונות המחברות צעירים במצוקה למשאבי עזרה ותמיכה.\n\nקשור לפריט מ-⁦6.11.2026⁩ בשעה ⁦10:01⁩ על הגישה לחיפוש ולכלי ⁦Gemini⁩ בחשבונות תלמידים. החידוש כאן הוא ההליך המשפטי וטענות על בטיחות המוצר, לא שינוי מדיניות חדש או אישור שהטענות כבר הוכחו. אין בדיווח סכום פיצוי שנפסק או החלטה חדשה נגד גוגל.",
   "תאריך": "2026-11-07 15:06",
   "הועלה": "2026-11-07 15:06",
-  "מזהה": "n-0050"
+  "מזהה": "n-0050",
+  "כותרת_en": "Google (GOOGL): a lawsuit filed on November 2 alleges mental harm from the use of AI features on a school-issued laptop",
+  "טקסט_en": "Nov 2, 2026 | the filing date to a California court per the stamp shown on the complaint copy. The time stamp was not converted to Israel time without time zone verification. A New York Times report was published on November 5, and a CNBC review was published on November 7 at 14:00 in Israel; this is not a new lawsuit filed on November 7.\n\nParents filed, on behalf of their minor daughter, a suit against Google LLC and Alphabet, alleging that the use of AI features through a Chromebook laptop issued to her at school contributed to a mental health crisis. The claims focus on product design, warnings to parents and safeguards for young users. These are the plaintiffs' claims, not an independent medical conclusion or a judicial determination of the company's liability.\n\nThe complaint copy that CNBC links to is presented on the attorneys' site. Its front shows a Santa Clara County court stamp from November 2, 2026 and case number 26CV507724. The copy also includes a document stamp in a federal case from November 4; that should not be treated as the original date of the state filing. The copy is on the attorneys' site and not in the court register, so the filing details are attributed to the copy and the journalistic reporting, not to independent verification of the case database.\n\nPer Google's response in the reports, the company is reviewing the suit and takes it seriously. The company said it works with health professionals and academic experts, and built features connecting young people in distress to help and support resources.\n\nRelated to the item from Nov 6, 2026 at 10:01 on access to search and Gemini tools in student accounts. What is new here is the legal proceeding and product-safety claims, not a new policy change or confirmation that the claims have already been proven. The report contains no damages amount awarded or new decision against Google.",
+  "תקציר_en": "A copy of the complaint shows a filing stamp from a California court; the parents' product-safety claims have not been adjudicated, and Google said it is reviewing them.",
+  "_translation": {
+   "en": {
+    "source_hash": "65ceec3fb624016b9bcd6bdca8713eff6a38fc8539e1f60630abc856a9240c38",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Snap (SNAP): לפי Reuters, פשרה עם שני תובעים צעירים הושגה ב-2 בנובמבר, ללא סכום פומבי או פסק דין חדש",
@@ -1324,18 +1346,29 @@
   "מקורות": [
    {
     "label": "Reuters, דרך NBC News: דיווח מ-2 בנובמבר",
-    "url": "https://www.nbcnews.com/tech/tech-news/snap-settles-teens-social-media-addiction-trial-los-angeles-rcna607093"
+    "url": "https://www.nbcnews.com/tech/tech-news/snap-settles-teens-social-media-addiction-trial-los-angeles-rcna607093",
+    "label_en": "Reuters, via NBC News: report of November 2"
    },
    {
     "label": "CNBC: סקירה ותגובת החברה, 7 בנובמבר",
-    "url": "https://www.cnbc.com/2026/11/07/snap-social-media-teen-safety-lawsuits.html"
+    "url": "https://www.cnbc.com/2026/11/07/snap-social-media-teen-safety-lawsuits.html",
+    "label_en": "CNBC: review and company response, November 7"
    }
   ],
   "תקציר": "הפשרה נוגעת לטענות על עיצוב ממכר ונזק נפשי; היא אינה החלטה שקבעה אחריות, ואינה פשרה חדשה שהוכרזה ביום פרסום הסקירה.",
   "טקסט": "לא מאומת מול מקור ראשוני. הסכם הפשרה או רישום בית המשפט לא אותרו ונבדקו ישירות; הפרטים מיוחסים ל-⁦Reuters⁩ דרך ⁦NBC⁩ ולתגובת החברה כפי שפורסמה ב-⁦CNBC.⁩\n\n⁦2.11.2026⁩ | דיווח ⁦Reuters⁩ דרך ⁦NBC⁩ פורסם ב-⁦22:07⁩ שעון ישראל. סקירת ⁦CNBC⁩ מ-⁦7⁩ בנובמבר ב-⁦14:00⁩ בישראל חוזרת על אירוע מאותו שבוע, לא על פשרה חדשה מ-⁦7⁩ בנובמבר.\n\nלפי ⁦Reuters,⁩ סנאפ הגיעה לפשרה עם שני תובעים צעירים שטענו כי פלטפורמות חברתיות תוכננו לעודד שימוש כפייתי ותרמו לנזק נפשי. בחירת המושבעים בהליך בלוס אנג׳לס החלה בשבוע שקדם לדיווח. לכן מדובר בפשרה במהלך הליך משפטי שכבר התקדם לבחירת מושבעים, לא בקביעה שהחברה הפסידה במשפט.\n\nלא פורסם בדיווחים סכום הפשרה, ואין בהם בסיס לטעון שסנאפ הודתה באחריות או שנפסק נגדה פיצוי חדש. ⁦Meta, TikTok⁩ ו-⁦YouTube⁩ הגיעו קודם לכן להסכמות עם אותם תובעים; אלה אירועים קודמים, לא הסכמים חדשים של השבוע הזה.\n\nדובר סנאפ אישר ב-⁦CNBC⁩ שהצדדים הגיעו לפתרון מוסכם. החברה מסרה שהוסיפה הגנות ומדריכי בטיחות ועובדת עם מומחים, ושהיא ממשיכה לחזק את הבטיחות, הפרטיות ורווחת המשתמשים. טענות על תכנון מכוון להתמכרות נשארות טענות שבמחלוקת.\n\nקשור לפריט מ-⁦6.11.2026⁩ בשעה ⁦18:28⁩ על שינוי ברירת המחדל של ⁦Find Friends⁩ לילדים בבריטניה. החידוש כאן הוא מידע על ההליך והפשרה בארה״ב, לא שינוי נוסף בתכונה ולא קביעה של רגולטור בריטי. אין להסיק מהסכם שני התובעים שכל התביעות נגד החברה הסתיימו.",
   "תאריך": "2026-11-07 15:06",
   "הועלה": "2026-11-07 15:06",
-  "מזהה": "n-0051"
+  "מזהה": "n-0051",
+  "כותרת_en": "Snap (SNAP): per Reuters, a settlement with two young plaintiffs was reached on November 2, with no public amount or new verdict",
+  "טקסט_en": "Not verified against a primary source. The settlement agreement or court record was not located and checked directly; the details are attributed to Reuters via NBC and to the company's response as published on CNBC.\n\nNov 2, 2026 | the Reuters report via NBC was published at 22:07 Israel time. The CNBC review of November 7 at 14:00 in Israel revisits an event from the same week, not a new settlement of November 7.\n\nPer Reuters, Snap reached a settlement with two young plaintiffs who alleged that social platforms were designed to encourage compulsive use and contributed to mental harm. Jury selection in the Los Angeles proceeding began in the week before the report. This is therefore a settlement during a legal proceeding that had already advanced to jury selection, not a determination that the company lost at trial.\n\nNo settlement amount was published in the reports, and they contain no basis to claim that Snap admitted liability or that new damages were awarded against it. Meta, TikTok and YouTube previously reached settlements with the same plaintiffs; those are prior events, not new settlements of this week.\n\nA Snap spokesperson confirmed to CNBC that the parties reached an agreed resolution. The company said it has added safeguards and safety guides and works with experts, and that it continues to strengthen user safety, privacy and well-being. Claims of deliberate addictive design remain disputed claims.\n\nRelated to the item from Nov 6, 2026 at 18:28 on the change to the Find Friends default for children in the UK. What is new here is information on the US proceeding and settlement, not an additional feature change or a determination by a British regulator. Do not infer from the two plaintiffs' settlement that all suits against the company have ended.",
+  "תקציר_en": "The settlement concerns claims of addictive design and mental harm; it is not a decision establishing liability, and is not a new settlement announced on the review's publication day.",
+  "_translation": {
+   "en": {
+    "source_hash": "f45153b330c6a8920f67d7682b673d1797383bb2d4b6c990ce09de6bae4ff440",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "ADNOC ו-Gujarat Energy חתמו על הסכם LNG לעשר שנים: עד 4 מיליון טונות בסך הכול, החל מ-2028",
@@ -1345,18 +1378,29 @@
   "מקורות": [
    {
     "label": "Gujarat Energy: הודעת ההסכם הרשמית, 6 בנובמבר",
-    "url": "https://www.gujarat-energy.com/pdf/press-release-adnoc-06112026.pdf"
+    "url": "https://www.gujarat-energy.com/pdf/press-release-adnoc-06112026.pdf",
+    "label_en": "Gujarat Energy: official agreement release, November 6"
    },
    {
     "label": "סוכנות הידיעות של איחוד האמירויות WAM, 6 בנובמבר",
-    "url": "https://www.wam.ae/en/article/c34b2ar-adnoc-signs-agreement-supply-india%E2%80%99s-gujarat"
+    "url": "https://www.wam.ae/en/article/c34b2ar-adnoc-signs-agreement-supply-india%E2%80%99s-gujarat",
+    "label_en": "UAE news agency WAM, November 6"
    }
   ],
   "תקציר": "הגז יגיע מתיק הנכסים הבינלאומי של XRG שמחוץ למפרץ. הכמות היא לכל עשר שנות ההסכם, לא ארבעה מיליון טונות בכל שנה; אין הודעה על אספקה מיידית.",
   "טקסט": "⁦6.11.2026⁩ | ההודעה הרשמית אינה מציינת שעת פרסום. דיווח ⁦WAM⁩ פורסם ב-⁦10:21⁩ שעון ישראל, לפי חותמת הזמן של הסוכנות. זהו הסכם שעליו דווח ב-⁦6⁩ בנובמבר, לא הכרזה חדשה מ-⁦7⁩ בנובמבר.\n\n⁦ADNOC⁩ ו-⁦Gujarat Energy Limited⁩ מהודו חתמו על הסכם מכירה ורכישה ארוך טווח לגז טבעי נוזלי, ⁦LNG.⁩ לפי ההודעה הרשמית, ⁦Gujarat Energy⁩ תקבל עד ⁦4⁩ מיליון טונות בסך הכול לאורך עשר שנים, עם תחילת משלוחים ב-⁦2028.⁩\n\nזה אינו חוזה לארבעה מיליון טונות בשנה. גם אין בהודעה פירוט של פריסת הכמויות בכל שנה או התחייבות שכל הכמות המרבית תסופק מיד בתחילת התקופה. לא פורסמו בהודעה מחיר או שווי כולל של ההסכם.\n\nהאספקה תגיע מתיק הגז הבינלאומי של ⁦XRG,⁩ חברת ההשקעות הבינלאומית של ⁦ADNOC,⁩ באמצעות פלטפורמת השיווק והמסחר הגלובלית שלה. המקור המתואר הוא נכסי ⁦XRG⁩ שמחוץ למפרץ, לא תוספת מיידית להפקת גז במפרץ.\n\nלפי הודעת החברות, זו המכירה הראשונה מתיק האספקה הבינלאומי של ⁦XRG⁩ והסכם אספקת ה-⁦LNG⁩ החמישי של ⁦ADNOC⁩ בהודו. יעד הפלטפורמה לשיווק ⁦47⁩ מיליון טונות בשנה אחרי ⁦2030⁩ הוא יעד רחב ונפרד; הוא אינו היקף ההסכם הזה.\n\nהחידוש הוא חוזה אספקה רב-שנתי שמחבר את תיק ⁦XRG⁩ הבינלאומי לביקוש בהודו. אין להסיק ממנו שינוי באספקה הפיזית היום, פתיחת נתיבי שיט או ירידה שכבר התרחשה במחירי הגז.",
   "תאריך": "2026-11-07 13:14",
   "הועלה": "2026-11-07 13:14",
-  "מזהה": "n-0052"
+  "מזהה": "n-0052",
+  "כותרת_en": "ADNOC and Gujarat Energy signed a ten-year LNG agreement: up to 4 million tonnes in total, starting 2028",
+  "טקסט_en": "Nov 6, 2026 | the official release does not state a publication time. The WAM report was published at 10:21 Israel time, per the agency's timestamp. This is an agreement reported on November 6, not a new announcement of November 7.\n\nADNOC and Gujarat Energy Limited of India signed a long-term sale and purchase agreement for liquefied natural gas, LNG. Per the official release, Gujarat Energy will receive up to 4 million tonnes in total over ten years, with deliveries beginning in 2028.\n\nThis is not a contract for four million tonnes per year. The release also does not detail the quantity schedule in each year or commit that the full maximum quantity will be supplied immediately at the start of the period. No price or total value of the agreement was published in the release.\n\nThe supply will come from the international gas portfolio of XRG, ADNOC's international investment company, through its global marketing and trading platform. The source described is XRG assets outside the Gulf, not an immediate addition to gas production in the Gulf.\n\nPer the companies' release, this is the first sale from XRG's international supply portfolio and ADNOC's fifth LNG supply agreement in India. The platform's target of marketing 47 million tonnes per year after 2030 is a broad and separate target; it is not the size of this agreement.\n\nThe news is a multi-year supply contract connecting XRG's international portfolio to demand in India. Do not infer from it a change in physical supply today, an opening of shipping lanes, or a decline that has already occurred in gas prices.",
+  "תקציר_en": "The gas will come from XRG's international portfolio outside the Gulf. The quantity is for all ten years of the agreement, not four million tonnes per year; there is no announcement of immediate supply.",
+  "_translation": {
+   "en": {
+    "source_hash": "ac33e22ed92512aa22ca8b0eff24a64e38b3123cb8ab2f7cf63cb84e6572adb4",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Gilead (GILD): בניסוי IDEAL, תרופת Livdelzi השיגה יעד ALP משולב ב-75.4% לעומת 16.1% בפלצבו",
@@ -1366,14 +1410,24 @@
   "מקורות": [
    {
     "label": "Gilead: נתוני שלב 3 המפורטים של IDEAL, 5 בנובמבר",
-    "url": "https://www.gilead.com/news/news-details/2026/positive-phase-3-ideal-study-results-further-support-livdelzis-seladelpar-impact-on-achieving-alp-normalization-goals-in-second-line-treatment-across-a-broad-population-of-people-living-with"
+    "url": "https://www.gilead.com/news/news-details/2026/positive-phase-3-ideal-study-results-further-support-livdelzis-seladelpar-impact-on-achieving-alp-normalization-goals-in-second-line-treatment-across-a-broad-population-of-people-living-with",
+    "label_en": "Gilead: detailed IDEAL phase 3 data, November 5"
    }
   ],
   "תקציר": "ניסוי ב-96 מבוגרים עם PBC וברמות ALP נמוכות מסף ההכללה המקובל. זהו מדד ביוכימי, לא הוכחת הארכת חיים, ריפוי או אישור רגולטורי חדש.",
   "טקסט": "⁦5.11.2026⁩ | הודעה רשמית של ⁦Gilead⁩; שעת הפרסום אינה מצוינת. הנתונים פורסמו ב-⁦5⁩ בנובמבר, לא לראשונה ב-⁦7⁩ בנובמבר.\n\n⁦Gilead⁩ פרסמה תוצאות מפורטות מניסוי שלב ⁦3 IDEAL⁩ ב-⁦Livdelzi (seladelpar),⁩ לטיפול במחלת דרכי המרה האוטואימונית ⁦PBC.⁩ בשבוע ⁦52⁩ השיגו ⁦75.4%⁩ מהמטופלים בתרופה, ⁦49⁩ מתוך ⁦65,⁩ את יעד הניסוי המשולב, לעומת ⁦16.1%⁩ בקבוצת הפלצבו, ⁦5⁩ מתוך ⁦31.⁩\n\nהיעד כלל שני תנאים: רמת האנזים ⁦ALP⁩ שאינה עולה על הגבול העליון של הנורמה, יחד עם ירידה של ⁦15%⁩ לפחות לעומת תחילת הניסוי. זהו מדד ביוכימי לפעילות המחלה, לא מדד ישיר להישרדות או למניעת אי-ספיקת כבד.\n\nהניסוי היה אקראי, כפול-סמיות ומבוקר פלצבו, וכלל ⁦96⁩ מבוגרים. רמות ⁦ALP⁩ בתחילת הניסוי היו מעל הנורמה אך מתחת לפי ⁦1.67⁩ מהגבול העליון, למרות טיפול קודם ב-⁦UDCA⁩ או בשל אי-סבילות אליו. לכן אין להכליל אוטומטית את שיעורי ההצלחה לכל חולי ⁦PBC⁩ או להשוותם ישירות לאוכלוסיות של ניסויים אחרים.\n\nלפי החברה, פרופיל הבטיחות תאם מחקרים קודמים ולא זוהו בעיות בטיחות חדשות בניסוי. אירועים חמורים דווחו ב-⁦3.1%⁩ מקבוצת התרופה וב-⁦12.9%⁩ מקבוצת הפלצבו; אף אחד מהם לא יוחס לתרופת הניסוי לפי ההודעה. מדגם קטן אינו הוכחה להיעדר סיכונים.\n\nהחברה מסרה שהיא דנה בנתונים עם רשויות רגולטוריות בעולם. אין בהודעה אישור חדש או הרחבת התוויה. ל-⁦Livdelzi⁩ כבר יש אישור מואץ בארה\"ב המבוסס על ירידה ב-⁦ALP⁩; שיפור בהישרדות או מניעת אירועי החמרה בתפקוד הכבד טרם הודגמו. המשך האישור עשוי להיות מותנה באימות התועלת הקלינית בניסויים מאמתים. אין כיום ריפוי ל-⁦PBC,⁩ ואין להציג את תוצאות הניסוי כתרופה מרפאת.",
   "תאריך": "2026-11-07 13:03",
   "הועלה": "2026-11-07 13:03",
-  "מזהה": "n-0053"
+  "מזהה": "n-0053",
+  "כותרת_en": "Gilead (GILD): in the IDEAL trial, the drug Livdelzi achieved the composite ALP endpoint in 75.4% versus 16.1% on placebo",
+  "טקסט_en": "Nov 5, 2026 | official Gilead release; the publication time is not specified. The data were published on November 5, not for the first time on November 7.\n\nGilead published detailed results from the phase 3 IDEAL trial of Livdelzi (seladelpar), for treatment of the autoimmune bile duct disease PBC. At week 52, 75.4% of patients on the drug, 49 of 65, achieved the trial's composite endpoint, versus 16.1% in the placebo group, 5 of 31.\n\nThe endpoint included two conditions: an ALP enzyme level not exceeding the upper limit of normal, together with a decrease of at least 15% versus the trial's start. This is a biochemical measure of disease activity, not a direct measure of survival or prevention of liver failure.\n\nThe trial was randomized, double-blind and placebo-controlled, and included 96 adults. Baseline ALP levels were above normal but below 1.67 times the upper limit, despite prior UDCA treatment or intolerance to it. Therefore the success rates should not automatically be generalized to all PBC patients or compared directly to populations of other trials.\n\nPer the company, the safety profile was consistent with prior studies and no new safety issues were identified in the trial. Serious events were reported in 3.1% of the drug group and 12.9% of the placebo group; none of them was attributed to the trial drug per the release. A small sample is not proof of absence of risks.\n\nThe company said it is discussing the data with regulatory authorities worldwide. The release contains no new approval or label expansion. Livdelzi already has accelerated approval in the US based on ALP reduction; improvement in survival or prevention of liver function deterioration events has not yet been demonstrated. Continued approval may be conditional on verifying clinical benefit in confirmatory trials. There is currently no cure for PBC, and the trial results should not be presented as a curative treatment.",
+  "תקציר_en": "A trial in 96 adults with PBC and ALP levels below the usual inclusion threshold. This is a biochemical measure, not proof of life extension, cure or new regulatory approval.",
+  "_translation": {
+   "en": {
+    "source_hash": "06e121faf3f4f9dbdb19c843034ad78ea67b9047b6fd0e49f1695643baa12edd",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Visa (V): הקמת שישה מוקדי יכולות בסינגפור במרכז המאגד יותר מ-1,500 עובדים",
@@ -1383,18 +1437,29 @@
   "מקורות": [
    {
     "label": "Visa: ההודעה הרשמית מ-5 בנובמבר",
-    "url": "https://www.visa.com.sg/about-visa/newsroom/press-releases/visa-establishes-global-capability-hubs-in-singapore-to-build-the-future-of-global-commerce.html"
+    "url": "https://www.visa.com.sg/about-visa/newsroom/press-releases/visa-establishes-global-capability-hubs-in-singapore-to-build-the-future-of-global-commerce.html",
+    "label_en": "Visa: official release of November 5"
    },
    {
     "label": "Singapore EDB: פרסום חוזר של הודעת Visa, 5 בנובמבר",
-    "url": "https://www.edb.gov.sg/en/news-and-insights/visa-establishes-global-capability-hubs-in-singapore-to-build-the-future-of-global-commerce"
+    "url": "https://www.edb.gov.sg/en/news-and-insights/visa-establishes-global-capability-hubs-in-singapore-to-build-the-future-of-global-commerce",
+    "label_en": "Singapore EDB: republication of Visa's release, November 5"
    }
   ],
   "תקציר": "שישה תחומי יכולת במרכז אחד ב-Paya Lebar Green, לפיתוח בינה מלאכותית, תשלומים ואבטחה לרשת הגלובלית. מספר העובדים אינו מספר המשרות החדשות.",
   "טקסט": "⁦5.11.2026⁩ | הודעת ⁦Visa⁩; שעת הפרסום אינה מצוינת. זהו עדכון על הכרזה מ-⁦5⁩ בנובמבר, לא הודעה על פתיחה חדשה ב-⁦7⁩ בנובמבר.\n\n⁦Visa⁩ הודיעה על הקמת שישה מוקדי יכולות גלובליים במרכז הפתרונות החדש שלה ב-⁦Paya Lebar Green⁩ שבסינגפור. המוקדים נמצאים במרכז אחד בסינגפור ופועלים על פתרונות המיועדים לשימוש ברשת הגלובלית של החברה. אין מדובר בשישה מבנים חדשים או בשישה מרכזים במדינות שונות.\n\nלפי ההודעה, המרכז מאגד יותר מ-⁦1,500⁩ אנשי מקצוע בטכנולוגיה, מוצר, סייבר, הנדסה וחדשנות. החברה מתכננת לפתח גם תפקידי מחקר והנדסה מתמחים נוספים, אך לא פירטה כמה מהעובדים הם גיוסים חדשים. לכן אין להציג את הנתון כתוספת של ⁦1,500⁩ משרות.\n\nששת מוקדי היכולת נחלקים לשלושה תחומים: בינה מלאכותית יישומית ומסחר באמצעות סוכני ⁦AI⁩; כסף דיגיטלי, מטבעות יציבים, תשלומים מתוכנתים וארנקים; ואבטחת סייבר ומחשוב קוונטי לפיננסים. ההודעה מתארת פיתוח ומחקר, לא אישור שכל הפתרונות כבר הושקו מסחרית.\n\n⁦Visa⁩ מסרה שהצוותים יעבדו עם שותפים מקומיים ועם גופי מחקר, וציינה השתתפות ביוזמת ⁦BLOOM⁩ של הרשות המוניטרית של סינגפור. לא פורסמו בהודעה סכום השקעה, יעדי הכנסות או מועד השקה מחייב למוצר חדש.\n\nהחידוש הוא הרחבת יכולות הפיתוח בסינגפור עבור פעילות ⁦Visa⁩ בעולם. אין לחבר את ההכרזה למזכר ההבנות הנפרד עם ⁦Tencent⁩ או לתחזית מכירות החגים בארה\"ב.",
   "תאריך": "2026-11-07 12:55",
   "הועלה": "2026-11-07 12:55",
-  "מזהה": "n-0054"
+  "מזהה": "n-0054",
+  "כותרת_en": "Visa (V): establishing six capability hubs in Singapore at a center bringing together more than 1,500 employees",
+  "טקסט_en": "Nov 5, 2026 | Visa release; the publication time is not specified. This is an update on an announcement from November 5, not a notice of a new opening on November 7.\n\nVisa announced the establishment of six global capability hubs at its new solutions center at Paya Lebar Green in Singapore. The hubs are located in one center in Singapore and work on solutions intended for use in the company's global network. This is not six new buildings or six centers in different countries.\n\nPer the release, the center brings together more than 1,500 professionals in technology, product, cyber, engineering and innovation. The company plans to develop additional specialized research and engineering roles, but did not detail how many of the employees are new hires. Therefore the figure should not be presented as an addition of 1,500 jobs.\n\nThe six capability hubs span three areas: applied AI and commerce via AI agents; digital money, stablecoins, programmable payments and wallets; and cybersecurity and quantum computing for finance. The release describes development and research, not confirmation that all the solutions have already launched commercially.\n\nVisa said the teams will work with local partners and research bodies, and noted participation in the Monetary Authority of Singapore's BLOOM initiative. No investment amount, revenue targets or binding launch date for a new product was published in the release.\n\nThe news is an expansion of development capabilities in Singapore for Visa's worldwide operations. Do not link the announcement to the separate memorandum of understanding with Tencent or to the US holiday sales forecast.",
+  "תקציר_en": "Six capability areas in one center at Paya Lebar Green, for developing AI, payments and security for the global network. The employee count is not the number of new jobs.",
+  "_translation": {
+   "en": {
+    "source_hash": "0c5634c7a64bc9a1bc10f1a1ca9e4089af14fd06f764b838ca9eebc9e052954e",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "סין מתנגדת לסנקציות האמריקאיות על שתי חברות סיניות בקשר לקובה; טרם הוכרזו צעדי תגובה",
@@ -1404,14 +1469,24 @@
   "מקורות": [
    {
     "label": "משרד המסחר הסיני: התשובה הרשמית מ-7 בנובמבר",
-    "url": "https://www.mofcom.gov.cn/syxwfb/art/2026/art_617408aa9caf4271af369c053ff0a961.html"
+    "url": "https://www.mofcom.gov.cn/syxwfb/art/2026/art_617408aa9caf4271af369c053ff0a961.html",
+    "label_en": "Chinese Commerce Ministry: official response of November 7"
    }
   ],
   "תקציר": "משרד המסחר קרא לארה\"ב לתקן את המהלך ושמר על הזכות לנקוט צעדים נחוצים. זו תגובה לסנקציות מ-5 בנובמבר, לא סנקציות אמריקאיות חדשות מהיום.",
   "טקסט": "7.11.2026 | בעמוד משרד המסחר הסיני מוצגת השעה 09:00 ללא ציון אזור זמן. לכן לא מוצגת כאן שעת פרסום מומרת לשעון ישראל.\n\nמשרד המסחר הסיני פרסם תשובה רשמית בנוגע לסנקציות שעליהן הודיעה מחלקת המדינה האמריקאית ב-5 בנובמבר, לפי שעון החוף המזרחי בארה\"ב, נגד שתי חברות סיניות בקשר לקובה. החידוש הוא התגובה הסינית שפורסמה ב-7 בנובמבר, לא הכרזה אמריקאית חדשה מאותו יום.\n\nבתשובה אמר דובר המשרד שסין מתנגדת לסנקציות חד-צדדיות על חברות סיניות בשל קשר לצד שלישי. המשרד טען שהמהלך מפר את המשפט הבינלאומי ופוגע בזכויות החברות וביציבות היחסים הכלכליים והמסחריים בין המדינות. אלה עמדותיה של ממשלת סין, לא הכרעה משפטית עצמאית.\n\nהמשרד קרא לארה\"ב לתקן את מה שכינה התנהלות שגויה, והודיע שסין שומרת לעצמה את הזכות לנקוט צעדים נחוצים להגנה על זכויותיה. הוא לא הכריז בתשובה על סנקציות נגדיות, לא פירט כלי תגובה ולא קבע לוח זמנים לביצוע.\n\nשמות שתי החברות לא מופיעים בתשובה הרשמית שנבדקה. אין כאן קביעה שהוכרזה תגובה סינית בפועל, הסכמה להסרת הסנקציות או שינוי בתנאי הסחר.",
   "תאריך": "2026-11-07 12:54",
   "הועלה": "2026-11-07 12:54",
-  "מזהה": "n-0055"
+  "מזהה": "n-0055",
+  "כותרת_en": "China objects to US sanctions on two Chinese companies over ties to Cuba; no response measures announced yet",
+  "טקסט_en": "Nov 7, 2026 | the Chinese Commerce Ministry page shows the time 09:00 without a time zone. Therefore no publication time converted to Israel time is shown here.\n\nChina's Commerce Ministry published an official response regarding the sanctions announced by the US State Department on November 5, US Eastern time, against two Chinese companies over ties to Cuba. The news is the Chinese response published on November 7, not a new American announcement from the same day.\n\nIn the response, a ministry spokesperson said China opposes unilateral sanctions on Chinese companies over ties to a third party. The ministry argued that the move violates international law and harms the companies' rights and the stability of economic and trade relations between the countries. These are the Chinese government's positions, not an independent legal determination.\n\nThe ministry called on the US to correct what it called wrongful conduct, and stated that China reserves the right to take necessary measures to defend its rights. The response did not announce counter-sanctions, did not specify response tools and did not set a timetable for implementation.\n\nThe names of the two companies do not appear in the official response checked. There is no determination here that a Chinese response was actually announced, agreement to remove the sanctions, or a change in trade terms.",
+  "תקציר_en": "The Commerce Ministry called on the US to correct the move and reserved the right to take necessary measures. This is a response to sanctions from November 5, not new US sanctions from today.",
+  "_translation": {
+   "en": {
+    "source_hash": "a0b3dd6d1ad9abc65a42004d7a019ff4d68bd47c4f8e1835ddfffa6446dc8c52",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "עיראק: טענה לא מאומתת שלפיה תפוקת הנפט עולה על 5 מיליון חביות ביום",
@@ -1421,14 +1496,24 @@
   "מקורות": [
    {
     "label": "אנאדולו, 6 בספטמבר: הקשר היסטורי על קיבולת יצוא בלבד, לא אימות לטענה הנוכחית",
-    "url": "https://www.aa.com.tr/en/middle-east/iraq-boosts-oil-export-capacity-above-3m-bpd-targets-5m-via-new-routes/4048494"
+    "url": "https://www.aa.com.tr/en/middle-east/iraq-boosts-oil-export-capacity-above-3m-bpd-targets-5m-via-new-routes/4048494",
+    "label_en": "Anadolu, September 6: historical context on export capacity only, not verification of the current claim"
    }
   ],
   "תקציר": "הטענה מתייחסת לתפוקה, לא ליצוא. לא נמצא אישור ישיר לנתון או למועד המדידה, ואין להסיק ממנו שמצר הורמוז נפתח או שהמשלוחים חזרו לשגרה.",
   "טקסט": "לא מאומת מול מקור ראשוני\n7.11.2026 | 12:44 שעון ישראל, מועד הופעת הטענה, לא מועד מדידת התפוקה.\n\nעלתה טענה שלפיה תפוקת הנפט בעיראק עולה על 5 מיליון חביות ביום. הטענה מייחסת את הנתון לשר הנפט באמצעות סוכנות הידיעות הממלכתית, אך ההודעה המקורית לא נמצאה ולא אומתו ישירות הדברים, מועד המדידה או אופן חישוב התפוקה. הנתון מוצג כטענה לא מאומתת, לא כנתון רשמי מאושר.\n\nיש להפריד בין תפוקה בפועל, קיבולת הפקה, קיבולת יצוא ומשלוחים שבוצעו. הטענה הנוכחית עוסקת בתפוקה בלבד; היא אינה מלמדת כמה חביות יוצאות לשוק, ואינה אישור לפתיחת מצר הורמוז או להסרת מגבלות ההובלה.\n\nהקשר היסטורי נפרד: אנאדולו דיווחה ב-6 בספטמבר 2026 על קיבולת יצוא של יותר מ-3 מיליון חביות ביום ועל כוונה להעלות אותה ל-5 מיליון לאחר השלמת תשתיות. זהו דיווח ישן על קיבולת ותוכנית עתידית, ולא אישור לתפוקה הנוכחית. אין לחבר את המספרים או להציג את יעד ספטמבר כהישג שכבר הושלם.\n\nלא מוצגים כאן גידול כמותי לעומת תקופה קודמת, שינוי במכסות אופ\"ק+ או תגובת מחיר בנפט. הקישור המצורף תומך בהקשר ההיסטורי בלבד, לא בטענה החדשה.",
   "תאריך": "2026-11-07 12:50",
   "הועלה": "2026-11-07 12:50",
-  "מזהה": "n-0056"
+  "מזהה": "n-0056",
+  "כותרת_en": "Iraq: an unverified claim that oil output exceeds 5 million barrels per day",
+  "טקסט_en": "Not verified against a primary source\nNov 7, 2026 | 12:44 Israel time, when the claim appeared, not when output was measured.\n\nA claim has circulated that Iraq's oil output exceeds 5 million barrels per day. The claim attributes the figure to the oil minister via the state news agency, but the original statement was not found and the remarks, measurement date or method of computing output were not verified directly. The figure is presented as an unverified claim, not as a confirmed official figure.\n\nA distinction must be made between actual output, production capacity, export capacity and executed shipments. The current claim concerns output only; it does not say how many barrels reach the market, and is not confirmation of the Strait of Hormuz opening or of shipping restrictions being lifted.\n\nThe historical context is separate: Anadolu reported on September 6, 2026 an export capacity of more than 3 million barrels per day and an intention to raise it to 5 million after infrastructure is completed. That is an old report about capacity and a future plan, not confirmation of current output. Do not combine the numbers or present the September target as an achievement already completed.\n\nNo quantitative increase versus a prior period, change in OPEC+ quotas, or oil price reaction is presented here. The attached link supports the historical context only, not the new claim.",
+  "תקציר_en": "The claim refers to output, not exports. No direct confirmation of the figure or its measurement date was found, and it should not be read as evidence that the Strait of Hormuz has opened or that shipments have returned to normal.",
+  "_translation": {
+   "en": {
+    "source_hash": "a9f47573529c942bc4987acb18dc8638e2b51d2798ec3f1c1b2005968d7c53d8",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Lumentum (LITE): לפי קטע פומבי ב-Triad Business Journal, החברה מזמינה כלים למפעל גרינסבורו לקראת עלייה בייצור",
