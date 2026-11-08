@@ -151,7 +151,7 @@ button{font-family:inherit}
 .idx-v{font-size:.98rem;font-weight:800;direction:ltr;unicode-bidi:isolate;text-align:right;white-space:nowrap;letter-spacing:-.2px}
 .idx-c{grid-column:1/-1;overflow:hidden;font-size:.74rem;font-weight:700;direction:ltr;unicode-bidi:isolate;text-align:right;white-space:nowrap}
 .idx-f{grid-column:1/-1;font-size:.66rem;font-weight:700;direction:ltr;unicode-bidi:isolate;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.3px;margin-top:1px}.idx-f .xl{display:inline!important;float:none!important;width:auto!important;margin:0!important}.idx-f small{display:inline!important;font-weight:500;color:var(--muted);font-size:.92em}
-.idx .spark{grid-column:2;grid-row:1/3;width:58px;height:30px;display:block}.idx .spark path{fill:none;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}.idx .spark line{stroke:var(--fg-94a3b8);stroke-width:1;stroke-dasharray:2 2}
+.idx .spark{grid-column:2;grid-row:1/3;width:58px;height:30px;display:block}.idx .spark path{fill:none;stroke-width:1.36;stroke-linejoin:round;stroke-linecap:round}.idx .spark line{stroke:var(--fg-94a3b8);stroke-width:1;stroke-dasharray:2 2}
 @media (max-width:370px){.idx{padding:6px 8px}.idx .spark{width:44px}.idx-v{font-size:.92rem}}
 .heat{padding:10px}.heat-h{display:flex;align-items:center;gap:8px;min-height:30px}.heat-t{font-weight:700;font-size:.95rem}.heat-h small{color:var(--muted);font-size:.78rem}.heat-h small b{font-weight:700}.heat-h .mini-tgl{margin-inline-start:auto}
 .heat-map{position:relative;height:240px;margin-top:8px;border-radius:10px;overflow:hidden}.heat-map.pos-heat{height:360px}html.pv-heat #posList,html.pv-heat #posSort,html.pv-heat #posCols{display:none!important}.heat-sum[hidden]{display:none}.heat-sum{display:flex;justify-content:flex-start;align-items:center;margin-top:6px;color:var(--muted);font-size:.76rem}.heat-sum .hs-ud b{font-weight:700}.heat.collapsed{padding:8px 10px}.heat.collapsed .heat-map{display:none}.heat.collapsed .heat-h{cursor:pointer}
@@ -403,7 +403,7 @@ input.ltr-in{direction:ltr;text-align:right}
 .pcol.pc-d{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}.pcol.pc-d>*{max-width:100%}.pc-d [data-f="hp"]{display:block;font-size:.76rem;font-weight:600;color:var(--text);line-height:1.25;margin-top:1px;overflow:hidden;text-overflow:ellipsis}.pcol .pw{font-weight:600;font-size:.84rem;color:var(--fg-334155)}
 .pc-d b{display:block;font-size:.88rem;font-weight:700;line-height:1.2}.pc-d.two b+b{font-size:.74rem;opacity:.92}
 .pos-cols{padding:0 13px 3px;font-size:.66rem;color:var(--muted);font-weight:600}.pos-cols .pcol{direction:rtl;text-align:center;line-height:1.2}.pos-cols small{display:block;font-size:.95em;font-weight:500;opacity:.85}.pos-cols[hidden]{display:none}
-.pc-s{display:flex;justify-content:center;align-items:center;height:26px}.pc-s .spark{width:46px;height:24px;display:block}.pc-s .spark path{fill:none;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}.pc-s .spark line{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 2;opacity:.75}
+.pc-s{display:flex;justify-content:center;align-items:center;height:26px}.pc-s .spark{width:46px;height:24px;display:block}.pc-s .spark path{fill:none;stroke-width:1.28;stroke-linejoin:round;stroke-linecap:round}.pc-s .spark line{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 2;opacity:.75}
 .pcard .pgrid .psym{display:flex;flex-wrap:wrap;align-items:center;gap:4px;min-width:0}.pcard .pgrid .psym .ltr{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
 .pcard .pgrid .pname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* company logo: initials circle (deterministic color) under the image; the image shows only once it has loaded */
@@ -673,7 +673,7 @@ html.ext-sess .pcard .pc-d .xl,html.ext-sess .wr .pc-d .xl{min-height:13px}
 /* 1. sparklines: one fixed box (64×28), centred in its own column, uniform stroke, no stretching of line weight */
 .wgrid:not(.egrid) .pc-s{display:flex;align-items:center;justify-content:center;align-self:center;height:28px}
 .wgrid:not(.egrid) .pc-s .spark,.pc-s .spark{width:64px;height:28px;display:block;overflow:visible}
-.wgrid:not(.egrid) .pc-s .spark path,.idx .spark path{stroke-width:1.6;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision}
+.wgrid:not(.egrid) .pc-s .spark path,.idx .spark path{stroke-width:1.36;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision}
 .wgrid:not(.egrid) .pc-s .spark line,.idx .spark line{vector-effect:non-scaling-stroke;stroke-width:1;opacity:.55}
 .idx .spark{width:56px;height:30px;align-self:center;justify-self:end;overflow:visible}
 @media (max-width:370px){.idx .spark{width:48px}}
@@ -706,7 +706,7 @@ html.ext-sess .pcard .pc-d .xl,html.ext-sess .wr .pc-d .xl{min-height:13px}
 @media (max-width:370px){.wr.egrid,.ecols{grid-template-columns:32px minmax(0,1fr) 64px 44px 76px}}
 .wr.egrid .pc-s{display:flex;align-items:center;justify-content:center;align-self:center;height:28px}
 .wr.egrid .pc-s .spark{width:64px;height:28px;display:block;overflow:visible}
-.wr.egrid .pc-s .spark path{stroke-width:1.6;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision}.wr.egrid .pc-s .spark line{vector-effect:non-scaling-stroke;stroke-width:1;opacity:.55}
+.wr.egrid .pc-s .spark path{stroke-width:1.36;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision}.wr.egrid .pc-s .spark line{vector-effect:non-scaling-stroke;stroke-width:1;opacity:.55}
 .egrid>.pc-d{width:100%;justify-self:stretch;align-items:stretch}
 .egrid .pc-d>b:first-child{width:100%;text-align:center;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
 .egrid .pc-d .wl-p{display:block;width:100%;text-align:center;direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;white-space:nowrap;padding-inline:1px}
@@ -927,7 +927,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pgrid>.pc-s,.pc-h.pgrid>.pc-s,.pos-cols>.pc-s{grid-area:sp;display:flex;justify-content:center;align-items:center;height:26px;margin:0}
 .pos-cols>.pc-s{height:auto;font-size:.64rem;color:var(--muted)}
 .pgrid .pc-s .spark{width:100%;max-width:var(--k-sp);height:26px;display:block;overflow:visible}
-.pgrid .pc-s .spark path{stroke-width:1.6;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision}
+.pgrid .pc-s .spark path{stroke-width:1.36;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision}
 .pgrid .pc-s .spark line{vector-effect:non-scaling-stroke;stroke-width:1;opacity:.55}
 .pgrid:not(.pos-cols)>.pc-m{max-width:100%;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:370px){.pcard .pgrid>.pc-d>b:first-child{font-size:.74rem;letter-spacing:-.25px;padding-inline:1px}.pos-cols>.pc-d{font-size:.56rem}.pos-cols>.pc-w{font-size:.59rem}}
@@ -981,7 +981,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .pgrid>.pc-s .spark{transform:scale(1.21)}.pgrid>.pc-s,.pos-cols>.pc-s{translate:8px 0}.rep-date-summary{display:flex;align-items:center;justify-content:space-around;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:18px}.rep-date-summary div{display:flex;flex-direction:column;gap:5px;text-align:center}.rep-date-summary small{color:var(--muted)}.rep-date-summary b{direction:ltr}.rep-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.rep-month button{width:44px;height:44px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:var(--bg)}.rep-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center;direction:rtl}.rep-calendar>small{padding:8px 0;color:var(--muted)}.rep-calendar button{min-width:0;min-height:44px;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--text);font:inherit}.rep-calendar button.inrange{background:rgba(37,99,235,.15);color:#93b4ff}.rep-calendar button.edge{background:#2563eb;color:white;font-weight:700}.rep-calendar button.today{border-color:#60a5fa}.rep-date-actions{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap}.rep-date-actions .btn{flex:1;white-space:nowrap;padding-left:10px;padding-right:10px}.rep-date-strip{display:flex;align-items:stretch;gap:6px;min-width:0}.rep-date-strip>button{flex:0 0 74px;max-width:86px;border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 5px;gap:1px;font:inherit}.rep-date-strip>button small{font-size:.66rem}.rep-date-strip>button .dw{font-size:.72rem}.rep-date-strip>button.on{background:#2563eb;color:#fff;border-color:#2563eb}.rep-date-strip>#repDays{flex:1;min-width:0;margin-top:0}.rep-date-strip>#repDays .dcard{min-width:64px}/* Preview: keep the plot inside an explicitly centred, unclipped slot. */
 .pgrid:not(.pos-cols)>.pc-s{height:40px;align-self:center;overflow:visible}
 .pgrid:not(.pos-cols)>.pc-s .spark{height:36.6px;overflow:visible;transform:scaleX(1.674);transform-origin:center}
-.pgrid:not(.pos-cols)>.pc-s .spark path{stroke-width:1.1;vector-effect:non-scaling-stroke}
+.pgrid:not(.pos-cols)>.pc-s .spark path{stroke-width:0.94;vector-effect:non-scaling-stroke}
 /* v247 approved: weight column (header + values) 9px toward the spark. */
 .pgrid>.pc-w{transform:translateX(-9px)}
 /* v248 approved: same sparkline enlargement in the watchlist (x1.2075 wider, proportional height; columns untouched). */
