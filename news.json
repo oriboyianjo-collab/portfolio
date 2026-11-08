@@ -1,5 +1,19 @@
 [
   {
+    "כותרת": "נאס\"א הכריזה על חבילת חוזים לתוכנית Moon Base: מסגרת CLPS 2 בתקרה של 10 מיליארד דולר, ורובר גרעיני PROMISE לשיגור בסוף 2028",
+    "category": "macro",
+    "קישור": "https://www.nasa.gov/news-release/nasa-awards-moon-base-transportation-technology-science-projects/",
+    "מקורות": [
+      {
+        "label": "NASA, 7 בנובמבר",
+        "url": "https://www.nasa.gov/news-release/nasa-awards-moon-base-transportation-technology-science-projects/"
+      }
+    ],
+    "טקסט": "7.11.2026 | הודעת נאס\"א; פורסמה ביום שבת, שעה לא צוינה. ההודעה נמסרה בתערוכת MAX POWER במרכז החלל קנדי. סכומי המסגרות להלן הם תקרות חוזה, לא כסף שהוקצה בפועל.\n\nCLPS 2: שמונה חברות נבחרו לשלב הבא של יוזמת ההובלות המסחריות לירח - Blue Origin, Firefly Aerospace, Intuitive Machines, ispace-U.S., Lockheed Martin Space, Northrop Grumman Space Systems, SpaceX ו-Voyager Technologies. החברות זכאיות להתמודד על משימות עתידיות במסגרת חוזה מרובה-זוכים ל-10 שנים בתקרה מצטברת של 10 מיליארד דולר; בשלב זה לא הוקצו משימות. מסגרת CLPS 1.0 הקיימת הוגדלה מ-2.6 ל-4.2 מיליארד דולר.\n\nPROMISE: רובר בהנעה גרעינית שייבנה במעבדת JPL מרכיבי גיבוי של הרוברים Curiosity ו-Perseverance, לניטור קרח ומשאבים בקוטב הדרומי של הירח; שיגור מתוכנן לסוף 2028 למשימה של 18 חודשים. Blue Origin קיבלה חוזה בסיס של 94 מיליון דולר להובלת הרובר עם אופציה של 140 מיליון דולר נוספים.\n\nשיגור והובלה: שישה צווי משימה בהיקף מצטבר של כ-1.3 מיליארד דולר הוקצו ל-Arrow Science and Technology, Blue Origin ו-Impulse Space במסגרת חוזה VADR (תקרה כוללת של 5 מיליארד דולר), להדגמות הובלה בין-כדורית, סריקת פני הירח במל\"טים (MoonFall) וניסויי ניווט. בין המשגרים: New Glenn, Terran R ו-Falcon 9.\n\nבנוסף, SpaceX נבחרה להדגמת פריסת לווייני תקשורת בחלל ציס-ירחי על גבי Starship ב-2028, ולתשתית האנרגיה והתקשורת miniCAST נבחרו Honeybee Robotics (חברת בת של Blue Origin), Redwire ו-Yank Technologies.",
+    "תאריך": "2026-11-08 14:32",
+    "הועלה": "2026-11-08 14:32"
+  },
+  {
     "כותרת": "CNBC: התשואה על אגרת 2032 של CoreWeave (CRWV) עלתה מעל 16%, וה-CDS שלה זינק מעל שיא אוקטובר",
     "category": "micro",
     "קישור": "https://www.cnbc.com/2026/11/06/coreweave-bond-yield-tops-16percent-as-ai-credit-stress-rises.html",
