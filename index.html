@@ -987,7 +987,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 /* v252: scoped #idxSearch override so the approved thin field actually renders slim (shared 48px search-field rule otherwise wins via !important). v253: 26px exactly matches the magnifier row so tiles stay pixel-fixed. */
 /* v254 approved: right-chevron toggle merged into the left edge of the left index tile (full tile height, part of the tile, no separate button); magnifier circle removed - the tools row above the tiles holds the 30% search field only and hides when closed. v255 fix: the change % line (.idx-c) spans the full tile width below the spark so the arrow zone no longer squeezes it out of the tile; the spark now spans only the name/value rows. v256 fix: the arrow no longer auto-focuses the field - the tap only opens/closes the row, so no keyboard opens, no kb-on header collapse and no lift scroll (the "screen jump"); tapping the field focuses it like every other search in the app. */
 .idxwrap{position:relative}
-.idx-tools{display:flex;align-items:center;gap:8px;margin:0 0 8px}
+.idx-tools{display:flex;align-items:center;gap:8px;margin:0 0 8px}.idx-tools[hidden]{display:none}   /* v262: the author display:flex rule overrode the hidden attribute, so the reset row never actually hid (Ori, 2026-11-08: button visible outside edit mode) - same guard pattern as .mk-sub[hidden]. */
 .idx-arrowbtn{position:absolute;left:0;top:0;bottom:0;z-index:1;width:20px;border:none;border-right:1px solid var(--border);border-radius:13px 0 0 13px;background:rgba(148,163,184,.08);color:var(--muted);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;font:inherit}
 .idx-arrowbtn svg{width:10px;height:10px}
 .idx-arrowbtn.on{color:var(--primary)}
