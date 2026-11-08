@@ -3274,7 +3274,7 @@ $('idxSearch').addEventListener('keydown', e=>{ if(e.key==='Escape' && idxEditin
 attachAutocomplete($('idxSearch'), $('idxAc'), it=>{ $('idxSearch').value = ''; $('idxSearch').blur(); if(!it || (it.free && !it.sym)) return;
   const sym = it.sym.toUpperCase(); if(IDX.some(x=>((x.sym||x.s).toUpperCase()===sym) || x.s.toUpperCase()===sym)){ toast('הנייר כבר באריחים'); return; }
   const cr = it.type==='crypto';
-  IDX.push({k:'sec:'+sym, s: cr ? sym+'.CM=' : sym, sym, n: it.name||sym, type: it.type||'stock'});   // v257 approved: a newly added tile lands on the right end of the row, visible without scrolling
+  IDX.unshift({k:'sec:'+sym, s: cr ? sym+'.CM=' : sym, sym, n: it.name||sym, type: it.type||'stock'});   // v257 approved: a newly added tile lands on the right end of the row, visible without scrolling
   idxListSave(); renderIdx();
   const qs = cr ? sym+'.CM=' : sym, nk = 'sec:'+sym;
   cnbcQuotes([qs]).then(q=>{ const u = q && q[qs];
