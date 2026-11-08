@@ -2473,14 +2473,24 @@
   "מקורות": [
    {
     "label": "ServiceNow, הודעת 28 באוקטובר 2026",
-    "url": "https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-and-OpenAI-accelerate-enterprise-AI-from-models-and-operations-to-cybersecurity-and-agentic-development/"
+    "url": "https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-and-OpenAI-accelerate-enterprise-AI-from-models-and-operations-to-cybersecurity-and-agentic-development/",
+    "label_en": "ServiceNow, release of October 28, 2026"
    }
   ],
   "תקציר": "תוסף MCP הוצג כזמין במועד ההודעה. יכולות קול, אבטחה ו-Codex הוצגו בתוכניות נפרדות ל-2027, ולא כיכולות שכבר זמינות כולן.",
   "טקסט": "28.10.2026 | הודעת ServiceNow על הרחבת השותפות עם OpenAI. שעת הפרסום המקורית אינה מצוינת בעמוד שנבדק. זו הודעה מאוקטובר, לא השקה חדשה ב-7 בנובמבר.\n\nהחברות הרחיבו את השותפות כדי לחבר בין ChatGPT ומודלי OpenAI לבין תהליכי העבודה, ההקשר העסקי וההרשאות של ServiceNow. התוסף החדש מאפשר לבצע פעולות מתוך ChatGPT דרך ServiceNow Action Fabric, כאשר הביצוע והפיקוח נשארים במערכת ServiceNow.\n\nהחברה נתנה כדוגמה סוכן IT שיכול לאתר תקלות דומות, להעריך סיכון בשינוי ולעדכן רשומות מתאימות בלי לעזוב את ChatGPT. הפעולות אמורות לפעול במסגרת הכללים, ההרשאות והאישורים של הארגון, ולא כגישה בלתי מוגבלת לכל נתוני הלקוח.\n\nלפי ההודעה, תוסף ServiceNow MCP היה זמין בחנות OpenAI כבר ב-28 באוקטובר. יכולות מורחבות נוספות צפויות עד סוף 2026. יש להפריד בין הזמינות הזאת לבין יתר מפת הדרכים: יכולות קול ב-Super Intelligence Control Tower צפויות ברבעון הראשון של 2027; יכולות אבטחה המבוססות על OpenAI צפויות לגישה מוקדמת בינואר 2027 ולזמינות כללית ברבעון השני של 2027; שילוב Codex ב-AI Workflow Factory צפוי במהלך 2027.\n\nבתחום האבטחה החברות מתכננות לחבר בין יכולות OpenAI לבין מידע ארגוני על נכסים, גישה והקשר עסקי, כדי לזהות, לבדוק ולצמצם נתיבי תקיפה. בתחום הפיתוח הן מתכננות לסייע ביצירת יישומים עם ההקשר והפיקוח של ServiceNow. אלה יכולות מתוכננות, לא אישור שהמוצר המשותף המלא כבר הושק.\n\nOpenAI מתכננת להשתמש ב-ServiceNow בפעילותה, ו-ServiceNow מתכננת להעמיד ChatGPT Work ו-Codex לרשות עובדיה. OpenAI מצטרפת גם כחברה מייסדת ל-Control Tower Alliance. ההודעה אינה מכמתת שווי חוזה, הזמנות או תרומה להכנסות מהשימוש ההדדי, ולכן אין להסיק ממנה נתון מכירות חדש.\n\nמועדי הזמינות העתידיים הם ציפיות החברה ועלולים להשתנות, בין היתר בגלל קשיי ביצוע, עלויות ושינויים ברגולציית AI.",
   "תאריך": "2026-11-07 07:42",
   "הועלה": "2026-11-07 07:42",
-  "מזהה": "n-0089"
+  "מזהה": "n-0089",
+  "כותרת_en": "ServiceNow (NOW): expanded partnership with OpenAI and an add-on for executing workflows from ChatGPT",
+  "טקסט_en": "Oct 28, 2026 | ServiceNow's release on the expanded partnership with OpenAI. The original publication time is not specified on the page checked. This is an October release, not a new launch on November 7.\n\nThe companies expanded the partnership to connect ChatGPT and OpenAI models with ServiceNow's workflows, business context and permissions. The new add-on enables performing actions from ChatGPT through ServiceNow Action Fabric, with execution and oversight remaining in the ServiceNow system.\n\nThe company gave as an example an IT agent that can find similar incidents, assess change risk and update appropriate records without leaving ChatGPT. The actions are meant to operate within the organization's rules, permissions and approvals, not as unlimited access to all customer data.\n\nPer the release, the ServiceNow MCP add-on was available in the OpenAI store already on October 28. Additional expanded capabilities are expected by the end of 2026. That availability should be separated from the rest of the roadmap: voice capabilities in Super Intelligence Control Tower are expected in Q1 2027; OpenAI-based security capabilities are expected for early access in January 2027 and general availability in Q2 2027; Codex integration in AI Workflow Factory is expected during 2027.\n\nIn security the companies plan to connect OpenAI capabilities with organizational information on assets, access and business context, to identify, examine and reduce attack paths. In development they plan to help build applications with ServiceNow's context and oversight. These are planned capabilities, not confirmation that the full joint product has already launched.\n\nOpenAI plans to use ServiceNow in its operations, and ServiceNow plans to make ChatGPT Work and Codex available to its employees. OpenAI is also joining as a founding member of the Control Tower Alliance. The release does not quantify contract value, orders or a revenue contribution from the mutual use, so no new sales figure should be inferred from it.\n\nThe future availability dates are the company's expectations and may change, among other things due to execution difficulties, costs and changes in AI regulation.",
+  "תקציר_en": "The MCP add-on was presented as available at the release date. Voice, security and Codex capabilities were presented in separate 2027 plans, not as capabilities already all available.",
+  "_translation": {
+   "en": {
+    "source_hash": "9d35503e24854400d5be05190e9b795be1c09326cf86c59b820f4f4853acfe82",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "NextEra Energy (NEE): הסכמים לשלושה מוקדי אנרגיה פדרליים בהיקף מתוכנן של כ-16.5 ג׳יגה-ואט",
@@ -2490,14 +2500,24 @@
   "מקורות": [
    {
     "label": "NextEra Energy, הודעת 21 באוקטובר 2026",
-    "url": "https://www.investor.nexteraenergy.com/~/media/Files/N/NEE-IR/reports-and-fillings/quarterly-earnings/2026/Q3%202026/2026-1021%20NEEQ32026News%20Release%20vFinal.pdf"
+    "url": "https://www.investor.nexteraenergy.com/~/media/Files/N/NEE-IR/reports-and-fillings/quarterly-earnings/2026/Q3%202026/2026-1021%20NEEQ32026News%20Release%20vFinal.pdf",
+    "label_en": "NextEra Energy, release of October 21, 2026"
    }
   ],
   "תקציר": "החברה דיווחה על 5.7 מיליארד דולר במימון ראשוני שהובטח מתחילת השנה, ועל מודל צפוי של פיתוח, הקמה ותפעול תמורת תשלום וללא השקעת הון מצדה.",
   "טקסט": "21.10.2026 | גילוי של NextEra Energy במסגרת הודעת הרבעון השלישי. זהו מידע שפורסם באוקטובר, לא הכרזה על חתימה חדשה או גיוס חדש ב-7 בנובמבר.\n\nNextEra Energy Resources דיווחה שחתמה על הסכמים מחייבים לשלושה פרויקטים של מוקדי אנרגיה פדרליים: שניים בטקסס ואחד בפנסילבניה. ההיקף הכולל המתוכנן הוא כ-16.5 ג׳יגה-ואט. אין בכך אישור שהמתקנים כבר נבנו או שההספק כבר פעיל.\n\nלפי ההודעה, החברה הבטיחה 5.7 מיליארד דולר במימון ראשוני מתחילת השנה ועד מועד הדיווח. זהו נתון מצטבר, לא סכום שהחברה הודיעה כי גויס כולו ב-21 באוקטובר, ולא הכנסה שכבר הוכרה ממכירת חשמל.\n\nהחברה צופה לפתח, להקים ולתפעל את המוקדים הפדרליים תמורת תשלומים, בלי להשקיע בהם הון מצדה. מדובר במודל הפעילות הצפוי של הפרויקטים האלה, לא בהבטחה שכלל עסקי NextEra או כל פרויקטי מרכזי הנתונים שלה יהיו ללא השקעת הון.\n\nבהודעה החברה מפרידה בין המוקדים הפדרליים לבין פרויקטים אחרים לצרכני חשמל גדולים שהיא מצפה להחזיק ולהפעיל בעצמה. לכן אין לחבר אוטומטית להיקף של שלושת המוקדים כל צבר אחר של החברה או לראות ב-16.5 ג׳יגה-ואט תוספת שכבר נכנסה לשירות.\n\nהגילוי שנבדק אינו מפרט את מועדי החתימה הנפרדים, לוח ההפעלה של כל אחד משלושת המוקדים או את ההכנסות והרווח הצפויים מהם. הפיתוח וההפעלה העתידיים עדיין תלויים בביצוע הפרויקטים ובסיכונים הרגילים של הקמה, מימון ואישורים.",
   "תאריך": "2026-11-07 07:36",
   "הועלה": "2026-11-07 07:36",
-  "מזהה": "n-0090"
+  "מזהה": "n-0090",
+  "כותרת_en": "NextEra Energy (NEE): agreements for three federal energy hubs at a planned scope of about 16.5 gigawatts",
+  "טקסט_en": "Oct 21, 2026 | a NextEra Energy disclosure as part of the Q3 release. This is information published in October, not an announcement of a new signing or new fundraising on November 7.\n\nNextEra Energy Resources reported that it signed binding agreements for three federal energy hub projects: two in Texas and one in Pennsylvania. The total planned scope is about 16.5 gigawatts. That is no confirmation that the facilities have already been built or that the capacity is already active.\n\nPer the release, the company secured $5.7 billion in initial financing from the start of the year through the reporting date. That is a cumulative figure, not a sum the company said was raised in its entirety on October 21, and not revenue already recognized from electricity sales.\n\nThe company expects to develop, build and operate the federal hubs in return for payments, without investing its own equity in them. This is the expected business model of these projects, not a promise that all of NextEra's business or all its data center projects will be without equity investment.\n\nIn the release the company separates the federal hubs from other projects for large electricity consumers that it expects to hold and operate itself. Therefore no other backlog of the company should automatically be added to the scope of the three hubs, nor should 16.5 gigawatts be seen as an addition that already entered service.\n\nThe disclosure checked does not detail the separate signing dates, the operating schedule of each of the three hubs or the revenue and profit expected from them. Future development and operation still depend on executing the projects and the usual risks of construction, financing and permits.",
+  "תקציר_en": "The company reported $5.7 billion in initial financing secured since the start of the year, and an expected model of developing, building and operating for a fee with no equity investment by it.",
+  "_translation": {
+   "en": {
+    "source_hash": "5baadcc21588f1cd323d519c60329f80615548ec3dc54d531e5cf7efdc577f87",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Cencora (COR): הסכם לרכישת American Oncology Network לפי שווי פעילות של עד 2.4 מיליארד דולר",
@@ -2507,18 +2527,29 @@
   "מקורות": [
    {
     "label": "Cencora, הודעת הסכם הרכישה מ-21 באוקטובר",
-    "url": "https://www.cencora.com/newsroom/cencora-to-acquire-american-oncology-network"
+    "url": "https://www.cencora.com/newsroom/cencora-to-acquire-american-oncology-network",
+    "label_en": "Cencora, purchase agreement release of October 21"
    },
    {
     "label": "Cencora, הודעת 4 בנובמבר המזכירה את הסכם AON",
-    "url": "https://investor.cencora.com/news/news-details/2026/Cencora-Reports-Fiscal-2026-Fourth-Quarter-and-Fiscal-Year-End-Results/default.aspx"
+    "url": "https://investor.cencora.com/news/news-details/2026/Cencora-Reports-Fiscal-2026-Fourth-Quarter-and-Fiscal-Year-End-Results/default.aspx",
+    "label_en": "Cencora, November 4 release mentioning the AON agreement"
    }
   ],
   "תקציר": "2.3 מיליארד דולר במועד הסגירה ועד 100 מיליון נוספים מותנים. תשלום מזומן של כ-1.7 מיליארד תלוי בהשארת 25% בידי בעלי מניות קיימים.",
   "טקסט": "21.10.2026 | הודעת Cencora על הסכם הרכישה; שעת הפרסום המקורית אינה מצוינת במקור שנבדק. ההסכם מוזכר גם בהודעת החברה מ-4 בנובמבר.\n\nCencora חתמה על הסכם מחייב לרכישת American Oncology Network, רשת בהובלת רופאים הכוללת יותר מ-350 נותני טיפול אונקולוגי ב-21 מדינות בארה״ב. זהו הסכם שהוכרז באוקטובר, לא חתימה חדשה ב-7 בנובמבר או אישור שהרכישה כבר הושלמה.\n\nשווי הפעילות בעסקה הוא עד 2.4 מיליארד דולר: 2.3 מיליארד במועד ההשלמה ועוד זכויות לתמורה מותנית של עד 100 מיליון דולר, שישולמו רק בהתקיים תנאים מסוימים. אין לחבר לכך שוב את רכיב התמורה המותנית, ואין לפרש את שווי הפעילות כסכום מזומן שכבר שולם.\n\nCencora מחזיקה כיום בכ-4% מהזכויות ב-AON. חלק מבעלי המניות רשאים להשאיר השקעה שמייצגת עד 25% מ-AON. רק בהנחה שיישארו מלוא 25% אלה, החברה צופה תשלום מזומן של כ-1.7 מיליארד דולר והגדלת אחזקתה ל-75%. זו דוגמה מותנית למבנה ההחזקה לאחר הסגירה, לא אישור שהאחזקה כבר הגיעה ל-75%.\n\nלפי החברה, הרכישה נועדה להרחיב את שירותי הניהול והתמיכה למרפאות אונקולוגיות קהילתיות ואת הפריסה הגאוגרפית שלה. ההחלטות הקליניות יישארו בידי רופאי AON. החברה צופה תרומה לרווח המתואם המדולל למניה בשנה השנייה לאחר ההשלמה; לא נמסרה בהודעה תרומה כמותית מובטחת.\n\nההשלמה כפופה לתנאים, לרבות אישורים רגולטוריים ואישור בעלי מניות AON. בהודעת 4 בנובמבר Cencora עדיין מתארת את האירוע כחתימה על הסכם. אין לבלבל אותו עם רכישת OneOncology שהושלמה בפברואר 2026 ומוזכרת באותו דוח: אלה רשתות ועסקאות שונות.",
   "תאריך": "2026-11-07 07:31",
   "הועלה": "2026-11-07 07:31",
-  "מזהה": "n-0091"
+  "מזהה": "n-0091",
+  "כותרת_en": "Cencora (COR): agreement to acquire American Oncology Network at an enterprise value of up to $2.4 billion",
+  "טקסט_en": "Oct 21, 2026 | Cencora's release on the purchase agreement; the original publication time is not specified in the source checked. The agreement is also mentioned in the company's November 4 release.\n\nCencora signed a binding agreement to acquire American Oncology Network, a physician-led network including more than 350 oncology care providers in 21 US states. This is an agreement announced in October, not a new signing on November 7 or confirmation that the purchase is already complete.\n\nThe enterprise value in the deal is up to $2.4 billion: $2.3 billion at completion plus rights to contingent consideration of up to $100 million, to be paid only if certain conditions are met. The contingent consideration component should not be added again to this, and the enterprise value should not be read as a cash sum already paid.\n\nCencora currently holds about 4% of the rights in AON. Some shareholders may retain an investment representing up to 25% of AON. Only assuming the full 25% is retained, the company expects a cash payment of about $1.7 billion and an increase of its holding to 75%. This is a conditional example of the post-closing holding structure, not confirmation that the holding has already reached 75%.\n\nPer the company, the purchase is meant to expand management and support services for community oncology clinics and its geographic deployment. Clinical decisions will remain with AON physicians. The company expects a contribution to adjusted diluted earnings per share in the second year after completion; no guaranteed quantitative contribution was provided in the release.\n\nCompletion is subject to conditions, including regulatory approvals and approval of AON shareholders. In its November 4 release Cencora still describes the event as signing an agreement. Do not confuse it with the OneOncology purchase completed in February 2026 and mentioned in the same report: these are different networks and deals.",
+  "תקציר_en": "$2.3 billion at closing and up to $100 million additional contingent. A cash payment of about $1.7 billion depends on 25% being retained by existing shareholders.",
+  "_translation": {
+   "en": {
+    "source_hash": "4e2bd784448156a9ddf357a53f55a01a9bde5f38e554501729a96a07de1e1a6f",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Cognizant (CTSH): יותר מ-25 אלף אנשי מקצוע בקבוצת יישום ייעודית לטכנולוגיות OpenAI",
@@ -2528,14 +2559,24 @@
   "מקורות": [
    {
     "label": "Cognizant, הודעת הקמת קבוצת OpenAI מ-30 באוקטובר",
-    "url": "https://www.prnewswire.com/news-releases/cognizant-commits-more-than-25-000-professionals-to-openai-delivery-as-enterprises-move-frontier-ai-into-production-302924550.html"
+    "url": "https://www.prnewswire.com/news-releases/cognizant-commits-more-than-25-000-professionals-to-openai-delivery-as-enterprises-move-frontier-ai-into-production-302924550.html",
+    "label_en": "Cognizant, OpenAI group creation release of October 30"
    }
   ],
   "תקציר": "ארגון עובדים קיימים סביב יישומי Codex ו-ChatGPT ללקוחות, לא הכרזה על גיוס 25 אלף עובדים חדשים.",
   "טקסט": "30.10.2026 | 12:00 שעון ישראל, הודעת Cognizant שפורסמה ב-06:00 שעון החוף המזרחי בארה״ב.\n\nCognizant הודיעה על הקמת OpenAI Frontier Capability Group, שמרכזת יותר מ-25 אלף אנשי מקצוע ליישום מוצרי OpenAI, ובהם Codex ו-ChatGPT, אצל לקוחות. החברה מדברת על ארגון יכולות ואנשים שלה בקבוצה ייעודית, לא על גיוס של 25 אלף עובדים חדשים.\n\nמוקדי הפעילות הראשונים הם הנדסת תוכנה בעזרת Codex, מודרניזציה של יישומים ותהליכי שירות ומכירות מבוססי סוכני AI. החברה מסרה שצוותי המכירות והצלחת הלקוחות שלה כבר משתמשים במערכת מבוססת OpenAI, ושבכוונתה להביא ללקוחות שיטות שנוסו בתוך הארגון.\n\nיש להבחין בין היקף הקבוצה לבין היקף ההכשרה: לפי ההודעה, יותר מ-21 אלף עובדים קיבלו יחד יותר מ-40 אלף תגי למידה בטכנולוגיות OpenAI. עובד יכול לקבל יותר מתג אחד. אין בכך אישור שכל 25 אלף אנשי הקבוצה כבר קיבלו הסמכה מקצועית זהה.\n\nהחברה לא פרסמה שווי חוזה חדש, התחייבות מינימום של לקוחות או תחזית הכנסות כמותית מהקבוצה. המספר 25 אלף מתייחס לאנשי מקצוע, לא להזמנות, לקוחות משלמים או משרות חדשות.\n\nקשור לפריט מ-7.11 בשעה 00:20 על השלמת רכישת Wizeline. מה חדש כאן: מהלך ארגוני נפרד שהוכרז ב-30 באוקטובר, המתמקד ביישום מוצרי OpenAI. אין זו הודעה נוספת על השלמת רכישת Wizeline או תוספת חדשה למחיר העסקה, שלא פורסם.",
   "תאריך": "2026-11-07 07:19",
   "הועלה": "2026-11-07 07:19",
-  "מזהה": "n-0092"
+  "מזהה": "n-0092",
+  "כותרת_en": "Cognizant (CTSH): more than 25 thousand professionals in a dedicated group for implementing OpenAI technologies",
+  "טקסט_en": "Oct 30, 2026 | 12:00 Israel time, a Cognizant release published at 06:00 US Eastern time.\n\nCognizant announced the creation of the OpenAI Frontier Capability Group, bringing together more than 25 thousand professionals to implement OpenAI products, including Codex and ChatGPT, at customers. The company is talking about organizing its capabilities and people in a dedicated group, not hiring 25 thousand new employees.\n\nThe initial activity centers are software engineering using Codex, application modernization and AI-agent-based service and sales processes. The company said its sales and customer success teams already use an OpenAI-based system, and that it intends to bring customers methods tested inside the organization.\n\nThe group's scope should be distinguished from the training scope: per the release, more than 21 thousand employees received together more than 40 thousand learning badges in OpenAI technologies. An employee can receive more than one badge. That is no confirmation that all 25 thousand group members have already received identical professional certification.\n\nThe company published no new contract value, no minimum customer commitment and no quantitative revenue forecast from the group. The 25 thousand figure refers to professionals, not orders, paying customers or new jobs.\n\nRelated to the Nov 7 item at 00:20 on completing the Wizeline acquisition. What's new here: a separate organizational move announced on October 30, focused on implementing OpenAI products. This is not an additional announcement of completing the Wizeline acquisition or a new addition to the deal price, which was not published.",
+  "תקציר_en": "Organizing existing employees around Codex and ChatGPT implementations for customers, not an announcement of hiring 25 thousand new employees.",
+  "_translation": {
+   "en": {
+    "source_hash": "bf519bf212f0090212a5e41d692ec5ad6ffd9bb813efc13e6672e84eeb83119a",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Fox Corporation (FOXA, FOX) ו-Roku (ROKU): הבהרה - יום המסחר האחרון 6 בנובמבר, ההשעיה בנאסד״ק מ-9 בנובמבר",
@@ -2545,18 +2586,29 @@
   "מקורות": [
    {
     "label": "Nasdaq, הודעת פעולה תאגידית על מיזוג Roku מ-6 בנובמבר",
-    "url": "https://www.nasdaqtrader.com/TraderNews.aspx?id=eca2026-806"
+    "url": "https://www.nasdaqtrader.com/TraderNews.aspx?id=eca2026-806",
+    "label_en": "Nasdaq, corporate action notice on the Roku merger of November 6"
    },
    {
     "label": "Fox Corporation, הודעת השלמת הרכישה מ-6 בנובמבר",
-    "url": "https://www.prnewswire.com/news-releases/fox-corporation-completes-acquisition-of-roku-302932088.html"
+    "url": "https://www.prnewswire.com/news-releases/fox-corporation-completes-acquisition-of-roku-302932088.html",
+    "label_en": "Fox Corporation, purchase completion release of November 6"
    }
   ],
   "תקציר": "לוח הזמנים של הבורסה מבדיל בין יום המסחר האחרון לבין מועד תחולת ההשעיה. אין כאן השלמת עסקה נוספת.",
   "טקסט": "6.11.2026 | הודעת Nasdaq על מיזוג Roku; שעת פרסום ההודעה המקורית אינה מצוינת במקור שנבדק.\n\nהבהרה לפריט מ-6.11 בשעה 18:28 על השלמת רכישת Roku בידי Fox Corporation: הודעת Nasdaq קובעת שיום המסחר האחרון במניית ROKU הוא יום שישי, 6 בנובמבר 2026, ומועד תחולת השעיית המסחר בבורסה הוא יום שני, 9 בנובמבר 2026. אלה שני מועדים שונים.\n\nבפריט הקודם יוחס לחברה הנוסח שמניות Roku יפסיקו להיסחר החל מיום ההשלמה. זה אכן הנוסח בהודעת FOX, אך הוא עלול להשתמע כאילו לא התקיים מסחר כלל ב-6 בנובמבר. הודעת הפעולה התאגידית של Nasdaq מציינת במפורש את 6 בנובמבר כיום המסחר האחרון ואת 9 בנובמבר כמועד ההשעיה. אין להסיק מהנוסח הכללי של החברה לבדו את שעת הפסקת המסחר בתוך יום שישי.\n\nאין כאן שינוי במועד השלמת הרכישה: שני המקורות מציינים שהעסקה נסגרה ב-6 בנובמבר. גם התמורה אינה משתנה - 95.30 דולר במזומן ו-0.9799 מניית FOX מסוג A, הנסחרת בטיקר FOXA, לכל מניית Roku רלוונטית. אין מדובר בתמורה כולה במזומן או במניה מסוג B.\n\nהחידוש הוא דיוק בלוח המסחר ובהבחנה בין יום המסחר האחרון לבין תחולת ההשעיה, לא עסקה נוספת, דחיית סגירה או תנאי מיזוג חדשים. הפריט הקודם נשמר, וההבהרה מופיעה בנפרד.",
   "תאריך": "2026-11-07 07:08",
   "הועלה": "2026-11-07 07:08",
-  "מזהה": "n-0093"
+  "מזהה": "n-0093",
+  "כותרת_en": "Fox Corporation (FOXA, FOX) and Roku (ROKU): clarification - last trading day November 6, the Nasdaq suspension from November 9",
+  "טקסט_en": "Nov 6, 2026 | a Nasdaq notice on the Roku merger; the original notice publication time is not specified in the source checked.\n\nA clarification to the Nov 6 item at 18:28 on Fox Corporation's completion of the Roku purchase: Nasdaq's notice states that the last trading day in ROKU shares is Friday, November 6, 2026, and the trading suspension on the exchange takes effect Monday, November 9, 2026. These are two different dates.\n\nIn the previous item, the wording that Roku shares will stop trading from the completion day was attributed to the company. That is indeed the wording in FOX's release, but it could be read as if no trading took place at all on November 6. Nasdaq's corporate action notice explicitly notes November 6 as the last trading day and November 9 as the suspension date. Do not infer from the company's general wording alone the time trading stopped during Friday.\n\nThere is no change here in the purchase completion date: both sources note that the deal closed on November 6. The consideration is also unchanged - $95.30 in cash and 0.9799 FOX Class A shares, traded under the ticker FOXA, per relevant Roku share. This is not consideration entirely in cash or in Class B shares.\n\nWhat's new is precision on the trading schedule and the distinction between the last trading day and the suspension taking effect, not an additional deal, a closing postponement or new merger terms. The previous item is preserved, and the clarification appears separately.",
+  "תקציר_en": "The exchange's timetable distinguishes between the last trading day and the suspension's effective date. There is no additional deal completion here.",
+  "_translation": {
+   "en": {
+    "source_hash": "9cc60a27684329e988ee04bec8cdd1c0980301cab1d2205dad396efb5b73fa4b",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Okta (OKTA): הרחבת הסכם רב-שנתי עם AWS לאבטחת סוכני AI ולבקרת הגישה שלהם",
@@ -2566,14 +2618,24 @@
   "מקורות": [
    {
     "label": "Okta, הודעת הרחבת שיתוף הפעולה עם AWS מ-5 בנובמבר",
-    "url": "https://www.okta.com/newsroom/press-releases/okta-expands-collaboration-with-aws-with-multi-year-commitment-to-advance-agentic-ai-security/"
+    "url": "https://www.okta.com/newsroom/press-releases/okta-expands-collaboration-with-aws-with-multi-year-commitment-to-advance-agentic-ai-security/",
+    "label_en": "Okta, AWS cooperation expansion release of November 5"
    }
   ],
   "תקציר": "הרחבת שיתוף פעולה ב-Amazon Bedrock AgentCore. מכירות דרך AWS Marketplace עברו 2 מיליארד דולר במצטבר, לא בשנה אחת.",
   "טקסט": "5.11.2026 | הודעת Okta; שעת הפרסום המקורית אינה מצוינת במקור שנבדק.\n\nOkta הודיעה על הרחבת הסכם שיתוף פעולה אסטרטגי רב-שנתי עם Amazon Web Services, בתחומי אבטחת סוכני AI, ניהול זהויות ומכירה משותפת. ההודעה מתייחסת להרחבת קשר קיים, שלפי החברה כבר כולל יותר מ-25 חיבורים טכנולוגיים, ולא להתחלת שיתוף פעולה ראשון בין החברות.\n\nהחברה מסרה כי המכירות שלה דרך AWS Marketplace עברו 2 מיליארד דולר במצטבר לאורך חיי הערוץ, פחות משנתיים לאחר חציית מיליארד דולר. זה אינו נתון מכירות שנתי, אינו שווי ההסכם החדש ואינו אישור להכנסה חדשה של 2 מיליארד דולר שנרשמה ברבעון.\n\nההרחבה כוללת בחינה ופיתוח של שימושים נוספים ב-Amazon Bedrock AgentCore: תמיכה בפרוטוקול Cross App Access לגישה ליישומים בשם משתמש, שילוב מדיניות הרשאות, סקירה תקופתית של זכויות גישה ואפשרות לדרוש אישור אנושי מפורש לפעולות רגישות. אין להציג את כל רשימת השימושים האפשריים כיכולות חדשות שכבר זמינות לכל לקוח באותו יום.\n\nלצד התוכניות האלה, ההודעה מפרידה חיבורים שכבר זמינים, ובהם שכבת זהות ל-Okta for AI Agents ב-AgentCore ויכולות Auth0 לזהויות ביישומי מסחר ועסקים. ההסכם נועד גם להרחיב מכירה משותפת דרך שותפים ו-AWS Marketplace.\n\nלא נמסרו שווי חוזה, התחייבות מינימום לרכישה או תחזית כספית כמותית חדשה. החידוש הוא מסגרת שיתוף פעולה מורחבת והכוונת פיתוח ומכירה, לא עסקה בהיקף ההכנסות המצטברות של הערוץ ולא אישור שכל הפיתוחים הושקו. זו הודעת החברה מ-5 בנובמבר, גם כאשר סיקור משני פורסם ביום שלאחר מכן.",
   "תאריך": "2026-11-07 07:03",
   "הועלה": "2026-11-07 07:03",
-  "מזהה": "n-0094"
+  "מזהה": "n-0094",
+  "כותרת_en": "Okta (OKTA): expanded multi-year agreement with AWS for securing AI agents and controlling their access",
+  "טקסט_en": "Nov 5, 2026 | an Okta release; the original publication time is not specified in the source checked.\n\nOkta announced an expansion of its multi-year strategic cooperation agreement with Amazon Web Services, in AI agent security, identity management and joint selling. The release refers to expanding an existing relationship, which per the company already includes more than 25 technology connections, not the start of a first cooperation between the companies.\n\nThe company said its sales through AWS Marketplace passed $2 billion cumulatively over the channel's lifetime, less than two years after crossing $1 billion. This is not an annual sales figure, not the new agreement's value and no confirmation of $2 billion of new revenue recorded in a quarter.\n\nThe expansion includes examining and developing additional uses in Amazon Bedrock AgentCore: support for the Cross App Access protocol for accessing applications on a user's behalf, integration of permission policies, periodic review of access rights and an option to require explicit human approval for sensitive actions. Not the whole list of possible uses should be presented as new capabilities already available to every customer on the same day.\n\nAlongside these plans, the release separates connections already available, including an identity layer for Okta for AI Agents in AgentCore and Auth0 capabilities for identities in commerce and business applications. The agreement is also meant to expand joint selling through partners and AWS Marketplace.\n\nNo contract value, minimum purchase commitment or new quantitative financial forecast was provided. What's new is an expanded cooperation framework and a development and selling direction, not a deal at the scope of the channel's cumulative revenue and no confirmation that all the developments launched. This is the company's November 5 release, even when secondary coverage was published the following day.",
+  "תקציר_en": "Expanded cooperation in Amazon Bedrock AgentCore. Sales through AWS Marketplace passed $2 billion cumulatively, not in one year.",
+  "_translation": {
+   "en": {
+    "source_hash": "771331bc00a7b424297f3f6a6f0070c92f81840cfa5efc1d41dfbf7eceae580c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Broadridge (BR): שילוב הצבעת בעלי מניות למחזיקים זכאים ב-dShares של Dinari",
@@ -2583,14 +2645,24 @@
   "מקורות": [
    {
     "label": "Broadridge, הודעת שילוב שירותי ההצבעה מ-5 בנובמבר",
-    "url": "https://www.broadridge.com/press-release/2026/broadridge-brings-proxy-voting-to-dinaris-dshares-tokenized-us-equities"
+    "url": "https://www.broadridge.com/press-release/2026/broadridge-brings-proxy-voting-to-dinaris-dshares-tokenized-us-equities",
+    "label_en": "Broadridge, voting services integration release of November 5"
    }
   ],
   "תקציר": "ההצבעות במודל המשמורת של Dinari ייכללו בהליך ההצבעה הרשמי. כניסה והצבעה ישירות מארנק דיגיטלי מתוארות כהמשך פיתוח.",
   "טקסט": "5.11.2026 | הודעת Broadridge; שעת הפרסום המקורית אינה מצוינת במקור שנבדק.\n\nBroadridge ו-Dinari הודיעו על שילוב שמאפשר למחזיקים זכאים ב-dShares של Dinari לממש זכויות הצבעה הקשורות לניירות הערך שבבסיסם, דרך תשתית ה-proxy של Broadridge. לפי ההודעה, ההצבעות משתתפות בהליך הרשמי ונספרות לצד הצבעות בעלי המניות המסורתיים, ולא בסקר נפרד או בהצבעת קהילה שאינה מחייבת.\n\ndShares מבוססים על מודל משמורת: כל טוקן מייצג מניה אמריקאית או קרן סל המוחזקת במסגרת הסדרי משמורת. השילוב נוגע למחזיקים הזכאים במודל הזה. אין להסיק ממנו שכל טוקן שמחקה מחיר של מניה, אצל כל מפעיל ובכל מדינה, מקנה כעת זכות הצבעה זהה.\n\nBroadridge מתארת גם שלב פיתוח שבו בעלי מניות, כולל מחזיקי dShares, יוכלו להזדהות באמצעות הארנק הדיגיטלי, להוכיח זכאות ולהצביע ישירות. זהו תיאור של התפתחות הפלטפורמה, לא אישור שכל אפשרויות ההצבעה הישירה מהארנק כבר זמינות בהשקה הזאת.\n\nההודעה מרחיבה את תשתית הממשל התאגידי לניירות ערך מטוקננים. לא נמסרו בה שווי חוזה, הכנסות צפויות ל-Broadridge, מספר מצביעים או היקף נכסים שנוספו בפועל. לכן אין לתרגם את השילוב לתחזית כספית או להיקף פעילות מובטח.\n\nזו הודעת מוצר ושיתוף פעולה מ-5 בנובמבר, לא הודעה חדשה על דוח כספי או על שינוי בכללי ההצבעה לכל שוק המניות. הזכאות והביצוע נשארים תלויים במבנה המוצר ובהליך ההצבעה הרלוונטי.",
   "תאריך": "2026-11-07 06:51",
   "הועלה": "2026-11-07 06:51",
-  "מזהה": "n-0095"
+  "מזהה": "n-0095",
+  "כותרת_en": "Broadridge (BR): integrating shareholder voting for eligible holders of Dinari's dShares",
+  "טקסט_en": "Nov 5, 2026 | a Broadridge release; the original publication time is not specified in the source checked.\n\nBroadridge and Dinari announced an integration enabling eligible holders of Dinari's dShares to exercise voting rights related to the underlying securities, through Broadridge's proxy infrastructure. Per the release, the votes participate in the official process and are counted alongside traditional shareholders' votes, not in a separate survey or a non-binding community vote.\n\ndShares are based on a custody model: each token represents a US share or ETF held under custody arrangements. The integration concerns eligible holders in this model. Do not infer from it that every token tracking a share price, at every operator and in every country, now confers an identical voting right.\n\nBroadridge also describes a development stage in which shareholders, including dShares holders, will be able to identify via the digital wallet, prove eligibility and vote directly. That is a description of the platform's evolution, not confirmation that all direct wallet voting options are already available in this launch.\n\nThe release expands the corporate governance infrastructure for tokenized securities. No contract value, expected revenue for Broadridge, number of voters or scope of assets actually added was provided in it. Therefore the integration should not be translated into a financial forecast or a guaranteed activity scope.\n\nThis is a product and cooperation release of November 5, not a new announcement of a financial report or a change in voting rules for the entire stock market. Eligibility and execution remain dependent on the product structure and the relevant voting process.",
+  "תקציר_en": "Votes in Dinari's custody model will be included in the official voting process. Direct wallet login and voting are described as further development.",
+  "_translation": {
+   "en": {
+    "source_hash": "84f0ac60ccd34afcd0b604e65163b2311f11f6c63b768a82b56fa2202b9146a1",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "MasTec (MTZ): השהיית משא ומתן מתקדם לרכישה גדולה כדי להעדיף רכישה עצמית של מניות",
@@ -2600,14 +2672,24 @@
   "מקורות": [
    {
     "label": "MasTec, הודעת החברה מ-5 בנובמבר",
-    "url": "https://investors.mastec.com/news-releases/news-release-details/mastec-suspends-late-stage-negotiations-acquisition-prioritize"
+    "url": "https://investors.mastec.com/news-releases/news-release-details/mastec-suspends-late-stage-negotiations-acquisition-prioritize",
+    "label_en": "MasTec, company release of November 5"
    }
   ],
   "תקציר": "מסגרת רכישה עצמית קיימת של 250 מיליון דולר זמינה במלואה. אין התחייבות לרכוש סכום מסוים, והשיחות עשויות להתחדש.",
   "טקסט": "5.11.2026 | הודעת MasTec; שעת הפרסום המקורית אינה מצוינת במקור שנבדק.\n\nMasTec הודיעה שהיא משהה משא ומתן בשלבים מתקדמים לרכישה גדולה, שהוגדרה כבעלת פוטנציאל לתרום לרווח, כדי לתת עדיפות לרכישה עצמית של מניות. החברה לא זיהתה את יעד הרכישה או מסרה את מחיר העסקה. זו השהיית שיחות, לא ביטול עסקה חתומה או הודעה על רכישה שהושלמה.\n\nלחברה קיימת הרשאת דירקטוריון לרכישה עצמית בהיקף 250 מיליון דולר, והסכום כולו זמין לפי ההודעה. אין כאן הגדלה חדשה של המסגרת או אישור שמניות בסכום הזה כבר נרכשו. החברה אינה מתחייבת לרכוש סכום מסוים בתקופה כלשהי, והיא רשאית לשנות את התוכנית או להשהותה.\n\nההיקף בפועל תלוי בין היתר במחירי השוק, בדרישות משפטיות ורגולטוריות, בתזרים, בנזילות ובהשקעות וברכישות אחרות. המימון המיועד הוא מזומן קיים וזמינות במסגרת האשראי המתחדשת. עצם קיומה של מסגרת אשראי אינו מלמד שכבר נמשכה לצורך רכישות מניות.\n\nMasTec גם הבהירה שהשיחות שהושהו עשויות להתחדש כאשר התנאים יצדיקו זאת. לכן אין להסיק שהחברה הפסיקה לצמיתות את אסטרטגיית הרכישות שלה.\n\nהנתונים הכספיים של הרבעון מופיעים בכרטיס הדוח. החידוש כאן הוא החלטת הקצאת הון נפרדת מ-5 בנובמבר: מתן עדיפות אפשרית לרכישה עצמית לעומת עסקה שנבחנה. אין בהודעה תחזית מספרית חדשה לרווח למניה או הבטחה שהרכישה העצמית תתבצע במלואה.",
   "תאריך": "2026-11-07 06:40",
   "הועלה": "2026-11-07 06:40",
-  "מזהה": "n-0096"
+  "מזהה": "n-0096",
+  "כותרת_en": "MasTec (MTZ): pausing advanced negotiations for a large acquisition in favor of a share buyback",
+  "טקסט_en": "Nov 5, 2026 | a MasTec release; the original publication time is not specified in the source checked.\n\nMasTec announced it is pausing advanced-stage negotiations for a large acquisition, described as having potential to contribute to profit, in order to prioritize a share buyback. The company did not identify the acquisition target or provide the deal price. This is a pause of talks, not a cancellation of a signed deal or an announcement of a completed purchase.\n\nThe company has an existing board authorization for a buyback of $250 million, and the entire amount is available per the release. There is no new increase of the authorization here or confirmation that shares in that amount have already been purchased. The company does not commit to buying a specific amount in any period, and it may change the plan or pause it.\n\nThe actual scope depends among other things on market prices, legal and regulatory requirements, cash flow, liquidity and other investments and acquisitions. The intended financing is existing cash and availability under the revolving credit facility. The mere existence of a credit facility does not show it has already been drawn for share purchases.\n\nMasTec also clarified that the paused talks may resume when conditions justify it. Therefore do not infer that the company permanently stopped its acquisition strategy.\n\nThe quarter's financial figures appear in the reports card. What's new here is a separate capital allocation decision of November 5: giving possible priority to a buyback over an examined deal. The release contains no new numerical earnings-per-share forecast or promise that the buyback will be carried out in full.",
+  "תקציר_en": "An existing $250 million buyback authorization is fully available. There is no commitment to buy a specific amount, and the talks may resume.",
+  "_translation": {
+   "en": {
+    "source_hash": "80dca287b98da369a74963d2999325bbbb154d14499cf29aebc310c043160098",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Duolingo (DUOL): הפסקת מכירת מנויי Max חדשים בנובמבר והעברת מנויי היחיד ל-Super משפחתי באותו מחיר",
