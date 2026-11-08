@@ -2281,7 +2281,15 @@
   "חשיבות": 1,
   "הערה": "המשך סדרות שכבר ביומן ל2–6.11; לוח הפד13:00/16:15ET. CP בדרך כלל13:00 אך השעה אינה מובטחת; אין צפי יחיד",
   "מקור": "https://federalreserve.gov/newsevents/2026-november.htm",
-  "מזהה": "c-0101"
+  "מזהה": "c-0101",
+  "אירוע_en": "Selected interest rates (H.15) - Fed",
+  "הערה_en": "Continuation of series already in the calendar for Nov 2-6; Fed schedule 13:00/16:15 ET. CP usually at 13:00 but the time is not guaranteed; no single estimate",
+  "_translation": {
+   "en": {
+    "source_hash": "53436c4f456bfa5f5303ce35130dd6a3bdf438d52ad386f1cbfadb830c48e715",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-11",
@@ -2291,7 +2299,15 @@
   "חשיבות": 1,
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד הרשמי, שורת 10.11.2026 בשעה 18:30 ניו יורק. נושא האירוע אינו הבטחה לדיון בריבית. ",
-  "מזהה": "c-0102"
+  "מזהה": "c-0102",
+  "אירוע_en": "Michelle W. Bowman - economic outlook",
+  "הערה_en": "Official Fed calendar, Nov 10, 2026 row at 18:30 New York. The event topic is no promise of a rate discussion.",
+  "_translation": {
+   "en": {
+    "source_hash": "061f780ab6525e9447e8905b6f3add79e2842191284745935161b7850ba7c33e",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-11",
@@ -2300,7 +2316,15 @@
   "חשיבות": 1,
   "הערה": "לא יפורסם ב-11.11: לפי הודעת הפד בלוח נובמבר, פרסומי היום והשבוע המתוכננים לחג Veterans Day יפורסמו ביום חמישי 12.11. השורה נשמרה לתיעוד הדחייה, לא כאירוע פעיל. אומת ב-02.11.2026 20:02 ישראל. אין צפי או ערך קודם יחיד.",
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
-  "מזהה": "c-0103"
+  "מזהה": "c-0103",
+  "אירוע_en": "Commercial paper (CP) data - Fed - postponed to Nov 12",
+  "הערה_en": "Will not be published on Nov 11: per the Fed's notice in the November calendar, releases scheduled for Veterans Day will be published on Thursday Nov 12. The row was kept to document the postponement, not as an active event. Verified Nov 2, 2026 20:02 Israel. No single estimate or prior value.",
+  "_translation": {
+   "en": {
+    "source_hash": "87df2bb8215ed9a1d3c131ab7ef7a36dc0326a6414c8d73b087650eada63e8d0",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-11",
@@ -2309,7 +2333,15 @@
   "חשיבות": 1,
   "הערה": "לא יפורסם ב-11.11: לפי הודעת הפד בלוח נובמבר, פרסומי היום והשבוע המתוכננים לחג Veterans Day יפורסמו ביום חמישי 12.11. השורה נשמרה לתיעוד הדחייה, לא כאירוע פעיל. אומת ב-02.11.2026 20:02 ישראל. אין צפי או ערך קודם יחיד.",
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
-  "מזהה": "c-0104"
+  "מזהה": "c-0104",
+  "אירוע_en": "Selected interest rates (H.15) - Fed - postponed to Nov 12",
+  "הערה_en": "Will not be published on Nov 11: per the Fed's notice in the November calendar, releases scheduled for Veterans Day will be published on Thursday Nov 12. The row was kept to document the postponement, not as an active event. Verified Nov 2, 2026 20:02 Israel. No single estimate or prior value.",
+  "_translation": {
+   "en": {
+    "source_hash": "a6d612f2129cbddc8fae8b133c3ce1ed9b46f599612c034cc65b539603d401c3",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2323,7 +2355,16 @@
   "קודם": "1.718M",
   "הערות_מקור_ארכיון": "\nDOLקובע כל חמישי08:30EST, ללא חריג12.11ברשימת החריגים. צפי/קודם לא להעתיק מפרסום5.11 שטרם התרחש.",
   "מקור_קודם": "https://www.dol.gov/ui/data.pdf",
-  "מזהה": "c-0105"
+  "מזהה": "c-0105",
+  "אירוע_en": "Continuing jobless claims",
+  "תקופה_en": "Weekly",
+  "הערה_en": "DOL release Thursday Nov 12 at 08:30 EST = 15:30 Israel. Estimate for the next release not yet verified.\nPrior for the Nov 12 release: 1.718 million seasonally adjusted continuing claims for the week ended Oct 24, published Nov 5. This is a different period from initial claims; the figure may be updated in the next release.",
+  "_translation": {
+   "en": {
+    "source_hash": "9867e93b5f8c4c12f85c8ba4141bd2ae234e32d694fac4734a3ba6949c7dbb34",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2350,7 +2391,16 @@
    "https://www.forexfactory.com/calendar?week=nov8.2026"
   ],
   "תאריך_בדיקה_עדכנית": "2026-11-07",
-  "מזהה": "c-0106"
+  "מזהה": "c-0106",
+  "אירוע_en": "Weekly jobless claims",
+  "תקופה_en": "Weekly",
+  "הערה_en": "DOL release Thursday Nov 12 at 08:30 EST = 15:30 Israel. Estimate for the next release not yet verified.\nPrior for the Nov 12 release: 189 thousand seasonally adjusted initial claims for the week ended Oct 31, published Nov 5. The figure may be updated in the next release.\nUpdate Nov 7, 2026: estimate per ForexFactory 194K. Its source was not verified against a primary source. Estimate history and notes were retained; there is no new actual figure here.",
+  "_translation": {
+   "en": {
+    "source_hash": "004f718f606063a48e07298ed3a6f8e220bb78f5a6576041cc54343644c3aa69",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2360,7 +2410,15 @@
   "חשיבות": 1,
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד הרשמי, שורת 12.11.2026 בשעה 10:00 ניו יורק. נושא האירוע אינו הבטחה לדיון בריבית. ",
-  "מזהה": "c-0107"
+  "מזהה": "c-0107",
+  "אירוע_en": "Michael S. Barr - artificial intelligence and inequality",
+  "הערה_en": "Official Fed calendar, Nov 12, 2026 row at 10:00 New York. The event topic is no promise of a rate discussion.",
+  "_translation": {
+   "en": {
+    "source_hash": "f44cab056f7a62dd0d03a049928c2db7b057f4efad76419eb8e962447ac8f15c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2386,7 +2444,17 @@
     "תאריך_בדיקה_עדכנית": "2026-11-06"
    }
   ],
-  "מזהה": "c-0108"
+  "מזהה": "c-0108",
+  "אירוע_en": "Existing home sales",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "NAR sets Nov 12 for October data; all releases at 10:00 ET. Estimate and prior not verified.\nUpdate Nov 6, 2026: estimate per ForexFactory 3.88 million. Its source was not verified against a primary source. The previous source note was kept for the record; no new actual figure.\nUpdate Nov 7, 2026: estimate per ForexFactory 3.86 million. Its source was not verified against a primary source. Estimate history and notes were retained; there is no new actual figure here.",
+  "צפי_en": "3.86 million",
+  "_translation": {
+   "en": {
+    "source_hash": "38e600b64e016cab96d9dcdb63db2ac2d97800c9acf783b59d258c19799ced64",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2397,7 +2465,16 @@
   "מקור": "https://www.census.gov/economic-indicators/calendar-listview-2026.html",
   "שעה": "17:00",
   "תקופה": "אוקטובר · חודשי",
-  "מזהה": "c-0109"
+  "מזהה": "c-0109",
+  "אירוע_en": "Business formation statistics - Census",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "Official timing 10:00 EST = 17:00 Israel; estimate and prior not located. Do not attribute an aggregate numeric index without a series definition.",
+  "_translation": {
+   "en": {
+    "source_hash": "072cfa6a82b7671530f01789a0ba8ec2f55b46c676c66977c80f654e2a57e4a7",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2407,7 +2484,15 @@
   "חשיבות": 1,
   "מקור": "https://www.dallasfed.org/research/wei",
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל. מפרסם נוכחי: הפד של דאלאס. עדכון בחמישי בשעה18:30ישראל או סמוך לאחריה; אינדיקטור שבועי לפעילות, לא נתון תמ״ג רשמי.",
-  "מזהה": "c-0110"
+  "מזהה": "c-0110",
+  "אירוע_en": "Weekly Economic Index - WEI",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure. Current publisher: the Dallas Fed. Updated Thursday at 18:30 Israel or shortly after; a weekly activity indicator, not an official GDP figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "9531e75645ec62e73a1027b1b2a65ad680bdc89dd8ee9652f3bd3ec6de6b1636",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2421,7 +2506,17 @@
   "קודם": "-0.9 מיליון חביות",
   "הערות_מקור_ארכיון": "\nחריג חגVeteransDayרשמי: חמישי12.11ב12:00EST=19:00ישראל, במקום רביעי. צפי וקודם ייוודעו אחרי פרסום4.11; לא להעתיק קודם ישן.",
   "מקור_קודם": "https://ir.eia.gov/wpsr/summary.txt",
-  "מזהה": "c-0111"
+  "מזהה": "c-0111",
+  "אירוע_en": "Weekly crude oil inventories (EIA)",
+  "תקופה_en": "Weekly",
+  "הערה_en": "Official Veterans Day exception: Thursday Nov 12 at 12:00 EST = 19:00 Israel, instead of Wednesday. Estimate for the next release not yet verified.\nPrior for the Nov 12 release: a draw of about 0.9 million barrels in commercial inventories ex-SPR in the week ended Oct 30, in the Nov 4 release. This is the official summary rounding; the exact change was a 0.865 million draw. This is not a change in the Strategic Reserve or at Cushing.",
+  "קודם_en": "-0.9 million barrels",
+  "_translation": {
+   "en": {
+    "source_hash": "d930179c91e54119b36965a6464754b3e71ca7d402eaaefe1661f523603cf8bb",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2431,7 +2526,15 @@
   "מקור": "https://home.treasury.gov/news/press-releases/sb0678",
   "הערה": "הודעת ההחזר הרבעוני מ-4.11: מכרז בשעה13:00ניו יורק=20:00ישראל; היקף הצעה 25 מיליארד דולר. זהו היקף הנפקה מתוכנן, לא תשואת תוצאת המכרז או צפי לתשואה. סליקה ב-16.11.",
   "שעה": "20:00",
-  "מזהה": "c-0112"
+  "מזהה": "c-0112",
+  "אירוע_en": "US Treasury 30-year bond auction",
+  "הערה_en": "Quarterly refunding announcement of Nov 4: auction at 13:00 New York = 20:00 Israel; offering size 25 billion USD. This is a planned issuance size, not an auction result yield or a yield estimate. Settlement Nov 16.",
+  "_translation": {
+   "en": {
+    "source_hash": "67238f1040200f867f7f8fc11a9b4a360d3a51766c887f6105381be626db4194",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2441,7 +2544,15 @@
   "הערה": "לוח הפד מאשר פרסום ב-12.11, כולל הפרסומים שנדחו מחג Veterans Day ב-11.11. אין צפי או ערך קודם יחיד. אומת ב-02.11.2026 20:02 ישראל. CP ב-13:00ET / 20:00 ישראל בדרך כלל, אך שעת הפרסום אינה מובטחת.",
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "שעה": "20:00",
-  "מזהה": "c-0113"
+  "מזהה": "c-0113",
+  "אירוע_en": "Commercial paper (CP) data - Fed",
+  "הערה_en": "The Fed calendar confirms a Nov 12 release, including the releases postponed from the Nov 11 Veterans Day holiday. No single estimate or prior value. Verified Nov 2, 2026 20:02 Israel. CP at 13:00 ET / 20:00 Israel usually, but the release time is not guaranteed.",
+  "_translation": {
+   "en": {
+    "source_hash": "f7d99a1d7bb6ea4329822745ff70310226014053a8798c1aafef3ebe2d7df429",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2454,7 +2565,17 @@
   "תקופה": "אוקטובר · חודשי",
   "הערת_מקור_קודמת": "מועד12.11ב14:00ET מאומת כרגע בלוח שוקMTSInsightsובForexFactoryבלבד; דףTreasuryלא סיפק לוח קריא וFREDלנובמברריק. אין אימות ראשוני לשעה; אין צפי/קודם מאומתים.",
   "מקור_אימות_תאריך": "https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/",
-  "מזהה": "c-0114"
+  "מזהה": "c-0114",
+  "אירוע_en": "Monthly federal budget statement (Monthly Treasury Statement)",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "Treasury confirms the next data date is Nov 12, 2026. The 14:00 ET time remains verified only against a market calendar, not a primary source. No change to estimate/prior.",
+  "הערת_מקור_קודמת_en": "The Nov 12 14:00 ET timing is currently verified only in the MTS Insights market calendar and ForexFactory; the Treasury page provided no readable schedule and FRED for November is empty. No primary verification of the time; no verified estimate/prior.",
+  "_translation": {
+   "en": {
+    "source_hash": "aac22162dcc44f19dfce18f55a5b72eedeccdd41c99161d0dbd77aa07956129a",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2464,7 +2585,15 @@
   "חשיבות": 1,
   "הערה": "חריגVeteransDayאומת בלוח המוצר:12.11ב14:00EST=21:00ישראל. מחליף שורת המתנה11.11; לא להוסיף ברביעי. אין צפי יחיד.",
   "מקור": "https://www.eia.gov/petroleum/heatingoilpropane/schedule.php",
-  "מזהה": "c-0115"
+  "מזהה": "c-0115",
+  "אירוע_en": "Heating oil and propane price update (EIA)",
+  "הערה_en": "Veterans Day exception verified in the product schedule: Nov 12 at 14:00 EST = 21:00 Israel. Replaces the Nov 11 waiting row; do not add one on Wednesday. No single estimate.",
+  "_translation": {
+   "en": {
+    "source_hash": "e67eadf9e8f636983556d9d474731796b556a4ea63f497036e5a68ce94275cda",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2474,7 +2603,15 @@
   "הערה": "לוח הפד מאשר פרסום ב-12.11, כולל הפרסומים שנדחו מחג Veterans Day ב-11.11. אין צפי או ערך קודם יחיד. אומת ב-02.11.2026 20:02 ישראל. H.15 ב-16:15ET / 23:15 ישראל.",
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "שעה": "23:15",
-  "מזהה": "c-0116"
+  "מזהה": "c-0116",
+  "אירוע_en": "Selected interest rates (H.15) - Fed",
+  "הערה_en": "The Fed calendar confirms a Nov 12 release, including the releases postponed from the Nov 11 Veterans Day holiday. No single estimate or prior value. Verified Nov 2, 2026 20:02 Israel. H.15 at 16:15 ET / 23:15 Israel.",
+  "_translation": {
+   "en": {
+    "source_hash": "c9c9a22850d894b0002eb319fa708d818da104dd2e1c5456c654f903caf54467",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-12",
@@ -2484,7 +2621,15 @@
   "הערה": "לוח הפד:12.11 בשעה16:30ET; אין צפי/קודם יחיד.",
   "מקור": "https://federalreserve.gov/newsevents/2026-november.htm",
   "שעה": "23:30",
-  "מזהה": "c-0117"
+  "מזהה": "c-0117",
+  "אירוע_en": "Fed balance sheet and reserve factors (H.4.1)",
+  "הערה_en": "Fed schedule: Nov 12 at 16:30 ET; no single estimate/prior.",
+  "_translation": {
+   "en": {
+    "source_hash": "66e03f9f7fcabf8451e7379479641e57c94ff2abca61241c3ec139ee1e694995",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-13",
@@ -2502,7 +2647,16 @@
    "https://www.forexfactory.com/calendar?week=nov8.2026"
   ],
   "תאריך_בדיקה_עדכנית": "2026-11-06",
-  "מזהה": "c-0118"
+  "מזהה": "c-0118",
+  "אירוע_en": "Producer price index - monthly",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "Official BLS timing: Friday Nov 13 at 08:30 ET, 15:30 Israel. Estimate not verified; prior from the BLS table for September 2026; no actual figure before the release.\nUpdate Nov 6, 2026: estimate per ForexFactory 0.4%. Its source was not verified against a primary source. The previous source note was kept for the record; no new actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "8d5017fa74d1628b4314aee9f0d4294cd7acbc69291e59618cad89bd94212b6c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-13",
@@ -2515,7 +2669,16 @@
   "הערה": "מועד רשמי BLS: יום שישי 13.11 בשעה 08:30 ET, 15:30 בישראל. צפי לא אומת; קודם מטבלת BLS לספטמבר 2026; אין נתון בפועל לפני הפרסום.",
   "קודם": "6.3%",
   "מקור_קודם": "https://www.bls.gov/news.release/ppi.t01.htm",
-  "מזהה": "c-0119"
+  "מזהה": "c-0119",
+  "אירוע_en": "Producer price index - annual",
+  "תקופה_en": "October · annual",
+  "הערה_en": "Official BLS timing: Friday Nov 13 at 08:30 ET, 15:30 Israel. Estimate not verified; prior from the BLS table for September 2026; no actual figure before the release.",
+  "_translation": {
+   "en": {
+    "source_hash": "49575216a12035c6e25c8cd4dec2d8dad9f6d41a879dfa0210e4e13cb838a579",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-13",
@@ -2533,7 +2696,16 @@
    "https://www.forexfactory.com/calendar?week=nov8.2026"
   ],
   "תאריך_בדיקה_עדכנית": "2026-11-06",
-  "מזהה": "c-0120"
+  "מזהה": "c-0120",
+  "אירוע_en": "Core producer price index - monthly",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "Official BLS timing: Friday Nov 13 at 08:30 ET, 15:30 Israel. Estimate not verified; prior from the BLS table for September 2026; no actual figure before the release. Core: excluding food and energy, not the index excluding trade services.\nUpdate Nov 6, 2026: estimate per ForexFactory 0.3%. Its source was not verified against a primary source. The previous source note was kept for the record; no new actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "42f33f8ab6e9afa66c887e883671a62da1a09c3b497d4c90b85bf2c1f6ef700a",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-13",
@@ -2546,7 +2718,16 @@
   "הערה": "מועד רשמי BLS: יום שישי 13.11 בשעה 08:30 ET, 15:30 בישראל. צפי לא אומת; קודם מטבלת BLS לספטמבר 2026; אין נתון בפועל לפני הפרסום. ליבה: ללא מזון ואנרגיה, לא המדד ללא שירותי מסחר.",
   "קודם": "5.0%",
   "מקור_קודם": "https://www.bls.gov/news.release/ppi.t01.htm",
-  "מזהה": "c-0121"
+  "מזהה": "c-0121",
+  "אירוע_en": "Core producer price index - annual",
+  "תקופה_en": "October · annual",
+  "הערה_en": "Official BLS timing: Friday Nov 13 at 08:30 ET, 15:30 Israel. Estimate not verified; prior from the BLS table for September 2026; no actual figure before the release. Core: excluding food and energy, not the index excluding trade services.",
+  "_translation": {
+   "en": {
+    "source_hash": "512b77dab45032b939627559218937bdb93c7b3a08558f191e1452e2a75d3630",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-13",
@@ -2560,7 +2741,17 @@
   "הערות_מקור_ארכיון": "חריג Veterans Day רשמי: יום שישי 13.11 בשעה 10:30 ET, 17:30 בישראל, במקום חמישי. צפי וקודם ייבדקו לאחר פרסום 5.11; לא הועתק קודם ישן.",
   "קודם": "+77 מיליארד רגל מעוקבת",
   "מקור_קודם": "https://ir.eia.gov/ngs/ngs.html",
-  "מזהה": "c-0122"
+  "מזהה": "c-0122",
+  "אירוע_en": "Weekly natural gas inventories (EIA)",
+  "תקופה_en": "Weekly",
+  "הערה_en": "Official Veterans Day exception: Friday Nov 13 at 10:30 ET, 17:30 Israel. Prior: +77 Bcf from the Nov 5 release for the week ended Oct 30. Estimate not yet verified.",
+  "קודם_en": "+77 Bcf",
+  "_translation": {
+   "en": {
+    "source_hash": "acbf215beeec465aefdf3b821ccf987a4204d0838f846b055095da7c50cfa1ef",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-13",
@@ -2570,7 +2761,15 @@
   "חשיבות": 1,
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד הרשמי, שורת 13.11.2026 בשעה 10:50 ניו יורק. נושא האירוע אינו הבטחה לדיון בריבית. ",
-  "מזהה": "c-0123"
+  "מזהה": "c-0123",
+  "אירוע_en": "Michelle W. Bowman - supervision and regulation",
+  "הערה_en": "Official Fed calendar, Nov 13, 2026 row at 10:50 New York. The event topic is no promise of a rate discussion.",
+  "_translation": {
+   "en": {
+    "source_hash": "7af71960da2f3021f3cc3f466629d196cf4225cdd0eebf345bad395202f36f45",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-13",
@@ -2580,7 +2779,15 @@
   "חשיבות": 1,
   "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל. אומדן מודל המתעדכן לאורך הרבעון, לא נתון תמ״ג רשמי ולא קונצנזוס אנליסטים.",
-  "מזהה": "c-0124"
+  "מזהה": "c-0124",
+  "אירוע_en": "Growth estimate - New York Fed Staff Nowcast",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure. A model estimate updated through the quarter, not an official GDP figure and not an analyst consensus.",
+  "_translation": {
+   "en": {
+    "source_hash": "5f87211baeec873465d627ed7bb1ad6365e83288a338d1583801fa9118859bc3",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-13",
@@ -2591,7 +2798,16 @@
   "שעה": "20:00",
   "הערה": "אין צפי/קודם יחיד. CP בדרך כלל13:00ET, השעה אינה מובטחת; H.15/H.8 בשעה16:15ET.",
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
-  "מזהה": "c-0125"
+  "מזהה": "c-0125",
+  "אירוע_en": "Commercial paper (CP) data - Fed",
+  "תקופה_en": "Daily",
+  "הערה_en": "No single estimate/prior. CP usually at 13:00 ET, time not guaranteed; H.15/H.8 at 16:15 ET.",
+  "_translation": {
+   "en": {
+    "source_hash": "300233a8efb2198f081ffd7823abb97c432e2a193b3ef7e8491cee8f4ef6c313",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-13",
