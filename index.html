@@ -6492,6 +6492,7 @@ document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='
 // ---- swipe between tabs (v42) ----
 (function(){ let sx=0, sy=0, st=0, ok=false, watchDir=0, watchAt=0, watchExpiry=null;
   const WATCH_PAIR_GAP=400; // Only a rapid consecutive pair, measured from first lift to second touch.
+  function swipeTarget(dx){const tabs=[...document.querySelectorAll('nav.bottom button[data-tab]:not([hidden])')].map(b=>({tab:b.dataset.tab,rect:b.getBoundingClientRect()})).filter(b=>b.rect.width>0).sort((a,b)=>a.rect.left-b.rect.left).map(b=>b.tab),i=tabs.indexOf(ui.tab),j=i+(dx<0?1:-1);return i>=0&&j>=0&&j<tabs.length?tabs[j]:null}
   const watchReset = ()=>{ watchDir=0; watchAt=0;if(watchExpiry!==null)clearTimeout(watchExpiry);watchExpiry=null; };
   document.addEventListener('click',watchReset,{passive:true});
   const NOSW = 'input,textarea,select,[contenteditable],.editing,.imgv,.sheet,.sheet-bg,.ct-work,.chart.xh,.chart.zoomed,.rpills,.dcards,.rpop';   // v44: charts/cards/nav swipe too; chip rows only if they really scroll (scrollsX)
@@ -6502,14 +6503,13 @@ document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='
   document.addEventListener('touchend', e=>{ if(!ok) return; ok = false; const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
     if(Math.abs(dx) < 60 || Math.abs(dx) < 1.5*Math.abs(dy) || Date.now() - st > 900){ watchReset(); return; }
     if(ui.tab==='watch'){ const direction = dx>0 ? 1 : -1, now = Date.now();
-      if(watchDir===direction && st>=watchAt&&st-watchAt<=WATCH_PAIR_GAP){ watchReset(); const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]:not([hidden])')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab), j = i + direction; if(i>=0 && j>=0 && j<tabs.length) setTab(tabs[j]); return; }
+      if(watchDir===direction && st>=watchAt&&st-watchAt<=WATCH_PAIR_GAP){ watchReset(); const target=swipeTarget(dx);if(target)setTab(target);return; }
       watchReset();watchDir=direction; watchAt=now;watchExpiry=setTimeout(()=>{if(!ok)watchReset();},WATCH_PAIR_GAP);
       const wl = wlData.lists, wi = wl.findIndex(l=>l.id===wlCur().id), wj = wi + (dx < 0 ? 1 : -1);   // v124: first swipe moves between lists; a rapid second same-direction swipe begun within 400ms follows adjacent main-tab order; an older swipe expires
       if(wl.length > 1 && wi >= 0 && wj >= 0 && wj < wl.length){ wlData.cur = wl[wj].id; saveWl(); wlMenu = null; renderWatch(); }   // v113: drawWatch animates the list body only - the section no longer translates (in RTL it scrolled the whole shell sideways)
       return; }
-    watchReset(); const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]:not([hidden])')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab);
-    const j = i + (dx > 0 ? 1 : -1); if(i < 0 || j < 0 || j >= tabs.length) return;   // swipe right -> next tab in RTL order, left -> back; no wrap
-    setTab(tabs[j]); const sec = $('tab-'+tabs[j]); if(sec && !matchMedia('(prefers-reduced-motion: reduce)').matches){ sec.classList.remove('sw-l','sw-r'); void sec.offsetWidth; sec.classList.add(dx > 0 ? 'sw-l' : 'sw-r'); setTimeout(()=>sec.classList.remove('sw-l','sw-r'), 260); }
+    watchReset();const target=swipeTarget(dx);if(!target)return; // The next screen is opposite the finger, using physical bar positions; no wrap.
+    setTab(target); const sec = $('tab-'+target); if(sec && !matchMedia('(prefers-reduced-motion: reduce)').matches){ sec.classList.remove('sw-l','sw-r'); void sec.offsetWidth; sec.classList.add(dx > 0 ? 'sw-l' : 'sw-r'); setTimeout(()=>sec.classList.remove('sw-l','sw-r'), 260); }
   }, {passive:true});
   document.addEventListener('touchcancel', ()=>{ ok = false; watchReset(); }, {passive:true});
 })();
