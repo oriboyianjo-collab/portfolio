@@ -1068,6 +1068,14 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 body:has(#btnEye[aria-pressed=true]) #posList .pcard.pc .pgrid,body:has(#btnEye[aria-pressed=true]) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:28px minmax(0,1fr) 48px 44px 42px 73px}
 @media(max-width:370px){#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:25px minmax(0,1fr) 76px 40px 35px 69px;column-gap:6px}body:has(#btnEye[aria-pressed=true]) #posList .pcard.pc .pgrid,body:has(#btnEye[aria-pressed=true]) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:25px minmax(0,1fr) 44px 40px 35px 69px}}
 @media(max-width:340px){#posList .pcard.pc .pgrid,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:24px minmax(0,1fr) 76px 36px 28px 64px;column-gap:4px}body:has(#btnEye[aria-pressed=true]) #posList .pcard.pc .pgrid,body:has(#btnEye[aria-pressed=true]) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid{grid-template-columns:24px minmax(0,1fr) 40px 36px 28px 64px}}
+
+/* Preview interpretation: percentages of each column's own width. */
+#posList .pcard.pc .pgrid>.pc-v,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-v{transform:translateX(-50%)!important;translate:none!important}
+#posList .pcard.pc .pgrid>.pc-w,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-w{transform:translateX(-25%)!important;translate:none!important}
+#posList .pcard.pc .pgrid>.pc-s,.card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-s{transform:translateX(-12.5%)!important;translate:none!important}
+body:not(:has(#btnEye[aria-pressed=true])) #posList .pcard.pc .pgrid>.pc-v,body:not(:has(#btnEye[aria-pressed=true])) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-v{transform:translateX(-10px)!important}
+@media(max-width:370px){body:not(:has(#btnEye[aria-pressed=true])) #posList .pcard.pc .pgrid>.pc-v,body:not(:has(#btnEye[aria-pressed=true])) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-v{transform:translateX(-6px)!important}}
+@media(max-width:340px){body:not(:has(#btnEye[aria-pressed=true])) #posList .pcard.pc .pgrid>.pc-v,body:not(:has(#btnEye[aria-pressed=true])) .card:has(#posList>.pcard.pc)>.pos-cols.pgrid>.pc-v{transform:translateX(-2px)!important}}
 </style></head>
 <body>
 <header class="top">
