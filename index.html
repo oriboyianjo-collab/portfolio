@@ -1014,6 +1014,11 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .irr-failure-info{margin-inline-start:8px;vertical-align:middle}.irr-pop-bg{background:transparent!important;backdrop-filter:none!important}.irr-pop-bg .ib-card{position:fixed;bottom:auto!important;margin:0!important;border:1px solid #64748b;border-radius:13px;padding:14px 16px;max-height:min(300px,70vh);overflow:auto;background:#1b2638!important;opacity:1!important;box-shadow:0 8px 28px #0008;transform:none!important;box-sizing:border-box}.irr-pop-bg .ib-card h4{font-size:13px;margin:0 0 9px;padding-inline-end:20px}.irr-pop-bg .ib-card h4>i{display:none}.irr-pop-bg .ib-b{font-size:12px;line-height:1.65}.irr-pop-bg .ib-b p{margin:6px 0 0}.irr-pop-close{position:absolute;top:6px;left:6px;width:26px;height:26px;padding:0;border:0;background:transparent;color:#cbd5e1;font-size:22px}.srow .pc-d{align-items:center;text-align:center;justify-content:center;gap:2px}.srow .pc-d>b.num{width:max-content;max-width:100%;min-width:0;padding:2px 7px;box-sizing:border-box;align-self:center}.srow .pc-d>.wl-p{align-self:center;width:max-content;max-width:100%;text-align:center}.srow .pc-d>.ext-line{align-self:center;text-align:center}.rep-date-strip{display:flex;gap:8px;align-items:stretch}.rep-date-strip>button{flex:0 0 72px;max-width:72px;box-sizing:border-box;background:#24364f;color:#cbd5e1;border-color:#445b78;border-radius:14px;min-height:66px;padding:6px 3px;line-height:1.15}.rep-date-strip>button b{color:#93c5fd;display:flex;align-items:center;justify-content:center;font-size:1rem;margin:1px 0}.rep-date-strip>button small{font-size:.57rem;white-space:nowrap}.rep-date-strip>button.on{background:#2563eb;color:white;border-color:#2563eb}.rep-date-strip>button.on b{color:white}.rep-date-strip>#repDays{margin:0;position:relative;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;gap:6px;isolation:isolate}.rep-date-strip>#repDays .dcard{flex:0 0 calc((100% - 12px)/3);box-sizing:border-box;min-width:0;max-width:none;padding:6px 2px;scroll-snap-align:start;min-height:66px}.rep-date-strip>#repDays .dcard small{white-space:nowrap;font-size:.55rem}.rep-date-strip>#repDays .dcard b{font-size:.98rem}
 
 .rrow .rn .rmeta{flex-wrap:wrap;column-gap:5px;row-gap:2px}.rrow .rcompany{flex-basis:100%;width:100%}.rrow .rdate{flex:0 0 auto;color:var(--text);white-space:nowrap}.rrow .rn .rmeta .rdate{font-size:.65rem}.rrow .rcap::before{content:"·"}
+/* Configurable bottom bar: stable actions, saved display order. */
+.nav-order-row{width:100%;border:0;background:none;color:inherit;text-align:start;cursor:pointer}
+.nav-order-editor{padding:18px 16px 38px}.nav-order-editor h3{margin:0 0 6px}.nav-order-help{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:16px}
+.nav-order-item{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);min-height:48px}.nav-order-icon{font-size:20px;width:25px;text-align:center}.nav-order-label{flex:1;font-weight:600}.nav-order-item{padding:8px 0;min-height:40px}.nav-order-item input{accent-color:#3b82f6;width:20px;height:20px;flex-shrink:0}.nav-order-grab{touch-action:none;cursor:grab;background:none;border:0;color:var(--muted);font-size:24px;padding:8px;user-select:none}.nav-order-item.dragging{background:var(--bg-fff);outline:1px solid var(--primary);border-radius:10px}.nav-order-item .btn{padding:5px 11px}.nav-order-item .btn:disabled{opacity:.3;cursor:default}.nav-order-note{font-size:12px;color:var(--muted);line-height:1.6;margin:14px 0}.nav-order-editor .btn-row .btn{flex:1}.nav-order-editor #navOrderSave:disabled{opacity:.35;cursor:default}
+
 </style>
 <link rel="stylesheet" href="chart-tools.css?v=267">
 
@@ -4870,6 +4875,7 @@ function navPush(e){ backLayerSync(); NAV.push(e); if(NAV.length > 60) NAV.splic
 function navDrop(t){ const e = NAV[NAV.length-1]; if(e && e.t===t) NAV.pop(); }
 function navBack(){ backLayerSync();const layer=NAV[NAV.length-1];if(layer?.t==='layer'){NAV.pop();const active=backLayers.get(layer.key);backLayers.delete(layer.key);active?.close();backLayerSync();return true;} if(ChartTools.isOpen()){ChartTools.close();return true;} const e = NAV.pop(); if(!e) return false; navRestoring = true;
   try{ if(e.t==='tab'){ if($('sheet').classList.contains('open')) closeSheet(); setTab(e.tab); }
+    else if(e.t==='navOrder'){navOrderDraft=null;renderSettings();}
     else if(e.t==='srch') srchHide();
     else if(e.t==='finD'){ finSel=null; renderFin(); }   // v239: the finance detail is a back step
     else if(e.t==='alerts') alClose();   // v239: the alerts views are back steps (list -> alerts -> settings)
@@ -5296,7 +5302,7 @@ function ib(html, title, cls){ return `<button type="button" class="ib${cls?' '+
 
 // ---------- settings ----------
 let deferredInstall = null;
-function renderSettings(){
+function renderSettings(){ navOrderDraft=null;
   const s = state.settings, c = s.commission;
   const exAmt = cur => cur==='USD'?5000:20000, EXQ = 100;
   const exSmall = cur => (num(c[cur].smallBelow)||0) > 0 ? Math.max(1, Math.round((num(c[cur].smallBelow)||0)*0.75)) : (cur==='USD'?1500:4000);
@@ -5314,6 +5320,7 @@ ${I18n.p("ui-1033","\n    <div class=\"set-sec al-row\" id=\"alRow\" role=\"butt
     renderHeader(computeAll());
   }));
   $('settingsCard').querySelectorAll('[data-app-language]').forEach(b=>b.onclick=()=>{if(!I18n.select(b.dataset.appLanguage))return;renderAll();renderSettings();renderEye();renderLiveStatus();try{alBadge();alSync();alPushSoon();}catch(_){}});
+  const navSec=document.createElement('button');navSec.type='button';navSec.className='set-sec al-row nav-order-row';navSec.id='navOrderOpen';navSec.innerHTML=`<div><h4>↔ ${I18n.language==='en'?'Bottom bar order':'סדר הסרגל התחתון'}</h4><div class="al-sub">${I18n.language==='en'?'Choose button positions':'בחירת המיקום של הכפתורים'}</div></div><span class="al-chev">‹</span>`;$('languageSection').after(navSec);navSec.onclick=navOrderOpen;
   const emaSec=document.createElement('div');emaSec.className='set-sec';emaSec.innerHTML=`<button type="button" class="btn btn-light btn-block" id="miniEMAOpen">${I18n.language==='en'?'Mini-chart EMA':'EMA בגרפים מוקטנים'}</button>`;$('languageSection').after(emaSec);$('miniEMAOpen').onclick=()=>MiniEMA.open();
   renderFeeInfer();
   // v187: the theme (header ☀️/🌙) and live-refresh (saved refreshSec kept as is) pickers left this screen; 🔔 alerts took their place
@@ -5912,11 +5919,30 @@ function bankApply(){
 }
 
 // ====================== navigation ======================
+
+function navOrderTranslate(root){if(I18n.language!=='en')return;const words={'סדר הסרגל התחתון':'Bottom bar order','גררו שורה למיקום הרצוי.':'Drag a row to the position you want.','בטלו סימון כדי להסתיר כפתור, וסמנו כדי להחזיר.':'Uncheck to hide a button; check to restore it.','בחרו לפחות כפתור אחד כדי לשמור.':'Select at least one button to save.','החלקה בין המסכים תעבור לפי הסדר שתבחרו.':'Screen swipes follow your chosen order.','שמירה':'Save','ביטול':'Cancel','איפוס לסדר המקורי':'Reset to original order','עסקאות':'Activity','פיננסים':'Financials','חדשות':'News','חיפוש':'Search','שוק':'Markets','רשימת מעקב':'Watchlist','תיק':'Portfolio'};const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const t=n.nodeValue.trim();if(words[t])n.nodeValue=n.nodeValue.replace(t,words[t]);}root.querySelectorAll('[aria-label]').forEach(n=>{const source=n.getAttribute('aria-label');let m=source.match(/^הצגת (.+) בסרגל$/);if(m)n.setAttribute('aria-label','Show '+(words[m[1]]||m[1])+' in bottom bar');m=source.match(/^גרירת (.+) לשינוי המיקום$/);if(m)n.setAttribute('aria-label','Drag '+(words[m[1]]||m[1])+' to reorder');});}
+const NAV_ORDER_KEY='portfolioTracker.navOrder.v1';
+const NAV_ORDER_DEFAULT=['tx','fin','news','navSearch','market','watch','portfolio'];
+const NAV_ORDER_LABELS={tx:['🧾','עסקאות'],fin:['📊','פיננסים'],news:['📰','חדשות'],navSearch:['⌕','חיפוש'],market:['🌐','שוק'],watch:['👀','רשימת מעקב'],portfolio:['💼','תיק']};
+let navOrderDraft=null,navVisibleDraft=null;
+function navOrderValid(v){return Array.isArray(v)&&v.length===NAV_ORDER_DEFAULT.length&&new Set(v).size===v.length&&v.every(k=>NAV_ORDER_DEFAULT.includes(k))}
+function navOrderRead(){try{const v=JSON.parse(localStorage.getItem(NAV_ORDER_KEY));if(navOrderValid(v))return {order:v,visible:[...v]};if(v&&navOrderValid(v.order)&&Array.isArray(v.visible)&&v.visible.length>0&&new Set(v.visible).size===v.visible.length&&v.visible.every(k=>NAV_ORDER_DEFAULT.includes(k)))return v}catch(_){}return {order:[...NAV_ORDER_DEFAULT],visible:[...NAV_ORDER_DEFAULT]}}
+function navOrderApply(config){const box=document.querySelector('nav.bottom .in'),buttons=[...box.children];for(const k of config.order){const b=buttons.find(x=>(x.dataset.tab||x.id)===k);if(b){b.hidden=!config.visible.includes(k);b.style.display=b.hidden?'none':'';box.appendChild(b)}}}
+function navOrderClose(){navOrderDraft=null;navVisibleDraft=null;navDrop('navOrder');renderSettings()}
+function navOrderDraw(){const root=$('settingsCard');root.innerHTML='<div class="nav-order-editor"><h3>סדר הסרגל התחתון</h3><div class="nav-order-help">גררו שורה למיקום הרצוי.<br>בטלו סימון כדי להסתיר כפתור, וסמנו כדי להחזיר.</div><div id="navOrderList">'+navOrderDraft.map(k=>{const a=NAV_ORDER_LABELS[k];return '<div class="nav-order-item" data-nav-key="'+k+'"><input type="checkbox" data-nav-visible="'+k+'" aria-label="הצגת '+a[1]+' בסרגל" '+(navVisibleDraft.includes(k)?'checked':'')+'><span class="nav-order-icon">'+a[0]+'</span><span class="nav-order-label">'+a[1]+'</span><button class="nav-order-grab" data-nav-grab="'+k+'" aria-label="גרירת '+a[1]+' לשינוי המיקום">≡</button></div>'}).join('')+'</div><div class="nav-order-note" id="navOrderNote"></div><div class="btn-row"><button class="btn btn-primary" id="navOrderSave">שמירה</button><button class="btn btn-light" id="navOrderCancel">ביטול</button></div><button class="btn btn-light btn-block" id="navOrderReset" style="margin-top:10px">איפוס לסדר המקורי</button></div>';
+function sync(){const empty=!navVisibleDraft.length;$('navOrderSave').disabled=empty;$('navOrderNote').textContent=empty?'בחרו לפחות כפתור אחד כדי לשמור.':'החלקה בין המסכים תעבור לפי הסדר שתבחרו.';navOrderTranslate(root)}
+root.querySelectorAll('[data-nav-visible]').forEach(b=>b.onchange=()=>{const k=b.dataset.navVisible;navVisibleDraft=b.checked?[...navVisibleDraft,k]:navVisibleDraft.filter(x=>x!==k);sync()});
+root.querySelectorAll('[data-nav-grab]').forEach(b=>{let moving=false;const stop=()=>{moving=false;root.querySelectorAll('.nav-order-item').forEach(x=>x.classList.remove('dragging'))};b.onpointerdown=e=>{if(e.button!==0)return;e.preventDefault();moving=true;b.setPointerCapture(e.pointerId);b.closest('.nav-order-item').classList.add('dragging')};b.onpointermove=e=>{if(!moving)return;e.preventDefault();const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-nav-key]'),row=b.closest('[data-nav-key]');if(!target||target===row||!$('navOrderList').contains(target))return;const from=navOrderDraft.indexOf(row.dataset.navKey),to=navOrderDraft.indexOf(target.dataset.navKey);navOrderDraft.splice(from,1);navOrderDraft.splice(to,0,row.dataset.navKey);if(from<to)target.after(row);else target.before(row)};b.onpointerup=stop;b.onpointercancel=stop;b.onlostpointercapture=stop;
+b.onkeydown=e=>{if(e.key!=='ArrowUp'&&e.key!=='ArrowDown')return;e.preventDefault();const i=navOrderDraft.indexOf(b.dataset.navGrab),j=i+(e.key==='ArrowUp'?-1:1);if(j<0||j>=navOrderDraft.length)return;[navOrderDraft[i],navOrderDraft[j]]=[navOrderDraft[j],navOrderDraft[i]];navOrderDraw();root.querySelector('[data-nav-grab="'+b.dataset.navGrab+'"]').focus()}});
+$('navOrderCancel').onclick=navOrderClose;$('navOrderReset').onclick=()=>{navOrderDraft=[...NAV_ORDER_DEFAULT];navVisibleDraft=[...NAV_ORDER_DEFAULT];navOrderDraw()};$('navOrderSave').onclick=()=>{if(!navVisibleDraft.length)return;const config={order:[...navOrderDraft],visible:[...navVisibleDraft]};try{localStorage.setItem(NAV_ORDER_KEY,JSON.stringify(config))}catch(_){toast(I18n.language==='en'?'Could not save bottom bar order on this device':'לא ניתן לשמור את סדר הסרגל במכשיר הזה');return}navOrderApply(config);navOrderClose()};sync();}
+function navOrderOpen(){const cfg=navOrderRead();navOrderDraft=[...cfg.order];navVisibleDraft=[...cfg.visible];navPush({t:'navOrder'});navOrderDraw();window.scrollTo(0,0)}
+navOrderApply(navOrderRead());
+
 let prevTab = 'portfolio';
 const TAB_KEY = 'portfolioTracker.tab';   // v57: current tab per session – a reload / pull-to-refresh comes back to it; a new app launch opens on תיק
 function openSettings(){ if(ui.tab==='settings') return; prevTab = ui.tab; try{ sessionStorage.setItem(TAB_KEY+'.prev', prevTab); }catch(e){} setTab('settings'); }
-function closeSettings(){ const e = NAV[NAV.length-1]; if(e && e.t==='tab'){ navBack(); return; } if(ui.tab==='settings') setTab(prevTab||'portfolio'); }
-function setTab(tab){ try{ repPopClose(); }catch(_){}
+function closeSettings(){if(navOrderDraft){navOrderClose();return;} const e = NAV[NAV.length-1]; if(e && e.t==='tab'){ navBack(); return; } if(ui.tab==='settings') setTab(prevTab||'portfolio'); }
+function setTab(tab){if(navOrderDraft&&tab!=='settings'){navOrderDraft=null;navDrop('navOrder')} try{ repPopClose(); }catch(_){}
   if(!$('srchOv').hidden) srchClose();   // v66: a tab tap closes the search overlay
   try{ sessionStorage.setItem(TAB_KEY, tab); }catch(e){}
   if(!navRestoring && (tab!=='fin' || finSel)) navDrop('finD');   // v239: closing the finance detail by a tab switch is not a back step
@@ -6472,12 +6498,12 @@ document.addEventListener('keydown', e=>{ if(IV.el && !IV.el.hidden && e.key==='
   document.addEventListener('touchend', e=>{ if(!ok) return; ok = false; const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
     if(Math.abs(dx) < 60 || Math.abs(dx) < 1.5*Math.abs(dy) || Date.now() - st > 900){ watchReset(); return; }
     if(ui.tab==='watch'){ const direction = dx>0 ? 1 : -1, now = Date.now();
-      if(watchDir===direction && st>=watchAt&&st-watchAt<=WATCH_PAIR_GAP){ watchReset(); const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab), j = i + direction; if(i>=0 && j>=0 && j<tabs.length) setTab(tabs[j]); return; }
+      if(watchDir===direction && st>=watchAt&&st-watchAt<=WATCH_PAIR_GAP){ watchReset(); const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]:not([hidden])')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab), j = i + direction; if(i>=0 && j>=0 && j<tabs.length) setTab(tabs[j]); return; }
       watchReset();watchDir=direction; watchAt=now;watchExpiry=setTimeout(()=>{if(!ok)watchReset();},WATCH_PAIR_GAP);
       const wl = wlData.lists, wi = wl.findIndex(l=>l.id===wlCur().id), wj = wi + (dx < 0 ? 1 : -1);   // v124: first swipe moves between lists; a rapid second same-direction swipe begun within 400ms follows adjacent main-tab order; an older swipe expires
       if(wl.length > 1 && wi >= 0 && wj >= 0 && wj < wl.length){ wlData.cur = wl[wj].id; saveWl(); wlMenu = null; renderWatch(); }   // v113: drawWatch animates the list body only - the section no longer translates (in RTL it scrolled the whole shell sideways)
       return; }
-    watchReset(); const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab);
+    watchReset(); const tabs = [...document.querySelectorAll('nav.bottom button[data-tab]:not([hidden])')].map(b=>b.dataset.tab), i = tabs.indexOf(ui.tab);
     const j = i + (dx > 0 ? 1 : -1); if(i < 0 || j < 0 || j >= tabs.length) return;   // swipe right -> next tab in RTL order, left -> back; no wrap
     setTab(tabs[j]); const sec = $('tab-'+tabs[j]); if(sec && !matchMedia('(prefers-reduced-motion: reduce)').matches){ sec.classList.remove('sw-l','sw-r'); void sec.offsetWidth; sec.classList.add(dx > 0 ? 'sw-l' : 'sw-r'); setTimeout(()=>sec.classList.remove('sw-l','sw-r'), 260); }
   }, {passive:true});
