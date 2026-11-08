@@ -3340,7 +3340,7 @@ attachAutocomplete($('idxSearch'), $('idxAc'), it=>{ $('idxSearch').value = ''; 
   cnbcQuotes([qs]).then(q=>{ const u = q && q[qs];
     if(u && u.price!=null && u.prev){ idxData.q[nk] = {last:u.price, prev:u.prev, sym:qs, etf:false, status:u.status||'', ts:u.ts||null, date:u.date||'', pre:null}; yMergeIdx(nk); idxSave(); idxSpark().catch(e=>console.warn('index sparkline', e.message)); }
     renderIdx(); }).catch(e=>{ console.warn('index tile add', e.message); renderIdx(); }); });
-function idxDisplayName(x){ return x.k==='ndx'&&['נאסד"ק 100','Nasdaq 100'].includes(x.n)?I18n.p('ux-0290','נאסד"ק 100'):x.n; }
+function idxDisplayName(x){ return x.k==='ndx'&&(/^(?:נאסד["'״]?ק\s*100|Nasdaq 100)$/.test(x.n))?I18n.p('ux-0290','נאסד"ק 100'):x.n; }
 function renderIdx(){
   const wrap = $('idxWrap'), row = $('idxRow'); if(!wrap || !row) return; const have = IDX.filter(x=>idxData.q[x.k]);
   const empty = !IDX.length;   // v260: with every tile deleted there is no arrow left to reopen the tools row - keep the search + reset reachable so the row can be rebuilt or reset
