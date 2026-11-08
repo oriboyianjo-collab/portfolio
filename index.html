@@ -144,8 +144,8 @@ button{font-family:inherit}
 .pc-wd{grid-column:1/-1}.pc-u{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;background:var(--bg-f1f5f9);border-radius:10px;padding:6px 10px}.pc-u>span{font-weight:700;color:var(--muted)}.pc-u b:first-of-type{font-size:1.05rem}
 #posKv div.hl{background:var(--bg-eff6ff);border-radius:8px}#posKv div.hl b{font-size:1.05rem}
 /* v257 approved: index tiles stay on one row with horizontal scroll instead of wrapping to a new row; padding-top/margin-top keep the edit badges visible (overflow-x would clip them) without moving the tiles. */
-.idxrow{display:flex;gap:8px;margin:-9px 0 10px;padding-top:9px;overflow-x:auto}
-.idxrow>.idx{flex:0 0 calc(50% - 4px);box-sizing:border-box}
+.idxrow{display:flex;gap:8px;margin:-9px 0 10px;padding-top:9px;overflow-x:auto;direction:ltr}   /* v259 approved: reversed scroll direction - the row overflows to the right and starts at the left (Nasdaq + arrow) end; tiles themselves stay RTL */
+.idxrow>.idx{flex:0 0 calc(50% - 4px);box-sizing:border-box;direction:rtl}
 .idx{background:var(--bg-fff);border:1px solid var(--border);border-radius:14px;padding:6px 10px;line-height:1.2;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto auto;column-gap:6px;align-items:center;min-height:56px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
 .idx-n{font-size:.74rem;font-weight:700;color:var(--fg-334155);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.idx-n small{font-weight:500;color:var(--muted);font-size:.9em}
 .idx-v{font-size:.98rem;font-weight:800;direction:ltr;unicode-bidi:isolate;text-align:right;white-space:nowrap;letter-spacing:-.2px}
@@ -3274,7 +3274,7 @@ $('idxSearch').addEventListener('keydown', e=>{ if(e.key==='Escape' && idxEditin
 attachAutocomplete($('idxSearch'), $('idxAc'), it=>{ $('idxSearch').value = ''; $('idxSearch').blur(); if(!it || (it.free && !it.sym)) return;
   const sym = it.sym.toUpperCase(); if(IDX.some(x=>((x.sym||x.s).toUpperCase()===sym) || x.s.toUpperCase()===sym)){ toast('הנייר כבר באריחים'); return; }
   const cr = it.type==='crypto';
-  IDX.unshift({k:'sec:'+sym, s: cr ? sym+'.CM=' : sym, sym, n: it.name||sym, type: it.type||'stock'});   // v257 approved: a newly added tile lands on the right end of the row, visible without scrolling
+  IDX.push({k:'sec:'+sym, s: cr ? sym+'.CM=' : sym, sym, n: it.name||sym, type: it.type||'stock'});   // v257 approved: a newly added tile lands on the right end of the row, visible without scrolling
   idxListSave(); renderIdx();
   const qs = cr ? sym+'.CM=' : sym, nk = 'sec:'+sym;
   cnbcQuotes([qs]).then(q=>{ const u = q && q[qs];
