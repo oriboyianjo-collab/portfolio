@@ -1095,6 +1095,13 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 #posList .pcard.pc .pgrid>.pc-s .spark path{stroke-width:1.2903}
 @media(max-width:370px){#posList .pcard.pc .pgrid>.pc-s .spark{width:58.43px!important}}
 @media(max-width:340px){#posList .pcard.pc .pgrid>.pc-s .spark{width:45.15px!important}}
+</style><style>
+/* Dedicated watchlist sorting control, same row and dimensions as the list picker. */
+.wl-fld-sort{flex:1 1 0}
+#wlSortBtn{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;margin:0;box-sizing:border-box;height:36px;min-height:36px;font-size:.8rem;border-radius:10px;padding:0 10px;line-height:1;gap:4px}
+#wlSortBtn span{flex:1;min-width:0;text-align:start}#wlSortBtn:disabled{opacity:.55;cursor:default}
+#wlSortPick{min-width:155px;inset-inline-start:auto;inset-inline-end:0}
+#tab-watch .wl-addrow>.wl-fld{flex:1 1 0;min-width:0}
 </style></head>
 <body>
 <header class="top">
@@ -1181,6 +1188,7 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
           <div class="ac wl-add"><div class="wl-in"><input id="wlSearch" placeholder="חיפוש נייר" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></div><div class="ac-list" id="wlAc"></div></div>
         </div>
         <label class="wl-to wl-fld wl-fld-to"><span class="wl-lab">בחירת רשימה</span><select id="wlTo" hidden></select><button type="button" id="wlToBtn" class="wl-pick" aria-haspopup="listbox" aria-expanded="false"><span id="wlToTxt"></span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div id="wlToMenu" class="wl-pm" role="listbox" hidden></div></label>
+        <div class="wl-to wl-fld wl-fld-sort"><span class="wl-lab">מיון</span><button type="button" id="wlSortBtn" class="wl-pick" aria-haspopup="listbox" aria-expanded="false"><span id="wlSortTxt"></span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div id="wlSortPick" class="wl-pm" role="listbox" aria-label="מיון רשימת מעקב" hidden></div></div>
       </div></div>
       <div class="wl-tools"><span>קבוצות:</span><button type="button" id="wlAll"></button></div>
       <div id="wlLists"></div></div>
@@ -4390,15 +4398,20 @@ function wlTabsScroll(glide){ const w = $('wlTabs'), bar = w && w.querySelector(
   if(t==null){ wlGlide = null; return; }
   wlGlide = bh==='smooth' ? t : null; bar.scrollTo({left: t, behavior: bh}); }
 function wlMenuHtml(L, li, nL){ if(wlMenu!==L.id) return ''; const ed = wlEditing===L.id, so = wlSortOf(L.id);
-  const msort = `<div class="wl-msort" role="group" aria-label="מיון"><div class="wl-msl">${WL_SORT_IC}<span>מיון</span>${ed ? '<small>במצב עריכה – סדר ידני</small>' : ''}</div>${Object.keys(WLS_NAME).map(k=>`<button data-ls="${k}" role="menuitemradio" aria-checked="${so.k===k}" class="${so.k===k?'on':''}"${ed?' disabled':''}>${so.k===k ? '<span class="ck" aria-hidden="true">✓</span>' : ''}${WLS_NAME[k]}${so.k===k && k!=='manual' ? `<span class="ar">${so.dir<0?'▼':'▲'}</span>` : ''}</button>`).join('')}</div>`;
-  return `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button>${msort}<button data-la="rename">🏷️ שינוי שם</button><button data-la="up" ${li===0?'disabled':''}>◀ שמאלה</button><button data-la="down" ${li===nL-1?'disabled':''}>▶ ימינה</button><button data-la="del" class="del">🗑️ מחיקה</button></div>`; }
+
+  return `<div class="wl-menu" role="menu"><button data-la="add">➕ הוספת נייר</button><button data-la="edit">${ed?'✓ סיום עריכה':'✏️ עריכת ניירות'}</button><button data-la="rename">🏷️ שינוי שם</button><button data-la="up" ${li===0?'disabled':''}>◀ שמאלה</button><button data-la="down" ${li===nL-1?'disabled':''}>▶ ימינה</button><button data-la="del" class="del">🗑️ מחיקה</button></div>`; }
 function wlSecHtml(L){ const ed = wlEditing===L.id, so = wlSortOf(L.id), its = wlSorted(L.items.map(secInst), ed, so);
   return `<div class="wls open" data-l="${esc(L.id)}"><div class="wlb">${its.length ? `<div class="wl-cols wgrid" aria-hidden="true"${ed?' hidden':''}><span></span><span>נייר</span><span class="pcol pc-s">היום</span><span class="pcol">שווי שוק</span><span class="pcol pc-p">מחיר</span><span class="pcol pc-d"><span>יומי</span></span></div><div class="wl-rows${ed?' editing':''}">${its.map((it,i)=>wlRowHtml(it, i, its.length)).join('')}</div>` : '<div class="wl-empty">הרשימה ריקה – חפשו נייר בשדה למעלה כדי להוסיף.</div>'}</div></div>`; }
 const WL_ALL_IC = {collapse:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 20 5-5 5 5"/><path d="m7 4 5 5 5-5"/></svg>', expand:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>'};   // v100: chevrons toward / away from each other
 function drawWlAll(){ const any = wlData.lists.some(l=>wlOpen[l.id]), b = $('wlAll'), t = any ? 'כווץ הכל' : 'הרחב הכל';
   b.innerHTML = WL_ALL_IC[any?'collapse':'expand'] + '<span>' + t + '</span>'; b.title = t; b.setAttribute('aria-label', t + ' – קבוצות רשימות המעקב'); }
+function drawWatchSort(){const L=wlCur();if(wlSortMenu&&wlSortMenu!==L.id)wlSortMenu=null;const so=wlSortOf(L.id),ed=wlEditing===L.id,open=wlSortMenu===L.id&&!ed;
+ $('wlSortTxt').textContent=(ed?WLS_SHORT.manual:WLS_SHORT[so.k])+(so.k==='manual'||ed?'':so.dir<0?' ↓':' ↑');
+ $('wlSortBtn').disabled=ed;$('wlSortBtn').setAttribute('aria-expanded',String(open));$('wlSortPick').hidden=!open;
+ $('wlSortPick').innerHTML=Object.entries(WLS_NAME).map(([k,n])=>`<button type="button" role="option" data-wlsort="${k}" class="${so.k===k?'on':''}" aria-selected="${so.k===k}"><span>${n}</span><small>${so.k===k?(k==='manual'?'✓':(so.dir<0?'↓':'↑')+' ✓'):''}</small></button>`).join('');
+}
 function drawWatch(){ watchPaintSignature=watchSignature();if(wlGesture){ wlDrawPending = true; return; }   // v113: never rebuild the rows under an active touch - a poll redraw mid-swipe ate the gesture
-  const n = wlItems().length; drawWlAll();
+  const n = wlItems().length; drawWlAll(); drawWatchSort();
   $('wlCount').textContent = `· ${wlData.lists.length} רשימות · ${n} ניירות`;
   { const cu = wlCur(); $('wlToTxt').textContent = cu ? cu.name : ''; $('wlToMenu').innerHTML = wlData.lists.map(l=>`<button type="button" role="option" data-wto="${esc(l.id)}" class="${l.id===cu.id?'on':''}" aria-selected="${l.id===cu.id}"><span>${esc(l.name)}</span><small>${l.items.length}</small></button>`).join(''); }
   $('wlTo').innerHTML = wlData.lists.map(l=>`<option value="${esc(l.id)}"${l.id===wlCur().id?' selected':''}>${esc(l.name)}</option>`).join('');
@@ -4461,7 +4474,10 @@ function wlNewList(){ const n = (prompt('שם הרשימה החדשה:', `רשי
 $('wlNew').onclick = ()=>{ if(!wlSwapSettle()) return; wlNewList(); };   // v114: settle any staged swap before acting
 $('wlAll').onclick = ()=>{ if(!wlSwapSettle()) return;   // v114
   const any = wlData.lists.some(l=>wlOpen[l.id]); wlOpen = {}; if(!any) wlData.lists.forEach(l=>{ wlOpen[l.id] = true; }); saveWlOpen(); wlMenu = null; renderWatch(); };   // v100: any open -> collapse all, else expand all (same watchOpen storage as the per-group toggle)
-$('wlToBtn').onclick = e=>{ e.stopPropagation(); const m = $('wlToMenu'), o = m.hidden; m.hidden = !o; $('wlToBtn').setAttribute('aria-expanded', o); };
+$('wlSortBtn').onclick=e=>{e.stopPropagation();if(!wlSwapSettle())return;const L=wlCur();if(wlEditing===L.id)return;wlSortMenu=wlSortMenu===L.id?null:L.id;$('wlToMenu').hidden=true;$('wlToBtn').setAttribute('aria-expanded','false');drawWatchSort();};
+$('wlSortPick').onclick=e=>{const b=e.target.closest('[data-wlsort]');if(!b)return;const L=wlCur();if(wlEditing===L.id)return;const k=b.dataset.wlsort,cur=wlSortOf(L.id);if(k==='manual')delete wlSortMap[L.id];else wlSortMap[L.id]=k===cur.k?{k,dir:-cur.dir}:{k,dir:-1};saveWlSort();wlSortMenu=null;drawWatch();};
+document.addEventListener('click',e=>{if(wlSortMenu&&!e.target.closest('.wl-fld-sort')){wlSortMenu=null;drawWatchSort();}});
+$('wlToBtn').onclick = e=>{ e.stopPropagation(); wlSortMenu=null;drawWatchSort(); const m = $('wlToMenu'), o = m.hidden; m.hidden = !o; $('wlToBtn').setAttribute('aria-expanded', o); };
 $('wlToMenu').onclick = e=>{ const b = e.target.closest('[data-wto]'); if(!b) return; $('wlToMenu').hidden = true; $('wlToBtn').setAttribute('aria-expanded','false'); $('wlTo').value = b.dataset.wto; $('wlTo').dispatchEvent(new Event('change')); };
 document.addEventListener('click', e=>{ if(!e.target.closest('.wl-to')){ $('wlToMenu').hidden = true; $('wlToBtn').setAttribute('aria-expanded','false'); } });
 $('wlTo').onchange = e=>{ wlData.cur = e.target.value; saveWl(); wlMenu = null; renderWatch(); };   // v112: select follows/drives the active tab
