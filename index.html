@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<script src="./i18n-runtime.js"></script><script src="./i18n-en.js"></script><script src="./content-language.js"></script><script src="./mini-ema.js"></script><link rel="stylesheet" href="./mini-ema.css">
+<script src="./i18n-runtime.js"></script><script src="./i18n-en.js"></script><script src="./content-language.js"></script><script src="./mini-ema.js"></script><script src="./portfolio-currency.js"></script><script src="./portfolio-fx.js"></script><link rel="stylesheet" href="./mini-ema.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <meta name="theme-color" content="#1e3a8a">
@@ -1462,11 +1462,12 @@ const TAX_KINDS = {cgt:I18n.p("ux-0169","מס רווחי הון"), foreign:I18n.
 const CUR_SYM = {USD:'$', ILS:'₪', EUR:'€', GBP:'£', CHF:'CHF ', SEK:'SEK ', DKK:'DKK ', NOK:'NOK ', PLN:'PLN ', JPY:'¥', HKD:'HK$', CNY:'CN¥'};
 Object.assign(CUR_SYM,{AUD:'A$',CAD:'C$',INR:'₹',BRL:'R$',SGD:'S$'});
 // v66: European securities (CNBC symbols SAP-DE, MC-FR, ASML-NL, NESN-CH, SHEL-GB …). Quotes stay in the listing currency for market
-// screens; for the portfolio they are converted to USD (a European holding is booked in dollars, like the bank's foreign account) with
+// screens and the dated portfolio engine; original transaction currency is kept. Current market valuation uses
 // live FX from the same batched CNBC request. London quotes in pence (GBp) are divided by 100.
 const EU_SFX = {DE:'EUR', FF:'EUR', FR:'EUR', NL:'EUR', BE:'EUR', PT:'EUR', IE:'EUR', IT:'EUR', ES:'EUR', AT:'EUR', FI:'EUR', GR:'EUR', CH:'CHF', GB:'GBP', SE:'SEK', DK:'DKK', NO:'NOK', PL:'PLN', JP:'JPY', HK:'HKD', CN:'CNY', AU:'AUD', CA:'CAD', IN:'INR', BR:'BRL', SG:'SGD'};
 const FXQ = {EUR:['EUR=',0], GBP:['GBP=',0], CHF:['CHF=',1], SEK:['SEK=',1], DKK:['DKK=',1], NOK:['NOK=',1], PLN:['PLN=',1], JPY:['JPY=',1], HKD:['HKD=',1], CNY:['CNY=',1], AUD:['AUD=',0], CAD:['CAD=',1], INR:['INR=',1], BRL:['BRL=',1], SGD:['SGD=',1]};   // CNBC FX symbol, 1 = quoted per USD (invert)
 const FXX_KEY = 'portfolioTracker.fxx.v1';
+let fxxAsOf={};
 let fxx = (()=>{ try{ return JSON.parse(localStorage.getItem(FXX_KEY)) || {}; }catch(e){ return {}; } })();   // USD per 1 unit (market data only)
 function euCur(sym){ const m = String(sym||'').toUpperCase().match(/-([A-Z]{2})$/); return m && EU_SFX[m[1]] ? EU_SFX[m[1]] : null; }
 function isEuSec(sym){ return !!euCur(sym); }   // any foreign (non-US, non-TASE) listing: Europe + Asia (v70)
@@ -1494,7 +1495,7 @@ function daysBetween(a,b){ return Math.round((Date.parse(b+'T00:00:00Z')-Date.pa
 function fmtDate(ds){ if(!ds) return ''; const [y,m,d]=ds.split('-'); return `${d}.${m}.${y}`; }
 const MASK = '••••';
 const CUR_KEY = 'portfolioTracker.dispCur';
-function dispCur(){ try{ return localStorage.getItem(CUR_KEY)==='USD' ? 'USD' : 'ILS'; }catch(e){ return 'ILS'; } }   // top summary only; holdings keep their own currency
+function dispCur(){ try{ return localStorage.getItem(CUR_KEY)==='USD' ? 'USD' : 'ILS'; }catch(e){ return 'ILS'; } }   // selected financial base; original transaction currency is retained
 function hidden(){ return !!(state && state.settings && state.settings.hideAmounts); }
 // fmtMoney/fmtSigned/fmtQtyP = personal amounts → masked in privacy mode. fmtPrice/fmtMoneyRaw = market prices, form inputs, settings examples → always shown.
 function fmtMoney(v, cur, digits){
@@ -1821,12 +1822,98 @@ function saveHist(){ try{ localStorage.setItem(HIST_KEY, JSON.stringify(hist)); 
 function assetOf(sym){ return state.assets[sym] || {name:'', type: CRYPTO_IDS[sym]?'crypto':(isTaIndex(sym)?'index':'stock'), currency: isTaseSec(sym)||isTaIndex(sym)?'ILS':'USD'}; }
 function isCrypto(sym){ return assetOf(sym).type==='crypto'; }
 function fxNow(){ return state.fx.rate || null; }
-function toILS(v, cur, rate){ if(v==null) return null; if(cur==='ILS') return v; const r = rate||fxNow(); return r ? v*r : null; }
-function rateOn(date){ let r = fxNow(); const h = hist['ILS=']; if(h && date<today()) for(const b of h.bars){ if(b[0]<=date) r=b[4]; else break; } return r; }
+function toILS(v,cur,rate){return convertCur(v,cur,'ILS',rate)}
+function rateOn(date){ return datedFx.rate('USD','ILS',date).value; }
 function convertCur(v, from, to, rate){ if(v==null||from===to) return v; const r = rate||fxNow();
   if((from==='USD'||from==='ILS') && (to==='USD'||to==='ILS')){ if(!r) return null; return from==='USD'? v*r : v/r; }
   const usd = from==='USD' ? v : from==='ILS' ? (r ? v/r : null) : (fxx[from] ? v*fxx[from] : null); if(usd==null) return null;   // v66: European currencies via USD
   return to==='USD' ? usd : to==='ILS' ? (r ? usd*r : null) : (fxx[to] ? usd/fxx[to] : null); }
+
+// Dated reference accounting is separate from the ILS legal-tax ledger.
+const datedFx = new PortfolioDatedFx.DatedFx({storage:localStorage,fetchJSON,now:today});
+let currencyLoading=null,currencySignature='',currencySnapshotKey='',currencySnapshots=null;
+function nativeQuote(sym){
+ const q=state.quotes[sym],m=num(state.manual[sym]);
+ if(m!=null)return {price:m,currency:state.manualCurrency?.[sym]||state.assets[sym]?.currency||euCur(sym)||state.quotes[sym]?.cur||null,manual:true};
+ return q?.price!=null ? {price:q.price,currency:q.cur||euCur(sym)||assetOf(sym).currency,prev:q.prev,date:q.date} : null;
+}
+function accountingRate(from,to,date,evidence,purpose){
+ if(from&&from===to)return {value:1,estimated:false,date,source:'identity'};
+ // An actual explicitly verified execution pair has priority only on its matching date.
+ if(evidence?.verified===true)return datedFx.rate(from,to,date,evidence);
+ if(date===today()&&purpose==='equity'){
+  const usd=cur=>cur==='USD'?1:cur==='ILS'?(fxNow()>0&&state.fx.updated&&Date.now()-state.fx.updated<24*3600e3?1/fxNow():null):fxx[cur]>0&&fxxAsOf[cur]&&Date.now()-fxxAsOf[cur]<24*3600e3?fxx[cur]:null;
+  const a=usd(from),b=usd(to);if(a!=null&&b!=null)return {value:a/b,estimated:true,date,source:'Current market FX (valuation only)',rateDates:[date,date]};
+ }
+ return datedFx.rate(from,to,date,evidence);
+}
+// Actual cash-flow execution evidence is distinct from statutory trade cost basis.
+function cashExecutionEvidence(t){
+ if(!['deposit','withdraw','dividend','interest','bonus','fee','tax','taxrefund'].includes(t.type))return null;
+ const e=t.fxEvidence;if(e?.verified===true&&e.kind==='execution'&&e.date===t.date&&num(e.rate)>0&&((e.from===t.currency&&e.to==='ILS')||(e.to===t.currency&&e.from==='ILS')))return e;
+ const r=t.originalBrokerRow,rate=num(t.fx),rawRate=num(r?.rateColumn),foreign=num(r?.foreignAmount);
+ if(t.src==='bank'&&r?.date===t.date&&t.currency==='USD'&&rate>0&&rawRate===rate&&foreign!=null&&Math.abs(Math.abs(foreign)-(num(t.amount)||0))<0.005)
+  return{kind:'execution',verified:true,date:t.date,from:'USD',to:'ILS',rate,source:'Original broker cash-flow row'};
+ return null;
+}
+function withholdingCashRate(t){
+ if(t.currency==='ILS')return 1;
+ const e=cashExecutionEvidence(t);if(e)return e.from===t.currency?num(e.rate):1/num(e.rate);
+ return t.currency==='USD'?boiRate(t.date):null;
+}
+function currencyEconomic(base=dispCur()){
+ const key=JSON.stringify([state.txs,state.quotes,state.manual,state.manualCurrency,state.fx,fxx,fxxAsOf,Math.floor(Date.now()/60000),datedFx.version,today()]);
+ if(key!==currencySnapshotKey){currencySnapshotKey=key;currencySnapshots={}}
+ return currencySnapshots[base]||(currencySnapshots[base]=PortfolioCurrency.evaluate(state.txs.map(t=>{const e=cashExecutionEvidence(t);return e?{...t,fxEvidence:e}:t}),nativeQuote,accountingRate,base,today()));
+}
+function extendDatedTaxFx(){
+ const c=datedFx.cache.ILS;if(!TAXD||c?.provider!=='boi')return;
+ const rows=[...c.rows.map(r=>[r.date,r.rate]),...TAXD.fx];TAXD.fx=[...new Map(rows.map(r=>[r[0],r])).values()].sort((a,b)=>a[0].localeCompare(b[0]));TAXD.fxLast=TAXD.fxLast>c.to?TAXD.fxLast:c.to;
+}
+function ensureCurrencyData(){
+ const tx=sortedTxs();if(!tx.length)return Promise.resolve();
+ const currencies=[...new Set(['ILS',...tx.flatMap(t=>[t.currency,t.from,t.to,t.fromCurrency,t.toCurrency]),...trackedSymbols().map(s=>nativeQuote(s)?.currency||euCur(s)||assetOf(s).currency)].filter(Boolean))];
+ const sig=JSON.stringify([tx[0].date,today(),currencies]);if(currencyLoading)return currencyLoading;if(currencySignature===sig)return Promise.resolve();currencySignature=sig;
+ return currencyLoading=Promise.all([datedFx.ensure(currencies,tx[0].date,today()),loadTaxData(),...trackedSymbols().map(sym=>getHistory(sym,addDays(today(),-14)))]).then(()=>{extendDatedTaxFx();currencySnapshotKey='';returnPerf=null;miniKey='';renderAll()}).finally(()=>currencyLoading=null);
+}
+function taxCoverageReady(hypothetical=false){
+ const list=state.txs.filter(t=>!t.voided&&!t.dupSkip);
+ if(list.some(t=>(t.type==='buy'||t.type==='sell')&&!['USD','ILS'].includes(t.currency)))return false; // no invented foreign tax treatment
+ for(const t of list){if(t.type==='buy'||t.type==='sell'){
+  if(t.currency==='USD'&&!taxFx(t.date))return false;
+  if(t.currency==='ILS'&&!cpiKnown(t.date))return false;
+ }}
+ if(list.some(t=>(t.type==='tax'||t.type==='taxrefund')&&t.taxKind==='cgt'&&!withholdingCashRate(t)))return false;
+ if(hypothetical&&openSymbols().some(sym=>{const cur=computeLedger().pos[sym]?.cur;return cur==='USD'?!hypotheticalTaxFx(today()):cur==='ILS'?!cpiKnown(today()):true}))return false;
+ return !list.some(t=>t.type==='buy'||t.type==='sell')||!!TAXD;
+}
+function taxDisplay(v,base=dispCur(),hypothetical=false){if(!taxCoverageReady(hypothetical)||v==null)return null;const r=accountingRate('ILS',base,today(),null,'equity').value;return r==null?null:v*r;}
+function currencyStatus(E){return E.issues.length ? (I18n.language==='en'?'Some amounts unavailable: missing dated FX, original currency or price.':'חלק מהסכומים אינם זמינים: חסר שער היסטורי, מטבע מקורי או מחיר.') : E.estimated ? (I18n.language==='en'?'Estimate using dated reference FX, not broker execution rates.':'הערכה לפי שערי ייחוס בתאריכים המתאימים, לא שערי ביצוע מהברוקר.') : '';}
+function priorNativeCloseDate(sym){
+ const q=state.quotes[sym],h=hist[sym],market=marketOf(sym),tz=Object.values(ASIA_MK).find(x=>x[0]===market)?.[1]||(market==='tase'?'Asia/Jerusalem':market==='eu'?'Europe/Berlin':'America/New_York');
+ let date=/^\d{4}-\d{2}-\d{2}$/.test(q?.date||'')?q.date:null;
+ if(q?.ts){const parts=new Intl.DateTimeFormat('en',{timeZone:tz,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(q.ts));const part=k=>parts.find(p=>p.type===k)?.value;date=part('year')+'-'+part('month')+'-'+part('day')}
+ if(!date||!h||euCur(sym)&&h.nativeVersion!==1)return null;
+ return h.bars.filter(b=>b[0]<date).at(-1)?.[0]||null;
+}
+function economicDaily(sym,qty,base){
+ const q=nativeQuote(sym);if(!q||q.manual||q.price==null||q.prev==null)return null;
+ if(q.currency===base)return{amount:qty*(q.price-q.prev),previous:qty*q.prev};
+ const previousDate=priorNativeCloseDate(sym);if(!previousDate)return null;
+ const current=accountingRate(q.currency,base,today(),null,'equity').value,previous=datedFx.rate(q.currency,base,previousDate).value;
+ if(current==null||previous==null)return null;
+ return{amount:qty*(q.price*current-q.prev*previous),previous:qty*q.prev*previous};
+}
+function applyCurrencyResult(S){
+ const E=currencyEconomic('ILS');S.cashILS=E.cashValue;S.equity=E.equity;S.totalPL=E.profit;S.unrealILS=E.unrealized;S.realizedILS=E.realized;S.feesILS=E.fees;S.divILS=E.dividend;S.intILS=E.interest==null||E.bonus==null?null:E.interest+E.bonus;S.taxPaidILS=E.taxPaid;S.cgtPaidILS=E.cgtPaid;S.L.netDepILS=E.netDeposits;S.L.netDepUSD=currencyEconomic('USD').netDeposits;S.totalPLPct=E.profit!=null&&E.netDeposits>0?E.profit/E.netDeposits*100:null;
+ S.cashWeight=E.cashValue!=null&&E.equity>0?E.cashValue/E.equity*100:null;
+ let di=0,du=0,pi=0,pu=0,validI=true,validU=true;
+ for(const P of S.positions){const c=E.contributions[P.sym],i=economicDaily(P.sym,P.qty,'ILS'),u=economicDaily(P.sym,P.qty,'USD');P.mvILS=c?.marketValue??null;P.unrealILS=c?.unrealized??null;P.weight=P.mvILS!=null&&E.equity>0?P.mvILS/E.equity*100:null;P.dayILS=i?.amount??null;
+  if(i){di+=i.amount;pi+=i.previous}else validI=false;if(u){du+=u.amount;pu+=u.previous}else validU=false;
+ }
+ S.dayILS=validI?di:null;S.dayUSD=validU?du:null;S.dayPct=validI&&pi>0?di/pi*100:null;S.dayPctUSD=validU&&pu>0?du/pu*100:null;
+ return S;
+}
 
 // ====================== fees & tax ======================
 function commission(cur, amount, qty){
@@ -1877,6 +1964,7 @@ function scaleLots(P, r){ if(r > 0) (P.lots||[]).forEach(l=>{ l.q *= r; l.c /= r
 function applyTx(L, t, fxForDeposit){
   if(t.type==='taxacct') return;                              // broker tax bookkeeping: informational, never moves cash
   const amt = num(t.amount)||0, fee = num(t.fee)||0;
+  if(t.currency){ if(!Object.hasOwn(L.cash,t.currency)) L.cash[t.currency]=0; if(!Object.hasOwn(L.fees,t.currency)) L.fees[t.currency]=0; }
   if(t.type==='deposit' || t.type==='withdraw'){
     const sign = t.type==='deposit'?1:-1;
     L.cash[t.currency] += sign*amt;
@@ -1888,7 +1976,7 @@ function applyTx(L, t, fxForDeposit){
     return;
   }
   if(CASH_FLOW[t.type]){                                      // dividend / interest / bonus / tax paid / tax refund: cash only
-    const cur = t.currency==='USD' ? 'USD' : 'ILS', v = CASH_FLOW[t.type]*amt;
+    const cur = t.currency, v = CASH_FLOW[t.type]*amt;
     L.cash[cur] += v;
     const ils = cur==='USD' ? v*(num(t.fx)||fxForDeposit||fxNow()||0) : v;
     L.flows[t.type] += ils;
@@ -1977,15 +2065,15 @@ function loadTaxData(){
     const last = j.cpi.d[j.cpi.d.length-1];
     const D = {fx:j.fx.d, fxLast:j.fx.last, cpi:new Map(j.cpi.d.map(x=>[x[0], x[1]])), cpiLast:j.cpi.last, cpiPts:last[2], cpiBase:j.cpi.lastBase};
     try{ await extendCPI(D); }catch(e){}            // CPI months published after the file first, so ILS real gains are final when shown
-    TAXD = D; return D;
+    TAXD=D;extendDatedTaxFx();return D;
   }).catch(()=>{ taxDataP = null; const w = [3e3, 1e4, 3e4][taxTry-1] || 6e4;   // v84: a failed load used to be final (cost stayed at today's rate) – retry, then re-render
     setTimeout(()=>{ if(!TAXD) loadTaxData().then(D=>{ if(D) renderAll(); }).catch(()=>{}); }, w); return null; }));
 }
 // v84: the ILS tax figures of USD trades need the Bank of Israel rate of each settlement date (tax-data.json). Until it has loaded
 // they are shown as "…" instead of a number computed at today's rate (which used to flash, or stick when the load failed).
 let taxTry = 0;
-function taxPend(){ return !TAXD && state.txs.some(t=>t.currency==='USD' && (t.type==='buy' || t.type==='sell')); }
-const TXP = '…';
+function taxPend(){return !taxCoverageReady()}
+const TXP='—';
 async function extendCPI(D){                       // months published after the static file (CBS allows browser requests)
   let [y,m] = D.cpiLast.split('-').map(Number); m++; if(m>12){ m=1; y++; }
   if(`${y}-${String(m).padStart(2,'0')}` > today().slice(0,7)) return;
@@ -2016,18 +2104,22 @@ function settleDate(d, cur){                       // US trades settled T+2 unti
   while(n>0){ x = addDays(x, 1); const w = new Date(x+'T12:00:00Z').getUTCDay(); if(w!==0 && w!==6 && !usSettleHolidays(+x.slice(0,4)).has(x)) n--; }
   return x;
 }
-function boiRate(d){ const F = TAXD && TAXD.fx; if(!F || !F.length || d > TAXD.fxLast || d < F[0][0]) return null;
-  let lo = 0, hi = F.length-1, r = null; while(lo<=hi){ const mid = (lo+hi)>>1; if(F[mid][0] <= d){ r = F[mid][1]; lo = mid+1; } else hi = mid-1; } return r; }
+function boiRate(d){
+ const F=TAXD&&TAXD.fx;if(!F?.length||d>TAXD.fxLast||d<F[0][0])return null;
+ let lo=0,hi=F.length-1,row=null;while(lo<=hi){const mid=(lo+hi)>>1;if(F[mid][0]<=d){row=F[mid];lo=mid+1}else hi=mid-1}
+ return row&&daysBetween(row[0],d)<=7?row[1]:null;
+}
 // USD/ILS rate for tax: Bank of Israel representative rate on the settlement date (what Israeli brokers use)
-function taxFx(tradeDate){ const s = settleDate(tradeDate, 'USD'); return boiRate(s) || (s < today() ? rateOn(s) : (fxNow() || rateOn(tradeDate))) || fxNow() || 0; }
+function taxFx(tradeDate){ const d=settleDate(tradeDate,'USD'); return boiRate(d); }
+function hypotheticalTaxFx(date){return boiRate(date)}
 // "known" CPI on a date: the index published on the 15th covers the previous month
 function cpiKnown(d){ if(!TAXD || !d) return null; let [y,m,dd] = d.split('-').map(Number); m -= dd>15 ? 1 : 2; if(m<=0){ m += 12; y--; }
-  let k = `${y}-${String(m).padStart(2,'0')}`; if(k > TAXD.cpiLast) k = TAXD.cpiLast; return TAXD.cpi.get(k) || null; }
+  let k = `${y}-${String(m).padStart(2,'0')}`; if(k > TAXD.cpiLast) return null; return TAXD.cpi.get(k) || null; }
 // Israeli rule: tax the real gain, but never more than the nominal one; a loss counts only if both are losses (the smaller one)
 function lowerOf(nom, real){ return nom>0 && real>0 ? Math.min(nom, real) : nom<0 && real<0 ? Math.max(nom, real) : 0; }
 // taxable result of selling `q` units from FIFO lots at net proceeds per unit `pu` on `date` (lots are consumed when `consume`)
-function lotSale(LT, cur, q, pu, date, consume, lifo){
-  let need = q, cC = 0, cI = 0, infl = 0, approx = !TAXD, from = null; const ks = cur==='USD' ? null : cpiKnown(date), Rs = cur==='USD' ? taxFx(date) : 1, layers = [];
+function lotSale(LT, cur, q, pu, date, consume, lifo, hypothetical=false){
+  let need = q, cC = 0, cI = 0, infl = 0, approx = !TAXD, from = null; const ks = cur==='USD' ? null : cpiKnown(date), Rs=cur==='USD'?(hypothetical?hypotheticalTaxFx(date):taxFx(date)):1, layers = [];
   for(let k=0; need>1e-9 && k<LT.length; k++){ const l = LT[lifo ? LT.length-1-k : k], take = Math.min(need, l.q); if(take <= 1e-9) continue;
     if(!from || l.date < from) from = l.date; cC += take*l.c; cI += take*l.ils; let li = 0; if(cur!=='USD'){ if(l.cpi && ks) li = take*l.ils*Math.max(0, ks/l.cpi - 1); else approx = true; } infl += li;
     const ln = take*pu*Rs - take*l.ils, lr = cur==='USD' ? take*(pu - l.c)*Rs : ln - li; layers.push({date:l.date, q:take, c:l.c, ils:take*l.ils, taxable:lowerOf(ln, lr)});
@@ -2085,7 +2177,7 @@ function taxModel(txs){
       }
     }
     if((t.type==='tax'||t.type==='taxrefund') && t.taxKind==='cgt'){
-      const a = (num(t.amount)||0)*(t.currency==='USD' ? (num(t.fx)||rateOn(t.date)||0) : 1);
+      const cashRate=withholdingCashRate(t),a=cashRate==null?NaN:(num(t.amount)||0)*cashRate;
       if(t.type==='tax') o.paid += a;
       else { o.refund += a; const m = Math.min(o.refundEst, a); o.refundEst -= m; S = Math.max(0, S - (a - m)); }   // an expected refund arrived
     }
@@ -2118,7 +2210,7 @@ function computeAll(){
   let prevHoldILS = 0, dayUSD = 0, prevHoldUSD = 0; const dayMk = new Set();
   let mvILS = 0, dayILS = 0, unrealILS = 0, realizedILS = 0, closeFeesILS = 0, estimated = 0;
   Object.values(L.pos).forEach(P=>{
-    const a = assetOf(P.sym), pr = priceOf(P.sym);
+    const a=assetOf(P.sym),native=nativeQuote(P.sym),pr=native?{price:convertCur(native.price,native.currency,P.cur),prev:native.prev==null?null:convertCur(native.prev,native.currency,P.cur),manual:!!native.manual,q:state.quotes[P.sym]}:{price:null,prev:null};
     realizedILS += toILS(P.realized, P.cur) || 0;
     if(Math.abs(P.qty) < 1e-9){ closed.push(Object.assign({}, P, {asset:a})); return; }
     let price = pr.price, est = false;
@@ -2136,7 +2228,7 @@ function computeAll(){
     const closeFee = commission(P.cur, Math.abs(mv), P.qty);
     // tax if sold now (today's rate): a gain uses this year's shield first; a loss would add to the shield
     const LT = TM.lots[P.sym] || [], longQ = P.qty > 0 ? P.qty : 0;
-    const hyp = longQ > 0 && LT.length ? lotSale(LT, P.cur, longQ, (P.qty*price - closeFee)/P.qty, today(), false) : null;
+    const hyp = longQ > 0 && LT.length ? lotSale(LT, P.cur, longQ, (P.qty*price - closeFee)/P.qty, today(),false,false,true):null;
     const taxableNow = hyp ? hyp.taxable : (toILS(unreal - closeFee, P.cur)||0);
     const eP = taxRate()*taxableNow, shieldUse = eP>0 ? Math.min(TM.shieldNow, eP) : 0, taxILS = eP>0 ? eP - shieldUse : 0;
     const refundP = eP<0 ? Math.min(-eP, TM.refundableNow) : 0;             // a loss now could bring back tax paid this year (estimate)
@@ -2174,13 +2266,14 @@ function computeAll(){
   positions.sort((a,b)=>Math.abs(b.mvILS||0)-Math.abs(a.mvILS||0));
   // total return since the portfolio started = (current value − net deposits) / net deposits, in ILS.
   // current value = cash + market value, so realized + unrealized gains, dividends, interest, fees and tax are all inside it.
-  return {pre: preInfo, L, positions, closed, cashILS, cashWeight, mvILS, equity, totalPL, totalPLPct: L.netDepILS>0? totalPL/L.netDepILS*100 : null,
+  const result={pre: preInfo, L, positions, closed, cashILS, cashWeight, mvILS, equity, totalPL, totalPLPct: L.netDepILS>0? totalPL/L.netDepILS*100 : null,
     // daily % = Σ daily change (ILS) / Σ value of those holdings at the prior close (ILS) – holdings only, cash excluded
     dayILS, dayPct: prevHoldILS>0 ? dayILS/prevHoldILS*100 : null, dayMk:[...dayMk], dayUSD, dayPctUSD: prevHoldUSD>0 ? dayUSD/prevHoldUSD*100 : null, unrealILS, realizedILS, taxRealized, netIfSoldAll, closeFeesILS, estimated,
     feesILS: L.fees.ILS + (toILS(L.fees.USD,'USD')||0),
     TM, hypoTax, hypoRefund, hypoShieldUse: Math.min(gTax, TM.shieldNow + lTax),
     divILS: F.dividend, intILS: F.interest + F.bonus, taxPaidILS: -(F.tax + F.taxrefund), cgtPaidILS: L.cgtILS,
     hasFlows: state.txs.some(t=>CASH_FLOW[t.type])};
+  return applyCurrencyResult(result);
 }
 
 // ====================== live quotes ======================
@@ -2284,7 +2377,7 @@ async function fetchQuotes(syms, withFx){
   cr.forEach(s=>{ if(q[s+'.CM=']) out[s] = q[s+'.CM=']; });
   const miss = cr.filter(s=>!out[s]);
   if(miss.length) Object.assign(out, await coingeckoQuotes(miss));
-  let fxu = false; for(const c in FXQ){ const x = q[FXQ[c][0]]; if(x && x.price > 0){ fxx[c] = FXQ[c][1] ? 1/x.price : x.price; fxu = true; } }
+  let fxu = false; for(const c in FXQ){ const x = q[FXQ[c][0]]; if(x && x.price > 0){ fxx[c]=FXQ[c][1]?1/x.price:x.price;fxxAsOf[c]=Date.now();fxu=true; } }
   if(fxu) try{ localStorage.setItem(FXX_KEY, JSON.stringify(fxx)); }catch(e){}
   return {quotes:out, fx:q['ILS='] || null, ok, raw:q};
 }
@@ -2313,7 +2406,7 @@ function barMap(h){ const m = new Map(); if(h) h.bars.forEach(b=>m.set(b[0],b));
 const histInflight = {};
 async function getHistory(sym, from){
   const c = hist[sym];
-  if(c && (Date.now()-c.fetched < 4*3600e3) && c.from <= from) return c;
+  if(c && (!euCur(sym)||c.nativeVersion===1) && (Date.now()-c.fetched < 4*3600e3) && c.from <= from) return c;
   const k = sym+'|'+from; if(histInflight[k]) return histInflight[k];
   return (histInflight[k] = (async()=>{
     let res = null;
@@ -2331,14 +2424,13 @@ async function getHistory(sym, from){
           const b = (j.prices||[]).map(([t,p])=>[isoDate(new Date(t)),p,p,p,p]); if(b.length) res = {bars:b, cur:'USD', ohlc:false, source:'CoinGecko'}; }
       } else {
         const ec = euCur(sym), bars = await cnbcBars(cnbcSymbol(sym), from, isTaseSec(sym));
-        if(ec){ const f = (fxx[ec] || 0) / (ec==='GBP' && bars.length && state.quotes[sym] && state.quotes[sym].price && bars[bars.length-1][4] > state.quotes[sym].price*20 ? 100 : 1);   // v66: listing currency → USD at today's FX (approximate for history); pence → pounds
-          if(f) bars.forEach(b=>{ for(let i=1;i<5;i++) b[i] *= f; }); else bars.length = 0; }   // no FX yet → don't cache unconverted bars
-        if(bars.length) res = {bars, cur: isTaseSec(sym)||isTaIndex(sym) ? 'ILS' : 'USD', ohlc:true, source:'CNBC'};
+        if(ec==='GBP' && bars.length && state.quotes[sym]?.cur==='GBP' && state.quotes[sym]?.price && bars.at(-1)[4]>state.quotes[sym].price*20) bars.forEach(b=>{for(let i=1;i<5;i++)b[i]/=100});
+        if(bars.length) res = {bars, cur:ec||(isTaseSec(sym)||isTaIndex(sym)?'ILS':'USD'), nativeVersion:1, ohlc:true, source:'CNBC'};
       }
     }catch(e){ console.warn('history failed', sym, e.message); }
     delete histInflight[k];
     if(res){ res.from = from; res.fetched = Date.now(); res.bars = dedupe(res.bars); hist[sym] = res; saveHist(); return res; }
-    return c || null;  // stale cache is better than nothing
+    return c && (!euCur(sym)||c.nativeVersion===1) ? c : null;  // never revive current-converted foreign history
   })());
 }
 
@@ -2379,10 +2471,10 @@ function portfolioPeriod(points,start,end,method='TWR',usd=false,endValue=null){
  let cache=returnPeriodCaches.get(points);if(!cache){cache=new Map();returnPeriodCaches.set(points,cache)}
  const key=[start,end,method,usd,endValue==null?'':endValue].join('|');if(cache.has(key))return cache.get(key);
  const rows=points.filter(p=>p.date<=end),before=rows.filter(p=>p.date<start).at(-1),active=rows.filter(p=>p.date>=start);if(!active.length)return null;
- const val=p=>usd?p.c/p.fx:p.c,nd=p=>usd?p.netDepU:p.netDep,eps=1e-7;
+ const val=p=>usd?(Object.hasOwn(p,'u')?p.u:(p.c==null||!(p.fx>0)?null:p.c/p.fx)):p.c,nd=p=>usd?p.netDepU:p.netDep,eps=1e-7;
  const date0=before?before.date:active[0].date,V0=before?val(before):0;let prior=before?nd(before):0,prev=V0,product=1,F=0,valid=true,reason='',flows=V0?[[date0,-V0]]:[];
  let dataValid=Number.isFinite(V0)&&V0>=0&&(!usd||!before||before.fx>0);if(!dataValid){valid=false;reason=I18n.p("ui-0117","אין שווי פתיחה או שער מטבע תקין")}
- for(let i=0;i<active.length;i++){const p=active[i],flow=nd(p)-prior;prior=nd(p);const C=i===active.length-1&&endValue!=null?endValue:val(p);F+=flow;
+ for(let i=0;i<active.length;i++){const p=active[i],flow=nd(p)==null||prior==null?NaN:nd(p)-prior;prior=nd(p);const C=i===active.length-1&&endValue!=null?endValue:val(p);F+=flow;
   if(!Number.isFinite(C)||!Number.isFinite(flow)||usd&&!(p.fx>0)){valid=false;dataValid=false;reason=I18n.p("ui-0118","אין שווי או שער מטבע תקין");break}
   if(flow)flows.push([p.date,-flow]);let factor=1;
   if(prev>eps)factor=(C-flow)/prev;else if(Math.abs(prev)<=eps&&flow>eps)factor=C/flow;else if(Math.abs(prev)>eps||Math.abs(C)>eps||Math.abs(flow)>eps){valid=false;reason=I18n.p("ui-0119","אין בסיס הון חיובי לחישוב התשואה")}
@@ -2402,67 +2494,41 @@ function portfolioPeriod(points,start,end,method='TWR',usd=false,endValue=null){
 let returnMethod=(()=>{try{return localStorage.getItem('portfolioTracker.returnMethod')==='IRR'?'IRR':'TWR'}catch(_){return 'TWR'}})(),returnPerf=null,returnPerfSignature='';
 function methodName(){return returnMethod==='IRR'?I18n.p("ui-0121","IRR מצטבר"):I18n.p("ui-0122","TWR יומי")}
 function methodNote(){return returnMethod==='IRR'?I18n.p("ui-0123","IRR לתקופה שנבחרה, לא שנתי. משקלל את גודל ותאריכי ההפקדות והמשיכות. אם אין פתרון יחיד ואמין, יוצג קו במקום אחוז."):I18n.p("ui-0124","TWR יומי מקורב לפי שווי סוף יום. הפקדות ומשיכות נחשבות בסוף היום; ביום המימון הראשון ההפקדה היא שווי הפתיחה. אין שווי תיק בכל תזרים תוך־יומי, ולכן זה אינו TWR מדויק בזמן התזרים.")}
-function returnInputSignature(){return JSON.stringify(state.txs)}
-function chosenRet(start,end,usd,V){if(!returnPerf||returnPerfSignature!==returnInputSignature())return null;const r=portfolioPeriod(returnPerf.all,start,end||today(),returnMethod,usd,V);if(r&&(returnPerf.noHist.length||returnPerf.noFx&&(usd||returnPerf.usesFx)))return {...r,pct:null,reason:I18n.p("ux-0258","אין היסטוריית מחירים מלאה לחישוב התשואה")};return r}
+function returnInputSignature(){return JSON.stringify([state.txs,datedFx.version])}
+function chosenRet(start,end,usd,V){if((end||today())===today()){const E=currencyEconomic(usd?'USD':'ILS');if(E.profit==null||E.equity==null)return {pct:null,gain:null,reason:I18n.language==='en'?'Missing dated FX, original currency or price':'חסר שער היסטורי, מטבע מקורי או מחיר'}}if(!returnPerf||returnPerfSignature!==returnInputSignature())return null;const r=portfolioPeriod(returnPerf.all,start,end||today(),returnMethod,usd,V);if(r&&(returnPerf.noHist.length||returnPerf.noFx&&(usd||returnPerf.usesFx)))return {...r,pct:null,reason:I18n.p("ux-0258","אין היסטוריית מחירים מלאה לחישוב התשואה")};return r}
 
 function syncMethod(){document.querySelectorAll('.ret-method button').forEach(b=>b.classList.toggle('on',b.dataset.method===returnMethod));document.querySelectorAll('.ret-method-note').forEach(e=>e.textContent=methodNote());}
 function setReturnMethod(m){if(!['IRR','TWR'].includes(m))return;returnMethod=m;try{localStorage.setItem('portfolioTracker.returnMethod',m)}catch(_){}syncMethod();miniKey='';renderAll();if(ui.tab!=='perf')renderPerf();}
 
 // Reconstruct daily portfolio value (OHLC) + time-weighted return from the transaction log and historical prices
 async function buildPerformance(){
-  const inputSignature=returnInputSignature(),txs = sortedTxs(); if(!txs.length){returnPerf=null;return null;}
-  const start = txs[0].date, end = today();
-  const syms = [...new Set(txs.flatMap(t=>[t.symbol,t.toSymbol]).filter(Boolean))];
-  const first = {};txs.forEach(t=>[t.symbol,t.toSymbol].filter(Boolean).forEach(s=>{if(!first[s])first[s]=t.date}));
-  const H = {};
-  const [fxH] = await Promise.all([getHistory('ILS=', addDays(start,-7)), ...syms.map(async s=>{ H[s] = await getHistory(s, addDays(first[s],-7)); })]);
-  const maps = {}; syms.forEach(s=>maps[s] = barMap(H[s])); const fxMap = barMap(fxH);
-  const noHist=syms.filter(s=>!H[s]?.bars?.length||H[s].bars[0][0]>first[s]);
-  const noFx=!fxH?.bars?.length||fxH.bars[0][0]>start,usesFx=txs.some(t=>t.currency==='USD');
-  const anyOHLC = syms.some(s=>H[s] && H[s].ohlc);
-  const last = {};
-  let lastFx = fxH && fxH.bars.length ? fxH.bars[0][4] : (fxNow()||3.7);
-  syms.forEach(s=>{ last[s] = null; if(H[s]) for(const b of H[s].bars){ if(b[0] < start) last[s] = b[4]; else break; } });
-  if(fxH) for(const b of fxH.bars){ if(b[0] < start) lastFx = b[4]; else break; }
-  const L = newLedger();
-  const byDay = new Map(); txs.forEach(t=>{ if(!byDay.has(t.date)) byDay.set(t.date,[]); byDay.get(t.date).push(t); });
-  const pts = []; let twr = 1, prevV = 0;
-  const liveNow = computeAll();
-  for(let d = start; d <= end; d = addDays(d,1)){
-    const fb = fxMap.get(d); if(fb) lastFx = fb[4];
-    const dayTx = byDay.get(d) || [];
-    let flow = 0;
-    dayTx.forEach(t=>{
-      const before = L.netDepILS; applyTx(L, t, lastFx); flow += L.netDepILS - before;
-      if(t.symbol && last[t.symbol]==null){ const hc = H[t.symbol] ? H[t.symbol].cur : t.currency; last[t.symbol] = convertCur(num(t.price), t.currency, hc, lastFx); }
-    });
-    let O = L.cash.ILS + L.cash.USD*lastFx, C = O, Hh = O, Ll = O, traded = dayTx.length>0, held = false;
-    for(const s of syms){
-      const P = L.pos[s]; if(!P || Math.abs(P.qty)<1e-9) continue; held = true;
-      const b = maps[s].get(d), cur = H[s] ? H[s].cur : P.cur;
-      let o,h,l,c;
-      if(b){ [,o,h,l,c] = b; last[s] = c; traded = true; }
-      else { c = last[s]; if(c==null) c = lastTxPrice(s) || 0; o=h=l=c; }
-      if(d===end){ const pr = priceOf(s); if(pr.price!=null){ c = convertCur(pr.price, assetOf(s).currency, cur, lastFx); h=Math.max(h,c); l=Math.min(l,c); } }
-      const k = cur==='USD' ? lastFx : 1, q = P.qty;
-      O += q*o*k; C += q*c*k; Hh += Math.max(q*h, q*l)*k; Ll += Math.min(q*h, q*l)*k;
-    }
-    if(d===end && fxNow()) C = liveNow.equity;
-    Hh = Math.max(Hh, O, C); Ll = Math.min(Ll, O, C);
-    let r = 0;                                   // time-weighted daily return, deposits/withdrawals stripped out
-    if(prevV > 0) r = (C - flow)/prevV - 1; else if(flow > 0) r = (C - flow)/flow;
-    if(!isFinite(r)) r = 0;
-    twr *= (1+r); prevV = C;
-    pts.push({date:d, o:O, h:Hh, l:Ll, c:C, netDep:L.netDepILS, fx:(d===end && fxNow()) ? fxNow() : lastFx, netDepU:L.netDepUSD, twr:(twr-1)*100, show: traded || !held || d===end || d===start});
+ const transactionSignature=JSON.stringify(state.txs),txs=sortedTxs();if(!txs.length){returnPerf=null;return null}
+ const start=txs[0].date,end=today(),syms=[...new Set(txs.flatMap(t=>[t.symbol,t.toSymbol]).filter(Boolean))],H={};
+ await Promise.all([ensureCurrencyData(),...syms.map(async sym=>{const first=txs.find(t=>t.symbol===sym||t.toSymbol===sym).date;H[sym]=await getHistory(sym,addDays(first,-7))})]);
+ const inputSignature=returnInputSignature();
+ const maps=Object.fromEntries(syms.map(sym=>[sym,barMap(H[sym])])),last={},pts=[],noHist=new Set(),sessionI={},sessionU={};let index=0;
+ for(let d=start;d<=end;d=addDays(d,1)){
+  const dayTx=[];while(index<txs.length&&txs[index].date<=d){const t=txs[index++],e=cashExecutionEvidence(t);dayTx.push(e?{...t,fxEvidence:e}:t);}
+  const quotes={};let traded=false;
+  for(const sym of syms){const h=H[sym];if(!last[sym]&&h)for(const bar of h.bars){if(bar[0]<=d)last[sym]=bar;else break}
+   const bar=maps[sym].get(d);if(bar){last[sym]=bar;traded=true}const b=last[sym];quotes[sym]=b?{price:b[4],currency:h.cur}:null;
+   if(d===end&&nativeQuote(sym))quotes[sym]=nativeQuote(sym);
   }
-  if(inputSignature!==returnInputSignature())return null;
-  returnPerfSignature=inputSignature;
-  return returnPerf = {pts: pts.filter(p=>p.show), all:pts, ytd:ytdBase(pts), noHist, noFx, usesFx, anyOHLC, syms, sources:[...new Set(syms.map(s=>H[s]&&H[s].source).filter(Boolean))]};
+  const r=(from,to,date,ev,purpose)=>date===end?accountingRate(from,to,date,ev,purpose):datedFx.rate(from,to,date,ev);
+  const I=PortfolioCurrency.evaluate(dayTx,quotes,r,'ILS',d,sessionI),U=PortfolioCurrency.evaluate(dayTx,quotes,r,'USD',d,sessionU);
+  for(const issue of [...I.issues,...U.issues])if(issue.reason==='missing-native-quote')noHist.add(issue.symbol);
+  const fields={o:I.equity,h:I.equity,l:I.equity}; // close-only valuation; no synthetic intraday portfolio candles
+  const valid=I.equity!=null&&U.equity!=null;const fx=r('USD','ILS',d).value;
+  pts.push({date:d,...fields,c:I.equity,u:U.equity,netDep:I.netDeposits,netDepU:U.netDeposits,fx,show:traded||d===start||d===end,unavailable:!valid,estimated:I.estimated||U.estimated});
+ }
+ if(transactionSignature!==JSON.stringify(state.txs)||inputSignature!==returnInputSignature())return null;
+ returnPerfSignature=inputSignature;
+ return returnPerf={pts:pts.filter(p=>p.show),all:pts,ytd:ytdBase(pts),noHist:[...noHist],noFx:pts.some(p=>p.c==null||p.u==null||p.netDep==null||p.netDepU==null),usesFx:txs.some(t=>t.currency!=='ILS'),anyOHLC:false,syms,sources:[...new Set(syms.map(sym=>H[sym]?.source).filter(Boolean))]};
 }
 
 // ====================== refresh ======================
 // ====================== refresh & live polling ======================
-let refreshing = false, manualWaiting = false, backoff = 0, pollTimer = null, lastPoll = 0, lastEquity = null, pollReady = false;
+let refreshing = false, manualWaiting = false, backoff = 0, pollTimer = null, lastPoll = 0, lastEquity=null,lastEquityCurrency=null,pollReady=false;
 const shownPrice = {};   // sym -> last displayed price (for green/red flash)
 function trackedSymbols(){ return [...new Set(state.txs.flatMap(t=>[t.symbol, t.toSymbol]).filter(Boolean))]; }
 function openSymbols(){ const L = computeLedger(); return Object.values(L.pos).filter(p=>Math.abs(p.qty)>1e-9).map(p=>p.sym); }
@@ -2479,6 +2545,7 @@ function applyQuotes(res, syms){
 // live=true: background poll → patch the UI in place instead of re-rendering
 async function refreshPrices(silent, live, quiet){   // quiet: this call (pull-to-refresh) never shows the result toast
   const b = $('btnRefresh') || document.createElement('button');   // v58: no header refresh button (pull-to-refresh + polling remain)
+  if(!live){currencySignature='';}
   if(refreshing){ if(!live && !quiet){ b.classList.add('spin'); manualWaiting = true; } return null; }   // a refresh is already running → show spinner, toast when it ends
   refreshing = true;
   if(!live){ b.classList.add('spin'); b.disabled = true; }
@@ -2544,6 +2611,7 @@ function ageInfo(sym, p){
 
 // ====================== rendering ======================
 function renderAll(){
+  if(!currencyLoading) queueMicrotask(()=>ensureCurrencyData());
   const S = computeAll();
   renderHeader(S); renderPortfolio(S); renderTxList(); renderIdx(); renderHeat(S);
   if(ui.tab==='perf') renderPerf(S); else if(ui.tab==='portfolio') renderMini(S);
@@ -2556,18 +2624,16 @@ function flash(el, dir){ if(!el || !dir) return; el.classList.remove('flash-up',
 //  % = that ÷ net deposits$;  daily = Σ holding moves in $ (shekel holdings include the FX move) ÷ their prior-close value in $.
 //  So the $ and ₪ percentages differ by the shekel/dollar move since each deposit – both are correct, from different viewpoints.
 function hdrVals(S){
-  const fx = fxNow(), usd = dispCur()==='USD' && fx > 0;
-  if(!usd) return {c:'ILS', eq:S.equity, pl:S.totalPL, plPct:chosenRet('0000',today(),false,S.equity)?.pct??null, day:S.dayILS, dayPct:S.dayPct, net:S.netIfSoldAll};
-  const eq = S.equity/fx, nd = S.L.netDepUSD, pl = eq - nd;
-  return {c:'USD', eq, pl, plPct:chosenRet('0000',today(),true,eq)?.pct??null, day:S.dayUSD, dayPct:S.dayPctUSD, net:S.netIfSoldAll/fx};
+ const c=dispCur(),E=currencyEconomic(c),usd=c==='USD',net=E.profit==null?null:(taxDisplay(S.closeFeesILS+S.TM.outstanding+S.hypoTax-S.TM.refundEstNow-S.hypoRefund,c,true)==null?null:E.profit-taxDisplay(S.closeFeesILS+S.TM.outstanding+S.hypoTax-S.TM.refundEstNow-S.hypoRefund,c,true));
+ return {c,eq:E.equity,pl:E.profit,plPct:chosenRet('0000',today(),usd,E.equity)?.pct??null,day:usd?S.dayUSD:S.dayILS,dayPct:usd?S.dayPctUSD:S.dayPct,net};
 }
 function renderHeader(S){ extSessMark();
   const has = state.txs.length>0, V = hdrVals(S), C = V.c;
   const bc = $('btnCur'); bc.setAttribute('aria-pressed', C==='USD'); bc.setAttribute('aria-label', C==='USD' ? I18n.p("ui-0130","מוצג בדולרים – החלפה לשקלים") : I18n.p("ui-0131","מוצג בשקלים – החלפה לדולרים"));   // v57: segmented ₪ | $ (CSS highlights the active one)
   const t = $('hTotal'); t.textContent = fmtMoney(V.eq,C,0);
-  if(lastEquity!=null && Math.abs(S.equity-lastEquity) >= 0.5 && !hidden()) flash(t, S.equity-lastEquity);
-  lastEquity = S.equity;
-  const hasDay = S.dayPct!=null;                                 // percentages stay visible with the eye toggle; amounts are masked by fmtSigned
+  if(lastEquityCurrency===C&&lastEquity!=null&&V.eq!=null&&Math.abs(V.eq-lastEquity)>=0.5 && !hidden()) flash(t,V.eq-lastEquity);
+  lastEquity=V.eq;lastEquityCurrency=C;
+  const hasDay = V.dayPct!=null;                                 // percentages stay visible with the eye toggle; amounts are masked by fmtSigned
   const d = $('hDay'); d.textContent = hasDay ? fmtSigned(V.day,C,0) : '—'; d.className = 'tp-a num '+cls(V.day);
   const dp = $('hDayPct'); dp.textContent = hasDay && V.dayPct!=null ? fmtPct(V.dayPct) : '—'; dp.className = 'tp-v num '+cls(V.day);
   const open = (S.dayMk||[]).some(m=>{ const st = marketState(m).state; return st==='open' || st==='pre' || st==='post'; });
@@ -2584,13 +2650,13 @@ function renderHeader(S){ extSessMark();
   if(preSlot){ const amt = P ? (C==='USD' ? P.usd : P.ils) : null, pc = P ? (C==='USD' ? P.pctUSD : P.pct) : null;
     const html = `<span class="pre-tag">${P ? P.kind : extKind()}</span><b class="num ${cls(amt)}">${pc!=null ? fmtPct(pc) : '—'}</b><span class="num ${cls(amt)}">${amt!=null ? fmtSigned(amt, C, 0) : ''}</span>`; if(hp.innerHTML !== html) hp.innerHTML = html; }
   // v57: stat tiles – cost / unrealized / realized (v58: cash tile removed) in the display currency; amounts masked by the eye (fmtMoney / fmtSigned)
-  { const fx = fxNow(), cv = v=>v==null ? null : (C==='USD' && fx>0 ? v/fx : v), cost = S.mvILS - S.unrealILS;
-    const T = [[I18n.p("ui-0134","עלות"), has ? fmtMoney(cv(cost), C, 0) : '—', ''], [I18n.p("ui-0135","לא ממומש"), has ? fmtSigned(cv(S.unrealILS), C, 0) : '—', cls(S.unrealILS)], [I18n.p("ui-0136","ממומש"), has ? fmtSigned(cv(S.realizedILS), C, 0) : '—', cls(S.realizedILS)]];
+  { const E=currencyEconomic(C), cv=v=>v, cost=E.marketValue==null||E.unrealized==null?null:E.marketValue-E.unrealized;
+    const T = [[I18n.p("ui-0134","עלות"), has ? fmtMoney(cv(cost), C, 0) : '—', ''], [I18n.p("ui-0135","לא ממומש"), has ? fmtSigned(E.unrealized, C, 0) : '—', cls(E.unrealized)], [I18n.p("ui-0136","ממומש"), has ? fmtSigned(E.realized, C, 0) : '—', cls(E.realized)]];
     const html = T.map(([l,v,c])=>`<div class="hst"><span>${l}</span><b class="num ${c}">${v}</b></div>`).join(''); const hs = $('hStats'); if(hs.innerHTML !== html) morph(hs, html); }
   // v98: the cash balances live in the expanded header (one slim line; amounts masked by the eye through fmtMoney; hidden when collapsed by CSS)
-  { const hc = $('hCash'), c = S.L.cash, fx2 = fxNow(), tot = C==='USD' ? (fx2>0 ? c.USD + c.ILS/fx2 : null) : c.ILS + c.USD*(fx2||0);
-    const show = has, neg = c.ILS < -0.005 || c.USD < -0.005;
-    const html = show ? `${I18n.p("ui-0139","<span class=\"hc-l\">מזומן")}${neg ? ' ⚠️' : ''}</span><span class="hc-i"><b class="num ${c.ILS < -0.005 ? 'neg' : ''}">${fmtMoney(c.ILS,'ILS',0)}</b></span><span class="hc-i"><b class="num ${c.USD < -0.005 ? 'neg' : ''}">${fmtMoney(c.USD,'USD',0)}</b></span>${tot!=null ? `${I18n.p("ui-0137","<span class=\"hc-t\">(סה״כ <b class=\"num\">")}${fmtMoney(tot,C,0)}</b>)</span>` : ''}${S.cashWeight!=null ? `<span class="hc-w"><b class="num">${fmtW(S.cashWeight)}${I18n.p("ui-0138","</b> מהתיק</span>")}` : ''}` : '';   // v104: cash as % of the portfolio – a percentage, never masked by the eye
+  { const hc = $('hCash'), c = S.L.cash, fx2 = fxNow(), tot=currencyEconomic(C).cashValue;
+    const show = has, neg=Object.values(c).some(v=>v<-.005);
+    const html = show ? `${I18n.p("ui-0139","<span class=\"hc-l\">מזומן")}${neg ? ' ⚠️' : ''}</span><span class="hc-i"><b class="num ${c.ILS < -0.005 ? 'neg' : ''}">${fmtMoney(c.ILS,'ILS',0)}</b></span><span class="hc-i"><b class="num ${c.USD < -0.005 ? 'neg' : ''}">${fmtMoney(c.USD,'USD',0)}</b></span>${Object.keys(c).filter(cur=>!['ILS','USD'].includes(cur)).map(cur=>`<span class="hc-i"><b class="num">${fmtMoney(c[cur],cur,0)}</b></span>`).join('')}${tot!=null ? `${I18n.p("ui-0137","<span class=\"hc-t\">(סה״כ <b class=\"num\">")}${fmtMoney(tot,C,0)}</b>)</span>` : ''}${S.cashWeight!=null ? `<span class="hc-w"><b class="num">${fmtW(S.cashWeight)}${I18n.p("ui-0138","</b> מהתיק</span>")}` : ''}` : '';   // v104: cash as % of the portfolio – a percentage, never masked by the eye
     if(hc.hidden !== !show) hc.hidden = !show; if(hc.innerHTML !== html) hc.innerHTML = html; }
   renderEye();
   $('hUpd').textContent = state.lastRefresh ? `${I18n.p("ui-0141","מחירים עודכנו ")}${new Date(state.lastRefresh).toLocaleTimeString(I18n.locale)}${state.refreshErrors?` · ${state.refreshErrors}${I18n.p("ui-0140"," לא עודכנו")}`:''}` : I18n.p("ui-0142","טרם עודכנו מחירים");
@@ -2599,15 +2665,15 @@ const CASH_KEY = 'portfolioTracker.cashOpen';
 function cashOpen(){ try{ return localStorage.getItem(CASH_KEY)==='1'; }catch(e){ return false; } }
 function renderCash(S){
   const c = S.L.cash, fx = fxNow();
-  const C = dispCur()==='USD' && fx ? 'USD' : 'ILS', tot = C==='USD' ? c.USD + c.ILS/fx : c.ILS + c.USD*(fx||0);
+  const C=dispCur(),tot=currencyEconomic(C).cashValue;
   M($('fxSmall')).h = `${I18n.p("ui-0143","סה״כ <b class=\"num\" id=\"cashTot\">")}${fmtMoney(tot,C,0)}</b>` + (S.cashWeight!=null ? ` · <span class="cw" id="cashW">${fmtW(S.cashWeight)}${I18n.p("ui-0144"," מהתיק</span>")}` : '') + (fx ? `<span class="fxr"> · <span class="num">$1 = ₪${fx.toFixed(4)}</span></span>` : '');
   // compact view: the cash card folds to one slim row (total in the header currency); tap to open – remembered like the holdings view
   const card = $('cashCard'), compact = posView()==='compact', open = !compact || cashOpen();
   card.classList.toggle('collapsible', compact); card.classList.toggle('collapsed', !open);
   $('cashHead').setAttribute('role', compact ? 'button' : 'heading'); $('cashHead').setAttribute('aria-expanded', String(open));
-  $('cashChev').textContent = compact ? ((!open && (c.ILS < -0.005 || c.USD < -0.005) ? '⚠️ ' : '') + (open ? '▴' : '▾')) : '';
-  M($('cashRow')).h = ['ILS','USD'].map(cur=>{ const neg = c[cur] < -0.005;
-    return `<div class="c ${neg?'negc':''}"><div class="l">${cur==='ILS'?I18n.p("ui-0145","מזומן בשקלים"):I18n.p("ui-0146","מזומן בדולרים")}</div>
+  $('cashChev').textContent = compact ? ((!open && Object.values(c).some(v=>v<-.005) ? '⚠️ ' : '') + (open ? '▴' : '▾')) : '';
+  M($('cashRow')).h = [...new Set(['ILS','USD',...Object.keys(c)])].map(cur=>{ const neg = c[cur] < -0.005;
+    return `<div class="c ${neg?'negc':''}"><div class="l">${cur==='ILS'?I18n.p("ui-0145","מזומן בשקלים"):cur==='USD'?I18n.p("ui-0146","מזומן בדולרים"):esc(cur)}</div>
      <div class="v num ${neg?'neg':''}">${fmtMoney(c[cur],cur)}</div>
      ${cur==='USD'&&fx&&Math.abs(c.USD)>0.005?`<div class="l num">≈ ${fmtMoney(c.USD*fx,'ILS',0)}</div>`:''}${neg?I18n.p("ui-0147","<div class=\"l neg\">⚠️ יתרה שלילית</div>"):''}</div>`; }).join('');
 }
@@ -2675,8 +2741,7 @@ document.addEventListener('error', e=>{ const im = e.target; if(!im || im.tagNam
   if(n < LOGO_SRC.length){ im.dataset.li = n; im.className = n ? 'fmp' : ''; im.src = LOGO_SRC[n](sym); }
   else { im.remove(); logoSet(sym, -1); } }, true);
 function chgPct(v){ if(v==null||!isFinite(v)) return '—'; return (v>0.0000001?'+':'') + (Math.abs(v)>=100 ? v.toFixed(0) : v.toFixed(2)) + '%'; }
-function chgAmt(v, p, digits){ if(v==null||!isFinite(v)) return '—'; const toILSv = dispCur()==='ILS' && p.cur==='USD' && fxNow();
-  return fmtSigned(toILSv ? toILS(v,'USD') : v, toILSv ? 'ILS' : p.cur, digits); }
+function chgAmt(v,p,digits){const r=accountingRate(p.cur,dispCur(),today(),null,'equity').value;return fmtSigned(v==null||r==null?null:v*r,dispCur(),digits)}
 function chgLines(F){ const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0]}</b>`;
   const row = (lbl, p, a)=>`<div class="chg"><span class="chg-l">${lbl}</span>${f(p)}<i class="chg-d">·</i>${f(a)}</div>`;
   return `<div class="pchg">${row(I18n.p("ui-0148","שינוי יומי"),'cdp','cda')}${row(I18n.p("ui-0149","שינוי מעלות"),'cup','cua')}</div>`; }
@@ -2684,8 +2749,14 @@ function chgLines(F){ const f = k=>`<b data-f="${k}" class="${F[k][1]}">${F[k][0
 function posExtChange(p){ const e = p && p.ext;
   if(!e || !['pre','after','night'].includes(e.kind) || p.manual || !Number.isFinite(e.chg) || !Number.isFinite(e.pct) || !Number.isFinite(p.qty) || !p.qty) return null;
   return {kind:e.kind, amt:p.qty*e.chg, pct:e.pct*(p.qty<0?-1:1)}; }
+function displayEconomicPosition(p){
+ const base=dispCur(),E=currencyEconomic(base),econ=E.positions[p.sym],con=E.contributions[p.sym],cv=v=>{const r=accountingRate(p.cur,base,today(),null,'equity').value;return v==null||r==null?null:v*r},d=economicDaily(p.sym,p.qty,base);
+ const unreal=con?.unrealized??(Math.abs(p.qty)<1e-9?0:null),closeFee=cv(p.closeFee),tax=taxDisplay(p.taxILS,base,true),refund=taxDisplay(p.refundP,base,true);
+ return {...p,cur:base,price:cv(p.price),prePrice:cv(p.prePrice),mv:con?.marketValue??(Math.abs(p.qty)<1e-9?0:null),unreal,unrealPct:con?.returnPct??null,avg:con?.cost==null||!p.qty?null:con.cost/p.qty,day:d?.amount??null,dayPct:d&&d.previous>0?d.amount/d.previous*100:null,realized:econ?.realized??null,fees:econ?.fees??null,closeFee,netIfSold:unreal==null||closeFee==null||tax==null||refund==null?null:unreal-closeFee-tax+refund};
+}
 function cardFields(p){
-  const ex = posExtChange(p), cur = p.cur, a = ageInfo(p.sym, p), hlq = p.manual ? null : haltOf(state.quotes[p.sym]);
+ const base=dispCur(),original=p;p=displayEconomicPosition(p);
+ const nativeEx=posExtChange(original),ex=nativeEx?{...nativeEx,amt:convertCur(nativeEx.amt,original.cur,base)}:null,cur=p.cur,a=ageInfo(p.sym,p),hlq=p.manual?null:haltOf(state.quotes[p.sym]);
   // collapsed row: share price + daily % (plus change-from-cost % while sorting by it); value, amounts and change-from-cost live in the details
   return {
     hd:[p.dayPct!=null ? fmtPct(p.dayPct) : '—', 'num '+cls(p.dayPct)],
@@ -2715,8 +2786,8 @@ function cardFields(p){
     unra:[fmtSigned(p.unreal,cur), 'num '+cls(p.unreal)],
     unrp:[fmtPct(p.unrealPct), 'num '+cls(p.unreal)],
     cost:[fmtMoney(Math.abs(p.qty)*p.avg,cur), 'num'],
-    costils:[taxPend() ? TXP : p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', 'num'],
-    mvils2:[p.mvILS!=null ? fmtMoney(p.mvILS,'ILS',0) : '—', 'num']};
+    costils:[taxPend() ? TXP : p.costILS>0 ? fmtMoney(taxDisplay(p.costILS),base) : '—', 'num'],
+    mvils2:[p.mvILS!=null ? fmtMoney(p.mv,base,0) : '—', 'num']};
 }
 // ---------- splits the portfolio is missing (checked in each security's unadjusted price history, whole holding period) ----------
 let splitSug = [];
@@ -2941,7 +3012,7 @@ function livePatch(){
 }
 function txDesc(t){
   if(CASH_FLOW[t.type]){
-    const cur = t.currency==='USD' ? 'USD' : 'ILS', v = CASH_FLOW[t.type]*(num(t.amount)||0), k = t.taxKind;
+    const cur=t.currency,v=CASH_FLOW[t.type]*(num(t.amount)||0), k = t.taxKind;
     let l = TX_LABELS[t.type];
     if(t.type==='tax') l = k==='cgt' ? I18n.p("ui-0235","מס רווחי הון ששולם") : k==='foreign' ? I18n.p("ui-0236","מס במקור בחו״ל") : k==='il' ? I18n.p("ui-0237","מס ישראלי על דיבידנד") : k==='int' ? I18n.p("ui-0238","מס על ריבית/תקבולים") : I18n.p("ui-0239","מס ששולם");
     else if(t.type==='taxrefund') l = k==='cgt' ? I18n.p("ui-0240","זיכוי מס רווחי הון") : k==='foreign' ? I18n.p("ui-0241","החזר מס במקור (חו״ל)") : k==='il' ? I18n.p("ui-0242","החזר מס ישראלי") : k==='int' ? I18n.p("ui-0243","החזר מס על ריבית/תקבולים") : I18n.p("ui-0244","החזר מס");
@@ -2958,7 +3029,7 @@ function txDesc(t){
   if(t.type==='sharebonus') return num(t.qty)<0 ? {t1:`${I18n.p("ux-0277","הפחתת כמות <span class=\"ltr\">")}${esc(t.symbol)}</span>${vd}`, amt:`<span class="num">${fmtQty(num(t.qty))}${I18n.p("ux-0278","</span> יח׳")}`, c:'neg'}
     : {t1:`${I18n.p("ux-0279","מניות הטבה <span class=\"ltr\">")}${esc(t.symbol)}</span>${vd}`, amt:`<span class="num">+${fmtQty(num(t.qty))}${I18n.p("ux-0280","</span> יח׳")}`, c:'pos'};
   if(t.type==='split') return {t1:`${num(t.ratio)<1?I18n.p("ux-0281","איחוד"):I18n.p("ux-0282","פיצול")} <span class="ltr">${esc(t.symbol)}</span> · <span class="num">${splitLabel(t.ratio).replace(/^(?:Reverse split|Split|איחוד|פיצול) /,'')}${I18n.p("ux-0284","</span> · כל מניה ← <span class=\"num\">")}${fmtQty(num(t.ratio))}</span>${t.dupSkip?`${I18n.p("ux-0283"," · <b class=\"neg\">לא הוחל – כפילות</b>")}`:''}${vd}`, amt:`<span class="num">×${fmtQty(num(t.ratio))}</span>`, c:''};
-  if(t.type==='deposit'||t.type==='withdraw') return {t1:`${TX_LABELS[t.type]} ${t.currency==='USD'?I18n.p("ux-0285","דולרים"):I18n.p("ux-0286","שקלים")}`, amt:fmtSigned((t.type==='deposit'?1:-1)*t.amount, t.currency), c: t.type==='deposit'?'pos':'neg'};
+  if(t.type==='deposit'||t.type==='withdraw') return {t1:`${TX_LABELS[t.type]} ${t.currency==='USD'?I18n.p("ux-0285","דולרים"):t.currency==='ILS'?I18n.p("ux-0286","שקלים"):esc(t.currency||'?')}`, amt:fmtSigned((t.type==='deposit'?1:-1)*t.amount, t.currency), c: t.type==='deposit'?'pos':'neg'};
   if(t.type==='convert'){ const to = t.from==='ILS'?'USD':'ILS'; const net = t.amount-(t.fee||0); const recv = t.from==='ILS' ? net/t.rate : net*t.rate;
     return {t1:`${I18n.p("ux-0287","המרה ")}${CUR_SYM[t.from]} → ${CUR_SYM[to]} <span class="num muted">@${num(t.rate).toFixed(4)}</span>`, amt:`${fmtMoney(recv,to)}`, c:''}; }
   return {t1:`${TX_LABELS[t.type]}${t.type==='sell' && t.lotMethod==='lifo' ? '<span class="tag lifo">LIFO</span>' : ''} <span class="ltr">${esc(t.symbol)}</span> · <span class="num">${hidden() ? MASK : fmtQty(t.qty)+' × '+fmtPrice(t.price,t.currency)}</span>`,
@@ -3153,17 +3224,17 @@ function ytdBase(all){ return rangeBase(all, ytdStart()); }
 function rangeBase(all, rStart){
   if(!all || !all.length) return null;
   const d0 = addDays(rStart, -1), before = all.filter(x=>x.date<=d0).pop();
-  const start = before ? d0 : all[0].date, V0 = before ? before.c : 0, V0u = before && before.fx ? before.c/before.fx : 0;   // in $: the 31/12 value at the 31/12 FX close
-  let prev = before ? before.netDep : 0, prevU = before ? (before.netDepU||0) : 0; const flows = [], flowsU = [];
-  all.filter(x=>x.date > (before ? d0 : '')).forEach(x=>{ const f = x.netDep - prev, fu = (x.netDepU||0) - prevU; prev = x.netDep; prevU = x.netDepU||0;
-    if(Math.abs(f) > 0.005) flows.push([x.date, f]); if(Math.abs(fu) > 0.005) flowsU.push([x.date, fu]); });
+  const start = before ? d0 : all[0].date, V0 = before ? before.c : 0, V0u = before ? (Object.hasOwn(before,'u')?before.u:before.fx?before.c/before.fx:null) : 0;   // in $: the 31/12 value at the 31/12 FX close
+  let prev=before?before.netDep:0,prevU=before?before.netDepU:0; const flows = [], flowsU = [];
+  all.filter(x=>x.date > (before ? d0 : '')).forEach(x=>{ const f=x.netDep==null||prev==null?null:x.netDep-prev,fu=x.netDepU==null||prevU==null?null:x.netDepU-prevU;prev=x.netDep;prevU=x.netDepU;
+    if(f==null||Math.abs(f)>0.005)flows.push([x.date,f]);if(fu==null||Math.abs(fu)>0.005)flowsU.push([x.date,fu]); });
   return {start, rStart, V0, flows, V0u, flowsU, fromStart: !before};
 }
-function ytdCalc(Y,V1,usd,end){if(!Y)return null;const r=chosenRet(Y.rStart,end||today(),usd,V1);return r?{...r,F:(usd?Y.flowsU:Y.flows).filter(x=>x[0]<=(end||today())).reduce((a,x)=>a+x[1],0),V0:usd?Y.V0u:Y.V0}:null;}
+function ytdCalc(Y,V1,usd,end){if(!Y)return null;const r=chosenRet(Y.rStart,end||today(),usd,V1);return r?{...r,F:(usd?Y.flowsU:Y.flows).filter(x=>x[0]<=(end||today())).reduce((a,x)=>a==null||x[1]==null?null:a+x[1],0),V0:usd?Y.V0u:Y.V0}:null;}
 function renderYtd(S){
   const el = $('perfYtd'); if(!el) return;
-  S = S || computeAll(); const fx = fxNow(), C = dispCur()==='USD' && fx ? 'USD' : 'ILS';
-  const r = ytdCalc(perfYtd, C==='USD' ? S.equity/fx : S.equity, C==='USD'); if(!r){ el.innerHTML = ''; return; }
+  S=S||computeAll();const C=dispCur();
+  const r=ytdCalc(perfYtd,currencyEconomic(C).equity,C==='USD'); if(!r){ el.innerHTML = ''; return; }
   const y = today().slice(0,4);
   el.innerHTML = `${I18n.p("ui-0269","<div class=\"l\">תשואה מתחילת השנה (")}${y}) · ${methodName()}${ib(`<div>${methodNote()}</div><div>${perfYtd.fromStart ? `${I18n.p("ui-0264","מאז פתיחת התיק ב-<span class=\"num\">")}${fmtDate(perfYtd.start)}</span>` : `${I18n.p("ui-0265","מול שווי 31.12.")}${Number(y)-1}: <span class="num">${fmtMoney(r.V0,C,0)}</span>`}${I18n.p("ui-0267"," · הפקדות נטו השנה <span class=\"num\">")}${fmtSigned(r.F,C,0)}</span>${C==='USD'?I18n.p("ui-0266"," · בדולרים"):''}</div>`, I18n.p("ui-0268","איך מחושבת התשואה מתחילת השנה"))}</div>
     <div class="v"><b id="ytdPct" class="num ${cls(r.gain)}">${r.pct!=null ? fmtPct(r.pct) : '—'}</b><span id="ytdAmt" class="num ${cls(r.gain)}">${fmtSigned(r.gain,C,0)}</span></div>`;
@@ -3171,7 +3242,7 @@ function renderYtd(S){
 function updatePerfLive(S){
   renderYtd(S);
   const L = perfLive; if(!perfChart || !L || L.date!==today()) return;
-  const fx = fxNow(), eq = L.usd ? (fx ? S.equity/fx : null) : S.equity; if(eq==null) return;
+  const eq=currencyEconomic(L.usd?'USD':'ILS').equity;if(eq==null)return;
   try{
     if(L.mode==='candle'){ L.h = Math.max(L.h, eq); L.l = Math.min(L.l, eq); L.series.update({time:L.date, open:L.o, high:L.h, low:L.l, close:eq}); }
     else if(L.mode==='value') L.series.update({time:L.date, value:eq});
@@ -3216,13 +3287,13 @@ async function renderPerf(S){
   perfChart = makeChart(el, true, false);     // % axis: nothing to mask with the eye
   const legend = [], cmp = [];
   // values in the header's currency (₪/$ toggle): $ = each day's ILS value at that day's FX close; net deposits in $ at each deposit's own rate
-  const C = dispCur()==='USD' && fxNow() ? 'USD' : 'ILS', usd = C==='USD';
-  const vOf = (p, k='c') => usd ? p[k]/(p.fx||fxNow()) : p[k], ndOf = p => usd ? (p.netDepU||0) : p.netDep;
+  const C=dispCur(),usd=C==='USD';
+  const vOf = (p,k='c') => usd ? (k==='c'&&Object.hasOwn(p,'u')?p.u:(p[k]==null||!(p.fx>0)?null:p[k]/p.fx)) : p[k], ndOf = p => usd ? p.netDepU : p.netDep;
   const RB = rangeBase(perf.all, rStart), lastP = pts[pts.length-1];
   // One period engine drives the series, selected-range tile, YTD, and P/L return.
   const ret = (V, nd, end) => ytdCalc(RB,V,usd,end);
   const liveRet = (V, S2) => ret(V, isAll ? (usd ? S2.L.netDepUSD : S2.L.netDepILS) : null, today());
-  const series = pts.map(p=>{ const V = p.date===lastP.date && lastP.date===today() ? (usd ? S.equity/fxNow() : S.equity) : vOf(p);
+  const series = pts.map(p=>{ const V = p.date===lastP.date && lastP.date===today() ? currencyEconomic(C).equity : vOf(p);
     const r = p.date===today() ? liveRet(V, S) : ret(V, ndOf(p), p.date); return {p, V, r}; });
   const last = series[series.length-1].r || {gain:0, pct:null}, portRet = last.pct;
   {
@@ -3255,7 +3326,7 @@ async function renderPerf(S){
   $('perfLegend').innerHTML = legend.map(([c,t])=>`<span><i style="background:${c}"></i>${esc(t)}</span>`).join('');
   $('perfCmp').innerHTML = cmp.join('');
   $('perfSrc').textContent = perf.sources.length ? I18n.p("ui-0293","מקור: ")+perf.sources.join(', ') : '';
-  $('perfNote').innerHTML=esc(methodNote())+(usd?I18n.p("ui-0294"," בדולרים: כל הפקדה לפי השער ביום שלה."):'')+(last.reason?' '+esc(last.reason)+'.':'')+I18n.p("ui-0295"," מדדים: תשואת מחיר ללא דיבידנדים, באותו מטבע ומאותו יום בסיס כמו התיק. ב־IRR: השקעה מדומה עם אותם תזרימים ותאריכים.")+(bOn.length?'':I18n.p("ui-0296"," הוסיפו או הפעילו מדד השוואה מתחת לגרף."))+(perf.noHist.length?I18n.p("ui-0297","<br>⚠️ אין היסטוריית מחירים עבור <span class=\"ltr\">")+perf.noHist.map(esc).join(', ')+I18n.p("ui-0298","</span> - הוערך לפי מחיר העסקה/ידני."):'')+(perf.noFx&&(usd||perf.usesFx)?I18n.p("ui-0299","<br>⚠️ אין היסטוריית שער מטבע מלאה לחישוב התשואה."):'')+I18n.p("ui-0300"," הגרף מציג תשואה מצטברת מתחילת הטווח, כך שהפקדות ומשיכות אינן רווח.");syncMethod();if(last.reason){const q=$('perfPortRet');if(q)q.title=last.reason;}renderHeader(S);renderPL(S);
+  $('perfNote').innerHTML=esc(methodNote())+(usd?I18n.p("ui-0294"," בדולרים: כל הפקדה לפי השער ביום שלה."):'')+(last.reason?' '+esc(last.reason)+'.':'')+I18n.p("ui-0295"," מדדים: תשואת מחיר ללא דיבידנדים, באותו מטבע ומאותו יום בסיס כמו התיק. ב־IRR: השקעה מדומה עם אותם תזרימים ותאריכים.")+(bOn.length?'':I18n.p("ui-0296"," הוסיפו או הפעילו מדד השוואה מתחת לגרף."))+(perf.noHist.length?I18n.p("ui-0297","<br>⚠️ אין היסטוריית מחירים עבור <span class=\"ltr\">")+perf.noHist.map(esc).join(', ')+(I18n.language==='en'?'</span> - affected values and returns are unavailable.':'</span> - הסכומים והתשואות התלויים בהם אינם זמינים.'):'')+(perf.noFx&&(usd||perf.usesFx)?I18n.p("ui-0299","<br>⚠️ אין היסטוריית שער מטבע מלאה לחישוב התשואה."):'')+I18n.p("ui-0300"," הגרף מציג תשואה מצטברת מתחילת הטווח, כך שהפקדות ומשיכות אינן רווח.");syncMethod();if(last.reason){const q=$('perfPortRet');if(q)q.title=last.reason;}renderHeader(S);renderPL(S);
 }
 // ---------- quick benchmarks (S&P 500 / נאסד"ק) – shared by the main-screen chart and the performance tab ----------
 // Data: CNBC daily history (free, no key) of the index itself (.SPX / .NDX); if it has no data, the ETF (SPY / QQQ).
@@ -3473,19 +3544,16 @@ async function quickBmHist(q, from){
 // dollar strengthens, exactly like a dollar holding in the portfolio. Base (I_0, X_0) = the close of the range's base day (the
 // day before the range starts – the same base the portfolio's range return uses; "הכול" = the portfolio's first day).
 // Price return only, no dividends.
-function priceBenchSeries(h, pts, base, C){
-  if(!h || !h.bars || !h.bars.length || !pts.length) return null;
-  const conv = (fx)=> h.cur===C ? 1 : (h.cur==='USD' && C==='ILS') ? fx : (h.cur==='ILS' && C==='USD') ? 1/fx : 1;
-  let I0 = null; for(const x of h.bars){ if(x[0] <= base.date) I0 = x[4]; else break; }
-  if(I0==null) I0 = h.bars[0][4];
-  const X0 = conv(base.fx || pts[0].fx || fxNow() || 3.7), m = barMap(h);
-  let lastI = I0; for(const x of h.bars){ if(x[0] < pts[0].date) lastI = x[4]; else break; }
-  const data = pts.map(p=>{ const x = m.get(p.date); if(x) lastI = x[4]; return {time:p.date, value:((lastI*conv(p.fx || fxNow() || 3.7))/(I0*X0) - 1)*100}; });
-  if(base.date < pts[0].date) data.unshift({time:base.date, value:0});
-  return {data, ret:data[data.length-1].value};
+function priceBenchSeries(h,pts,base,C){
+ if(!h?.bars?.length||!pts.length)return null;
+ let I0=null;for(const x of h.bars){if(x[0]<=base.date)I0=x[4];else break}if(I0==null)return null;
+ const rate=d=>d===today()?accountingRate(h.cur,C,d,null,'equity').value:datedFx.rate(h.cur,C,d).value;
+ const X0=rate(base.date);if(!(X0>0))return null;const m=barMap(h),data=[];let lastI=I0;
+ for(const p of pts){const x=m.get(p.date);if(x)lastI=x[4];const r=rate(p.date);if(!(r>0))return null;data.push({time:p.date,value:(lastI*r/(I0*X0)-1)*100})}
+ if(base.date<pts[0].date)data.unshift({time:base.date,value:0});return{data,ret:data.at(-1).value};
 }
 function benchSeries(h,pts,base,C){if(returnMethod==='IRR'&&h?.bars?.length&&pts.length&&h.bars[0][0]>pts[0].date)return null;const b=priceBenchSeries(h,pts,base,C);if(!b||returnMethod!=='IRR'||!returnPerf)return b;
- const usd=C==='USD',start=pts[0].date,before=returnPerf.all.filter(p=>p.date<start).at(-1),V0=before?(usd?before.c/before.fx:before.c):0,nd=p=>usd?p.netDepU:p.netDep;let prev=before?nd(before):0,units=V0;
+ const usd=C==='USD',start=pts[0].date,before=returnPerf.all.filter(p=>p.date<start).at(-1),V0=before?(usd?(Object.hasOwn(before,'u')?before.u:before.c/before.fx):before.c):0,nd=p=>usd?p.netDepU:p.netDep;let prev=before?nd(before):0,units=V0;
  const prices=new Map(b.data.map(p=>[p.time,1+p.value/100])),synthetic=[];if(before)synthetic.push({...before,c:V0,fx:1,netDep:prev,netDepU:prev});
  for(const p of returnPerf.all.filter(p=>p.date>=start)){let price=prices.get(p.date);if(price==null){const prior=b.data.filter(x=>x.time<=p.date).at(-1);price=prior?1+prior.value/100:1;}const flow=nd(p)-prev;prev=nd(p);if(!(price>0)||!Number.isFinite(flow))return null;units+=flow/price;if(units< -1e-7)return null;synthetic.push({date:p.date,c:units*price,fx:1,netDep:prev,netDepU:prev});}
  const results=pts.map(p=>({time:p.date,value:portfolioPeriod(synthetic,start,p.date,'IRR',false)?.pct}));if(results.at(-1)?.value==null)return null;const data=results.filter(p=>p.value!=null);return data.length?{data,ret:results.at(-1).value}:null;}
@@ -3528,8 +3596,8 @@ async function renderMini(S, force){
   destroyMini(); miniKey = key; $('miniLeg').innerHTML = '';
   if(!pts.length){ msg.style.display = 'flex'; msg.textContent = I18n.p("ui-0314","אין נתונים בטווח הזה"); setMiniRet(null); return; }
   msg.style.display = 'none';
-  const C = dispCur()==='USD' && fxNow() ? 'USD' : 'ILS', usd = C==='USD', lastP = pts[pts.length-1];
-  const vOf = p => usd ? p.c/(p.fx||fxNow()) : p.c, eqNow = S2 => usd ? S2.equity/fxNow() : S2.equity;
+  const C=dispCur(),usd=C==='USD',lastP=pts[pts.length-1];
+  const vOf=p=>usd?(Object.hasOwn(p,'u')?p.u:p.c==null||!(p.fx>0)?null:p.c/p.fx):p.c,eqNow=()=>currencyEconomic(C).equity;
   const RB = rangeBase(perf.all, rStart);
   const ret = (V, S2) => ytdCalc(RB,V,usd,today());
   const el = $('miniChart'), pctMode = true; miniChart = makeChart(el, true, false);   // % return, like the tab
@@ -3564,7 +3632,7 @@ function updateMiniLive(S){
 function renderAlloc(S){
   const items = S.positions.filter(p=>p.qty>0 && p.mvILS>0).map(p=>({k:p.sym, v:p.mvILS}));
   if(S.L.cash.ILS>0) items.push({k:I18n.p("ux-0292","מזומן ₪"), v:S.L.cash.ILS});
-  const usdC = toILS(S.L.cash.USD,'USD'); if(usdC>0) items.push({k:I18n.p("ux-0293","מזומן $"), v:usdC});
+  for(const [cur,value]of Object.entries(S.L.cash)){if(cur==='ILS'||!(value>0))continue;const r=accountingRate(cur,'ILS',today(),null,'equity').value;if(r>0)items.push({k:(I18n.language==='en'?'Cash ':'מזומן ')+(CUR_SYM[cur]||cur),v:value*r})}
   const tot = items.reduce((a,b)=>a+b.v,0), shorts = S.positions.filter(p=>p.qty<0);
   if(!tot){ $('alloc').innerHTML = I18n.p("ui-0319","<div class=\"empty\">אין נתונים להצגה</div>"); return; }
   items.sort((a,b)=>b.v-a.v);
@@ -3575,25 +3643,28 @@ function renderAlloc(S){
     ${shorts.length?`${I18n.p("ui-0320","<div class=\"note\">פוזיציות שורט (התחייבות, לא בעוגה): ")}${shorts.map(p=>`<span class="ltr">${esc(p.sym)}</span> <span class="num">${fmtMoney(p.mvILS,'ILS',0)}</span>`).join(' · ')}</div>`:''}`;
 }
 function renderPL(S){
-  const cumulative=chosenRet('0000',today(),dispCur()==='USD'&&fxNow()>0,dispCur()==='USD'&&fxNow()>0?S.equity/fxNow():S.equity);
+  const C=dispCur(),E=currencyEconomic(C),tx=v=>taxDisplay(v,C);
+  const cumulative=chosenRet('0000',today(),C==='USD',E.equity);
   const why=cumulative?.reason || (!returnPerf ? I18n.p("ui-0321","היסטוריית התיק עדיין בטעינה") : I18n.p("ui-0322","ממתין לעדכון חישוב לאחר שינוי עסקאות"));
   const rows = [
-    [I18n.p("ui-0323","רווח/הפסד כולל (ברוטו)"), fmtSigned(S.totalPL,'ILS',0), S.totalPL],
-    [I18n.p("ui-0324","תשואה מאז הפתיחה · ")+methodName(), fmtPct(chosenRet('0000',today(),dispCur()==='USD'&&fxNow()>0,dispCur()==='USD'&&fxNow()>0?S.equity/fxNow():S.equity)?.pct), chosenRet('0000',today(),dispCur()==='USD'&&fxNow()>0,dispCur()==='USD'&&fxNow()>0?S.equity/fxNow():S.equity)?.pct],
-    [I18n.p("ui-0325","רווח ממומש (ברוטו)"), fmtSigned(S.realizedILS,'ILS',0), S.realizedILS],
-    [`${I18n.p("ui-0326","מס משוער על הממומש (")}${state.settings.taxRate}${I18n.p("ui-0327","%, אחרי מגן מס)")}`, fmtMoney(-S.taxRealized,'ILS',0), -S.taxRealized],
-    ...(S.hasFlows ? [[I18n.p("ui-0328","דיבידנדים שהתקבלו"), fmtSigned(S.divILS,'ILS',0), S.divILS], [I18n.p("ui-0329","ריבית והטבות"), fmtSigned(S.intILS,'ILS',0), S.intILS],
-      [I18n.p("ui-0330","מסים שנוכו בפועל (נטו)"), fmtMoney(-S.taxPaidILS,'ILS',0), -S.taxPaidILS]] : []),
-    ...(Math.abs(S.cgtPaidILS)>0.005 ? [[I18n.p("ui-0331","מתוכם מס רווחי הון ששולם"), fmtMoney(-S.cgtPaidILS,'ILS',0), -S.cgtPaidILS]] : []),
-    [I18n.p("ui-0332","רווח לא ממומש (ברוטו)"), fmtSigned(S.unrealILS,'ILS',0), S.unrealILS],
-    [I18n.p("ui-0333","נטו אם מוכרים הכול עכשיו"), taxPend() ? TXP : fmtSigned(S.netIfSoldAll,'ILS',0), S.netIfSoldAll],
-    [I18n.p("ui-0334","עמלות ששולמו"), fmtMoney(S.feesILS,'ILS',0), 0],
-    [I18n.p("ui-0335","הפקדות נטו"), fmtMoney(S.L.netDepILS,'ILS',0), 0]];
+    [I18n.p("ui-0323","רווח/הפסד כולל (ברוטו)"), fmtSigned(E.profit,C,0), E.profit],
+    [I18n.p("ui-0324","תשואה מאז הפתיחה · ")+methodName(), fmtPct(chosenRet('0000',today(),C==='USD',E.equity)?.pct), chosenRet('0000',today(),C==='USD',E.equity)?.pct],
+    [I18n.p("ui-0325","רווח ממומש (ברוטו)"), fmtSigned(E.realized,C,0), E.realized],
+    [`${I18n.p("ui-0326","מס משוער על הממומש (")}${state.settings.taxRate}${I18n.p("ui-0327","%, אחרי מגן מס)")}`, fmtMoney(tx(S.taxRealized)==null?null:-tx(S.taxRealized),C,0), -S.taxRealized],
+    ...(S.hasFlows ? [[I18n.p("ui-0328","דיבידנדים שהתקבלו"), fmtSigned(E.dividend,C,0), E.dividend], [I18n.p("ui-0329","ריבית והטבות"), fmtSigned((E.interest==null||E.bonus==null?null:E.interest+E.bonus),C,0), (E.interest==null||E.bonus==null?null:E.interest+E.bonus)],
+      [I18n.p("ui-0330","מסים שנוכו בפועל (נטו)"), fmtMoney(E.taxPaid==null?null:-E.taxPaid,C,0), -E.taxPaid]] : []),
+    ...(Math.abs(E.cgtPaid)>0.005 ? [[I18n.p("ui-0331","מתוכם מס רווחי הון ששולם"), fmtMoney(-E.cgtPaid,C,0), -E.cgtPaid]] : []),
+    [I18n.p("ui-0332","רווח לא ממומש (ברוטו)"), fmtSigned(E.unrealized,C,0), E.unrealized],
+    [I18n.p("ui-0333","נטו אם מוכרים הכול עכשיו"), fmtSigned(hdrVals(S).net,C,0), S.netIfSoldAll],
+    [I18n.p("ui-0334","עמלות ששולמו"), fmtMoney(E.fees,C,0), 0],
+    [I18n.p("ui-0335","הפקדות נטו"), fmtMoney(E.netDeposits,C,0), 0]];
   M($('plKv')).h = rows.map(([l,v,c],i)=>`<div><span>${l}</span><b class="num ${cls(c)}">${v}${i===1 && returnMethod==='IRR' && cumulative?.pct==null ? ib(I18n.p("ui-0336","<b>תשואה מאז פתיחת התיק</b><p>")+esc(why)+'</p>',I18n.p("ui-0337","למה לא מוצגת תשואת IRR?"),'irr-failure-info') : ''}</b></div>`).join('');
+  const taxNote=I18n.language==='en'?'Hypothetical tax is an estimate using the latest available BOI reference on the valuation date; actual trades retain settlement-date rates.':'המס במכירה משוערת הוא הערכה לפי שער בנק ישראל האחרון הזמין לתאריך השווי; עסקאות בפועל נשארות לפי שער יום הסליקה.';const note=[currencyStatus(E),taxNote].filter(Boolean).join(' ');$('plKv').title=note;
+  if(note)$('plKv').insertAdjacentHTML('beforeend','<small class="muted currency-note" style="grid-column:1/-1;font-size:12px">'+esc(note)+'</small>');
   renderTaxBox(S);
 }
 function renderTaxBox(S){
-  const TM = S.TM, C = TM.cur, m = v => taxPend() ? TXP : fmtMoney(v,'ILS',2), yrs = TM.years.filter(o=>o.sales || o.paid || o.refund || o.b.has);
+  const TM = S.TM, C = TM.cur, m=(v,hypo=false)=>fmtMoney(taxDisplay(v,dispCur(),hypo),dispCur(),2), yrs = TM.years.filter(o=>o.sales || o.paid || o.refund || o.b.has);
   const kv = [
     [I18n.p("ui-0338","מגן מס זמין השנה"), m(TM.shieldNow), 'hl'],
     [I18n.p("ui-0339","מס רווחי הון ששולם השנה"), m(C.paid), ''],
@@ -3602,9 +3673,10 @@ function renderTaxBox(S){
     [I18n.p("ui-0342","קוזז ממגן מס השנה"), m(C.used), ''],
     [I18n.p("ui-0343","מס שעוד לא שולם (משוער)"), m(TM.outstanding), ''],
     [I18n.p("ui-0344","החזר מס צפוי מהבנק (הערכה)"), m(TM.refundEstNow), TM.refundEstNow>0.005?'hl':''],
-    [I18n.p("ui-0345","מס אם מוכרים הכול עכשיו"), m(S.hypoTax), ''],
-    [I18n.p("ui-0346","מתוכו מקוזז ממגן מס"), m(S.hypoShieldUse), ''],
-    [I18n.p("ui-0347","החזר אם מוכרים הכול עכשיו (הערכה)"), m(S.hypoRefund), '']];
+    [I18n.p("ui-0345","מס אם מוכרים הכול עכשיו"), m(S.hypoTax,true), ''],
+    [I18n.p("ui-0346","מתוכו מקוזז ממגן מס"), m(S.hypoShieldUse,true), ''],
+    [I18n.p("ui-0347","החזר אם מוכרים הכול עכשיו (הערכה)"), m(S.hypoRefund,true), '']];
+  $('taxBox').title=I18n.language==='en'?'Tax basis remains ILS. Display conversion only. A dash means required tax rules or dated reference data are missing.':'בסיס המס נשאר בשקלים. זו המרת תצוגה בלבד. קו מציין שכללי המס או נתוני הייחוס לתאריך חסרים.';
   $('taxBox').innerHTML = `${I18n.p("ui-0365","<h3>🏛️ מס רווחי הון ומגן מס · ")}${C.y}${ib(`${I18n.p("ui-0349","מגן מס = ההפסד הממומש × שיעור המס (")}${state.settings.taxRate}${I18n.p("ui-0350","%), בשקלים של מס – כמו אצל הבנק. מכירה ברווח משתמשת קודם במגן: מס = רווח × שיעור המס פחות המגן הזמין. הפסד אחרי שכבר שולם מס באותה שנה – הבנק מחזיר את המס מהמגן (החזר צפוי = הערכה). הרווח לצורכי מס: לפי FIFO; בנייר דולרי – עלות בשקלים לפי השער היציג ביום הסליקה של כל קנייה, והנמוך מבין הרווח הנומינלי בשקלים לרווח הדולרי; בנייר שקלי – רווח ריאלי לפי המדד הידוע.")}${TM.approx?I18n.p("ui-0348"," <b>נתוני שער יציג/מדד לא נטענו – חישוב משוער.</b>"):''}${I18n.p("ui-0351"," המגן מתאפס ב-1 בינואר – הבנק מקזז רק בתוך שנת המס; כדי להעביר הפסד לשנה הבאה צריך להגיש דוח שנתי.")}`, I18n.p("ui-0352","איך מחושבים מס רווחי הון ומגן המס"))}</h3>
     <div class="kv">${kv.map(([l,v,c])=>`<div class="${c}"><span>${l}</span><b class="num">${v}</b></div>`).join('')}</div>
     ${yrs.length ? `${I18n.p("ui-0364","<h3 style=\"margin-top:12px\">לפי שנות מס</h3>")}${yrs.slice().reverse().map(o=>`<div class="taxyr"><div class="yh">${o.y}${o.y===C.y?I18n.p("ui-0353"," · השנה"):''}${I18n.p("ui-0358","</div><div class=\"yg\">\n      <span>מס על רווחים</span><b class=\"num\">")}${m(o.gainTax)}${I18n.p("ui-0359","</b><span>מגן מס שנוצר</span><b class=\"num\">")}${m(o.lossShield)}${I18n.p("ui-0360","</b>\n      <span>קוזז ממגן מס</span><b class=\"num\">")}${m(o.used)}${I18n.p("ui-0361","</b><span>מס אחרי קיזוז</span><b class=\"num\">")}${m(o.due)}${I18n.p("ui-0362","</b>\n      <span>מס ששולם</span><b class=\"num\">")}${m(o.paid)}${I18n.p("ui-0363","</b><span>החזרי מס</span><b class=\"num\">")}${m(o.refund)}</b>
@@ -3740,7 +3812,7 @@ function secInst(m){ if(m.type==='fx' && FX_BY[String(m.sym).toUpperCase()]) ret
 function mktInst(k){ if(MKT_BY[k]){ const c = MKT_BY[k]; return Object.assign({q:c.s}, c); } const m = mktCfg.meta[k]; return m ? secInst(m) : null; }
 const mq = {};   // live quotes keyed by the CNBC request symbol (upper-case)
 async function instQuotes(list,active){ const qs = [...new Set(list.flatMap(i=>i.der ? [i.der.a, i.der.b] : [i.q,...(euCur(i.sym)?[FXQ[euCur(i.sym)][0]]:[])]))].filter(Boolean); if(!qs.length) return;
-  for(let i=0;i<qs.length;i+=40){if(active&&!active())break; try{ Object.assign(mq, yMergeAll(await cnbcQuotes(qs.slice(i,i+40))));for(const c in FXQ){const x=mq[FXQ[c][0]];if(x?.price>0)fxx[c]=FXQ[c][1]?1/x.price:x.price;} }catch(e){ console.warn('market quotes', e.message); } } }
+  for(let i=0;i<qs.length;i+=40){if(active&&!active())break; try{ Object.assign(mq, yMergeAll(await cnbcQuotes(qs.slice(i,i+40))));for(const c in FXQ){const x=mq[FXQ[c][0]];if(x?.price>0){fxx[c]=FXQ[c][1]?1/x.price:x.price;fxxAsOf[c]=Date.now();}} }catch(e){ console.warn('market quotes', e.message); } } }
 function iq(it){ if(it.der){ const a = mq[it.der.a], b = mq[it.der.b]; return a && b && a.price && b.price ? {price:a.price/b.price*it.der.m, prev: a.prev && b.prev ? a.prev/b.prev*it.der.m : null} : null; }
   const q = mq[String(it.q).toUpperCase()] || null; if(!q || !it.sec || marketOf(it.sym)!=='us') return q;
   const hl = haltOf(q); if(hl) return Object.assign({}, q, {hlt:hl});
@@ -4948,6 +5020,7 @@ function openTxForm(type, preset, editId, backSym, after){
   function draw(){
     form.innerHTML = fields() + `${I18n.p("ui-0855","<div class=\"btn-row\" style=\"margin-top:14px\"><button type=\"submit\" class=\"btn btn-primary\">💾 שמירה</button>")}${t?I18n.p("ui-0854","<button type=\"button\" class=\"btn btn-danger\" id=\"txDel\">🗑️ מחיקה</button>"):''}</div>`;
     const ty = st.type;
+    if($('fCur')){const selector=$('fCur'),currencies=[...new Set([...Object.keys(CUR_SYM),...state.txs.map(t=>t.currency),f.currency,f.symbol&&euCur(f.symbol)].filter(Boolean))];for(const cur of currencies){if(![...selector.options].some(o=>o.value===cur))selector.add(new Option(cur+' '+(CUR_SYM[cur]||''),cur))}}
     if($('fCur')) $('fCur').value = f.currency || (ty==='deposit'||ty==='withdraw'||(CASH_FLOW[ty]&&ty!=='dividend') ? 'ILS' : ty==='dividend' ? 'USD' : (f.symbol?assetOf(f.symbol).currency:'USD'));
     if($('fTaxKind')) $('fTaxKind').value = f.taxKind || 'cgt';
     if(ty==='split'){ attachAutocomplete($('fSym'), $('fSymList'), it=>{ f.symbol = it.sym; update(); }); }
@@ -4979,9 +5052,9 @@ function openTxForm(type, preset, editId, backSym, after){
     try{
       if(date < today()){
         const h = await getHistory(sym, addDays(date,-7));
-        if(h){ let c = null; for(const b of h.bars){ if(b[0] <= date) c = b[4]; else break; } if(c!=null){ price = convertCur(c, h.cur, cur); label = I18n.p("ui-0859","סגירה ב-")+fmtDate(date); } }
+        if(h){ let c = null; for(const b of h.bars){ if(b[0] <= date) c = b[4]; else break; } if(c!=null){ const rate=datedFx.rate(h.cur,cur,date).value;price=rate==null?null:c*rate;label = I18n.p("ui-0859","סגירה ב-")+fmtDate(date); } }
       }
-      if(price==null){
+      if(price==null&&date===today()){
         const q = (await fetchQuotes([sym])).quotes[sym];
         if(q){ state.quotes[sym] = Object.assign(q,{updated:Date.now(), error:null}); if(!state.assets[sym].name && q.name){ state.assets[sym].name = q.name; if($('fSymName')) $('fSymName').textContent = q.name; } price = convertCur(q.price, q.cur, cur); label = I18n.p("ui-0860","מחיר נוכחי"); }
       }
@@ -5027,11 +5100,11 @@ function openTxForm(type, preset, editId, backSym, after){
       }
       if(ty==='buy' && held<-1e-9 && q>0) W.push(`${I18n.p("ui-0894","<div class=\"warn info\">🔁 קיים שורט של ")}${fmtQty(-held)}${I18n.p("ui-0895"," – הקנייה תכסה קודם את השורט")}${q>-held+1e-9?`${I18n.p("ui-0893"," ואז תפתח החזקה של ")}${fmtQty(q+held)}`:''}.</div>`);
     } else if(ty==='deposit'||ty==='withdraw'){
-      const cur = $('fCur').value, a = num($('fAmt').value)||0, L = ledgerWithout(), after = L.cash[cur] + (ty==='deposit'?a:-a);
+      const cur = $('fCur').value, a = num($('fAmt').value)||0, L = ledgerWithout(), after = (L.cash[cur]||0)+(ty==='deposit'?a:-a);
       sum.innerHTML = `${I18n.p("ui-0896","<div><span>יתרת מזומן ")}${CUR_SYM[cur]}${I18n.p("ui-0897"," אחרי</span><b class=\"num ")}${after<-0.005?'neg':''}">${fmtMoney(after,cur)}</b></div>`;
       if(after < -0.005) W.push(I18n.p("ui-0898","<div class=\"warn red\">⚠️ המשיכה גדולה מיתרת המזומן – היתרה תהיה שלילית.</div>"));
     } else if(CASH_FLOW[ty]){
-      const cur = $('fCur').value, a = num($('fAmt').value)||0, L = ledgerWithout(), after = L.cash[cur] + CASH_FLOW[ty]*a;
+      const cur = $('fCur').value, a = num($('fAmt').value)||0, L = ledgerWithout(), after = (L.cash[cur]||0)+CASH_FLOW[ty]*a;
       sum.innerHTML = `${I18n.p("ui-0899","<div><span>יתרת מזומן ")}${CUR_SYM[cur]}${I18n.p("ui-0900"," אחרי</span><b class=\"num ")}${after<-0.005?'neg':''}">${fmtMoney(after,cur)}</b></div>`;
     } else if(ty==='split'){
       const sym = ($('fSym').value||'').trim().toUpperCase(), r = parseRatio($('fRatio').value)||0, d0 = $('fDate').value || today();
@@ -5090,7 +5163,8 @@ function openTxForm(type, preset, editId, backSym, after){
       if(!(a>0)) return toast(I18n.p("ui-0921","סכום לא תקין")); if(!(r>0)) return toast(I18n.p("ui-0922","שער לא תקין"));
       Object.assign(tx, {from:$('fFrom').value, amount:a, rate:r, fee});
     }
-    if(t) ['src','ikey'].forEach(k=>{ if(t[k]!=null) tx[k] = t[k]; });     // edited imported row keeps its de-duplication key
+    if(t&&t.date===tx.date&&t.currency===tx.currency&&t.amount===tx.amount&&t.fxEvidence)tx.fxEvidence=t.fxEvidence;
+    if(t) ['src','ikey','originalBrokerRow'].forEach(k=>{ if(t[k]!=null) tx[k] = t[k]; });     // edited imported row keeps its de-duplication key
     if(t){ const i = state.txs.findIndex(x=>x.id===t.id); state.txs[i] = tx; } else state.txs.push(tx);
     if(tx.symbol && (ty==='buy'||ty==='sell') && !t){   // a NEW trade in this symbol → it's back in the lists
       state.hiddenClosed = (state.hiddenClosed||[]).filter(x=>x!==tx.symbol); state.removedSymbols = (state.removedSymbols||[]).filter(x=>x!==tx.symbol); }
@@ -5138,8 +5212,8 @@ function openPosition(sym){ui.posRange='1D'; ui.posStyle='candle';
   body.querySelectorAll('[data-pact]').forEach(b=>b.onclick = ()=>{
     const act = b.dataset.pact;
     if(act==='manual'){
-      const v = prompt(`${I18n.p("ui-0951","מחיר נוכחי ידני ל-")}${sym} (${cur==='USD'?I18n.p("ui-0949","בדולר"):I18n.p("ui-0950","בשקלים")}${I18n.p("ui-0952","). השאירו ריק לחזרה למחיר אוטומטי:")}`, state.manual[sym]??'');
-      if(v===null) return; if(v.trim()==='') delete state.manual[sym]; else { const n = num(v); if(n==null||n<0) return toast(I18n.p("ui-0953","מחיר לא תקין")); state.manual[sym] = n; }
+      const v = prompt(`${I18n.p("ui-0951","מחיר נוכחי ידני ל-")}${sym} (${cur==='USD'?I18n.p("ui-0949","בדולר"):cur==='ILS'?I18n.p("ui-0950","בשקלים"):esc(cur)}${I18n.p("ui-0952","). השאירו ריק לחזרה למחיר אוטומטי:")}`, state.manual[sym]??'');
+      if(v===null) return; if(v.trim()===''){delete state.manual[sym];if(state.manualCurrency)delete state.manualCurrency[sym]}else { const n = num(v); if(n==null||n<0) return toast(I18n.p("ui-0953","מחיר לא תקין")); state.manual[sym]=n;(state.manualCurrency||(state.manualCurrency={}))[sym]=cur; }
       save(); renderAll(); openPosition(sym); return;
     }
     if(act==='hide'){ if(hideClosed(sym)) closeSheet(); return; }
@@ -5163,22 +5237,24 @@ function txRowHtml(t){ const d = txDesc(t);
 function symTxHtml(sym){ const l = sortedTxs().filter(t=>t.symbol===sym || t.toSymbol===sym).reverse(); TXTAX = taxModel(state.txs); const o = l.length ? l.map(txRowHtml).join('') : I18n.p("ui-0963","<div class=\"muted\" style=\"font-size:.85rem\">אין עסקאות</div>"); TXTAX = null; return o; }
 // detail-sheet numbers: each value cell has data-k so live ticks can patch it in place
 function posKvRows(p){
+  const original=p,base=dispCur();p=displayEconomicPosition(p);const taxv=v=>taxDisplay(v,base,true);
   const cur = p.cur, short = p.qty<0, open = Math.abs(p.qty)>1e-9, R = [];
   { const hl = open && !p.manual ? haltOf(state.quotes[p.sym]) : null; if(hl) R.push(['hlt',I18n.p("ui-0964","סטטוס מסחר"), hl, 'hltv '+haltCls(hl)]); }   // v167
-  if(open) R.push(['mv',I18n.p("ui-0965","שווי"), fmtMoney(p.mv,cur) + (cur==='USD' && p.mvILS!=null ? ' · ' + fmtMoney(p.mvILS,'ILS',0) : ''), '', 'hl'], ['unreal',I18n.p("ui-0966","שינוי מעלות (ברוטו)"), `${fmtPct(p.unrealPct)} · ${fmtSigned(p.unreal,cur)}`, cls(p.unreal), 'hl'], ['weight',I18n.p("ui-0967","% מהתיק"), fmtW(p.weight), ''], ['price',`${I18n.p("ui-0969","מחיר נוכחי")}${p.manual?I18n.p("ui-0968"," (ידני)"):''}${p.pre?' · '+p.pre:''}`, fmtPrice(p.pre ? p.prePrice : p.price,cur), ''],
+  if(open) R.push(['mv',I18n.p("ui-0965","שווי"), fmtMoney(p.mv,cur), '', 'hl'], ['unreal',I18n.p("ui-0966","שינוי מעלות (ברוטו)"), `${fmtPct(p.unrealPct)} · ${fmtSigned(p.unreal,cur)}`, cls(p.unreal), 'hl'], ['weight',I18n.p("ui-0967","% מהתיק"), fmtW(p.weight), ''], ['price',`${I18n.p("ui-0969","מחיר נוכחי")}${p.manual?I18n.p("ui-0968"," (ידני)"):''}${p.pre?' · '+p.pre:''}`, fmtPrice(p.pre ? p.prePrice : p.price,cur), ''],
     ['day', I18n.p("ui-0970","שינוי יומי"), p.day!=null?fmtSigned(p.day,cur)+' ('+fmtPct(p.dayPct)+')':'—', cls(p.day)],
     ['qty', short?I18n.p("ui-0971","כמות בשורט"):I18n.p("ui-0972","כמות"), fmtQtyP(Math.abs(p.qty)), ''], ['avg', short?I18n.p("ui-0973","מחיר שורט ממוצע"):I18n.p("ui-0974","עלות ממוצעת"), fmtMoney(p.avg,cur), ''],
     ['open',I18n.p("ui-0975","נפתחה"), fmtDate(p.openDate), 'nonum'],
-    ['costils',I18n.p("ui-0976","עלות בשקלים למס"), taxPend() ? TXP : p.qty>0 && p.costILS>0 ? fmtMoney(p.costILS,'ILS') : '—', ''],
-    ['taxable',I18n.p("ui-0977","רווח/הפסד לצורכי מס אם מוכרים"), taxPend() ? TXP : p.qty>0 && p.hyp ? fmtSigned(p.taxableNow,'ILS') : '—', p.qty>0 && p.hyp ? cls(p.taxableNow) : ''],
-    ['ptax',I18n.p("ui-0978","מס משוער אם מוכרים"), taxPend() ? TXP : p.taxGross>0 ? fmtMoney(p.taxILS,'ILS') + (p.shieldUse>0.005 ? `${I18n.p("ui-0979"," (קוזזו ")}${fmtMoney(p.shieldUse,'ILS')}${I18n.p("ui-0980"," ממגן מס)")}` : '') : (p.taxGross<0 ? `${I18n.p("ui-0983","אין · יוסיף ")}${fmtMoney(-p.taxGross,'ILS')}${I18n.p("ui-0984"," למגן המס")}${p.refundP>0.005?`${I18n.p("ui-0981"," · החזר צפוי ")}${fmtMoney(p.refundP,'ILS')}${I18n.p("ui-0982"," (הערכה)")}`:''}` : '—'), ''],
+    ['costils',(I18n.language==='en'?'Tax cost basis':'עלות לצורכי מס'), taxPend() ? TXP : p.qty>0 && p.costILS>0 ? fmtMoney(taxDisplay(p.costILS),base) : '—', ''],
+    ['taxable',I18n.p("ui-0977","רווח/הפסד לצורכי מס אם מוכרים"), taxPend() ? TXP : p.qty>0 && p.hyp ? fmtSigned(taxv(p.taxableNow),base) : '—', p.qty>0 && p.hyp ? cls(p.taxableNow) : ''],
+    ['ptax',I18n.p("ui-0978","מס משוער אם מוכרים"), !taxCoverageReady(true)?'—':p.taxGross>0 ? fmtMoney(taxv(p.taxILS),base) + (p.shieldUse>0.005 ? `${I18n.p("ui-0979"," (קוזזו ")}${fmtMoney(taxv(p.shieldUse),base)}${I18n.p("ui-0980"," ממגן מס)")}` : '') : (p.taxGross<0 ? `${I18n.p("ui-0983","אין · יוסיף ")}${fmtMoney(taxv(-p.taxGross),base)}${I18n.p("ui-0984"," למגן המס")}${p.refundP>0.005?`${I18n.p("ui-0981"," · החזר צפוי ")}${fmtMoney(taxv(p.refundP),base)}${I18n.p("ui-0982"," (הערכה)")}`:''}` : '—'), ''],
     ['net',`${I18n.p("ui-0987","נטו אם ")}${short?I18n.p("ui-0985","מכסים"):I18n.p("ui-0986","מוכרים")}${I18n.p("ui-0988"," עכשיו")}`, taxPend() ? TXP : fmtSigned(p.netIfSold,cur), cls(p.netIfSold)]);
-  { const ex = open && posExtChange(p); if(ex){ const i = R.findIndex(r=>r[0]==='day'); R.splice(i+1,0,['ext',I18n.p("ui-0989","שינוי ")+ex.kind,fmtSigned(ex.amt,cur)+' ('+fmtPct(ex.pct)+')',cls(ex.amt)]); } }
+  { const nx=open&&posExtChange(original),ex=nx?{...nx,amt:convertCur(nx.amt,original.cur,base)}:null; if(ex){ const i = R.findIndex(r=>r[0]==='day'); R.splice(i+1,0,['ext',I18n.p("ui-0989","שינוי ")+ex.kind,fmtSigned(ex.amt,cur)+' ('+fmtPct(ex.pct)+')',cls(ex.amt)]); } }
   R.push(['real',I18n.p("ui-0990","רווח ממומש"), fmtSigned(p.realized,cur), cls(p.realized)], ['fees',I18n.p("ui-0991","עמלות ששולמו"), fmtMoney(p.fees,cur), '']);
   return R;
 }
 function posKvHtml(p){ const sym0 = p.sym; return posKvRows(p).map(([k,l,v,c,rc])=>`<div${rc?` class="${rc}"`:''}><span>${l}${k==='hlt' ? haltIb(sym0, v) : ''}${k==='net' ? `${I18n.p("ui-0992","<button type=\"button\" class=\"ib\" data-ib-for=\"posNetSrc\" data-ib-t=\"איך מחושב הנטו\" aria-label=\"הסבר: איך מחושב הנטו\">i</button>")}` : ''}</span><b data-k="${k}" class="${c==='nonum'?'':'num '+c}">${v}</b></div>`).join(''); }
 function posInfoHtml(p){
+  p=displayEconomicPosition(p);
   const q = state.quotes[p.sym]||{}, cur = p.cur, open = Math.abs(p.qty)>1e-9;
   return `${q.updated?`${I18n.p("ui-0994","מחיר עודכן ")}${fmtTime(q.updated)} · ${esc(q.source||'')}${q.time?I18n.p("ui-0993"," · מסחר ")+esc(String(q.time).slice(0,10)):''}`:''}${open?`${I18n.p("ui-0995","<span class=\"ib-src\" id=\"posNetSrc\">\"נטו\" = אחרי עמלת סגירה משוערת <span class=\"num\">")}${fmtMoney(p.closeFee,cur)}${I18n.p("ui-0996","</span> ומס ")}${state.settings.taxRate}${I18n.p("ui-0997","% על רווח, אחרי קיזוז מגן המס של השנה.</span>")}`:''}`;
 }
@@ -5366,7 +5442,7 @@ function openDeleteAll(){
   };
 }
 function exportData(){
-  const data = {app:'portfolio-tracker', version:2, exported:new Date().toISOString(), watchlists:wlData, market:mktCfg, commodities:comCfg, txs:state.txs, assets:state.assets, manual:state.manual, settings:state.settings, fx:state.fx, quotes:state.quotes, hiddenClosed:state.hiddenClosed||[], removedSymbols:state.removedSymbols||[], importMap:state.importMap||{}};
+  const data = {app:'portfolio-tracker', version:2, exported:new Date().toISOString(), watchlists:wlData, market:mktCfg, commodities:comCfg, txs:state.txs, assets:state.assets, manual:state.manual,manualCurrency:state.manualCurrency||{},settings:state.settings, fx:state.fx, quotes:state.quotes, hiddenClosed:state.hiddenClosed||[], removedSymbols:state.removedSymbols||[], importMap:state.importMap||{}};
   const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `portfolio-backup-${today()}.json`;
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href), 3000);
@@ -5378,7 +5454,7 @@ $('fileImport').addEventListener('change', async e=>{
     const j = JSON.parse(await file.text()), ns = defaultState();
     if(Array.isArray(j.txs)){
       ns.txs = j.txs.filter(t=>t && TX_LABELS[t.type] && /^\d{4}-\d{2}-\d{2}$/.test(t.date)).map(t=>Object.assign({}, t, {id:t.id||uid(), ts:t.ts||Date.now()}));
-      ns.assets = j.assets||{}; ns.manual = j.manual||{}; ns.settings = mergeSettings(j.settings); ns.quotes = j.quotes||{}; ns.hiddenClosed = Array.isArray(j.hiddenClosed) ? j.hiddenClosed : []; ns.removedSymbols = Array.isArray(j.removedSymbols) ? j.removedSymbols : []; ns.importMap = (j.importMap && typeof j.importMap==='object') ? j.importMap : {}; if(j.fx&&j.fx.rate) ns.fx = j.fx;
+      ns.assets = j.assets||{}; ns.manual=j.manual||{};ns.manualCurrency=j.manualCurrency||{}; ns.settings = mergeSettings(j.settings); ns.quotes = j.quotes||{}; ns.hiddenClosed = Array.isArray(j.hiddenClosed) ? j.hiddenClosed : []; ns.removedSymbols = Array.isArray(j.removedSymbols) ? j.removedSymbols : []; ns.importMap = (j.importMap && typeof j.importMap==='object') ? j.importMap : {}; if(j.fx&&j.fx.rate) ns.fx = j.fx;
     } else if(Array.isArray(j.holdings) || Array.isArray(j)){ migrateHoldings(ns, Array.isArray(j)? j : j.holdings); if(j.fx&&j.fx.rate) ns.fx = j.fx; }
     else throw new Error('format');
     if(!confirm(`${I18n.p("ui-1059","לייבא ")}${ns.txs.length}${I18n.p("ui-1060"," עסקאות? הנתונים הנוכחיים יוחלפו.")}`)) return;
@@ -5518,8 +5594,9 @@ function parseBankSheet(aoa){
     if(!act || !date) continue;
     const nameRaw = String(g('name')==null?'':g('name')).trim(), m = nameRaw.match(/^(.*),\s*(\d+)\s*$/);
     const curRaw = String(g('cur')==null?'':g('cur')).trim(), ils = num(g('ils'))||0, fx = num(g('fx'))||0;
-    const cur = /\$|דולר|USD/i.test(curRaw) ? 'USD' : (/₪|ש"?ח|ILS/i.test(curRaw) ? 'ILS' : (fx && !ils ? 'USD' : 'ILS'));
-    rows.push({line:i+1, act, date, nameRaw, name:(m?m[1]:nameRaw).trim(), secNum:m?m[2]:'', cur, ils, fx, fee:Math.abs(num(g('fee'))||0), rate:num(g('rate')), qty:num(g('qty'))||0, bal:num(g('bal')), cgt:num(g('cgt'))});
+    const code=curRaw.toUpperCase().match(/\b[A-Z]{3}\b/);
+    const cur=/\$|דולר|USD/i.test(curRaw)?'USD':/₪|ש"?ח|ILS/i.test(curRaw)?'ILS':code?code[0]:/יין|ין יפני/.test(curRaw)?'JPY':/אירו|יורו|€/.test(curRaw)?'EUR':curRaw?null:(fx&&!ils?'USD':'ILS');
+    rows.push({line:i+1, rawRow:r.slice(), currencyRaw:curRaw, act, date, nameRaw, name:(m?m[1]:nameRaw).trim(), secNum:m?m[2]:'', cur, ils, fx, fee:Math.abs(num(g('fee'))||0), rate:num(g('rate')), qty:num(g('qty'))||0, bal:num(g('bal')), cgt:num(g('cgt'))});
   }
   if(rows.length>1 && rows[0].date > rows[rows.length-1].date) rows.reverse();          // exports are newest-first → chronological
   // the running ILS balance is the account's own record: when the shown ILS amount is off by ≤ 5 agorot (rounding), use the balance move
@@ -5541,7 +5618,8 @@ function bankInternal(r){
   return k || num ? {kind:k, num} : null;
 }
 function bankClassify(r){
-  const a = r.act, buy = /קני/.test(a), sell = /מכיר/.test(a), cur = r.cur, amt = cur==='USD' ? r.fx : r.ilsEff;
+  const a = r.act, buy = /קני/.test(a), sell = /מכיר/.test(a), cur=r.cur,amt=cur==='ILS'?r.ilsEff:r.fx;
+  if(!cur)return {unknown:true};
   const inr = r.secNum===SEC_USD || /^דולר ארה/.test(r.name) ? null : bankInternal(r);
   if(inr && !/דיבידנד|ריבית/.test(a) && !(/(^|\s)מס(\s|$)/.test(a) && !buy && !sell)){   // never a security, whatever the action type
     const k = inr.kind, label = bankNameNorm(r.name);
@@ -5627,6 +5705,7 @@ function bankBuild(){
     if(c.skip){ skipped.push(r); cnt.as.add(c.skip==='internal' ? I18n.p("ui-1100","רישום פנימי – לא יובא") : I18n.p("ui-1101","ללא סכום – לא יובא")); perRow.push([]); return; }
     if(c.unknown){ unknown.push(r); cnt.as.add(I18n.p("ui-1102","לא זוהה")); perRow.push([]); return; }
     const t = Object.assign({id:uid(), ts:base+i*4, date:r.date, note:r.adj?`תוקן ב-₪${Math.abs(r.adj).toFixed(2)} לפי היתרה בקובץ`:'', src:'bank', ikey:k0+'#'+occ[k0]}, c);
+    t.originalBrokerRow={date:r.date,line:r.line,currency:r.currencyRaw,values:r.rawRow,ils:r.ils,foreignAmount:r.fx,rateColumn:r.rate};
     delete t.sec;
     if(c.sec){ const m = IMP.map[bankSecKey(r)]; if(!m || !m.sym){ needRows.push(r); perRow.push([]); cnt.as.add(TX_LABELS[c.type]); return; } t.symbol = m.sym; }
     if(t.currency==='USD' && !c.sec && r.rate>2 && r.rate<10) t.fx = r.rate;          // the row's own USD/ILS rate → exact ILS value of the flow
