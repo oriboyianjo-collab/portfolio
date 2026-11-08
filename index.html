@@ -4896,9 +4896,9 @@ let posChart = null, posLive = null;
 let sheetSym = null, sheetPrice = null;   // symbol of the open position sheet (for live updates)
 // ---- v87: screen stack for the back button ----
 const NAV = []; let navRestoring = false, sheetOpener = null, srchRet = null;
-function navPush(e){ NAV.push(e); if(NAV.length > 60) NAV.splice(0, NAV.length - 60); if(window.__backInterrupt) window.__backInterrupt(); }   // v240: an intervening action breaks the exit double-press
+function navPush(e){ backLayerSync(); NAV.push(e); if(NAV.length > 60) NAV.splice(0, NAV.length - 60); if(window.__backInterrupt) window.__backInterrupt(); }   // v240: an intervening action breaks the exit double-press
 function navDrop(t){ const e = NAV[NAV.length-1]; if(e && e.t===t) NAV.pop(); }
-function navBack(){ if(ChartTools.isOpen()){ChartTools.close();return true;} const e = NAV.pop(); if(!e) return false; navRestoring = true;
+function navBack(){ backLayerSync();const layer=NAV[NAV.length-1];if(layer?.t==='layer'){NAV.pop();const active=backLayers.get(layer.key);backLayers.delete(layer.key);active?.close();backLayerSync();return true;} if(ChartTools.isOpen()){ChartTools.close();return true;} const e = NAV.pop(); if(!e) return false; navRestoring = true;
   try{ if(e.t==='tab'){ if($('sheet').classList.contains('open')) closeSheet(); setTab(e.tab); }
     else if(e.t==='srch') srchHide();
     else if(e.t==='finD'){ finSel=null; renderFin(); }   // v239: the finance detail is a back step
@@ -4919,7 +4919,7 @@ function navSheet(name, f, keyOf){ return (...a)=>{ const was = $('sheet').class
     else if(!was){ navPush({t:'sheetClose', srchQ:srchRet}); } }
   srchRet = null; return r; }; }
 function openSheet(html){ obStop(); sheetSym = null; instSheet = null; posDet = null; if(posChart){ posChart.remove(); posChart=null; } $('sheetBody').innerHTML = html; $('sheetBg').classList.add('open'); $('sheet').classList.add('open'); $('sheet').scrollTop = 0; }
-function closeSheet(){ obStop(); if(!navRestoring){ while(NAV.length && NAV[NAV.length-1].t==='sheet') NAV.pop(); navDrop('sheetClose'); } sheetOpener = null; sheetSym = null; instSheet = null; $('sheetBg').classList.remove('open'); $('sheet').classList.remove('open'); if(posChart){ posChart.remove(); posChart=null; } posLive = null; }
+function closeSheet(){ backLayerDiscard($('sheet')); obStop(); if(!navRestoring){ while(NAV.length && NAV[NAV.length-1].t==='sheet') NAV.pop(); navDrop('sheetClose'); } sheetOpener = null; sheetSym = null; instSheet = null; $('sheetBg').classList.remove('open'); $('sheet').classList.remove('open'); if(posChart){ posChart.remove(); posChart=null; } posLive = null; }
 $('sheetBg').onclick = closeSheet;
 $('sheetBody').addEventListener('click', e=>{ if(e.target.closest('[data-close]')) closeSheet(); });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $('sheet').classList.contains('open')) closeSheet(); });
@@ -6903,6 +6903,32 @@ refreshPrices(true).then(()=>{ pollReady = true; schedulePoll(); });          //
 setInterval(ySync, 1500); ySync();                                                 // v174: live US ticks over WebSocket (CNBC polling keeps running underneath)
 setInterval(()=>{ if(!document.hidden){ updateAges(); renderLiveStatus(); if(!pollTimer && !refreshing) schedulePoll(); } }, 20000);
 window.__portfolio = {get night(){ return {src:NIGHT.src, worker:{ok:NW.ok, polls:NW.polls, applied:NW.applied, fails:NW.fails}, relay:{ok:NR.ok, polls:NR.polls, applied:NR.applied, fails:NR.fails, lastAt:NR.lastAt}}; }, get yws(){ return {state:YWS.ws ? YWS.ws.readyState : -1, msgs:YWS.msgs, ticks:YWS.ticks, applied:YWS.applied, flushes:YWS.flushes, flushMs:YWS.flushMs, flushMax:YWS.flushMax, opens:YWS.opens, closes:YWS.closes, fails:YWS.fails, lastMsg:YWS.lastMsg, lastTick:YWS.lastTick, subs:[...YWS.subs.keys()], gap:yGap, err:YWS.lastErr}; }, yDecode, yApply, yLast, refresh:(...a)=>refreshPrices(...a), get state(){ return state; }, openPosition:(...a)=>openPosition(...a), openTxForm:(...a)=>openTxForm(...a), lotsTM:(tx)=>taxModel(tx||state.txs), commission:(...a)=>commission(...a), inferFees:(...a)=>inferFees(...a), get mkt(){ return {cfg:mktCfg, q:mq, bars:instCache}; }, get wl(){ return wlData; }, mktTick, squarify, heatColor, spark(){ return spk; }, spkRun, setTheme, idx(){ return idxData; }, idxApply, sinceStart(){ const V = hdrVals(computeAll()); return {pct: V.plPct!=null ? fmtPct(V.plPct) : '—', amt: fmtSigned(V.pl, V.c, 0), cls: cls(V.pl)}; }, chartData(){ const d = L=>L && L.series && L.series.data ? L.series.data().map(x=>[x.time, x.value]) : null; return {mini:d(miniLive), perf:d(perfLive)}; }, livePatch, usSession, marketState, pollDelayMs, priceOf, fracCandidates, closeFractions, scanHeldSplits, detectSplits, parseRatio, bankClassify, get splitSug(){ return splitSug; }, _bankPair(out, mode){ const sv = IMP; IMP = {mode:mode||'merge'}; try{ bankPairAdj(out); } finally{ IMP = sv; } return out; }, taxModel, loadTaxData, settleDate, taxFx, cpiKnown, loadSecDir, matchUSName, localSearch, detectSplits, get refreshing(){ return refreshing; }, commission, updatePosSheet, computeAll, computeLedger, buildPerformance, refreshPrices, marketState, pollDelayMs, get backoff(){ return backoff; }, livePatch};
+// Transient controls are navigation layers, not screen changes.
+const backLayers=new Map();
+function backLayerDiscard(root){for(const [key,v]of backLayers)if(root?.contains(v.el)){backLayers.delete(key);for(let i=NAV.length-1;i>=0;i--)if(NAV[i].t==='layer'&&NAV[i].key===key)NAV.splice(i,1)}}
+function backLayerVisible(el){if(!el?.isConnected||el.closest('[hidden]'))return false;const sheet=el.closest('.sheet');if(sheet&&!sheet.classList.contains('open'))return false;const tab=el.closest('section.tab');return (!tab||tab.classList.contains('on'))&&getComputedStyle(el).display!=='none'&&el.getClientRects().length>0;}
+function backLayerSync(){const found=new Map(),add=(key,el,close)=>{if(backLayerVisible(el))found.set(key,{el,close})};
+ add('watch-picker',$('wlToMenu'),()=>{$('wlToMenu').hidden=true;$('wlToBtn').setAttribute('aria-expanded','false')});
+ add('watch-sort',$('wlSortPick'),()=>{wlSortMenu=null;drawWatchSort()});
+ add('watch-edit',document.querySelector('#wlTabs .wl-menu'),()=>{wlMenu=null;drawWatch()});
+ add('position-sort',document.querySelector('#posSort .wl-pm'),()=>{posSortMenu=false;renderSortBar(computeAll().positions.length)});
+ add('transaction-year',document.querySelector('#txHistBar .wl-pm'),()=>{ui.txYearMenu=false;renderTxList()});
+ add('finance-sort',$('finSortMenu'),()=>{$('finSortMenu').hidden=true;$('finSortBtn').setAttribute('aria-expanded','false')});
+ add('etf-sort',document.querySelector('#etfSortWrap .wl-menu'),()=>{etfSortMenu=false;drawEtf()});
+ add('etf-menu',document.querySelector('#etfHd .wl-menu'),()=>{etfMenuOpen=false;drawEtf()});
+ document.querySelectorAll('[data-pdf-year-menu],.report-qmenu').forEach(el=>{const p=el.closest('[data-pdf-symbol]'),year=el.hasAttribute('data-pdf-year-menu');add('report-'+(p?.dataset.pdfSymbol||'')+(year?'-year':'-quarter'),el,()=>{el.hidden=true;el.parentElement.querySelector(year?'[data-pdf-year-open]':'[data-pdf-q]')?.setAttribute('aria-expanded','false')})});
+ document.querySelectorAll('.wl-add-box .wl-pick').forEach(el=>add('add-to-watch-'+el.parentElement.dataset.wlsym,el,()=>{el.hidden=true;el.parentElement.querySelector('[data-wladd]')?.setAttribute('aria-expanded','false')}));
+ document.querySelectorAll('.ac-list.open').forEach((el,i)=>add('autocomplete-'+(el.id||el.dataset.ticklist||i),el,()=>{el.classList.remove('open');el.parentElement.querySelector('input')?.blur()}));
+ add('chart-workspace',document.querySelector('.ct-work'),()=>ChartTools.close());
+ add('info-popup',document.querySelector('.ib-bg.open'),()=>window.closeIb?.());
+ document.querySelectorAll('.ct-settings:not([hidden])').forEach(el=>add('chart-tools',el,()=>el.closest('.ct-work')?.querySelector('[data-ct=tools]')?.click()));
+ document.querySelectorAll('.ct-choice-panel').forEach(el=>add('chart-choice',el,()=>el.querySelector('[data-choice-close]')?.click()));
+ document.querySelectorAll('dialog[open]').forEach((el,i)=>add('dialog-'+(el.id||i),el,()=>el.close()));
+ for(const key of backLayers.keys())if(!found.has(key)){backLayers.delete(key);for(let i=NAV.length-1;i>=0;i--)if(NAV[i].t==='layer'&&NAV[i].key===key)NAV.splice(i,1)}
+ for(const [key,value]of found){if(!backLayers.has(key)){NAV.push({t:'layer',key});window.__backInterrupt?.()}backLayers.set(key,value)}
+}
+new MutationObserver(()=>backLayerSync()).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','open','class','aria-expanded']});
+
 // v77: Android back button – never leave the app on one press. History: [base, top(+ overlay entries)]. Popping back to 'base' =
 // v87: the back button retraces the user's own steps. NAV is the app's screen stack (tab switches, the search, each sheet level, the image
 // viewer); the browser history only keeps 'base' + 'top' so a back press can be caught: each press undoes the latest step, and with nothing
