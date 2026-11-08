@@ -2001,7 +2001,8 @@
   "מקורות": [
    {
     "label": "Lilly Canada: הודעת החברה דרך CNW",
-    "url": "https://www.newswire.ca/news-releases/lilly-canada-welcomes-positive-cda-amc-recommendation-to-reimburse-kisunla-r-donanemab-for-early-alzheimer-s-disease-812436208.html"
+    "url": "https://www.newswire.ca/news-releases/lilly-canada-welcomes-positive-cda-amc-recommendation-to-reimburse-kisunla-r-donanemab-for-early-alzheimer-s-disease-812436208.html",
+    "label_en": "Lilly Canada: the company's release via CNW"
    }
   ],
   "תקציר": "זו המלצת החזר הוצאות, לא אישור תרופה חדש ולא החלטה שכל המחוזות כבר מממנים את הטיפול.",
@@ -2009,7 +2010,16 @@
   "חברה": "LLY",
   "תאריך": "2026-11-07 12:03",
   "הועלה": "2026-11-07 12:03",
-  "מזהה": "n-0073"
+  "מזהה": "n-0073",
+  "כותרת_en": "Eli Lilly (LLY): positive recommendation in Canada for funding Kisunla for suitable early Alzheimer's patients",
+  "טקסט_en": "Nov 6, 2026 | 16:00 Israel time, a Lilly Canada release published at 09:00 ET.\n\nLilly Canada announced that the Canadian drug agency CDA-AMC published a positive recommendation to reimburse the Kisunla (donanemab) treatment for suitable adults with early symptomatic Alzheimer's. The health technology assessment body's recommendation is a stage in the access and funding process, not approval that all public insurance plans in the provinces already cover the drug.\n\nThe drug was approved in Canada already on April 30, 2026. What's new now is the funding recommendation, not a new marketing approval. Per the company's release, eligibility refers to people with mild cognitive impairment or mild dementia at the early symptomatic stage, with confirmed amyloid pathology and additional suitability conditions. This is not a treatment suitable for every person with Alzheimer's.\n\nThe drug is given once every four weeks and is meant to slow progression, not cure the disease. The company warns of possible serious side effects, including amyloid-related imaging abnormalities and infusion reactions. The release sets no date on which every Canadian province will begin funding the treatment, and no revenue forecast from the funding recommendation was provided.",
+  "תקציר_en": "This is a reimbursement recommendation, not approval of a new drug and not a decision that all provinces already fund the treatment.",
+  "_translation": {
+   "en": {
+    "source_hash": "f4a378dd159a60c880565b66fab789f08e919f4c6eede7e64ab7003275cd45db",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "לפי הגארדיאן: תוכנית קטארית קושרת ביקורי פקחי גרעין להסרת המצור ולפתיחת הורמוז ביום השני ליישום",
@@ -2018,14 +2028,24 @@
   "מקורות": [
    {
     "label": "The Guardian: דיווח פטריק וינטור על ההצעה הקטארית",
-    "url": "https://www.theguardian.com/world/2026/nov/07/strait-of-hormuz-qatar-plan-iran-nuclear-inspections"
+    "url": "https://www.theguardian.com/world/2026/nov/07/strait-of-hormuz-qatar-plan-iran-nuclear-inspections",
+    "label_en": "The Guardian: Patrick Wintour's report on the Qatari proposal"
    }
   ],
   "תקציר": "פרטים חדשים על רצף צעדים מוצע, לא הסכם שהתקבל או הודעה שהמצר נפתח.",
   "טקסט": "לא מאומת מול מקור ראשוני\n⁦7.11.2026⁩ | ⁦09:00⁩ שעון ישראל, פרסום הגארדיאן; עודכן ב-⁦09:02.⁩\n\nהגארדיאן מדווח שקטאר מנסה לשכנע את איראן לאפשר לפקחי הסוכנות הבינלאומית לאנרגיה אטומית לבקר באתרי הגרעין שהופצצו, כולל אתרים שבהם נמצא מלאי אורניום מועשר. לפי המתווה המתואר, ארה\"ב תסיר מיד את המצור הימי ותשחרר חלק מתוך שמונה מיליארד דולר של נכסים איראניים מוקפאים. אין הכוונה לשחרור כל הסכום או לכסף שכבר הועבר.\n\nלפי ההצעה, איראן תפתח את מצר הורמוז ביום השני ליישום ההסכם, באמצעות נתיב שעליו דנה עם עומאן. זהו יום שני מותנה בהפעלת מתווה מוסכם, לא הבטחה שהמצר ייפתח מחר. הכתבה אינה מדווחת על הסכמה אמריקנית ואיראנית סופית, ונותרו דרישות איראניות נוספות ומחלוקות על רצף הצעדים.\n\nהמתווה אינו מחייב בשלב המתואר הוצאת מלאי האורניום מאיראן; דילול רמת ההעשרה הוא אחת האפשרויות המוזכרות. מסמך ההצעה עצמו לא אומת כאן מול גורם רשמי. קרן שיקום ופיתוח של ⁦300⁩ מיליארד דולר המתוארת בכתבה היא הצעה שמקור המימון שלה אינו ברור, לא קרן ממומנת שכבר הוקמה.\n\nקשור לעדכון שנשלח ב-⁦7.11⁩ בשעה ⁦04:12⁩ על מעורבות ואנס בתיווך, ולעדכון מ-⁦6.11⁩ בשעה ⁦18:28⁩ על בחינת הצעות קטאריות. מה חדש: פרטי רצף הביקורים, הסרת המצור, שחרור חלקי של נכסים ופתיחה מותנית ביום השני. אין כאן אישור להפסקת הלחימה, לחזרת השיט לשגרה או לתוספת אספקת נפט שכבר התממשה.",
   "תאריך": "2026-11-07 12:03",
   "הועלה": "2026-11-07 12:03",
-  "מזהה": "n-0074"
+  "מזהה": "n-0074",
+  "כותרת_en": "Per The Guardian: a Qatari plan ties nuclear inspector visits to lifting the blockade and opening Hormuz on the second day of implementation",
+  "טקסט_en": "Not verified against a primary source\nNov 7, 2026 | 09:00 Israel time, The Guardian publication; updated at 09:02.\n\nThe Guardian reports that Qatar is trying to persuade Iran to allow International Atomic Energy Agency inspectors to visit the bombed nuclear sites, including sites holding enriched uranium stockpiles. Per the outline described, the US would immediately lift the naval blockade and release part of eight billion dollars of frozen Iranian assets. This does not mean releasing the entire sum or money already transferred.\n\nUnder the proposal, Iran would open the Strait of Hormuz on the second day of the agreement's implementation, via a route it discussed with Oman. That is a second day conditional on activating an agreed outline, not a promise the strait will open tomorrow. The article does not report final American and Iranian agreement, and further Iranian demands and disputes over the sequence of steps remain.\n\nAt the stage described, the outline does not require removing the uranium stockpile from Iran; diluting the enrichment level is one of the options mentioned. The proposal document itself was not verified here against an official source. The $300 billion reconstruction and development fund described in the article is a proposal whose funding source is unclear, not a funded fund already established.\n\nRelated to the update sent on Nov 7 at 04:12 on Vance's involvement in mediation, and to the Nov 6 update at 18:28 on examination of Qatari proposals. What's new: details of the visit sequence, lifting the blockade, partial release of assets and a conditional opening on the second day. There is no confirmation here of a cessation of fighting, of shipping returning to normal or of an oil supply increase that already materialized.",
+  "תקציר_en": "New details on a proposed sequence of steps, not an agreement that was reached or a statement that the strait has opened.",
+  "_translation": {
+   "en": {
+    "source_hash": "e1a7932980d85c9477d6dfe534b1bca0c1c1da1a75de6b47a6c9ed67db27c20b",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Fox Corporation (FOXA, FOX): משכה הלוואות של 10.4 מיליארד דולר למימון עסקת Roku; הלוואת הגישור לבדה ל-364 יום",
@@ -2035,14 +2055,24 @@
   "מקורות": [
    {
     "label": "Fox Corporation, דיווח 8-K מ-6 בנובמבר",
-    "url": "https://www.sec.gov/Archives/edgar/data/1754301/000119312526451888/d141597d8k.htm"
+    "url": "https://www.sec.gov/Archives/edgar/data/1754301/000119312526451888/d141597d8k.htm",
+    "label_en": "Fox Corporation, 8-K filing of November 6"
    }
   ],
   "תקציר": "פרטי המימון מפרידים בין 8.4 מיליארד דולר בגישור, 2 מיליארד בהלוואה לזמן קצוב ומסגרת אשראי נוספת שלא נמשכה. זו הרחבה לעסקה שהושלמה, לא רכישה חדשה.",
   "טקסט": "⁦6.11.2026⁩ | דיווח רשמי לרשות ניירות הערך בארה\"ב; שעת הפרסום המקורית בשעון ישראל אינה מאומתת.\n\nקשור לפריט מ-⁦6.11⁩ בשעה ⁦18:28⁩ על השלמת רכישת ⁦Roku,⁩ ולהבהרה מ-⁦7.11⁩ בשעה ⁦07:08⁩ על לוח המסחר. מה חדש: פירוט ההלוואות שנמשכו למימון הסגירה וההבחנה בין אשראי שנמשך למסגרת זמינה.\n\nביום הסגירה, ⁦6⁩ בנובמבר, משכה החברה ⁦2⁩ מיליארד דולר במסגרת הלוואה לזמן קצוב ועוד ⁦8.4⁩ מיליארד דולר במסגרת הלוואת גישור. הסכום המחושב של שתי המשיכות הוא ⁦10.4⁩ מיליארד דולר. הכסף שימש לתשלום חלק מתמורת המזומן ומסכומים נוספים הקשורים למיזוג, לא מחיר העסקה הכולל.\n\nהלוואת הגישור של ⁦8.4⁩ מיליארד הדולר מגיעה לפירעון ⁦364⁩ ימים לאחר הסגירה, ואפשר לפרוע אותה מוקדם, כולה או חלקה. אין להסיק מכך שגם הלוואת ה-⁦2⁩ מיליארד חייבת להיפרע בתוך אותו חלון. התחייבויות ההלוואה לזמן קצוב הוגדלו ב-⁦5⁩ בנובמבר מ-⁦1⁩ ל-⁦2⁩ מיליארד דולר.\n\nבנפרד, החברה פתחה ב-⁦6⁩ בנובמבר מסגרת אשראי מתחדשת לא מובטחת של ⁦1.5⁩ מיליארד דולר לחמש שנים, למטרות כלליות. לפי הדיווח, לא נמשכו ממנה כספים, אך הונפקו מכוחה מכתבי אשראי בכ-⁦29⁩ מיליון דולר. לכן אין להוסיף את מלוא המסגרת ל-⁦10.4⁩ מיליארד הדולר כאילו מדובר בעוד חוב מזומן שכבר נמשך.\n\nהנתונים מוסיפים תמונה של מימון הרכישה ושל צורכי הפירעון, ולא משנים את מועד השלמתה או את התמורה למניית ⁦Roku.⁩ הדיווח אינו קובע כאן תוכנית מימון מחדש שכבר בוצעה או יחס מינוף סופי לאחר הסגירה.",
   "תאריך": "2026-11-07 08:56",
   "הועלה": "2026-11-07 08:56",
-  "מזהה": "n-0075"
+  "מזהה": "n-0075",
+  "כותרת_en": "Fox Corporation (FOXA, FOX): drew $10.4 billion in loans to finance the Roku deal; the bridge loan alone is for 364 days",
+  "טקסט_en": "Nov 6, 2026 | official filing with the US Securities and Exchange Commission; the original publication time in Israel time is unverified.\n\nRelated to the Nov 6 item at 18:28 on completing the Roku purchase, and to the Nov 7 clarification at 07:08 on the trading schedule. What's new: a breakdown of the loans drawn to finance the closing and the distinction between drawn credit and an available facility.\n\nOn the closing day, November 6, the company drew $2 billion under a term loan and another $8.4 billion under a bridge loan. The calculated sum of the two drawings is $10.4 billion. The money was used to pay part of the cash consideration and other merger-related amounts, not the total deal price.\n\nThe $8.4 billion bridge loan matures 364 days after closing, and it can be prepaid early, in whole or in part. Do not infer that the $2 billion loan must also be repaid within the same window. The term loan commitments were increased on November 5 from $1 billion to $2 billion.\n\nSeparately, on November 6 the company opened an unsecured five-year $1.5 billion revolving credit facility for general purposes. Per the filing, no funds were drawn from it, but about $29 million of letters of credit were issued under it. Therefore do not add the full facility to the $10.4 billion as if it were additional cash debt already drawn.\n\nThe figures add a picture of the purchase financing and repayment needs, and do not change its completion date or the consideration per Roku share. The filing does not establish here a refinancing plan already executed or a final leverage ratio after closing.",
+  "תקציר_en": "The financing details separate $8.4 billion in bridge, $2 billion in term loan and an additional undrawn credit facility. This expands on the completed deal, not a new purchase.",
+  "_translation": {
+   "en": {
+    "source_hash": "bfb440e651f6ac0d863943e937ec42c6d643b388145d2a7b6c5ffce3e069ec48",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "UL Solutions (ULS): מכירת החזקת DQS הושלמה ב-30 באוקטובר תמורת כ-117 מיליון דולר; רווח לפני מס של כ-93 מיליון יירשם ברבעון הרביעי",
@@ -2052,18 +2082,29 @@
   "מקורות": [
    {
     "label": "UL Solutions, דוח 10-Q מ-3 בנובמבר, ביאור 7",
-    "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000031/uls-20260930.htm"
+    "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000031/uls-20260930.htm",
+    "label_en": "UL Solutions, 10-Q of November 3, Note 7"
    },
    {
     "label": "UL Solutions, הודעת התוצאות מ-3 בנובמבר",
-    "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000029/exhibit991q32026ulsolution.htm"
+    "url": "https://www.sec.gov/Archives/edgar/data/1901440/000190144026000029/exhibit991q32026ulsolution.htm",
+    "label_en": "UL Solutions, earnings release of November 3"
    }
   ],
   "תקציר": "עדכון השלמה לעסקה שנחתמה באפריל, לא עסקה חדשה מהיום. התמורה במזומן והרווח החשבונאי שונים, וחלק מהתמורה מוחזק להתאמות ושיפוי.",
   "טקסט": "⁦3.11.2026⁩ | הודעת התוצאות ודוח הרבעון של החברה; שעת הפרסום המקורית של הודעת התוצאות בשעון ישראל אינה מאומתת. השלמת העסקה הייתה ב-⁦30.10,⁩ לא היום.\n\nהחברה השלימה ב-⁦30⁩ באוקטובר את מכירת ההחזקה שלה, בשיעור של כ-⁦28%,⁩ בחברת הערכת מערכות הניהול הגרמנית (⁦DQS Holding GmbH).⁩ ההסכם עם חברה קשורה לקרן ההשקעות (⁦Montagu)⁩ וצדדים נוספים נחתם באפריל ⁦2026⁩; מדובר בהשלמה של אותו הסכם, לא בהכרזה חדשה על מכירה בנובמבר.\n\nהתמורה היא כ-⁦117⁩ מיליון דולר במזומן, בכפוף להתאמות מקובלות לאחר הסגירה. חלק מהסכום הוחזק לכיסוי התאמות והתחייבויות שיפוי, כך שאין להציג את כל התמורה כאילו הייתה מזומן חופשי שהתקבל ללא תנאים.\n\nלפי ביאור ⁦7⁩ בדוח, המכירה הניבה רווח לפני מס של כ-⁦93⁩ מיליון דולר, שיירשם כהכנסה שאינה תפעולית ברבעון הרביעי של ⁦2026.⁩ זהו רווח חשבונאי מהמכירה, לא עוד ⁦93⁩ מיליון דולר שמתווספים לתמורת המזומן, ולא רווח תפעולי שוטף של הרבעון השלישי.\n\nלפני המכירה טופלה ההשקעה לפי שיטת השווי המאזני, ותוצאות ⁦DQS⁩ לא אוחדו בדוחות החברה. החברה מסרה בהודעת התוצאות שהתמורה שימשה לפירעון אשראי מתחדש. אין בכך אישור שבוטלו כל חובותיה.\n\nזהו עדכון השלמה ותזרים שפורסם במסמכי נובמבר על אירוע מאוקטובר. אין לבלבל אותו עם רכישת ⁦E⁩&⁦E⁩ שהושלמה בנפרד ב-⁦1⁩ באוקטובר, או עם נתוני הרווח והתחזית השוטפים בלוח הדוחות.",
   "תאריך": "2026-11-07 08:56",
   "הועלה": "2026-11-07 08:56",
-  "מזהה": "n-0076"
+  "מזהה": "n-0076",
+  "כותרת_en": "UL Solutions (ULS): sale of the DQS holding was completed October 30 for about $117 million; a pre-tax gain of about $93 million will be recorded in the fourth quarter",
+  "טקסט_en": "Nov 3, 2026 | the company's earnings release and quarterly report; the original publication time of the earnings release in Israel time is unverified. The deal was completed on Oct 30, not today.\n\nThe company completed on October 30 the sale of its holding, at a rate of about 28%, in the German management systems assessment company (DQS Holding GmbH). The agreement with a company affiliated with the investment fund (Montagu) and other parties was signed in April 2026; this is the completion of the same agreement, not a new November announcement of a sale.\n\nThe consideration is about $117 million in cash, subject to customary post-closing adjustments. Part of the sum was held back to cover adjustments and indemnification obligations, so the entire consideration should not be presented as free cash received unconditionally.\n\nPer Note 7 in the report, the sale generated a pre-tax gain of about $93 million, which will be recorded as non-operating income in the fourth quarter of 2026. This is an accounting gain from the sale, not another $93 million added to the cash consideration, and not ongoing operating profit of the third quarter.\n\nBefore the sale the investment was treated under the equity method, and DQS's results were not consolidated in the company's reports. The company said in its earnings release that the consideration was used to repay revolving credit. That is no confirmation that all its debts were canceled.\n\nThis is a completion and cash-flow update published in November documents about an October event. Do not confuse it with the E&E acquisition completed separately on October 1, or with the ongoing profit and guidance figures in the reports dashboard.",
+  "תקציר_en": "A completion update on a deal signed in April, not a new deal from today. The cash consideration and the accounting gain differ, and part of the consideration is held back for adjustments and indemnification.",
+  "_translation": {
+   "en": {
+    "source_hash": "87c92ee4bd08e29bace03a5eb668100f65039c937d869aadada11fa9fb478352",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Omega Healthcare Investors (OHI): מימנה הלוואת משכנתה של כ-846 מיליון דולר בבריטניה; רכישת הנכסים עדיין מותנית",
@@ -2073,14 +2114,24 @@
   "מקורות": [
    {
     "label": "Omega Healthcare, הודעת התוצאות וההתפתחויות מ-3 בנובמבר",
-    "url": "https://www.omegahealthcare.com/investors/news-events/press-releases/detail/351/omega-reports-third-quarter-2026-results-and-recent"
+    "url": "https://www.omegahealthcare.com/investors/news-events/press-releases/detail/351/omega-reports-third-quarter-2026-results-and-recent",
+    "label_en": "Omega Healthcare, earnings and developments release of November 3"
    }
   ],
   "תקציר": "ההלוואה נקובה בליש\"ט ומגובה ב-48 בתי אבות ובזכויות חכירה בשבעה נוספים. אופציית רכישה לאחר תנאים רגולטוריים אינה בעלות שכבר הושלמה.",
   "טקסט": "⁦3.11.2026⁩ | ⁦23:15⁩ שעון ישראל, לפי הודעת החברה מ-⁦16:15⁩ שעון החוף המזרחי בארה\"ב. ההלוואה מומנה בנובמבר עד למועד ההודעה; לא נמסר בה יום המימון המדויק.\n\nהחברה דיווחה שמימנה הלוואת משכנתה בסך ⁦631.7⁩ מיליון ליש\"ט, שהוצגה בהודעה כשוות ערך לכ-⁦845.7⁩ מיליון דולר, לחברה קשורה למפעילה קיימת (⁦Foundation Partners Asset Management).⁩ ההלוואה מובטחת ב-⁦48⁩ בתי אבות בבריטניה ובזכויות חכירה בשבעה בתי אבות נוספים. אין מדובר ב-⁦55⁩ נכסים שכולם נרכשו לבעלות מלאה.\n\nהריבית היא ⁦8.72%⁩ בתחילת התקופה ועולה ל-⁦8.94%⁩ בשנה השנייה. מועד הפירעון הוא בנובמבר ⁦2031.⁩ המימון הגיע ממזומן במאזן, ממיחזור כספים שהתקבלו מפירעון הלוואות וממשיכות ממסגרת האשראי המתחדשת של החברה. זהו אשראי שהועמד בפועל, לא רק מסגרת עתידית שהוצעה.\n\nלחברה יש אופציית רכישה על הנדל\"ן וזכויות החכירה, שתהיה ניתנת למימוש לאחר השלמת תנאים רגולטוריים מקובלים. החברה מצפה לממשה כשניתן יהיה, ללא תמורה נוספת, ואז לחתום עם המפעילה על חוזה שכירות ארוך טווח. הצפי למימוש אינו אישור שהעברת הבעלות כבר הושלמה, ואין בהודעה מועד רגולטורי מובטח לכך.\n\nההלוואה נכללת בכ-⁦945.5⁩ מיליון דולר של השקעות חדשות שבוצעו מאז ⁦1⁩ באוקטובר ועד הודעת התוצאות. לכן אין לחבר את כ-⁦846⁩ מיליון הדולר שוב לאותו סך. יתר ההשקעות כוללות עסקאות אחרות בארה\"ב, לא חלק מאותו תיק בריטי.\n\nהחידוש הוא עסקת אשראי גדולה עם מסלול אפשרי לרכישת נכסים. אין להחליף את תנאי העסקה בהערכת ההנהלה בשיחת המשקיעים, ואין להציג את הדולר כמטבע ההלוואה או את הריבית כתשואה שכבר התקבלה במזומן.",
   "תאריך": "2026-11-07 08:56",
   "הועלה": "2026-11-07 08:56",
-  "מזהה": "n-0077"
+  "מזהה": "n-0077",
+  "כותרת_en": "Omega Healthcare Investors (OHI): financed a mortgage loan of about $846 million in Britain; the property purchase is still conditional",
+  "טקסט_en": "Nov 3, 2026 | 23:15 Israel time, per the company's release of 16:15 US Eastern time. The loan was funded in November up to the release date; the exact funding day was not provided in it.\n\nThe company reported that it financed a mortgage loan of 631.7 million pounds, presented in the release as equivalent to about $845.7 million, to a company affiliated with an existing operator (Foundation Partners Asset Management). The loan is secured by 48 care homes in Britain and leasehold rights in seven additional care homes. This is not 55 properties all purchased in full ownership.\n\nThe interest rate is 8.72% at the start of the period and rises to 8.94% in the second year. Maturity is in November 2031. The funding came from cash on the balance sheet, from recycling funds received from loan repayments and from drawings on the company's revolving credit facility. This is credit actually extended, not only a future facility offered.\n\nThe company has a purchase option on the real estate and leasehold rights, exercisable after completion of customary regulatory conditions. The company expects to exercise it when possible, for no additional consideration, and then sign a long-term lease with the operator. The expectation to exercise is no confirmation that the transfer of ownership is already complete, and the release contains no guaranteed regulatory date for it.\n\nThe loan is included in the roughly $945.5 million of new investments made since October 1 through the earnings release. Therefore do not add the roughly $846 million again to that total. The rest of the investments include other US deals, not part of the same British portfolio.\n\nWhat's new is a large credit deal with a possible path to purchasing properties. Do not replace the deal terms with management's assessment in the investor call, and do not present the dollar as the loan currency or the interest as yield already received in cash.",
+  "תקציר_en": "The loan is denominated in pounds and secured by 48 care homes and leasehold rights in seven more. A purchase option after regulatory conditions is not ownership already completed.",
+  "_translation": {
+   "en": {
+    "source_hash": "ee9098fa3732129b6d557d18448d2c19c411a345909610cf37429c9c2aa7eea3",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Solstice Advanced Materials (SOLS): יעד להשלמה מהותית של תוכנית הרכישה העצמית הקיימת עד סוף הרבעון הראשון של 2027",
@@ -2090,18 +2141,29 @@
   "מקורות": [
    {
     "label": "הודעת תוצאות Solstice מ-4 בנובמבר",
-    "url": "https://investor.solstice.com/news-releases/news-release-details/solstice-advanced-materials-reports-third-quarter-2026-results"
+    "url": "https://investor.solstice.com/news-releases/news-release-details/solstice-advanced-materials-reports-third-quarter-2026-results",
+    "label_en": "Solstice earnings release of November 4"
    },
    {
     "label": "האישור המקורי וביטול המיזוג, 27 באוגוסט",
-    "url": "https://investor.solstice.com/news-releases/news-release-details/solstice-advanced-materials-announces-mutual-termination-merger"
+    "url": "https://investor.solstice.com/news-releases/news-release-details/solstice-advanced-materials-announces-mutual-termination-merger",
+    "label_en": "The original authorization and merger termination, August 27"
    }
   ],
   "תקציר": "המסגרת של 500 מיליון דולר אושרה באוגוסט, וברבעון השלישי נרכשו מניות ב-100 מיליון. החידוש הוא יעד התזמון, לא אישור חדש או רכישה שכבר הושלמה.",
   "טקסט": "⁦4.11.2026⁩ | הודעת התוצאות הרשמית של החברה; שעת הפרסום בשעון ישראל אינה מאומתת.\n\nהחברה מסרה שבכוונתה להשלים במידה מהותית את תוכנית הרכישה העצמית הקיימת, בהיקף של עד ⁦500⁩ מיליון דולר, עד סוף הרבעון הראשון של ⁦2027.⁩ ברבעון השלישי היא כבר רכשה כ-⁦1.7⁩ מיליון מניות בעלות של ⁦100⁩ מיליון דולר.\n\nהמסגרת של ⁦500⁩ מיליון הדולר אושרה ב-⁦27⁩ באוגוסט. לכן אין כאן אישור חדש בסכום הזה, וה-⁦100⁩ מיליון שכבר בוצעו הם חלק מאותה תוכנית, לא סכום שמתווסף אליה. יעד ההשלמה הוא כוונת הנהלה לעתיד, לא דיווח שכל יתרת הרכישות בוצעה או התחייבות למועד ולמחיר ביצוע מדויקים.\n\nהודעת אוגוסט כללה גם ביטול בהסכמה של ההסכם לרכישת ⁦Element Solutions (ESI),⁩ ללא דמי ביטול בין הצדדים. הביטול אינו אירוע חדש מנובמבר. אין לערבב את מועד הביטול עם יעד התזמון לרכישות העצמיות שנמסר בדוח נובמבר.\n\nבדוח מציינת החברה תזרים מזומנים מפעילות שוטפת של ⁦693⁩ מיליון דולר בתשעת החודשים הראשונים של השנה. היא מציגה את החזרת ההון לצד השקעות בעסק, ולא כתחליף להן. מסגרת רכישה אינה הבטחה לתשואת מניה או להפחתה מיידית של כל מספר המניות.\n\nהעדכון מתמקד בתזמון התוכנית הקיימת. תוצאות הרבעון ותחזית החברה מוצגות בנפרד בלוח הדוחות; אין לספור את אותה מסגרת רכישה כאירוע הוני נוסף.",
   "תאריך": "2026-11-07 08:49",
   "הועלה": "2026-11-07 08:49",
-  "מזהה": "n-0078"
+  "מזהה": "n-0078",
+  "כותרת_en": "Solstice Advanced Materials (SOLS): goal of substantially completing the existing buyback program by the end of Q1 2027",
+  "טקסט_en": "Nov 4, 2026 | the company's official earnings release; the publication time in Israel time is unverified.\n\nThe company said it intends to substantially complete its existing buyback program, of up to $500 million, by the end of the first quarter of 2027. In the third quarter it already repurchased about 1.7 million shares at a cost of $100 million.\n\nThe $500 million authorization was approved on August 27. Therefore there is no new authorization here in that amount, and the $100 million already executed is part of the same program, not a sum added to it. The completion goal is management's future intention, not a report that all remaining purchases were executed or a commitment to an exact execution date and price.\n\nThe August release also included the mutual termination of the agreement to acquire Element Solutions (ESI), with no termination fees between the parties. The termination is not a new November event. Do not mix the termination date with the buyback timing goal given in the November report.\n\nIn the report the company cites operating cash flow of $693 million in the first nine months of the year. It presents returning capital alongside investment in the business, not as a substitute for it. A buyback authorization is no promise of stock return or of an immediate reduction of the total share count.\n\nThe update focuses on the timing of the existing program. The quarter's results and the company's guidance are presented separately in the reports dashboard; do not count the same buyback authorization as an additional capital event.",
+  "תקציר_en": "The $500 million authorization was approved in August, and $100 million of shares were repurchased in Q3. What's new is the timing goal, not a new authorization or a purchase already completed.",
+  "_translation": {
+   "en": {
+    "source_hash": "70e904ce69b4d8d72bee098dd91523c2ea3e98732b2aa9abe02c546bfa667285",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Microsoft (MSFT), לא מאומת מול מקור ראשוני: עדכון Reuters על Nscale מבדיל בין אופציית הרחבה לבין החוזה הקיים",
@@ -2111,14 +2173,24 @@
   "מקורות": [
    {
     "label": "Reuters, הדיווח הישיר מ-5 בנובמבר",
-    "url": "https://www.reuters.com/5f374b32b07b/technology/microsoft-rejects-multibillion-dollar-ai-deal-with-uks-nscale-ft-reports-2026-11-05/"
+    "url": "https://www.reuters.com/5f374b32b07b/technology/microsoft-rejects-multibillion-dollar-ai-deal-with-uks-nscale-ft-reports-2026-11-05/",
+    "label_en": "Reuters, the direct report of November 5"
    }
   ],
   "תקציר": "מקור ל-Reuters אומר שההחלטה התקבלה חודשים קודם ולא פגעה בחוזה הקיים בטקסס או בשווי החוזים הכולל ש-Nscale דיווחה עליו.",
   "טקסט": "לא מאומת מול מקור ראשוני\n⁦5.11.2026⁩ | ⁦Reuters,⁩ פורסם ב-⁦07:11⁩ שעון ישראל לפי חותמת ⁦05:11 UTC.⁩ מועד העדכון באותו יום מוצג ללא שעה.\n\nקשור לפריט מ-⁦5.11⁩ בשעה ⁦08:05⁩ על אי-מימוש אופציית ההרחבה של ⁦Nscale⁩ בטקסס, ולפריט מ-⁦6.11⁩ בשעה ⁦21:15⁩ על בחינת ספקיות הענן. מה חדש: בגרסה הישירה של ⁦Reuters⁩ שנבדקה מופיע מקור משלה שמפרט מתי התקבלה ההחלטה ומה לא השתנה. אין זו הודעה על ביטול חדש היום.\n\nלפי אדם הבקיא בנושא שצוטט ב-⁦Reuters, Microsoft⁩ לא תממש אופציה להגדיל ליותר מפי שניים את ההסכם הקיים לשכירת מחשוב במרכז נתונים בטקסס. המקור אמר שההחלטה התקבלה חודשים קודם, לפני ש-⁦Nscale⁩ הגישה את מסמכי ההנפקה בספטמבר, ושאין לה השפעה על החוזה הקיים בטקסס.\n\nהמקור הוסיף שאין להחלטה השפעה על שווי החוזים הכולל של כ-⁦103⁩ מיליארד דולר ש-⁦Nscale⁩ הציגה במסמכי ההנפקה. לפי ⁦Reuters,⁩ מסמכי החברה תיארו גם מסמכי עבודה שנחתמו עם ⁦Microsoft⁩ בהיקף של עד כ-⁦43.8⁩ מיליארד דולר עד דצמבר ⁦2033,⁩ ללא הרחבות אופציונליות. אלה נתוני חוזים ותקופות שונים, לא הכנסה שכבר התקבלה ולא סכומים שיש לחבר.\n\nהדיווח הראשון של ⁦Financial Times⁩ תיאר את ההרחבה האפשרית כבעלת שווי של עשרות מיליארדי דולרים. הפריט הקודם באפליקציה התבסס על גרסה שנשענה על אותו דיווח והסתייגה מאימות עצמאי; בגרסה הישירה שנבדקה מופיע מקור נוסף של ⁦Reuters,⁩ בלי שנקבע כאן מתי בדיוק נוסף. זו התחזקות של הבסיס העיתונאי, לא אישור רשמי של החברות. ⁦Microsoft⁩ ו-⁦Nscale⁩ לא השיבו לבקשת תגובה מחוץ לשעות העבודה.\n\nאין לייחס את ההחלטה לבחירות האחרונות בטקסס, כאשר המקור מתאר החלטה שהתקבלה חודשים לפניהן. גם הנסיגה הקודמת מפרויקט בלוטון שבבריטניה, שנקשרה לעיכוב חיבור לחשמל, היא אירוע אחר. אין בדיווח אישור לביטול כל קשרי ⁦Microsoft⁩ עם ⁦Nscale⁩ או ספקיות ענן אחרות.",
   "תאריך": "2026-11-07 08:49",
   "הועלה": "2026-11-07 08:49",
-  "מזהה": "n-0079"
+  "מזהה": "n-0079",
+  "כותרת_en": "Microsoft (MSFT), not verified against a primary source: a Reuters update on Nscale distinguishes between the expansion option and the existing contract",
+  "טקסט_en": "Not verified against a primary source\nNov 5, 2026 | Reuters, published at 07:11 Israel time per the 05:11 UTC timestamp. The update time that day is shown without an hour.\n\nRelated to the Nov 5 item at 08:05 on the non-exercise of Nscale's expansion option in Texas, and to the Nov 6 item at 21:15 on examining cloud providers. What's new: in the direct Reuters version checked, its own source appears specifying when the decision was made and what did not change. This is not a statement of a new cancellation today.\n\nPer a person familiar with the matter quoted by Reuters, Microsoft will not exercise an option to more than double the existing computing lease agreement at a Texas data center. The source said the decision was made months earlier, before Nscale filed its IPO documents in September, and that it has no effect on the existing Texas contract.\n\nThe source added that the decision has no effect on the total contract value of about $103 billion that Nscale presented in its IPO documents. Per Reuters, the company's documents also described work documents signed with Microsoft of up to about $43.8 billion through December 2033, without optional expansions. These are contract figures and different periods, not revenue already received and not sums to be added together.\n\nThe first Financial Times report described the possible expansion as worth tens of billions of dollars. The previous item in the app was based on a version relying on that report and reserved independent verification; in the direct version checked, an additional Reuters source appears, without it being established here exactly when it was added. This is a strengthening of the journalistic basis, not an official confirmation by the companies. Microsoft and Nscale did not respond to a request for comment outside working hours.\n\nDo not attribute the decision to the recent Texas elections, when the source describes a decision made months before them. The earlier withdrawal from a project in Luton, Britain, linked to a delay in connecting to electricity, is also a different event. The report contains no confirmation of a cancellation of all Microsoft ties with Nscale or other cloud providers.",
+  "תקציר_en": "A source tells Reuters that the decision was made months earlier and did not affect the existing Texas contract or the total contract value Nscale reported.",
+  "_translation": {
+   "en": {
+    "source_hash": "f7ae45708552d5fb75277ba0caed42a42fc9680271869a04ca5383994b6d91a5",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "NVIDIA (NVDA), לא מאומת מול מקור ראשוני: לפי Bloomberg, מעמד שותפת ענן בדרום-מזרח אסיה מותנה בהצטרפות למערכת ניטור שבבים",
@@ -2128,22 +2200,34 @@
   "מקורות": [
    {
     "label": "Bloomberg בהפצת The Edge, דיווח מ-6 בנובמבר",
-    "url": "https://theedgemalaysia.com/node/824907"
+    "url": "https://theedgemalaysia.com/node/824907",
+    "label_en": "Bloomberg distributed by The Edge, report of November 6"
    },
    {
     "label": "אותו דיווח Bloomberg בהפצת The Malaysian Reserve",
-    "url": "https://themalaysianreserve.com/2026/11/07/nvidia-boosts-chip-tracking-in-southeast-asia-to-fight-smuggling/"
+    "url": "https://themalaysianreserve.com/2026/11/07/nvidia-boosts-chip-tracking-in-southeast-asia-to-fight-smuggling/",
+    "label_en": "The same Bloomberg report distributed by The Malaysian Reserve"
    },
    {
     "label": "NVIDIA, רקע טכני על השירות מ-11 במאי",
-    "url": "https://developer.nvidia.com/blog/introducing-nvidia-fleet-intelligence-for-real-time-gpu-fleet-visibility-and-optimization/"
+    "url": "https://developer.nvidia.com/blog/introducing-nvidia-fleet-intelligence-for-real-time-gpu-fleet-visibility-and-optimization/",
+    "label_en": "NVIDIA, technical background on the service of May 11"
    }
   ],
   "תקציר": "הדרישה המדווחת מתייחסת למבקשי מעמד NCP, לא לכל לקוח. הצטרפות אינה מחייבת כברירת מחדל העברת נתוני מיקום לחברה או לממשל האמריקאי.",
   "טקסט": "לא מאומת מול מקור ראשוני\n⁦6.11.2026⁩ | דיווח ⁦Bloomberg⁩ בהפצת ⁦The Edge⁩; שעת הפרסום המקורית בשעון ישראל אינה ידועה. אותו דיווח הופץ ב-⁦The Malaysian Reserve⁩ ב-⁦7⁩ בנובמבר.\n\nלפי מקורות הבקיאים בנושא ששוחחו עם ⁦Bloomberg,⁩ ספקיות מחשוב בדרום-מזרח אסיה המבקשות לקבל מעמד של שותפת ענן רשמית, ⁦NCP,⁩ נדרשות להצטרף למערכת ⁦Fleet Intelligence⁩ של ⁦NVIDIA.⁩ המעמד מעניק הכרה רשמית וגישה מועדפת לשבבים; הדרישה המדווחת נועדה לעודד תיעוד וניטור של מיקום מאיצי הבינה המלאכותית באזור שבו נחקרות העברות אסורות לסין.\n\nזהו תנאי מדווח לקבלת מעמד שותפה, לא חוק יצוא חדש ולא חיוב גורף לכל רוכש שבב בעולם. לפי הדיווח, התוכנית הרחבה עדיין וולונטרית, ולא הובהר אם שותפות קיימות יידרשו להצטרף כדי לשמור על מעמדן או אם הדרישה תורחב לאזורים אחרים. החברה לא השיבה לשאלות האלה בדיווח.\n\nיש הבדל בין איסוף מידע תפעולי לבין שיתוף נתוני מיקום: לפי ⁦Bloomberg,⁩ ההצטרפות אינה מחייבת כברירת מחדל למסור את מיקום השבבים ל-⁦NVIDIA⁩ או לממשל האמריקאי. בדיווח נאמר שרגולטורים שיבקשו מידע כזה יפנו למשתמשים. אין להסיק מכך שהחברה יכולה לאתר מרחוק כל שבב שמכרה, או שהמערכת כבר מנעה הברחות.\n\nבהסבר הטכני הרשמי מ-⁦11⁩ במאי החברה מתארת שירות קיים לאיסוף מדדי תפעול, מלאי, בריאות ותקינות של מעבדים. זהו מקור רקע על יכולות השירות, לא אישור לדרישת ההצטרפות האזורית החדשה. הדרישה עצמה נותרת דיווח עיתונאי המבוסס על מקורות אנונימיים.\n\nקשור לפריט מ-⁦6.11⁩ בשעה ⁦11:52⁩ על שבבי ⁦H200⁩ הממתינים בהונג קונג: החידוש כאן הוא תנאי מדווח למעמד שותפת ענן בדרום-מזרח אסיה, לא שינוי באישור היבוא לסין. הוא נפרד גם מהפריט מ-⁦4.11⁩ בשעה ⁦05:02⁩ על פנייה לפיזור לקוחות ענן וצמצום החשיפה ללקוחות סיניים. אין בדיווח נתון הכנסות חדש או הוכחה לפגיעה מיידית באספקת השבבים.",
   "תאריך": "2026-11-07 08:43",
   "הועלה": "2026-11-07 08:43",
-  "מזהה": "n-0080"
+  "מזהה": "n-0080",
+  "כותרת_en": "NVIDIA (NVDA), not verified against a primary source: per Bloomberg, cloud partner status in Southeast Asia is conditional on joining a chip monitoring system",
+  "טקסט_en": "Not verified against a primary source\nNov 6, 2026 | a Bloomberg report distributed by The Edge; the original publication time in Israel time is unknown. The same report was distributed in The Malaysian Reserve on November 7.\n\nPer sources familiar with the matter who spoke with Bloomberg, computing providers in Southeast Asia seeking to receive official cloud partner status, NCP, are required to join NVIDIA's Fleet Intelligence system. The status grants official recognition and preferred access to chips; the reported requirement is meant to encourage documentation and monitoring of the location of AI accelerators in a region where prohibited transfers to China are under investigation.\n\nThis is a reported condition for receiving partner status, not a new export law and not a sweeping obligation on every chip buyer worldwide. Per the report, the broader program is still voluntary, and it was not clarified whether existing partners will be required to join to keep their status or whether the requirement will be expanded to other regions. The company did not answer these questions in the report.\n\nThere is a difference between collecting operational information and sharing location data: per Bloomberg, joining does not by default require handing the chips' location to NVIDIA or the American government. The report says regulators requesting such information would turn to the users. Do not infer that the company can remotely locate every chip it sold, or that the system has already prevented smuggling.\n\nIn the official technical explanation of May 11, the company describes an existing service for collecting operational, inventory, health and integrity metrics of processors. That is a background source on the service's capabilities, not confirmation of the new regional joining requirement. The requirement itself remains a journalistic report based on anonymous sources.\n\nRelated to the Nov 6 item at 11:52 on H200 chips waiting in Hong Kong: what's new here is a reported condition for cloud partner status in Southeast Asia, not a change in the import approval for China. It is also separate from the Nov 4 item at 05:02 on an approach to distribute cloud customers and reduce exposure to Chinese customers. The report contains no new revenue figure or proof of an immediate hit to chip supply.",
+  "תקציר_en": "The reported requirement applies to those seeking NCP status, not every customer. Joining does not by default require transferring location data to the company or the American government.",
+  "_translation": {
+   "en": {
+    "source_hash": "987e41ad92677f0f5ccca8c50df648863fd2822995602f86108a00a7e3587862",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "GE Vernova (GEV): זכייה בפרויקט הולכת חשמל של 6 גיגה-ואט בהודו; מכתב הזכייה מתוארך ל-3 בנובמבר",
