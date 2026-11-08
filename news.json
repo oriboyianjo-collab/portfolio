@@ -24706,5 +24706,31 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "NVIDIA (NVDA): הדירקטוריון פותח בחקירה עצמאית בעקבות דיווחים שהמנכ״ל הואנג היה מטרה של מאמץ מודיעין זר",
+    "category": "micro",
+    "קישור": "https://www.globenewswire.com/news-release/2026/11/08/3398017/0/en/statement-from-nvidia-board-of-directors.html",
+    "מקורות": [
+      {
+        "label": "הודעת דירקטוריון NVIDIA ב-GlobeNewswire, 8.11.2026",
+        "url": "https://www.globenewswire.com/news-release/2026/11/08/3398017/0/en/statement-from-nvidia-board-of-directors.html",
+        "label_en": "NVIDIA Board statement on GlobeNewswire, Nov 8, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 8.11.2026 בשעה 15:00 ET (22:00 שעון ישראל).\n\nדירקטוריון NVIDIA הודיע שהוא יוזם חקירה עצמאית בעקבות דיווחים שהמייסד והמנכ״ל ג׳נסן הואנג היה מטרה של מאמץ מודיעין זר.\n\nועדה של דירקטורים בלתי תלויים, בסיוע יועצים משפטיים חיצוניים בלתי תלויים, תפקח על החקירה. לפי ההודעה, הדירקטוריון רואה בביטחון הלאומי והכלכלי של ארה״ב שיקול מרכזי לאינטרסים של החברה ובעלי המניות.\n\nהדירקטוריון מסר שאין לו סיבה להאמין שהביטחון הלאומי או סודות החברה נפגעו, והחקירה תבחן את כל המידע הזמין. הואנג תומך בבדיקה והתחייב לשתף עמה פעולה; הדירקטוריון הביע אמון בו ובצוות ההנהלה ויעדכן בהמשך בהתאם.\n\nהדיווחים על מאמץ המודיעין הזר טרם אומתו, וההודעה אינה אישור לריגול בפועל. זהו צעד חדש של הדירקטוריון, נפרד מבקשת התדריך של ועדות בית הנבחרים ומהתחקיר המיוחס ל-NYT שפורסמו קודם.",
+    "תקציר": "ועדת דירקטורים בלתי תלויים תפקח על החקירה; הדירקטוריון מסר שאין סיבה להאמין שנפגעו ביטחון לאומי או סודות החברה.",
+    "מזהה": "n-1043",
+    "תאריך": "2026-11-08 22:08",
+    "הועלה": "2026-11-08 22:08",
+    "כותרת_en": "NVIDIA (NVDA): the board opens an independent investigation following reports that CEO Huang was the target of a foreign intelligence effort",
+    "טקסט_en": "Source publication: Nov 8, 2026 at 3:00 PM ET (10:00 PM Israel time).\n\nNVIDIA's board of directors announced it is initiating an independent investigation in light of recent reporting that founder and CEO Jensen Huang has been the target of a foreign intelligence effort.\n\nA committee of independent directors, assisted by outside independent counsel, will oversee the investigation. Per the announcement, the board prioritizes US national and economic security, which is paramount to the interests of the company and its shareholders.\n\nThe board said it has no reason to believe that either national security or NVIDIA secrets were compromised, and the inquiry will examine all available information. Huang fully supports the review and has committed to cooperating with it; the board expressed confidence in him and his leadership team and will provide further updates as appropriate.\n\nThe reports of the foreign intelligence effort have not been verified, and the announcement is not a confirmation of actual espionage. This is a new board action, separate from the House committees' briefing request and the NYT-attributed investigation published earlier.",
+    "תקציר_en": "A committee of independent directors will oversee the investigation; the board said it has no reason to believe national security or company secrets were compromised.",
+    "_translation": {
+      "en": {
+        "source_hash": "2132d529a4b2d69449ce2946868a677b16eca3035fd1257bb215a1db03deb012",
+        "schema_version": 1
+      }
+    }
   }
 ]
