@@ -1523,18 +1523,29 @@
   "מקורות": [
    {
     "label": "Triad Business Journal: הקטע הפומבי של הדיווח מ-6 בנובמבר",
-    "url": "https://www.bizjournals.com/triad/news/2026/11/06/lumentum-marvell-merger-greensboro-impact.html"
+    "url": "https://www.bizjournals.com/triad/news/2026/11/06/lumentum-marvell-merger-greensboro-impact.html",
+    "label_en": "Triad Business Journal: public excerpt of the November 6 report"
    },
    {
     "label": "Lumentum: ההודעה המקורית על המפעל, 26 במרץ 2026",
-    "url": "https://investor.lumentum.com/financial-news-releases/news-details/2026/Lumentum-Announces-New-U-S--Manufacturing-Facility-to-Produce-Advanced-Lasers-for-the-Worlds-Largest-AI-Data-Centers/default.aspx"
+    "url": "https://investor.lumentum.com/financial-news-releases/news-details/2026/Lumentum-Announces-New-U-S--Manufacturing-Facility-to-Produce-Advanced-Lasers-for-the-Worlds-Largest-AI-Data-Centers/default.aspx",
+    "label_en": "Lumentum: original release on the plant, March 26, 2026"
    }
   ],
   "תקציר": "הקטע מציין עלייה מתוכננת בייצור בתוך 12-18 חודשים. זהו עדכון על פרויקט קיים, לא השקעה חדשה ולא מועד סגירת המיזוג.",
   "טקסט": "לא מאומת מול מקור ראשוני\n⁦7.11.2026⁩ | ⁦00:50⁩ שעון ישראל, מועד פרסום הדיווח ב-⁦Triad Business Journal⁩ לפי נתוני העמוד.\n\nלפי הקטע הפומבי של הדיווח, ⁦Lumentum⁩ מזמינה כלים חדשים כהכנה להתקנת ציוד במפעל גרינסבורו שבצפון קרוליינה. הקטע מציין כי העלייה בייצור צפויה להתחיל בתוך ⁦12-18⁩ חודשים. זו ציפייה מדווחת, לא התחייבות למועד מסירה או להכנסה שכבר נרשמה.\n\nהפרויקט עצמו אינו חדש. בהודעת החברה מ-⁦26⁩ במרץ ⁦2026⁩ תואר מפעל לייצור רכיבים אופטיים מבוססי אינדיום פוספיד, לרבות לייזרים לתשתיות בינה מלאכותית, עם צפי לעלייה בייצור באמצע ⁦2028.⁩ אין בקטע הנוכחי די מידע לקבוע שהחברה הקדימה רשמית את לוח הזמנים, או להשוות במדויק בין שלבי ההרצה המתוארים בשני המקורות.\n\nהעדכון כאן מוגבל להזמנת כלים ולהיערכות לייצור לפי הקטע הזמין, ולא להכרזה על השקעה חדשה. טווח ⁦12-18⁩ החודשים מתייחס לייצור במפעל, לא להשלמת המיזוג המתוכנן עם ⁦Marvell.⁩\n\nהכתבה המלאה אינה זמינה בקטע הפומבי שנבדק; לא אומתה הודעת חברה חדשה שמאשרת את פרטי העדכון, ואין כאן קביעה שהמיזוג לא ישפיע על המפעל.",
   "תאריך": "2026-11-07 12:44",
   "הועלה": "2026-11-07 12:44",
-  "מזהה": "n-0057"
+  "מזהה": "n-0057",
+  "כותרת_en": "Lumentum (LITE): per a public excerpt in Triad Business Journal, the company is ordering tools for the Greensboro plant ahead of a production ramp",
+  "טקסט_en": "Not verified against a primary source\nNov 7, 2026 | 00:50 Israel time, when the Triad Business Journal report was published per the page data.\n\nPer the public excerpt of the report, Lumentum is ordering new tools in preparation for equipment installation at the Greensboro plant in North Carolina. The excerpt notes that the production ramp is expected to begin within 12-18 months. This is a reported expectation, not a commitment to a delivery date or to revenue already recorded.\n\nThe project itself is not new. The company's March 26, 2026 release described a plant producing indium phosphide-based optical components, including lasers for AI infrastructure, with a production ramp expected in mid-2028. The current excerpt lacks enough information to determine that the company has officially moved the timetable up, or to compare precisely between the ramp phases described in the two sources.\n\nThe update here is limited to tool ordering and production preparation per the available excerpt, not an announcement of new investment. The 12-18 month range refers to production at the plant, not to completion of the planned merger with Marvell.\n\nThe full article is not available in the public excerpt checked; no new company release confirming the update's details was verified, and there is no determination here that the merger will not affect the plant.",
+  "תקציר_en": "The excerpt notes a production ramp planned within 12-18 months. This is an update on an existing project, not a new investment and not the merger's closing date.",
+  "_translation": {
+   "en": {
+    "source_hash": "4ce6900623b2b8a4c1d74036321296a3ce9f4549b36c0989c6885a107ffefeca",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "NOV (NOV): חוזים לציוד ולתכנון שתי אוניות התקנה של Cadeler לחוות רוח ימיות",
@@ -1544,14 +1555,24 @@
   "מקורות": [
    {
     "label": "NOV: הודעת החברה מ-4 בנובמבר 2026",
-    "url": "https://www.nov.com/news/nov-awarded-contracts-for-cadeler-for-two-gustomsc-designed-jack-up-vessels"
+    "url": "https://www.nov.com/news/nov-awarded-contracts-for-cadeler-for-two-gustomsc-designed-jack-up-vessels",
+    "label_en": "NOV: company release of November 4, 2026"
    }
   ],
   "תקציר": "החוזים הוענקו ברבעון השלישי; מסירת האוניות מתוכננת לאמצע 2030 ולרבעון הראשון של 2031. שווי החוזים לא פורסם.",
   "טקסט": "⁦4.11.2026⁩ | הודעת ⁦NOV.⁩ שעת הפרסום המקורית אינה ידועה.\n\n⁦NOV⁩ הודיעה כי ברבעון השלישי הוענקו לה חוזים לאספקת חבילות ציוד ורישיונות תכנון לשתי אוניות חדשות מסדרת ⁦T-Class⁩ של ⁦Cadeler,⁩ המיועדות להתקנת יסודות של טורבינות רוח בים. זו הודעה שפורסמה ב-⁦4⁩ בנובמבר על חוזים מהרבעון השלישי, לא הזמנות חדשות מ-⁦7⁩ בנובמבר.\n\nהאוניות מבוססות על תכנון ⁦GustoMSC⁩ של ⁦NOV.⁩ מסירת הראשונה מתוכננת לאמצע ⁦2030⁩ והשנייה לרבעון הראשון של ⁦2031.⁩ הן צפויות להיות האוניות העשירית והאחת-עשרה בצי ⁦Cadeler⁩ המבוססות על תכנון ⁦GustoMSC.⁩\n\nהתכנון מיועד ליסודות גדולים וכבדים יותר ולפעילות במים עמוקים יותר, וכולל מערכת הרמה מעודכנת ושיפור בקיבולת המנוף. המטרה היא לאפשר התקנת הדור הבא של יסודות מונופייל גדולים במיוחד לפרויקטי רוח ימיים.\n\nההודעה אינה מפרסמת את שווי החוזים של ⁦NOV,⁩ את שיעור הרווח הצפוי או את מועד ההכרה בהכנסות. מועדי המסירה הם לוח זמנים מתוכנן של האוניות, לא הודעה שהציוד כבר נמסר או שההכנסה כבר הוכרה.",
   "תאריך": "2026-11-07 12:35",
   "הועלה": "2026-11-07 12:35",
-  "מזהה": "n-0058"
+  "מזהה": "n-0058",
+  "כותרת_en": "NOV (NOV): contracts for equipment and design of two Cadeler installation vessels for offshore wind farms",
+  "טקסט_en": "Nov 4, 2026 | NOV release. The original publication time is unknown.\n\nNOV announced that in the third quarter it was awarded contracts to supply equipment packages and design licenses for two new T-Class vessels of Cadeler, intended for installing foundations of offshore wind turbines. This is a release published on November 4 about third-quarter contracts, not new orders of November 7.\n\nThe vessels are based on NOV's GustoMSC design. Delivery of the first is planned for mid-2030 and the second for Q1 2031. They are expected to be the tenth and eleventh vessels in the Cadeler fleet based on the GustoMSC design.\n\nThe design is intended for larger and heavier foundations and operation in deeper waters, and includes an upgraded jacking system and improved crane capacity. The goal is to enable installation of the next generation of especially large monopile foundations for offshore wind projects.\n\nThe release does not publish the value of NOV's contracts, the expected profit margin or the revenue recognition timing. The delivery dates are a planned vessel timetable, not a statement that equipment has already been delivered or revenue already recognized.",
+  "תקציר_en": "The contracts were awarded in the third quarter; vessel deliveries are planned for mid-2030 and Q1 2031. The contracts' value was not published.",
+  "_translation": {
+   "en": {
+    "source_hash": "2a88c42e483bce7821d639195503ae5a1cce1a3f79eaa66bcd3ab9ab924ef1fd",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "ABB (ABBNY) ו-SoftBank Group (9984): סין אסרה על רכישת פעילות הרובוטיקה בסין; דיווח על בחינת הפרדה שלה מהעסקה",
@@ -1563,24 +1584,37 @@
   "מקורות": [
    {
     "label": "ABB: עדכון רשמי על איסור רכישת הפעילות בסין",
-    "url": "https://www.abb.com/global/en/news/140154/update-on-divestment-of-abb-robotics"
+    "url": "https://www.abb.com/global/en/news/140154/update-on-divestment-of-abb-robotics",
+    "label_en": "ABB: official update on the ban on purchasing the China business"
    },
    {
     "label": "SoftBank: אישור רשמי מ-6 בנובמבר, הודעת הרשות התקבלה ב-4 בנובמבר",
-    "url": "https://group.softbank/en/news/press/20261106"
+    "url": "https://group.softbank/en/news/press/20261106",
+    "label_en": "SoftBank: official confirmation of November 6, authority notice received November 4"
    },
    {
     "label": "Investing.com: דיווח משני מ-7 בנובמבר המצטט את Bloomberg",
-    "url": "https://www.investing.com/news/company-news/softbank-abb-consider-china-carveout-to-rescue-54bn-robotics-deal--bloomberg-5009777"
+    "url": "https://www.investing.com/news/company-news/softbank-abb-consider-china-carveout-to-rescue-54bn-robotics-deal--bloomberg-5009777",
+    "label_en": "Investing.com: secondary report of November 7 quoting Bloomberg"
    },
    {
     "label": "ABB: סימול ADR נוכחי ABBNY בשוק OTC",
-    "url": "https://www.abb.com/global/en/company/investors/equity-info/share-listing/adrs"
+    "url": "https://www.abb.com/global/en/company/investors/equity-info/share-listing/adrs",
+    "label_en": "ABB: current ADR ticker ABBNY on the OTC market"
    }
   ],
   "תאריך": "2026-11-07 12:22",
   "הועלה": "2026-11-07 12:22",
-  "מזהה": "n-0059"
+  "מזהה": "n-0059",
+  "כותרת_en": "ABB (ABBNY) and SoftBank Group (9984): China barred the purchase of the robotics business in China; a report on examining its separation from the deal",
+  "טקסט_en": "The talks to change the deal's structure: not verified against a primary source\nNov 5, 2026 | ABB's original release on the ban; Nov 6, 2026 | SoftBank confirmation. Follow-up report on separation talks: Nov 7, 2026. Publication times in Israel time were not verified.\n\nThe companies confirmed that China's foreign investment security review authority barred SoftBank's purchase of ABB's robotics business in China. In its November 6 statement, SoftBank noted it received the notice from the authority on November 4. This concerns the China business: the companies did not announce that the entire global deal was cancelled.\n\nThe original agreement to sell the robotics division was signed in October 2025, at an enterprise value of $5.375 billion. In their current statements the companies said they continue in close dialogue and are working on the deal, which remains subject to regulatory approvals and customary closing conditions.\n\nIn a November 7 follow-up report, Investing.com quotes a Bloomberg report based on people familiar with the talks, saying that separating the Chinese business into a separately owned entity is being examined to enable a sale of the rest of the business. Per that report, the talks are early and may not lead to an agreement. This is a secondary report: there is no official confirmation here of a new structure, an updated price or the authority's agreement to such an outline.\n\nThe confirmed ban adds risk to the robotics deal's closing. The talks report describes a possible attempt to deal with the obstacle, not its removal. No alternative closing date or approval to complete the deal was published in the primary sources checked.",
+  "תקציר_en": "The ban on the China business was officially confirmed; the talks to separate it are only reported, and the global deal was not announced as cancelled.",
+  "_translation": {
+   "en": {
+    "source_hash": "e59d34f7fb1a4ff64ea7a9d6e2f0db399d0cf68ea8dbb6b42c79988ea1f8d2fc",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "KKR (KKR): לפי Moneycontrol, Brookfield ו-Macquarie במגעים לרכישת החזקה ב-STT GDC India",
@@ -1590,18 +1624,29 @@
   "מקורות": [
    {
     "label": "Moneycontrol: דיווח מקורי מ-5 בנובמבר, מקורות שלא זוהו",
-    "url": "https://www.moneycontrol.com/news/business/information-technology/brookfield-macquarie-among-others-in-talks-for-stt-gdc-india-stake-as-kkr-targets-january-end-deal-14071188.html"
+    "url": "https://www.moneycontrol.com/news/business/information-technology/brookfield-macquarie-among-others-in-talks-for-stt-gdc-india-stake-as-kkr-targets-january-end-deal-14071188.html",
+    "label_en": "Moneycontrol: original report of November 5, unidentified sources"
    },
    {
     "label": "w.media: דיווח משני על תהליך מכירת ההחזקה",
-    "url": "https://w.media/key-stt-gdc-india-shareholders-bring-in-advisors-for-stake-sale-report/"
+    "url": "https://w.media/key-stt-gdc-india-shareholders-bring-in-advisors-for-stake-sale-report/",
+    "label_en": "w.media: secondary report on the stake sale process"
    }
   ],
   "תקציר": "מגעים והצעות לא מחייבות צפויות, לא עסקה שנחתמה; לפי הדיווח KKR עשויה לשמור החזקת מיעוט.",
   "טקסט": "לא מאומת מול מקור ראשוני\n⁦5.11.2026⁩ | ⁦08:34⁩ שעון ישראל, מועד הפרסום המקורי ב-⁦Moneycontrol.⁩\n\nלפי דיווח ⁦Moneycontrol⁩ המבוסס על אנשים המכירים את הנושא, ברוקפילד ומקווארי מנהלות מגעים לרכישה אפשרית של החזקה בפעילות מרכזי הנתונים ההודית ⁦STT GDC India.⁩ בעלי המניות, בהובלת ⁦KKR,⁩ מבקשים להגיע לעסקה עד סוף ינואר. זהו יעד של תהליך מדווח, לא מועד סגירה שנקבע בהסכם מחייב.\n\nלפי הכתבה, הצעות לא מחייבות צפויות מסוף נובמבר ועד אמצע דצמבר, ועד לפרסום הכתבה לא הוגשו הצעות רשמיות. גם קרנות וגופים נוספים עשויים לקבל פנייה, אך אין בכך אישור שהם כבר הגישו הצעה או הצטרפו לעסקה.\n\nהדיווח מציין ש-⁦KKR⁩ מבקשת למכור את רוב החזקתה בפעילות ההודית במסגרת התאמת תיק ההשקעות שלה, אך עשויה להשאיר החזקת מיעוט אם תשיג שווי מתאים. אין כאן אישור ליציאה מלאה מהפעילות, לזהות רוכשת סופית, למחיר מכירה או לתמורה שכבר התקבלה.\n\nהכתבה מצטטת הודעה של ⁦Tata Communications⁩ מ-⁦2⁩ בנובמבר, שלפיה החברה בוחנת הזדמנויות אסטרטגיות כעניין שבשגרה ואינה מגיבה לספקולציות. זו אינה הודעה שמאשרת את פרטי המגעים. הודעת החברה המצוטטת לא נבדקה כאן ישירות, ולכן אין להציג את הדיווח כאישור של בעלי המניות.\n\nההתפתחות המדווחת נוגעת לתהליך אפשרי של מימוש השקעה בתשתיות מרכזי נתונים בהודו. אין בדיווח הסכם מכירה חתום, אישור רגולטורי, התחייבות למימון או הכנסה שהוכרה. הכתבה המקורית היא מ-⁦5⁩ בנובמבר, לא התפתחות חדשה מ-⁦7⁩ בנובמבר.",
   "תאריך": "2026-11-07 12:19",
   "הועלה": "2026-11-07 12:19",
-  "מזהה": "n-0060"
+  "מזהה": "n-0060",
+  "כותרת_en": "KKR (KKR): per Moneycontrol, Brookfield and Macquarie are in talks to buy a stake in STT GDC India",
+  "טקסט_en": "Not verified against a primary source\nNov 5, 2026 | 08:34 Israel time, the original publication in Moneycontrol.\n\nPer a Moneycontrol report based on people familiar with the matter, Brookfield and Macquarie are in talks for a possible purchase of a stake in the Indian data center business STT GDC India. The shareholders, led by KKR, are seeking to reach a deal by the end of January. This is a target of a reported process, not a closing date set in a binding agreement.\n\nPer the article, non-binding offers are expected from late November to mid-December, and as of publication no formal offers had been submitted. Other funds and entities may also be approached, but that is no confirmation they have already submitted an offer or joined the deal.\n\nThe report notes that KKR seeks to sell most of its stake in the Indian business as part of adjusting its investment portfolio, but may keep a minority stake if it achieves a suitable valuation. There is no confirmation here of a full exit from the business, of a final buyer's identity, of a sale price or of proceeds already received.\n\nThe article quotes a Tata Communications statement from November 2, saying the company examines strategic opportunities as a matter of routine and does not respond to speculation. That is not a statement confirming the talks' details. The quoted company statement was not checked here directly, so the report should not be presented as shareholder confirmation.\n\nThe reported development concerns a possible process of realizing an investment in data center infrastructure in India. The report contains no signed sale agreement, regulatory approval, financing commitment or recognized revenue. The original article is from November 5, not a new development of November 7.",
+  "תקציר_en": "Talks and non-binding offers expected, not a signed deal; per the report KKR may keep a minority stake.",
+  "_translation": {
+   "en": {
+    "source_hash": "82ca6c9eb83f1cef56f643f6cfc5d9ba6b21d0c68d95c37dd3f78203a53e9f57",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Keysight Technologies (KEYS): Jason Kary יחליף את Neil Dougherty כסמנכ\"ל הכספים ב-18 בדצמבר",
@@ -1611,14 +1656,24 @@
   "מקורות": [
    {
     "label": "Keysight: הודעת מינוי מקורית מ-2 בנובמבר",
-    "url": "https://investor.keysight.com/investor-news-and-events/financial-press-releases/press-release-details/2026/Keysight-Announces-CFO-Succession/default.aspx"
+    "url": "https://investor.keysight.com/investor-news-and-events/financial-press-releases/press-release-details/2026/Keysight-Announces-CFO-Succession/default.aspx",
+    "label_en": "Keysight: original appointment release of November 2"
    }
   ],
   "תקציר": "חילופי תפקיד מתוכננים; סמנכ\"ל הכספים היוצא יישאר כיועץ בשנת הכספים 2027, ללא שינוי בתחזית הרבעון.",
   "טקסט": "⁦2.11.2026⁩ | הודעת החברה המקורית; שעת הפרסום המקורית אינה מצוינת במקור שנבדק.\n\nקיסייט הודיעה שג'ייסון קארי מונה לסמנכ\"ל הכספים הבא של החברה, בתוקף מ-⁦18⁩ בדצמבר ⁦2026,⁩ במסגרת תוכנית ירושה מתוכננת. הוא יחליף את ניל דוהרטי, שכיהן כסמנכ\"ל הכספים במשך ⁦13⁩ שנים ועבד בחברה במשך ⁦30⁩ שנים. דוהרטי יישאר בתפקיד ייעוץ בשנת הכספים ⁦2027⁩ כדי לתמוך במעבר.\n\nקארי מנהל כיום את קבוצת פתרונות התעשייה האלקטרונית. בעקבות המינוי, הקבוצה תדווח לקאילאש נראיאנן, נשיא קבוצת פתרונות התקשורת, אך תמשיך להיות מגזר נפרד בדיווח הכספי. אין כאן הודעה על איחוד המגזרים לצורכי דיווח או על הפסקת הפעילות.\n\nבעבר כיהן קארי כגזבר וכאחראי קשרי המשקיעים של החברה בין ⁦2014⁩ ל-⁦2024.⁩ ההכרזה עוסקת בחילופי הנהלה מתוכננים, לא בעזיבה מיידית של מנהל הכספים היוצא.\n\nהחברה ציינה שאינה מעדכנת את התחזית שכבר נתנה לרבעון הרביעי של שנת הכספים ⁦2026.⁩ אמירתה שהביקוש נותר חזק אינה העלאת תחזית מספרית. ההודעה המקורית פורסמה ב-⁦2⁩ בנובמבר, לא ב-⁦7⁩ בנובמבר.",
   "תאריך": "2026-11-07 12:16",
   "הועלה": "2026-11-07 12:16",
-  "מזהה": "n-0061"
+  "מזהה": "n-0061",
+  "כותרת_en": "Keysight Technologies (KEYS): Jason Kary will replace Neil Dougherty as CFO on December 18",
+  "טקסט_en": "Nov 2, 2026 | the company's original release; the original publication time is not specified in the source checked.\n\nKeysight announced that Jason Kary was appointed the company's next CFO, effective December 18, 2026, as part of a planned succession program. He will replace Neil Dougherty, who served as CFO for 13 years and worked at the company for 30 years. Dougherty will remain in an advisory role in fiscal 2027 to support the transition.\n\nKary currently manages the electronic industrial solutions group. Following the appointment, the group will report to Kailash Narayanan, president of the communications solutions group, but will continue to be a separate segment in financial reporting. There is no announcement here of merging the segments for reporting purposes or of ending operations.\n\nKary previously served as the company's treasurer and head of investor relations between 2014 and 2024. The announcement concerns planned management succession, not an immediate departure of the outgoing CFO.\n\nThe company noted it is not updating the guidance already given for fiscal Q4 2026. Its statement that demand remains strong is not a numeric guidance raise. The original release was published on November 2, not November 7.",
+  "תקציר_en": "A planned role transition; the outgoing CFO will remain as an adviser in fiscal 2027, with no change to the quarter's guidance.",
+  "_translation": {
+   "en": {
+    "source_hash": "97c559d824be6f7f39bbae6f2dc5b83b0df674f736e02bd529d9d2f1020493ef",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Viasat (VSAT): חוזה למרכז תפעול רשת החלל של ארה\"ב, עם תקרה של 450 מיליון דולר והזמנה ראשונה של 115 מיליון",
@@ -1628,18 +1683,29 @@
   "מקורות": [
    {
     "label": "Space Systems Command: הודעה מקורית מ-5 בנובמבר",
-    "url": "https://www.ssc.spaceforce.mil/Newsroom/Article/4642795/ussf-in-partnership-with-golden-dome-for-america-expands-multi-vendor-space-dat"
+    "url": "https://www.ssc.spaceforce.mil/Newsroom/Article/4642795/ussf-in-partnership-with-golden-dome-for-america-expands-multi-vendor-space-dat",
+    "label_en": "Space Systems Command: original release of November 5"
    },
    {
     "label": "DefenseScoop: כתבת המשך מ-6 בנובמבר",
-    "url": "https://defensescoop.com/2026/11/06/pentagon-mission-operations-center-space-data-network/"
+    "url": "https://defensescoop.com/2026/11/06/pentagon-mission-operations-center-space-data-network/",
+    "label_en": "DefenseScoop: follow-up article of November 6"
    }
   ],
   "תקציר": "ההזמנה הראשונה היא חלק מהמסגרת, לא תוספת לתקרה; מדובר באינטגרציה ותפעול לרשת מרובת ספקים.",
   "טקסט": "⁦5.11.2026⁩ | הודעת פיקוד מערכות החלל האמריקאי; שעת הפרסום המקורית אינה מצוינת.\n\nפיקוד מערכות החלל של ארה\"ב הודיע על הענקת חוזה תחרותי לוויאסאט להקמת מרכז תפעול משימות עבור רשת נתוני החלל. מסגרת החוזה היא מסוג הזמנות לפי צורך ובהיקף בלתי קבוע מראש, עם תקרה מרבית של ⁦450⁩ מיליון דולר. ההזמנה הראשונה, בהיקף ⁦115⁩ מיליון דולר, מיועדת לתכנון, לפריסה ולהרחבת המרכז.\n\nאין לחבר את שני הסכומים לעסקה של ⁦565⁩ מיליון דולר: ההזמנה הראשונה נמצאת בתוך מסגרת החוזה. התקרה אינה התחייבות שכבר הוזמנה במלואה ואינה הכנסה שכבר נרשמה.\n\nויאסאט תשמש שותפת אינטגרציה של רשת ומערכות משימה. המרכז נועד לרכז שילוב מערכות, תפעול רשת וניהול תעבורת נתונים בין מערכי לוויינים וספקים שונים, עם תעדוף תעבורה לפי צורכי המשימות. התוכנית קשורה גם ליוזמת ההגנה ⁦Golden Dome,⁩ אך ההודעה אינה קובעת שהמערכת כולה כבר מבצעית.\n\nקשור לפריט שנשלח ב-⁦5.11⁩ בשעה ⁦02:11⁩ על בחירת ויאסאט לפיתוח ממסר חלל בנאס\"א. מה חדש: חוזה נפרד של כוח החלל למרכז תפעול ואינטגרציה. אין לאחד את תקרות שתי התוכניות או להציג אותן כהכנסות שהתקבלו.",
   "תאריך": "2026-11-07 12:10",
   "הועלה": "2026-11-07 12:10",
-  "מזהה": "n-0062"
+  "מזהה": "n-0062",
+  "כותרת_en": "Viasat (VSAT): a contract for the US Space Data Network operations center, with a $450 million ceiling and a first order of $115 million",
+  "טקסט_en": "Nov 5, 2026 | US Space Systems Command release; the original publication time is not specified.\n\nUS Space Systems Command announced the award of a competitive contract to Viasat to establish a mission operations center for the Space Data Network. The contract framework is an indefinite-delivery, indefinite-quantity type, with a maximum ceiling of $450 million. The first order, at $115 million, is intended for design, deployment and expansion of the center.\n\nDo not add the two amounts into a $565 million deal: the first order is within the contract framework. The ceiling is not a commitment already ordered in full and is not revenue already recorded.\n\nViasat will serve as a network and mission systems integration partner. The center is meant to centralize systems integration, network operations and data traffic management across different satellite arrays and providers, with traffic prioritization by mission needs. The program is also related to the Golden Dome defense initiative, but the release does not state that the whole system is already operational.\n\nRelated to the item sent on Nov 5 at 02:11 on Viasat's selection to develop a NASA space relay. What's new: a separate Space Force contract for an operations and integration center. Do not merge the two programs' ceilings or present them as revenue already received.",
+  "תקציר_en": "The first order is part of the framework, not an addition to the ceiling; this is integration and operations for a multi-vendor network.",
+  "_translation": {
+   "en": {
+    "source_hash": "7c41cf73dfeb53b7dc59b546ce1e422925b8ef743fc79957b4de877b0649e60d",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Wabtec (WAB): הסכם שירות ארוך טווח של כ-390 מיליון דולר עם Transnet Engineering בדרום אפריקה",
@@ -1649,14 +1715,24 @@
   "מקורות": [
    {
     "label": "Wabtec: הודעה רשמית מ-2 בנובמבר",
-    "url": "https://www.wabteccorp.com/newsroom/press-releases/wabtec-secures-approximately-390-million-services-agreement-with-transnet-engineering"
+    "url": "https://www.wabteccorp.com/newsroom/press-releases/wabtec-secures-approximately-390-million-services-agreement-with-transnet-engineering",
+    "label_en": "Wabtec: official release of November 2"
    }
   ],
   "תקציר": "אספקת רכיבים, תמיכה טכנית ותחזוקה חזויה לצי קטרים; סכום רב-שנתי, לא הכנסות ברבעון אחד.",
   "טקסט": "⁦2.11.2026⁩ | הודעת החברה המקורית; שעת הפרסום אינה מצוינת.\n\nוובטק הודיעה על סגירת הסכם ארוך טווח לתמיכה בחומרים ובידע טכני עם ⁦Transnet Engineering,⁩ עבור קטרי ⁦D43⁩ ו-⁦D44⁩ בדרום אפריקה. שווי ההסכם מוערך בכ-⁦390⁩ מיליון דולר. ההכרזה המקורית היא מ-⁦2⁩ בנובמבר, גם אם כתבות המשך פורסמו בימים מאוחרים יותר.\n\nהחברה תספק רכיבים, מומחיות טכנית וכלי תחזוקה חזויה, לרבות מערכת לניטור מצב צי הקטרים. המטרה היא לשפר זמינות ואמינות, לקצר זמני תחזוקה ולתמוך בניהול מחזור החיים של הצי. הקטרים משרתים מסדרונות מטען שמובילים סחורות יצוא, מכולות ומטען כללי.\n\nההסכם כולל גם שיתוף ידע, פיתוח מיומנויות ופעילות מקומית. אלה התחייבויות ותועלות צפויות לאורך זמן, לא אישור שכל השיפור התפעולי כבר הושג.\n\nההודעה אינה מפרטת כאן לוח הכרה בהכנסות או מספר שנות ביצוע מדויק. לכן אין לייחס את כל הסכום לשנה או לרבעון אחד, ואין לראות בו תקבול שכבר התקבל במלואו.",
   "תאריך": "2026-11-07 12:10",
   "הועלה": "2026-11-07 12:10",
-  "מזהה": "n-0063"
+  "מזהה": "n-0063",
+  "כותרת_en": "Wabtec (WAB): a long-term service agreement of about $390 million with Transnet Engineering in South Africa",
+  "טקסט_en": "Nov 2, 2026 | the company's original release; the publication time is not specified.\n\nWabtec announced the closing of a long-term agreement for materials support and technical knowledge with Transnet Engineering, for D43 and D44 locomotives in South Africa. The agreement's value is estimated at about $390 million. The original announcement is from November 2, even if follow-up articles were published on later days.\n\nThe company will supply components, technical expertise and predictive maintenance tools, including a system for monitoring the locomotive fleet's condition. The goal is to improve availability and reliability, shorten maintenance times and support fleet lifecycle management. The locomotives serve freight corridors carrying export goods, containers and general cargo.\n\nThe agreement also includes knowledge sharing, skills development and local activity. These are long-term commitments and expected benefits, not confirmation that all the operational improvement has already been achieved.\n\nThe release does not detail here a revenue recognition schedule or an exact number of performance years. Therefore the full amount should not be attributed to one year or one quarter, and should not be treated as a payment already received in full.",
+  "תקציר_en": "Supply of components, technical support and predictive maintenance for a locomotive fleet; a multi-year amount, not one quarter's revenue.",
+  "_translation": {
+   "en": {
+    "source_hash": "abcf1a07fe9839baf7ff5e621adea50c0f36a17b27b6a6b9d12c2686cc13fd27",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Pfizer (PFE): Cecile Guegan מונתה לסמנכ\"לית הכספים הקבועה לאחר כהונה זמנית",
@@ -1666,14 +1742,24 @@
   "מקורות": [
    {
     "label": "Pfizer: הודעת מינוי רשמית מ-3 בנובמבר",
-    "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-appoints-cecile-guegan-chief-financial-officer"
+    "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-appoints-cecile-guegan-chief-financial-officer",
+    "label_en": "Pfizer: official appointment release of November 3"
    }
   ],
   "תקציר": "המינוי אושר פה אחד בדירקטוריון ונכנס לתוקף ב-1 בנובמבר; אינו שינוי בתחזית הכספית.",
   "טקסט": "⁦3.11.2026⁩ | ⁦13:40⁩ שעון ישראל, הודעת החברה שפורסמה ב-⁦06:40 EST.⁩\n\nפייזר הודיעה שהדירקטוריון אישר פה אחד את מינוי ססיל גגן לתפקיד סמנכ\"לית הכספים וסגנית נשיא בכירה, בתוקף מ-⁦1⁩ בנובמבר. היא כיהנה כממלאת מקום סמנכ\"לית הכספים מאז ⁦16⁩ באוגוסט. החידוש הוא מעבר מתפקיד זמני למינוי קבוע, ולא כניסה ראשונה שלה לניהול הכספים של החברה.\n\nאחריותה כוללת מימון תאגידי, גזברות, קשרי משקיעים, מסים, ביטוח, חשבות ותכנון וניתוח עסקי. לפי החברה, יש לה יותר מ-⁦25⁩ שנות ניסיון במימון בענף התרופות, והיא ניהלה קודם את הפעילות הפיננסית של עסקי הביופארמה של פייזר.\n\nהודעת המינוי מדגישה הקצאת הון ומשמעת פיננסית לצד השקעות לצמיחה בהמשך העשור. אלה מטרות הנהלה, לא התחייבות לתשואה או עדכון מספרי לתחזית ההכנסות והרווח. תאריך ההכרזה הוא ⁦3⁩ בנובמבר, לא הכרזה חדשה מ-⁦7⁩ בנובמבר.",
   "תאריך": "2026-11-07 12:10",
   "הועלה": "2026-11-07 12:10",
-  "מזהה": "n-0064"
+  "מזהה": "n-0064",
+  "כותרת_en": "Pfizer (PFE): Cecile Guegan appointed permanent CFO after an interim tenure",
+  "טקסט_en": "Nov 3, 2026 | 13:40 Israel time, the company release published at 06:40 EST.\n\nPfizer announced that the board unanimously approved the appointment of Cecile Guegan as chief financial officer and senior vice president, effective November 1. She had served as interim CFO since August 16. The news is a move from an interim role to a permanent appointment, not her first entry into managing the company's finances.\n\nHer responsibilities include corporate finance, treasury, investor relations, tax, insurance, accounting and business planning and analysis. Per the company, she has more than 25 years of finance experience in the pharmaceutical industry, and previously managed the financial operations of Pfizer's biopharma businesses.\n\nThe appointment release emphasizes capital allocation and financial discipline alongside growth investments in the coming decade. These are management goals, not a commitment to returns or a numeric update to revenue and profit guidance. The announcement date is November 3, not a new announcement of November 7.",
+  "תקציר_en": "The appointment was unanimously approved by the board and took effect November 1; it is not a change to financial guidance.",
+  "_translation": {
+   "en": {
+    "source_hash": "2be50ccad2cec2b356affa74f2be819fffc494a7bd44622456f021339362ca7d",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Danaher (DHR): Cepheid הודיעה על אישור FDA לפאנל PCR לזיהוי כמה נגיפי קדחת דימומית",
