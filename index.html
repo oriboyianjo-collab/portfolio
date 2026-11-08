@@ -3748,8 +3748,8 @@ function importExtras(j){ if(j && j.watchlists){ wlData = cleanWl(j.watchlists);
 function secInst(m){ if(m.type==='fx' && FX_BY[String(m.sym).toUpperCase()]) return fxInst(FX_BY[String(m.sym).toUpperCase()]); const sym = m.sym.toUpperCase(), cr = m.type==='crypto', yl = /^[A-Z]{2}\d{1,2}Y(-[A-Z]{2})?$/.test(sym); return {k:'sec:'+sym, y: yl ? 1 : undefined, dp: yl ? 3 : undefined, sec:true, sym, q: cr ? sym+'.CM=' : sym, n:m.name||sym, type:m.type||'stock', cur: euCur(sym) || m.currency || (isTaseSec(sym) || isTaIndex(sym) ? 'ILS' : 'USD'), stock: !cr && !yl && m.type!=='index' && marketOf(sym)==='us'}; }
 function mktInst(k){ if(MKT_BY[k]){ const c = MKT_BY[k]; return Object.assign({q:c.s}, c); } const m = mktCfg.meta[k]; return m ? secInst(m) : null; }
 const mq = {};   // live quotes keyed by the CNBC request symbol (upper-case)
-async function instQuotes(list){ const qs = [...new Set(list.flatMap(i=>i.der ? [i.der.a, i.der.b] : [i.q,...(euCur(i.sym)?[FXQ[euCur(i.sym)][0]]:[])]))].filter(Boolean); if(!qs.length) return;
-  for(let i=0;i<qs.length;i+=40){ try{ Object.assign(mq, yMergeAll(await cnbcQuotes(qs.slice(i,i+40))));for(const c in FXQ){const x=mq[FXQ[c][0]];if(x?.price>0)fxx[c]=FXQ[c][1]?1/x.price:x.price;} }catch(e){ console.warn('market quotes', e.message); } } }
+async function instQuotes(list,active){ const qs = [...new Set(list.flatMap(i=>i.der ? [i.der.a, i.der.b] : [i.q,...(euCur(i.sym)?[FXQ[euCur(i.sym)][0]]:[])]))].filter(Boolean); if(!qs.length) return;
+  for(let i=0;i<qs.length;i+=40){if(active&&!active())break; try{ Object.assign(mq, yMergeAll(await cnbcQuotes(qs.slice(i,i+40))));for(const c in FXQ){const x=mq[FXQ[c][0]];if(x?.price>0)fxx[c]=FXQ[c][1]?1/x.price:x.price;} }catch(e){ console.warn('market quotes', e.message); } } }
 function iq(it){ if(it.der){ const a = mq[it.der.a], b = mq[it.der.b]; return a && b && a.price && b.price ? {price:a.price/b.price*it.der.m, prev: a.prev && b.prev ? a.prev/b.prev*it.der.m : null} : null; }
   const q = mq[String(it.q).toUpperCase()] || null; if(!q || !it.sec || marketOf(it.sym)!=='us') return q;
   const hl = haltOf(q); if(hl) return Object.assign({}, q, {hlt:hl});
@@ -3904,7 +3904,7 @@ async function mktTick(){ if(document.hidden) return;
   else if(ui.tab==='market'){ await Promise.all([instQuotes(glbItems().filter(i=>!i.fileSrc)), loadIdxFile()]); drawGlb(); }
   else if(false){}
   else if(ui.tab==='market'){ const L = mktItems(); await instQuotes(L); if(mktRange==='1D' || mktRange==='1W') await Promise.all(L.map(it=>instBars(it, mktRange).catch(()=>{}))); drawMarket(); }
-  else if(ui.tab==='watch'){ const L = wlItems(); await instQuotes(L); await Promise.all(L.map(it=>instBars(it, '1D').catch(()=>{}))); drawWatch(); }
+  else if(ui.tab==='watch'){ await renderWatch(true); }
   if(instSheet) instSheetLive(); }
 function mktPoll(){ clearInterval(mktTimer); mktTimer = null; const rs = num(state.settings.refreshSec)||0;
   const iv = ui.tab==='market' ? (rs>0 && rs<=15 ? rs : 15) : (ui.tab==='watch' ? rs : 0);   // v234: Markets (FX/commodities/global) refresh every 15s even if the hidden saved refresh setting is 0/30/60; Watch keeps the saved setting
@@ -4424,10 +4424,33 @@ function wlPatchSpark(it,listId){if(ui.tab!=='watch'||wlCur().id!==listId)return
  const html=watchSparkHtml(it);
  document.querySelectorAll('#wlLists [data-ws="'+CSS.escape(it.sym)+'"] .pc-s').forEach(el=>{if(el.innerHTML!==html)el.innerHTML=html;});
 }
-async function renderWatch(reuse=false){ if(!reuse||watchPaintSignature!==watchSignature()||!$('wlLists').firstElementChild)drawWatch();const all=wlItems();if(!all.length)return;const listId=wlCur().id,its=wlCur().items.map(secInst);
- const quotes=instQuotes(its).then(()=>{if(ui.tab==='watch'&&wlCur().id===listId)drawWatch();}).catch(()=>{});
- const ready=its.filter(it=>!!iq(it)),waiting=its.filter(it=>!iq(it));const load=async it=>{if(ui.tab!=='watch'||wlCur().id!==listId)return;const ss=spkSession(it.sym),e=spk[it.sym],q=iq(it);if(it.sec&&!it.fx&&!it.y&&!it.der&&ss&&e?.d===ss.date&&q?.date===ss.date&&e.pts?.length>1&&!spkNeed(it.sym)){wlPatchSpark(it,listId);return;}await instBars(it,'1D',undefined,1).catch(()=>{});wlPatchSpark(it,listId);};const known=Promise.all(wlSorted(ready,wlEditing===listId,wlSortOf(listId)).map(load));await quotes;await Promise.all([known,...wlSorted(waiting,wlEditing===listId,wlSortOf(listId)).map(load)]);const visible=new Set(its.map(it=>it.sym));instQuotes(all.filter(it=>!visible.has(it.sym))).then(()=>{if(ui.tab==='watch'&&wlCur().id===listId)drawWatch();}).catch(()=>{});
-} // Visible graphs start alongside quote refresh and paint independently as each completes.
+let watchLoadEpoch=0;
+async function renderWatch(reuse=false){
+ const epoch=++watchLoadEpoch;
+ if(!reuse||watchPaintSignature!==watchSignature()||!$('wlLists').firstElementChild)drawWatch();
+ const listId=wlCur().id,its=wlCur().items.map(secInst);if(!its.length)return;
+ const active=()=>epoch===watchLoadEpoch&&ui.tab==='watch'&&wlCur().id===listId;
+ const queue=wlSorted(its.filter(it=>!!iq(it)),wlEditing===listId,wlSortOf(listId)),waiting=its.filter(it=>!iq(it));let quoteDone=false;
+ const quotes=instQuotes(its,active).catch(()=>{}).then(()=>{quoteDone=true;if(active()){queue.push(...wlSorted(waiting,wlEditing===listId,wlSortOf(listId)));drawWatch();}});
+ const load=async it=>{if(!active())return;const ss=spkSession(it.sym),e=spk[it.sym],q=iq(it);
+  if(it.sec&&!it.fx&&!it.y&&!it.der&&ss&&e?.d===ss.date&&q?.date===ss.date&&e.pts?.length>1&&!spkNeed(it.sym)){wlPatchSpark(it,listId);return;}
+  await instBars(it,'1D',undefined,1).catch(()=>{});if(active())wlPatchSpark(it,listId);
+ };
+ await Promise.all(Array.from({length:Math.min(4,its.length)},async()=>{while(active()){const it=queue.shift();if(it)await load(it);else if(!quoteDone)await quotes;else break;}}));
+ if(!active())return;const visible=new Set(its.map(it=>it.sym));instQuotes(wlItems().filter(it=>!visible.has(it.sym)),active).then(()=>{if(active())drawWatch();}).catch(()=>{});
+}
+let watchWarmBusy=false;
+async function warmWatchViews(){
+ const active=()=>!document.hidden&&ui.tab==='portfolio';if(watchWarmBusy||!active())return;watchWarmBusy=true;
+ try{
+  const seen=new Set(),quoted=new Set();for(const L of wlData.lists.slice()){
+   if(!active())break;const items=L.items.map(secInst);await instQuotes(items.filter(it=>{const k=it.q;if(quoted.has(k))return false;quoted.add(k);return true;}),active);if(!active())break;
+   const jobs=wlSorted(items,wlEditing===L.id,wlSortOf(L.id)).slice(0,6).filter(it=>{const k=instKey(it,'1D');if(seen.has(k))return false;seen.add(k);return true;});
+   let i=0;await Promise.all([0,1].map(async()=>{while(active()&&i<jobs.length){const it=jobs[i++];await instBars(it,'1D',undefined,0).catch(()=>{});}}));
+  }
+ }finally{watchWarmBusy=false;}
+}
+setTimeout(()=>warmWatchViews().catch(()=>{}),2000);
 function wlNewList(){ const n = (prompt('שם הרשימה החדשה:', `רשימה ${wlData.lists.length+1}`)||'').trim(); if(!n) return; const id = 'w'+Date.now().toString(36);
   wlData.lists.push({id, name:n.slice(0,40), items:[]}); wlData.cur = id; wlOpen[id] = true; saveWlOpen(); saveWl(); renderWatch(); }
 $('wlNew').onclick = ()=>{ if(!wlSwapSettle()) return; wlNewList(); };   // v114: settle any staged swap before acting
