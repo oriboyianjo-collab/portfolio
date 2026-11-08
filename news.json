@@ -866,13 +866,22 @@
   "מקורות": [
    {
     "label": "Reuters דרך Investing.com, 6 בנובמבר",
-    "url": "https://www.investing.com/news/stock-market-news/ge-aerospace-says-it-signs-record-129-billion-deals-at-china-expo-5008307"
+    "url": "https://www.investing.com/news/stock-market-news/ge-aerospace-says-it-signs-record-129-billion-deals-at-china-expo-5008307",
+    "label_en": "Reuters via Investing.com, November 6"
    }
   ],
   "טקסט": "6.11.2026 | לפי Reuters, בהסתמך על הודעת החברה; פורסם ב-15:54 לפי שעון ישראל (08:54 ET).\n\nGE Aerospace (NYSE: GE) מסרה כי חתמה בתערוכת היבוא הבינלאומית של סין (CIIE) על מספר הסכמי מכירה ושירות בשווי מצטבר של יותר מ-12.9 מיליארד דולר — שיא עבור החברה בתערוכה השנתית.\n\nבין ההסכמים: עסקת מנועי CFM עם China Eastern עבור 101 מטוסי Airbus A320neo חדשים (202 מנועי LEAP-1A, כולל מנועי רזרבה ותמיכת שירות ארוכת טווח) — כפי שכבר פורסם בחדשות האפליקציה ב-7.11; הסכם נפרד עם החברה ל-14 מנועי רזרבה מדגמי LEAP-1A, LEAP-1C ו-CFM56-7B; והסכמי אספקה ותיקון עם MTU Maintenance Zhuhai. China Eastern לא פרסמה הודעה משלה נכון למועד הדיווח.",
   "תאריך": "2026-11-08 13:24",
   "הועלה": "2026-11-08 13:24",
-  "מזהה": "n-0033"
+  "מזהה": "n-0033",
+  "כותרת_en": "GE Aerospace (GE): record $12.9 billion in sales and service agreements at China's import expo, per Reuters",
+  "טקסט_en": "Nov 6, 2026 | per Reuters, relying on the company's release; published at 15:54 Israel time (08:54 ET).\n\nGE Aerospace (NYSE: GE) said it signed at the China International Import Expo (CIIE) several sales and service agreements with a cumulative value of more than $12.9 billion - a record for the company at the annual expo.\n\nAmong the agreements: a CFM engine deal with China Eastern for 101 new Airbus A320neo aircraft (202 LEAP-1A engines, including spare engines and long-term service support) - as already published in the app's news on Nov 7; a separate agreement with the company for 14 spare engines of the LEAP-1A, LEAP-1C and CFM56-7B models; and supply and repair agreements with MTU Maintenance Zhuhai. China Eastern had not published its own notice as of the report.",
+  "_translation": {
+   "en": {
+    "source_hash": "2a236da1a1bee7934f2d09024237df4fcc5b38bde5474df3efc449d8efed78c6",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Cognizant (CTSH) השלימה את רכישת חברת ההנדסה הדיגיטלית Wizeline; התנאים הכספיים לא נמסרו",
@@ -881,13 +890,22 @@
   "מקורות": [
    {
     "label": "Cognizant, הודעת החברה",
-    "url": "https://news.cognizant.com/2026-11-06-Cognizant-Completes-Acquisition-of-Wizeline"
+    "url": "https://news.cognizant.com/2026-11-06-Cognizant-Completes-Acquisition-of-Wizeline",
+    "label_en": "Cognizant, company release"
    }
   ],
   "טקסט": "6.11.2026 | הודעת החברה ב-PR Newswire; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nCognizant (Nasdaq: CTSH) הודיעה על השלמת רכישת Wizeline, חברת שירותי הנדסה ופיתוח מוצרים דיגיטליים AI-native, ממשקיעיה הקודמים, בהם La Caisse. התנאים הכספיים של העסקה לא נמסרו.\n\nWizeline, שנוסדה ב-2013, משרתת לקוחות תאגידיים בעיקר במדיה ובידור ובשירותים פיננסיים, עם יכולות פיתוח מוצרים דיגיטליים, הנדסת תוכנה, מודרניזציית ענן, נתונים ו-AI.",
   "תאריך": "2026-11-08 13:24",
   "הועלה": "2026-11-08 13:24",
-  "מזהה": "n-0034"
+  "מזהה": "n-0034",
+  "כותרת_en": "Cognizant (CTSH) completed the acquisition of digital engineering company Wizeline; financial terms were not disclosed",
+  "טקסט_en": "Nov 6, 2026 | company release on PR Newswire; the original publication time in Israel time is unknown.\n\nCognizant (Nasdaq: CTSH) announced the completion of its acquisition of Wizeline, an AI-native digital engineering and product development services company, from its previous investors, including La Caisse. The financial terms of the deal were not disclosed.\n\nWizeline, founded in 2013, serves enterprise clients mainly in media and entertainment and financial services, with capabilities in digital product development, software engineering, cloud modernization, data and AI.",
+  "_translation": {
+   "en": {
+    "source_hash": "e8c37de42601a861228418a4474364ca739214565c4b0a7f4538c004ea992964",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Medtronic (MDT): Lexington Medical הגישה תביעת הגבלים עסקיים פדרלית בטענה לכריכת מכרים כירורגיים; הטענות טרם נבחנו בבית המשפט",
@@ -896,13 +914,22 @@
   "מקורות": [
    {
     "label": "Courthouse News, 6 בנובמבר",
-    "url": "https://courthousenews.com/medtronic-hit-with-antitrust-suit-over-surgical-staplers/"
+    "url": "https://courthousenews.com/medtronic-hit-with-antitrust-suit-over-surgical-staplers/",
+    "label_en": "Courthouse News, November 6"
    }
   ],
   "טקסט": "לא מאומת מול תיק בית המשפט\n6.11.2026 | לפי Courthouse News; התביעה הוגשה ב-5.11.2026, לפי הדיווח.\n\nלפי Courthouse News, חברת Lexington Medical ממסצ'וסטס הגישה תביעה פדרלית בת 63 עמודים נגד Medtronic (NYSE: MDT) בטענה להתנהגות מונופוליסטית ומקצתה, ובמרכזה כריכה של מכרים (staplers) כירורגיים באופן המניע תחרות. על פי הדיווח נטען כי נתח השוק של Medtronic בתחום עולה על 90%.\n\nהטענות מיוחסות לתובעת בלבד וטרם נבחנו או הוכחו בבית המשפט; התיק לא נבדק מול הדוקט, ותגובת Medtronic לא פורסמה בדיווח.",
   "תאריך": "2026-11-08 13:24",
   "הועלה": "2026-11-08 13:24",
-  "מזהה": "n-0035"
+  "מזהה": "n-0035",
+  "כותרת_en": "Medtronic (MDT): Lexington Medical filed a federal antitrust suit alleging tying of surgical staplers; the claims have not yet been examined in court",
+  "טקסט_en": "Not verified against the court docket\nNov 6, 2026 | per Courthouse News; the suit was filed on Nov 5, 2026, per the report.\n\nPer Courthouse News, Lexington Medical of Massachusetts filed a 63-page federal suit against Medtronic (NYSE: MDT) alleging monopolistic and exclusionary conduct, centered on tying surgical staplers in a way that prevents competition. Per the report, Medtronic's market share in the field allegedly exceeds 90%.\n\nThe claims are attributed to the plaintiff only and have not yet been examined or proven in court; the case was not checked against the docket, and Medtronic's response was not included in the report.",
+  "_translation": {
+   "en": {
+    "source_hash": "e1e71868e34681e4a0921dbdb846c15ba99335ab78d2f98dda5bac24cf18b1a3",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "BWX Technologies (BWXT) תשקיע 714.5 מיליון דולר ותוסיף 181 משרות בג'ונסבורו לייצור HPDU עבור ה-NNSA, לפי מדינת טנסי",
@@ -911,13 +938,22 @@
   "מקורות": [
    {
     "label": "TNECD, מחלקת הפיתוח הכלכלי של טנסי",
-    "url": "https://tnecd.com/news/bwxt-to-expand-workforce-in-washington-county-in-support-of-national-security/"
+    "url": "https://tnecd.com/news/bwxt-to-expand-workforce-in-washington-county-in-support-of-national-security/",
+    "label_en": "TNECD, Tennessee Department of Economic and Community Development"
    }
   ],
   "טקסט": "6.11.2026 | הודעת מדינת טנסי; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nמושל טנסי Bill Lee ונציגי BWX Technologies (NYSE: BWXT) הודיעו על חתימת הסכם, בתמיכת מענק פיתוח כלכלי של TNECD, להרחבת המתקן של החברה במחוז וושינגטון: השקעה של 714.5 מיליון דולר בג'ונסבורו ו-181 משרות חדשות, יותר מהכפלת כוח האדם המקומי, לייצור מתכת אורניום מדולל בטוהר גבוה (HPDU) עבור מינהל הביטחון הגרעיני הלאומי (NNSA).\n\nההסכם החדש נפרד מחוזה הניהול של NNSA מספטמבר 2025: חוזה ל-10 שנים בהיקף 1.6 מיליארד דולר להקמת מפעל ה-HPDU באתר. זהו הפרויקט השלישי של BWXT במסגרת קרן האנרגיה הגרעינית של המדינה.",
   "תאריך": "2026-11-08 13:24",
   "הועלה": "2026-11-08 13:24",
-  "מזהה": "n-0036"
+  "מזהה": "n-0036",
+  "כותרת_en": "BWX Technologies (BWXT) will invest $714.5 million and add 181 jobs in Jonesboro for HPDU production for the NNSA, per the state of Tennessee",
+  "טקסט_en": "Nov 6, 2026 | state of Tennessee release; the original publication time in Israel time is unknown.\n\nTennessee governor Bill Lee and BWX Technologies (NYSE: BWXT) representatives announced the signing of an agreement, supported by a TNECD economic development grant, to expand the company's facility in Washington County: a $714.5 million investment in Jonesboro and 181 new jobs, more than doubling the local workforce, for production of high-purity depleted uranium metal (HPDU) for the National Nuclear Security Administration (NNSA).\n\nThe new agreement is separate from the NNSA management contract of September 2025: a 10-year, $1.6 billion contract to establish the HPDU plant at the site. This is BWXT's third project under the state's nuclear energy fund.",
+  "_translation": {
+   "en": {
+    "source_hash": "a6e4f13c103952a053d27383197ccc2c7f7fef4529d910402f104dfedd985157",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "TD SYNNEX (SNX) לקחה הלוואת תרם בלתי מובטחת של 1.75 מיליארד דולר עד נובמבר 2029; 750 מיליון דולר שימשו לפרעון הלוואה קיימת",
@@ -926,13 +962,22 @@
   "מקורות": [
    {
     "label": "TD SYNNEX, טופס 8-K ל-SEC",
-    "url": "https://www.sec.gov/Archives/edgar/data/1177394/000162828026071079/snx-20261102.htm"
+    "url": "https://www.sec.gov/Archives/edgar/data/1177394/000162828026071079/snx-20261102.htm",
+    "label_en": "TD SYNNEX, 8-K form to the SEC"
    }
   ],
   "טקסט": "5.11.2026 | הוגש ל-SEC ב-23:17 לפי שעון ישראל (16:17 ET); ההסכם נחתם ב-2.11.2026, לפי טופס 8-K.\n\nTD SYNNEX (NYSE: SNX) חתמה ב-2 בנובמבר על הסכם הלוואת תרם בכירה בלתי מובטחת בהיקף 1.75 מיליארד דולר, כש-Bank of America משמש סוכן מנהל. ההלוואה תיפרע ב-2 בנובמבר 2029, ללא פירעונות מתוכננים לפני המועד.\n\nחלק מהתמורה שימש למחזור ולפרעון מלא של הלוואת התרם הקיימת בסך 750 מיליון דולר, שהייתה אמורה לפוג ב-1 בספטמבר 2027; היתרה מיועדת למטרות תאגידיות כלליות, כולל רכישות. הריבית על הלוואות SOFR היא SOFR בתוספת מרווח של 1.00%-1.625%, לפי דירוג החוב הציבורי של החברה.",
   "תאריך": "2026-11-08 13:24",
   "הועלה": "2026-11-08 13:24",
-  "מזהה": "n-0037"
+  "מזהה": "n-0037",
+  "כותרת_en": "TD SYNNEX (SNX) took a $1.75 billion unsecured term loan maturing November 2029; $750 million was used to repay an existing loan",
+  "טקסט_en": "Nov 5, 2026 | filed with the SEC at 23:17 Israel time (16:17 ET); the agreement was signed on Nov 2, 2026, per the 8-K form.\n\nTD SYNNEX (NYSE: SNX) signed on November 2 a $1.75 billion senior unsecured term loan agreement, with Bank of America as administrative agent. The loan matures on November 2, 2029, with no scheduled amortization before that date.\n\nPart of the proceeds was used to refinance and fully repay the existing $750 million term loan, which was due on September 1, 2027; the remainder is intended for general corporate purposes, including acquisitions. The interest rate on SOFR loans is SOFR plus a margin of 1.00%-1.625%, based on the company's public debt rating.",
+  "_translation": {
+   "en": {
+    "source_hash": "1db7eb6da7968b7f6b16e5e5e5e15f2875553e9243fa9ceeeef86a354704c6d8",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Kraft Heinz (KHC) תמכור את פעילות הקפה בצפון אמריקה ל-One Rock תמורת 650 מיליון דולר; תשמור 30% ותכוון כ-500 מיליון לפרעון חוב",
@@ -941,17 +986,27 @@
   "מקורות": [
    {
     "label": "Kraft Heinz, עדכון עסקי ל-Q3 2026 באתר קשרי המשקיעים",
-    "url": "https://ir.kraftheinzcompany.com/media/document/a1827369-0616-435c-b026-c748df9916c5/assets/3Q26_KHC_Business_Update_vFinal2.pdf?disposition=inline"
+    "url": "https://ir.kraftheinzcompany.com/media/document/a1827369-0616-435c-b026-c748df9916c5/assets/3Q26_KHC_Business_Update_vFinal2.pdf?disposition=inline",
+    "label_en": "Kraft Heinz, Q3 2026 business update on the investor relations site"
    },
    {
     "label": "NACS, 5 בנובמבר",
-    "url": "https://www.convenience.org/stay-current/news/2026/november/5/kraft-heinz-to-divest-north-american-coffee-business"
+    "url": "https://www.convenience.org/stay-current/news/2026/november/5/kraft-heinz-to-divest-north-american-coffee-business",
+    "label_en": "NACS, November 5"
    }
   ],
   "טקסט": "5.11.2026 | נמסר במסגרת עדכון עסקי לרבעון השלישי 2026; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nKraft Heinz (Nasdaq: KHC) חתמה על הסכם עם חברה בת של One Rock Capital Partners למכירת פעילות הקפה שלה בצפון אמריקה — בין המותגים Maxwell House, Gevalia, Nabob, Yuban, Tassimo, Ethical Bean ו-Sanka — בשווי של 650 מיליון דולר. החברה תשמור נתח בלתי מחליט של 30% בפעילות, התמורה נטו לאחר מס מוערכת בכ-500 מיליון דולר ומיועדת לפרעון חוב, והסגירה צפויה באמצע 2027 בכפוף לאישורים רגולטוריים ותנאים מקובלים.\n\nמנכ״ל החברה, Steve Cahillane, מסר שהעסקה היא צעד משמעותי בחילוץ ערך מתיק הפעילות.",
   "תאריך": "2026-11-08 13:24",
   "הועלה": "2026-11-08 13:24",
-  "מזהה": "n-0038"
+  "מזהה": "n-0038",
+  "כותרת_en": "Kraft Heinz (KHC) will sell its North America coffee business to One Rock for $650 million; it will keep 30% and direct about $500 million to debt repayment",
+  "טקסט_en": "Nov 5, 2026 | delivered as part of the Q3 2026 business update; the original publication time in Israel time is unknown.\n\nKraft Heinz (Nasdaq: KHC) signed an agreement with a subsidiary of One Rock Capital Partners to sell its North America coffee business - including the Maxwell House, Gevalia, Nabob, Yuban, Tassimo, Ethical Bean and Sanka brands - at a value of $650 million. The company will retain a non-controlling 30% stake in the business, the net after-tax proceeds are estimated at about $500 million and are intended for debt repayment, and closing is expected in mid-2027 subject to regulatory approvals and customary conditions.\n\nThe company's CEO, Steve Cahillane, said the deal is a significant step in unlocking value from the business portfolio.",
+  "_translation": {
+   "en": {
+    "source_hash": "a6d786d41718b37f1e506824c00d55aea0333da6662061ee7d4445dd2a11f5df",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Mattel (MAT): Steve Totzke מונה לנשיא ו-COO החל מ-11.11; Roberto Stanichi פורש ב-10.11",
@@ -960,13 +1015,22 @@
   "מקורות": [
    {
     "label": "Mattel, הודעת החברה",
-    "url": "https://investors.mattel.com/news/news-details/2026/Mattel-Names-Steve-Totzke-President-and-Chief-Operating-Officer-Roberto-Stanichi-Steps-Down-as-President-Chief-Marketing-and-Brand-Officer/default.aspx"
+    "url": "https://investors.mattel.com/news/news-details/2026/Mattel-Names-Steve-Totzke-President-and-Chief-Operating-Officer-Roberto-Stanichi-Steps-Down-as-President-Chief-Marketing-and-Brand-Officer/default.aspx",
+    "label_en": "Mattel, company release"
    }
   ],
   "טקסט": "5.11.2026 | הודעת החברה; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nMattel (NASDAQ: MAT) הודיעה על מינוי Steve Totzke לנשיא ומנהל התפעול הראשי (COO), בתוקף מ-11 בנובמבר 2026, עם אחריות על תיק המותגים העולמי, המכירות והפעילות המסחרית ומוצרי הצריכה והחוויות. Totzke ידווח ליו״ר ולמנכ״ל Roger Lynch.\n\nRoberto Stanichi, נשיא ומנהל השיווק והמותג הראשי, פורש מתפקידו ב-10 בנובמבר 2026 לטובת הזדמנות אחרת. Totzke כיהן קודם כנשיא ומנהל המסחרי הראשי ומילא שורת תפקידי הובלה בינלאומיים במהלך 30 שנה בחברה.",
   "תאריך": "2026-11-08 13:24",
   "הועלה": "2026-11-08 13:24",
-  "מזהה": "n-0039"
+  "מזהה": "n-0039",
+  "כותרת_en": "Mattel (MAT): Steve Totzke appointed president and COO effective Nov 11; Roberto Stanichi retires Nov 10",
+  "טקסט_en": "Nov 5, 2026 | company release; the original publication time in Israel time is unknown.\n\nMattel (NASDAQ: MAT) announced the appointment of Steve Totzke as president and chief operating officer (COO), effective November 11, 2026, with responsibility for the global brand portfolio, sales and commercial operations and consumer products and experiences. Totzke will report to chairman and CEO Roger Lynch.\n\nRoberto Stanichi, president and chief marketing and brand officer, is retiring from his role on November 10, 2026 for another opportunity. Totzke previously served as president and chief commercial officer and held a series of international leadership roles over 30 years at the company.",
+  "_translation": {
+   "en": {
+    "source_hash": "34bbff53b69f30dfa7fefdc93d7aa9f423687f0c3390531095de34cd8ff6bf94",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Unum (UNM) השלימה את עסקת הרי-ביטוח של בלוק ה-LTC הפרטי בהיקף 3.8 מיליארד דולר עם Fortitude Re",
@@ -975,13 +1039,22 @@
   "מקורות": [
    {
     "label": "Unum Group, הודעת החברה",
-    "url": "https://investors.unum.com/news-events/news/news-details/2026/Unum-Group-Closes-3-8-Billion-Long-Term-Care-Reinsurance-Transaction-with-Fortitude-Re/default.aspx"
+    "url": "https://investors.unum.com/news-events/news/news-details/2026/Unum-Group-Closes-3-8-Billion-Long-Term-Care-Reinsurance-Transaction-with-Fortitude-Re/default.aspx",
+    "label_en": "Unum Group, company release"
    }
   ],
   "טקסט": "4.11.2026 | פורסם ב-00:53 לפי שעון ישראל (3.11, 17:53 ET), לפי הודעת החברה.\n\nUnum Group (NYSE: UNM) הודיעה כי חברת הבת Unum Life Insurance Company of America השלימה את עסקת הרי-ביטוח שהוכרזה קודם לכן עם Fortitude Re. הבלוק כולל כ-50 אלף פוליסות LTC פרטיות עם רזרבות סטטוטוריות של 3.8 מיליארד דולר וכ-4.5 מיליארד דולר ברזרבות באומדן שיא. Fortitude Re תעביר את מלוא הסיכון הביומטרי לבית רי-ביטוח גלובלי בדירוג גבוה, ו-Unum תמשיך לשרת ולנהל את הפוליסות.\n\nיחד עם עסקת 2025, שתי העסקאות צמצמו את הבלוק הסגור של החברה ביותר מ-7 מיליארד דולר ברזרבות סטטוטוריות; הבלוק הנותר הוא בעיקר פוליסות LTC קבוצתיות.",
   "תאריך": "2026-11-08 13:24",
   "הועלה": "2026-11-08 13:24",
-  "מזהה": "n-0040"
+  "מזהה": "n-0040",
+  "כותרת_en": "Unum (UNM) completed the $3.8 billion reinsurance deal of the individual LTC block with Fortitude Re",
+  "טקסט_en": "Nov 4, 2026 | published at 00:53 Israel time (Nov 3, 17:53 ET), per the company release.\n\nUnum Group (NYSE: UNM) announced that its subsidiary Unum Life Insurance Company of America completed the previously announced reinsurance transaction with Fortitude Re. The block includes about 50,000 individual LTC policies with statutory reserves of $3.8 billion and about $4.5 billion in reserves at peak estimate. Fortitude Re will transfer the full biometric risk to a highly rated global reinsurer, and Unum will continue to service and administer the policies.\n\nTogether with the 2025 deal, the two transactions reduced the company's closed block by more than $7 billion in statutory reserves; the remaining block is mainly group LTC policies.",
+  "_translation": {
+   "en": {
+    "source_hash": "7ec2050c89e09931801a6bb5b27a8e628464508110674035ee9b359f73ef95d7",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Johnson & Johnson (JNJ): קתטר Shockwave Javelin IVL עמד ביעדי הבטיחות והיעילות בניסוי FORWARD CAD; הצלחה טכנית של 93.6%",
