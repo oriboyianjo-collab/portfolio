@@ -24934,5 +24934,57 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "ג'ייקובס (J) תבצע שדרוג של מפעל טיהור השפכים הראשי של סן פרנסיסקו; הפרויקט מוערך על ידי SFPUC בכמיליארד דולר",
+    "category": "micro",
+    "קישור": "https://invest.jacobs.com/news/investor-news/news-details/2026/Jacobs-to-deliver-1-billion-San-Francisco-wastewater-upgrade-through-joint-venture/default.aspx",
+    "מקורות": [
+      {
+        "label": "ג'ייקובס (אתר החברה), 28.10.2026",
+        "url": "https://invest.jacobs.com/news/investor-news/news-details/2026/Jacobs-to-deliver-1-billion-San-Francisco-wastewater-upgrade-through-joint-venture/default.aspx",
+        "label_en": "Jacobs (company site), Oct 28, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 28.10.2026 (הודעת החברה).\n\nג'ייקובס (Jacobs, NYSE: J) נבחרה על ידי ועדת השירותים הציבוריים של סן פרנסיסקו (SFPUC) כקבלן עיצוב-בנייה מתקדם (progressive design-build) לפרויקט הפחתת הנוטריינטים במפעל הטיהור הדרום-מזרחי, כך הודיעה החברה ב-28 באוקטובר. הפרויקט מוערך על ידי SFPUC בהשקעה של כמיליארד דולר — זוהי הערכת ההשקעה הכוללת של הרשות, לא שווי החוזה של ג'ייקובס, שלא פורסם. הביצוע ייעשה בשותפות (joint venture) עם PCL Construction, וג'ייקובס תעצב ותבנה את השדרוגים במפעל.\n\nהמפעל הדרום-מזרחי הוא מתקן השפכים הגדול בסן פרנסיסקו ומטפל בקרוב ל-80% משפכי העיר. הפרויקט נועד להפחית את כמות החנקן האי-אורגני הכולל הנפלטת מהמפעל למפרץ סן פרנסיסקו, והוא מההשקעות הגדולות עד כה בהפחתת נוטריינטים במפרץ. טום מיינהארט, סגן נשיא בכיר בג'ייקובס, אמר שהחברה מביאה ניסיון של עשרות שנים בפרויקטים של תשתיות שפכים עבור SFPUC. סטיבן רובינסון, סגן המנהל הכללי לתשתיות ב-SFPUC, אמר שמדובר בהשקעה משמעותית להגנה על מפרץ סן פרנסיסקו.",
+    "תקציר": "ג'ייקובס נבחרה על ידי SFPUC כקבלן עיצוב-בנייה לשדרוג מפעל הטיהור הדרום-מזרחי של סן פרנסיסקו (מטפל בכ-80% משפכי העיר), בשותפות עם PCL; הרשות מעריכה את הפרויקט בכמיליארד דולר; שווי החוזה של ג'ייקובס לא פורסם.",
+    "מזהה": "n-1051",
+    "תאריך": "2026-11-09 00:28",
+    "הועלה": "2026-11-09 00:28",
+    "כותרת_en": "Jacobs (J) to upgrade San Francisco's main wastewater treatment plant; SFPUC estimates the project at about $1 billion",
+    "טקסט_en": "Source publication: Oct 28, 2026 (company release).\n\nJacobs (NYSE: J) was selected by the San Francisco Public Utilities Commission (SFPUC) as the progressive design-build contractor for the Southeast Treatment Plant Nutrient Reduction Project, the company announced on October 28. The project is estimated by SFPUC as an investment of about $1 billion — that is the authority's total investment estimate, not the value of Jacobs' contract, which was not disclosed. Delivery will be through a joint venture with PCL Construction, and Jacobs will design and construct the upgrades at the plant.\n\nThe Southeast plant is San Francisco's largest wastewater facility and treats nearly 80% of the city's wastewater. The project aims to cut the total inorganic nitrogen discharged from the plant into San Francisco Bay and is among the largest nutrient-reduction investments for the Bay to date. Jacobs Executive Vice President Tom Meinhart said the company brings decades of experience delivering wastewater infrastructure projects for SFPUC. SFPUC Assistant General Manager for Infrastructure Stephen Robinson called it a major investment to protect San Francisco Bay.",
+    "תקציר_en": "Jacobs selected by SFPUC as progressive design-build contractor to upgrade San Francisco's Southeast Treatment Plant (treats nearly 80% of city wastewater), in a JV with PCL; the authority estimates the project at about $1 billion; Jacobs' contract value was not disclosed.",
+    "_translation": {
+      "en": {
+        "source_hash": "b02db2b9a33bf90f7705a16259d1aa92203252affb686182750ac956795aac37",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "כותרת": "אינטרדיג'יטל (IDCC) קיבלה צו מניעה זמני נגד TCL בברזיל בגין פטנטים של HEVC",
+    "category": "micro",
+    "קישור": "https://ir.interdigital.com/news-events/press-releases/news-details/2026/InterDigital-awarded-injunction-against-TCL/default.aspx",
+    "מקורות": [
+      {
+        "label": "אינטרדיג'יטל (אתר החברה), 27.10.2026",
+        "url": "https://ir.interdigital.com/news-events/press-releases/news-details/2026/InterDigital-awarded-injunction-against-TCL/default.aspx",
+        "label_en": "InterDigital (company site), Oct 27, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 27.10.2026 (הודעת החברה).\n\nאינטרדיג'יטל (InterDigital, Nasdaq: IDCC) הודיעה ב-27 באוקטובר כי הוצא לה צו מניעה זמני (preliminary injunction) נגד TCL מטעם בית המשפט העסקי השלישי של מחוז הבירה ריו דה ז'ניירו בברזיל, בנוגע לטכנולוגיית HEVC. בית המשפט אימץ את מסקנות חוות דעת של מומחה בלתי תלוי שהוזמנה מטעמו, אשר תמכה באופן מלא בעמדת אינטרדיג'יטל כי TCL מפרה את שני הפטנטים שלצורך התביעה, כי הפטנטים חיוניים לתקן HEVC, וכי הצעותיה של אינטרדיג'יטל עמדו בחובות ה-FRAND (תנאים הוגנים, סבירים ובלתי מפלים) שלה; בית המשפט ציין שהצעותיה של TCL היו נמוכות ב\"סדר גודל אחר\". לפי פסק הדין, על TCL להימנע מיישום תקן HEVC במכשירים שהיא מייצרת, מייבאת או מציעה למכירה בברזיל.\n\nג'וש שמידט, היועץ המשפטי הראשי של אינטרדיג'יטל, בירך על ההחלטה וקרא ל-TCL לקחת רישיון, כפי שעשו מתחרותיה.",
+    "תקציר": "צו מניעה זמני של בית משפט בריו דה ז'ניירו נגד TCL: עליה להימנע מיישום תקן HEVC במכשירים המיוצרים, המיובאים או הנמכרים בברזיל; בית המשפט קיבל חוות דעת התומכת באינטרדיג'יטל בהפרה, בחיוניות לתקן ובעמידה ב-FRAND.",
+    "מזהה": "n-1052",
+    "תאריך": "2026-11-09 00:28",
+    "הועלה": "2026-11-09 00:28",
+    "כותרת_en": "InterDigital (IDCC) awarded preliminary injunction against TCL in Brazil over HEVC patents",
+    "טקסט_en": "Source publication: Oct 27, 2026 (company release).\n\nInterDigital (Nasdaq: IDCC) announced on October 27 that the 3rd Business Court of the Judicial District of the Capital of Rio de Janeiro, Brazil, granted it a preliminary injunction against TCL related to HEVC technology. The court adopted the findings of an independent expert report it commissioned, which fully supported InterDigital's position that TCL infringes the two patents-in-suit, that the patents are essential to the HEVC standard, and that InterDigital's offers met its FRAND (fair, reasonable and non-discriminatory) obligations; the court noted TCL's offers were lower by \"a different order of magnitude.\" Under the ruling, TCL must refrain from implementing the HEVC standard in devices it manufactures, imports or offers for sale in Brazil.\n\nJosh Schmidt, InterDigital's Chief Legal Officer, welcomed the decision and called on TCL to take a license, like its competitors.",
+    "תקציר_en": "A Rio de Janeiro court's preliminary injunction against TCL: it must refrain from implementing the HEVC standard in devices manufactured, imported or sold in Brazil; the court adopted an expert report backing InterDigital on infringement, standard-essentiality and FRAND compliance.",
+    "_translation": {
+      "en": {
+        "source_hash": "5df36ab0a0001775c9748300cc02c05f7d2ea3e3e33891ffca79f1e6353232db",
+        "schema_version": 1
+      }
+    }
   }
 ]
