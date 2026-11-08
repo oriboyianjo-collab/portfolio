@@ -983,11 +983,13 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 /* v250 approved: editable index tiles - one small magnifier toggles edit mode (remove badges on tiles + add-search bar). */
 /* v251 approved: search tools row moved above the tiles - small magnifier; thin short add-search field (30% width) opens in that same row; tiles stay fixed and unobscured. */
 /* v252: scoped #idxSearch override so the approved thin field actually renders slim (shared 48px search-field rule otherwise wins via !important). v253: 26px exactly matches the magnifier row so tiles stay pixel-fixed. */
+/* v254 approved: right-chevron toggle merged into the left edge of the left index tile (full tile height, part of the tile, no separate button); magnifier circle removed - the tools row above the tiles holds the 30% search field only and hides when closed; search focus uses preventScroll so the screen does not jump. */
 .idxwrap{position:relative}
 .idx-tools{display:flex;align-items:center;gap:8px;margin:0 0 8px}
-#idxEdit{flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1px solid var(--border);background:var(--bg-fff);color:var(--muted);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
-#idxEdit svg{width:13px;height:13px}
-#idxEdit.on{color:var(--primary);border-color:var(--primary)}
+.idx-arrowbtn{position:absolute;left:0;top:0;bottom:0;z-index:1;width:20px;border:none;border-right:1px solid var(--border);border-radius:13px 0 0 13px;background:rgba(148,163,184,.08);color:var(--muted);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;font:inherit}
+.idx-arrowbtn svg{width:10px;height:10px}
+.idx-arrowbtn.on{color:var(--primary)}
+.idx.with-arrow{padding-left:28px}
 .idx{position:relative}
 .idx-x{position:absolute;top:-9px;left:-7px;z-index:2;width:24px;height:24px;border-radius:50%;background:#ef4444;color:#fff;border:2px solid var(--bg);font:inherit;font-size:12px;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
 .idx-editbar{flex:0 0 auto;width:30%;min-width:0;margin:0}
@@ -1040,8 +1042,8 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 <main class="wrap">
   <section class="tab on" id="tab-portfolio">
     <div class="idxwrap" id="idxWrap" hidden>
-    <div class="idx-tools"><button type="button" id="idxEdit" aria-pressed="false" aria-label="עריכת האריחים" title="עריכת האריחים"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button>
-    <div class="idx-editbar" id="idxEditBar" hidden><div class="ac"><input id="idxSearch" placeholder="חיפוש נייר להוספה" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><div class="ac-list" id="idxAc"></div></div></div></div>
+    <div class="idx-tools" id="idxTools" hidden>
+    <div class="idx-editbar" id="idxEditBar"><div class="ac"><input id="idxSearch" placeholder="חיפוש נייר להוספה" autocomplete="off" enterkeyhint="search" aria-label="חיפוש נייר להוספה"><svg class="ac-ic2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><div class="ac-list" id="idxAc"></div></div></div></div>
     <div class="idxrow" id="idxRow"></div>
     </div>
     <div id="splitSug"></div>
@@ -3257,14 +3259,14 @@ function sparkSvg(pts, prev, up, W = 58, H = 30){
   const d = pts.map((v,i)=>(i?'L':'M')+(i/(pts.length-1)*W).toFixed(1)+' '+y(v)).join(' ');
   return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${prev ? `<line x1="0" x2="${W}" y1="${y(prev)}" y2="${y(prev)}"/>` : ''}<path d="${d}" stroke="${up ? 'var(--green)' : 'var(--red)'}"/></svg>`;
 }
-$('idxRow').addEventListener('click', e=>{ const del = e.target.closest('[data-idxdel]');
+$('idxRow').addEventListener('click', e=>{ if(e.target.closest('.idx-arrowbtn')){ idxEditing = !idxEditing; renderIdx(); if(idxEditing) setTimeout(()=>{ const s = $('idxSearch'); if(s) s.focus({preventScroll:true}); }, 30); return; } const del = e.target.closest('[data-idxdel]');
   if(del){ const k = del.dataset.idxdel, i = IDX.findIndex(x=>x.k===k); if(i>=0){ IDX.splice(i,1); delete idxData.q[k]; delete idxData.sp[k]; idxListSave(); idxSave(); renderIdx(); } return; }
   if(idxEditing) return;
   const t = e.target.closest('[data-idx]'); if(!t) return; const k = t.dataset.idx;
   let it = mktInst(k);
   if(!it){ const x = IDX.find(v=>v.k===k); if(x) it = secInst({sym:(x.sym||x.s).replace(/\.CM=$/,''), name:x.n, type:x.type||'stock'}); }
   if(it) openInstSheet(it, '1D'); });
-$('idxEdit').addEventListener('click', ()=>{ idxEditing = !idxEditing; renderIdx(); if(idxEditing) setTimeout(()=>{ const s = $('idxSearch'); if(s) s.focus(); }, 30); });
+$('idxSearch').addEventListener('keydown', e=>{ if(e.key==='Escape' && idxEditing){ idxEditing = false; renderIdx(); } });
 attachAutocomplete($('idxSearch'), $('idxAc'), it=>{ $('idxSearch').value = ''; $('idxSearch').blur(); if(!it || (it.free && !it.sym)) return;
   const sym = it.sym.toUpperCase(); if(IDX.some(x=>((x.sym||x.s).toUpperCase()===sym) || x.s.toUpperCase()===sym)){ toast('הנייר כבר באריחים'); return; }
   const cr = it.type==='crypto';
@@ -3278,17 +3280,17 @@ function renderIdx(){
   const wrap = $('idxWrap'), row = $('idxRow'); if(!wrap || !row) return; const have = IDX.filter(x=>idxData.q[x.k]);
   wrap.hidden = !(have.length || idxEditing); row.hidden = !have.length;
   const eb = $('idxEditBar'); if(eb) eb.hidden = !idxEditing;
-  const be = $('idxEdit'); if(be){ be.classList.toggle('on', idxEditing); be.setAttribute('aria-pressed', String(idxEditing)); }
+  const tl = $('idxTools'); if(tl) tl.hidden = !idxEditing;
   if(!have.length){ row.innerHTML = ''; return; }
   const xb = x=>idxEditing ? `<button type="button" class="idx-x" data-idxdel="${x.k}" aria-label="הסרת ${esc(x.n)}">✕</button>` : '';
-  M(row).h = IDX.map(x=>{ const q = idxData.q[x.k]; if(!q) return `<div class="idx" data-idx="${x.k}">${xb(x)}<div class="idx-n">${esc(x.n)}</div><b class="idx-v num">—</b><div class="idx-c num"></div></div>`;
+  M(row).h = IDX.map((x,i)=>{ const ar = i===IDX.length-1 ? `<button type="button" class="idx-arrowbtn${idxEditing?' on':''}" aria-pressed="${idxEditing}" aria-label="עריכת האריחים" title="עריכת האריחים"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>` : ''; const ac = ar ? ' with-arrow' : ''; const q = idxData.q[x.k]; if(!q) return `<div class="idx${ac}" data-idx="${x.k}">${ar}${xb(x)}<div class="idx-n">${esc(x.n)}</div><b class="idx-v num">—</b><div class="idx-c num"></div></div>`;
     const pr = preOf(q), sp = idxData.sp[x.k], cl = !pr && q.status && q.status!=='REG_MKT';
     // pre-market: implied level = last close × (1 + ETF pre %), change vs that close (badge 'pre'); otherwise the regular session move
     const lvl = q.last, c = lvl - q.prev, pc = c/q.prev*100, up = c >= 0;   // v65: regular session level/change; extended move on its own line
     const xe = pr ? (()=>{ const xl = q.etf ? pr.price : q.last*(1+pr.pct/100); return {kind:pr.kind, price:xl, chg:xl-q.last, pct:pr.pct}; })() : null;
     let pts = sp && sp.sym===q.sym && sp.date===q.date ? sp.pts.slice() : null; if(pts && pts.length && !cl) pts.push(q.last);
     const name = q.etf ? `${esc(x.n)} <small>· ${esc(x.alt)}</small>` : esc(x.n);
-    return `<div class="idx" data-idx="${x.k}" role="button" tabindex="0" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}${pr ? ' · טרום מסחר לפי '+esc(pr.src) : ''}">${xb(x)}<div class="idx-n"><span class="idx-nt">${name}${cl ? ' <small>· סגור</small>' : ''}</span>${extLineHtml(xe, 'idx-e')}</div>`+
+    return `<div class="idx${ac}" data-idx="${x.k}" role="button" tabindex="0" title="${esc(q.etf ? x.n+' – לפי תעודת הסל '+x.alt : x.n+' ('+x.s+')')}${cl ? ' · שוק סגור' : ''}${pr ? ' · טרום מסחר לפי '+esc(pr.src) : ''}">${ar}${xb(x)}<div class="idx-n"><span class="idx-nt">${name}${cl ? ' <small>· סגור</small>' : ''}</span>${extLineHtml(xe, 'idx-e')}</div>`+
       `<b class="idx-v num">${q.etf ? '$' : ''}${fmtLvl(lvl)}</b><div class="idx-c num ${cls(c)}">${(up?'+':'')+fmtLvl(c)} (${fmtPct(pc)})</div>${futLine(x.k)}${sparkSvg(pts, q.prev, up)}</div>`; }).join('');
 }
 // ---------- per-holding intraday sparkline (collapsed row) ----------
