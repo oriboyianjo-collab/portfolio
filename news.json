@@ -1063,13 +1063,22 @@
   "מקורות": [
    {
     "label": "Johnson & Johnson, הודעת החברה",
-    "url": "https://www.jnj.com/media-center/press-releases/johnson-johnsons-novel-shockwave-javelin-coronary-ivl-catheter-delivers-positive-results-in-pivotal-forward-cad-ide-study"
+    "url": "https://www.jnj.com/media-center/press-releases/johnson-johnsons-novel-shockwave-javelin-coronary-ivl-catheter-delivers-positive-results-in-pivotal-forward-cad-ide-study",
+    "label_en": "Johnson & Johnson, company release"
    }
   ],
   "טקסט": "1.11.2026 | הודעת החברה; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nJohnson & Johnson (NYSE: JNJ) הודיעה על תוצאות 30 הימים מניסוי ה-IDE הפיבוטלי FORWARD CAD לקתטר Shockwave Javelin Coronary IVL, המיועד לטיפול בנגעים קורונריים מסוידים וקשים למעבר לפני הצבת סטנט; התוצאות הוצגו בכנס TCT 2026 בסן דייגו.\n\nבקוהורט של 158 מטופלים ב-28 אתרים בארה״ב ובבריטניה נרשמו שיעור הצלחה טכנית של 93.6% (יעד היעילות הראשי) ו-93.4% חופש מאירועים לבביים-כלי דם קשים (MACE) ב-30 יום (יעד הבטיחות הראשי), מעל יעדי הביצוע שנקבעו מראש. סיבוכים אנגיוגרפיים חמורים נצפו ב-1.3% מהמטופלים, כש-96% מהנגעים היו מסוידים בדרגה בינונית או חמורה ו-20% חסימות מלאות כרוניות. המכשיר ניסיוני בארה״ב.",
   "תאריך": "2026-11-08 13:24",
   "הועלה": "2026-11-08 13:24",
-  "מזהה": "n-0041"
+  "מזהה": "n-0041",
+  "כותרת_en": "Johnson & Johnson (JNJ): the Shockwave Javelin IVL catheter met safety and effectiveness endpoints in the FORWARD CAD trial; 93.6% technical success",
+  "טקסט_en": "Nov 1, 2026 | company release; the original publication time in Israel time is unknown.\n\nJohnson & Johnson (NYSE: JNJ) announced 30-day results from the pivotal FORWARD CAD IDE trial of the Shockwave Javelin Coronary IVL catheter, intended to treat calcified, hard-to-cross coronary lesions before stent placement; the results were presented at the TCT 2026 conference in San Diego.\n\nIn a cohort of 158 patients at 28 sites in the US and UK, a technical success rate of 93.6% was recorded (primary effectiveness endpoint) and 93.4% freedom from major adverse cardiac and cardiovascular events (MACE) at 30 days (primary safety endpoint), above the pre-set performance goals. Serious angiographic complications were observed in 1.3% of patients, with 96% of lesions moderately or severely calcified and 20% chronic total occlusions. The device is investigational in the US.",
+  "_translation": {
+   "en": {
+    "source_hash": "91212b48d12de2ffd8aacc187bd4100a08827b58c26dd71617350811883eaf8b",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "ארה\"ב מקימה כוח משימה להגבלת העברת נשק וחומרים תחת סנקציות לאיראן דרך היבשה והים הכספי, לפי CNBC/Reuters",
@@ -1078,17 +1087,27 @@
   "מקורות": [
    {
     "label": "הודעת CENTCOM הרשמית, 7 בנובמבר",
-    "url": "https://www.centcom.mil/MEDIA/PUBLIC-RELEASES/Article/4644250/centcom-launches-task-force-to-disrupt-iranian-ground-transit-routes-supporting/"
+    "url": "https://www.centcom.mil/MEDIA/PUBLIC-RELEASES/Article/4644250/centcom-launches-task-force-to-disrupt-iranian-ground-transit-routes-supporting/",
+    "label_en": "Official CENTCOM release, November 7"
    },
    {
     "label": "CNBC / Reuters",
-    "url": "https://www.cnbc.com/2026/11/07/iran-us-task-force-land-commerce.html"
+    "url": "https://www.cnbc.com/2026/11/07/iran-us-task-force-land-commerce.html",
+    "label_en": "CNBC / Reuters"
    }
   ],
   "טקסט": "7.11.2026 | הודעת CENTCOM הרשמית נבדקה; שעת פרסומה לא צוינה. דיווח CNBC/Reuters פורסם ב-18:56 לפי שעון ישראל.\n\nלפי CNBC בדיווח שפורסם תחילה ב-Reuters, צבא ארה\"ב הודיע על הקמת Task Force Iron Gate בטמפה, פלורידה, לתיאום בין-משרדי נגד העברת נשק מתקדם וחומרים תחת סנקציות לאיראן דרך גבולות היבשה והים הכספי. המאמץ כולל גם טכנולוגיות דו-שימושיות ומקורות הכנסה שוושינגטון מגדירה בלתי חוקיים.\n\nבדיווח מצוטט מפקד CENTCOM, האדמירל Brad Cooper, שלפיו שיתוף הפעולה נועד להגביל את יכולתה של איראן לממן טרור, לשקם מפעלי נשק ולחדש את המלאי הצבאי.\n\nזהו צעד נוסף באכיפת הסנקציות ובפיקוח על נתיבי סחר, לא ראיה שכל נתיבי הסחר נסגרו או שנגרמה כעת הפרעה בהפקת נפט. רשימת הגופים האמריקאיים הצפויים להשתתף נמסרה בדיווח מפי גורם אנונימי, ולא כהודעת הרכב רשמית.",
   "תאריך": "2026-11-08 13:22",
   "הועלה": "2026-11-08 13:22",
-  "מזהה": "n-0042"
+  "מזהה": "n-0042",
+  "כותרת_en": "The US is establishing a task force to restrict the transfer of weapons and sanctioned materials to Iran via land borders and the Caspian Sea, per CNBC/Reuters",
+  "טקסט_en": "Nov 7, 2026 | the official CENTCOM release was checked; its publication time was not given. The CNBC/Reuters report was published at 18:56 Israel time.\n\nPer CNBC in a report first published by Reuters, the US military announced the establishment of Task Force Iron Gate in Tampa, Florida, for interagency coordination against the transfer of advanced weapons and sanctioned materials to Iran via land borders and the Caspian Sea. The effort also covers dual-use technologies and revenue sources Washington defines as illicit.\n\nThe report quotes CENTCOM commander Admiral Brad Cooper, who said the cooperation is intended to limit Iran's ability to finance terror, rebuild weapons plants and renew its military stockpile.\n\nThis is another step in sanctions enforcement and monitoring of trade routes, not evidence that all trade routes have been closed or that oil production is now being disrupted. The list of US agencies expected to take part was given in the report by an anonymous source, not as an official composition announcement.",
+  "_translation": {
+   "en": {
+    "source_hash": "61f83eb857810c1ad95d7e193ba5ccc7231f3ed7417f035eee78084a444d9c55",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Johnson & Johnson (JNJ): ICOTYDE (icotrokinra) עמד ביעד הראשי בניסוי שלב 3 בדלקת מפרקים פסוריאטית; ACR20 של 58% מול 41% בפלצבו",
@@ -1097,13 +1116,22 @@
   "מקורות": [
    {
     "label": "Johnson & Johnson, הודעת החברה ב-PR Newswire",
-    "url": "https://www.prnewswire.com/news-releases/johnson--johnson-announces-icotyde-icotrokinra-delivers-significant-improvement-in-psoriatic-arthritis-disease-activity-among-biologic-naive-patients-with-once-daily-targeted-oral-peptide-302932455.html"
+    "url": "https://www.prnewswire.com/news-releases/johnson--johnson-announces-icotyde-icotrokinra-delivers-significant-improvement-in-psoriatic-arthritis-disease-activity-among-biologic-naive-patients-with-once-daily-targeted-oral-peptide-302932455.html",
+    "label_en": "Johnson & Johnson, company release on PR Newswire"
    }
   ],
   "טקסט": "7.11.2026 | פורסם ב-17:03 לפי שעון ישראל (10:03 ET), לפי הודעת החברה ב-PR Newswire.\n\nJohnson & Johnson (NYSE: JNJ) הודיעה על תוצאות חיוביות מניסוי ICONIC-PsA 1 בשלב 3 ל-ICOTYDE (icotrokinra), פפטיד בעל פה ממוקד IL-23R, במבוגרים עם דלקת מפרקים פסוריאטית פעילה שלא טופלו בעבר בטיפול ביולוגי. הנתונים הוצגו כפוסטר late-breaking בכנס ACR Convergence 2026.\n\n58% מהמטופלים ב-ICOTYDE 200 מ״ג השיגו תגובת ACR20 בשבוע 16 מול 41% בפלצבו; זהו היעד הראשי. שיעורי ACR50 ו-ACR70 היו 29% מול 16% ו-13% מול 5%, בהתאמה. לא זוהו אותות בטיחות חדשים; ממצאי הבטיחות עקביים עם הפרופיל הידוע של התרופה.",
   "תאריך": "2026-11-08 13:22",
   "הועלה": "2026-11-08 13:22",
-  "מזהה": "n-0043"
+  "מזהה": "n-0043",
+  "כותרת_en": "Johnson & Johnson (JNJ): ICOTYDE (icotrokinra) met the primary endpoint in a phase 3 trial in psoriatic arthritis; ACR20 of 58% versus 41% on placebo",
+  "טקסט_en": "Nov 7, 2026 | published at 17:03 Israel time (10:03 ET), per the company release on PR Newswire.\n\nJohnson & Johnson (NYSE: JNJ) announced positive results from the phase 3 ICONIC-PsA 1 trial of ICOTYDE (icotrokinra), a targeted oral IL-23R peptide, in adults with active psoriatic arthritis not previously treated with biologic therapy. The data were presented as a late-breaking poster at the ACR Convergence 2026 conference.\n\n58% of patients on ICOTYDE 200 mg achieved an ACR20 response at week 16 versus 41% on placebo; this is the primary endpoint. ACR50 and ACR70 rates were 29% versus 16% and 13% versus 5%, respectively. No new safety signals were identified; the safety findings are consistent with the drug's known profile.",
+  "_translation": {
+   "en": {
+    "source_hash": "a2afea6ebdc2c7a8100146f2d572bdd619787ddbfbfc19f84ec82983239ddcdb",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Devon Energy (DVN): Toms Capital ו-Kimmeridge חידשו את הלחץ למכירת החברה לאחר שהסקירה האסטרטגית הסתיימה ללא מכירות נכסים נוספות",
@@ -1112,17 +1140,27 @@
   "מקורות": [
    {
     "label": "Bloomberg Law, 6 בנובמבר",
-    "url": "https://news.bloomberglaw.com/mergers-and-acquisitions/devon-holders-toms-and-kimmeridge-ramp-up-pressure-to-sell"
+    "url": "https://news.bloomberglaw.com/mergers-and-acquisitions/devon-holders-toms-and-kimmeridge-ramp-up-pressure-to-sell",
+    "label_en": "Bloomberg Law, November 6"
    },
    {
     "label": "Seeking Alpha, 6 בנובמבר",
-    "url": "https://seekingalpha.com/news/4668235-activist-shareholders-renew-calls-for-devon-energy-to-sell-itself"
+    "url": "https://seekingalpha.com/news/4668235-activist-shareholders-renew-calls-for-devon-energy-to-sell-itself",
+    "label_en": "Seeking Alpha, November 6"
    }
   ],
   "טקסט": "לא מאומת מול מסמך ראשוני של הגורמים\n6.11.2026 | פורסם ב-20:24 לפי שעון ישראל (18:24 UTC), לפי Bloomberg Law; דיווח מקביל ב-Seeking Alpha.\n\nלפי Bloomberg Law, Devon Energy סיימה את הסקירה האסטרטגית שלה והחליטה שלא למכור נכסים נוספים בשלב זה. Toms Capital מסר כי הוא ״מאוכזב עמוקות״ מההחלטה שלא למכור נכסים נוספים, ו-Kimmeridge Energy Management מסר כי החזקת הנכסים באגן אנדרקו, במרסלוס וברוקי מדללת את המיקוד האסטרטגי של החברה.\n\nהציטוטים מוצגים כפי שפורסמו בשני כלי התקשורת; ההודעות המקוריות של המשקיעים לא נמצאו ולא אומתו.",
   "תאריך": "2026-11-08 13:22",
   "הועלה": "2026-11-08 13:22",
-  "מזהה": "n-0044"
+  "מזהה": "n-0044",
+  "כותרת_en": "Devon Energy (DVN): Toms Capital and Kimmeridge renewed pressure to sell the company after the strategic review ended without additional asset sales",
+  "טקסט_en": "Not verified against a primary document from the parties\nNov 6, 2026 | published at 20:24 Israel time (18:24 UTC), per Bloomberg Law; a parallel report on Seeking Alpha.\n\nPer Bloomberg Law, Devon Energy concluded its strategic review and decided not to sell additional assets at this stage. Toms Capital said it is 'deeply disappointed' by the decision not to sell additional assets, and Kimmeridge Energy Management said that holding the Anadarko Basin, Marcellus and Rockies assets dilutes the company's strategic focus.\n\nThe quotes are presented as published in the two media outlets; the investors' original statements were not located and were not verified.",
+  "_translation": {
+   "en": {
+    "source_hash": "b7c5791de818fca5635b8578b35ce6952ff4e0f2cfb90f3da0e69dc56b4296f7",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Albertsons (ACI): בית משפט בוושינגטון פסק 900 מיליון דולר נגד החברה בפרשת האופיואידים, לפי הודעת התובע הכללי של המדינה",
@@ -1131,13 +1169,22 @@
   "מקורות": [
    {
     "label": "התובע הכללי של מדינת וושינגטון, הודעה רשמית",
-    "url": "https://www.atg.wa.gov/news/news-releases/washington-wins-900-million-verdict-against-albertsons-fueling-opioid-crisis"
+    "url": "https://www.atg.wa.gov/news/news-releases/washington-wins-900-million-verdict-against-albertsons-fueling-opioid-crisis",
+    "label_en": "Washington State Attorney General, official release"
    }
   ],
   "טקסט": "5.11.2026 | הודעת התובע הכללי של מדינת וושינגטון; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nשופטת בית המשפט העליון של מחוז קינג, Janet Helson, פסקה כי Albertsons הפרה את החוק ולא מנעה שימוש לרעה וסטייה של חומרים מבוקרים מסוכנים, והטילה על החברה פסק דינה של 900 מיליון דולר, בתוספת שכר טרחה והוצאות. לפי ההודעה, בין 2006 ל-2022 סיפקו בתי המרקחת של החברה יותר מ-641 מיליון כדורי אופיואידים במדינת וושינגטון, כשברובם היו ״דגלים אדומים״ שלא נחקרו ולא טופלו כנדרש.\n\nפסק הדין מסיים הליך רב-שנתי שהובילה המדינה. התייחסות החברה, לרבות ערעור אפשרי, לא נכללה בהודעה ולא אומתה ממקור נוסף.",
   "תאריך": "2026-11-08 13:22",
   "הועלה": "2026-11-08 13:22",
-  "מזהה": "n-0045"
+  "מזהה": "n-0045",
+  "כותרת_en": "Albertsons (ACI): a Washington court ruled $900 million against the company in the opioid affair, per the state attorney general's release",
+  "טקסט_en": "Nov 5, 2026 | Washington State Attorney General release; the original publication time in Israel time is unknown.\n\nKing County Superior Court judge Janet Helson ruled that Albertsons violated the law and failed to prevent abuse and diversion of dangerous controlled substances, and imposed on the company a judgment of $900 million, plus attorney fees and costs. Per the release, between 2006 and 2022 the company's pharmacies dispensed more than 641 million opioid pills in Washington State, most of them showing 'red flags' that were not investigated or handled as required.\n\nThe judgment ends a multi-year proceeding led by the state. The company's response, including a possible appeal, was not included in the release and was not verified from another source.",
+  "_translation": {
+   "en": {
+    "source_hash": "8459ad4a02453b58433078be910dd9ae7e88567be0cf50c0049f036b10bbed75",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "לגארד: התמשכות האינפלציה הגבוהה מגדילה את הסיכון; אין התחייבות להחלטת ריבית בדצמבר",
@@ -1146,13 +1193,22 @@
   "מקורות": [
    {
     "label": "ECB, ריאיון לגארד ל-Yomiuri Shimbun",
-    "url": "https://www.ecb.europa.eu/press/inter/date/2026/html/ecb.in261107~e7b86fc4ce.en.html"
+    "url": "https://www.ecb.europa.eu/press/inter/date/2026/html/ecb.in261107~e7b86fc4ce.en.html",
+    "label_en": "ECB, Lagarde interview with Yomiuri Shimbun"
    }
   ],
   "טקסט": "7.11.2026 | פרסום מקורי של הבנק המרכזי האירופי; שעת הפרסום המקורית ואזור הזמן לא נמסרו. הריאיון נערך ב-4 בנובמבר, ולא היום.\n\nנשיאת ה-ECB כריסטין לגארד אמרה כי ככל שהאינפלציה גבוהה יותר ונמשכת זמן רב יותר, גדל הסיכון ליעד האינפלציה בטווח הבינוני. לצד זאת, לדבריה עדיין לא נראים אפקטים משניים מעבר לאלה שכבר נכללו בתחזיות, והבנק עוקב אחר הסכמי שכר רב-שנתיים וציפיות השכר של חברות.\n\nלגארד התייחסה לאינפלציה של 4% באוקטובר, אינפלציית אנרגיה של 20.8% וליבה של 2.5% שנותרה ללא שינוי. אלה נתונים שכבר פורסמו, ולא מדידת אינפלציה חדשה בריאיון. לדבריה, המלחמה במזרח התיכון וצמצום כושר הזיקוק העולמי מכבידים דרך מחירי האנרגיה.\n\nהיא לא הקדימה את עדכון התחזיות ולא התחייבה לפעולה מסוימת בדצמבר: ההחלטות יתקבלו לפי הנתונים ומפגישה לפגישה. עוד אמרה כי צורכי המימון של ענקיות הענן ותחום הבינה המלאכותית מתחרים בצורכי המימון של ממשלות, כחלק מהגורמים לעליית התשואות הארוכות בעולם.\n\nזהו פרסום ריאיון, לא החלטת ריבית חדשה ולא הודעה על הפעלת כלי הגנה על תמסורת המדיניות המוניטרית.",
   "תאריך": "2026-11-07 17:01",
   "הועלה": "2026-11-07 17:01",
-  "מזהה": "n-0046"
+  "מזהה": "n-0046",
+  "כותרת_en": "Lagarde: persistence of high inflation raises the risk; no commitment to a December rate decision",
+  "טקסט_en": "Nov 7, 2026 | original publication by the European Central Bank; the original publication time and time zone were not given. The interview was conducted on November 4, not today.\n\nECB president Christine Lagarde said that the higher inflation is and the longer it persists, the greater the risk to the medium-term inflation target. At the same time, she said second-round effects are still not visible beyond those already included in the forecasts, and the bank is monitoring multi-year wage agreements and companies' wage expectations.\n\nLagarde referred to 4% inflation in October, 20.8% energy inflation and 2.5% core, which remained unchanged. These are already-published data, not a new inflation measurement in the interview. She said the war in the Middle East and reduced global refining capacity are weighing through energy prices.\n\nShe did not pre-empt the forecast update and did not commit to a specific move in December: decisions will be made based on the data, meeting by meeting. She also said the financing needs of the cloud giants and the AI sector compete with governments' financing needs, as part of the factors behind rising long-term yields worldwide.\n\nThis is an interview publication, not a new rate decision and not an announcement of activating the monetary policy transmission protection instrument.",
+  "_translation": {
+   "en": {
+    "source_hash": "804ba592342b713d2610817098b430fa5c037cf9013f95078772e37e64627ae7",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Nvidia (NVDA): תחקיר המיוחס ל-NYT מעלה שאלות על בדיקת חברות סיניות שאושרו לטפל בשבבי H200",
@@ -1162,14 +1218,24 @@
   "מקורות": [
    {
     "label": "The New York Times, דרך DNYUZ; המקור הישיר לא אותר",
-    "url": "https://dnyuz.com/2026/11/07/u-s-cleared-nvidia-chips-to-chinese-firms-with-empty-offices-and-troubling-ties/"
+    "url": "https://dnyuz.com/2026/11/07/u-s-cleared-nvidia-chips-to-chinese-firms-with-empty-offices-and-troubling-ties/",
+    "label_en": "The New York Times, via DNYUZ; the direct source was not located"
    }
   ],
   "תקציר": "לפי העתק הכתבה, חברה שאושרה להרכיב שרתים בשבבי H200 פעלה מכתובת שנמצאה ריקה; הקשרים הנטענים לגופים מוגבלים אינם קביעה שהתרחשה הפרת חוק.",
   "טקסט": "לא מאומת מול מקור ראשוני. הטקסט נגיש כהעתק המייחס את התחקיר לניו יורק טיימס, דרך ⁦DNYUZ⁩; הכתבה באתר העיתון לא אותרה ולכן לא נבדקה ישירות.\n\n⁦7.11.2026⁩ | ההעתק פורסם ב-⁦12:51⁩ שעון ישראל לפי חותמת הזמן באתר ⁦DNYUZ.⁩ שעת הפרסום המקורית בעיתון לא ידועה. האישורים המתוארים ניתנו מוקדם יותר השנה, לא היום.\n\nלפי התחקיר כפי שהוא מופיע בהעתק, הממשל האמריקאי אישר לחברה הסינית ⁦New Matrix⁩ להרכיב שבבי ⁦H200⁩ של אנבידיה בשרתי בינה מלאכותית. הכתבה מדווחת שבביקור בכתובת הרשומה של החברה נמצא משרד ריק, ושאנשי ניהול הנכס אמרו שאין אצלם רישום של החברה.\n\nהכתבה מתארת קשרי בעלות לגופים הקשורים לקרן ההשקעות ⁦Wise Road,⁩ שנוספה לרשימת הגופים המוגבלים של משרד המסחר האמריקאי ב-⁦2024.⁩ שני אנליסטים שצוטטו בכתבה העריכו שייתכן כי ⁦New Matrix⁩ היא חברת חזית לגופים הקשורים לקרן. זו הערכה המיוחסת להם, לא קביעה משפטית או ממצא עצמאי שלנו.\n\nלפי אנשים הבקיאים באישורים שצוטטו בכתבה, בערך שני תריסרים של חברות סיניות קיבלו אישור לקנות שבבי ⁦H200⁩ או לטפל בהם. אישור להרכבת שרתים אינו זהה לזהות רוכש הקצה, ואישור אמריקאי אינו אישור יבוא סיני או הוכחה שהשבבים נמסרו. אין בכתבה הודעה על רישיונות חדשים שניתנו היום או על משלוחים חדשים שהושלמו.\n\nבתגובת לשכת התעשייה והביטחון האמריקאית, כפי שהיא מובאת בהעתק, נאמר שכל הבקשות נבדקות בקפידה מול סיכוני ביטחון לאומי. אנבידיה מסרה שהטכנולוגיה הטובה והעיקרית שלה נמכרת בארה״ב, ושסין הגבילה בחדות את יבוא ⁦H200⁩ לטובת יצרניות מקומיות. לפי הכתבה, ⁦New Matrix⁩ לא השיבה לבקשת תגובה. אין כאן קביעה שאנבידיה מכרה שבבים בניגוד לחוק או שנפתחה נגדה אכיפה חדשה.\n\nקשור לפריט הקודם מ-⁦7.11.2026⁩ בשעה ⁦08:43⁩ על תנאי מעמד שותפת ענן ומערכת ניטור שבבים. החידוש כאן הוא שאלות על בדיקת החברות שקיבלו אישור אמריקאי להרכבה או לרכישה. זה נפרד מהדיווח מ-⁦6.11.2026⁩ בשעה ⁦11:52⁩ על שבבים בהונג קונג הממתינים לאישור יבוא מסין.",
   "תאריך": "2026-11-07 15:06",
   "הועלה": "2026-11-07 15:06",
-  "מזהה": "n-0047"
+  "מזהה": "n-0047",
+  "כותרת_en": "Nvidia (NVDA): an investigation attributed to the NYT raises questions about the vetting of Chinese companies approved to handle H200 chips",
+  "טקסט_en": "Not verified against a primary source. The text is available as a copy attributing the investigation to the New York Times, via DNYUZ; the article on the newspaper's site was not located and therefore was not checked directly.\n\nNov 7, 2026 | the copy was published at 12:51 Israel time per the timestamp on the DNYUZ site. The original publication time in the newspaper is unknown. The approvals described were given earlier this year, not today.\n\nPer the investigation as it appears in the copy, the US administration approved the Chinese company New Matrix to assemble NVIDIA H200 chips in AI servers. The article reports that a visit to the company's registered address found an empty office, and that the property managers said they have no record of the company.\n\nThe article describes ownership ties to entities linked to the Wise Road investment fund, which was added to the US Commerce Department's restricted entity list in 2024. Two analysts quoted in the article estimated that New Matrix may be a front company for entities linked to the fund. That is an estimate attributed to them, not a legal determination or our own independent finding.\n\nPer people familiar with the approvals quoted in the article, roughly two dozen Chinese companies received approval to buy H200 chips or handle them. Approval to assemble servers is not identical to the end buyer's identity, and American approval is not Chinese import approval or proof that the chips were delivered. The article contains no announcement of new licenses granted today or of new completed shipments.\n\nIn the US Bureau of Industry and Security's response, as presented in the copy, it said all applications are carefully reviewed against national security risks. NVIDIA said its best and main technology is sold in the US, and that China has sharply restricted H200 imports in favor of domestic manufacturers. Per the article, New Matrix did not respond to a request for comment. There is no determination here that NVIDIA sold chips in violation of the law or that new enforcement was opened against it.\n\nRelated to the previous item from Nov 7, 2026 at 08:43 on cloud partner status terms and a chip monitoring system. The news here is questions about the vetting of the companies that received American approval for assembly or purchase. This is separate from the Nov 6, 2026 11:52 report on chips in Hong Kong awaiting import approval from China.",
+  "תקציר_en": "Per the article copy, a company approved to assemble servers with H200 chips operated from an address found empty; the alleged ties to restricted entities are not a determination that a law violation occurred.",
+  "_translation": {
+   "en": {
+    "source_hash": "63be4c1156d16853a90a3157191b73dbac0181d5664342bf5787aa50579abeb8",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Union Pacific (UNP) ו-Norfolk Southern (NSC): פרטי צו STB מ-4 בנובמבר, מסמכים עד 4 בדצמבר ולא הכרעה במיזוג",
@@ -1179,22 +1245,34 @@
   "מקורות": [
    {
     "label": "STB: החלטה מספר 45, 4 בנובמבר 2026",
-    "url": "https://dcms-external.s3.amazonaws.com/DCMS_External_PROD/1793829754220/53312.pdf"
+    "url": "https://dcms-external.s3.amazonaws.com/DCMS_External_PROD/1793829754220/53312.pdf",
+    "label_en": "STB: decision number 45, November 4, 2026"
    },
    {
     "label": "STB: עמוד הליך המיזוג והקישור למסמך הרשמי",
-    "url": "https://www.stb.gov/resources/major-railroad-mergers/"
+    "url": "https://www.stb.gov/resources/major-railroad-mergers/",
+    "label_en": "STB: the merger proceeding page and the link to the official document"
    },
    {
     "label": "Logistics Management: דיווח משלים מ-6 בנובמבר",
-    "url": "https://www.logisticsmgmt.com/article/stb_orders_union_pacific_to_disclose_records_following_ceos_merger_related_retaliation_remarks"
+    "url": "https://www.logisticsmgmt.com/article/stb_orders_union_pacific_to_disclose_records_following_ceos_merger_related_retaliation_remarks",
+    "label_en": "Logistics Management: supplementary report of November 6"
    }
   ],
   "תקציר": "הצו הרשמי מפרט דרישת מסמכים והצהרות מאומתות בנוגע לחשש להשפעה על משתתפים בהליך; אין בו ממצא סופי של נקמה מסחרית או אישור לעסקה.",
   "טקסט": "⁦4.11.2026⁩ | תאריך ההחלטה ומסירתה לפי המסמך הרשמי. שעת הפרסום המקורית אינה מצוינת. הדיווח המשלים ב-⁦6⁩ בנובמבר אינו החלטה חדשה מאותו יום.\n\nמועצת התחבורה היבשתית האמריקאית (⁦STB)⁩ הורתה ליוניון פסיפיק להגיש עד ⁦4⁩ בדצמבר ⁦2026⁩ מסמכים והצהרות מאומתות, במסגרת בדיקת המיזוג המוצע עם נורפוק סאותרן. הדרישה נוגעת להשפעה אפשרית על לקוחות וגורמים בענף בשל תמיכה בעסקה, התנגדות לה או השתתפות בהליך.\n\nהחלטה מספר ⁦45⁩ מבקשת בין השאר תקשורת חיצונית ופנימית בעניין תעריפים, שירות, השקעות בתשתיות ותנאי חוזים הקשורים לעמדות גורמים כלפי העסקה. היא כוללת חיפוש אצל רשימת בעלי תפקידים מוגדרת, ולא הוראה ראשונית לחיפוש גורף אצל כל עובד בחברה.\n\nהמועצה הביעה חשש שדברי המנכ״ל ג׳ים וינה בכנס ממרץ עלולים להרתיע בעלי עניין מהשתתפות חופשית. ההחלטה מצטטת גם את עמדת החברה שלפיה היא אינה מאיימת על לקוחות ותתייחס לכל הצדדים בהגינות. החשש והדרישה למסמכים אינם ממצא סופי שהתרחשה נקמה מסחרית.\n\nבנפרד, מבקשות המיזוג נדרשות להשיב עד ⁦19⁩ בנובמבר למכתב של ⁦CPKC⁩ המבקש לדחות את הבקשה. המועצה קובעת שתדון בבקשה זו בהחלטה מאוחרת יותר. היא מאפשרת גם הגשת תגובות והודעות השתתפות עד ⁦18⁩ בנובמבר בהתאם לתנאי ההחלטה.\n\nקשור לפריט מ-⁦5.11.2026⁩ בשעה ⁦03:13⁩ על דחיית הערעור בעניין סודיות נאום המנכ״ל. החידוש בפריט זה הוא אימות מול המסמך הרשמי ופירוט דרישת המסמכים והמועדים שלא הוצגו בפריט הקודם; זו אותה החלטה מ-⁦4⁩ בנובמבר, לא החלטה חדשה על עצם המיזוג.\n\nהצו אינו מאשר או דוחה את המיזוג, ואינו מודיע שההליך כבר הושעה. השאלה כיצד ראיות אפשריות ישפיעו על המשך ההליך ועל בחינת העסקה נשארה בידי המועצה.",
   "תאריך": "2026-11-07 15:06",
   "הועלה": "2026-11-07 15:06",
-  "מזהה": "n-0048"
+  "מזהה": "n-0048",
+  "כותרת_en": "Union Pacific (UNP) and Norfolk Southern (NSC): details of the November 4 STB order, documents by December 4, and no ruling on the merger",
+  "טקסט_en": "Nov 4, 2026 | the decision date and service per the official document. The original publication time is not specified. The supplementary report on November 6 is not a new decision of that day.\n\nThe US Surface Transportation Board (STB) ordered Union Pacific to file by December 4, 2026 documents and verified statements, as part of the review of the proposed merger with Norfolk Southern. The demand concerns a possible effect on customers and industry parties due to support for the deal, opposition to it, or participation in the proceeding.\n\nDecision number 45 requests, among other things, external and internal communications regarding rates, service, infrastructure investments and contract terms related to parties' positions toward the deal. It includes a search of a defined list of officeholders, and is not an initial order for a sweeping search of every company employee.\n\nThe Board expressed concern that CEO Jim Vena's remarks at a March conference may deter stakeholders from participating freely. The decision also quotes the company's position that it does not threaten customers and will treat all sides fairly. The concern and the demand for documents are not a final finding that commercial retaliation occurred.\n\nSeparately, the merger applicants are required to respond by November 19 to a CPKC letter seeking to dismiss the application. The Board states it will address that request in a later decision. It also allows the filing of responses and notices of participation by November 18 in accordance with the decision's terms.\n\nRelated to the item from Nov 5, 2026 at 03:13 on the dismissal of the appeal regarding the confidentiality of the CEO's speech. What is new in this item is verification against the official document and details of the document demand and deadlines not presented in the previous item; this is the same November 4 decision, not a new decision on the merger itself.\n\nThe order does not approve or reject the merger, and does not state that the proceeding has already been suspended. The question of how possible evidence will affect the continuation of the proceeding and the review of the deal remained with the Board.",
+  "תקציר_en": "The official order details a demand for documents and verified statements regarding concern about an effect on participants in the proceeding; it contains no final finding of commercial retaliation or approval of the deal.",
+  "_translation": {
+   "en": {
+    "source_hash": "a517554836bb44244dc31f19e4d98e88428fa0cb99975e43a981b63650cbfa79",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Nasdaq (NDAQ): תקופת בדיקות לקראת המסחר הלילי נפתחה לסימולי בדיקה בלבד, לא השקת מסחר חי",
