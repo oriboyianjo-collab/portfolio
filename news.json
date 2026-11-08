@@ -664,13 +664,22 @@
   "מקורות": [
    {
     "label": "הודעת CENTCOM, 7 בנובמבר",
-    "url": "https://www.centcom.mil/MEDIA/PUBLIC-RELEASES/Article/4644273/us-forces-disable-cargo-vessel-attempting-to-violate-naval-blockade/"
+    "url": "https://www.centcom.mil/MEDIA/PUBLIC-RELEASES/Article/4644273/us-forces-disable-cargo-vessel-attempting-to-violate-naval-blockade/",
+    "label_en": "CENTCOM release, November 7"
    }
   ],
   "טקסט": "7.11.2026 | הודעת CENTCOM הרשמית; שעת הפרסום לא צוינה.\n\nלפי הודעת הפיקוד המרכזי של צבא ארה\"ב (CENTCOM), כוחות אמריקאיים השביתו ב-7 בנובמבר כלי שיט מסחרי במפרץ עומאן, לאחר שצוותו האזרחי התעלם מאזהרות חוזרות וניסה מספר פעמים להפר את הסגר הימי על איראן. כלי טיס צבאי ירה תחמושת מדויקת לעבר ירכתי ה-M/V Huda, כלי שיט בדגל סנט קיטס, לאחר שהצוות הונחה לפנות את המקטעים המיועדים. כלי השיט ניסה לעזוב את מימי האזור לאחר שעגן בנמל איראני.\n\nלפי ההודעה, מאז יולי הופנו 147 כלי שיט מסחריים שצייתו והושבתו חמישה שסירבו; בנוסף הושמדו בעבר 10 מכליות נפט איראניות מרשת הצללים של משמרות המהפכה.",
   "תאריך": "2026-11-08 13:29",
   "הועלה": "2026-11-08 13:29",
-  "מזהה": "n-0025"
+  "מזהה": "n-0025",
+  "כותרת_en": "CENTCOM: US forces disabled a commercial vessel that tried to breach the maritime blockade on Iran",
+  "טקסט_en": "Nov 7, 2026 | official CENTCOM release; publication time not given.\n\nPer a US Central Command (CENTCOM) release, American forces on November 7 disabled a commercial vessel in the Gulf of Oman, after its civilian crew ignored repeated warnings and tried several times to breach the maritime blockade on Iran. A military aircraft fired precision munitions at the rudder of the M/V Huda, a St. Kitts-flagged vessel, after the crew was instructed to evacuate the designated sections. The vessel tried to leave the area's waters after anchoring in an Iranian port.\n\nPer the release, since July 147 commercial vessels that complied have been turned back and five that refused have been disabled; in addition, 10 Iranian oil tankers of the Revolutionary Guards' shadow fleet were previously destroyed.",
+  "_translation": {
+   "en": {
+    "source_hash": "59f694f34bd4cf8202328bbe1b0d5b77b2ea46aea18da3afc8d4425f3c9f596f",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "מרכז הסחר הימי הבריטי (UKMTO): דיווח על אירוע בין אוניית צובר לכוחות צבאיים מזרחית לח'ור פכאן",
@@ -679,13 +688,22 @@
   "מקורות": [
    {
     "label": "אזהרת UKMTO 198-26, 7 בנובמבר",
-    "url": "https://www.ukmto.org/-/media/ukmto/products/20261107-ukmto_advisory-198-26.pdf"
+    "url": "https://www.ukmto.org/-/media/ukmto/products/20261107-ukmto_advisory-198-26.pdf",
+    "label_en": "UKMTO warning 198-26, November 7"
    }
   ],
   "טקסט": "7.11.2026 | אזהרת UKMTO מספר 198-26; מועד האירוע טרם נקבע.\n\nמרכז הסחר הימי הבריטי (UKMTO) פרסם אזהרה בעקבות דיווח שהתקבל מרשויות צבאיות על אירוע במפרץ עומאן שמעורבים בו אוניית צובר וכוחות צבאיים, כ-18 מייל ימי מזרחית לח'ור פכאן שבאיחוד האמירויות. מצב הצוות, היקף הנזק וההשפעה הסביבתית אינם ידועים נכון למועד הדיווח. הרשויות מודעות לאירוע והחקירה נמשכת.",
   "תאריך": "2026-11-08 13:29",
   "הועלה": "2026-11-08 13:29",
-  "מזהה": "n-0026"
+  "מזהה": "n-0026",
+  "כותרת_en": "UK Maritime Trade Operations (UKMTO): report of an incident between a bulk carrier and military forces east of Khor Fakkan",
+  "טקסט_en": "Nov 7, 2026 | UKMTO warning number 198-26; the time of the incident has not yet been determined.\n\nUK Maritime Trade Operations (UKMTO) published a warning following a report received from military authorities of an incident in the Gulf of Oman involving a bulk carrier and military forces, about 18 nautical miles east of Khor Fakkan in the UAE. The crew's condition, the extent of damage and the environmental impact are unknown as of the report. Authorities are aware of the incident and the investigation continues.",
+  "_translation": {
+   "en": {
+    "source_hash": "478772df28067171a3c25a9d4e24f7479d8e2fdb704f35c5b27e95095e3d85bf",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Simon Property (SPG): תכנית לחפירת ביסודות לפרויקט Sagefield החדש דרומית לנאשוויל כבר בשבוע הבא, לפי Bisnow",
@@ -694,13 +712,22 @@
   "מקורות": [
    {
     "label": "Bisnow, 6 בנובמבר",
-    "url": "https://www.bisnow.com/news/national/retail/simon-achieves-17-percent-rent-growth-on-new-leases-retailer-demand-soars"
+    "url": "https://www.bisnow.com/news/national/retail/simon-achieves-17-percent-rent-growth-on-new-leases-retailer-demand-soars",
+    "label_en": "Bisnow, November 6"
    }
   ],
   "טקסט": "לא מאומת מול מקור ראשוני; נמסר לפי שיחת התוצאות, תמליל לא נבדק\n6.11.2026 | לפי Bisnow; פורסם ב-20:43 לפי שעון ישראל (13:43 ET).\n\nלפי Bisnow, Simon Property Group (NYSE: SPG) מסרה ב-5 בנובמבר כי היא מתכננת לחפור ביסודות כבר בשבוע הבא לפרויקט Sagefield, פיתוח חדש מאפס דרומית לנאשוויל. הפיתוח צפוי לכלול 80 חנויות קמעונאיות ומסעדות על פני 100 דונם, ופתיחתו צפויה עד סוף 2028.\n\nהדברים נמסרו כפי שצוטטו בדיווח משני מתוך שיחת התוצאות; התמליל או הודעת החברה לא נבדקו מול המקור.",
   "תאריך": "2026-11-08 13:27",
   "הועלה": "2026-11-08 13:27",
-  "מזהה": "n-0027"
+  "מזהה": "n-0027",
+  "כותרת_en": "Simon Property (SPG): plans to break ground on the new Sagefield project south of Nashville as early as next week, per Bisnow",
+  "טקסט_en": "Not verified against a primary source; delivered per the earnings call, transcript not checked\nNov 6, 2026 | per Bisnow; published at 20:43 Israel time (13:43 ET).\n\nPer Bisnow, Simon Property Group (NYSE: SPG) said on November 5 that it plans to break ground as early as next week on Sagefield, a new ground-up development south of Nashville. The development is expected to include 80 retail stores and restaurants over 100 acres, with opening expected by the end of 2028.\n\nThe remarks were delivered as quoted in a secondary report from the earnings call; the transcript or company release was not checked against the source.",
+  "_translation": {
+   "en": {
+    "source_hash": "84c873992cfbc44e7aba64b5f19f777b4d5c8c959f84e9e2ae595934b8739f88",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Goldman Sachs (GS): בית המשפט העליון של ארה\"ב הסכים לדון במחלוקת הארביטרציה Goldman Sachs Bank USA נגד Brown",
@@ -709,17 +736,27 @@
   "מקורות": [
    {
     "label": "צו בית המשפט העליון של ארה\"ב, 6 בנובמבר",
-    "url": "https://www.supremecourt.gov/orders/courtorders/110626zr_q8l1.pdf"
+    "url": "https://www.supremecourt.gov/orders/courtorders/110626zr_q8l1.pdf",
+    "label_en": "US Supreme Court order, November 6"
    },
    {
     "label": "SCOTUSblog, 6 בנובמבר",
-    "url": "https://www.scotusblog.com/2026/11/supreme-court-agrees-to-weigh-in-on-goldman-sachs-arbitration-dispute/"
+    "url": "https://www.scotusblog.com/2026/11/supreme-court-agrees-to-weigh-in-on-goldman-sachs-arbitration-dispute/",
+    "label_en": "SCOTUSblog, November 6"
    }
   ],
   "טקסט": "6.11.2026 | צו בית המשפט העליון (certiorari); שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nבית המשפט העליון של ארה״ב הסכים לדון בתיק Goldman Sachs Bank USA v. Brown (25-1408), במחלוקת על היקף הארביטרציה בחובות כרטיסי אשראי במסגרת הליכי פשיטת רגל שהוגשו על ידי Rhea Brown ו-Gregory Maze.\n\nזוהי החלטה לדון בערר (מתן סרטיוררי), לא פסק דין במחלוקת עצמה; לא נקבעו כאן זכויות הצדדים.",
   "תאריך": "2026-11-08 13:27",
   "הועלה": "2026-11-08 13:27",
-  "מזהה": "n-0028"
+  "מזהה": "n-0028",
+  "כותרת_en": "Goldman Sachs (GS): the US Supreme Court agreed to hear the arbitration dispute Goldman Sachs Bank USA v. Brown",
+  "טקסט_en": "Nov 6, 2026 | Supreme Court order (certiorari); the original publication time in Israel time is unknown.\n\nThe US Supreme Court agreed to hear the case Goldman Sachs Bank USA v. Brown (25-1408), a dispute over the scope of arbitration in credit card debts within bankruptcy proceedings filed by Rhea Brown and Gregory Maze.\n\nThis is a decision to hear the appeal (grant of certiorari), not a ruling on the dispute itself; the parties' rights were not determined here.",
+  "_translation": {
+   "en": {
+    "source_hash": "69996c63dcabdc08daf572e9b64631f804c54afdcba044e266276cd561d001c3",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Digital Realty (DLR) ו-Ascenty פתחו את מעבדת ה-DRIL הראשונה באמריקה הלטינית לבדיקות תשתית AI, בקמפוס Vinhedo II בסאו פאולו",
@@ -728,17 +765,27 @@
   "מקורות": [
    {
     "label": "Digital Realty / Ascenty, הודעה ב-GlobeNewswire",
-    "url": "https://www.globenewswire.com/news-release/2026/11/05/3396675/0/en/digital-realty-innovation-lab-s%C3%A3o-paulo-expands-ai-infrastructure-testing-in-latin-america.html"
+    "url": "https://www.globenewswire.com/news-release/2026/11/05/3396675/0/en/digital-realty-innovation-lab-s%C3%A3o-paulo-expands-ai-infrastructure-testing-in-latin-america.html",
+    "label_en": "Digital Realty / Ascenty, release on GlobeNewswire"
    },
    {
     "label": "Ascenty, הודעת המפעיל",
-    "url": "https://ascenty.com/en/blog/news-ascenty-en/ascenty-opens-first-digital-realty-innovation-lab-dril-in-latin-america/"
+    "url": "https://ascenty.com/en/blog/news-ascenty-en/ascenty-opens-first-digital-realty-innovation-lab-dril-in-latin-america/",
+    "label_en": "Ascenty, operator release"
    }
   ],
   "טקסט": "5.11.2026 | הודעה משותפת; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nDigital Realty (NYSE: DLR) ו-Ascenty הודיעו על פתיחת מעבדת Digital Realty Innovation Lab (DRIL) הראשונה באמריקה הלטינית, בקמפוס Vinhedo II בסאו פאולו, ברזיל. המעבדה מאפשרת ללקוחות לבדוק ולכוונן תצורות של מחשוב, רשת, קירור, צורה וטכנולוגיות שותפים בסביבת מרכז נתונים חיה, לפני מעבר לייצור, עם נתוני דמה בלבד.\n\nזוהי הרחבה של רשת מעבדות ה-DRIL הקיימת; ההודעה מציינת שימוש בלידע של Ascenty מהפעלת מרכז ה-OCP Experience הראשון באמריקה הלטינית.",
   "תאריך": "2026-11-08 13:27",
   "הועלה": "2026-11-08 13:27",
-  "מזהה": "n-0029"
+  "מזהה": "n-0029",
+  "כותרת_en": "Digital Realty (DLR) and Ascenty opened the first DRIL lab in Latin America for AI infrastructure testing, at the Vinhedo II campus in Sao Paulo",
+  "טקסט_en": "Nov 5, 2026 | joint release; the original publication time in Israel time is unknown.\n\nDigital Realty (NYSE: DLR) and Ascenty announced the opening of the first Digital Realty Innovation Lab (DRIL) in Latin America, at the Vinhedo II campus in Sao Paulo, Brazil. The lab lets customers test and tune configurations of compute, network, cooling, form factor and partner technologies in a live data center environment, before moving to production, with dummy data only.\n\nThis is an expansion of the existing DRIL lab network; the release notes the use of Ascenty's knowledge from operating the first OCP Experience center in Latin America.",
+  "_translation": {
+   "en": {
+    "source_hash": "ec9fc424de0e3e8a68a7a9ee76bf781262b0efe1a6ff179180a323fe40c0d258",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Northrop Grumman (NOC): חוזה ייצור ראשוני לשלוש שנים למערכת הניווט AN/WSN-12 עבור צי הספינות של צי ארה\"ב",
@@ -747,13 +794,22 @@
   "מקורות": [
    {
     "label": "Northrop Grumman, הודעת החברה",
-    "url": "https://news.northropgrumman.com/navigation-systems/northrop-grumman-partnering-with-us-navy-to-transition-fleet-to-automated-digital-navigation-and-mission-planning"
+    "url": "https://news.northropgrumman.com/navigation-systems/northrop-grumman-partnering-with-us-navy-to-transition-fleet-to-automated-digital-navigation-and-mission-planning",
+    "label_en": "Northrop Grumman, company release"
    }
   ],
   "טקסט": "2.11.2026 | הודעת החברה; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nNorthrop Grumman (NYSE: NOC) הודיעה על חוזה ייצור ראשוני בקצב נמוך (LRIP) לשלוש שנים לספק את מודול מעבד הניווט AN/WSN-12 (NPM) עבור צי הספינות של צי ארה״ב, במסגרת המעבר של הצי לניווט ותכנון משימה דיגיטליים ואוטומטיים.\n\nלפי ההודעה, המערכת מיועדת לספק פתרון ניווט מדויק וגמיש יותר לציים הימיים והתת-ימיים, וממשיכה את פיתוח יכולות הניווט מהדור הבא של הצי.",
   "תאריך": "2026-11-08 13:27",
   "הועלה": "2026-11-08 13:27",
-  "מזהה": "n-0030"
+  "מזהה": "n-0030",
+  "כותרת_en": "Northrop Grumman (NOC): initial three-year production contract for the AN/WSN-12 navigation system for the US Navy's surface fleet",
+  "טקסט_en": "Nov 2, 2026 | company release; the original publication time in Israel time is unknown.\n\nNorthrop Grumman (NYSE: NOC) announced a three-year low-rate initial production (LRIP) contract to supply the AN/WSN-12 Navigation Processor Module (NPM) for the US Navy's surface fleet, as part of the Navy's transition to digital and automated navigation and mission planning.\n\nPer the release, the system is intended to provide a more accurate and flexible navigation solution for naval and submarine fleets, and continues the development of the Navy's next-generation navigation capabilities.",
+  "_translation": {
+   "en": {
+    "source_hash": "a81445d7e5b3d80457cb3c55f17f173d3b546e79c1c9cf47086bb155615ef450",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "CoreWeave (CRWV) פנתה במכתב למושלת טקסס הנבחרת בבקשה לשיתוף פעולה בפרויקטי מרכזי נתונים, לפי Bloomberg",
@@ -762,13 +818,22 @@
   "מקורות": [
    {
     "label": "Bloomberg דרך Yahoo Finance, 7 בנובמבר",
-    "url": "https://finance.yahoo.com/technology/ai/articles/coreweave-asks-texas-governor-elect-203310423.html"
+    "url": "https://finance.yahoo.com/technology/ai/articles/coreweave-asks-texas-governor-elect-203310423.html",
+    "label_en": "Bloomberg via Yahoo Finance, November 7"
    }
   ],
   "טקסט": "לא מאומת מול מסמך ראשוני; המכתב עצמו לא פורסם\n7.11.2026 | פורסם ב-22:33 לפי שעון ישראל (15:33 EST), לפי Bloomberg.\n\nלפי Bloomberg, CoreWeave (NASDAQ: CRWV) שלחה מכתב למושלת טקסס הנבחרת, Gina Hinojosa, בבקשה לשתף פעולה עם הממשל הנכנס בפרויקטי מרכזי נתונים קיימים ועתידיים במדינה. מנכ״ל החברה, Michael Intrator, נמסר כאומר שהחברה תומכת בעקרונות לפיהם צמיחת מרכזי הנתונים צריכה לעבוד עבור טקסס, וכי היא מברכת על עבודה עם צוות המעבר על השלמה אחראית של פרויקטים שאושרו ועל סטנדרטים ברורים לפיתוח עתידי.\n\nהרקע הפוליטי לפי הדיווח: Hinojosa, המועמדת הדמוקרטית הראשונה שנבחרה למושל טקסס מאז 1990, התחייבה בקמפיין למורטוריום על מרכזי נתונים ומאז הציגה גישה של ״איזון״ בין ידידותיות לעסקים לרגולציה מחמירה יותר; המכתב לא נבדק מול המקור.",
   "תאריך": "2026-11-08 13:26",
   "הועלה": "2026-11-08 13:26",
-  "מזהה": "n-0031"
+  "מזהה": "n-0031",
+  "כותרת_en": "CoreWeave (CRWV) sent a letter to Texas's governor-elect requesting cooperation on data center projects, per Bloomberg",
+  "טקסט_en": "Not verified against a primary document; the letter itself was not published\nNov 7, 2026 | published at 22:33 Israel time (15:33 EST), per Bloomberg.\n\nPer Bloomberg, CoreWeave (NASDAQ: CRWV) sent a letter to Texas governor-elect Gina Hinojosa, asking to cooperate with the incoming administration on existing and future data center projects in the state. The company's CEO, Michael Intrator, was quoted saying the company supports principles under which data center growth should work for Texas, and that it welcomes working with the transition team on responsible completion of approved projects and on clear standards for future development.\n\nThe political background per the report: Hinojosa, the first Democratic candidate elected governor of Texas since 1990, pledged during the campaign a moratorium on data centers and has since presented a 'balance' approach between business-friendliness and stricter regulation; the letter was not checked against the source.",
+  "_translation": {
+   "en": {
+    "source_hash": "41594503b722a69f874503f56a2e1cb8f9a38fb67246cff9785af8b7fc7fd310",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Arrowhead (ARWR): נתוני שלב 3/4 מאוחדים ל-plozasiran הראו הפחתה של 78% באירועי דלקת לבלב חריפה מול פלצבו; 91% במטופלים עם אירוע קודם",
@@ -777,13 +842,22 @@
   "מקורות": [
    {
     "label": "Arrowhead Pharmaceuticals, הודעת החברה",
-    "url": "https://arrowheadpharma.com/en-us/newsroom/arrowhead-pharmaceuticals-presents-plozasiran-data-highlighting"
+    "url": "https://arrowheadpharma.com/en-us/newsroom/arrowhead-pharmaceuticals-presents-plozasiran-data-highlighting",
+    "label_en": "Arrowhead Pharmaceuticals, company release"
    }
   ],
   "טקסט": "7.11.2026 | הודעת החברה ב-Business Wire; שעת הפרסום המקורית בשעון ישראל אינה ידועה.\n\nArrowhead Pharmaceuticals (NASDAQ: ARWR) הציגה בכנס AHA Scientific Sessions 2026 נתונים מאוחדים של 757 מבוגרים מניסויי SHASTA בשלבים 3 ו-4 ל-plozasiran: שיעור כל אירועי דלקת הלבלב החריפה (AP) המאומתים ירד ב-78% מול פלצבו; במטופלים עם אירוע AP בחמש השנים הקודמות הירידה הייתה 91%, ובמטופלים עם AP קודם ורמות טריגליצרידים של 500-880 mg/dL הירידה הייתה 82%.\n\nבנוסף פורסמו נתונים ראשוניים של ARO-DIMER-PA, עם הפחתות ממוצעות של 26%-65% ב-LDL-C והפחתות חציוניות של 56%-78% בטריגליצרידים, לצד ירידות ב-ApoB ובכולסטרול שאריתי.",
   "תאריך": "2026-11-08 13:24",
   "הועלה": "2026-11-08 13:24",
-  "מזהה": "n-0032"
+  "מזהה": "n-0032",
+  "כותרת_en": "Arrowhead (ARWR): pooled phase 3/4 data for plozasiran showed a 78% reduction in acute pancreatitis events versus placebo; 91% in patients with a prior event",
+  "טקסט_en": "Nov 7, 2026 | company release on Business Wire; the original publication time in Israel time is unknown.\n\nArrowhead Pharmaceuticals (NASDAQ: ARWR) presented at the AHA Scientific Sessions 2026 pooled data from 757 adults in the SHASTA phase 3 and 4 trials for plozasiran: the rate of all confirmed acute pancreatitis (AP) events fell 78% versus placebo; in patients with an AP event in the prior five years the reduction was 91%, and in patients with prior AP and triglyceride levels of 500-880 mg/dL the reduction was 82%.\n\nIn addition, initial data for ARO-DIMER-PA were published, with average LDL-C reductions of 26%-65% and median triglyceride reductions of 56%-78%, alongside decreases in ApoB and remnant cholesterol.",
+  "_translation": {
+   "en": {
+    "source_hash": "3cc15bf5dd70d8dfddd4f4b1c92da90b82c8a3f9741ed3472addbbbbd73fe1c2",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "GE Aerospace (GE): הסכמי מכירה ושירות בשווי שיא של 12.9 מיליארד דולר בתערוכת היבוא של סין, לפי Reuters",
