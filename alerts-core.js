@@ -12,6 +12,7 @@
     String(x['חברה']||'').split(/[,\s/]+/).forEach(t=>{ t=t.trim().toUpperCase(); if(TK.test(t)) s.add(t); });
     (String(x['כותרת']||'').match(/\(([A-Z][A-Z0-9.\-]{0,9})\)/g)||[]).forEach(m=>s.add(m.slice(1,-1)));
     return [...s]; }
+  function newsCategory(x){for(const k of ['category','סוג','קטגוריה']){if(x[k]!=null&&String(x[k]).trim()!==''){const v=String(x[k]).trim().toLowerCase();return v==='macro'||v==='מאקרו'?'macro':v==='micro'||v==='מיקרו'?'micro':'';}}return '';}
   const has = v => v!=null && String(v).trim()!=='' && !/^(לא|n\/?a|-|—)$/i.test(String(v).trim());
   const when = m => m==='before' ? 'לפני פתיחת המסחר' : m==='after' ? 'אחרי סגירת המסחר' : '';
   // -> [{key, kind:'news'|'rep', sym, title, body, base}]  (base=true: “already happened” type, swallowed on the very first run)
@@ -25,10 +26,11 @@
     const P = o.prefs||{}, hold = new Set(o.hold||[]), watch = new Set(o.watch||[]), muted = new Set(o.muted||[]), out = [];
     const want = sym => !muted.has(sym) && (hold.has(sym) || watch.has(sym));
     newestNews(o.news).forEach(x=>{
-      const all = newsSyms(x);
-      if(P.newsAll && all.length && all.every(s=>muted.has(s))) return;   // v191: “every new item” – only skips items whose tickers are all muted
-      const syms = P.newsAll ? all.filter(s=>!muted.has(s)) : all.filter(s=>!muted.has(s) && ((P.newsHold && hold.has(s)) || (P.newsWatch && watch.has(s))));
-      if(!syms.length && !P.newsAll) return;
+      if(P.newsMacro && newsCategory(x)!=='macro') return;
+      const broad = P.newsMacro || P.newsAll, all = newsSyms(x);
+      if(broad && all.length && all.every(s=>muted.has(s))) return;   // v191: “every new item” – only skips items whose tickers are all muted
+      const syms = broad ? all.filter(s=>!muted.has(s)) : all.filter(s=>!muted.has(s) && ((P.newsHold && hold.has(s)) || (P.newsWatch && watch.has(s))));
+      if(!syms.length && !broad) return;
       const t = String(x['כותרת']||'').trim(); if(!t) return;
       const key='n|'+H(t+'|'+(x['הועלה']||x['תאריך']||'')); if(NEWS_REPAIR_BASELINE.has(key))return;
       out.push({key, kind:'news', sym:syms[0]||'', title:syms.length ? '📰 חדשות על '+syms.join(', ') : '📰 חדשות', body:t.slice(0,180), base:true});
@@ -43,5 +45,5 @@
     });
     return out;
   }
-  g.AlertsCore = {detect, newsSyms, ilDate, H, newestNews};
+  g.AlertsCore = {newsCategory,detect, newsSyms, ilDate, H, newestNews};
 })(typeof self!=='undefined' ? self : globalThis);
