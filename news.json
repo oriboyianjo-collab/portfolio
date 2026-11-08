@@ -2699,14 +2699,24 @@
   "מקורות": [
    {
     "label": "Duolingo, מכתב לבעלי המניות לרבעון השלישי של 2026",
-    "url": "https://investors.duolingo.com/static-files/e1ee336e-b024-486f-875c-afd722653067"
+    "url": "https://investors.duolingo.com/static-files/e1ee336e-b024-486f-875c-afd722653067",
+    "label_en": "Duolingo, shareholder letter for Q3 2026"
    }
   ],
   "תקציר": "שינוי במבנה המנויים לצד הרחבת Video Call. הטיפול במנויי Max משפחתיים ותיקים ייקבע ב-2027.",
   "טקסט": "3.11.2026 | מכתב Duolingo לבעלי המניות לרבעון השלישי; שעת פרסום המכתב המקורית בשעון ישראל לא אומתה.\n\nDuolingo הודיעה כי בנובמבר תפסיק למכור מנויים חדשים למסלול Max, שכבת המנוי הגבוהה שלה. מנויי Max ליחידים יועברו למסלול Super משפחתי באותו מחיר, עם אותן יכולות ואפשרות לשתף את המנוי עם בני משפחה או חברים. אין במכתב הודעה שכל משתמשי Super יקבלו מנוי חינם או שכל מנויי Max יועברו כבר באותו מועד.\n\nלמנויי Max משפחתיים ותיקים טרם הוצג פתרון סופי: החברה מסרה שהיא עדיין בוחנת אפשרויות ותטפל בכך ב-2027. לכן אין להחיל על הקבוצה הזאת באופן אוטומטי את תנאי המעבר של מנויי היחיד.\n\nהרקע לשינוי הוא שילוב גישה בלתי מוגבלת ל-Video Call, תרגול שיחה מבוסס בינה מלאכותית, בתוך Super. לפי המכתב, החברה החלה להעניק את היכולת למנויי Super חדשים ברבעון הקודם, וצופה להעמידה לרשות כל מנויי Super עד סוף 2026. זו תוכנית להרחבה עד סוף השנה, לא אישור שכל המנויים הקיימים כבר קיבלו אותה ביום ההודעה.\n\nהחברה מצפה שהשפעת השינוי על Bookings תהיה קטנה ומסרה שהיא כבר כלולה בתחזית הרבעון הרביעי. זו הערכת הנהלה לגבי הזמנות, לא הבטחה שלא תהיה השפעה על הכנסות או רווחיות, ולא תחזית מספרית חדשה שנמסרה בנפרד.\n\nהנתונים הכספיים של הרבעון מופיעים בכרטיס הדוח באפליקציה. החידוש בפריט הזה הוא שינוי מסלולי המנוי והרחבת כלי השיחה, כפי שתוארו במכתב מ-3 בנובמבר, ולא הודעה על דוח חדש או שינוי נוסף בתחזית בנובמבר.",
   "תאריך": "2026-11-07 06:29",
   "הועלה": "2026-11-07 06:29",
-  "מזהה": "n-0097"
+  "מזהה": "n-0097",
+  "כותרת_en": "Duolingo (DUOL): stopping sales of new Max subscriptions in November and moving individual subscribers to Super Family at the same price",
+  "טקסט_en": "Nov 3, 2026 | Duolingo's Q3 shareholder letter; the letter's original publication time in Israel time was not verified.\n\nDuolingo announced that in November it will stop selling new subscriptions to Max, its high subscription tier. Individual Max subscribers will be moved to the Super Family track at the same price, with the same capabilities and an option to share the subscription with family members or friends. The letter does not say that all Super users will get a free subscription or that all Max subscribers will be moved already at the same date.\n\nFor long-standing Max Family subscribers no final solution has been presented yet: the company said it is still examining options and will handle it in 2027. Therefore the individual subscribers' transition terms should not automatically be applied to that group.\n\nThe background to the change is integrating unlimited access to Video Call, AI-based conversation practice, into Super. Per the letter, the company began granting the capability to new Super subscribers in the previous quarter, and expects to make it available to all Super subscribers by the end of 2026. That is an expansion plan through year-end, not confirmation that all existing subscribers already received it on the announcement day.\n\nThe company expects the change's effect on Bookings to be small and said it is already included in the Q4 forecast. That is management's estimate regarding bookings, not a promise there will be no effect on revenue or profitability, and not a new numerical forecast provided separately.\n\nThe quarter's financial figures appear in the reports card in the app. What's new in this item is the change in subscription tracks and the expansion of the conversation tool, as described in the November 3 letter, not an announcement of a new report or an additional November forecast change.",
+  "תקציר_en": "A change in the subscription structure alongside expanding Video Call. The handling of long-standing Max Family subscribers will be decided in 2027.",
+  "_translation": {
+   "en": {
+    "source_hash": "0de56588b59e9115a1e73c90c5046ceb72db93fcfafbd856d61de94060534dee",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Arrowhead Pharmaceuticals (ARWR): NICE ממליץ על מימון Redemplo למבוגרים עם FCS מאומת גנטית באנגליה ובוויילס",
@@ -2716,18 +2726,29 @@
   "מקורות": [
    {
     "label": "Arrowhead, הודעת החברה מ-27 באוקטובר",
-    "url": "https://ir.arrowheadpharma.com/news-releases/news-release-details/adults-living-familial-chylomicronaemia-syndrome-fcs-england-and"
+    "url": "https://ir.arrowheadpharma.com/news-releases/news-release-details/adults-living-familial-chylomicronaemia-syndrome-fcs-england-and",
+    "label_en": "Arrowhead, company release of October 27"
    },
    {
     "label": "NICE, תנאי ההמלצה לטיפול ב-plozasiran",
-    "url": "https://www.nice.org.uk/guidance/TA1204/chapter/1-Recommendations"
+    "url": "https://www.nice.org.uk/guidance/TA1204/chapter/1-Recommendations",
+    "label_en": "NICE, the recommendation conditions for plozasiran treatment"
    }
   ],
   "תקציר": "ההמלצה כפופה לתגובה לא מספקת לתזונה ולטיפול המקובל ולהסדר מסחרי. אין כאן המלצת מימון גורפת לכל בריטניה.",
   "טקסט": "27.10.2026 | הודעת Arrowhead ופרסום הנחיית NICE; שעת הפרסום המקורית אינה מצוינת במקורות שנבדקו.\n\nArrowhead הודיעה על גישה לטיפול Redemplo, ששמו הגנרי plozasiran, דרך ה-NHS באנגליה ובוויילס. הנחיית NICE מאותו יום ממליצה על הטיפול כאפשרות למבוגרים עם תסמונת כילומיקרונמיה משפחתית, FCS, שאומתה גנטית, ורק כאשר התגובה לתזונה ולטיפולים המקובלים להורדת טריגליצרידים לא הייתה מספקת.\n\nהמימון כפוף גם להסדר המסחרי של החברה. אין זו המלצת טיפול לכל מי שסובל מטריגליצרידים גבוהים, ואין להסיק ממנה מחיר נטו פומבי, מספר מטופלים מובטח או הכנסות שכבר הוכרו.\n\nיש להפריד בין רישיון שיווק לבין מימון: לפי הודעת החברה, רישיון ה-MHRA מכסה את בריטניה ומאפשר טיפול כתוספת לתזונה במבוגרים עם FCS שאובחן בבדיקה גנטית או לפי קריטריונים קליניים. לעומת זאת, אוכלוסיית המלצת המימון של NICE כאן מצומצמת יותר ודורשת אימות גנטי. ההנחיה מתייחסת לאנגליה ולוויילס; בצפון אירלנד נדרש תהליך נוסף, ובסקוטלנד המימון נבחן בנפרד.\n\nNICE מציין שהמחקר הקליני הראה יעילות לעומת פלצבו, אך לא נערכה בו השוואה ישירה ל-volanesorsen. ההשוואות העקיפות אינן מוכיחות באופן ברור איזו תרופה יעילה יותר. לכן אין להציג את המלצת המימון כהוכחה לעליונות ישירה על הטיפול המתחרה.\n\nקשור לפריט מ-4.11 בשעה 15:44 על מימון מחדש של Arrowhead. מה חדש כאן: החלטת מימון לטיפול באוכלוסיית חולים מוגדרת, אירוע מסחרי-רפואי נפרד מהחלפת ההלוואה. ההודעה מאוקטובר אינה אישור חדש שניתן בנובמבר או שינוי בתנאי המימון מחדש.",
   "תאריך": "2026-11-07 06:18",
   "הועלה": "2026-11-07 06:18",
-  "מזהה": "n-0098"
+  "מזהה": "n-0098",
+  "כותרת_en": "Arrowhead Pharmaceuticals (ARWR): NICE recommends funding Redemplo for adults with genetically confirmed FCS in England and Wales",
+  "טקסט_en": "Oct 27, 2026 | Arrowhead's release and publication of NICE guidance; the original publication time is not specified in the sources checked.\n\nArrowhead announced access to the Redemplo treatment, generic name plozasiran, through the NHS in England and Wales. NICE guidance from the same day recommends the treatment as an option for adults with familial chylomicronemia syndrome, FCS, confirmed genetically, and only when the response to diet and standard triglyceride-lowering treatments was insufficient.\n\nFunding is also conditional on the company's commercial arrangement. This is not a treatment recommendation for everyone suffering from high triglycerides, and no public net price, guaranteed patient count or revenue already recognized should be inferred from it.\n\nMarketing authorization and funding should be separated: per the company's release, the MHRA license covers Britain and allows treatment as an addition to diet in adults with FCS diagnosed by genetic testing or per clinical criteria. In contrast, NICE's funding recommendation population here is narrower and requires genetic confirmation. The guidance refers to England and Wales; Northern Ireland requires an additional process, and in Scotland funding is examined separately.\n\nNICE notes the clinical study showed effectiveness versus placebo, but no direct comparison to volanesorsen was conducted in it. The indirect comparisons do not clearly prove which drug is more effective. Therefore the funding recommendation should not be presented as proof of direct superiority over the competing treatment.\n\nRelated to the Nov 4 item at 15:44 on Arrowhead's refinancing. What's new here: a funding decision for treatment in a defined patient population, a commercial-medical event separate from the loan replacement. The October release is not a new approval given in November or a change in the refinancing terms.",
+  "תקציר_en": "The recommendation is conditional on insufficient response to diet and standard treatment and on a commercial arrangement. This is not a sweeping funding recommendation for all of Britain.",
+  "_translation": {
+   "en": {
+    "source_hash": "73e25265ee2d25efa1516bce5dea519c41c5d7f196d4aba5ee894d0d2dd648f1",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Acuity (AYI): הסכם לרכישת Parameter Technologies ב-675 מיליון דולר, להרחבת ניטור מרכזי נתונים",
@@ -2737,14 +2758,24 @@
   "מקורות": [
    {
     "label": "Acuity, הודעת החברה על הסכם הרכישה מ-26 באוקטובר",
-    "url": "https://www.globenewswire.com/news-release/2026/10/26/3388087/28689/en/acuity-announces-agreement-to-acquire-parameter-technologies.html"
+    "url": "https://www.globenewswire.com/news-release/2026/10/26/3388087/28689/en/acuity-announces-agreement-to-acquire-parameter-technologies.html",
+    "label_en": "Acuity, company release on the purchase agreement of October 26"
    }
   ],
   "תקציר": "השלמה צפויה ברבעון השני של שנת הכספים 2027, בכפוף לתנאים. המימון המתוכנן: 500 מיליון דולר בחוב והיתרה ממזומן.",
   "טקסט": "26.10.2026 | 14:30 שעון ישראל, הודעת Acuity שפורסמה ב-08:30 שעון החוף המזרחי בארה״ב.\n\nAcuity הודיעה על הסכם מחייב לרכישת Parameter Technologies תמורת 675 מיליון דולר. זו הודעת ההסכם מאוקטובר, לא הודעה על עסקה חדשה בנובמבר או על השלמה שכבר התרחשה. לפי ההודעה, ההשלמה צפויה ברבעון השני של שנת הכספים 2027, בכפוף לתנאים המקובלים ולתקופת ההמתנה הרגולטורית בארה״ב.\n\nParameter מספקת מערכות לאיתור דליפות ולניטור סביבתי וסוללות במרכזי נתונים ובתשתיות קריטיות, בין היתר דרך המותגים RLE Technologies ו-CellWatch. לאחר ההשלמה המתוכננת היא תצורף ל-Distech Controls בחטיבת Acuity Intelligent Spaces. החברה קושרת את הביקוש למעבר של מרכזי נתונים למערכות קירור נוזלי מורכבות יותר.\n\nהמימון המתוכנן הוא 500 מיליון דולר בהלוואות והיתרה ממזומן במאזן. זהו מבנה מימון מתוכנן לפי הודעת ההסכם, לא אישור שהחוב כבר נמשך או שמחיר הרכישה כבר שולם.\n\nלפי ההודעה, Parameter צופה מכירות של כ-100 מיליון דולר בשנה הקלנדרית 2027, צמיחה של יותר מ-30% לעומת השנה הקודמת ושיעור EBITDA של כ-40%. אלה תחזיות קדימה, לא תוצאות שכבר דווחו. Acuity צופה שהרכישה תתרום לרווח המתואם המדולל למניה בשנת הכספים 2027 כולה; לא נמסר בהודעה סכום תרומה למניה.\n\nהרכישה מרחיבה את יכולות החישה והניטור לצד מערכות הבקרה של Distech, אבל אינה שקולה לחוזה חדש עם מפעיל מרכזי נתונים או להכנסה שכבר הוכרה. ההיקפים והמועד תלויים בהשלמת העסקה ובמימוש התחזיות.",
   "תאריך": "2026-11-07 06:08",
   "הועלה": "2026-11-07 06:08",
-  "מזהה": "n-0099"
+  "מזהה": "n-0099",
+  "כותרת_en": "Acuity (AYI): agreement to acquire Parameter Technologies for $675 million, to expand data center monitoring",
+  "טקסט_en": "Oct 26, 2026 | 14:30 Israel time, an Acuity release published at 08:30 US Eastern time.\n\nAcuity announced a binding agreement to acquire Parameter Technologies for $675 million. This is the October agreement announcement, not a new deal in November or a completion that already happened. Per the release, completion is expected in Q2 of fiscal 2027, subject to customary conditions and the US regulatory waiting period.\n\nParameter provides leak detection and environmental and battery monitoring systems in data centers and critical infrastructure, among other things through the RLE Technologies and CellWatch brands. After the planned completion it will be attached to Distech Controls in the Acuity Intelligent Spaces segment. The company links the demand to data centers' shift to more complex liquid cooling systems.\n\nThe planned financing is $500 million in loans and the rest from balance sheet cash. That is a planned financing structure per the agreement release, not confirmation that the debt has already been drawn or the purchase price already paid.\n\nPer the release, Parameter expects sales of about $100 million in calendar 2027, growth of more than 30% versus the previous year and an EBITDA rate of about 40%. These are forward-looking forecasts, not results already reported. Acuity expects the acquisition to contribute to adjusted diluted earnings per share in all of fiscal 2027; no per-share contribution amount was provided in the release.\n\nThe purchase expands sensing and monitoring capabilities alongside Distech's control systems, but is not equivalent to a new contract with a data center operator or revenue already recognized. The scopes and timing depend on completing the deal and realizing the forecasts.",
+  "תקציר_en": "Completion expected in Q2 of fiscal 2027, subject to conditions. Planned financing: $500 million in debt and the rest from cash.",
+  "_translation": {
+   "en": {
+    "source_hash": "15ba7b7d0f67b9addcc26dc5226b16f59e1267663e5075f76ddc435cf2e355f2",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "PNC Financial Services (PNC): Alexander Overstrom יחליף את Robert Reilly כסמנכ״ל כספים במרץ 2027",
@@ -2754,14 +2785,24 @@
   "מקורות": [
    {
     "label": "PNC, הודעת תוכנית חילופי סמנכ״ל הכספים מ-5 בנובמבר",
-    "url": "https://pnc.mediaroom.com/2026-11-05-PNC-Announces-Chief-Financial-Officer-Transition-Plans"
+    "url": "https://pnc.mediaroom.com/2026-11-05-PNC-Announces-Chief-Financial-Officer-Transition-Plans",
+    "label_en": "PNC, CFO succession plan release of November 5"
    }
   ],
   "תקציר": "Reilly נשאר בתפקיד עד 1 במרץ, ואז יעבור לתפקיד סגן יו״ר בכיר. אין כאן עזיבה מיידית של הבנק.",
   "טקסט": "5.11.2026 | הודעת PNC; שעת הפרסום המקורית אינה מצוינת.\n\nPNC הודיעה על מעבר מתוכנן בתפקיד סמנכ״ל הכספים: Robert Q. Reilly ימשיך לכהן עד 1 במרץ 2027, ואז Alexander E.C. Overstrom ייכנס לתפקיד, לאחר הגשת הדוחות הכספיים של סוף 2026. זו הודעת תכנון מ-5 בנובמבר, לא חילופי תפקיד שכבר התרחשו.\n\nReilly יעבור לתפקיד Executive Vice Chairman ויישאר יועץ בכיר ליו״ר ולמנכ״ל William Demchak בנושאי אסטרטגיה, סדרי עדיפויות תפעוליים וקשר עם לקוחות. אין בהודעה פרישה מיידית או עזיבה של Reilly את הבנק. הוא משמש סמנכ״ל כספים מאז 2013.\n\nOverstrom עומד בראש פעילות הבנקאות הקמעונאית של PNC מאז 2022, והצטרף לבנק ב-2014 לאחר עבודה ב-Goldman Sachs. הבנק מסר כי מחליף קבוע בראש הבנקאות הקמעונאית יוכרז בהמשך; בהודעה הזאת לא נקבע שמו.\n\nקשור לפריט מ-7.11 בשעה 05:06 על הרחבת רשת הסניפים. מה חדש כאן: תוכנית נפרדת להעברת האחריות הפיננסית בהנהלה. הודעת חילופי התפקידים קודמת להודעת הסניפים מ-6 בנובמבר, ואינה שינוי נוסף בהיקף ההשקעה או במספר הסניפים.\n\nהחברה מציגה את המהלך כהמשכיות ניהולית וכהיערכות לשלב הבא בצמיחה. זו עמדת ההנהלה, לא תחזית כמותית חדשה להכנסות או לרווח. ההודעה אינה מדווחת על תיקון דוחות, פיטורים או שינוי בתחזית הכספית.",
   "תאריך": "2026-11-07 06:00",
   "הועלה": "2026-11-07 06:00",
-  "מזהה": "n-0100"
+  "מזהה": "n-0100",
+  "כותרת_en": "PNC Financial Services (PNC): Alexander Overstrom will replace Robert Reilly as CFO in March 2027",
+  "טקסט_en": "Nov 5, 2026 | a PNC release; the original publication time is not specified.\n\nPNC announced a planned transition in the CFO role: Robert Q. Reilly will continue to serve until March 1, 2027, and then Alexander E.C. Overstrom will step into the role, after the end-2026 financial reports are filed. This is a November 5 planning announcement, not a role change that already happened.\n\nReilly will move to the Executive Vice Chairman role and remain a senior advisor to chairman and CEO William Demchak on strategy, operating priorities and client relations. The release contains no immediate retirement or Reilly leaving the bank. He has served as CFO since 2013.\n\nOverstrom has headed PNC's retail banking activity since 2022, and joined the bank in 2014 after working at Goldman Sachs. The bank said a permanent replacement at the head of retail banking will be announced later; their name was not set in this release.\n\nRelated to the Nov 7 item at 05:06 on expanding the branch network. What's new here: a separate plan for transferring financial responsibility in management. The role-change release precedes the November 6 branch release, and is not an additional change in the investment scope or branch count.\n\nThe company presents the move as management continuity and preparation for the next growth stage. That is management's position, not a new quantitative forecast for revenue or profit. The release does not report restated reports, layoffs or a change in the financial forecast.",
+  "תקציר_en": "Reilly stays in the role until March 1, then moves to senior vice chairman. There is no immediate departure from the bank here.",
+  "_translation": {
+   "en": {
+    "source_hash": "b423b7b44cd7510c30a3a5f7624c2179eba0c4558f4c79ab5a0e4e4cff40e2fd",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "GE Aerospace (GE): הסכם מנועי CFM עם China Eastern עבור 101 מטוסי Airbus חדשים",
@@ -2771,14 +2812,24 @@
   "מקורות": [
    {
     "label": "CFM International, הודעת ההסכם מ-6 בנובמבר",
-    "url": "https://www.cfmaeroengines.com/press-articles/china-eastern-selects-cfm-leap-engines--to-power-more-than-100-airbus-aircraft"
+    "url": "https://www.cfmaeroengines.com/press-articles/china-eastern-selects-cfm-leap-engines--to-power-more-than-100-airbus-aircraft",
+    "label_en": "CFM International, agreement release of November 6"
    }
   ],
   "תקציר": "מנועי LEAP-1A, מנועים חלופיים ושירות ארוך טווח; לא פורסמו מחיר או לוח מסירות בהודעה המקורית.",
   "טקסט": "6.11.2026 | הודעת CFM International; שעת הפרסום המקורית אינה מצוינת.\n\nCFM International הודיעה כי China Eastern Airlines בחרה במנועי LEAP-1A עבור 101 מטוסי Airbus חדשים ממשפחת A320neo. ההסכם כולל גם מנועים חלופיים והסכם שירות ארוך טווח. החברות ציינו את החוזה בטקס חתימה בתערוכת היבוא הבינלאומית של סין בשנגחאי.\n\nהצי החדש כולל את דגמי A320neo, A321neo ו-A321XLR. מדובר בבחירת מנועים ובהסכם שירות, לא בהזמנה חדשה של 101 מטוסים מ-Airbus שהוכרזה כאן, ולא באישור שהמטוסים או המנועים כבר נמסרו.\n\nזהו חיזוק של קשר קיים: לפי CFM, חברת התעופה כבר מפעילה 215 מטוסי A320neo ו-A321neo עם מנועי LEAP-1A, וכן מטוסי Boeing 737 MAX ו-COMAC C919 עם גרסאות אחרות של מנועי LEAP. אין לחבר את צי המטוסים הקיים למספר המטוסים בהסכם החדש ולהציג את הסכום כהזמנה אחת.\n\nהודעת ההסכם אינה מפרסמת מחיר, מספר מדויק של המנועים החלופיים, לוח אספקה או תחזית הכנסות שתוכר מהחוזה. המשמעות העסקית היא הרחבת בסיס המנועים והשירות העתידי אצל לקוח קיים; אין כאן הכנסה שכבר הוכרה או יעד רווח מובטח. נתוני צי המטוסים ותיאורי הביצועים בהודעה הם נתוני החברה.",
   "תאריך": "2026-11-07 05:51",
   "הועלה": "2026-11-07 05:51",
-  "מזהה": "n-0101"
+  "מזהה": "n-0101",
+  "כותרת_en": "GE Aerospace (GE): a CFM engine agreement with China Eastern for 101 new Airbus aircraft",
+  "טקסט_en": "Nov 6, 2026 | a CFM International release; the original publication time is not specified.\n\nCFM International announced that China Eastern Airlines chose LEAP-1A engines for 101 new Airbus aircraft from the A320neo family. The agreement also includes spare engines and a long-term service agreement. The companies marked the contract at a signing ceremony at the China International Import Expo in Shanghai.\n\nThe new fleet includes the A320neo, A321neo and A321XLR models. This is an engine selection and a service agreement, not a new order of 101 Airbus aircraft announced here, and no confirmation that the aircraft or engines have already been delivered.\n\nThis strengthens an existing relationship: per CFM, the airline already operates 215 A320neo and A321neo aircraft with LEAP-1A engines, as well as Boeing 737 MAX and COMAC C919 aircraft with other LEAP engine versions. The existing aircraft fleet should not be added to the aircraft count in the new agreement and the sum presented as one order.\n\nThe agreement release does not publish a price, an exact number of spare engines, a delivery schedule or a revenue forecast to be recognized from the contract. The business significance is expanding the engine base and future service at an existing customer; there is no revenue already recognized here or a guaranteed profit target. The aircraft fleet data and performance descriptions in the release are company data.",
+  "תקציר_en": "LEAP-1A engines, spare engines and long-term service; no price or delivery schedule was published in the original release.",
+  "_translation": {
+   "en": {
+    "source_hash": "238ad6835e7f96117810943b874b3ba3795c0fac3cfe0aef56d1a9040d4a9879",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "DTE Energy (DTE): תוכנית השקעות של כ-44 מיליארד דולר בשירותי החשמל והגז בחמש השנים הבאות",
@@ -2787,14 +2838,24 @@
   "מקורות": [
    {
     "label": "DTE Energy, הודעת החברה מ-5 בנובמבר שהוגשה ל-SEC",
-    "url": "https://www.sec.gov/Archives/edgar/data/936340/000093634026000166/exhibit991-93026.htm"
+    "url": "https://www.sec.gov/Archives/edgar/data/936340/000093634026000166/exhibit991-93026.htm",
+    "label_en": "DTE Energy, company release of November 5 filed with the SEC"
    }
   ],
   "תקציר": "הרחבת תשתיות השירותים המפוקחים, לרבות ביקוש מרכזי נתונים; זהו הון מתוכנן, לא השקעה שכבר בוצעה.",
   "טקסט": "5.11.2026 | הודעת החברה שצורפה לדיווח ב-SEC; שעת הפרסום המקורית אינה מצוינת במסמך שנבדק.\n\nדי-טי-אי הודיעה על תוכנית הון של כ-44 מיליארד דולר בחמש השנים הבאות בפעילות החשמל והגז שלה. החברה קושרת את ההרחבה להתמקדות בשירותים המפוקחים, לחידוש התשתיות ולביקוש גובר, לרבות מצד מרכזי נתונים. הסכום מעוגל כפי שנמסר במקור, והוא תוכנית עתידית, לא הוצאות שכבר בוצעו.\n\nהחברה מסרה שבשלושת הרבעונים הראשונים של 2026 השקיעה כמעט 4.1 מיליארד דולר בשירותים אלה, ושהיא ממשיכה לכוון לכ-6.1 מיליארד דולר בשנה כולה. אלה נתונים נפרדים מתוכנית חמש השנים: אין לחבר אותם אוטומטית ל-44 מיליארד או לראות ביעד השנתי סכום שכבר הושקע.\n\nקשור לפריט שנשלח ב-5.11 בשעה 14:17 על הסכם מכירת פעילות ואנטג׳ (DTE Vantage). מה חדש: היקף תוכנית ההשקעה ארוכת הטווח בחשמל ובגז, שלא פורט בידיעה הקודמת. הסכם המכירה נועד לתמוך בהקצאת ההון הזו, אך המכירה עדיין כפופה לתנאי סגירה ואינה מוצגת ככסף שכבר התקבל.\n\nהחברה מציגה את השקעות מרכזי הנתונים כמסייעות לממן תשתיות ולהקל על הלקוחות הקיימים. זו עמדת החברה, לא הבטחה להוזלת חשבונות שכבר התממשה. קשור גם לפריט מ-31.10 בשעה 06:02 על בקשת התובעת הכללית במישיגן לדיון חוזר בתנאי חוזי החשמל של גוגל. הודעת ההשקעות אינה הכרעה בבקשה הזאת ואינה הודעה על חוזה חדש נוסף עם גוגל.\n\nמימוש התוכנית תלוי בין היתר באישורים ובהליכי החזר עלויות רגולטוריים, במימון, בביקוש ובביצוע הפרויקטים. לא נמסר כאן נתון חדש על השקעה שבוצעה במלואה או על רווח מובטח מהתוכנית.",
   "תאריך": "2026-11-07 05:16",
   "הועלה": "2026-11-07 05:16",
-  "מזהה": "n-0102"
+  "מזהה": "n-0102",
+  "כותרת_en": "DTE Energy (DTE): an investment plan of about $44 billion in electric and gas services over the next five years",
+  "טקסט_en": "Nov 5, 2026 | the company's release attached to an SEC filing; the original publication time is not specified in the document checked.\n\nDTE announced a capital plan of about $44 billion over the next five years in its electric and gas activity. The company links the expansion to focusing on regulated services, infrastructure renewal and growing demand, including from data centers. The sum is rounded as given in the source, and it is a future plan, not expenses already made.\n\nThe company said that in the first three quarters of 2026 it invested almost $4.1 billion in these services, and that it continues to aim for about $6.1 billion for the full year. These are separate figures from the five-year plan: they should not automatically be added to the $44 billion or the annual target seen as a sum already invested.\n\nRelated to the item sent on Nov 5 at 14:17 on the agreement to sell the Vantage activity (DTE Vantage). What's new: the scope of the long-term investment plan in electricity and gas, not detailed in the previous item. The sale agreement is meant to support this capital allocation, but the sale is still subject to closing conditions and is not presented as money already received.\n\nThe company presents data center investments as helping finance infrastructure and ease the burden on existing customers. That is the company's position, not a promise of bill reductions already materialized. Also related to the Oct 31 item at 06:02 on the Michigan attorney general's request for a rehearing on the terms of Google's power contracts. The investment release is not a ruling on that request and not an announcement of an additional new contract with Google.\n\nImplementing the plan depends among other things on approvals and regulatory cost-recovery proceedings, financing, demand and project execution. No new figure was given here on investment made in full or guaranteed profit from the plan.",
+  "תקציר_en": "Expanding regulated utility infrastructure, including data center demand; this is planned capital, not investment already made.",
+  "_translation": {
+   "en": {
+    "source_hash": "54202faee6ead5ee0185925ff72b14ce5732d1e01605b89c319f388121d42580",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "PNC Bank (PNC): הרחבת תוכנית הסניפים ליותר מ-370 מיקומים עד 2031, בהשקעת רשת של כ-2.5 מיליארד דולר",
@@ -2803,14 +2864,24 @@
   "מקורות": [
    {
     "label": "PNC Bank, הודעה רשמית על הרחבת רשת הסניפים",
-    "url": "https://pnc.mediaroom.com/2026-11-06-PNC-Bank-Expands-Branch-Buildout-to-More-Than-370,-Will-Build-60-Branches-Per-Year"
+    "url": "https://pnc.mediaroom.com/2026-11-06-PNC-Bank-Expands-Branch-Buildout-to-More-Than-370,-Will-Build-60-Branches-Per-Year",
+    "label_en": "PNC Bank, official release on expanding the branch network"
    }
   ],
   "תקציר": "היעד כולל יותר מ-70 סניפים שכבר נפתחו; הבנק מתכנן לפתוח 60 בשנה מ-2027 ולהוסיף שווקים בדרום-מזרח ארה״ב.",
   "טקסט": "6.11.2026 | הודעת הבנק; שעת הפרסום המקורית אינה מצוינת בעמוד שנבדק.\n\nהבנק הודיע על הרחבת תוכנית פריסת הסניפים ליותר מ-370 מיקומים חדשים בסך הכול עד 2031. המספר כולל יותר מ-70 סניפים שכבר נפתחו מאז הכרזת אסטרטגיית ההרחבה המקורית, ולכן אין מדובר ביותר מ-370 פתיחות נוספות מהיום.\n\nבמסגרת השקעה כוללת של כ-2.5 מיליארד דולר ברשת, הבנק מתכנן לפתוח 60 סניפים בשנה החל מ-2027 ולשפץ גם מיקומים קיימים. ההשקעה מתייחסת לתוכנית הרשת, ולא רק לתוספת הסניפים שהוכרזה כעת או להוצאה של שנה אחת.\n\nהתוספת כוללת יותר מ-50 מיקומים בדרום קרוליינה ובג׳ורג׳יה, בשמונה שווקים, ועוד עשרה מיקומים בטקסס, פלורידה וצפון קרוליינה. הבנק מצפה לגייס בסך הכול 2,400 עובדים כחלק מההרחבה; זו תוכנית גיוס עתידית, לא דיווח שכל המשרות כבר אוישו.\n\nהמהלך מרחיב את ההשקעה בנוכחות פיזית ובקשר עם לקוחות בשווקים צומחים, לצד השירותים הדיגיטליים של הבנק. הוא אינו עסקת רכישת בנק, ולא פורסמו בהודעה תחזית רווח או הכנסות מצטברות מהסניפים החדשים. מועדי הפתיחה והגיוס הם תוכניות הנהלה, לא תוצאות שהושגו כבר.",
   "תאריך": "2026-11-07 05:06",
   "הועלה": "2026-11-07 05:06",
-  "מזהה": "n-0103"
+  "מזהה": "n-0103",
+  "כותרת_en": "PNC Bank (PNC): expanding the branch plan to more than 370 locations by 2031, at a network investment of about $2.5 billion",
+  "טקסט_en": "Nov 6, 2026 | the bank's release; the original publication time is not specified on the page checked.\n\nThe bank announced expanding the branch deployment plan to more than 370 new locations in total by 2031. The number includes more than 70 branches already opened since the original expansion strategy announcement, so this is not more than 370 additional openings from today.\n\nWithin a total investment of about $2.5 billion in the network, the bank plans to open 60 branches a year starting in 2027 and also renovate existing locations. The investment refers to the network plan, not only the branch addition announced now or one year's expense.\n\nThe addition includes more than 50 locations in South Carolina and Georgia, in eight markets, and ten more locations in Texas, Florida and North Carolina. The bank expects to hire 2,400 employees in total as part of the expansion; that is a future hiring plan, not a report that all positions are already filled.\n\nThe move expands investment in physical presence and customer relations in growing markets, alongside the bank's digital services. It is not a bank acquisition deal, and no profit forecast or cumulative revenue from the new branches was published in the release. The opening and hiring dates are management plans, not results already achieved.",
+  "תקציר_en": "The target includes more than 70 branches already opened; the bank plans to open 60 a year from 2027 and add markets in the southeastern US.",
+  "_translation": {
+   "en": {
+    "source_hash": "0379cac42e0608a17b681658897046cde88f036e1dfc1e2e221ec72066916078",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Cleveland-Cliffs (CLF): הסכמי עבודה לארבע שנים לכ-12 אלף עובדים, בכפוף לאשרור",
@@ -2819,14 +2890,24 @@
   "מקורות": [
    {
     "label": "Cleveland-Cliffs, הודעה רשמית על הסכמי USW",
-    "url": "https://www.clevelandcliffs.com/news/news-releases/detail/707/cleveland-cliffs-reaches-new-four-year-labor-agreements"
+    "url": "https://www.clevelandcliffs.com/news/news-releases/detail/707/cleveland-cliffs-reaches-new-four-year-labor-agreements",
+    "label_en": "Cleveland-Cliffs, official release on the USW agreements"
    }
   ],
   "תקציר": "ההסכמות מכסות את כל חוזי USW העומדים כעת לחידוש, אך חברי האיגודים המקומיים עדיין צריכים לאשרן.",
   "טקסט": "6.11.2026 | 22:05 שעון ישראל, הודעת החברה שפורסמה ב-15:05 EST.\n\nקליבלנד-קליפס הודיעה שהגיעה להסכמי עבודה חדשים לארבע שנים עם איגוד עובדי הפלדה האמריקאי (USW). הם מכסים כ-12 אלף עובדים מיוצגים במפעלי הפלדה ובפעילות הכרייה שלה באינדיאנה, אוהיו, פנסילבניה, מינסוטה ומישיגן.\n\nלפי החברה, ההסכמים מטפלים בכל חוזי האיגוד העומדים כעת לחידוש. עם זאת, ההודעה קובעת במפורש שהם כפופים לאשרור של חברי האיגודים המקומיים. אין כאן הודעה שההצבעות כבר הסתיימו או שההסכמים אושררו סופית.\n\nהמנכ״ל לורנסו גונקלווס אמר שההסכמות מכירות בתרומת העובדים ותומכות ביציבות הדרושה להשקעה ולתחרות. ההודעה אינה מפרטת שיעורי העלאות שכר, עלויות כוללות או תנאים כספיים אחרים, ולכן אין להסיק ממנה סכום חיסכון או השפעה מסוימת על שולי הרווח.\n\nקשור לפריט שנשלח ב-7.11 בשעה 00:12 על בקשת בדיקת התחרות בקנדה בנוגע לסטלקו (Stelco). מה חדש: הסכמי עבודה נפרדים בפעילות האמריקאית. הם אינם הכרעה בבקשה הקנדית, אינם פותרים את המחלוקת על התחייבויות התעסוקה בקנדה ואינם מבטלים אותה.\n\nזהו צעד תפעולי לקראת יציבות ביחסי העבודה בחלק משמעותי מפעילות החברה, אך מימושו עדיין תלוי בהליך האשרור.",
   "תאריך": "2026-11-07 04:54",
   "הועלה": "2026-11-07 04:54",
-  "מזהה": "n-0104"
+  "מזהה": "n-0104",
+  "כותרת_en": "Cleveland-Cliffs (CLF): four-year labor agreements for about 12 thousand workers, subject to ratification",
+  "טקסט_en": "Nov 6, 2026 | 22:05 Israel time, the company's release published at 15:05 EST.\n\nCleveland-Cliffs announced it reached new four-year labor agreements with the United Steelworkers union (USW). They cover about 12 thousand represented workers at its steel plants and mining activity in Indiana, Ohio, Pennsylvania, Minnesota and Michigan.\n\nPer the company, the agreements address all union contracts currently up for renewal. However, the release explicitly states they are subject to ratification by local union members. There is no statement here that the votes have already finished or that the agreements were finally ratified.\n\nCEO Lourenco Goncalves said the agreements recognize the workers' contribution and support the stability needed for investment and competition. The release does not detail wage increase rates, total costs or other financial terms, so no specific saving or effect on profit margins should be inferred from it.\n\nRelated to the item sent on Nov 7 at 00:12 on the competition review request in Canada regarding Stelco. What's new: separate labor agreements in the American activity. They are not a ruling on the Canadian request, do not resolve the dispute over employment commitments in Canada and do not cancel it.\n\nThis is an operational step toward labor relations stability in a significant part of the company's activity, but its implementation still depends on the ratification process.",
+  "תקציר_en": "The agreements cover all USW contracts currently up for renewal, but local union members still need to ratify them.",
+  "_translation": {
+   "en": {
+    "source_hash": "625e38833b842ade74ec6b9b0b7fecc2e75c9dd949a7f79bbc372fd0cf0b188c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "כותרת": "Pfizer (PFE): תוכנית השקעה של 650 מיליון דולר במרכז ייצור לניסויים קליניים בגרוטון",
