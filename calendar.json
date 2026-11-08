@@ -2818,7 +2818,16 @@
   "שעה": "23:15",
   "הערה": "אין צפי/קודם יחיד. CP בדרך כלל13:00ET, השעה אינה מובטחת; H.15/H.8 בשעה16:15ET.",
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
-  "מזהה": "c-0126"
+  "מזהה": "c-0126",
+  "אירוע_en": "Assets and liabilities of commercial banks (H.8)",
+  "תקופה_en": "Weekly",
+  "הערה_en": "No single estimate/prior. CP usually at 13:00 ET, time not guaranteed; H.15/H.8 at 16:15 ET.",
+  "_translation": {
+   "en": {
+    "source_hash": "e749ecb492131fa39f5ebb2f1b027757f80981a303516fb658be85a51af77e75",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-13",
@@ -2829,7 +2838,16 @@
   "שעה": "23:15",
   "הערה": "אין צפי/קודם יחיד. CP בדרך כלל13:00ET, השעה אינה מובטחת; H.15/H.8 בשעה16:15ET.",
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
-  "מזהה": "c-0127"
+  "מזהה": "c-0127",
+  "אירוע_en": "Selected interest rates (H.15) - Fed",
+  "תקופה_en": "Daily",
+  "הערה_en": "No single estimate/prior. CP usually at 13:00 ET, time not guaranteed; H.15/H.8 at 16:15 ET.",
+  "_translation": {
+   "en": {
+    "source_hash": "dda4d56d5841686c027014a8a0a33751a2ff6b8247d352d6095d69a6f6f1c56d",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-14",
@@ -2839,7 +2857,15 @@
   "חשיבות": 1,
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד הרשמי, שורת 13.11.2026 בשעה 19:00 ניו יורק. נושא האירוע אינו הבטחה לדיון בריבית. ",
-  "מזהה": "c-0128"
+  "מזהה": "c-0128",
+  "אירוע_en": "Philip N. Jefferson - productivity and technology",
+  "הערה_en": "Official Fed calendar, Nov 13, 2026 row at 19:00 New York. The event topic is no promise of a rate discussion.",
+  "_translation": {
+   "en": {
+    "source_hash": "74706d9ea79a74e57414de83746c82106a3a3dddc4827ae8dd559cf148971b17",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-16",
@@ -2850,7 +2876,16 @@
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "15:30",
   "תקופה": "נובמבר · חודשי",
-  "מזהה": "c-0129"
+  "מזהה": "c-0129",
+  "אירוע_en": "Empire State manufacturing survey",
+  "תקופה_en": "November · monthly",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "9b0a9147e89de855834f5504a9e87c3df83b4758509553660f8eeb52b080ac8c",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-16",
@@ -2860,7 +2895,15 @@
   "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "18:00",
-  "מזהה": "c-0130"
+  "מזהה": "c-0130",
+  "אירוע_en": "SCE Credit Access Survey",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "3c43f8fb91d82f5038ad698b2c5560e0f492ac9d784a2d90d85eb3deff822227",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-16",
@@ -2870,7 +2913,15 @@
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד13:00ET=20:00ישראל; השעה היא מועד רגיל ואינה מובטחת. אין צפי או קודם יחיד.",
   "שעה": "20:00",
-  "מזהה": "c-0131"
+  "מזהה": "c-0131",
+  "אירוע_en": "Commercial paper (CP) data - Fed",
+  "הערה_en": "Fed schedule 13:00 ET = 20:00 Israel; the time is a regular slot and is not guaranteed. No single estimate or prior.",
+  "_translation": {
+   "en": {
+    "source_hash": "35fa8955e192b30648e2106c6a65bf43e4308922efcb6d92c872e74044e56449",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-16",
@@ -2880,7 +2931,15 @@
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד16:15ET=23:15ישראל; אין צפי או קודם יחיד.",
   "שעה": "23:15",
-  "מזהה": "c-0132"
+  "מזהה": "c-0132",
+  "אירוע_en": "Selected interest rates (H.15) - Fed",
+  "הערה_en": "Fed schedule 16:15 ET = 23:15 Israel; no single estimate or prior.",
+  "_translation": {
+   "en": {
+    "source_hash": "fa31ba02591a76ad9093fc6346d565936bb5941254194215e799d628af0ff71e",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-16",
@@ -2890,7 +2949,15 @@
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד16:15ET=23:15ישראל; אין צפי או קודם יחיד.",
   "שעה": "23:15",
-  "מזהה": "c-0133"
+  "מזהה": "c-0133",
+  "אירוע_en": "Weekly foreign exchange rates (H.10) - Fed",
+  "הערה_en": "Fed schedule 16:15 ET = 23:15 Israel; no single estimate or prior.",
+  "_translation": {
+   "en": {
+    "source_hash": "1909c3663b97f633367a980dd751849aaf645e1c216bf612a7e0e7bebecfb684",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-16",
@@ -2899,7 +2966,15 @@
   "חשיבות": 1,
   "מקור": "https://www.eia.gov/reports/upcoming.php",
   "הערה": "לוח EIA:יום שני עד17:00ET, כלומר עד00:00ב-17.11בישראל. זהו חלון פרסום, לא שעה מדויקת. אין צפי או קודם יחיד.",
-  "מזהה": "c-0134"
+  "מזהה": "c-0134",
+  "אירוע_en": "Weekly coal market review (EIA)",
+  "הערה_en": "EIA schedule: Monday by 17:00 ET, i.e. by 00:00 Israel on Nov 17. This is a release window, not an exact time. No single estimate or prior.",
+  "_translation": {
+   "en": {
+    "source_hash": "7b23f537c46246c226866bf769a337a31ea69b37b9b1a0beadab7aa829d66781",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -2910,7 +2985,16 @@
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "15:30",
   "תקופה": "אוקטובר · חודשי",
-  "מזהה": "c-0135"
+  "מזהה": "c-0135",
+  "אירוע_en": "Import price index - monthly",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "b9e52f2566c5a4b6ca0c20f9af9330a90a149ee98af29dbaa9c093db3346dd01",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -2921,7 +3005,16 @@
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "15:30",
   "תקופה": "אוקטובר · שנתי",
-  "מזהה": "c-0136"
+  "מזהה": "c-0136",
+  "אירוע_en": "Import price index - annual",
+  "תקופה_en": "October · annual",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "8525cd508ab1c3b1e2b0310621886c5fc4280de1622c0ad001ca078e41852549",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -2932,7 +3025,16 @@
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "15:30",
   "תקופה": "אוקטובר · חודשי",
-  "מזהה": "c-0137"
+  "מזהה": "c-0137",
+  "אירוע_en": "Export price index - monthly",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "d0c5221a0cb6b441b56286e0df550d64933d757c7b2f5797cc8e3850e19bec76",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -2943,7 +3045,16 @@
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "15:30",
   "תקופה": "אוקטובר · שנתי",
-  "מזהה": "c-0138"
+  "מזהה": "c-0138",
+  "אירוע_en": "Export price index - annual",
+  "תקופה_en": "October · annual",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "adcbc96066a08769a87e23d42cb4108fc18697e979183faa10d939abeab0fc1e",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -2954,7 +3065,16 @@
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "15:30",
   "תקופה": "אוקטובר · חודשי",
-  "מזהה": "c-0139"
+  "מזהה": "c-0139",
+  "אירוע_en": "Retail sales - monthly",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "c531a7b9f3e8ecc128bd2202ac776135e712b780a5a7ae05564ec748e443e213",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -2965,7 +3085,16 @@
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "15:30",
   "תקופה": "אוקטובר · שנתי",
-  "מזהה": "c-0140"
+  "מזהה": "c-0140",
+  "אירוע_en": "Retail sales - annual",
+  "תקופה_en": "October · annual",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "efabc3dbbda0a55cc7dde395838bcf0dc065e0058964dab56ed13f88bab6d7b7",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -2976,7 +3105,16 @@
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "15:30",
   "תקופה": "נובמבר · חודשי",
-  "מזהה": "c-0141"
+  "מזהה": "c-0141",
+  "אירוע_en": "Business Leaders Survey",
+  "תקופה_en": "November · monthly",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "7307c64e496aebada3fc06f8e8bb6ed48fe478537af6b0247d679fe66f37dda1",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -2987,7 +3125,16 @@
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "16:15",
   "תקופה": "אוקטובר · חודשי",
-  "מזהה": "c-0142"
+  "מזהה": "c-0142",
+  "אירוע_en": "Industrial production - monthly",
+  "תקופה_en": "October · monthly",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "9db6ccbf01d7990ca019ecae4b28477d1cc770c9817f13c196eae7ad66c09979",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -2998,7 +3145,16 @@
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "16:15",
   "תקופה": "אוקטובר · רמה באחוזים",
-  "מזהה": "c-0143"
+  "מזהה": "c-0143",
+  "אירוע_en": "Capacity utilization",
+  "תקופה_en": "October · level in percent",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "04a5a6cb5c3704492cb713ac44c4d5c5218a375ec4c3eda7463a326c5ed64590",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -3009,7 +3165,16 @@
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "17:00",
   "תקופה": "ספטמבר · חודשי",
-  "מזהה": "c-0144"
+  "מזהה": "c-0144",
+  "אירוע_en": "Business inventories - monthly",
+  "תקופה_en": "September · monthly",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "c9bc2b45c27f775382ddd330133f7f31c24907fb014279081d365cbee6630307",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -3019,7 +3184,15 @@
   "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
   "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
   "שעה": "17:00",
-  "מזהה": "c-0145"
+  "מזהה": "c-0145",
+  "אירוע_en": "Survey of Professional Forecasters",
+  "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+  "_translation": {
+   "en": {
+    "source_hash": "b49e27978448e277a03102463bd7dfa181c74ba6ced7a83682018e37da4a92f8",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -3029,7 +3202,15 @@
   "מקור": "https://www.eia.gov/reports/upcoming.php",
   "הערה": "לוח EIA:יום שלישי10:00ET=17:00ישראל. סדרת מחירים ולא מלאי נפט; אין צפי או קודם יחיד.",
   "שעה": "17:00",
-  "מזהה": "c-0146"
+  "מזהה": "c-0146",
+  "אירוע_en": "Weekly gasoline and diesel price update (EIA)",
+  "הערה_en": "EIA schedule: Tuesday 10:00 ET = 17:00 Israel. A price series, not oil inventories; no single estimate or prior.",
+  "_translation": {
+   "en": {
+    "source_hash": "a5092c15c03b9093a2c0601fc65e6fb7369b48a8857b97c3dcdb3b39234f482a",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -3039,7 +3220,15 @@
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד13:00ET=20:00ישראל; השעה היא מועד רגיל ואינה מובטחת. אין צפי או קודם יחיד.",
   "שעה": "20:00",
-  "מזהה": "c-0147"
+  "מזהה": "c-0147",
+  "אירוע_en": "Commercial paper (CP) data - Fed",
+  "הערה_en": "Fed schedule 13:00 ET = 20:00 Israel; the time is a regular slot and is not guaranteed. No single estimate or prior.",
+  "_translation": {
+   "en": {
+    "source_hash": "b7c5210012152e5a2363ce4b791762a2f18a8c950ad49cff62b328b65b16b49e",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -3049,7 +3238,15 @@
   "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
   "הערה": "לוח הפד16:15ET=23:15ישראל; אין צפי או קודם יחיד.",
   "שעה": "23:15",
-  "מזהה": "c-0148"
+  "מזהה": "c-0148",
+  "אירוע_en": "Selected interest rates (H.15) - Fed",
+  "הערה_en": "Fed schedule 16:15 ET = 23:15 Israel; no single estimate or prior.",
+  "_translation": {
+   "en": {
+    "source_hash": "37cd0cb45976b2f50105643428a244f3b0cb23859a592dac97caf63c0d8d51d2",
+    "schema_version": 1
+   }
+  }
  },
  {
   "תאריך": "2026-11-17",
@@ -3059,6 +3256,15 @@
   "מקור": "https://www.bea.gov/news/schedule",
   "הערה": "לוח BEA מציג17.11בשעה10:00AM אך אזור הזמן לא אומת עבור פרסום זה; לכן לא מוצגת שעה בישראל. פרסום ניסיוני, לא תמ\"ג שוטף או מדד AI שוטף; אין צפי/קודם יחיד.",
   "תקופה": "2024",
-  "מזהה": "c-0149"
+  "מזהה": "c-0149",
+  "אירוע_en": "Experimental data on the AI economy",
+  "תקופה_en": "2024",
+  "הערה_en": "The BEA calendar shows Nov 17 at 10:00 AM but the time zone was not verified for this release, so no Israel time is shown. An experimental release, not current GDP or a current AI index; no single estimate/prior.",
+  "_translation": {
+   "en": {
+    "source_hash": "f0382d40799972b2db8b69d543d1920028c53a8e50af6ce0bc5fc46c577dee88",
+    "schema_version": 1
+   }
+  }
  }
 ]
