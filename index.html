@@ -4435,11 +4435,21 @@ function watchSparkHtml(it){
 }
 let watchPaintSignature='';
 function watchSignature(){return JSON.stringify([I18n.language,wlData.cur,wlCur().items,wlSortOf(wlData.cur),wlEditing,wlMenu]);}
+// Reuse the portfolio price flash, comparing the number actually displayed in this list.
+function wlPriceSnapshot(){
+ const out=new Map(),box=$('wlLists');if(!box)return out;
+ box.querySelectorAll('.wr[data-ws]').forEach(row=>{const el=row.querySelector('.wl-p[data-wl-price]');if(el&&el.dataset.wlPrice!=='')out.set(row.dataset.ws,{price:Number(el.dataset.wlPrice),text:el.textContent});});return out;
+}
+function wlFlashPrices(before){
+ const box=$('wlLists');if(!box||!before.size)return;
+ box.querySelectorAll('.wr[data-ws]').forEach(row=>{const el=row.querySelector('.wl-p[data-wl-price]'),old=before.get(row.dataset.ws);if(!el||!old||el.dataset.wlPrice==='')return;
+ const price=Number(el.dataset.wlPrice);if(Number.isFinite(price)&&Number.isFinite(old.price)&&el.textContent!==old.text&&Math.abs(price-old.price)>1e-9)flash(el,price-old.price);});
+}
 function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts = c ? withLive(it, '1D', c.pts) : null, up = q && q.prev ? q.price >= q.prev : true;
   const {pct, extO} = wlDayView(it, q);
   return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${it.fx ? `<span class="fxfl" aria-hidden="true">${it.fl}</span>` : logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div>${it.fx && staleTag(q) ? `<div class="pname" style="font-size:.72rem;white-space:normal">${esc(staleTag(q))}</div>` : ''}</div>`+
     `<div class="pcol pc-s wl-live">${watchSparkHtml(it)}</div><div class="pcol pc-m wl-live num">${capT(q && q.mcap, it.cur)}</div>`+
-    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${it.y && q && q.prev ? `<small class="ybp ${cls(pct)}">${chgInst(it, q.price, q.prev).sub}</small>` : ''}${extLineHtml(q && (q.hlt ? {halt:q.hlt} : extO))}<div class="pcol pc-p wl-live"><span class="wl-p v num">${q ? ((it.fx||it.y) ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div></div>`+
+    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${it.y && q && q.prev ? `<small class="ybp ${cls(pct)}">${chgInst(it, q.price, q.prev).sub}</small>` : ''}${extLineHtml(q && (q.hlt ? {halt:q.hlt} : extO))}<div class="pcol pc-p wl-live"><span class="wl-p v num" data-wl-price="${q ? ((it.fx||it.y) ? q.price : (q.ext ? q.ext.price : q.price)) : ''}">${q ? ((it.fx||it.y) ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div></div>`+
     `${I18n.p("ui-0550","<div class=\"wl-ed\" style=\"grid-column:3/-1\"><button data-wm=\"up\" aria-label=\"הזזה למעלה\" ")}${i===0?'disabled':''}${I18n.p("ui-0551",">▲</button><button data-wm=\"down\" aria-label=\"הזזה למטה\" ")}${i===n-1?'disabled':''}${I18n.p("ui-0552",">▼</button><button data-wm=\"del\" class=\"del\" aria-label=\"הסרה מהרשימה\">✕</button></div></div>")}`; }
 // v112: lists are horizontal tabs at the top; only the active list renders, without the old collapsible header
 function wlTabsHtml(){ const cur = wlCur().id;
@@ -4492,7 +4502,7 @@ function drawWatchSort(){const L=wlCur();if(wlSortMenu&&wlSortMenu!==L.id)wlSort
  $('wlSortBtn').disabled=ed;$('wlSortBtn').setAttribute('aria-expanded',String(open));$('wlSortPick').hidden=!open;
  $('wlSortPick').innerHTML=Object.entries(WLS_NAME).map(([k,n])=>`<button type="button" role="option" data-wlsort="${k}" class="${so.k===k?'on':''}" aria-selected="${so.k===k}"><span>${n}</span><small>${so.k===k?(k==='manual'?'✓':(so.dir<0?'↓':'↑')+' ✓'):''}</small></button>`).join('');
 }
-function drawWatch(){ watchPaintSignature=watchSignature();if(wlGesture){ wlDrawPending = true; return; }   // v113: never rebuild the rows under an active touch - a poll redraw mid-swipe ate the gesture
+function drawWatch(){ const priceBefore=watchPaintSignature===watchSignature()?wlPriceSnapshot():new Map();watchPaintSignature=watchSignature();if(wlGesture){ wlDrawPending = true; return; }   // v113: never rebuild the rows under an active touch - a poll redraw mid-swipe ate the gesture
   const n = wlItems().length; drawWlAll(); drawWatchSort(); $('wlEditBtn').setAttribute('aria-expanded',String(wlMenu===wlCur().id));
   $('wlCount').textContent = `· ${wlData.lists.length}${I18n.p("ui-0564"," רשימות · ")}${n}${I18n.p("ui-0565"," ניירות")}`;
   { const cu = wlCur(); $('wlToTxt').textContent = cu ? cu.name : ''; $('wlToMenu').innerHTML = wlData.lists.map(l=>`<button type="button" role="option" data-wto="${esc(l.id)}" class="${l.id===cu.id?'on':''}" aria-selected="${l.id===cu.id}"><span>${esc(l.name)}</span><small>${l.items.length}</small></button>`).join(''); }
@@ -4517,6 +4527,7 @@ function drawWatch(){ watchPaintSignature=watchSignature();if(wlGesture){ wlDraw
     if(switched) wlListsSw(dir); }
   if(switched || sl==null) wlTabsScroll(switched && sl!=null);   // v113: glide to the newly active tab (instant on first draw); same-list redraws leave the strip where the user put it
   else if(wlGlide!=null && bar1){ if(Math.abs(bar1.scrollLeft - wlGlide) > 2) bar1.scrollTo({left: wlGlide, behavior: wlReduced() ? 'auto' : 'smooth'}); else wlGlide = null; }   // v113: a rebuild cancelled the in-flight glide - resume it
+ if(wlPendingHtml==null)wlFlashPrices(priceBefore);
 }
 function wlPatchSpark(it,listId){if(ui.tab!=='watch'||wlCur().id!==listId)return;
  if(wlPendingHtml!=null){wlPendingHtml=wlSecHtml(wlCur());return;}
@@ -6902,9 +6913,11 @@ function yPatchMarket(Q){
 }
 function yPatchWatch(Q){
   if(ui.tab !== 'watch' || wlGesture || wlPendingHtml != null) return; const box = $('wlLists'); if(!box || box.querySelector('.wl-rows.editing')) return;
+  const priceBefore=wlPriceSnapshot();
   box.querySelectorAll('.wr[data-ws]').forEach(el=>{ const sym = el.dataset.ws; if(!Q.has(String(sym).toUpperCase())) return;
     const x = wlCur().items.find(m=>m.sym === sym); if(!x) return; const t = document.createElement('div'); t.innerHTML = wlRowHtml(secInst(x), 0, 2); const r = t.firstElementChild; if(!r) return;
     ['.pc-s', '.pc-m', '.pc-p', '.pc-d'].forEach(sel=>{ const a = el.querySelector(sel), b = r.querySelector(sel); if(a && b) morphKids(a, b); }); });
+  wlFlashPrices(priceBefore);
 }
 // ---- v176/v184: overnight supplement. Yahoo sends NO snapshot at night and only a sampled tick per trade, so a quiet stock (META, BAC, F…) could show nothing for minutes.
 // While the US is in the night session (20:00–04:00 ET) the app therefore also polls the LAST overnight trade (Robinhood 24-hour quotes: Blue Ocean / Bruce ATS), newest-wins against
