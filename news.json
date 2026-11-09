@@ -25736,5 +25736,31 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "NVIDIA, SK Telecom ו-Rebellions חתמו על מזכר הבנות משולש: חיבור NPU קוריאניים לתשתית NVLink Fusion",
+    "category": "micro",
+    "קישור": "https://en.yna.co.kr/view/AEN20261109005400320",
+    "מקורות": [
+      {
+        "label": "יונהאפ, 9.11.2026, 14:00 שעון קוריאה (07:00 שעון ישראל)",
+        "url": "https://en.yna.co.kr/view/AEN20261109005400320",
+        "label_en": "Yonhap, Nov 9, 2026, 14:00 Korea time (07:00 Israel time)"
+      }
+    ],
+    "טקסט": "משרד המדע של דרום קוריאה הודיע היום (ב') כי NVIDIA, ספקית התקשורת SK Telecom וסטארט-אפ השבבים המקומי Rebellions חתמו על מזכר הבנות (MOU) משולש להקמת מערכת מחשוב AI הטרוגנית: חיבור יחידות GPU של NVIDIA עם יחידות NPU מתכנון Rebellions, לשימוש בבניית מרכזי הנתונים ל-AI של SK Telecom. ההתקשרות תתבסס על תוכנית NVLink Fusion של NVIDIA, המאפשרת למעבדי AI מותאמים אישית להשתלב ישירות בתשתית ברמת מתלה של החברה.\n\nמזכר ההבנות נחתם בשולי כנס AI Day Seoul של NVIDIA, שנפתח היום בדרום סיאול ליומיים. לדברי המשרד, חיבור NPU מתוצרת מקומית לארכיטקטורת NVIDIA ירחיב את היקף היישום של מוליכים-למחצה מתקדמים מקוריאה ויאפשר לחברות מקומיות לאמת את הטכנולוגיות שלהן בשוק הגלובלי; המשרד התחייב לתמוך במפתחי NPU מקומיים נוספים מעבר ל-Rebellions, במטרה לפתח את תעשיית השבבים המתקדמים של דרום קוריאה.\n\nמזכר הבנות הוא הצהרת כוונות, לא חוזה רכש או פריסה; לא פורסמו היקפים כספיים או לוחות זמנים. פריט קשור: על רקע הסערה סביב מנכ\"ל NVIDIA, סגן שר המדע אמר הבוקר בפרלמנט כי אספקת ה-GPU החוזית מהחברה תימשך ללא שיבוש (ידיעה שפורסמה ב-06:24 (9.11.2026)); Rebellions היא החברה שביטלה את ביקורה המתוכנן של מדיסון הואנג.\n\nפרסום המקור: יונהאפ, 9.11.2026, 14:00 שעון קוריאה (07:00 שעון ישראל).",
+    "תקציר": "משרד המדע של דרום קוריאה: NVIDIA, SK Telecom ו-Rebellions חתמו על מזכר הבנות משולש לחיבור NPU של Rebellions לתשתית NVLink Fusion של NVIDIA, לשימוש במרכזי הנתונים של SKT. מזכר הבנות בלבד, לא חוזה רכש.",
+    "מזהה": "n-1078",
+    "תאריך": "2026-11-09 07:24",
+    "הועלה": "2026-11-09 07:24",
+    "כותרת_en": "NVIDIA, SK Telecom and Rebellions sign trilateral MOU: connecting Korean NPUs to NVLink Fusion infrastructure",
+    "טקסט_en": "South Korea's science ministry announced today (Mon) that NVIDIA, telecom operator SK Telecom and local chip startup Rebellions have signed a trilateral memorandum of understanding (MOU) to establish a heterogeneous AI computing system: connecting NVIDIA GPUs with NPUs designed by Rebellions, for use in building SK Telecom's AI data centers. The tie-up will be based on NVIDIA's NVLink Fusion program, which lets custom AI processors integrate directly into the company's rack-scale infrastructure.\n\nThe MOU was signed on the margins of NVIDIA's AI Day Seoul event, which kicked off its two-day run in southern Seoul today. Per the ministry, connecting locally produced NPUs to NVIDIA's architecture will expand the application scope of Korea's advanced semiconductors and give local companies an opportunity to verify their technologies in the global market; the ministry vowed to support additional local NPU developers beyond Rebellions, aiming to develop South Korea's advanced-chip industry.\n\nAn MOU is a statement of intent, not a purchase or deployment contract; no financial scope or timelines were published. Related item: amid the controversy around NVIDIA's CEO, the deputy science minister told parliament this morning that contracted GPU supplies from the company will proceed without disruption (item published at 06:24 (Nov 9, 2026)); Rebellions is the company that cancelled Madison Huang's planned visit.\n\nSource publication: Yonhap, Nov 9, 2026, 14:00 Korea time (07:00 Israel time).",
+    "תקציר_en": "South Korea's science ministry: NVIDIA, SK Telecom and Rebellions signed a trilateral MOU to connect Rebellions NPUs to NVIDIA's NVLink Fusion infrastructure for SKT AI data centers. An MOU only, not a purchase contract.",
+    "_translation": {
+      "en": {
+        "source_hash": "39d5bd5e5c92a79eeabd614793947b0f0f4ec29601cb2635145a74262aec2c11",
+        "schema_version": 1
+      }
+    }
   }
 ]
