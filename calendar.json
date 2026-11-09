@@ -1976,17 +1976,20 @@
     "מדינה": "US",
     "אירוע": "נתוני ניירות ערך מסחריים (CP) - הפד",
     "חשיבות": 1,
-    "הערה": "המשך סדרות שכבר ביומן ל2–6.11; לוח הפד13:00/16:15ET. CP בדרך כלל13:00 אך השעה אינה מובטחת; אין צפי יחיד",
-    "מקור": "https://federalreserve.gov/newsevents/2026-november.htm",
+    "הערה": "אומת בדף הפד המעודכן: נתונים ל-6.11, פורסמו ב-9.11. ריביות נבחרות, לא נתון יחיד לכל שוק ה-CP: לא-פיננסי AA ל-30 יום 4.02% (קודם 3.98% ב-5.11); לא-פיננסי A2/P2 ל-30 יום 4.16% (קודם 4.17%). ליום אחד: AA לא-פיננסי 3.92%, AA פיננסי 3.88%, AA מגובה נכסים 3.93%. n.a. בסדרות אחרות משמעו מסחר בלתי מספיק לחישוב, לא אפס. אין קונצנזוס יחיד. שעת 20:00 היא מועד רגיל משוער, לא חותמת זמן פרסום מאומתת; הפד אינו מבטיח שעה מדויקת.",
+    "מקור": "https://www.federalreserve.gov/releases/cp/",
     "מזהה": "c-0083",
     "אירוע_en": "Commercial paper (CP) data - Fed",
-    "הערה_en": "Continuation of series already in the calendar for Nov 2-6; Fed schedule 13:00/16:15 ET. CP usually at 13:00 but the time is not guaranteed; no single estimate",
+    "הערה_en": "Verified on the updated Fed page: Nov 6 data, posted Nov 9. Selected rates, not one actual for the entire CP market: AA nonfinancial 30-day 4.02% (previous 3.98% on Nov 5); A2/P2 nonfinancial 30-day 4.16% (previous 4.17%). One-day rates: AA nonfinancial 3.92%, AA financial 3.88%, AA asset-backed 3.93%. n.a. in other series means insufficient trading data, not zero. No single consensus. 20:00 is the usual approximate posting time, not a verified release timestamp; the Fed does not guarantee exact timing.",
     "_translation": {
       "en": {
-        "source_hash": "27668d5114f6a01e6b6724d319c47d5deeb5a8f6e0043dd04f8343121c55163e",
-        "schema_version": 1
+        "schema_version": 1,
+        "source_hash": "528fa37863a2be82dcb34af71483b0d09a4f08bcce24b2ff6e920f1269d8e531"
       }
-    }
+    },
+    "תקופה": "נתוני 6.11.2026, פורסמו 9.11",
+    "תקופה_en": "Nov 6, 2026 data, posted Nov 9",
+    "בפועל": "AA nonfinancial 30d: 4.02% | A2/P2 30d: 4.16%"
   },
   {
     "תאריך": "2026-11-09",
