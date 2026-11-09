@@ -26817,5 +26817,31 @@
         "source_hash": "e6e787f89c2f093ed42b244d2b90e208375d13a8f90a34e67c8258ab536e772e"
       }
     }
+  },
+  {
+    "מזהה": "n-1115",
+    "category": "micro",
+    "תאריך": "2026-11-09 17:37",
+    "הועלה": "2026-11-09 17:37",
+    "כותרת": "Cboe (CBOE) השיקה היום אופציות בינאריות על מיני-ראסל 2000; מוצרי מדדי התוצאות העסקיות עדיין בדרך",
+    "כותרת_en": "Cboe (CBOE) launches mini-Russell 2000 binary options today; corporate earnings-metric products still to come",
+    "תקציר": "לפי הודעת החברה מ-9.11.2026, אופציות MRTBW על מדד MRUT החלו להיסחר היום: תשלום פירעון של 100 דולר או אפס, פקיעה בסיום יום המסחר הנוכחי או הבא וסליקה ב-OCC. זו השקת מוצר על מדד מניות קטנות, לא השקת חוזי KPI על תוצאות חברות שעליהם דווח קודם.",
+    "תקציר_en": "Cboe's Nov 9, 2026 release says MRTBW options on MRUT began trading today: a $100-or-zero settlement payout, same- or next-trading-day PM expiry and OCC clearing. This is a small-cap equity-index product launch, not the previously reported corporate KPI contracts launch.",
+    "טקסט": "המידע אומת מול הודעת החברה המלאה, שפורסמה ב-9.11.2026 בשעה 10:30 בניו יורק (17:30 בישראל).\n\nקשור לפריטים n-0704 ו-n-0882 על תוכנית חוזי מדדי הביצוע העסקיים. מה חדש: המסחר באופציות בינאריות על מיני-ראסל 2000 החל היום, 9 בנובמבר. נכס הבסיס MRUT הוא עשירית ממדד ראסל 2000; סימול האופציות הוא MRTBW. אין כאן השקה של מוצרי KPI, שלפי החברה צפויים להתווסף בהמשך.\n\nהאופציות הן עסקאות כיוון מסוג כן/לא, עם תשלום של 100 דולר או אפס בפירעון לפי רמת המדד ביחס לסף שנבחר. בדוגמת החברה, חוזה על סגירה ב-280 ומעלה משלם 100 דולר אם המדד נסגר ב-280 או יותר, ואפס אם נסגר מתחת ל-280. זהו תשלום פירעון, לא רווח של 100 דולר: מחיר הקנייה והעמלות משפיעים על התוצאה, וניתן לאבד את הסכום ששולם.\n\nהחברה תרשום חוזים לפירעון לפי הסגירה (PM), ביום המסחר הנוכחי וביום המסחר הבא; הסליקה המרכזית היא ב-OCC. הגישה זמינה דרך ברוקרים קמעונאיים נבחרים, לא הבטחה לזמינות בכל חשבון או מדינה. אופציות כרוכות בסיכון ואינן מתאימות לכל משקיע.\n\nהחברה דיווחה גם על ממוצע של 85 אלף חוזי אופציות RUT מסורתיות ביום בשלושת הרבעונים הראשונים של השנה. זהו נתון על המוצר המסורתי, לא נפח מסחר שהוכח למוצר הבינארי החדש.",
+    "טקסט_en": "Verified against the full company release published Nov 9, 2026 at 10:30 New York time (17:30 Israel).\n\nRelated to n-0704 and n-0882 on planned corporate KPI contracts. What is new: mini-Russell 2000 binary options began trading today, Nov 9. The underlying MRUT is one-tenth of the Russell 2000 Index; the options ticker is MRTBW. This does not launch the corporate KPI products, which Cboe says will follow.\n\nThe options are yes-or-no directional trades paying $100 or zero at settlement depending on the index relative to a chosen threshold. In Cboe's example, a trade on a close at 280 or above pays $100 if the index closes at least 280 and zero below 280. This is a settlement payout, not a $100 profit: purchase cost and fees affect returns, and the amount paid can be lost.\n\nCboe will list PM-settled contracts expiring on the same and next trading day, centrally cleared by OCC. Access is through select retail brokers, not a promise of availability in every account or jurisdiction. Options involve risk and are not suitable for all investors.\n\nCboe also reported average daily volume of 85,000 traditional RUT options contracts through the first three quarters. That describes the traditional product, not demonstrated trading volume in the new binary options.",
+    "קישור": "https://www.prnewswire.com/news-releases/cboe-expands-prediction-markets-suite-to-small-caps-with-launch-of-mini-russell-2000-index-binary-options-302933501.html",
+    "מקורות": [
+      {
+        "label": "Cboe, הודעת חברה מלאה דרך PRNewswire, 9.11.2026 10:30ET",
+        "label_en": "Cboe, full company release via PRNewswire, Nov 9, 2026 10:30 ET",
+        "url": "https://www.prnewswire.com/news-releases/cboe-expands-prediction-markets-suite-to-small-caps-with-launch-of-mini-russell-2000-index-binary-options-302933501.html"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "3648dafa9c2887833195d35524e1362a15c25c39ed283ef4a1b11c38ca59fcba"
+      }
+    }
   }
 ]
