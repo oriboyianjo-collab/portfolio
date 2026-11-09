@@ -26381,5 +26381,36 @@
         "source_hash": "2cdc867312956f90094d6f78223575f427cf62682ca8d063c1605e39b029214e"
       }
     }
+  },
+  {
+    "מזהה": "n-1099",
+    "כותרת": "Anthropic: התשקיף המתוקן (S-1/A) חושף התחייבויות רכש ושכירות מצטברות של כ-895.4 מיליארד דולר עד 2045, בעיקר מחשוב ותשתית; ההיקף רחב מה-450 מיליארד שבטיוטה הראשונה - אין לקרוא זאת כהכפלה זהה",
+    "כותרת_en": "Anthropic: the amended prospectus (S-1/A) discloses ~$895.4 billion in aggregate purchase and lease commitments through 2045, mostly compute and infrastructure; the scope is broader than the first draft's $450 billion - do not read this as a like-for-like doubling",
+    "summary": "התשקיף המתוקן שהוגש ל-SEC ב-2.11.2026 (נקרא ישירות): התחייבויות רכש והסכמי שכירות בהיקף מצטבר של כ-895.4 מיליארד דולר, כמעט כולן מחשוב ותשתית; 447.5 מיליארד צפויים עד סוף 2030 והיתרה ב-2031-2045. ההיקף רחב מה-450 מיליארד בטיוטה הראשונה (n-0990) וכולל שכירויות, התחייבויות קצרות ומרכזי נתונים ישירים - ההשוואה אינה זהה.",
+    "summary_en": "The amended prospectus filed with the SEC on Nov 2, 2026 (read directly): purchase commitments and lease agreements with an aggregate committed spend of ~$895.4 billion, substantially all compute and infrastructure; $447.5 billion expected before end-2030, the remainder 2031-2045. The scope is broader than the first draft's $450 billion (n-0990), adding leases, short-term commitments and direct data centers - not a like-for-like comparison.",
+    "טקסט": "עדכון לפריט הקשור n-0990 (וראו גם n-0860, n-0819).\nהפריט אומת מול המקור הראשוני: התשקיף המתוקן (S-1/A) שהוגש ל-SEC ב-2.11.2026 נקרא ישירות ב-EDGAR. הדיווח ב-CNBC (אשלי קאפוט, 7.11, 8:00 AM EST) שיתאם תשומת לב לנתון; האימות והפרטים מהמסמך עצמו.\n\nהנתון המדויק בנוסח התשקיף: \"נכון ל-30 בספטמבר 2026 ומאותו מועד ואילך\" (as of and subsequent to September 30, 2026) התחייבה החברה בהתחייבויות רכש ובהסכמי שכירות - כולל התחייבויות קצרות-טווח ושכירויות שטרם החלו - בהיקף מצטבר של כ-895.4 מיליארד דולר, \"כמעט כולן\" (substantially all) בנוגע למחשוב ותשתית. פיזור התשלומים: כ-447.5 מיליארד דולר צפויים להתבצע עד 31 בדצמבר 2030, וכמעט כל היתרה בין 2031 ל-2045. כ-69.8 מיליארד דולר נדרשים ב-12 החודשים שלאחר 30.9.2026. כ-213.8 מיליארד דולר מתוך הסכום כפופים לזכויות ביטול ניתנות למימוש או לתנאים מוקדמים לפני תחילת הביצוע (למשל עמידת הצד השני במועדי אספקה). חלק משמעותי מהסכום נוגע ל-\"Anthropic Direct\" - מודל המפריד בין התחייבות לקיבולת מרכזי נתונים לבין התחייבות לציוד המחשוב בתוכם.\n\nהשוואה זהירה ל-n-0990: ה-450 מיליארד שדווח אז הגיעו מהטיוטה הראשונה (דרך הוול סטריט ג'ורנל) והוגדרו כהתחייבויות מחשוב בלתי ניתנות לביטול ל-10 שנים מול ספקי ענן (111 מיליארד גוגל, 110 מיליארד אמזון, 31 מיליארד מיקרוסופט). הנתון החדש רחב יותר בהגדרתו: הוא כולל גם שכירויות ציוד ומתקנים, התחייבויות קצרות-טווח, שכירויות שטרם החלו והסכמים מול מפתחי מרכזי נתונים חיצוניים, ולטווח ארוך יותר (עד 2045). לכן הקפיצה מ-450 ל-895.4 משקפת גם הרחבת היקף וגם התחייבויות חדשות - ולא ניתן לומר שההתחייבויות ה\"זהות\" הוכפלו.\n\nעוגנים מהתשקיף המאפשרים זיהוי רכיבים: ההסכם עם אמזון - לפחות 110 מיליארד דולר בין מאי 2026 לאפריל 2036 (זהה לנתון ה-AWS ב-n-0990); הסדר שכירות 2026 - תשלומי שכירות של כ-125.2 מיליארד דולר לאורך חמש שנים (ובטוחה מופקדת לטובת Broadcom); הסכם מסגרת החומרה עם AMD מיולי 2026, הכולל התחייבות של AMD לרכוש מניות החברה בעד 5 מיליארד דולר לפי אבני אספקה; והערכה לרכש מחשוב נוסף של 125-150 מיליארד דולר שאינה כלולה בטבלת ההתחייבויות.",
+    "טקסט_en": "Update to related item n-0990 (see also n-0860, n-0819).\nVerified against the primary source: the amended prospectus (S-1/A) filed with the SEC on Nov 2, 2026 was read directly on EDGAR. The CNBC report (Ashley Capoot, Nov 7, 8:00 a.m. EST) flagged the figure; the verification and details come from the document itself.\n\nThe exact figure as worded in the prospectus: \"as of and subsequent to September 30, 2026\" the company entered into purchase commitments and lease agreements - including short-term commitments and leases not yet commenced - with an aggregate committed spend of approximately $895.4 billion, \"substantially all\" related to compute and infrastructure. Payment schedule: about $447.5 billion expected to be incurred before December 31, 2030, and substantially all of the remainder between 2031 and 2045. About $69.8 billion is due in the 12 months following Sep 30, 2026. About $213.8 billion of the total is subject to exercisable termination rights or contingent conditions prior to commencement (such as the counterparty meeting delivery dates). A significant portion relates to \"Anthropic Direct\" - a model separating data-center capacity commitments from the compute infrastructure inside them.\n\nCautious comparison with n-0990: the $450 billion reported then came from the initial draft (via the Wall Street Journal) and was defined as non-cancellable compute commitments over 10 years with named cloud providers ($111B Google, $110B Amazon, $31B Microsoft). The new figure is broader in definition: it also covers equipment and facility leases, short-term commitments, leases not yet commenced and agreements with third-party data-center developers, over a longer horizon (through 2045). The jump from $450B to $895.4B therefore reflects both wider scope and new commitments - it cannot be said that the same commitments doubled.\n\nAnchors from the filing that identify components: the Amazon agreement - at least $110 billion between May 2026 and April 2036 (matching the AWS figure in n-0990); the 2026 Lease Arrangement - rent payments of ~$125.2 billion over five years (with a cash deposit securing Broadcom); the AMD hardware supply framework of July 2026, including AMD's commitment to buy up to $5 billion of company stock against delivery milestones; and an estimated $125-150 billion of additional compute purchases not included in the contractual obligations table.",
+    "תאריך": "2026-11-09 13:05",
+    "הועלה": "2026-11-09 13:05",
+    "category": "micro",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+    "מקורות": [
+      {
+        "label": "Anthropic PBC, תשקיף מתוקן S-1/A ל-SEC, הוגש 2.11.2026 - מקור ראשוני, נקרא ישירות",
+        "label_en": "Anthropic PBC, amended S-1/A filed with the SEC, Nov 2, 2026 - primary source, read directly",
+        "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm"
+      },
+      {
+        "label": "CNBC (אשלי קאפוט), 7.11.2026 8:00 AM EST - מקור הגילוי לנתון; מקור משני",
+        "label_en": "CNBC (Ashley Capoot), Nov 7, 2026 8:00 a.m. EST - discovery source for the figure; secondary",
+        "url": "https://www.cnbc.com/2026/11/07/anthropic-ipo-ai-data-center-backlash.html"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "92864c64ab42eefabe5e4c97fc2b678a1ff84434e6f599bbe5ef414d9a53de3b"
+      }
+    }
   }
 ]
