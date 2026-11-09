@@ -25953,5 +25953,31 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "Tesla (TSLA): לפי Reuters, מאסק אומר שקו ה-Cybertruck ייסגר בעוד כ-8 חודשים ושחלק ניכר מהמקדמות יוחזר (לא מאומת מול מקור ראשוני)",
+    "תאריך": "2026-11-09 09:56",
+    "הועלה": "2026-11-09 09:56",
+    "טקסט": "לא מאומת מול מקור ראשוני\n9.11.2026 | Reuters פורסם ב-02:35 EST (09:35 שעון ישראל)\n\nבהמשך לידיעה מ-6.11.2026 (10:01): לפי Reuters, מנכ\"ל Tesla אלון מאסק מסר כי החברה \"תנסה לייצר כמה שיותר יחידות לפני סגירת הקו בעוד כ-8 חודשים\", וכי יהיה עליה להחזיר מקדמות להזמנות רבות, משום שההזמנות חורגות בהרבה מכושר הייצור שנותר.\n\nהדברים נמסרו, לפי Reuters, בפרסום של מאסק ברשת X. הפרסום המקורי לא נבדק (X אינו מקור אימות בעבורנו), והייחוס נשען על דיווח Reuters בלבד, שנקרא בגוף הכתבה.\n\nהיקף: ההתייחסות היא לקו ייצור ה-Cybertruck במפעל בטקסס. אין בדיווח אישור שהדגם כולו מופסק, אין לוח זמנים מחייב מעבר לאומדן \"כ-8 חודשים\", ואין פירוט כמה מקדמות יוחזרו, למי ומתי.\n\nפריט קשור: הידיעה מ-6.11.2026 (10:01) על תכנית הצטמצמות ייצור ה-Cybertruck עד אמצע 2027 לטובת הרחבת ייצור ה-Cybercab. החדש כאן: מסגרת הזמן המפורשת של כ-8 חודשים וההודעה על החזרי מקדמות למזמינים.",
+    "summary": "לפי Reuters, מאסק: קו ה-Cybertruck ייסגר בעוד כ-8 חודשים; מקדמות רבות יוחזרו כי ההזמנות חורגות מכושר הייצור. הדברים יוחסו לפרסום ב-X שלא נבדק; נשענים על Reuters בלבד.",
+    "קישור": "https://www.streetinsider.com/Reuters/Tesla+to+refund+many+Cybertruck+deposits+as+demand+exceeds+production%2C+Musk+says/27309754.html",
+    "מקורות": [
+      {
+        "label": "Reuters (בשידור מחדש של StreetInsider), 9.11.2026, 02:35 EST (09:35 שעון ישראל); הדברים יוחסו לפרסום של מאסק ב-X, שלא נבדק; אין אישור חברה נפרד",
+        "url": "https://www.streetinsider.com/Reuters/Tesla+to+refund+many+Cybertruck+deposits+as+demand+exceeds+production%2C+Musk+says/27309754.html",
+        "label_en": "Reuters (via StreetInsider syndication), Nov 9, 2026, 02:35 EST (09:35 Israel time); the remarks were attributed to an X post by Musk that was not independently checked; no separate company confirmation"
+      }
+    ],
+    "category": "micro",
+    "מזהה": "n-1085",
+    "כותרת_en": "Tesla (TSLA): per Reuters, Musk says the Cybertruck line closes in about 8 months and many deposits will be refunded (not verified against a primary source)",
+    "טקסט_en": "Not verified against a primary source\nNov 9, 2026 | Reuters published at 02:35 EST (09:35 Israel time)\n\nFollowing the Nov 6, 2026 (10:01) item: per Reuters, Tesla CEO Elon Musk said the company \"will try to make as many as possible before shutting down the line in about 8 months\", and that it will have to refund deposits for many orders because orders far exceed remaining production capacity.\n\nThe remarks were made, per Reuters, in a post by Musk on X. The original post was not checked (X is not a verification source for us), and the attribution rests on the Reuters report alone, which was read in full.\n\nScope: the reference is to the Cybertruck production line at the Texas plant. The report does not confirm the model is discontinued entirely, provides no binding timeline beyond the \"about 8 months\" estimate, and gives no detail on how many deposits will be refunded, to whom, or when.\n\nRelated item: the Nov 6, 2026 (10:01) item on the plan to wind down Cybertruck production by mid-2027 to make room for expanded Cybercab production. What is new here: the explicit roughly 8-month timeframe and the notice of deposit refunds to customers.",
+    "summary_en": "Per Reuters, Musk says the Cybertruck line closes in about 8 months; many deposits will be refunded as orders exceed production. The remarks were attributed to an unchecked X post and rest on Reuters alone.",
+    "_translation": {
+      "en": {
+        "source_hash": "f58f4fdd1d380e1c0a390ff1bccb5583c03f28dcfdf4f0f88026e45fc27c2dab",
+        "schema_version": 1
+      }
+    }
   }
 ]
