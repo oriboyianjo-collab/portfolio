@@ -25664,5 +25664,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "דרום קוריאה: אספקת ה-GPU המחויבת מ-NVIDIA תימשך ללא שיבוש, אמר סגן שר המדע, על רקע הסערה סביב מנכ\"ל החברה",
+    "category": "micro",
+    "קישור": "https://www.channelnewsasia.com/business/south-korea-says-nvidia-issues-wont-affect-contracted-gpu-supplies-6535111",
+    "מקורות": [
+      {
+        "label": "רויטרס (בשידוך CNA), דיווח מסיאול, 9.11.2026",
+        "url": "https://www.channelnewsasia.com/business/south-korea-says-nvidia-issues-wont-affect-contracted-gpu-supplies-6535111",
+        "label_en": "Reuters (carried by CNA), Seoul dispatch, Nov 9, 2026"
+      },
+      {
+        "label": "רויטרס (בשידוך Economic Times), פורסם 08:02 שעון הודו (04:32 שעון ישראל), 9.11.2026",
+        "url": "https://m.economictimes.com/tech/technology/south-korea-says-nvidia-issues-wont-affect-contracted-gpu-supplies/amp_articleshow/135668578.cms",
+        "label_en": "Reuters (carried by Economic Times), published 08:02 India time (04:32 Israel time), Nov 9, 2026"
+      }
+    ],
+    "טקסט": "סגן שר המדע וה-ICT של דרום קוריאה, ריו ג'ה-מיונג, אמר היום (ב') בוועדת התקציב של הפרלמנט כי 10,000 יחידות GPU שמומנו בתקציב התוספת ל-2025 כבר הגיעו ונמצאות בשימוש, וכי יחידות ה-GPU המתוכננות ל-2026 נמצאות תחת חוזה וצפויות להיכנס לשירות השנה. לדבריו, \"אנו מצפים שהייצור ולוח הזמנים של האספקה עבור הכמויות החתומות יימשכו ללא שיבוש\", והמשרד עוקב מקרוב אחר ההתפתחויות ומנהל דיונים עם NVIDIA קוריאה על מחירים ולוחות זמנים.\n\nההצהרה ניתנה על רקע הודעת דירקטוריון NVIDIA מיום א' על פתיחת חקירה עצמאית, בעקבות דיווחים שלפיו מנכ\"ל החברה ג'נסן הואנג היה מטרה של מאמץ מודיעיני סיני דרך קשריו עם אשת העסקים אליס הואנג. הדירקטוריון מסר שאין לו סיבה להאמין שביטחון לאומי של ארה\"ב או סודות החברה נפגעו, והואנג אמר שישתף פעולה במלואו.\n\nבמקביל בוטלה ביקורה המתוכנן של מדיסון הואנג, בתו של המנכ\"ל ודירקטורית בכירה ב-NVIDIA, בדרום קוריאה: סטארט-אפ ה-AI הקוריאני Rebellions מסר שהביקור במטה וארוחת ערב שיתופית בוטלו בשל \"נסיבות פנימיות בלתי נמנעות\" ב-NVIDIA, ו-Kakao Mobility ביטלה אירוע צילום ושאלות-תשובות עימה, אך מסרה שהסכם עסקי עם NVIDIA יימשך עם הדירקטור הבכיר גאורב אגרוול. אירוע Nvidia AI Day בסיאול, בן יומיים ובהשתתפות כ-2,000 איש, מתקיים כמתוכנן, לפי מדיה קוריאנית. NVIDIA לא הגיבה מיידית לבקשת תגובה של רויטרס.",
+    "תקציר": "סגן שר המדע של דרום קוריאה אמר בפרלמנט כי 10,000 יחידות GPU של NVIDIA מתקציב 2025 כבר הגיעו ופועלות, והאספקה החוזית תימשך ללא שיבוש למרות הסערה סביב מנכ\"ל החברה.",
+    "מזהה": "n-1076",
+    "תאריך": "2026-11-09 06:24",
+    "הועלה": "2026-11-09 06:24",
+    "כותרת_en": "South Korea: contracted GPU supplies from NVIDIA will proceed without disruption, deputy science minister said, amid the controversy around the company's CEO",
+    "טקסט_en": "South Korea's Vice Minister of Science and ICT, Ryu Jemyung, told a parliamentary budget committee today (Mon) that 10,000 GPUs funded under a 2025 supplementary budget have already arrived and are in use, and that GPUs planned for 2026 are under contract and expected to enter service this year. \"We expect production and the delivery schedule for contracted volumes to proceed without disruption,\" he said, adding that the ministry is closely monitoring developments and discussing prices and schedules with NVIDIA Korea.\n\nThe statement came against the backdrop of NVIDIA's board announcement on Sunday that it had opened an independent investigation following reports that CEO Jensen Huang had been targeted by a Chinese intelligence effort through his relationship with businesswoman Alice Huang. The board said it had no reason to believe US national security or company secrets had been compromised, and Huang said he would cooperate fully.\n\nMeanwhile, a planned South Korea visit by the CEO's daughter Madison Huang, an NVIDIA senior director, was cancelled: Korean AI startup Rebellions said her headquarters visit and a partner dinner were cancelled due to \"unavoidable internal circumstances\" at NVIDIA, and Kakao Mobility cancelled a photo session and Q&A event with her, but said a business agreement with NVIDIA would proceed with senior director Gaurav Agarwal attending instead. Nvidia AI Day Seoul, a two-day event expected to draw about 2,000 participants, is proceeding as planned according to Korean media. NVIDIA did not immediately respond to a Reuters request for comment.",
+    "תקציר_en": "South Korea's deputy science minister told parliament that 10,000 NVIDIA GPUs funded under the 2025 budget have already arrived and are in use, and that contracted supplies will proceed without disruption despite the controversy around the company's CEO.",
+    "_translation": {
+      "en": {
+        "source_hash": "67a9fa0d0ab29d8792eac6d0f55439a216f5bc6c76995c3534f3728f3a4c0d49",
+        "schema_version": 1
+      }
+    }
   }
 ]
