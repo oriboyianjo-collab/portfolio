@@ -27378,5 +27378,36 @@
         "source_hash": "4df72a5db0b29ca852583064dd591e16de96d11df6381155b3c14d24e42f8aff"
       }
     }
+  },
+  {
+    "כותרת": "לקראת CPI בארה״ב: BLS לא יפרסם שינוי שנתי באוקטובר בסדרות שחסר להן בסיס אוקטובר 2025",
+    "כותרת_en": "Ahead of US CPI: BLS will omit October annual changes for series missing an October 2025 base",
+    "summary": "הפרסום לאוקטובר 2026 מתוכנן ליום שלישי, 10 בנובמבר, ב-15:30 בישראל. שאלות ותשובות רשמיות קיימות מסבירות שחלק מהנתונים השנתיים יחסרו בשל השבתת 2025; אין לפרש מקף כאפס או להחליפו באומדן.",
+    "summary_en": "October 2026 CPI is scheduled for Tuesday, November 10, at 15:30 Israel time. Existing official guidance explains that annual changes will be missing for affected series because of the 2025 shutdown. A dash is not zero or a replacement estimate.",
+    "טקסט": "עדכון היערכות ל-10.11.2026 | ההנחיה הרשמית הקיימת של BLS עודכנה לאחרונה ב-16.09.2026; אין זו הודעת מדיניות חדשה מהיום.\n\nסעיף 16 בשאלות ותשובות BLS קובע שלא יפורסמו שינויי 12 חודשים לאוקטובר 2026 בסדרות שעבורן נתוני אוקטובר 2025 אינם זמינים. במהלך השבתת הממשל לא נאספו רוב נתוני הסקר באוקטובר 2025 ולא פורסמה הודעת CPI לאותו חודש. קיימים חריגים למספר סדרות המבוססות כולן על נתונים שאינם מסקר, ולכן אין לקבוע שכל נתון שנתי ייעדר.\n\nסעיף 3 מסביר שנתון חסר מוצג כמקף עם הערה על הפסקת התקצוב ב-2025. זה אינו שינוי של 0%, ואין להשלים את החסר באמצעות חישוב עצמאי או אומדן שייראה כתוצאה רשמית. יש לקרוא כל סדרה והערת שוליים בפרסום החדש.\n\nלוח BLS והדף הראשי מאשרים שהפרסום לאוקטובר מתוכנן ליום שלישי, 10 בנובמבר 2026, בשעה 08:30 בניו יורק, 15:30 בישראל. הודעת אי-הזמינות מתייחסת להשוואות שנתיות מסוימות, לא לביטול הפרסום החודשי. לא מוצגות כאן תוצאות אוקטובר שטרם פורסמו.\n\nטענת מבזק שגם נתוני השכר הריאלי השנתיים לא יפורסמו טרם אומתה בהודעת BLS ייעודית, ולכן אינה מוצגת כמדיניות מאושרת. תחזיות השוק החודשיות שכבר נרשמו ביומן נשמרו בנפרד מן התוצאות; הן אינן תחזיות של BLS.",
+    "טקסט_en": "Readiness update for Nov 10, 2026 | The existing official BLS guidance was last updated Sep 16, 2026. This is not a new policy announcement today.\n\nBLS FAQ section 16 says it will not publish October 2026 twelve-month changes for indexes whose October 2025 data are unavailable. Most October 2025 survey data were not collected during the shutdown, and no CPI news release was issued for that month. A few series based entirely on nonsurvey data are exceptions, so not every annual figure can be assumed absent.\n\nSection 3 explains that missing data appear as a dash with a 2025 lapse-in-appropriations footnote. This does not mean a 0% change. Missing data must not be replaced with an independent calculation or an estimate presented as an official result. Each series and footnote must be checked in the new release.\n\nThe BLS calendar and homepage confirm October CPI is scheduled for Tuesday, November 10, 2026, at 08:30 New York time, 15:30 Israel time. The availability limitation concerns certain annual comparisons, not cancellation of the monthly release. No unpublished October results are stated here.\n\nA flash claim that annual real earnings will also be omitted has not yet been verified in dedicated BLS guidance and is not presented as confirmed policy. Existing monthly market estimates in the calendar are retained separately from actual results; they are not BLS forecasts.",
+    "מזהה": "n-1136",
+    "תאריך": "2026-11-09 22:27",
+    "הועלה": "2026-11-09 22:27",
+    "category": "macro",
+    "קישור": "https://www.bls.gov/cpi/additional-resources/2025-federal-government-shutdown-impact-cpi-faq.htm",
+    "מקורות": [
+      {
+        "label": "BLS: שאלות ותשובות, סעיפים 2, 3 ו-16; עדכון 16.09.2026 - ראשוני",
+        "label_en": "BLS: FAQ sections 2, 3 and 16, updated Sep 16, 2026 - primary",
+        "url": "https://www.bls.gov/cpi/additional-resources/2025-federal-government-shutdown-impact-cpi-faq.htm"
+      },
+      {
+        "label": "BLS: לוח פרסום CPI מעודכן - ראשוני",
+        "label_en": "BLS: current CPI release schedule - primary",
+        "url": "https://www.bls.gov/schedule/news_release/cpi.htm"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "b7fc33bfda963251322699f5288e102a1b0845f49c2b0b6295b426c1ed54eac8"
+      }
+    }
   }
 ]
