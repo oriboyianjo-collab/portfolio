@@ -3320,5 +3320,384 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "תאריך": "2026-11-18",
+    "שעה": "15:30",
+    "מדינה": "US",
+    "אירוע": "בנייה למגורים חדשה - התחלות בנייה והיתרים",
+    "חשיבות": 2,
+    "תקופה": "אוקטובר · חודשי",
+    "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
+    "הערה": "מועד לפי לוח הכלכלי של הפד של ניו יורק (18.11, 08:30ET=15:30 ישראל) ודפוס הפרסום החודשי של Census (New Residential Construction, 08:30ET). צפי וקודם לא אומתו; ללא נתון בפועל.",
+    "אירוע_en": "New residential construction - housing starts and permits",
+    "תקופה_en": "October · monthly",
+    "הערה_en": "Timing per the New York Fed economic calendar (Nov 18, 08:30 ET = 15:30 Israel) and the Census monthly release pattern (New Residential Construction, 08:30 ET). Estimate and prior not verified; no actual figure.",
+    "מזהה": "c-0153",
+    "_translation": {
+      "en": {
+        "source_hash": "29ae31a1acb847a29b1fc925af31a07ad45b1c47a6bafe81e15547d9fb6bee81",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-18",
+    "שעה": "17:00",
+    "מדינה": "US",
+    "אירוע": "מכירות בתים בהמתנה - Pending Home Sales",
+    "חשיבות": 1,
+    "תקופה": "אוקטובר · חודשי",
+    "מקור": "https://www.nar.realtor/press-releases/nar-releases-2026-statistical-news-release-schedule",
+    "הערה": "NAR קובע 18.11 (יום רביעי) למדד מכירות הבתים בהמתנה של אוקטובר, לפי לוח הפרסומים הרשמי (אומת 09.11); פרסומי NAR הסטטיסטיים ב-10:00ET=17:00 ישראל. צפי וקודם לא אומתו; ללא נתון בפועל.",
+    "אירוע_en": "Pending home sales index - NAR",
+    "תקופה_en": "October · monthly",
+    "הערה_en": "NAR schedules Nov 18 (Wednesday) for the October Pending Home Sales Index, per its official release schedule (verified Nov 9); NAR statistical releases at 10:00 ET = 17:00 Israel. Estimate and prior not verified; no actual figure.",
+    "מזהה": "c-0154",
+    "_translation": {
+      "en": {
+        "source_hash": "92dd4996bd6a8ffb4e2cab3143341fc155d74a9b71de65d61cff7af380cf5815",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-18",
+    "שעה": "17:00",
+    "מדינה": "US",
+    "אירוע": "Outlook-at-Risk - הפד של ניו יורק",
+    "חשיבות": 1,
+    "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
+    "הערה": "מועד לפי לוח המקור של הפד של ניו יורק (18.11, 10:00ET=17:00 ישראל, אומת 09.11). צפי וקודם לא אומתו; ללא נתון בפועל.",
+    "אירוע_en": "Outlook-at-Risk - New York Fed",
+    "הערה_en": "Timing per the New York Fed source calendar (Nov 18, 10:00 ET = 17:00 Israel, verified Nov 9). Estimate and prior not verified; no actual figure.",
+    "מזהה": "c-0155",
+    "_translation": {
+      "en": {
+        "source_hash": "bc46756893cff347d451494bfb29fd7415baec9585cfa149d9f9c305d9c33988",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-18",
+    "שעה": "20:00",
+    "מדינה": "US",
+    "אירוע": "נתוני ניירות ערך מסחריים (CP) - הפד",
+    "חשיבות": 1,
+    "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
+    "הערה": "לוח הפד לנובמבר 2026 (מקור ראשוני, אומת 09.11): CP מופיע בימים 18/19/20.11 ב-13:00ET=20:00 ישראל; H.15 ב-16:15ET=23:15 ישראל. אין צפי יחיד.",
+    "אירוע_en": "Commercial paper (CP) data - Fed",
+    "הערה_en": "Fed November 2026 calendar (primary source, verified Nov 9): CP listed on Nov 18/19/20 at 1:00 PM ET = 20:00 Israel; H.15 at 4:15 PM ET = 23:15 Israel. No single estimate.",
+    "מזהה": "c-0156",
+    "_translation": {
+      "en": {
+        "source_hash": "e9a58b493dd11805947711cf33157f9882524e00a97f9b1cb06b0dbcce9635cd",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-18",
+    "שעה": "23:15",
+    "מדינה": "US",
+    "אירוע": "ריביות נבחרות (H.15) - הפד",
+    "חשיבות": 1,
+    "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
+    "הערה": "לוח הפד לנובמבר 2026 (מקור ראשוני, אומת 09.11): CP מופיע בימים 18/19/20.11 ב-13:00ET=20:00 ישראל; H.15 ב-16:15ET=23:15 ישראל. אין צפי יחיד.",
+    "אירוע_en": "Selected interest rates (H.15) - Fed",
+    "הערה_en": "Fed November 2026 calendar (primary source, verified Nov 9): CP listed on Nov 18/19/20 at 1:00 PM ET = 20:00 Israel; H.15 at 4:15 PM ET = 23:15 Israel. No single estimate.",
+    "מזהה": "c-0157",
+    "_translation": {
+      "en": {
+        "source_hash": "e70c98518775e6b95c39d563c597a16714a6c7e29ade40009d4736b63b66d93f",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-19",
+    "שעה": "15:30",
+    "מדינה": "US",
+    "אירוע": "תביעות אבטלה שבועיות",
+    "חשיבות": 1,
+    "תקופה": "שבועי",
+    "מקור": "https://oui.doleta.gov/unemploy/claims_arch.asp",
+    "הערה": "פרסום DOL ביום חמישי 19.11 בשעה 08:30EST=15:30 בישראל (סדרה שבועית קבועה; לוח NYFed מציין 19.11). צפי טרם אומת. הקודם לפרסום זה הוא נתון 12.11 שטרם פורסם; לא נרשם קודם. אין נתון בפועל.",
+    "אירוע_en": "Weekly jobless claims",
+    "תקופה_en": "Weekly",
+    "הערה_en": "DOL release Thursday Nov 19 at 08:30 EST = 15:30 Israel (standing weekly series; the NY Fed calendar lists Nov 19). Estimate not yet verified. The prior for this release is the Nov 12 figure, not yet published; no prior recorded. No actual figure.",
+    "מזהה": "c-0158",
+    "_translation": {
+      "en": {
+        "source_hash": "4de4cb0d7279d207c78541619cf267248e1be5bcd10de832b67d19f07457dcae",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-19",
+    "שעה": "15:30",
+    "מדינה": "US",
+    "אירוע": "תביעות אבטלה מתמשכות",
+    "חשיבות": 1,
+    "תקופה": "שבועי",
+    "מקור": "https://oui.doleta.gov/unemploy/claims_arch.asp",
+    "הערה": "פרסום DOL ביום חמישי 19.11 בשעה 08:30EST=15:30 בישראל (סדרה שבועית קבועה; לוח NYFed מציין 19.11). צפי טרם אומת. הקודם לפרסום זה הוא נתון 12.11 שטרם פורסם; לא נרשם קודם. אין נתון בפועל.",
+    "אירוע_en": "Continuing jobless claims",
+    "תקופה_en": "Weekly",
+    "הערה_en": "DOL release Thursday Nov 19 at 08:30 EST = 15:30 Israel (standing weekly series; the NY Fed calendar lists Nov 19). Estimate not yet verified. The prior for this release is the Nov 12 figure, not yet published; no prior recorded. No actual figure.",
+    "מזהה": "c-0159",
+    "_translation": {
+      "en": {
+        "source_hash": "9eced89121b9b0febb1960e67948d04b3d03a75165fac8e9f34f91b8217d92ca",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-19",
+    "שעה": "15:30",
+    "מדינה": "US",
+    "אירוע": "סקר הייצור של הפד של פילדלפיה - MBOS",
+    "חשיבות": 1,
+    "תקופה": "נובמבר · חודשי",
+    "מקור": "https://www.philadelphiafed.org/surveys-and-data/regional-economic-analysis/mbos-2026-10",
+    "הערה": "סקר חודשי קבוע של הפד של פילדלפיה, 08:30ET=15:30 ישראל (דוח אוקטובר פורסם 15.10 בשעה זו, אומת במקור); לוח NYFed מציין 19.11 08:30ET. צפי וקודם לא אומתו; ללא נתון בפועל.",
+    "אירוע_en": "Philadelphia Fed Manufacturing Business Outlook Survey - MBOS",
+    "תקופה_en": "November · monthly",
+    "הערה_en": "Standing monthly Philadelphia Fed survey, 08:30 ET = 15:30 Israel (the October report was released Oct 15 at that time, verified at the source); the NY Fed calendar lists Nov 19 08:30 ET. Estimate and prior not verified; no actual figure.",
+    "מזהה": "c-0160",
+    "_translation": {
+      "en": {
+        "source_hash": "a421e5ec8b77ce6a81590ae00661961415d25bc0072adb6dcb3b102aaac893f9",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-19",
+    "שעה": "17:00",
+    "מדינה": "US",
+    "אירוע": "גמישות ביקוש ליתרות (RDE) - הפד של ניו יורק",
+    "חשיבות": 1,
+    "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
+    "הערה": "מועד לפי לוח המקור של הפד של ניו יורק (19.11, 10:00ET=17:00 ישראל, אומת 09.11). צפי וקודם לא אומתו; ללא נתון בפועל.",
+    "אירוע_en": "Reserve Demand Elasticity (RDE) - New York Fed",
+    "הערה_en": "Timing per the New York Fed source calendar (Nov 19, 10:00 ET = 17:00 Israel, verified Nov 9). Estimate and prior not verified; no actual figure.",
+    "מזהה": "c-0161",
+    "_translation": {
+      "en": {
+        "source_hash": "3dc880eb05bd27e44a15443fc6138437830ea66c470ac6de816d1a86dcc4c9ed",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-19",
+    "שעה": "18:30",
+    "מדינה": "US",
+    "אירוע": "מדד כלכלי שבועי - WEI",
+    "חשיבות": 1,
+    "מקור": "https://www.dallasfed.org/research/wei",
+    "הערה": "מועד לפי המקור (אומת 09.11): הפד של דאלאס מעדכן ביום חמישי ב-10:30CT=18:30 ישראל או סמוך לאחריה. צפי וקודם לא אומתו; ללא נתון בפועל. אינדיקטור שבועי לפעילות, לא נתון תמ\"ג רשמי.",
+    "אירוע_en": "Weekly Economic Index - WEI",
+    "הערה_en": "Timing per the source (verified Nov 9): the Dallas Fed updates Thursday at 10:30 AM CT = 18:30 Israel or shortly after. Estimate and prior not verified; no actual figure. A weekly activity indicator, not an official GDP figure.",
+    "מזהה": "c-0162",
+    "_translation": {
+      "en": {
+        "source_hash": "948f75d51d9279db4600d0469a4c7f2521e0f39f9ac19dfa13926f5947719ce4",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-19",
+    "שעה": "20:00",
+    "מדינה": "US",
+    "אירוע": "נתוני ניירות ערך מסחריים (CP) - הפד",
+    "חשיבות": 1,
+    "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
+    "הערה": "לוח הפד לנובמבר 2026 (מקור ראשוני, אומת 09.11): CP מופיע בימים 18/19/20.11 ב-13:00ET=20:00 ישראל; H.15 ב-16:15ET=23:15 ישראל. אין צפי יחיד.",
+    "אירוע_en": "Commercial paper (CP) data - Fed",
+    "הערה_en": "Fed November 2026 calendar (primary source, verified Nov 9): CP listed on Nov 18/19/20 at 1:00 PM ET = 20:00 Israel; H.15 at 4:15 PM ET = 23:15 Israel. No single estimate.",
+    "מזהה": "c-0163",
+    "_translation": {
+      "en": {
+        "source_hash": "3412491f8ab5ca7d8203d82ba7d3305b822a00aa5a6ae6b26517f60ed241a55c",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-19",
+    "שעה": "23:15",
+    "מדינה": "US",
+    "אירוע": "ריביות נבחרות (H.15) - הפד",
+    "חשיבות": 1,
+    "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
+    "הערה": "לוח הפד לנובמבר 2026 (מקור ראשוני, אומת 09.11): CP מופיע בימים 18/19/20.11 ב-13:00ET=20:00 ישראל; H.15 ב-16:15ET=23:15 ישראל. אין צפי יחיד.",
+    "אירוע_en": "Selected interest rates (H.15) - Fed",
+    "הערה_en": "Fed November 2026 calendar (primary source, verified Nov 9): CP listed on Nov 18/19/20 at 1:00 PM ET = 20:00 Israel; H.15 at 4:15 PM ET = 23:15 Israel. No single estimate.",
+    "מזהה": "c-0164",
+    "_translation": {
+      "en": {
+        "source_hash": "d6540e3371aca15854674abbc4046b68190fb3fc0cef3058ce114a20b4037864",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-19",
+    "שעה": "23:30",
+    "מדינה": "US",
+    "אירוע": "מאזן הפד וגורמי יתרות (H.4.1)",
+    "חשיבות": 1,
+    "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
+    "הערה": "לוח הפד לנובמבר 2026 (מקור ראשוני, אומת 09.11): H.4.1 בימי חמישי 5/12/19/27.11 ב-16:30ET=23:30 ישראל. אין צפי יחיד.",
+    "אירוע_en": "Fed balance sheet and factors affecting reserve balances (H.4.1)",
+    "הערה_en": "Fed November 2026 calendar (primary source, verified Nov 9): H.4.1 on Thursdays Nov 5/12/19/27 at 4:30 PM ET = 23:30 Israel. No single estimate.",
+    "מזהה": "c-0165",
+    "_translation": {
+      "en": {
+        "source_hash": "f5cd2923ebf5dcfe18c3009d85e7c405f8e24bcb81f3849326b514d008d633bd",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-20",
+    "שעה": "17:00",
+    "מדינה": "US",
+    "אירוע": "מדד סנטימנט הצרכנים של אוניברסיטת מישיגן - סופי",
+    "חשיבות": 2,
+    "תקופה": "נובמבר · סופי",
+    "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
+    "קודם": "51.0",
+    "הערה": "מועד לפי לוח NYFed (20.11, 10:00ET=17:00 ישראל). קודם לפרסום זה הוא הקריאה המקדמית של נובמבר 51.0 (אומתה במקור אוניברסיטת מישיגן). צפי לא אומת; ללא נתון בפועל.",
+    "אירוע_en": "University of Michigan consumer sentiment index - final",
+    "תקופה_en": "November · final",
+    "הערה_en": "Timing per the NY Fed calendar (Nov 20, 10:00 ET = 17:00 Israel). The prior for this release is the November preliminary reading of 51.0 (verified at the University of Michigan source). Estimate not verified; no actual figure.",
+    "מזהה": "c-0166",
+    "_translation": {
+      "en": {
+        "source_hash": "f7412f4b7859ef11ffc999e319edc86bbca2f7c5e4ff96aa88a715779e3059dd",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-20",
+    "שעה": "17:00",
+    "מדינה": "US",
+    "אירוע": "ציפיות אינפלציה לשנה - אוניברסיטת מישיגן",
+    "חשיבות": 2,
+    "תקופה": "נובמבר · סופי",
+    "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
+    "קודם": "4.3%",
+    "הערה": "מועד לפי לוח NYFed (20.11, 10:00ET=17:00 ישראל). קודם לפרסום זה הוא הקריאה המקדמית של נובמבר 4.3% (אומתה במקור אוניברסיטת מישיגן). צפי לא אומת; ללא נתון בפועל.",
+    "אירוע_en": "Year-ahead inflation expectations - University of Michigan",
+    "תקופה_en": "November · final",
+    "הערה_en": "Timing per the NY Fed calendar (Nov 20, 10:00 ET = 17:00 Israel). The prior for this release is the November preliminary reading of 4.3% (verified at the University of Michigan source). Estimate not verified; no actual figure.",
+    "מזהה": "c-0167",
+    "_translation": {
+      "en": {
+        "source_hash": "45dadc969c788553f77cf0df885f33fb4aa47b08831811c05bff45d4d37d23d6",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-20",
+    "שעה": "17:00",
+    "מדינה": "US",
+    "אירוע": "ציפיות אינפלציה ארוכות טווח - אוניברסיטת מישיגן",
+    "חשיבות": 2,
+    "תקופה": "נובמבר · סופי",
+    "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
+    "קודם": "3.4%",
+    "הערה": "מועד לפי לוח NYFed (20.11, 10:00ET=17:00 ישראל). קודם לפרסום זה הוא הקריאה המקדמית של נובמבר 3.4% (אומתה במקור אוניברסיטת מישיגן). צפי לא אומת; ללא נתון בפועל.",
+    "אירוע_en": "Long-run inflation expectations - University of Michigan",
+    "תקופה_en": "November · final",
+    "הערה_en": "Timing per the NY Fed calendar (Nov 20, 10:00 ET = 17:00 Israel). The prior for this release is the November preliminary reading of 3.4% (verified at the University of Michigan source). Estimate not verified; no actual figure.",
+    "מזהה": "c-0168",
+    "_translation": {
+      "en": {
+        "source_hash": "ae6d0d5a2cb261f3c4902791d2527646a0771383e29a652a93101ab5da819375",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-20",
+    "שעה": "19:45",
+    "מדינה": "US",
+    "אירוע": "אומדן צמיחה - New York Fed Staff Nowcast",
+    "חשיבות": 1,
+    "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
+    "הערה": "מועד לפי לוח המקור של הפד של ניו יורק (20.11, 12:45ET=19:45 ישראל, אומת 09.11). צפי וקודם לא אומתו; ללא נתון בפועל. אומדן מודל המתעדכן לאורך הרבעון, לא נתון תמ\"ג רשמי ולא קונצנזוס אנליסטים.",
+    "אירוע_en": "Growth estimate - New York Fed Staff Nowcast",
+    "הערה_en": "Timing per the New York Fed source calendar (Nov 20, 12:45 ET = 19:45 Israel, verified Nov 9). Estimate and prior not verified; no actual figure. A model estimate updated through the quarter, not an official GDP figure and not an analyst consensus.",
+    "מזהה": "c-0169",
+    "_translation": {
+      "en": {
+        "source_hash": "59898772c9c78bedfb7882aef5e1198a5af84b90c47a5015d2cd4383637aa0b9",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-20",
+    "שעה": "20:00",
+    "מדינה": "US",
+    "אירוע": "נתוני ניירות ערך מסחריים (CP) - הפד",
+    "חשיבות": 1,
+    "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
+    "הערה": "לוח הפד לנובמבר 2026 (מקור ראשוני, אומת 09.11): CP מופיע בימים 18/19/20.11 ב-13:00ET=20:00 ישראל; H.15 ב-16:15ET=23:15 ישראל. אין צפי יחיד.",
+    "אירוע_en": "Commercial paper (CP) data - Fed",
+    "הערה_en": "Fed November 2026 calendar (primary source, verified Nov 9): CP listed on Nov 18/19/20 at 1:00 PM ET = 20:00 Israel; H.15 at 4:15 PM ET = 23:15 Israel. No single estimate.",
+    "מזהה": "c-0170",
+    "_translation": {
+      "en": {
+        "source_hash": "683bdd722e33dd195d4ccc43355164b2ed711a284803714de176fc6e36c2f4cd",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-20",
+    "שעה": "23:15",
+    "מדינה": "US",
+    "אירוע": "ריביות נבחרות (H.15) - הפד",
+    "חשיבות": 1,
+    "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
+    "הערה": "לוח הפד לנובמבר 2026 (מקור ראשוני, אומת 09.11): CP מופיע בימים 18/19/20.11 ב-13:00ET=20:00 ישראל; H.15 ב-16:15ET=23:15 ישראל. אין צפי יחיד.",
+    "אירוע_en": "Selected interest rates (H.15) - Fed",
+    "הערה_en": "Fed November 2026 calendar (primary source, verified Nov 9): CP listed on Nov 18/19/20 at 1:00 PM ET = 20:00 Israel; H.15 at 4:15 PM ET = 23:15 Israel. No single estimate.",
+    "מזהה": "c-0171",
+    "_translation": {
+      "en": {
+        "source_hash": "ae00f017044fc2cf2b21c21dd7ea886e836910b67648b2dff65f42ba7f9ff5ab",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-20",
+    "שעה": "23:15",
+    "מדינה": "US",
+    "אירוע": "נכסים והתחייבויות בנקים מסחריים (H.8)",
+    "חשיבות": 1,
+    "מקור": "https://www.federalreserve.gov/newsevents/2026-november.htm",
+    "הערה": "לוח הפד לנובמבר 2026 (מקור ראשוני, אומת 09.11): H.8 בימי שישי 6/13/20/27.11 ב-16:15ET=23:15 ישראל. אין צפי יחיד.",
+    "אירוע_en": "Assets and liabilities of commercial banks (H.8) - Fed",
+    "הערה_en": "Fed November 2026 calendar (primary source, verified Nov 9): H.8 on Fridays Nov 6/13/20/27 at 4:15 PM ET = 23:15 Israel. No single estimate.",
+    "מזהה": "c-0172",
+    "_translation": {
+      "en": {
+        "source_hash": "ccc09850a7dbd3a7d9d7872b65533b5459edc8d1e8a5ab6b949bd057ffd1723a",
+        "schema_version": 1
+      }
+    }
   }
 ]
