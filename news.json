@@ -27139,5 +27139,114 @@
         "source_hash": "77c531a70286599b899f8a18d9d30b897e804fc503660fa689aa25c5f9199343"
       }
     }
+  },
+  {
+    "כותרת": "Meta (META): המודל Muse Ember זמין ב-Model API; מחיר הבסיס הוא $0.10 לקלט ו-$0.50 לפלט למיליון טוקנים",
+    "כותרת_en": "Meta (META): Muse Ember is available on Model API, starting at $0.10 input and $0.50 output per million tokens",
+    "summary": "התיעוד הרשמי מאשר מודל לביצוע משימות חוזרות בהיקף גדול, עם קלט רב-אופני וחלון הקשר של כמיליון טוקנים. המחיר עולה פי שלושה בבקשות עם יותר מ-200 אלף טוקני קלט.",
+    "summary_en": "Official documentation confirms a model for high-volume repeated tasks, multimodal input and about a million tokens of context. Rates triple for requests with more than 200,000 input tokens.",
+    "טקסט": "**תאריך ושעת הפרסום המקוריים אינם ידועים.** נבדק בתיעוד הרשמי של Meta ב-9.11.2026; הזמינות הנוכחית אומתה, אך לא נמצא חותם זמן להשקה.\n\nהמודל Muse Ember, במזהה muse-ember-1.0, מיועד לפי Meta לביצוע עבודה חוזרת בהיקף גדול: משימות ממוקדות בתוך תהליכי AI, קריאות לכלים, ניתוב ועיבוד אוספי תמונות, קבצים ורשומות. הוא מקבל טקסט, תמונות, וידאו, אודיו ו-PDF ומחזיר טקסט. חלון ההקשר הוא 1,048,576 טוקנים ותקרת הפלט 524,288 טוקנים. אלו מפרטי החברה, לא בדיקת ביצועים עצמאית.\n\nהמחיר הרשמי במצב Standard הוא $0.10 למיליון טוקני קלט ו-$0.50 למיליון טוקני פלט בבקשות של עד 200 אלף טוקני קלט. מעל הסף, המחיר לכל הבקשה הוא $0.30 לקלט ו-$1.50 לפלט, ולא רק לחלק שמעבר לסף. קלט שנשמר במטמון מתומחר בנפרד ב-$0.004 או $0.012 למיליון, בהתאמה. שירות חיפוש מחויב בנפרד.\n\nהמודל זמין דרך Meta Model API במצב Standard בלבד; מצב Contributor אינו זמין לו ב-API. אין כאן אימות לטענה שהוא הקטן או היעיל ביותר שהחברה פיתחה, ולא פורסם במקורות שנקראו היקף הכנסות מההשקה.",
+    "טקסט_en": "**The original publication date and time are unknown.** Checked against official Meta documentation on Nov 9, 2026. Current availability was verified, but no launch timestamp was found.\n\nMeta describes Muse Ember, model ID muse-ember-1.0, as an execution model for high-volume repeated work: focused tasks within AI workflows, tool calls, routing and processing collections of images, files and records. It accepts text, images, video, audio and PDF and produces text. Its context window is 1,048,576 tokens, with maximum output of 524,288 tokens. These are company specifications, not independent performance tests.\n\nStandard pricing is $0.10 per million input tokens and $0.50 per million output tokens for requests with up to 200,000 input tokens. Above that threshold, the entire request uses rates of $0.30 input and $1.50 output, not just the portion above the threshold. Cached input costs $0.004 or $0.012 per million, respectively. Search grounding is charged separately.\n\nThe model is available through Meta Model API in Standard mode only; Contributor mode is not available for it on the API. The sources read do not establish that it is Meta's smallest or most efficient model ever, or provide launch revenue figures.",
+    "קישור": "https://dev.meta.ai/docs/muse-ember",
+    "מקורות": [
+      {
+        "label": "Meta: תיעוד Muse Ember - ראשוני",
+        "label_en": "Meta: Muse Ember documentation - primary",
+        "url": "https://dev.meta.ai/docs/muse-ember"
+      },
+      {
+        "label": "Meta: תמחור ומגבלות - ראשוני",
+        "label_en": "Meta: pricing and rate limits - primary",
+        "url": "https://dev.meta.ai/docs/pricing-rate-limits"
+      }
+    ],
+    "מזהה": "n-1127",
+    "תאריך": "2026-11-09 21:15",
+    "הועלה": "2026-11-09 21:15",
+    "category": "micro",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "6277ad067419fde103e7c5479aeb2183569579f0851e73e3c848340d456ad11e"
+      }
+    }
+  },
+  {
+    "כותרת": "Anthropic משדרגת את Claude Fable ו-Mythos לגרסה 5.2; מחיר בסיס של $8 לקלט ו-$40 לפלט למיליון טוקנים",
+    "כותרת_en": "Anthropic upgrades Claude Fable and Mythos to 5.2, priced at $8 input and $40 output per million tokens",
+    "summary": "Fable 5.2 זמין היום; הגישה ל-Mythos 5.2 מותנית במסלולי אימות לארגוני סייבר ומדעי החיים. החברה מדווחת על פלט מהיר יותר ומחיר נמוך יותר לעומת 5.1; זו אינה הודעה על השלמת הנפקה.",
+    "summary_en": "Fable 5.2 is available today; Mythos 5.2 access is restricted to verification programs for cybersecurity and life-sciences organizations. The company reports faster output and lower pricing than 5.1. This is not an announcement of a completed IPO.",
+    "טקסט": "9.11.2026 | הודעת Anthropic הרשמית; שעת פרסום מקורית לא נמצאה.\n\nהחברה הכריזה על Claude Fable 5.2 ו-Claude Mythos 5.2, שדרוגים למודלים קיימים ולא חשיפה ראשונה של המשפחות. שניהם מבוססים על אותו מודל; ב-Fable קיימות מגבלות סייבר וביולוגיה שמאפשרות הפצה רחבה יותר. ארגונים העוסקים ביישומים מאושרים בסייבר או במחקר ביו-רפואי יכולים לבקש גישה ל-Mythos באמצעות תוכניות האימות.\n\nלפי החברה, המודלים משפרים קוד, הסקה וראייה, ומייצרים פלט עד 30% מהר יותר מגרסאות 5.1. מחיר הבסיס הוא $8 למיליון טוקני קלט ו-$40 לפלט. מצב Fast אופציונלי מוצע ב-$16 לקלט ו-$80 לפלט ומבטיח, לפי החברה, האצת יצירת טוקנים עד פי 2.5. אלה טענות ובדיקות של החברה, לא מדידה עצמאית.\n\nהחברה מציינת ש-Fable 5.2 זמין מהיום בפלטפורמות שלה וכן ב-AWS, Google Cloud ו-Microsoft Azure. גישת Mythos נותרת מוגבלת לתוכניות האימות; אין להציגו כמודל פתוח לכל משתמש. זמינות מצב Fast משתנה לפי פלטפורמה, וב-Mythos הוא מוגבל לארגונים מאומתים.\n\nהודעת המוצר אינה הודעה על השלמת הנפקה, מועד מסחר או מחיר מניה. אין להסיק מעיתוי השדרוג קשר סיבתי לתהליך הנפקה.",
+    "טקסט_en": "Nov 9, 2026 | Official Anthropic announcement; original publication time was not found.\n\nAnthropic announced Claude Fable 5.2 and Claude Mythos 5.2, upgrades to existing models rather than the first introduction of these families. They share the same underlying model; Fable has cybersecurity and biology safeguards that permit broader distribution. Organizations pursuing approved cybersecurity or biomedical applications can apply for Mythos through verification programs.\n\nThe company reports improvements in coding, reasoning and vision, with output generation up to 30% faster than the 5.1 versions. Base prices are $8 per million input tokens and $40 per million output tokens. Optional Fast mode costs $16 input and $80 output and offers, according to the company, up to 2.5 times faster token generation. These are company claims and tests, not independent measurements.\n\nFable 5.2 is available today on Anthropic platforms as well as AWS, Google Cloud and Microsoft Azure. Mythos access remains restricted to verification programs, not unrestricted access for every user. Fast-mode availability varies by platform and is limited to verified organizations for Mythos.\n\nThe product announcement does not announce a completed IPO, trading date or share price. The timing of the upgrade does not establish a causal link to an IPO process.",
+    "קישור": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+    "מקורות": [
+      {
+        "label": "Anthropic: הודעת Fable 5.2 ו-Mythos 5.2, 9.11.2026 - ראשוני",
+        "label_en": "Anthropic: Fable 5.2 and Mythos 5.2 announcement, Nov 9, 2026 - primary",
+        "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2"
+      }
+    ],
+    "מזהה": "n-1128",
+    "תאריך": "2026-11-09 21:15",
+    "הועלה": "2026-11-09 21:15",
+    "category": "micro",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "067fee8ec5b63d57ba697e718353978480fd4265a6f7d9315f53777c2189a7e5"
+      }
+    }
+  },
+  {
+    "כותרת": "PepsiCo (PEP), דיווח WSJ (לא מאומת מול מקור ראשוני): קיצוץ של כ-1,000 משרות בצפון אמריקה",
+    "כותרת_en": "PepsiCo (PEP), WSJ report (not verified against a primary source): around 1,000 job cuts in North America",
+    "summary": "לא מאומת מול מקור ראשוני: WSJ מדווח על קיצוץ במזון ובמשקאות ועל מכתב לעובדים של מנכ״ל צפון אמריקה, שלפיו שינויים תפעוליים יבוצעו בשבוע הקרוב.",
+    "summary_en": "Not verified against a primary source: WSJ reports food and beverage job cuts and an employee letter from the North America CEO describing operational changes over the coming week.",
+    "טקסט": "לא מאומת מול מקור ראשוני\n9.11.2026 | דיווח מקורי של Laura Cooper ב-Wall Street Journal; שעת פרסום מדויקת לא נמצאה בנוסח שנקרא.\n\nלפי WSJ, החברה מבטלת כ-1,000 משרות בחטיבת המזון והמשקאות בצפון אמריקה כחלק מניסיון לשפר את פעילותה. העיתון מדווח שמנכ״ל צפון אמריקה רם קרישנן מסר ביום שני לעובדים כי בשבוע הקרוב יבוצעו שינויים לייעול הפעילות, על בסיס מכתב לעובדים שהעיתון קרא.\n\nזהו דיווח עיתונאי המבוסס על מכתב פנימי, לא הודעת חברה פומבית שנבדקה ישירות. אין בנוסח שנקרא תחזית לחיסכון כספי, עלות פיצויים או שינוי בהנחיות, ולכן לא מוצגים מספרים כאלה. אין להסיק שכבר הושלמו כל הפיטורים.",
+    "טקסט_en": "Not verified against a primary source\nNov 9, 2026 | Original reporting by Laura Cooper in The Wall Street Journal; an exact publication time was not found in the text read.\n\nWSJ reports that PepsiCo is eliminating roughly 1,000 jobs across its North American food and beverage division as it seeks to turn the business around. According to the outlet, North America CEO Ram Krishnan told employees on Monday that operational changes would be made over the coming week, in an employee letter viewed by WSJ.\n\nThis is journalistic reporting based on an internal letter, not a public company announcement checked directly. The text read provides no savings forecast, severance cost or guidance change, so none is stated here. It does not establish that all cuts have already been completed.",
+    "קישור": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-11-09-2026/card/pepsico-is-cutting-around-1-000-jobs-across-north-america-5rZJNkcu4ac56Sg8MkJZ?mod=Searchresults&pos=1&page=1",
+    "מקורות": [
+      {
+        "label": "WSJ: דיווח Laura Cooper על מכתב לעובדים - משני, ללא אימות ראשוני",
+        "label_en": "WSJ: Laura Cooper reporting on employee letter - secondary, no primary verification",
+        "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-11-09-2026/card/pepsico-is-cutting-around-1-000-jobs-across-north-america-5rZJNkcu4ac56Sg8MkJZ?mod=Searchresults&pos=1&page=1"
+      }
+    ],
+    "מזהה": "n-1129",
+    "תאריך": "2026-11-09 21:15",
+    "הועלה": "2026-11-09 21:15",
+    "category": "micro",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "6093fde004793528f58cc4d5263934e5e2c2a3ce2ca05b4e4c117b0e2a0aa574"
+      }
+    }
+  },
+  {
+    "כותרת": "Trimble (TRMB) משיקה את חומרת MP1087 ל-Earthworks; הפצה עולמית מתוכננת לסוף הרבעון הרביעי",
+    "כותרת_en": "Trimble (TRMB) introduces MP1087 Earthworks hardware; worldwide availability planned for late Q4",
+    "summary": "היחידה מאחדת מיקום ותקשורת ומוסיפה GNSS מדור Maxwell 8 עם הגנה משיבוש וזיוף אותות. שיפור זמינות של עד 15% בתנאים קשים הוא תוצאת בדיקות החברה, לא התחייבות לכל אתר.",
+    "summary_en": "The integrated positioning and communications unit adds Maxwell 8 GNSS with anti-jamming and anti-spoofing. Up to 15% better uptime in difficult conditions is a company test result, not a guarantee for every site.",
+    "טקסט": "9.11.2026, 20:40 בישראל (13:40 ET) | הודעת Trimble רשמית. קשור לפריט n-1124 מ-9.11.2026 20:58 על יכולות ה-AI של Trimble Connect. מה חדש: פלטפורמת חומרה נפרדת לבקרת מכונות, לא הרחבה שקטה של פריט התוכנה.\n\nבכנס Dimensions הציגה החברה את MP1087 עבור פלטפורמת בקרת השיפוע Earthworks. היחידה מאחדת רכיבי מיקום ותקשורת שקודם היו נפרדים, עם Wi-Fi, סלולר, רדיו UHF וקישוריות רשת, ותמיכה ב-Wi-Fi HaLow. היא כוללת GNSS מדור Maxwell 8 עם יכולות נגד שיבוש ונגד זיוף אותות.\n\nלפי בדיקות החברה, החומרה סיפקה שיפור של עד 15% בזמינות העבודה בתנאים מאתגרים. החברה מציינת גם תקשורת בין הצג ליחידה המהירה בערך פי עשרה וכוח עיבוד הגבוה בדרך כלל פי חמישה. אלו השוואות של Trimble, לא מבחן עצמאי או התחייבות לביצועים בכל מכונה וסביבה.\n\nהזמינות העולמית דרך רשת המפיצים מתוכננת לסוף הרבעון הרביעי של 2026. החברה מציינת שילוב גם במנויי Works ו-Works Plus. אין להציג זאת כזמינות מיידית בכל העולם; מחיר ועסקת לקוח לא פורסמו בהודעה.",
+    "טקסט_en": "Nov 9, 2026, 8:40 p.m. Israel time (1:40 p.m. ET) | Official Trimble announcement. Related to n-1124, Nov 9, 2026 at 8:58 p.m., on Trimble Connect AI capabilities. What is new: a separate machine-control hardware platform, not a silent expansion of the software item.\n\nAt Dimensions, Trimble introduced MP1087 for the Earthworks grade-control platform. The unit combines previously separate positioning and communications components, with Wi-Fi, cellular, UHF radio and network connectivity, including Wi-Fi HaLow support. It includes Maxwell 8 GNSS technology with anti-jamming and anti-spoofing capabilities.\n\nTrimble says its tests showed up to 15% improved uptime in challenging environments. It also cites approximately ten times faster display-to-unit communications and typically five times greater processing power. These are company comparisons, not independent tests or guaranteed performance for every machine and environment.\n\nWorldwide dealer-network availability is planned for late Q4 2026. Trimble also lists the unit as part of Works and Works Plus subscriptions. This should not be read as immediate worldwide availability. The release does not state a price or customer deal.",
+    "קישור": "https://www.prnewswire.com/news-releases/trimble-introduces-next-generation-trimble-earthworks-machine-control-hardware-for-simplified-installation-improved-performance-and-reliability-302932629.html",
+    "מקורות": [
+      {
+        "label": "Trimble: הודעת MP1087 דרך PRNewswire, 9.11.2026 - ראשוני",
+        "label_en": "Trimble: MP1087 release via PRNewswire, Nov 9, 2026 - primary",
+        "url": "https://www.prnewswire.com/news-releases/trimble-introduces-next-generation-trimble-earthworks-machine-control-hardware-for-simplified-installation-improved-performance-and-reliability-302932629.html"
+      }
+    ],
+    "מזהה": "n-1130",
+    "תאריך": "2026-11-09 21:15",
+    "הועלה": "2026-11-09 21:15",
+    "category": "micro",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "6e1f035708f0b4b1d4f8462baf4b9d5c83d7c0ee44010c423355512c4e824cbf"
+      }
+    }
   }
 ]
