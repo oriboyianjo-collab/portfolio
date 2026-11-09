@@ -27466,5 +27466,83 @@
         "source_hash": "d044ad68c652c54e32df4a13319caf918b73e71b91f9fe33674abf3d47f46db0"
       }
     }
+  },
+  {
+    "כותרת": "Lantheus (LNTH): הסכם למכירת פעילות ה-CDMO ומפעל Springfield ל-PharmaLogic; המחיר לא פורסם והעסקה טרם הושלמה",
+    "כותרת_en": "Lantheus (LNTH): agreement to sell CDMO business and Springfield facility to PharmaLogic; price undisclosed and closing pending",
+    "summary": "הודעת הרוכשת מאשרת הסכם מחייב, בכפוף לבדיקה רגולטורית ולתנאי סגירה מקובלים. נכלל הסכם אספקה ארוך טווח שלפיו Agilera תייצר lutetium Lu 177 dotatate עבור Lantheus; החברות יפעלו בנפרד עד הסגירה.",
+    "summary_en": "The buyer confirms a definitive agreement, subject to regulatory review and customary closing conditions. A long-term supply agreement provides for Agilera to manufacture lutetium Lu 177 dotatate for Lantheus; the parties remain independent until closing.",
+    "טקסט": "9.11.2026, 23:05 בישראל (16:05 ET) | הודעת PharmaLogic רשמית באמצעות PRNewswire.\n\nPharmaLogic הודיעה על הסכם מחייב לרכישת פעילות הפיתוח והייצור בחוזה (CDMO) של Lantheus ומתקן הייצור שלה ב-Springfield, ניו ג׳רזי. התנאים הכספיים לא נחשפו. זהו הסכם חתום, לא העברת בעלות שהושלמה.\n\nלפי הרוכשת, עם השלמת העסקה צוות המתקן יצטרף ל-Agilera, חטיבת ה-CDMO הטיפולית שלה. העסקה כוללת גם הסכם אספקה ארוך טווח שבמסגרתו Agilera תייצר lutetium Lu 177 dotatate עבור Lantheus. לא פורסמו בהודעה סכומי מינימום, היקפי אספקה, תקופת ההסכם המדויקת או תחזית כספית הנגזרת ממנו.\n\nההשלמה כפופה לבדיקה רגולטורית רלוונטית ולתנאי סגירה מקובלים. הצדדים ימשיכו לפעול בנפרד עד הסגירה. ההודעה אינה קובעת תאריך סגירה או טוענת שכל האישורים כבר התקבלו.\n\nהרוכשת מציגה את המתקן כהרחבת כושר הייצור הטיפולי בארה״ב וכחלק מפלטפורמה טרנס-אטלנטית. זו תכלית העסקה לפי החברה, לא תוספת כושר שכבר הושלמה או נתון חדש על הכנסות Lantheus. הפריט עוסק במכירת פעילות ובהמשכיות אספקה, לא בסיכום תוצאות כספיות.",
+    "טקסט_en": "Nov 9, 2026, 23:05 Israel time (16:05 ET) | Official PharmaLogic release via PRNewswire.\n\nPharmaLogic announced a definitive agreement to acquire the contract development and manufacturing organization (CDMO) business and Springfield, New Jersey manufacturing facility from Lantheus. Financial terms were not disclosed. This is a signed agreement, not a completed transfer of ownership.\n\nAccording to the buyer, the facility team will join Agilera, its therapeutic CDMO franchise, when the transaction closes. The transaction also includes a long-term supply agreement under which Agilera will manufacture lutetium Lu 177 dotatate for Lantheus. The release does not state minimum purchase amounts, supply volumes, the exact contract duration or a resulting financial forecast.\n\nClosing is subject to applicable regulatory review and customary closing conditions. The parties will continue operating independently until closing. No closing date or statement that all approvals have already been obtained is provided.\n\nThe buyer describes the facility as expanding US therapeutic manufacturing capacity within a transatlantic platform. This is the stated purpose of the transaction, not capacity already transferred or a new Lantheus revenue figure. This item concerns a business sale and supply continuity, not an earnings recap.",
+    "קישור": "https://www.prnewswire.com/news-releases/pharmalogic-to-acquire-lantheus-cdmo-business-and-springfield-new-jersey-manufacturing-facility-302933626.html",
+    "מקורות": [
+      {
+        "label": "PharmaLogic: הודעת הרוכשת הרשמית - הסכם מחייב ותנאי סגירה",
+        "label_en": "PharmaLogic: official buyer release - definitive agreement and closing conditions",
+        "url": "https://www.prnewswire.com/news-releases/pharmalogic-to-acquire-lantheus-cdmo-business-and-springfield-new-jersey-manufacturing-facility-302933626.html"
+      }
+    ],
+    "מזהה": "n-1139",
+    "תאריך": "2026-11-09 23:12",
+    "הועלה": "2026-11-09 23:12",
+    "category": "micro",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "760fb86b0b3a42c080dc7948b22ad0d5efffc9255e3bbc8078074f11e0493732"
+      }
+    }
+  },
+  {
+    "כותרת": "Rocket Lab (RKLB): חוזי Neutron ברבעון השלישי ל-8 משימות ביותר מ-515 מיליון דולר; מחיר בסיס עלה ל-70 מיליון דולר",
+    "כותרת_en": "Rocket Lab (RKLB): Q3 Neutron contracts cover eight missions worth over $515 million; base price rises to $70 million",
+    "summary": "סיכום חוזי שיגור תפעוליים, לא שמונה עסקאות שנחתמו היום: שלוש משימות ל-ICEYE, שתיים ל-Muon ואחת ל-Starcloud, לצד משימות Kepler וחיל החלל שכבר נכללו ברבעון. הבכורה מתוכננת ל-2027 וטרם התרחשה.",
+    "summary_en": "An operating launch-contract update, not eight deals signed today: three ICEYE missions, two Muon missions and one Starcloud mission, alongside Q3 Kepler and Space Force bookings. Debut is planned for 2027 and has not occurred.",
+    "טקסט": "9.11.2026, 23:06 בישראל (16:06 ET) | הודעת Rocket Lab רשמית.\n\nהחברה מסרה שברבעון השלישי נחתמו חוזי Neutron לשמונה משימות עבור חמישה מפעילי מערכי לוויינים, בשווי מצטבר העולה על 515 מיליון דולר. זהו היקף חוזים שנחתמו ברבעון, לא הכנסה שהוכרה, לא מזומן שנגבה ולא שמונה חוזים חדשים מהיום.\n\nהפירוט: ICEYE הזמינה שלושה שיגורים ייעודיים החל מסוף 2028; Muon Space הזמינה שני שיגורים, אחד ב-2029 ואחד ב-2030; Starcloud הזמינה שיגור ב-2029. הסכום הכולל כולל גם משימה ל-Kepler Communications שנחתמה ברבעון וכבר הוכרזה, ומשימה לחיל החלל האמריקאי בתוכנית SB-AMTI שנחתמה ברבעון.\n\nלפי החברה, צבר Neutron הגיע ל-16 משימות ומחיר הבסיס כעת 70 מיליון דולר לשיגור, לעומת 55 מיליון דולר קודם. מספר משימות בחבילת הרבעון נמכרו במחיר הבסיס הגבוה; אין להסיק שכל שמונה המשימות תומחרו כך או להכפיל את הצבר במחיר החדש לצורך שווי חוזים.\n\nטיסת הבכורה של Neutron מתוכננת ל-2027. זהו לוח זמנים עתידי של החברה, לא שיגור שבוצע או הוכחת מוכנות. הפריט עוסק בחוזים ובתמחור שיגורים, לא בתוצאות הרבעון הכספיות.",
+    "טקסט_en": "Nov 9, 2026, 23:06 Israel time (16:06 ET) | Official Rocket Lab release.\n\nThe company says Q3 Neutron contracts cover eight missions across five constellation operators, totaling over $515 million. This is contracted value signed during the quarter, not recognized revenue, cash collected or eight contracts newly signed today.\n\nICEYE booked three dedicated launches beginning in late 2028. Muon Space booked two launches, one in 2029 and one in 2030. Starcloud booked a 2029 launch. The aggregate also includes a Kepler Communications mission signed in Q3 and already announced, and a US Space Force SB-AMTI mission signed in Q3.\n\nThe company says the Neutron backlog has reached 16 missions and the base launch price is now $70 million, up from $55 million. Several quarterly bookings used the higher base price. This does not mean all eight were priced there, and the backlog must not be multiplied by the new price to derive contract value.\n\nNeutron debut is scheduled for 2027. That is a future company target, not a completed launch or proof of readiness. This item concerns launch contracts and pricing, not quarterly financial results.",
+    "קישור": "https://www.globenewswire.com/news-release/2026/11/09/3398984/0/en/rocket-lab-lands-over-515m-in-neutron-launch-deals-from-constellation-operators-in-q3.html",
+    "מזהה": "n-1140",
+    "תאריך": "2026-11-09 23:12",
+    "הועלה": "2026-11-09 23:12",
+    "category": "micro",
+    "מקורות": [
+      {
+        "label": "Rocket Lab: הודעת החברה על חוזי שיגור ותמחור",
+        "label_en": "Rocket Lab: company launch-contract and pricing release",
+        "url": "https://www.globenewswire.com/news-release/2026/11/09/3398984/0/en/rocket-lab-lands-over-515m-in-neutron-launch-deals-from-constellation-operators-in-q3.html"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "fdd26f82677267b3642012995bc7bab40a52b9465332bbbdff86fa3bc9352bda"
+      }
+    }
+  },
+  {
+    "כותרת": "Valley National (VLY): התקבלו האישורים הרגולטוריים לרכישת Providence; אישור בעלי המניות עדיין נדרש",
+    "כותרת_en": "Valley National (VLY): required regulatory approvals received for Providence acquisition; shareholder approval still pending",
+    "summary": "לפי Valley, OCC אישר את מיזוג הבנקים והפד של ניו יורק העניק פטור מאישור מוקדם למיזוג חברות ההחזקה. ההשלמה צפויה ב-1 בינואר 2027, בכפוף לאישור בעלי מניות Providence ולתנאים הנותרים; לא עסקה שהושלמה.",
+    "summary_en": "Valley says the OCC approved the bank merger and the New York Fed waived prior approval for the holding-company merger. Closing is expected January 1, 2027, subject to Providence shareholder approval and remaining conditions; the transaction is not completed.",
+    "טקסט": "9.11.2026, 23:05 בישראל (16:05 ET) | הודעת Valley National Bancorp רשמית.\n\nValley הודיעה שהתקבלו כל האישורים הרגולטוריים הנדרשים לעסקת רכישת Providence Financial. לפי ההודעה, OCC אישר את מיזוג Providence Bank & Trust לתוך Valley Bank, שיהיה הבנק השורד. הפדרל ריזרב של ניו יורק העניק פטור מדרישת אישור מוקדם למיזוג חברות ההחזקה; זה אינו אותו סוג החלטה כמו אישור מיזוג הבנקים.\n\nהחברה צופה שהמיזוג ייכנס לתוקף ב-1 בינואר 2027. ההשלמה עדיין כפופה לאישור בעלי המניות של Providence ולעמידה בתנאי הסגירה המקובלים שנותרו או לוויתור עליהם בהתאם להסכם. אין כאן הודעת השלמה, חתימה חדשה או קביעה שאישור בעלי המניות כבר התקבל.\n\nההתקדמות היא באבן הדרך הרגולטורית. ההודעה אינה מפרסמת מחיר עסקה חדש או משנה את התמורה, ואינה מבטיחה את מועד הסגירה. הטענות על אישורי הרשויות מקורן בהודעת החברה; החלטות הרשויות עצמן לא נקראו לצורך פריט זה.",
+    "טקסט_en": "Nov 9, 2026, 23:05 Israel time (16:05 ET) | Official Valley National Bancorp release.\n\nValley says all required regulatory approvals for the Providence Financial acquisition have been received. According to the release, the OCC approved the merger of Providence Bank & Trust into Valley Bank, which will survive. The Federal Reserve Bank of New York granted a waiver of prior approval for the holding-company merger, a different action from the bank-merger approval.\n\nThe company expects the merger to become effective January 1, 2027. Closing remains subject to Providence shareholder approval and the satisfaction or waiver of remaining customary closing conditions under the agreement. This is not a closing announcement, a newly signed agreement or confirmation that shareholders have already approved it.\n\nThe new milestone is regulatory clearance. The release gives no new transaction price or consideration change and does not guarantee the closing date. The regulatory claims are attributed to the company release; the regulators’ decisions were not read for this item.",
+    "קישור": "https://www.globenewswire.com/news-release/2026/11/09/3398969/0/en/valley-national-bancorp-announces-the-receipt-of-required-regulatory-approvals-for-the-acquisition-of-providence-financial-corporation.html",
+    "מזהה": "n-1141",
+    "תאריך": "2026-11-09 23:12",
+    "הועלה": "2026-11-09 23:12",
+    "category": "micro",
+    "מקורות": [
+      {
+        "label": "Valley: הודעת החברה על אישורים ותנאים נותרים",
+        "label_en": "Valley: company release on approvals and remaining conditions",
+        "url": "https://www.globenewswire.com/news-release/2026/11/09/3398969/0/en/valley-national-bancorp-announces-the-receipt-of-required-regulatory-approvals-for-the-acquisition-of-providence-financial-corporation.html"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "8be9973aed2f2612e04acd247559bcc24d1bd8c3af1effdec198472ae2ec9890"
+      }
+    }
   }
 ]
