@@ -26869,5 +26869,31 @@
         "source_hash": "473c986050254f641b4da9620c73ddf7ae190be429d85ea525b4583fc7806073"
       }
     }
+  },
+  {
+    "מזהה": "n-1117",
+    "category": "micro",
+    "תאריך": "2026-11-09 18:13",
+    "הועלה": "2026-11-09 18:13",
+    "כותרת": "NYT על NVIDIA ומגהספיד (לא מאומת מול מקור ראשוני): חקירת משרד המסחר נעצרה בשנה שעברה אחרי פנייה מהחברה; חקירה פלילית נמשכת ב-DOJ לפי הדיווח",
+    "כותרת_en": "NYT on NVIDIA and Megaspeed (not verified against a primary source): Commerce inquiry paused last year after company outreach; DOJ criminal probe reportedly continues",
+    "תקציר": "לא מאומת מול מקור ראשוני: ניו יורק טיימס מדווח היום על עצירת עבודת חוקרי משרד המסחר והעברת חקירת מגהספיד למשרד המשפטים בשנה שעברה, אחרי פנייה של היועץ המשפטי של NVIDIA שהזכיר אישור מבכיר במשרד. לפי הכתבה החקירה הפלילית נמשכת; אין כאן הודעה שהתיק נסגר, הוכחת התערבות פסולה או אירוע עצירה חדש מהיום.",
+    "תקציר_en": "Not verified against a primary source: today's New York Times report describes last year's pause of Commerce investigators' work and transfer of the Megaspeed case to Justice after NVIDIA's general counsel invoked a senior Commerce official's permission to make contact. The criminal probe reportedly continues; this is no case closure, proof of improper interference or new halt today.",
+    "טקסט": "לא מאומת מול מקור ראשוני.\n\nעדכון נפרד לפריטים n-0047, n-1043, n-1046 ו-n-1097. כתבת ניו יורק טיימס של אנה סוונסון ודבלין בארט מ-9.11.2026 בשעה 11:02 בניו יורק (18:02 בישראל) נקראה במלואה. מה חדש בדיווח: נסיבות עצירת עבודת משרד המסחר והעברת חקירת מגהספיד ל-DOJ בשנה שעברה, לא הודעה על עצירה חדשה היום.\n\nלפי הכתבה, באוגוסט 2025 פנה היועץ המשפטי של NVIDIA, טים טטר, לחוקרי משרד המסחר בנוגע לחקירת מגהספיד והזכיר אישור מג'ף קסלר, בכיר המשרד. חלק מהחוקרים חששו שהפנייה עלולה לפגוע בתקינות הטיפול בתיק. בהמשך ביקש משרד המשפטים ממשרד המסחר לעצור את עבודתו, והמשרד נענה; התיק הועבר למשרד המשפטים ולפי מקורות העיתון נמשכת שם חקירה פלילית.\n\nאין לפרש עצירה במשרד המסחר כסגירת התיק כולו. העיתון אומר שלא ברור אם גורמים נוספים תרמו להחלטה. לא הוצגו כאן מסמכי התכתובת המקוריים או קביעה משפטית שהחברה או קסלר פעלו שלא כדין. החשד להברחת שבבים לסין וטענות הריגול נותרו טענות חקירה ודיווח, לא הרשעות.\n\nהתגובות חשובות: גורם במשרד המסחר מסר לעיתון שקסלר לא הורה לעובדים למסור מידע ל-NVIDIA ולא הנחה אילו פגישות לקיים, ושהורה לטפל בתיק לפי הכללים. דובר המשרד אמר שהאכיפה נעשתה לפי הספר. NVIDIA מסרה שהיא מתייעצת עם הרשויות, מוסרת מידע ומבקשת הנחיות כדי לסייע לעצור מבריחים ולשרת לקוחות חוקיים. מגהספיד מסרה שהיא בודקת פנימית חשדות להסטת שבבים ושהצעותיה לשיתוף פעולה לא נענו. DOJ סירב להגיב על חקירות מתנהלות.\n\nהמקור שנקרא הוא דיווח עיתונאי, לרבות מקורות אנונימיים ותגובות מצוטטות; קריאתו באתר המקורי אינה הופכת את טענותיו למקור ממשלתי ראשוני. אין בפריט ציטוט מחיר מניה חדש.",
+    "טקסט_en": "Not verified against a primary source.\n\nSeparate update to n-0047, n-1043, n-1046 and n-1097. The New York Times article by Ana Swanson and Devlin Barrett, published Nov 9, 2026 at 11:02 New York time (18:02 Israel), was read in full. What is new in the report: the circumstances of last year's pause of Commerce work and transfer of the Megaspeed investigation to DOJ, not a new halt today.\n\nAccording to the article, in August 2025 NVIDIA general counsel Tim Teter contacted Commerce investigators about the Megaspeed inquiry and invoked permission from senior department official Jeff Kessler. Some investigators worried the contact could compromise the case. Justice later asked Commerce to pause its work, and Commerce complied; the case moved to Justice, where a criminal investigation continues according to the newspaper's sources.\n\nA Commerce pause must not be read as closure of the entire case. The article says it is unclear whether other factors contributed. The original email chain was not independently read here, and no legal finding of wrongdoing by NVIDIA or Kessler was established. Chip-smuggling suspicions and espionage allegations remain investigative and reported claims, not convictions.\n\nResponses matter: a Commerce official told the newspaper Kessler did not order staff to disclose information to NVIDIA or direct which meetings to take, and told them to handle the case by the book. A Commerce spokesman said enforcement followed the rules. NVIDIA said it consults officials, provides information and seeks guidance to help stop smugglers while serving lawful customers. Megaspeed said it is investigating diversion allegations internally and its cooperation offers went unanswered. DOJ declined to comment on continuing investigations.\n\nThe source read is journalism, including anonymous sources and quoted responses; reading it at its original site does not turn its allegations into a primary government source. This item includes no new stock-price quote.",
+    "קישור": "https://www.nytimes.com/2026/11/09/business/economy/nvidia-megaspeed-investigation-huang.html?searchResultPosition=1",
+    "מקורות": [
+      {
+        "label": "ניו יורק טיימס, אנה סוונסון ודבלין בארט, 9.11.2026 11:02ET; דיווח משני שנקרא במלואו",
+        "label_en": "New York Times, Ana Swanson and Devlin Barrett, Nov 9, 2026 11:02 ET; secondary report read in full",
+        "url": "https://www.nytimes.com/2026/11/09/business/economy/nvidia-megaspeed-investigation-huang.html?searchResultPosition=1"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "abb32084a02f2c24841d8ac135fd0bcc74904dd87475d08ef9649a3964bc5504"
+      }
+    }
   }
 ]
