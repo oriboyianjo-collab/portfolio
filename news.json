@@ -26952,5 +26952,31 @@
         "source_hash": "62773044d204fcabad9f4beed27e4d73fc7cf1ef9cd121ac9078580480a0f547"
       }
     }
+  },
+  {
+    "מזהה": "n-1120",
+    "category": "macro",
+    "תאריך": "2026-11-09 19:30",
+    "הועלה": "2026-11-09 19:30",
+    "כותרת": "ביילי: השקעות AI תומכות בחוסן הכלכלה הבריטית, אך קיים סיכון בועה ויציבות פיננסית",
+    "כותרת_en": "Bailey: AI investment supports UK resilience, but bubble and financial stability risks remain",
+    "תקציר": "בנוסח דברי הפתיחה הרשמי בציריך, נגיד בנק אנגליה מצביע על תחילתו האפשרית של זעזוע היצע חיובי מ-AI, לצד סיכון לתמחור יתר, עיכוב בתשואות ואובדן אמון. אין כאן קביעה שהבועה קיימת או התחייבות למסלול ריבית.",
+    "תקציר_en": "In his official Zurich opening remarks, the Bank of England governor sees signs of an emerging positive supply shock from AI, alongside risks of overvaluation, delayed returns and loss of trust. He does not establish that a bubble exists or commit to a rate path.",
+    "טקסט": "אומת מול הנוסח הרשמי של בנק אנגליה מ-9.11.2026: Central Bank independence in today’s world, דברי פתיחה של אנדרו ביילי בסדרת הרצאות SIAF באוניברסיטת ציריך. הטקסט נקרא במלואו באתר הבנק; זו אינה הסקה מכותרות הערוץ או אישור עצמאי למסירת כל המשפטים בעל פה.\n\nביילי אומר שהפעילות בבריטניה עמידה מהצפוי, ושחלק מכך נובע מהשקעות בבינה מלאכותית, בפרט בשירותים עסקיים. הוא מזהה סימנים ראשונים לזעזוע היצע חיובי אפשרי מ-AI ומההשקעה הנלווית, ורואה פוטנציאל לטכנולוגיה דיגיטלית ולרובוטיקה להעלות פריון וצמיחה בת-קיימא. אין בדבריו אומדן מספרי חדש לפריון או עדכון תחזית הצמיחה של הבנק.\n\nלצד האופטימיות הוא מדגיש סיכוני יציבות פיננסית מתמחור נכסי AI. הוא מבהיר שזיהוי בועות אינו מדע מדויק, ולא קובע שקיימת בועה מוכחת. הוא מפרט אפשרויות: השוק עלול להעריך ביתר תשואות עתידיות; התשואות עשויות להגיע מאוחר מהצפוי; לא כל החברות יתבררו כמנצחות למרות התמחור; ופגיעה באמון הציבור עלולה להשפיע על שווי הנכסים. אין זו תחזית שמועד התפוצצות בועה ידוע.\n\nבנוסף הוא קורא לבדיקות מודלים נרחבות לפני ואחרי השקה, לדיווח ומעקב טובים יותר אחר תקריות ולהתערבות אנושית מובטחת, ומצביע על סיכוני סייבר מוגברים. אלו עמדות והצעות בנאום, לא כלל רגולטורי חדש שנכנס לתוקף.\n\nהמסר הרחב הוא שעצמאות בנקים מרכזיים ואחריותם לציבור חשובות בעולם של זעזועים, ושיציבות מחירים ויציבות פיננסית קשורות זו בזו. אין בטקסט החלטת ריבית חדשה או התחייבות למועד העלאה או הפחתה.",
+    "טקסט_en": "Verified against the Bank of England's official Nov 9, 2026 text: Central Bank independence in today’s world, Andrew Bailey's opening remarks at the SIAF lecture series at Zurich University. The full text was read on the Bank's site; this is not an inference from flash headlines or independent confirmation that every sentence was delivered orally.\n\nBailey says UK activity has been more resilient than expected, partly because of AI investment, particularly in business services. He sees early signs of an emerging positive supply shock from AI and the associated investment, and potential for digital technology and robotics to raise productivity and sustainable growth. He provides no new numerical productivity estimate or revised Bank growth forecast.\n\nAlongside that optimism, he stresses financial stability risks around AI asset valuations. He says bubble spotting is imprecise, not that a bubble has been proved to exist. He outlines possible risks: markets may overvalue future returns; returns may arrive later than expected; not every company will be a winner despite its valuation; and lost public trust could affect asset prices. This is not a prediction of a known bubble-burst date.\n\nHe also calls for more extensive model testing before and after release, better incident reporting and monitoring, and assured human intervention, while noting increased cyber risks. These are views and proposals in a speech, not newly effective regulatory rules.\n\nHis broader message is that independent, publicly accountable central banks matter in a shock-prone world, with monetary and financial stability connected. The text contains no new rate decision or commitment to a date for a hike or cut.",
+    "קישור": "https://www.bankofengland.co.uk/speech/2026/november/andrew-bailey-speech-at-swiss-institute-international-studies-lecture-series",
+    "מקורות": [
+      {
+        "label": "בנק אנגליה, הנוסח הרשמי המלא של דברי ביילי בציריך, 9.11.2026",
+        "label_en": "Bank of England, full official text of Bailey’s Zurich remarks, Nov 9, 2026",
+        "url": "https://www.bankofengland.co.uk/speech/2026/november/andrew-bailey-speech-at-swiss-institute-international-studies-lecture-series"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "84580119a47f187218764fa8194f393ace689608ed1341c55cbe9577a7cad7e8"
+      }
+    }
   }
 ]
