@@ -26625,5 +26625,31 @@
         "source_hash": "85b9fe1891105492a6b1ee496ce3c37b8757dbf0f6a8f232618f0f83992e53fa"
       }
     }
+  },
+  {
+    "מזהה": "n-1108",
+    "כותרת": "השלמת סיקור, 7.11.2026: Berkshire Hathaway (BRK.B) רכשה מניות עצמה בכ-9.6 מיליארד דולר ברבעון השלישי; כ-14.4 מיליארד דולר מתחילת השנה",
+    "כותרת_en": "Catch-up, Nov 7, 2026: Berkshire Hathaway (BRK.B) repurchased about $9.6 billion of its shares in Q3; about $14.4 billion year to date",
+    "summary": "פרסום המקור: 7.11.2026. השלמת סיקור, לא אירוע חדש: בהודעת החברה דווח על רכישה חוזרת של מניות בכ-9.6 מיליארד דולר ברבעון השלישי של 2026, וכ-14.4 מיליארד דולר בתשעת החודשים הראשונים. אלו רכישות שבוצעו, לא תוכנית חדשה או הרשאה עתידית.",
+    "summary_en": "Source published Nov 7, 2026. Catch-up coverage, not a new event: the company reported about $9.6 billion of share repurchases in Q3 2026 and about $14.4 billion in the first nine months. These are completed repurchases, not a new program or future authorization.",
+    "טקסט": "פרסום המקור: 7.11.2026. הפריט מתפרסם כהשלמת סיקור, לא כאירוע חדש.\n\nהמידע אומת ישירות בהודעת Berkshire Hathaway מ-7.11.2026: החברה רכשה כ-9.6 מיליארד דולר במניות אוצר ברבעון השלישי של 2026, והסכום המצטבר בתשעת החודשים הראשונים הגיע לכ-14.4 מיליארד דולר. נכון ל-30.9.2026 היו במחזור 1,418,900 מניות שוות-ערך מסוג A.\n\nהמשמעות: מדובר בשימוש שכבר נעשה בהון לרכישה חוזרת של מניות, ולא בהכרזה היום על הרשאה חדשה או התחייבות לרכישות עתידיות. סכומי הרכישה מוצגים כנתונים מקורבים, כפי שנמסרו בחברה.\n\nהנתון פורסם כחלק מהודעת תוצאות הרבעון ב-7.11.2026. לא מוצגת כאן השוואה לרבעון קודם, שלא נבדקה מול המקור.",
+    "טקסט_en": "Source published Nov 7, 2026. This item is catch-up coverage, not a new event.\n\nVerified directly in Berkshire Hathaway's Nov 7, 2026 release: the company acquired approximately $9.6 billion in treasury shares during Q3 2026, bringing the first-nine-months total to about $14.4 billion. At Sept 30, 2026, there were 1,418,900 Class A equivalent shares outstanding.\n\nThis is capital already deployed on share repurchases, not an announcement today of a new authorization or a commitment to future purchases. The repurchase amounts are approximate, as reported by the company.\n\nThe figures were published as part of the Nov 7, 2026 quarterly results release. No comparison with the prior quarter is made here because it was not checked against the primary source.",
+    "תאריך": "2026-11-09 15:50",
+    "הועלה": "2026-11-09 15:50",
+    "category": "micro",
+    "קישור": "https://www.berkshirehathaway.com/news/nov0726.pdf",
+    "מקורות": [
+      {
+        "label": "Berkshire Hathaway, הודעה רשמית מ-7.11.2026",
+        "label_en": "Berkshire Hathaway official release, Nov 7, 2026",
+        "url": "https://www.berkshirehathaway.com/news/nov0726.pdf"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "1871a16901977fa9f85706835f4645f7ae25efe2de1f00fc8b0a425457e3847e"
+      }
+    }
   }
 ]
