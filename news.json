@@ -25105,5 +25105,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "מוסאלם (הפד של סנט לואיס): האינפלציה העודפת מונעת גם מהלמי היצע במזרח התיכון וגם מביקוש סביב הבנייה ל-AI; \"אי אפשר לחכות\" לתשואות הפרודוקטיביות",
+    "category": "macro",
+    "קישור": "https://news.bloomberglaw.com/banking-law/feds-musalem-says-high-inflation-fueled-by-supply-shocks-and-ai",
+    "מקורות": [
+      {
+        "label": "Bloomberg Law, 6.11.2026",
+        "url": "https://news.bloomberglaw.com/banking-law/feds-musalem-says-high-inflation-fueled-by-supply-shocks-and-ai",
+        "label_en": "Bloomberg Law, Nov 6, 2026"
+      },
+      {
+        "label": "TradingView, שאלות ותשובות, 6.11.2026",
+        "url": "https://tradingview.com/news/macenews:2432a2465094b:0",
+        "label_en": "TradingView, Q&A, Nov 6, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 6.11.2026 (Bloomberg Law; שאלות ותשובות לפי TradingView).\n\nנשיא הבנק הפדרלי של סנט לואיס, אלברטו מוסאלם, אמר ביום שישי באירוע בסנט לואיס כי \"כשאני מסתכל על האינפלציה, האינפלציה העודפת כיום, היא מגיעה גם מהלמי היצע שליליים הקשורים למזרח התיכון וגם מכוחות ביקוש הקשורים לבנייה סביב ה-AI\". לדבריו, על קובעי המדיניות להיות מודעים לסיכון שבניית התשתיות לבינה מלאכותית תרמה לאינפלציה גבוהה יותר בטווח הקרוב.\n\nמוסאלם אמר שהוא \"אופטימיסט\" לגבי AI ומצפה שהטכנולוגיה תגביר את הפרודוקטיביות, אך הדגיש כי קובעי המדיניות \"לא יכולים לחכות שהיתרונות האלה יתממשו\". בשאלות ותשובות, לפי TradingView, אמר שאם ציפיות האינפלציה יעלו, גם תשואות האג\"ח יעלו.",
+    "תקציר": "מוסאלם (הפד של סנט לואיס) באירוע 6.11: האינפלציה העודפת מונעת מהלמי היצע במזרח התיכון ומביקוש סביב בניית תשתיות AI, שעשויה לתרום לאינפלציה גבוהה יותר בטווח הקרוב; \"אופטימיסט\" לגבי הפרודוקטיביות אבל אי אפשר לחכות לה.",
+    "מזהה": "n-1057",
+    "תאריך": "2026-11-09 04:03",
+    "הועלה": "2026-11-09 04:03",
+    "כותרת_en": "St. Louis Fed's Musalem: excess inflation is coming from both Middle East supply shocks and AI-build demand; policymakers \"cannot wait\" for productivity gains",
+    "טקסט_en": "Source publication: Nov 6, 2026 (Bloomberg Law; Q&A per TradingView).\n\nFederal Reserve Bank of St. Louis President Alberto Musalem said Friday at an event in St. Louis that \"when I look at inflation, excess inflation today, it's coming both from negative supply shocks related to the Middle East and demand forces coming related to the AI build.\" He said officials need to be mindful of the risk that the artificial-intelligence infrastructure build-out will contribute to higher inflation in the near term.\n\nMusalem said he is an \"optimist\" on AI and expects it will boost productivity, but stressed that policymakers \"cannot wait for those benefits to materialize.\" In the Q&A, per TradingView, he said that should inflation expectations rise, bond yields would rise too.",
+    "תקציר_en": "St. Louis Fed's Musalem at a Nov 6 event: excess inflation is driven by Middle East supply shocks and demand from the AI infrastructure build, which may add to near-term inflation; an AI \"optimist\" on productivity, but policymakers cannot wait for the benefits.",
+    "_translation": {
+      "en": {
+        "source_hash": "198844d22595b2556eda046aadcd39e5878713e11a471f89102ed57fdd8f20fa",
+        "schema_version": 1
+      }
+    }
   }
 ]
