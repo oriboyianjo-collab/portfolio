@@ -26067,5 +26067,93 @@
         "source_hash": "8e242e4afd9caa726a91dbdb78c07f454cb48844954b8ad62fa8327139e449d7"
       }
     }
+  },
+  {
+    "מזהה": "n-1090",
+    "כותרת": "עדכון: ההארכה הסינית של השהיית אמצעי בקרת היצוא נגד 16 ישויות אמריקאיות אומתה מול מקור ראשוני (MOFCOM)",
+    "כותרת_en": "Update: China's extension of the export-control suspension against 16 US entities verified against the primary source (MOFCOM)",
+    "summary": "ה-Q&A של דובר MOFCOM באתר המשרד (9.11.2026, 16:00 שעון סין) נקרא ישירות ומאשש את הדיווח המשני: ההשהיה של אמצעי הודעה 21/2025 נגד 16 ישויות אמריקאיות תימשך חודשיים מ-10.11.2026. סימון אי-האימות בפריט המקורי מתייחס למועד פרסומו; רכיב זה מאומת כעת.",
+    "summary_en": "The MOFCOM spokesperson Q&A on the ministry site (Nov 9, 2026, 16:00 China time) has now been read directly and confirms the secondary report: the suspension of notice 21/2025 measures against 16 US entities continues for two months from Nov 10, 2026. The unverified label on the original item reflects its publication time; this component is now verified.",
+    "טקסט": "9.11.2026 | עדכון לאומת מול מקור ראשוני, 10:47 שעון ישראל\n\nעדכון: המקור הראשוני - שאלה ותשובה של דובר משרד המסחר הסיני (MOFCOM) באתר המשרד הרשמי, מתאריך 9.11.2026 16:00 שעון סין (10:00 שעון ישראל) - נקרא כעת ישירות, ומאשש את מהלומד הדיווח המשני: לפי הסכמת סבב שמונה של השיחות הכלכליות בין סין לארה\"ב, סין תמשיך מ-10.11.2026 להשהות למשך חודשיים את האמצעים שלפי הודעה 21/2025 (4.4.2025) - איסור יצוא פריטים דו-שימושיים ל-16 ישויות אמריקאיות. יצואנים יכולים לבקש רישיון פרטני מ-MOFCOM, שייבחן בהתאם לחוק.\n\nהערת דיוק: נוסח ה-Q&A אינו מציין תאריך סיום מפורש (\"חודשיים מ-10.11.2026\"); לפי רויטרס, ההשהיות בתוקף עד 10.1.2027.\n\nפריט קשור: הפריט המקורי (היום 10:16) פורסם עם סימון \"לא מאומת מול מקור ראשוני\"; סימון זה נותר בפריט ההיסטורי, ורכיב זה מאומת החל מפרסום זה.",
+    "טקסט_en": "Nov 9, 2026 | Verification update, 10:47 a.m. Israel time\n\nUpdate: The primary source - a MOFCOM spokesperson Q&A on the ministry's official site, dated Nov 9, 2026, 16:00 China time (10:00 a.m. Israel) - has now been read directly and confirms the substance of the secondary report: under the consensus of the eighth round of China-US economic and trade consultations, China will continue from Nov 10, 2026 to suspend for two months the measures under notice 21/2025 (Apr 4, 2025) - a ban on dual-use exports to 16 US entities. Exporters may apply to MOFCOM for individual licenses, reviewed according to law.\n\nPrecision note: the Q&A text does not state an explicit end date (\"two months from Nov 10, 2026\"); according to Reuters, the suspensions run through Jan 10, 2027.\n\nRelated item: the original item (today, 10:16) was published with a \"not verified against a primary source\" label; that label stays on the historical item, and this component is verified as of this update.",
+    "תאריך": "2026-11-09 10:47",
+    "הועלה": "2026-11-09 10:47",
+    "category": "macro",
+    "קישור": "http://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_5baeb69ccc0f44cb83dea8ac587dd327.html",
+    "מקורות": [
+      {
+        "label": "MOFCOM - Q&A של דובר המשרד, 9.11.2026 16:00 שעון סין; מקור ראשוני, נקרא ישירות",
+        "label_en": "MOFCOM - spokesperson Q&A, Nov 9, 2026 16:00 China time; primary source, read directly",
+        "url": "http://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_5baeb69ccc0f44cb83dea8ac587dd327.html"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "01c4fe09310e03769c0f25eca1fcf20778cc1ac59b09332199f3b6b82888d16c"
+      }
+    }
+  },
+  {
+    "מזהה": "n-1091",
+    "כותרת": "סין מאריכה השהיות נוספות נגד ארה\"ב עד 10.1.2027: אמצעים נגד 11 חברות ברשימת הישויות הבלתי-אמינות וחבילת בקרות יצוא של מינרלים קריטיים",
+    "כותרת_en": "China extends further suspensions against the US through Jan 10, 2027: measures against 11 unreliable-entity-list firms and the critical-minerals export-control package",
+    "summary": "במסגרת הסכמת סבב שמונה של השיחות הכלכליות: השהיית האמצעים נגד 11 ישויות אמריקאיות ברשימת הבלתי-אמינות מוארכת בחודשיים מ-10.11 (אומת מול Q&A ראשוני של MOFCOM), והשהיית הודעות בקרת היצוא 55-58 ו-61-62/2025 - הכוללות בקרות אדמות נדירות - מוארכת מ-11.11.2026 עד 10.1.2027 (הודעה 58/2026 המשותפת).",
+    "summary_en": "Under the eighth-round trade-consultations consensus: the suspension of measures against 11 US unreliable-entity-list firms is extended two months from Nov 10 (verified against the primary MOFCOM Q&A), and the suspension of export-control announcements 55-58 and 61-62 of 2025 - including rare-earth controls - runs from Nov 11, 2026 through Jan 10, 2027 (joint announcement 58/2026).",
+    "טקסט": "9.11.2026 | מקורות ראשוניים ומשניים כמפורט, 10:48 שעון ישראל\n\nבהמשך להארכות שפורסמו היום, סין הודיעה על שני רכיבי השהיה נוספים במסגרת הסכמת סבב שמונה של השיחות הכלכליות בין סין לארה\"ב:\n\n1. רשימת הישויות הבלתי-אמינות (אומת מול מקור ראשוני): לפי Q&A של דובר MOFCOM באתר המשרד (9.11.2026, 16:00 שעון סין, נקרא ישירות), מ-10.11.2026 תמשיך סין להשהות חודשיים את האמצעים נגד 11 ישויות אמריקאיות שנכנסו לרשימה ב-4.4.2025 (הודעה 7/2025 של מנגנון הרשימה). חברות סיניות יוכלו לבקש אישור לסחור עם הישויות, והמנגנון יאשר בקשות מתאימות.\n\n2. מינרלים קריטיים ובקרות יצוא (נוסח רשמי בשידור מילולי): הודעה 58/2026 המשותפת ל-MOFCOM ולמכס הסיני (9.11.2026) מאריכה את השהיית הודעות 55-58/2025 (המשותפות) ו-61-62/2025 (MOFCOM) מ-11.11.2026 ועד 10.1.2027. לפי הדיווח המלווה, ההודעות הנוגעות לאדמות נדירות הן 56, 57, 61 ו-62; היתר (55, 58) נוגעות לתחומי בקרה נוספים. נוסח ההודעה פורסם במלואו באתר MySteel בציטוט מ-MOFCOM; העמוד המקורי באתר המשרד לא אותר לקריאה ישירה, ולכן רכיב זה מסומן כנוסח רשמי שלא נקרא בעמוד המקור.\n\nרויטרס (בשידור Devdiscourse, 13:59 שעון הודו = 10:29 שעון ישראל) מאששת ששלוש החבילות - 11 הישויות, 16 הישויות ברשימת בקרת היצוא והמינרלים הקריטיים - מושהות עד 10.1.2027.\n\nפריטים קשורים: הארכת התעריף המוסף (24% מושהה, 10% נשמר) - היום 04:41; אגרות הנמל - היום 05:54 ותיקון 05:57; 16 הישויות ברשימת בקרת היצוא - היום 10:16, אומת מול מקור ראשוני בעדכון 10:47.",
+    "טקסט_en": "Nov 9, 2026 | Primary and secondary sources as detailed, 10:48 a.m. Israel time\n\nFollowing the extensions published today, China announced two further suspension components under the consensus of the eighth round of China-US economic and trade consultations:\n\n1. Unreliable entity list (verified against the primary source): per a MOFCOM spokesperson Q&A on the ministry site (Nov 9, 2026, 16:00 China time, read directly), from Nov 10, 2026 China will continue suspending for two months the measures against 11 US entities added to the list on Apr 4, 2025 (list-mechanism announcement 7/2025). Chinese companies may apply for approval to transact with these entities, and qualifying applications will be approved.\n\n2. Critical minerals and export controls (official text via verbatim relay): MOFCOM-China Customs joint announcement 58/2026 (Nov 9, 2026) extends the suspension of joint announcements 55-58/2025 and MOFCOM announcements 61-62/2025 from Nov 11, 2026 through Jan 10, 2027. Per the accompanying report, the rare-earth-related announcements are 56, 57, 61 and 62; the rest (55, 58) cover other controlled areas. The announcement text was published in full by MySteel quoting MOFCOM; the original page on the ministry site was not located for direct reading, so this component is marked as official text not read on the source page.\n\nReuters (via Devdiscourse, 1:59 p.m. India = 10:29 a.m. Israel) confirms all three packages - the 11 entities, the 16 export-control-list entities and the critical minerals - are suspended through Jan 10, 2027.\n\nRelated items: the additional-tariff extension (24% suspended, 10% kept) - today 04:41; port fees - today 05:54 and correction 05:57; the 16 export-control entities - today 10:16, verified against the primary source in the 10:47 update.",
+    "תאריך": "2026-11-09 10:48",
+    "הועלה": "2026-11-09 10:48",
+    "category": "macro",
+    "קישור": "http://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_137cb86f6deb442c963c906c2ca97e79.html",
+    "מקורות": [
+      {
+        "label": "MOFCOM - Q&A של דובר המשרד (רשימת הבלתי-אמינות), 9.11.2026 16:00 שעון סין; מקור ראשוני, נקרא ישירות",
+        "label_en": "MOFCOM - spokesperson Q&A (unreliable entity list), Nov 9, 2026 16:00 China time; primary source, read directly",
+        "url": "http://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_137cb86f6deb442c963c906c2ca97e79.html"
+      },
+      {
+        "label": "MySteel - נוסח מילולי של הודעה 58/2026 המשותפת ל-MOFCOM ולמכס, 9.11.2026; עמוד המקור לא אותר",
+        "label_en": "MySteel - verbatim text of MOFCOM-Customs joint announcement 58/2026, Nov 9, 2026; original page not located",
+        "url": "https://news.mysteel.com/a/26110916/A55BF26D6AF39CA9.html"
+      },
+      {
+        "label": "Reuters בשידור Devdiscourse, 9.11.2026 13:59 שעון הודו; משני, חוט הסוכנות לא נקרא במקורו",
+        "label_en": "Reuters via Devdiscourse, Nov 9, 2026 1:59 p.m. India; secondary, wire not read at origin",
+        "url": "https://www.devdiscourse.com/article/international/4003803-china-extends-suspensions-on-some-critical-minerals-curbs-measures-against-some-us-entities-for-two-months"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "cc7ae2ce17b251613ab8a3437bc202143ff41dc0dbb517406961d567f3a78920"
+      }
+    }
+  },
+  {
+    "מזהה": "n-1092",
+    "כותרת": "TeraWulf (WULF) הגישה עתירה נגד העיירה לאנסינג בטענה להפרת חוקי רשומות וישיבות פתוחות; הצעת איסור מרכזי נתונים תועלה לשימוע ב-17.11 (לא מאומת מול מקור ראשוני)",
+    "כותרת_en": "TeraWulf (WULF) filed a court petition against the Town of Lansing over records and open-meetings claims; proposed data-center ban goes to a Nov 17 hearing (not verified against a primary source)",
+    "summary": "לא מאומת מול מקור ראשוני: חברת הבת Lake Hawkeye LLC של TeraWulf הגישה ב-3.11.2026 עתירת Article 78 נגד העיירה לאנסינג בטענה לטיפול לקוי בבקשות FOIL ולהפרת חוק הישיבות הפתוחות. האיסור המוצע על מרכזי נתונים ומכרות קריפטו טרם אומץ; שימוע ציבורי ייערך ב-17.11.2026.",
+    "summary_en": "Not verified against a primary source: TeraWulf subsidiary Lake Hawkeye LLC filed an Article 78 petition on Nov 3, 2026 against the Town of Lansing over alleged FOIL mishandling and Open Meetings Law violations. The proposed ban on data centers and crypto mines has not been adopted; a public hearing is set for Nov 17, 2026.",
+    "טקסט": "9.11.2026 | FingerLakes1 (03:30, אזור זמן לא צוין) בשידור The Ithaca Voice; לא מאומת מול מקור ראשוני - כתבת בית המשפט לא נקראה\n\nTeraWulf הגישה, דרך חברת הבת Lake Hawkeye LLC, עתירת Article 78 לבית המשפט העליון המחוזי של מחוז Tompkins ב-3.11.2026 (יום ג'), בטענה שהעיירה לאנסינג, ניו יורק, לא השיבה כנדרש בחוק לשתי בקשות רשומות לפחות (FOIL) ושתקשורת בין חברי המועצה ברשימת דיוור פרטית הפרה את חוק הישיבות הפתוחות של המדינה. העתירה מבקשת ביקורת שיפוטית; הטענות טרם הוכחו ואינן קובעות שהופרו חוקים. סגן נשיא לאסטרטגיה קרי לנגלה אמרה שהחברה מיצתה את ההליך המינהלי לפני העתירה; המפקחת רות' גרוף דחתה בקשת תגובה.\n\nרקע: הפרויקט - הקמת מרכז הנתונים Lake Hawkeye באתר תחנת הכוח הפחמית Cayuga לשעבר - כבר נתון בעתירה נפרדת של ארגוני הסביבה FLX Strong ו-Cayuga Lake Environmental Action Now מינואר, נגד פרשנות וועדת הזונינג מדצמבר 2025 שסיווגה את הפרויקט כ\"עיבוד כללי\". בעצמו, TeraWulf איימה בעבר בתביעה אם ייאסר הפרויקט; במכתב לתושבים מ-25.10 טען היו\"ר והמנכ\"ל פול פרייגר שהחברה השקיעה משאבים ניכרים בכפוף לכללים הקיימים וראויה להערכה לגופה.\n\nמה קדימה: מועצת העיירה תקיים ב-17.11.2026 ב-18:30 שעון מקומי ישיבה מיוחדת לשימוע ציבורי על חוק מקומי שיוציא מרכזי נתונים ומכרות קריפטו מרשימת השימושים המותרים. האיסור טרם אומץ - מדובר בהצעה בשלב שימוע.\n\nפריט קשור: הסכם תמיכת האשראי של Google לחוזי Anthropic של TeraWulf (4.11.2026).",
+    "טקסט_en": "Nov 9, 2026 | FingerLakes1 (3:30 a.m., timezone unstated) relaying The Ithaca Voice; not verified against a primary source - the court filing was not read\n\nTeraWulf, through its Lake Hawkeye LLC subsidiary, filed an Article 78 petition in Tompkins County Supreme Court on Tuesday, Nov 3, 2026, alleging the Town of Lansing, New York failed to respond as legally required to at least two Freedom of Information Law requests and that council communications over a private email listserv violated the state Open Meetings Law. The petition seeks judicial review; the allegations are unproven and do not establish that laws were broken. Strategy chief Kerri Langlais said the company exhausted the administrative process first; Supervisor Ruth Groff declined to comment.\n\nBackground: the project - the Lake Hawkeye data center at the former Cayuga coal plant site - already faces a separate January petition by environmental groups FLX Strong and Cayuga Lake Environmental Action Now against the zoning board's December 2025 interpretation classifying the project as \"general processing\". TeraWulf has itself threatened litigation if the project is banned; in an Oct 25 letter to residents, Chairman and CEO Paul Prager argued the company invested substantial resources under existing rules and deserves evaluation on the merits.\n\nWhat's next: the Town Board holds a special meeting on Nov 17, 2026 at 6:30 p.m. local time for public comment on a local law that would remove data centers and cryptocurrency mines from permitted uses. The ban has not been adopted - this is a proposal at the hearing stage.\n\nRelated item: Google's credit-support agreement for TeraWulf's Anthropic contracts (Nov 4, 2026).",
+    "תאריך": "2026-11-09 10:49",
+    "הועלה": "2026-11-09 10:49",
+    "category": "micro",
+    "קישור": "https://www.fingerlakes1.com/2026/11/09/terawulf-takes-lansing-to-court-over-records-requests-as-data-center-ban-advances/",
+    "מקורות": [
+      {
+        "label": "FingerLakes1, 9.11.2026 03:30 (אזור זמן לא צוין), בשידור The Ithaca Voice; משני מקומי, כתבת בית המשפט לא נקראה",
+        "label_en": "FingerLakes1, Nov 9, 2026 3:30 a.m. (timezone unstated), relaying The Ithaca Voice; local secondary, court filing not read",
+        "url": "https://www.fingerlakes1.com/2026/11/09/terawulf-takes-lansing-to-court-over-records-requests-as-data-center-ban-advances/"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "e9b396989c53b79745c2752b5891bd9e695935cf901d19eafce8aa0e1ab838f9"
+      }
+    }
   }
 ]
