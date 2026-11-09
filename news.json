@@ -27113,5 +27113,31 @@
         "source_hash": "ef36a69ca0fa51d5dcb4b2fe373352dc2cd54d73bed17cfbb8ead8dd2cca8189"
       }
     }
+  },
+  {
+    "מזהה": "n-1126",
+    "כותרת": "בנק צרפת צופה צמיחה מתונה ברבעון הרביעי, אך מדגיש אי-ודאות רבה; התעשייה והשירותים התרחבו באוקטובר",
+    "כותרת_en": "Bank of France expects moderate Q4 growth but stresses great uncertainty; industry and services expanded in October",
+    "summary": "הסקר הרשמי בקרב כ-8,500 חברות מצביע על שיפור בתעשייה ובשירותים באוקטובר ויציבות יחסית בבנייה. הבנק צופה צמיחת תמ״ג מתונה ברבעון הרביעי בלי לפרסם אומדן מספרי; זו הערכה, לא נתון תמ״ג שכבר נמדד.",
+    "summary_en": "The official survey of about 8,500 firms shows October improvement in industry and services and little change in construction. The bank expects moderate Q4 GDP growth without giving a numerical estimate; this is an assessment, not a measured GDP result.",
+    "טקסט": "9.11.2026 | הסקר החודשי הרשמי של Banque de France לתחילת נובמבר; החברות והמוסדות נשאלו בין 28.10 ל-4.11.\n\nעל בסיס תשובות של כ-8,500 חברות ומדדים נוספים, הבנק מעריך שהתמ״ג יצמח במתינות ברבעון הרביעי. הוא מדגיש שההערכה מוקפת אי-ודאות רבה. לא ניתן בהודעה אחוז צמיחה רבעוני, ואין כאן תוצאה רשמית של חשבונות לאומיים או קביעה שהמשק נמנע ממיתון.\n\nבאוקטובר הפעילות עלתה בתעשייה ובשירותים העסקיים וכמעט לא השתנתה בבנייה. בענפי התעשייה הנתמכים בביטחון ובהקמת מרכזי נתונים נרשמה האצה, בעוד הרכב וענפי ייצור אחרים נסוגו. צבר ההזמנות השתפר באופן לא אחיד: חזק במיוחד בתעופה ובמחשבים, אלקטרוניקה ואופטיקה, וחלש בכמה ענפים אחרים. בבנייה, עלייה בעבודות הגמר קיזזה ירידה בבנייה המבנית; צבר ההזמנות עדיין חלש.\n\nלנובמבר צופים מנהלי החברות האצה בייצור התעשייתי, המשך גידול בשירותים בקצב נמוך יותר וכמעט יציבות בבנייה. מצב תזרים המזומנים נותר חלש בתעשייה ובשירותים. אי-הוודאות עלתה בשירותים ובחדות בבנייה; צוינו המצב הכלכלי הכללי, מחאות ומחירי דלק.\n\nקצב העלאות מחירי המכירה הואט בתעשייה, בבנייה ובשירותים. הבנק קושר זאת גם לתחרות גוברת וללחץ על שולי הרווח, למרות התייקרות חומרי גלם מסוימים. קשיי הגיוס התמתנו מעט ונגעו ל-15% מהחברות. אלו תשובות לסקר והערכת הבנק, לא החלטת ריבית של ה-ECB. נתון התכווצות ברבעון השלישי שהופיע במבזקים לא נכלל כאן משום שאינו מופיע במקור הרשמי שנקרא.",
+    "טקסט_en": "Nov 9, 2026 | Official Banque de France monthly business survey for early November; firms and establishments were interviewed between Oct 28 and Nov 4.\n\nBased on responses from about 8,500 firms and other indicators, the bank estimates that GDP will grow moderately in Q4. It stresses that the assessment is surrounded by great uncertainty. The release gives no quarterly growth percentage; this is neither an official national-accounts result nor a finding that a recession has been avoided.\n\nIn October, activity rose in industry and market services and changed little in construction. Industrial sectors supported by defence and data-center construction accelerated, while automobiles and other manufacturing declined. Order books improved unevenly: particularly strong in aerospace and computer, electronic and optical products, but weak in several other industries. In construction, finishing work offset declining structural work; order books remained weak.\n\nFor November, business leaders expect industrial production to accelerate, services to grow more slowly and construction to remain nearly stable. Cash positions remain weak in industry and services. Uncertainty increased in services and sharply in construction, with concerns including the broader economy, social unrest and fuel prices.\n\nSelling-price increases slowed in industry, construction and services. The bank also links this to stronger competition and pressure on margins despite rising costs of some raw materials. Recruitment difficulties eased slightly and affected 15% of firms. These are survey responses and a bank assessment, not an ECB rate decision. A Q3 contraction figure carried in flashes is excluded because it is absent from the official source read here.",
+    "תאריך": "2026-11-09 21:06",
+    "הועלה": "2026-11-09 21:06",
+    "category": "macro",
+    "קישור": "https://www.banque-france.fr/fr/actualites/enquete-mensuelle-de-conjoncture-debut-novembre-2026",
+    "מקורות": [
+      {
+        "label": "Banque de France: הסקר החודשי הרשמי לתחילת נובמבר, 9.11.2026 - ראשוני",
+        "label_en": "Banque de France: official early-November monthly survey, Nov 9, 2026 - primary",
+        "url": "https://www.banque-france.fr/fr/actualites/enquete-mensuelle-de-conjoncture-debut-novembre-2026"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "77c531a70286599b899f8a18d9d30b897e804fc503660fa689aa25c5f9199343"
+      }
+    }
   }
 ]
