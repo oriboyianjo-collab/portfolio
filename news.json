@@ -25468,5 +25468,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "דרום קוריאה (6-7.11): ניצחון הדמוקרטים באמצע הקדנציה מעורר ספקות סביב המקדמה של 10 מיליארד דולר לפרויקט הגרעין האמריקאי; סיאול ממשיכה בתוכנית",
+    "category": "macro",
+    "קישור": "https://biz.heraldcorp.com/article/10928629",
+    "מקורות": [
+      {
+        "label": "Herald Business, 6.11.2026",
+        "url": "https://biz.heraldcorp.com/article/10928629",
+        "label_en": "The Herald Business, Nov 6, 2026"
+      },
+      {
+        "label": "Kyunghyang Shinmun, 7.11.2026",
+        "url": "https://www.khan.co.kr/en/article/202611071153017",
+        "label_en": "Kyunghyang Shinmun, Nov 7, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 6-7.11.2026 (Herald Business; Kyunghyang Shinmun).\n\nשליטת הדמוקרטים בשני בתי הקונגרס לאחר בחירות אמצע הקדנציה מעלה סיכוני רישוי ורגולציה לפרויקט הגרעין המשותף בארה\"ב, אך סיאול מתכוונת להעביר עד 10 מיליארד דולר במקדמות לפרויקט עד סוף השנה, במסגרת מזכר ההשקעות האסטרטגי בין שתי המדינות מ-22.9 ובכפוף לדרישות החוק הקוריאני - בחינת כדאיות עסקית ודיווח לאספה הלאומית. המקדמה נועדה להבטיח ציוד מפתח עם זמני אספקה ארוכים: כלורי לחץ (54 חודשים), מחוללי קיטור (57) ומשאבות נוזל קירור (65). לפי Cameco, כ-7.5 מיליארד דולר מהמקדמה צפויים להיות מופנים לרכישת ציוד לכורי AP1000. סגן ראש הממשלה ושר האוצר לי היונג-איל התריע כי הממשלה תתערב אם השוק יגיב ביתר.\n\nKyunghyang הוסיף כי המחאה המקומית בארה\"ב על צריכת החשמל והמים של מרכזי הנתונים באה לידי ביטוי בתוצאות: 32 מתוך 34 מועמדים לתפקיד מושל שהתחייבו להסדרת מרכזי נתונים נבחרו, ו-44 מתוך 45 משאלים מקומיים העבירו הגבלות - מה שעשוי להשפיע גם על פרויקטי הגרעין. התוכנית הכוללת מוערכת בעד 120 מיליארד דולר לבניית שמונה כורים אמריקאים-קוריאנים.\n\nפריט קשור: בפרסום מ-6.11 בשעה 10:01 דווח על נפילת ה-KOSPI ב-6.02% ועל הקלת ביטחונות זמנית מתוכננת; דברי שר האוצר נאמרו בישיבת סקירת שוק חירום באותו יום.",
+    "תקציר": "סיאול (6-7.11) מתכוונת להעביר עד 10 מיליארד דולר במקדמות לפרויקט הגרעין האמריקאי עד סוף השנה בכפוף לבחינת כדאיות, גם כשהכיסוח הדמוקרטי בקונגרס מעלה סיכוני רישוי; כ-7.5 מיליארד מיועדים לציוד AP1000.",
+    "מזהה": "n-1070",
+    "תאריך": "2026-11-09 05:04",
+    "הועלה": "2026-11-09 05:04",
+    "כותרת_en": "South Korea (Nov 6-7): the Democratic midterm sweep raises doubts around the $10 billion advance payment for the US nuclear project; Seoul is pressing ahead",
+    "טקסט_en": "Source publication: Nov 6-7, 2026 (The Herald Business; Kyunghyang Shinmun).\n\nDemocratic control of both chambers of Congress after the midterm elections raises licensing and regulatory risks for the joint nuclear project in the US, but Seoul plans to transfer up to $10 billion in advance payments for the project before year's end, under the two countries' Sept 22 strategic investment MOU and subject to Korean legal requirements - a commercial viability review and a report to the National Assembly. The advance payment is meant to secure long-lead-time key equipment: reactor vessels (54 months), steam generators (57) and reactor coolant pumps (65). According to Cameco, about $7.5 billion of the advance payment is expected to go toward AP1000 reactor equipment. Deputy Prime Minister and Finance Minister Lee Hyeong-il warned the government would intervene if markets overreact.\n\nKyunghyang added that US local backlash over data centers' electricity and water use was reflected in the results: 32 of 34 gubernatorial candidates who pledged data center regulation won, and 44 of 45 local referendums passed restrictions - which could also affect nuclear projects. The overall plan is estimated at up to $120 billion for eight US-Korea reactors.\n\nRelated: the Nov 6, 10:01 AM publication covered the KOSPI's 6.02% drop and planned temporary short-selling relief; the finance minister's remarks came at an emergency market review meeting the same day.",
+    "תקציר_en": "Seoul (Nov 6-7) plans to transfer up to $10 billion in advance payments for the US nuclear project before year's end, subject to a viability review, even as the Democratic congressional sweep raises licensing risks; about $7.5 billion is earmarked for AP1000 equipment.",
+    "_translation": {
+      "en": {
+        "source_hash": "c278370acd62f896ffe1783c2d67432fe49acc8aee9763c011311e406e7bfdbf",
+        "schema_version": 1
+      }
+    }
   }
 ]
