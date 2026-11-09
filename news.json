@@ -26516,5 +26516,57 @@
         "source_hash": "b31efee5913972ed273f90079b513f138b1ec96f5b94f2c8f2c20f16f2f656c5"
       }
     }
+  },
+  {
+    "מזהה": "n-1104",
+    "כותרת": "Sirius XM (SIRI): אנג'לי סוד תמונה למנכ\"לית ב-1.1.2027; ג'ניפר ויץ פורשת מתפקיד המנכ\"לית ומהדירקטוריון בסוף 2026",
+    "כותרת_en": "Sirius XM (SIRI): Anjali Sud appointed CEO effective Jan 1, 2027; Jennifer Witz steps down as CEO and director at end of 2026",
+    "summary": "סיריוס XM הודיעה על מינוי אנג'לי סוד (43) למנכ\"לית החל מ-1.1.2027. סוד, דירקטורית בחברה ממרץ 2025, כיהנה כמנכ\"לית Tubi (בת של פוקס) מספטמבר 2023 וכמנכ\"לית Vimeo ב-2017-2023. ג'ניפר ויץ תפרוש מתפקיד המנכ\"לית ומהדירקטוריון בסוף 31.12.2026.",
+    "summary_en": "Sirius XM announced the appointment of Anjali Sud (43) as CEO effective January 1, 2027. Sud, a company director since March 2025, served as CEO of Tubi (a Fox subsidiary) since September 2023 and as CEO of Vimeo in 2017-2023. Jennifer Witz will step down as CEO and from the board at the end of December 31, 2026.",
+    "טקסט": "הפריט אומת מול המקור הראשוני: דוח 8-K (סעיף 5.02) שהוגש ל-SEC ב-9.11.2026 נקרא ישירות.\n\nסיריוס XM הולדינגס (SIRI, נאסד\"ק) הודיעה ב-9.11.2026 על מינוי אנג'לי סוד למנכ\"לית, בתוקף מ-1.1.2027. סוד מחליפה את ג'ניפר סי. ויץ, שפורשת מתפקיד המנכ\"לית ומחברת הדירקטוריון בסוף יום 31.12.2026.\n\nסוד (43) כיהנה כמנכ\"לית Tubi, שירות הסטרימינג החינמי הממומן בפרסומות של פוקס, מספטמבר 2023; לפני כן כיהנה כמנכ\"לית Vimeo בין יולי 2017 לאוגוסט 2023, ועבדה באמזון ב-2010-2014. היא מכהנת בדירקטוריון סיריוס ממרץ 2025 ומשמשת גם בדירקטוריונים של Dolby ו-Change.org.\n\nלפי הסכם ההעסקה: שכר בסיס שנתי של 2.6 מיליון דולר, בונוס יעד של פי-2 מהשכר (לפחות יעד ב-2027), מענק הצטרפות של RSU בשווי 10 מיליון דולר, מענקי RSU נוספים של 4.5+4.5 מיליון דולר, ומענקים שנתיים של לא פחות מ-9 מיליון דולר לכל אחת משנות 2028-2029. תקופה ראשונית עד 31.12.2029 עם הארכות אוטומטיות.",
+    "טקסט_en": "This item was verified against the primary source: the 8-K filing (Item 5.02) submitted to the SEC on Nov 9, 2026 was read directly.\n\nSirius XM Holdings (SIRI, Nasdaq) announced on Nov 9, 2026 the appointment of Anjali Sud as Chief Executive Officer, effective January 1, 2027. Sud succeeds Jennifer C. Witz, who is stepping down as CEO and from the board of directors at the end of the day on December 31, 2026.\n\nSud (43) served as CEO of Tubi, Fox's free ad-supported streaming service, since September 2023; previously she was CEO of Vimeo from July 2017 to August 2023, and worked at Amazon in 2010-2014. She has been a Sirius XM director since March 2025 and also serves on the boards of Dolby and Change.org.\n\nUnder the employment agreement: annual base salary of $2.6 million, target bonus of 2x base salary (no less than target for 2027), a $10 million sign-on RSU award, additional time-based and performance RSU awards of $4.5 million each, and annual equity awards of no less than $9 million for each of 2028 and 2029. Initial term through December 31, 2029 with automatic one-year renewals.",
+    "תאריך": "2026-11-09 15:00",
+    "הועלה": "2026-11-09 15:00",
+    "category": "micro",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/908937/000110465926124177/tm2629270d1_8k.htm",
+    "מקורות": [
+      {
+        "label": "דוח 8-K של Sirius XM ל-SEC (9.11.2026)",
+        "label_en": "Sirius XM 8-K filing to the SEC (Nov 9, 2026)",
+        "url": "https://www.sec.gov/Archives/edgar/data/908937/000110465926124177/tm2629270d1_8k.htm"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "0202e65205e5ef9c70e9df2d659d8c0d769f7912191d114521bf6dd20edf96fe"
+      }
+    }
+  },
+  {
+    "מזהה": "n-1105",
+    "כותרת": "Strategy (MSTR): רכשה 1,036 ביטקוין תמורת 81.9 מיליון דולר בשבוע 2-8.11; גייסה 283.8 מיליון דולר נטו במכירות ATM ורכשה חזרה מניות STRC ב-188.3 מיליון דולר",
+    "כותרת_en": "Strategy (MSTR): bought 1,036 BTC for $81.9M in the week of Nov 2-8; raised $283.8M net in ATM sales and repurchased $188.3M of STRC preferred",
+    "summary": "בעדכון השבועי (8-K, סעיף 8.01): ב-2-8.11 Strategy רכשה 1,036 ביטקוין ב-81.9 מיליון דולר (ממוצע 79,012 דולר); ההחזקות עלו ל-850,364 ביטקוין בעלות 64.16 מיליארד דולר (ממוצע 75,456). נמכרו 2,051,348 מניות MSTR ב-283.8 מיליון דולר נטו; לא נמכרו מניות בכורה. נרכשו חזרה 1,887,464 מניות STRC ב-188.3 מיליון דולר.",
+    "summary_en": "In its weekly update (8-K, Item 8.01): during Nov 2-8, Strategy purchased 1,036 BTC for $81.9M (average $79,012); holdings rose to 850,364 BTC at $64.16B cost (average $75,456). It sold 2,051,348 MSTR shares for $283.8M net; no preferred shares were sold. It repurchased 1,887,464 STRC shares for $188.3M.",
+    "טקסט": "הפריט אומת מול המקור הראשוני: דוח 8-K (סעיף 8.01) שהוגש ל-SEC ב-9.11.2026 נקרא ישירות.\n\nסטרטגי (MSTR, נאסד\"ק) פרסמה את העדכון השבועי השגרתי שלה לתקופה 2-8.11.2026:\n\nביטקוין: רכישת 1,036 ביטקוין תמורת 81.9 מיליון דולר במחיר ממוצע של 79,012 דולר; הרכישה מומנה מתמורת מכירות מניות MSTR. סך ההחזקות נכון ל-8.11: 850,364 ביטקוין בעלות מצטברת של 64.16 מיליארד דולר (ממוצע 75,456 דולר).\n\nגיוס (ATM): מכירת 2,051,348 מניות MSTR תמורת 283.8 מיליון דולר נטו. הקצאת התמורה: 81.9 מיליון לרכישת ביטקוין, 188.3 מיליון לרכישה חוזרת של מניות STRC ו-13.6 מיליון למזומן. לא בוצעו מכירות של מניות הבכורה STRF/STRC/STRK/STRD.\n\nרכישה חוזרת: 1,887,464 מניות STRC ב-188.3 מיליון דולר; נותרו 560.3 מיליון דולר במסגרת תוכנית הרכישה החוזרת של מניות הבכורה ומיליארד דולר בתוכנית הרכישה החוזרת של מניות MSTR.\n\nבנוסף, החברה השתמשה ב-21.1 מיליון דולר מיתרת הדולר (USD Reserve) לתשלום דיבידנדים בתקופה.",
+    "טקסט_en": "This item was verified against the primary source: the 8-K filing (Item 8.01) submitted to the SEC on Nov 9, 2026 was read directly.\n\nStrategy (MSTR, Nasdaq) published its routine weekly update for the period Nov 2-8, 2026:\n\nBitcoin: purchase of 1,036 BTC for $81.9M at an average price of $79,012, funded with net proceeds from MSTR stock sales. Total holdings as of Nov 8: 850,364 BTC at an aggregate cost of $64.16B (average $75,456).\n\nATM issuance: sale of 2,051,348 MSTR shares for $283.8M net. Allocation: $81.9M to bitcoin purchases, $188.3M to STRC share repurchases, and $13.6M to USD cash. No STRF/STRC/STRK/STRD preferred shares were sold.\n\nRepurchases: 1,887,464 STRC shares for $188.3M; $560.3M remains available under the preferred stock repurchase program and $1.0B under the MSTR stock repurchase program.\n\nThe company also used $21.1M of its USD Reserve to fund dividend payments during the period.",
+    "תאריך": "2026-11-09 15:00",
+    "הועלה": "2026-11-09 15:00",
+    "category": "micro",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526452693/mstr-20261109.htm",
+    "מקורות": [
+      {
+        "label": "דוח 8-K של Strategy ל-SEC (9.11.2026)",
+        "label_en": "Strategy 8-K filing to the SEC (Nov 9, 2026)",
+        "url": "https://www.sec.gov/Archives/edgar/data/1050446/000119312526452693/mstr-20261109.htm"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "892f8fd1201243eae07b8b4aad85346861e11d573a5b07aeb3754b58ad5de629"
+      }
+    }
   }
 ]
