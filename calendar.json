@@ -1998,17 +1998,24 @@
     "מדינה": "US",
     "אירוע": "ריביות נבחרות (H.15) - הפד",
     "חשיבות": 1,
-    "הערה": "המשך סדרות שכבר ביומן ל2–6.11; לוח הפד13:00/16:15ET. CP בדרך כלל13:00 אך השעה אינה מובטחת; אין צפי יחיד",
+    "הערה": "המשך סדרות שכבר ביומן ל2–6.11; לוח הפד13:00/16:15ET. CP בדרך כלל13:00 אך השעה אינה מובטחת; אין צפי יחיד\nאומת בדף הפד המעודכן ל-9.11.2026 לאחר מועד הפרסום המתוכנן 23:15 בישראל. העמודה האחרונה היא ל-6 בנובמבר, לא ל-9 בנובמבר: תשואות נומינליות לפדיונות קבועים 2/10/30 שנים 4.51%/4.86%/5.26% לשנה, לעומת 4.46%/4.84%/5.25% ב-5 בנובמבר. ריבית הפד האפקטיבית 3.88%. אלו סדרות ריבית נבחרות, לא נתון יחיד או החלטת ריבית חדשה; n.a. משמעו לא זמין, לא אפס.",
     "מקור": "https://federalreserve.gov/newsevents/2026-november.htm",
     "מזהה": "c-0084",
     "אירוע_en": "Selected interest rates (H.15) - Fed",
-    "הערה_en": "Continuation of series already in the calendar for Nov 2-6; Fed schedule 13:00/16:15 ET. CP usually at 13:00 but the time is not guaranteed; no single estimate",
+    "הערה_en": "Continuation of series already in the calendar for Nov 2-6; Fed schedule 13:00/16:15 ET. CP usually at 13:00 but the time is not guaranteed; no single estimate\nVerified on the Fed page updated Nov 9, 2026, after the scheduled 23:15 Israel release. The latest column is Nov 6, not Nov 9: nominal Treasury constant-maturity yields at 2/10/30 years are 4.51%/4.86%/5.26% per annum, versus 4.46%/4.84%/5.25% on Nov 5. Effective federal funds rate 3.88%. These are selected rate series, not one aggregate actual or a new rate decision; n.a. means unavailable, not zero.",
     "_translation": {
       "en": {
-        "source_hash": "3b42b62c8c79d986a4ec579826403226df6261fb058244ced0088bb3fb1c14db",
-        "schema_version": 1
+        "schema_version": 1,
+        "source_hash": "4f5ef31e8c33e3b4fe3b1afa0a80326cb76f294f0dc4fe7e28be19e871e051ee"
       }
-    }
+    },
+    "תקופה": "נתוני 6.11.2026, פורסם 9.11",
+    "תקופה_en": "Nov 6, 2026 data, released Nov 9",
+    "בפועל": "2y: 4.51% | 10y: 4.86% | 30y: 5.26%",
+    "מקורות_בדיקה_עדכנית": [
+      "https://www.federalreserve.gov/releases/h15/"
+    ],
+    "תאריך_בדיקה_עדכנית": "2026-11-09"
   },
   {
     "תאריך": "2026-11-09",
@@ -2016,17 +2023,24 @@
     "מדינה": "US",
     "אירוע": "שערי חליפין שבועיים (H.10) - הפד",
     "חשיבות": 1,
-    "הערה": "לוח הפד:9.11בשעה16:15ET; אין צפי יחיד",
+    "הערה": "לוח הפד:9.11בשעה16:15ET; אין צפי יחיד\nאומת בדף הפד המעודכן ל-9.11.2026 לאחר מועד הפרסום המתוכנן 23:15 בישראל; נתוני השבוע 2-6 בנובמבר. ב-6 בנובמבר: מדד דולר רחב 121.8803 (ינואר 2006=100), לעומת 121.5061 ב-5 בנובמבר; 1.1154 דולר לאירו, 158.2300 ין לדולר ו-1.4106 דולר קנדי לדולר. מדד הדולר אינו שינוי באחוזים ואינו דולר-אינדקס DXY. אין נתון יחיד לכל סדרות המט״ח או צפי קונצנזוס. ND משמעו שאין נתון, לא אפס.",
     "מקור": "https://federalreserve.gov/newsevents/2026-november.htm",
     "מזהה": "c-0085",
     "אירוע_en": "Weekly foreign exchange rates (H.10) - Fed",
-    "הערה_en": "Fed schedule: Nov 9 at 16:15 ET; no single estimate",
+    "הערה_en": "Fed schedule: Nov 9 at 16:15 ET; no single estimate\nVerified on the Fed page updated Nov 9, 2026, after the scheduled 23:15 Israel release; observations cover Nov 2-6. Nov 6: Broad dollar index 121.8803 (January 2006=100), versus 121.5061 on Nov 5; 1.1154 US dollars per euro, 158.2300 yen per US dollar and 1.4106 Canadian dollars per US dollar. The index level is not a percent change or the DXY index. No single actual or consensus covers all FX series. ND means no data, not zero.",
     "_translation": {
       "en": {
-        "source_hash": "615be5a384e2dabc1e462452bfef85d61154793cf7b1fffe0cff8789e2c8bbd7",
-        "schema_version": 1
+        "schema_version": 1,
+        "source_hash": "f8986409279d116f47e8200e2cbe8469e7ca11f93c07971dc31c7bf8c8e82a35"
       }
-    }
+    },
+    "תקופה": "שבוע 2-6.11.2026",
+    "תקופה_en": "Week of Nov 2-6, 2026",
+    "בפועל": "Broad (Nov 6): 121.8803",
+    "מקורות_בדיקה_עדכנית": [
+      "https://www.federalreserve.gov/releases/h10/current/"
+    ],
+    "תאריך_בדיקה_עדכנית": "2026-11-09"
   },
   {
     "תאריך": "2026-11-09",
