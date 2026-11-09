@@ -25633,5 +25633,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "Option Care Health תימכר ל-CD&R ומקסון בכ-5.8 מיליארד דולר ותימחק מהנאסד\"ק (פורסם במקור ב-6.10.2026)",
+    "category": "micro",
+    "קישור": "https://www.mckesson.com/about-us/newsroom/press-releases/2026/cdr-and-mckesson-corporation-sign-agreement-to-acquire-option-care-health/",
+    "מקורות": [
+      {
+        "label": "מקסון, הודעה רשמית על הסכם הרכישה, 6.10.2026",
+        "url": "https://www.mckesson.com/about-us/newsroom/press-releases/2026/cdr-and-mckesson-corporation-sign-agreement-to-acquire-option-care-health/",
+        "label_en": "McKesson, official acquisition agreement release, Oct 6, 2026"
+      },
+      {
+        "label": "Option Care Health, דוח 8-K לרגולטור האמריקאי על הסכם המיזוג, 5.10.2026",
+        "url": "https://www.sec.gov/Archives/edgar/data/1014739/000110465926113904/tm2627097d1_8k.htm",
+        "label_en": "Option Care Health, 8-K merger agreement filing, Oct 5, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 6.10.2026. הפריט מתפרסם כהשלמת סיקור, לא כאירוע חדש.\n\nOption Care Health (OPCH), הספקית העצמאית הגדולה בארה\"ב לשירותי עירוי ביתי ובאתרים חלופיים, תירכש על ידי קרן ההשקעות CD&R ומקסון (MCK) במסגרת הסכם מיזוג סופי שנחתם ב-5.10.2026 ופורסם למחרת.\n\nהתנאים: 32.05 דולר למניה במזומן, שווי ארגוני כולל של כ-5.8 מיליארד דולר — פרמיה של כ-37% על מחיר הסגירה של המניה ב-5.10.2026. בסגירה תחזיק CD&R כ-51% ומקסון תשקיע כ-1.4 מיליארד דולר תמורת מיעוט של כ-49%; ההסכם כולל מסגרת לרכישה עתידית של חלקה של CD&R בידי מקסון, בכפוף לתנאים ולאישורים. החברה תמשיך לפעול כישות נפרדת בהנהגתה הנוכחית.\n\nהסגירה צפויה במחצית הראשונה של 2027, בכפוף לאישור בעלי המניות של Option Care ולאישורים רגולטוריים נדרשים; הבנקים המלווים מספקים מימון מחויב. עם השלמת העסקה תימחק המניה ממסחר בנאסד\"ק והחברה תהפוך לפרטית.",
+    "תקציר": "Option Care Health (OPCH) נרכשת על ידי CD&R ומקסון תמורת 32.05 דולר למניה במזומן, שווי ארגוני של כ-5.8 מיליארד דולר ופרמיה של כ-37%; הסגירה צפויה במחצית הראשונה של 2027 והמניה תימחק מהנאסד\"ק. פורסם במקור ב-6.10.2026.",
+    "מזהה": "n-1075",
+    "תאריך": "2026-11-09 06:14",
+    "הועלה": "2026-11-09 06:14",
+    "כותרת_en": "Option Care Health to be acquired by CD&R and McKesson for about $5.8 billion and delisted from Nasdaq (originally published Oct 6, 2026)",
+    "טקסט_en": "Original publication: Oct 6, 2026. This item is published as a coverage catch-up, not a new event.\n\nOption Care Health (OPCH), the largest independent US provider of home and alternate-site infusion services, is being acquired by investment firm CD&R and McKesson (MCK) under a definitive merger agreement signed on Oct 5, 2026 and announced the next day.\n\nTerms: $32.05 per share in cash, a total enterprise value of about $5.8 billion - a premium of about 37% over the stock's closing price on Oct 5, 2026. At closing CD&R will hold about 51% and McKesson will invest about $1.4 billion for a minority stake of about 49%; the agreement includes a framework for McKesson's future acquisition of CD&R's interest, subject to conditions and approvals. The company will continue to operate as a separate entity under its current management.\n\nClosing is expected in the first half of 2027, subject to Option Care stockholder approval and required regulatory approvals; the advising banks are providing committed financing. Upon completion the stock will be delisted from Nasdaq and the company will go private.",
+    "תקציר_en": "Option Care Health (OPCH) is being acquired by CD&R and McKesson for $32.05 per share in cash, an enterprise value of about $5.8 billion and a premium of about 37%; closing is expected in the first half of 2027 and the stock will be delisted from Nasdaq. Originally published Oct 6, 2026.",
+    "_translation": {
+      "en": {
+        "source_hash": "e98e778bb857b31880b8de0815bfd22d16e6b93418e9e131ab5f2ec954f4148f",
+        "schema_version": 1
+      }
+    }
   }
 ]
