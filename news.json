@@ -25597,5 +25597,41 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "תיקון לפריט אגרות הנמל ארה\"ב-סין: ההארכה האמריקאית רשמית ובתוקף; בצד הסיני הוסכם על הארכה ב-28.9, אך לא אומתה הודעת יישום חדשה של משרד התחבורה",
+    "category": "macro",
+    "קישור": "https://ustr.gov/sites/default/files/files/Issue_Areas/Enforcement/Section%20301/USTR%20Sec%20301%20Ships%20FRN%20Further%20Suspension.pdf",
+    "מקורות": [
+      {
+        "label": "USTR, הודעה על שינוי צעד סעיף 301 (ימי), 9.11.2026",
+        "url": "https://ustr.gov/sites/default/files/files/Issue_Areas/Enforcement/Section%20301/USTR%20Sec%20301%20Ships%20FRN%20Further%20Suspension.pdf",
+        "label_en": "USTR, Notice of Modification of Section 301 Action (Maritime), Nov 9, 2026"
+      },
+      {
+        "label": "משרד התחבורה של סין, הודעה מס' 60 ל-2025, 10.11.2025",
+        "url": "https://xxgk.mot.gov.cn/jigou/syj/202511/t20251104_4179268.html",
+        "label_en": "Ministry of Transport of China, Announcement No. 60 of 2025, Nov 10, 2025"
+      },
+      {
+        "label": "משרד המסחר של סין, סיכום הסבב השמיני של ההתייעצויות, 28.9.2026",
+        "url": "https://www.mofcom.gov.cn/syxwfb/art/2026/art_d9ea01824fc44fd8a29f7dc3f8ca9c72.html",
+        "label_en": "MOFCOM, eighth-round consultations readout, Sept 28, 2026"
+      }
+    ],
+    "טקסט": "תיקון לפרסום מהיום ב-05:54 על הארכת הפסקת אגרות הנמל ההדדיות.\n\nהניסוח שפורסם הציג את ההארכה כנכנסת לתוקף בשני הצדדים. הדיוק: בצד האמריקאי ההארכה רשמית ובתוקף מהיום 9.11 (הודעת USTR על השעיית צעדי סעיף 301 הימיים עד 23:59 שעון החוף המזרחי ב-9.1.2027). בצד הסיני, ההסכמה על הארכת ההסדר המשותף של קואלה לומפור עד 10.1.2027 נרשמה בסיכום משרד המסחר של סין מ-28.9.2026; נכון למועד פרסום תיקון זה לא אותרה ולא אומתה הודעת יישום חדשה של משרד התחבורה הסיני. ההשעיה הסינית הקודמת (הודעה מס' 60 ל-2025) הייתה לשנה מ-10.11.2025 בשעה 13:01 ולפיכך פגה מחר בשעה זו; המשך ההשעיה הסינית בפועל מעבר לכך טרם אומת בטקסט רשמי של הגוף המפעיל.",
+    "תקציר": "תיקון: הארכת אגרות הנמל - רשמית ובתוקף רק בצד האמריקאי (USTR, 9.11); בצד הסיני הוסכם על הארכה ב-28.9, אך הודעת יישום חדשה של משרד התחבורה לא אומתה וההשעיה הקודמת פגה מחר 13:01.",
+    "מזהה": "n-1074",
+    "תאריך": "2026-11-09 05:57",
+    "הועלה": "2026-11-09 05:57",
+    "כותרת_en": "Correction to the US-China port-fee item: the US extension is official and effective; on the Chinese side an extension was agreed on Sept 28, but no fresh MOT implementing notice is verified",
+    "טקסט_en": "Correction to today's 5:54 AM publication on the extension of the mutual port-fee truce.\n\nThe published wording presented the extension as taking effect on both sides. To be precise: on the US side the extension is official and effective today, Nov 9 (the USTR notice suspending the maritime Section 301 measures through 11:59 p.m. Eastern Time on Jan 9, 2027). On the Chinese side, the agreement to extend the Kuala Lumpur joint arrangement to Jan 10, 2027 was recorded in MOFCOM's Sept 28, 2026 readout; as of this correction's publication, no fresh implementing notice from China's Ministry of Transport has been located or verified. The prior Chinese suspension (Announcement No. 60 of 2025) ran one year from Nov 10, 2025 at 13:01 and accordingly lapses tomorrow at that time; the Chinese suspension's operative continuation beyond that has not been verified in an official text from the implementing body.",
+    "תקציר_en": "Correction: the port-fee extension is official and effective only on the US side (USTR, Nov 9); on the Chinese side an extension was agreed Sept 28, but no fresh MOT implementing notice is verified and the prior suspension lapses tomorrow at 13:01.",
+    "_translation": {
+      "en": {
+        "source_hash": "19a4e1376140441fe70b0a8ce868cc767b154d867508cbb6daf3c75efeb158d0",
+        "schema_version": 1
+      }
+    }
   }
 ]
