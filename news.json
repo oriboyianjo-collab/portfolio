@@ -25876,5 +25876,46 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "רוסיה: מתקפת רחפנים לילית על מחוז לנינגרד; לפי דיווחים אוקראיניים, שריפה בבית הזיקוק קירישי, השני בגודלו ברוסיה (לא מאומת מול מקור ראשוני)",
+    "תאריך": "2026-11-09 09:50",
+    "הועלה": "2026-11-09 09:50",
+    "טקסט": "לא מאומת מול מקור ראשוני\n9.11.2026 | הדיווח הראשון: Kyiv Independent, 06:05 (אזור הזמן לא צוין בפרסום; ככל הנראה שעון קייב, הזהה לשעון ישראל בעונה זו)\n\nבלילה שבין 8 ל-9 בנובמבר 2026 בוצעה מתקפת רחפנים גדולה על מחוז לנינגרד שבצפון-מערב רוסיה. מושל המחוז, אלכסנדר דרוזדנקו, מסר כי 113 רחפנים יורטו מעל המחוז במהלך הלילה, כי נרשמו פגיעות רחפנים באזור התעשייה של העיר קירישי, וכי שרידי רחפן פגעו בדירת מגורים בעיר, ללא נפגעים (TASS; רויטרס). התרעת הרחפנים הוסרה.\n\nפגיעה בבית הזיקוק, לפי דיווחים אוקראיניים בשלב זה: באזור התעשייה של קירישי פועל בית הזיקוק קירישינפטאורגסינטז (KINEF) של סורגוטנפטגז. ערוצי מוניטורינג אוקראיניים וצילומי עדים, שפורסמו באמצעות Kyiv Independent, מלמדים על פיצוצים ושריפה גדולה במתקן; עוד דווח כי מערכת FIRMS של נאס\"א זיהתה מספר מוקדי חום בו. בבדיקה עצמאית שערכנו בנתוני ה-24 השעות של MODIS ו-VIIRS לא נמצאו מוקדי חום סמוך למתקן נכון לשעת הבדיקה, ולכן ממצא זה לא אומת. היקף הנזק והשפעה אפשרית על התפוקה טרם ידועים. המושל אישר פגיעות באזור התעשייה אך לא התייחס במפורש לבית הזיקוק עצמו.\n\nייחוס התקיפה: לא נרשמה הודעה אוקראינית רשמית על ביצוע; הרשויות הרוסיות מייחסות את המתקפה לאוקראינה. לפי Kyiv Independent, גורמים אוקראיניים בכירים אמרו לעיתון כי קייב מעולם לא הסכימה להפסקת התקיפות ההדדיות על תשתיות אנרגיה שאליה קרא נשיא ארה\"ב טראמפ ב-31.10.2026; זו טענה של גורם יחיד שלא אומתה ממקור נוסף.\n\nנתוני המתקן (מאומתים מול רויטרס, 2.9.2026): הספק נומינלי של כ-20 מיליון טון נפט בשנה, בית הזיקוק השני בגודלו ברוסיה אחרי אומסק (22 מיליון טון); כ-7% מסך כושר הזיקוק ברוסיה; תפוקה שנתית של כ-2 מיליון טון בנזין וכ-7 מיליון טון דיזל. רקע מתועד: ב-30.8.2026 נפגע המתקן בתקיפה קודמת, ולפי מקורות רויטרס בענף הופסקה אז הזיקוק בו במלואה לאחר נזק לשתי יחידות זיקוק ראשוניות (AVT-6 ו-AT-1); המתקן נעצר לתיקונים ממושכים גם ב-26.3 וב-5.5 השנה.",
+    "summary": "מתקפת רחפנים לילית על מחוז לנינגרד; המושל: 113 רחפנים יורטו ונרשמו פגיעות באזור התעשייה של קירישי. לפי דיווחים אוקראיניים, שריפה בבית הזיקוק KINEF (כ-7% מהזיקוק ברוסיה); היקף הנזק טרם ידוע.",
+    "קישור": "https://kyivindependent.com/ukrainian-forces-reportedly-strike-russias-second-largest-oil-refinery-in-overnight-drone-attack/",
+    "מקורות": [
+      {
+        "label": "Kyiv Independent (לאכלן הייאט), 9.11.2026, 06:05 (אזור זמן לא צוין; ככל הנראה שעון קייב); דיווח המבוסס על ערוצי מוניטורינג אוקראיניים וצילומי עדים; טענת מוקדי החום של FIRMS לא אומתה על ידינו",
+        "url": "https://kyivindependent.com/ukrainian-forces-reportedly-strike-russias-second-largest-oil-refinery-in-overnight-drone-attack/",
+        "label_en": "Kyiv Independent (Lachlan Hyatt), Nov 9, 2026, 06:05 (timezone not stated; presumably Kyiv time); report based on Ukrainian monitoring channels and eyewitness footage; the FIRMS hotspot claim was not independently confirmed by us"
+      },
+      {
+        "label": "רויטרס (בשידור מחדש של Devdiscourse), 9.11.2026; המושל: רחפנים פגעו באזור התעשייה של קירישי, 81 יורטו באותה עת, דירה ניזוקה",
+        "url": "https://www.devdiscourse.com/article/international/4003620-drones-hit-industrial-area-in-kirishi-in-russias-northwest-governor-says",
+        "label_en": "Reuters (via Devdiscourse syndication), Nov 9, 2026; the governor said drones hit the Kirishi industrial zone, 81 downed at the time, an apartment damaged"
+      },
+      {
+        "label": "TASS, 9.11.2026; המושל: 113 רחפנים יורטו במהלך הלילה, שרידים פגעו בדירה ללא נפגעים",
+        "url": "https://tass.com/politics/2214571",
+        "label_en": "TASS, Nov 9, 2026; the governor said 113 UAVs were downed overnight and debris hit an apartment with no injuries"
+      },
+      {
+        "label": "The Moscow Times (מהדורה רוסית) ממקורות רויטרס בענף, 2.9.2026; נתוני כושר המתקן והשלכות התקיפה מ-30.8 - אימות רקע בלבד, קדם לאירועי היום",
+        "url": "https://ru.themoscowtimes.com/2026/09/02/vtoroi-krupneishii-npz-rossii-polnostyu-ostanovil-pererabotku-nefti-posle-udara-bpla-a205063",
+        "label_en": "The Moscow Times (Russian service) citing Reuters industry sources, Sep 2, 2026; plant capacity figures and the Aug 30 aftermath - background verification only, predates today's events"
+      }
+    ],
+    "category": "macro",
+    "מזהה": "n-1083",
+    "כותרת_en": "Russia: overnight drone attack on Leningrad region; Ukrainian reports say the Kirishi refinery, Russia's second-largest, is on fire (not verified against a primary source)",
+    "טקסט_en": "Not verified against a primary source\nNov 9, 2026 | First report: Kyiv Independent, 06:05 (timezone not stated in the publication; presumably Kyiv time, which matches Israel time this season)\n\nA large drone attack was carried out overnight between Nov 8 and 9, 2026 on the Leningrad region in northwestern Russia. Regional governor Aleksandr Drozdenko said 113 drones were downed over the region overnight, that drone hits were recorded in the industrial zone of the town of Kirishi, and that drone debris hit a residential apartment in the town, with no injuries (TASS; Reuters). The drone alert was lifted.\n\nDamage to the refinery, so far per Ukrainian reports only: the Kirishi industrial zone hosts the Kirishinefteorgsintez (KINEF) refinery, owned by Surgutneftegas. Ukrainian monitoring channels and eyewitness footage, published via Kyiv Independent, indicate explosions and a large fire at the facility; it was also reported that NASA's FIRMS system detected several heat hotspots there. In our own check of the last 24 hours of MODIS and VIIRS data, no hotspots were found near the facility as of the check time, so this finding was not verified. The extent of damage and any impact on output are not yet known. The governor confirmed hits in the industrial zone but did not refer explicitly to the refinery itself.\n\nAttack attribution: no official Ukrainian claim of responsibility was recorded; Russian authorities attribute the attack to Ukraine. Per Kyiv Independent, senior Ukrainian officials told the paper that Kyiv never agreed to the mutual halt of strikes on energy infrastructure urged by US President Trump on Oct 31, 2026; this is a single-source claim not verified elsewhere.\n\nFacility data (verified against Reuters, Sep 2, 2026): nominal capacity of about 20 million tons of oil per year, Russia's second-largest refinery after Omsk (22 million tons); about 7% of Russia's total refining capacity; annual output of about 2 million tons of gasoline and 7 million tons of diesel. Documented background: on Aug 30, 2026 the facility was hit in a previous attack, and per Reuters industry sources refining there was fully halted after damage to two primary distillation units (AVT-6 and AT-1); the plant also stopped for extended repairs on Mar 26 and May 5 this year.",
+    "summary_en": "Overnight drone attack on the Leningrad region; the governor says 113 drones were downed and hits were recorded in the Kirishi industrial zone. Per Ukrainian reports, a fire at the KINEF refinery (about 7% of Russia's refining); the extent of damage is not yet known.",
+    "_translation": {
+      "en": {
+        "source_hash": "9c4996c47e5eca78fb7d58c64a8f5b4a704a96801b29aaa1bdc6785d418caf07",
+        "schema_version": 1
+      }
+    }
   }
 ]
