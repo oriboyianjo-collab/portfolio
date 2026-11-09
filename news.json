@@ -26490,5 +26490,31 @@
         "source_hash": "0d21a633782675854e353351377db6630e52e151ee577d16627244d341883045"
       }
     }
+  },
+  {
+    "מזהה": "n-1103",
+    "כותרת": "NRG Energy (NRG) תמכור שישה מתקני ייצור חשמל בגז טבעי בהספק כולל של 4.9 גיגה-וואט ל-LS Power; הסכם מחייב נחתם, הסגירה צפויה ב-2027; מחיר העסקה לא נחשף",
+    "כותרת_en": "NRG Energy (NRG) to sell six natural gas power generation facilities totaling 4.9 GW to LS Power; definitive agreement signed, closing expected in 2027; price not disclosed",
+    "summary": "LS Power חתמה על הסכם מחייב לרכישת שישה מתקני ייצור חשמל בגז טבעי מ-NRG Energy: ג'ק קאונטי, ג'ונסון קאונטי ו-R.W. מילר בטקסס, רייבנסווד בניו יורק, אושן סטייט פאוור ברוד איילנד ווולינגפורד בקונטיקט - 4.9 גיגה-וואט בסך הכול. הסגירה צפויה ב-2027 בכפוף לאישורים רגולטוריים; מחיר הרכישה לא נמסר בהודעה.",
+    "summary_en": "LS Power signed a definitive agreement to acquire six natural gas-fired generation facilities from NRG Energy: Jack County, Johnson County and R.W. Miller in Texas, Ravenswood in New York, Ocean State Power in Rhode Island and Wallingford in Connecticut - 4.9 GW in total. Closing is expected in 2027 subject to regulatory approvals; the purchase price was not disclosed.",
+    "טקסט": "הפריט אומת מול המקור הראשוני: הודעת LS Power (9.11.2026, 07:09 ET = 14:09 שעון ישראל) נקראה ישירות.\n\nLS Power, חברת ההשקעות והתפעול האמריקאית בתשתיות אנרגיה, הודיעה על הסכם מחייב לרכישת שישה מתקני ייצור חשמל בגז טבעי מ-NRG Energy (NYSE: NRG) בהספק כולל של 4.9 גיגה-וואט, בשלושה שוקי חשמל אזוריים (RTO): ג'ק קאונטי (מחזור משולב, טקסס), ג'ונסון קאונטי (מחזור משולב, טקסס), אושן סטייט פאוור (מחזור משולב, רוד איילנד), רייבנסווד (מחזור משולב, מחזור פשוט וטורבינת קיטור, ניו יורק), R.W. מילר (מחזור פשוט וטורבינת קיטור, טקסס) ווולינגפורד (מחזור פשוט, קונטיקט).\n\nמדובר בהסכם מחייב שנחתם - לא במכירה שהושלמה: הסגירה צפויה ב-2027, בכפוף לתנאים מקובלים ולאישורים רגולטוריים. מחיר הרכישה לא נחשף בהודעה.\n\nלפי ההודעה, העסקה - יחד עם רכישה ממתינה של כ-4.4 גיגה-וואט מקונסטליישן - תרחיב את צי ייצור הגז של LS Power מ-2.2 ל-11.5 גיגה-וואט; צי הייצור הכולל של החברה (כולל הידרו, סולארי, רוח ואחסון) יעבור את 19 גיגה-וואט. מנכ\"ל LS Power פול סיגל נימק את המהלך בחשיבות ייצור יציב וניתן לשליחה לאמינות הרשת מול צמיחת הביקוש לחשמל.\n\nיועצים לעסקה: Milbank LLP (משפטי), סקוטיהבנק ואוורקור (פיננסיים) עבור LS Power. ההודעה פורסמה מצד הקונה; NRG טרם הוציאה הודעה משלה בעת הפרסום.",
+    "טקסט_en": "This item was verified against the primary source: LS Power's announcement (Nov 9, 2026, 07:09 ET = 2:09 p.m. Israel) was read directly.\n\nLS Power, the U.S. energy infrastructure investment and operating company, announced a definitive agreement to acquire six natural gas-fired generation facilities from NRG Energy (NYSE: NRG) totaling 4.9 GW across three regional power markets (RTOs): Jack County (combined-cycle, Texas), Johnson County (combined-cycle, Texas), Ocean State Power (combined-cycle, Rhode Island), Ravenswood (combined-cycle, simple-cycle and steam turbine, New York), R.W. Miller (simple-cycle and steam turbine, Texas) and Wallingford (simple-cycle, Connecticut).\n\nThis is a signed definitive agreement, not a completed sale: closing is expected in 2027, subject to customary closing conditions and regulatory approvals. The purchase price was not disclosed in the announcement.\n\nAccording to the release, the deal - together with a pending acquisition of about 4.4 GW from Constellation - will expand LS Power's natural gas generation fleet from 2.2 GW to 11.5 GW; the company's total generation fleet (including hydro, solar, wind and storage) will exceed 19 GW. LS Power CEO Paul Segal cited the importance of firm, dispatchable generation for grid reliability amid growing power demand.\n\nAdvisors: Milbank LLP (legal), Scotiabank and Evercore (financial) for LS Power. The announcement came from the buyer; NRG had not issued its own release at publication time.",
+    "תאריך": "2026-11-09 14:09",
+    "הועלה": "2026-11-09 14:09",
+    "category": "micro",
+    "קישור": "https://www.prnewswire.com/news-releases/ls-power-to-acquire-six-natural-gas-power-generation-assets-from-nrg-energy-302933303.html",
+    "מקורות": [
+      {
+        "label": "הודעת LS Power (PR Newswire)",
+        "label_en": "LS Power release (PR Newswire)",
+        "url": "https://www.prnewswire.com/news-releases/ls-power-to-acquire-six-natural-gas-power-generation-assets-from-nrg-energy-302933303.html"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "b31efee5913972ed273f90079b513f138b1ec96f5b94f2c8f2c20f16f2f656c5"
+      }
+    }
   }
 ]
