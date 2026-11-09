@@ -27248,5 +27248,31 @@
         "source_hash": "6e1f035708f0b4b1d4f8462baf4b9d5c83d7c0ee44010c423355512c4e824cbf"
       }
     }
+  },
+  {
+    "כותרת": "CRH (CRH): הושלמה הנפקת אג״ח בערבות החברה בהיקף 4.2 מיליארד דולר; עדכון לתשקיף שכבר פורסם",
+    "כותרת_en": "CRH (CRH): $4.2 billion company-guaranteed note issuance completed, updating the earlier prospectus",
+    "summary": "דוח 8-K רשמי מאשר שההנפקה והמכירה הושלמו ב-9 בנובמבר. הכסף מיועד להצעות רכש לאג״ח Arcosa, פירעון חוב וצרכים כלליים; אין כאן אישור שתשלומי החוב הישן כבר בוצעו.",
+    "summary_en": "An official 8-K confirms issuance and sale completed on November 9. Proceeds are expected to fund Arcosa note tender offers, debt repayment and general purposes, not proof that old debt has already been repaid.",
+    "טקסט": "9.11.2026 | דוח 8-K רשמי של CRH ל-SEC; שעת הפרסום המדויקת לא אומתה במקור שנקרא. קשור לפריט n-0145 מ-6.11.2026 20:32 על תוספת התשקיף. מה חדש: ההנפקה והמכירה הושלמו בפועל היום, לאחר שבפריט הקודם המסירה עדיין הייתה צפויה.\n\nחברת המימון CRH America Finance, חברה בת בבעלות מלאה של CRH, השלימה ב-9 בנובמבר הנפקה ומכירה של ארבע סדרות: 1.35 מיליארד דולר בקופון 5.375% לפירעון 2032; מיליארד דולר בקופון 5.625% לפירעון 2034; 1.35 מיליארד דולר בקופון 5.750% לפירעון 2037; ו-500 מיליון דולר בקופון 6.250% לפירעון 2057. סכומן הנקוב המחושב הוא 4.2 מיליארד דולר. הקופונים אינם תשואה לפדיון או תשואה מובטחת למשקיע.\n\nהקרן, הריבית וסכומים נוספים מכוסים בערבות מלאה ובלתי מותנית של CRH. הסכם החיתום נחתם ב-4 בנובמבר; הדוח החדש מאשר את שלב השלמת ההנפקה, לא תמחור חדש של ארבע הסדרות.\n\nלפי הדוח, התמורה נטו צפויה לשמש למימון הצעות רכש לאג״ח Arcosa, לפירעון חוב קיים ולצרכים תאגידיים כלליים. אין בדוח אישור שהצעות הרכש הושלמו או שכל החוב הקודם כבר נפרע. זו אינה הודעה חדשה על השלמת רכישת Arcosa, והפריט אינו סופר את 4.2 מיליארד הדולר כהנפקה נוספת מעבר לעסקה שתוארה בתשקיף.",
+    "טקסט_en": "Nov 9, 2026 | Official CRH Form 8-K filed with the SEC; the exact publication time was not independently verified in the source read. Related to n-0145, Nov 6, 2026 at 8:32 p.m., on the prospectus supplement. What is new: issuance and sale actually completed today, whereas the earlier item described expected delivery.\n\nWholly owned financing subsidiary CRH America Finance completed issuance and sale on November 9 of four tranches: $1.35 billion with a 5.375% coupon due 2032; $1 billion at 5.625% due 2034; $1.35 billion at 5.750% due 2037; and $500 million at 6.250% due 2057. Their calculated aggregate principal is $4.2 billion. Coupons are not yield to maturity or guaranteed investor returns.\n\nCRH fully and unconditionally guarantees principal, interest and other payable amounts. The underwriting agreement was dated November 4; the new filing confirms completion, not fresh pricing of the four tranches.\n\nNet proceeds are expected to finance tender offers for outstanding Arcosa notes, repay existing debt and support general corporate purposes. The filing does not confirm completion of the tender offers or repayment of all prior debt. This is not a new announcement that the Arcosa acquisition has closed, and the $4.2 billion is not an additional issue on top of the transaction already described in the prospectus.",
+    "תאריך": "2026-11-09 21:43",
+    "הועלה": "2026-11-09 21:43",
+    "מזהה": "n-1131",
+    "category": "micro",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/849395/000119312526453333/d191853d8k.htm",
+    "מקורות": [
+      {
+        "label": "SEC: דוח CRH 8-K מתאריך 9.11.2026 - מקור ראשוני",
+        "label_en": "SEC: CRH Form 8-K dated Nov 9, 2026 - primary",
+        "url": "https://www.sec.gov/Archives/edgar/data/849395/000119312526453333/d191853d8k.htm"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "9ed1f729d3972f6caa7dac1768368af9567660f7e9ac21f72587238bd33fe5bf"
+      }
+    }
   }
 ]
