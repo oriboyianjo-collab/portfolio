@@ -26036,5 +26036,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "מזהה": "n-1088",
+    "כותרת": "NVIDIA (NVDA) בכנס AI Day Seoul: הכריזה על השקעה ב-Point2 ועל תוכניות להשקיע ב-Motif, RLWRLD ו-Upstage",
+    "כותרת_en": "NVIDIA (NVDA) at AI Day Seoul: announces investment in Point2, plans to invest in Motif, RLWRLD and Upstage",
+    "summary": "NVIDIA הכריזה בפורום MSIT-NVIDIA בסיאול על השקעה בסטארט-אפ הקוריאני Point2 ועל תוכניות להשקיע ב-Motif, RLWRLD ו-Upstage. לא פורסמו סכומים; Point2 כבר גייסה באפריל 2026 סבב B מורחב של כ-76 מיליון דולר עם השקעה אסטרטגית של NVIDIA, והקשר בין ההכרזות אינו מפורט.",
+    "summary_en": "NVIDIA announced an investment in Korean startup Point2 at the MSIT-NVIDIA forum in Seoul, plus plans to invest in Motif, RLWRLD and Upstage. No amounts were disclosed; Point2 already closed an expanded $76M Series B with a strategic NVIDIA investment in April 2026, and the link between the announcements is unspecified.",
+    "טקסט": "9.11.2026 | בלוג NVIDIA הרשמי - עדכון חי מהכנס, 03:00 EST (10:00 שעון ישראל)\n\nבמסגרת פורום השותפות MSIT-NVIDIA לסטארט-אפים, שנערך היום (ב') במרכז COEX בסיאול, NVIDIA הכריזה על השקעה בסטארט-אפ הקוריאני Point2 ועל תוכניות להשקיע בשלוש חברות נוספות: Motif Technologies, RLWRLD ו-Upstage. לא פורסמו סכומים או תנאים.\n\nדיוק עובדתי: ב-23 באפריל 2026 סיימה Point2 סבב B מורחב בהיקף כ-76 מיליון דולר שכלל השקעה אסטרטגית של NVIDIA - ההשקעה הראשונה של החברה בסטארט-אפ קוריאני, לפי KAIST. הקשר בין הכרזת היום לסבב אפריל (הרחבה, רשמנות או ביצוע בפועל) אינו מפורט בפרסום. ההשקעות ב-Motif, RLWRLD ו-Upstage הן תוכניות בלבד, לא עסקאות שבוצעו.\n\nהחברות: Point2 מפתחת חיבורי interconnect מבוססי תדרי רדיו (RF) בין שבבים ומתלים במרכזי נתונים ל-AI. Motif Technologies (סיאול) מפתחת מודלי יסוד, כולל Motif-3 במשקלים פתוחים; RLWRLD מפתחת מודלי יסוד לרובוטיקה; Upstage מפתחת את מודלי Solar וכלי Document AI.\n\nבפורום השתתפו סגן שר המדע וה-ICT ריו ג'ה-מיונג ומנהלי NVIDIA, שנפגשו עם יותר מ-20 סטארט-אפים קוריאניים. לפי NVIDIA, יותר מ-1,000 חברות קוריאניות חברות בתוכנית הסטארט-אפים Inception שלה.\n\nפריטים קשורים: סגן השר על המשך אספקת GPU מ-NVIDIA ללא שיבוש (היום 06:24); מזכר ההבנות המשולש NVIDIA-SK Telecom-Rebellions (היום 07:24) - שניהם מאותו כנס AI Day Seoul בן היומיים.",
+    "טקסט_en": "Nov 9, 2026 | NVIDIA's official blog, live event update, 3:00 a.m. EST (10:00 a.m. Israel time)\n\nAt the MSIT-NVIDIA AI Startup Partnership Forum held today (Monday) at COEX in Seoul, NVIDIA announced an investment in Korean startup Point2 and plans to invest in three more companies: Motif Technologies, RLWRLD and Upstage. No amounts or terms were disclosed.\n\nFactual precision: On April 23, 2026, Point2 closed an expanded Series B round of about $76 million that included a strategic investment from NVIDIA - the company's first investment in a Korea-based startup, according to KAIST. The relationship between today's announcement and the April round (an expansion, a formalization, or an actual execution) is not specified in NVIDIA's post. The investments in Motif, RLWRLD and Upstage are plans only, not executed transactions.\n\nThe companies: Point2 develops radio-frequency-based interconnects linking chips and racks in AI data centers. Seoul-based Motif Technologies develops foundation models, including the open-weights Motif-3; RLWRLD develops robotics foundation models; Upstage develops the Solar language models and Document AI tools.\n\nKorea's vice minister of science and ICT, Ryu Je-myung, and NVIDIA executives met with more than 20 Korean startups at the forum. According to NVIDIA, more than 1,000 Korea-based companies belong to its Inception startup program.\n\nRelated items: the vice minister on uninterrupted NVIDIA GPU supply (today, 06:24); the trilateral NVIDIA-SK Telecom-Rebellions MOU (today, 07:24) - both from the same two-day AI Day Seoul event.",
+    "תאריך": "2026-11-09 10:17",
+    "הועלה": "2026-11-09 10:17",
+    "category": "tech",
+    "קישור": "https://blogs.nvidia.com/ai-day-seoul-2026/",
+    "מקורות": [
+      {
+        "label": "בלוג NVIDIA הרשמי - עדכונים חיים מ-AI Day Seoul, 9.11.2026 (הודעת חברה, מקור ראשוני, נקרא ישירות)",
+        "label_en": "NVIDIA official blog - AI Day Seoul live updates, Nov 9, 2026 (company announcement, primary, read directly)",
+        "url": "https://blogs.nvidia.com/ai-day-seoul-2026/"
+      },
+      {
+        "label": "Aju Press, 23.4.2026 - סגירת סבב B מורחב של Point2 בהיקף 76 מיליון דולר עם השקעת NVIDIA; רקע מאומת במקור",
+        "label_en": "Aju Press, Apr 23, 2026 - Point2 closes expanded $76M Series B with NVIDIA investment; verified background",
+        "url": "https://www.ajupress.com/view/20260423111570052"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "6165a9b85b533d0cdaf9c9c0a45802c9f3fc955698d8ae2978c309a830aa8328"
+      }
+    }
   }
 ]
