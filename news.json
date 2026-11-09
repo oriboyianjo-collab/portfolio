@@ -26651,5 +26651,31 @@
         "source_hash": "1871a16901977fa9f85706835f4645f7ae25efe2de1f00fc8b0a425457e3847e"
       }
     }
+  },
+  {
+    "מזהה": "n-1109",
+    "כותרת": "Tyson Foods (TSN) מתכננת שותפות ארוכת טווח עם Allied Beef והשבה מלאה של המשמרת השנייה במפעל הבקר באמרילו עד קיץ 2027",
+    "כותרת_en": "Tyson Foods (TSN) plans long-term Allied Beef partnership and full restoration of Amarillo beef plant second shift by summer 2027",
+    "summary": "טייסון הודיעה על כוונה להקים שותפות ארוכת טווח עם Allied Beef, קונסורציום של מגדלי בקר אמריקאים. במקביל היא כבר החלה להשיב חלק מפעילות המשמרת השנייה במפעל אמרילו, טקסס, וצופה הפעלה מלאה עד קיץ 2027. זו שותפות מתוכננת, לא הסכם סופי שנחתם; לא נמסרו סכום השקעה, יעד תפוקה או מספר משרות.",
+    "summary_en": "Tyson announced its intent to establish a long-term partnership with Allied Beef, a consortium of American ranchers. It has already begun restoring select second-shift operations at its Amarillo, Texas, beef facility and expects full operation by summer 2027. The partnership is planned, not a signed definitive agreement; no investment amount, production target or job count was disclosed.",
+    "טקסט": "המידע אומת מול המקור הראשוני: הודעת Tyson Foods מ-9.11.2026 בשעה 09:00 ET (16:00 בישראל) נקראה במלואה.\n\nTyson Foods (TSN) הודיעה על כוונה להקים שותפות ארוכת טווח עם Allied Beef Company, קונסורציום של מגדלי בקר אמריקאים, כדי לחזק את שרשרת אספקת הבקר המקומית וליצור קשר ישיר יותר בין החברה למגדלים. ההודעה מתארת שותפות מתוכננת וכוונה להתקשר; היא אינה מציגה הסכם סופי חתום או עסקה שהושלמה.\n\nלקראת השותפות, החברה מקדמת פתיחה מחדש מלאה של המשמרת השנייה במפעל הבקר באמרילו, טקסס. חלק מפעילות המשמרת השנייה כבר החל לחזור, והחברה צופה הפעלה מלאה של המשמרת עד קיץ 2027. לפי החברה, פתיחת המשמרת תגדיל את הייצור ותיצור הזדמנויות תעסוקה נוספות.\n\nלא נמסרו בהודעה סכום השקעה, היקף התחייבויות לרכישת בקר, יעד תפוקה כמותי או מספר משרות. מועד ההפעלה המלאה והיתרונות הצפויים הם תחזיות החברה, לא תוצאות שכבר הושגו.",
+    "טקסט_en": "Verified against the primary source: Tyson Foods' release dated Nov 9, 2026 at 09:00 ET (16:00 Israel) was read in full.\n\nTyson Foods (TSN) announced its intent to establish a long-term partnership with Allied Beef Company, a consortium of American ranchers, to strengthen domestic cattle supply and create a more direct link between the company and ranchers. The release describes a planned partnership and intent to partner; it does not announce a signed definitive agreement or a completed transaction.\n\nIn anticipation of the partnership, Tyson is moving forward with plans to fully reopen the second production shift at its Amarillo, Texas, beef facility. Select second-shift operations have already begun returning, and Tyson expects the shift to be fully operational by summer 2027. The company says reopening the shift will increase production and create additional employment opportunities.\n\nThe release does not disclose an investment amount, cattle purchase commitments, a quantified production target or a job count. The full-operation timing and expected benefits are company forecasts, not outcomes already achieved.",
+    "תאריך": "2026-11-09 16:09",
+    "הועלה": "2026-11-09 16:09",
+    "category": "micro",
+    "קישור": "https://www.globenewswire.com/news-release/2026/11/09/3398493/7106/en/tyson-foods-and-allied-beef-company-announce-plans-to-establish-a-long-term-partnership-to-strengthen-domestic-cattle-supply.html",
+    "מקורות": [
+      {
+        "label": "Tyson Foods, הודעה רשמית באמצעות GlobeNewswire, 9.11.2026",
+        "label_en": "Tyson Foods official release via GlobeNewswire, Nov 9, 2026",
+        "url": "https://www.globenewswire.com/news-release/2026/11/09/3398493/7106/en/tyson-foods-and-allied-beef-company-announce-plans-to-establish-a-long-term-partnership-to-strengthen-domestic-cattle-supply.html"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "e7474ece6f4220333a2b0ed57d661ac988d0b17fedac0c2b8c4c889733f7c054"
+      }
+    }
   }
 ]
