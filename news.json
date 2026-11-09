@@ -25762,5 +25762,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "הבהרה לידיעת קשם: ארבעת הפיצוצים שיוחסו לתקיפה אמריקנית אירעו בערב יום ראשון, 8.11.2026",
+    "category": "macro",
+    "קישור": "https://english.news.cn/20261109/123b3ea2f9274281a2c32d3197ea5deb/c.html",
+    "מקורות": [
+      {
+        "label": "Xinhua, 9.11.2026, 03:47 GMT (05:47 שעון ישראל)",
+        "url": "https://english.news.cn/20261109/123b3ea2f9274281a2c32d3197ea5deb/c.html",
+        "label_en": "Xinhua, Nov 9, 2026, 03:47 GMT (05:47 Israel time)"
+      },
+      {
+        "label": "מهر (MNA), 9.11.2026, 08:09 שעון טהרן (06:39 שעון ישראל)",
+        "url": "https://en.mehrnews.com/news/249255/Official-details-U-S-strikes-on-Qeshm-Island",
+        "label_en": "Mehr (MNA), Nov 9, 2026, 08:09 Tehran time (06:39 Israel time)"
+      }
+    ],
+    "טקסט": "עדכון לידיעה שפורסמה ב-07:05 (9.11.2026): הבהרת מועד בלבד, ללא שינוי בתוכן.\n\nארבעת הפיצוצים באי קישם שדיווחה עליהם סוכנות Xinhua על פי כתב IRNA המקומי אירעו בערב יום ראשון, 8.11.2026 - כך גם לפי סוכנות מهر, שכתבה כי דברי סגן מושל הורמוזגאן, אחמד נפיסי, נאמרו \"לאחר ארבעה פיצוצים שנשמעו באי קישם בערב יום ראשון\". מועד זה הוא יום לאחר סבב הפיצוצים של ערב שבת, 7.11.2026, שכוסה בידיעות קודמות. הניסוח \"בליל ראשון\" בידיעה המקורית יכול היה להתפרש כמועד מוקדם יותר.\n\nייחוס התקיפה לצבא ארה\"ב הוא טענה איראנית רשמית בלבד; ארה\"ב לא אישרה תקיפה, ולא נמצא אישור בלתי תלוי.",
+    "תקציר": "הבהרת מועד: ארבעת הפיצוצים בקישם שיוחסו על ידי גורם איראני רשמי לתקיפה אמריקנית אירעו בערב יום ראשון, 8.11.2026. הטענה איראנית בלבד; ארה\"ב לא אישרה.",
+    "מזהה": "n-1079",
+    "תאריך": "2026-11-09 07:29",
+    "הועלה": "2026-11-09 07:29",
+    "כותרת_en": "Clarification to the Qeshm item: the four explosions attributed to a US strike occurred on Sunday evening, Nov 8, 2026",
+    "טקסט_en": "Update to the item published at 07:05 (Nov 9, 2026): a timing clarification only, with no change to content.\n\nThe four explosions on Qeshm Island reported by Xinhua, citing IRNA's local correspondent, occurred on Sunday evening, Nov 8, 2026 - per Mehr news agency as well, which wrote that the remarks of Hormozgan deputy governor Ahmad Nafisi \"came after four explosions were heard on Qeshm Island on Sunday evening\". That is one day after the Saturday-evening, Nov 7, 2026 round of explosions covered in the earlier items. The phrase \"Sunday night\" in the original item could have been read as an earlier time.\n\nThe attribution of the strike to the US military is an official Iranian claim only; the US has not confirmed a strike, and no independent confirmation was found.",
+    "תקציר_en": "Timing clarification: the four Qeshm explosions attributed by an Iranian official to a US strike occurred on Sunday evening, Nov 8, 2026. Iranian claim only; the US has not confirmed.",
+    "_translation": {
+      "en": {
+        "source_hash": "6aa8f6125657ff5e91fc9ef68db69986ea92166558dacdf80e7b0b9da02f29f9",
+        "schema_version": 1
+      }
+    }
   }
 ]
