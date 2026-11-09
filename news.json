@@ -27440,5 +27440,31 @@
         "source_hash": "d9adce78b4e53d869006cc0702725b94cdb04a6c1713384bdd8650de02d00c6e"
       }
     }
+  },
+  {
+    "כותרת": "AAON (AAON) תיקנה את דוחות הרבעון הראשון והשני של 2026 וזיהתה חולשה מהותית בבקרה הפנימית",
+    "כותרת_en": "AAON (AAON) restated its first- and second-quarter 2026 financial statements and identified a material weakness in internal controls",
+    "summary": "אירוע תיקון דוחות ובקרה, לא סיכום תוצאות רבעון שלישי: החברה זיהתה טעויות בהכרה בהכנסה ובטיפול במנויי תוכנה. לפי הודעתה, התיקונים הוסיפו במצטבר 10.7 מיליון דולר למכירות המחצית הראשונה; פעולות התיקון לבקרה נמשכות.",
+    "summary_en": "A restatement and control event, not a third-quarter earnings recap: the company identified revenue-recognition and software-subscription accounting errors. It says the corrections added $10.7 million to first-half net sales in aggregate; control remediation is ongoing.",
+    "טקסט": "9.11.2026, 23:01 בישראל (16:01 ET) | הודעת AAON רשמית באמצעות PRNewswire.\n\nהחברה הודיעה שתיקנה והציגה מחדש את הדוחות הכספיים לרבעון הראשון והשני של 2026, לאחר שזוהו טעויות בהכרה בהכנסה ובטיפול החשבונאי במנויי תוכנה. ההנהלה קבעה שהצגה מחדש נדרשת ושקיימת חולשה מהותית בבקרה הפנימית על הדיווח הכספי. זהו אירוע איכות דיווח ובקרה נפרד, ולא סיכום תוצאות הרבעון השלישי.\n\nלפי החברה, ההשפעה המצטברת על המחצית הראשונה של 2026 היא תוספת של 10.7 מיליון דולר למכירות נטו, 71 נקודות בסיס לשיעור הרווח הגולמי ו-0.09 דולר לרווח המדולל למניה לפי GAAP. אלה תיקונים לתקופות שכבר פורסמו, לא מכירות חדשות ברבעון הנוכחי. בטבלאות, מכירות הרבעון הראשון תוקנו מטה ואילו מכירות הרבעון השני תוקנו מעלה; אין להסיק שכל רבעון שופר.\n\nהחברה מסרה שלא מצאה ראיות להונאה או להתנהלות פסולה בקשר לטעויות. זו הצהרת החברה, לא מסקנה של בדיקה עצמאית שנקראה כאן. היא דיווחה על פעולות תיקון שכבר החלו ועל צעדים נוספים הנמשכים; אין אישור שהחולשה כבר תוקנה במלואה.\n\nבהודעה נאמר שפרטים נוספים נכללים בהערה 2 לדוחות 10-Q המתוקנים של שני הרבעונים ובסעיף 4 לדוח הרבעון השלישי, המוגשים לדבריה היום. הדיווחים עצמם לא נקראו לצורך פריט זה. אין כאן קביעה נפרדת על הודעת אי-הסתמכות של ה-SEC, חקירה רגולטורית או חוות דעת מבקר.",
+    "טקסט_en": "Nov 9, 2026, 23:01 Israel time (16:01 ET) | Official AAON release via PRNewswire.\n\nThe company announced that it restated its first- and second-quarter 2026 financial statements after identifying revenue-recognition and software-subscription accounting errors. Management concluded that restatement was appropriate and that a material weakness existed in internal control over financial reporting. This is a separate reporting-quality and control event, not a third-quarter earnings recap.\n\nAccording to the company, the aggregate first-half 2026 impact is an increase of $10.7 million in net sales, 71 basis points in gross margin and $0.09 in GAAP diluted EPS. These correct previously reported periods; they are not new current-quarter sales. The tables show first-quarter sales revised down and second-quarter sales revised up, so not every quarter improved.\n\nThe company says it found no evidence of fraud or misconduct in connection with the errors. That is the company’s statement, not a conclusion from an independent investigation reviewed here. It reports corrective actions already implemented and further measures still being executed; this does not establish that the weakness has been fully remediated.\n\nThe release points to Note 2 of the restated first- and second-quarter 10-Q filings and Item 4 of the third-quarter 10-Q, which it says are being filed today. Those filings were not read for this item. No separate SEC non-reliance notice, regulatory investigation or auditor opinion is established here.",
+    "קישור": "https://www.prnewswire.com/news-releases/the-aaon-group-reports-record-third-quarter-2026-results-restates-first-and-second-quarter-2026-financial-statements-and-raises-full-year-outlook-302933844.html",
+    "מקורות": [
+      {
+        "label": "AAON: הודעה רשמית, סעיף הצגת דוחות מחדש וחולשה מהותית והטבלאות בסוף - מקור ראשוני",
+        "label_en": "AAON: official release, restatement/material weakness section and closing tables - primary source",
+        "url": "https://www.prnewswire.com/news-releases/the-aaon-group-reports-record-third-quarter-2026-results-restates-first-and-second-quarter-2026-financial-statements-and-raises-full-year-outlook-302933844.html"
+      }
+    ],
+    "מזהה": "n-1138",
+    "תאריך": "2026-11-09 23:06",
+    "הועלה": "2026-11-09 23:06",
+    "category": "micro",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "d044ad68c652c54e32df4a13319caf918b73e71b91f9fe33674abf3d47f46db0"
+      }
+    }
   }
 ]
