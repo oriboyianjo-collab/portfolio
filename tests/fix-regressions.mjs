@@ -2,6 +2,11 @@
 import fs from 'fs';
 import vm from 'vm';
 import assert from 'assert';
+import http from 'http';
+import os from 'os';
+import path from 'path';
+import {spawn} from 'child_process';
+import {fileURLToPath} from 'url';
 
 const root = new URL('..', import.meta.url);
 const read = f => fs.readFileSync(new URL(f, root), 'utf8');
@@ -22,9 +27,11 @@ ok('stored perf range assigned directly', perfBlock.includes('ui.perfRange = o.p
 
 // 3-4. visible version, shell cache and stylesheet query agree.
 ok('settings shows v298', html.includes('גרסת האפליקציה:') && html.includes('>v298</b>') && read('i18n-en.js').includes('App version:') && read('i18n-en.js').includes('>v298</b>'));
-ok('shell cache v306', sw.includes("const CACHE = 'portfolio-shell-v308'"));
+ok('shell cache v306', sw.includes("const CACHE = 'portfolio-shell-v309'"));
 ok('page and worker request the same chart css', html.includes('chart-tools.css?v=267') && sw.includes("'./chart-tools.css?v=267'"));
 ok('alerts script query matches', html.includes('alerts-core.js?v=269') && sw.includes('alerts-core.js?v=269'));
+ok('notification key is passed through', html.includes("alGoto(kind, p.get('s')||'', key||'')") && html.includes('alGoto(a.kind, a.sym, a.key)'));
+ok('deep link keeps session restore for ordinary launches', html.includes('if(!alDeep)') && html.includes('if(o.pos) openPosition(o.pos)') && html.includes("sessionStorage.getItem(TAB_KEY)"));
 
 // 6. overflow summary is reachable.
 const ret = sw.indexOf('return fresh.length');
@@ -102,6 +109,126 @@ const pre = {tradeTime:'20260105092900', tradeTimeinMills:base-60000, open:1, cl
 const after = {tradeTime:'20260105160000', tradeTimeinMills:base+7*3600000, open:1, close:2, volume:500};
 const bounds = cvd([{time:'2026-01-05'}], [pre, {tradeTime:'20260105093000', open:10, close:11, volume:100}, after], 0);
 ok('regular session bounds stay 09:30 inclusive and 16:00 exclusive', JSON.stringify(bounds.series)==='[100]' && bounds.kept===1, JSON.stringify(bounds));
+
+// 9. A notification URL / SavageOpenAlert opens that exact news item or report at a phone width.
+const newsRow = news.find(x=>x['מזהה']==='n-1063');
+const newsKey = 'n|'+globalThis.AlertsCore.H(String(newsRow['כותרת']||'').trim()+'|'+(newsRow['הועלה']||newsRow['תאריך']||''));
+const reports = JSON.parse(read('reports.json'));
+const repRow = reports.find(r=>String(r['סימול']||'').toUpperCase()==='BRK.A' && String(r['תאריך']||'').slice(0,10)==='2026-11-07');
+const repKey = 'rp|BRK.A|2026-11-07';
+ok('fixtures exist for deep links', !!(newsRow && repRow && newsRow.category==='micro' && repRow['הערה']));
+
+function mime(file){ return {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.webmanifest':'application/manifest+json'}[path.extname(file)] || 'application/octet-stream'; }
+function startServer(dir){
+  const rootDir = path.resolve(dir);
+  const server = http.createServer((req, res)=>{
+    try{
+      const u = new URL(req.url, 'http://127.0.0.1');
+      let name = decodeURIComponent(u.pathname).replace(/^\/+/, '');
+      if(!name || name.endsWith('/')) name += 'index.html';
+      const file = path.resolve(rootDir, name);
+      const rel = path.relative(rootDir, file);
+      if(rel.startsWith('..') || path.isAbsolute(rel)){ res.writeHead(403); res.end(); return; }
+      fs.readFile(file, (err, buf)=>{ if(err){ res.writeHead(404); res.end('missing'); return; } res.writeHead(200, {'Content-Type':mime(file), 'Cache-Control':'no-store'}); res.end(buf); });
+    }catch(e){ res.writeHead(500); res.end(String(e)); }
+  });
+  return new Promise(resolve=>server.listen(0, '127.0.0.1', ()=>resolve(server)));
+}
+function cdp(wsUrl){
+  const ws = new WebSocket(wsUrl);
+  let n = 0; const wait = new Map(); const listen = [];
+  const ready = new Promise((res, rej)=>{ ws.addEventListener('open', ()=>res()); ws.addEventListener('error', rej); });
+  ws.addEventListener('message', ev=>{
+    const m = JSON.parse(ev.data);
+    if(m.id && wait.has(m.id)){ const p = wait.get(m.id); wait.delete(m.id); m.error ? p.rej(new Error(m.error.message||JSON.stringify(m.error))) : p.res(m); }
+    else listen.forEach(fn=>{ try{ fn(m); }catch(e){} });
+  });
+  return {ws, ready, on: fn=>listen.push(fn), send: async (method, params={}, sessionId)=>{ await ready; const id = ++n; return new Promise((res, rej)=>{ wait.set(id, {res, rej}); ws.send(JSON.stringify({id, method, params, sessionId})); }); }};
+}
+async function launchChrome(){
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'savage-alert-'));
+  const port = 9400 + Math.floor(Math.random()*400);
+  const proc = spawn('google-chrome', ['--headless=new','--disable-gpu','--no-sandbox','--disable-dev-shm-usage','--no-first-run','--no-default-browser-check','--disable-extensions','--disable-sync','--disable-translate','--disable-background-networking','--window-size=360,800',`--remote-debugging-port=${port}`,'--remote-allow-origins=*',`--user-data-dir=${dir}`,'about:blank'], {stdio:['ignore','ignore','pipe']});
+  let log = ''; proc.stderr.on('data', d=>{ log += d; if(log.length>8000) log = log.slice(-8000); });
+  for(let i=0;i<40;i++){ try{ const r = await fetch(`http://127.0.0.1:${port}/json/version`); if(r.ok){ const j = await r.json(); const browser = cdp(j.webSocketDebuggerUrl); await browser.ready; return {proc, dir, port, log:()=>log, browser}; } }catch(e){} await new Promise(r=>setTimeout(r, 250)); }
+  proc.kill('SIGKILL'); throw new Error('chrome did not open a debugging port\n'+log);
+}
+async function openPage(browser, port, url, inject){
+  const created = await browser.send('Target.createTarget', {url:'about:blank'});
+  const targetId = created.result.targetId;
+  let info = null;
+  for(let i=0;i<30 && !info;i++){
+    const list = await fetch(`http://127.0.0.1:${port}/json/list`).then(r=>r.json());
+    info = list.find(t=>t.id===targetId && t.webSocketDebuggerUrl);
+    if(!info) await new Promise(r=>setTimeout(r, 100));
+  }
+  if(!info) throw new Error('new tab has no debugger socket');
+  const page = cdp(info.webSocketDebuggerUrl); await page.ready;
+  const exceptions = [];
+  page.on(m=>{ if(m.method==='Runtime.exceptionThrown') exceptions.push(String(m.params?.exceptionDetails?.exception?.description || m.params?.exceptionDetails?.text || 'exception').slice(0, 500)); });
+  await page.send('Page.enable'); await page.send('Runtime.enable'); await page.send('Emulation.setDeviceMetricsOverride', {width:360, height:800, deviceScaleFactor:1, mobile:true});
+  if(inject) await page.send('Page.addScriptToEvaluateOnNewDocument', {source:inject});
+  const nav = await page.send('Page.navigate', {url});
+  if(nav.error || nav.result?.errorText) throw new Error('navigate failed '+JSON.stringify(nav.error||nav.result));
+  return {send: page.send, exceptions, ws: page.ws};
+}
+async function poll(page, expression, ms){
+  const start = Date.now(); let last = null;
+  while(Date.now()-start < ms){
+    const r = await page.send('Runtime.evaluate', {expression, returnByValue:true});
+    if(r.result?.exceptionDetails) last = {exception: r.result.exceptionDetails.text, detail: r.result.exceptionDetails.exception?.description};
+    else last = r.result?.result?.value;
+    if(last && last.ok) return last;
+    await new Promise(res=>setTimeout(res, 250));
+  }
+  return last;
+}
+const coldBoot = `(()=>{ try{
+  sessionStorage.setItem('portfolioTracker.newsCat','macro');
+  sessionStorage.setItem('portfolioTracker.newsTab','news');
+  sessionStorage.setItem('portfolioTracker.tab','portfolio');
+  sessionStorage.setItem('portfolioTracker.uiState', JSON.stringify({tab:'portfolio', perf:'1M', newsQ:'zzzz-not-news', repQ:'zzzz-not-a-report', sy:{portfolio:4000, news:9000}, pos:'AAPL'}));
+}catch(e){} })();`;
+function newsState(key){ return `(()=>{ const key=${JSON.stringify(key)}; const el=[...document.querySelectorAll('#newsList article[data-ak]')].find(n=>n.dataset.ak===key); const hb=document.querySelector('header.top')?.getBoundingClientRect().bottom||0; const box=el?el.getBoundingClientRect():null; const det=el?.querySelector('details.news-expand'); const cat=document.querySelector('#newsCatSeg button.on')?.dataset.nc||''; const q=document.getElementById('newsQ')?.value??null; const newsOn=!!document.getElementById('tab-news')?.classList.contains('on'); const sheet=!!document.getElementById('sheet')?.classList.contains('open'); const placed=!!(box && box.top>=hb-4 && box.top<hb+40); return {ok:!!(el&&det&&det.open&&el.dataset.alPin==='1'&&newsOn&&!document.getElementById('ntNews').hidden&&q===''&&(cat==='all'||cat==='micro')&&placed&&innerWidth===360&&!sheet), found:!!el, open:!!(det&&det.open), pin:el?.dataset.alPin||'', q, cat, top:box&&Math.round(box.top), hb:Math.round(hb), w:innerWidth, newsOn, sheet, href:location.href, n:document.querySelectorAll('#newsList article').length, sample:[...document.querySelectorAll('#newsList article[data-ak]')].slice(0,2).map(n=>n.dataset.ak)}; })()`; }
+function repState(sym, day){ return `(()=>{ const sym=${JSON.stringify(sym)}, day=${JSON.stringify(day)}; const el=[...document.querySelectorAll('#repList article[data-rsym]')].find(n=>n.dataset.rsym===sym&&(n.dataset.rdate===day||n.dataset.rday===day)); const hb=document.querySelector('header.top')?.getBoundingClientRect().bottom||0; const box=el?el.getBoundingClientRect():null; const note=el?.querySelector('[data-rnote]'); const mine=document.querySelector('#repPills [data-pill="mine"]'); const placed=!!(box && box.top>=hb-4 && box.top<hb+48); const repOn=!!document.getElementById('tab-news')?.classList.contains('on')&&document.getElementById('ntRep')&&!document.getElementById('ntRep').hidden; return {ok:!!(el&&el.dataset.alPin==='1'&&note&&note.classList.contains('open')&&note.getAttribute('aria-expanded')==='true'&&repOn&&document.getElementById('repQ').value===''&&(!mine||mine.getAttribute('aria-pressed')!=='true')&&placed&&innerWidth===360), found:!!el, pin:el?.dataset.alPin||'', note:!!(note&&note.classList.contains('open')), aria:note?.getAttribute('aria-expanded')||'', q:document.getElementById('repQ')?.value, mine:mine?.getAttribute('aria-pressed')||'', top:box&&Math.round(box.top), hb:Math.round(hb), w:innerWidth, repOn, rows:document.querySelectorAll('#repList article').length}; })()`; }
+async function hold(page, expression){ const first = await poll(page, expression, 90000); if(!(first&&first.ok)) return first; await new Promise(r=>setTimeout(r, 900)); return poll(page, expression, 5000); }
+
+const server = await startServer(fileURLToPath(root));
+const origin = `http://127.0.0.1:${server.address().port}`;
+let chrome = null;
+try{
+  chrome = await launchChrome();
+  const coldNews = await openPage(chrome.browser, chrome.port, origin+`/index.html?al=news&s=&k=${encodeURIComponent(newsKey)}`, coldBoot);
+  const coldNewsHit = await hold(coldNews, newsState(newsKey));
+  ok('cold start opens the news item', !!(coldNewsHit&&coldNewsHit.ok), JSON.stringify(coldNewsHit)+' '+(coldNews.exceptions.slice(-2).join(' | ')));
+  if(coldNewsHit&&coldNewsHit.ok){
+    await coldNews.send('Runtime.evaluate', {expression:`document.querySelector('header.top').click(); history.back();`, returnByValue:true});
+    const back = await poll(coldNews, `(()=>({ok:!!document.getElementById('tab-portfolio')?.classList.contains('on')&&!!document.querySelector('nav.bottom button[data-tab="portfolio"]')?.classList.contains('on')}))()`, 8000);
+    ok('back from a news deep link returns to the previous tab', !!(back&&back.ok), JSON.stringify(back));
+  } else ok('back from a news deep link returns to the previous tab', false, 'news deep link did not land');
+
+  const coldRep = await openPage(chrome.browser, chrome.port, origin+`/index.html?al=rep&s=BRK.A&k=${encodeURIComponent(repKey)}`, coldBoot);
+  const coldRepHit = await hold(coldRep, repState('BRK.A','2026-11-07'));
+  ok('cold start opens the report', !!(coldRepHit&&coldRepHit.ok), JSON.stringify(coldRepHit)+' '+(coldRep.exceptions.slice(-2).join(' | ')));
+
+  const live = await openPage(chrome.browser, chrome.port, origin+'/index.html', '');
+  const ready = await poll(live, `(()=>({ok:typeof window.SavageOpenAlert==='function'}))()`, 30000);
+  ok('foreground page exposes SavageOpenAlert', !!(ready&&ready.ok), JSON.stringify(ready)+' '+(live.exceptions.slice(-2).join(' | ')));
+  if(ready&&ready.ok){
+    await live.send('Runtime.evaluate', {expression:`document.querySelector('#newsCatSeg [data-nc="macro"]').click(); const q=document.getElementById('newsQ'); q.value='zzzz-not-news'; q.dispatchEvent(new Event('input',{bubbles:true})); window.SavageOpenAlert(${JSON.stringify(origin+'/index.html?al=news&s=&k='+encodeURIComponent(newsKey))});`, returnByValue:true});
+    const liveNews = await hold(live, newsState(newsKey));
+    ok('SavageOpenAlert opens the news item', !!(liveNews&&liveNews.ok), JSON.stringify(liveNews));
+    await live.send('Runtime.evaluate', {expression:`document.querySelector('#newsSeg [data-nt="rep"]').click();`, returnByValue:true});
+    const pill = await poll(live, `(()=>({ok:!!document.querySelector('#repPills [data-pill="mine"]')}))()`, 90000);
+    if(pill&&pill.ok) await live.send('Runtime.evaluate', {expression:`document.querySelector('#repPills [data-pill="mine"]').click(); window.SavageOpenAlert(${JSON.stringify(origin+'/index.html?al=rep&s=BRK.A&k='+encodeURIComponent(repKey))});`, returnByValue:true});
+    const liveRep = pill&&pill.ok ? await hold(live, repState('BRK.A','2026-11-07')) : pill;
+    ok('SavageOpenAlert opens the report', !!(liveRep&&liveRep.ok), JSON.stringify(liveRep));
+    await live.send('Runtime.evaluate', {expression:`window.SavageOpenAlert(${JSON.stringify(origin+'/index.html?al=news&k='+encodeURIComponent('n|doesnotexist'))});`, returnByValue:true});
+    const miss = await poll(live, `(()=>{ const n=document.querySelectorAll('#newsList article').length; const pinned=document.querySelector('[data-al-pin]'); const newsOn=!!document.getElementById('tab-news')?.classList.contains('on')&&!document.getElementById('ntNews').hidden; return {ok:newsOn&&n>0&&!pinned, n, newsOn, pinned:!!pinned}; })()`, 30000);
+    ok('missing news key falls back to the news section', !!(miss&&miss.ok), JSON.stringify(miss));
+  }
+}catch(e){ ok('headless deep-link run', false, e && e.stack || String(e)); }
+finally{ try{ chrome&&chrome.proc.kill('SIGKILL'); }catch(e){} try{ server.close(); }catch(e){} try{ chrome&&fs.rmSync(chrome.dir,{recursive:true,force:true}); }catch(e){} }
 
 console.log(failed?`\n${failed} FAILED`:'\nALL REGRESSION CHECKS PASSED');
 process.exit(failed?1:0);

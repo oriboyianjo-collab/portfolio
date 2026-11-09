@@ -6065,7 +6065,7 @@ function newsFromMd(t){ return t.split(/^\s*---+\s*$/m).map(b=>{ const o = {}, b
     if((m = l.match(/^\s*#+\s*(.+)/)) && !o.title) o.title = m[1]; else if((m = l.match(/^\s*(תאריך|חברה|קישור)\s*:\s*(.*)$/))) o[{'תאריך':'date','חברה':'company','קישור':'link'}[m[1]]] = m[2]; else body.push(l); });
   o.text = body.join('\n').trim(); return o; }).filter(o=>o.title || o.text); }
 let newsSeq = 0; const NSEEN_KEY = 'portfolioTracker.newsSeen.v1';
-async function loadNews(){ const el = $('newsList'); if(!el) return; const seq = ++newsSeq; let items = null, err = false;
+async function loadNews(){ const el = $('newsList'); if(!el) return; const seq = ++newsSeq, tick = ++alNewsTick; let items = null, err = false;
   const get = async f=>{ const r = await fetch(f+'?t='+Date.now(), {cache:'no-store'}); if(!r.ok) throw new Error(r.status); return r.text(); };
   try{ const j = JSON.parse(await get('news.json')); items = Array.isArray(j) ? j : (j && Array.isArray(j.items) ? j.items : []); }
   catch(e){ try{ items = newsFromMd(await get('news.md')); }catch(e2){ err = !(e instanceof SyntaxError) ? false : true; items = []; } }
@@ -6074,7 +6074,7 @@ async function loadNews(){ const el = $('newsList'); if(!el) return; const seq =
   const rawItems=items.filter(o=>o&&typeof o==='object');
   if(I18n.language==='en')await ContentLanguage.prepare('news',rawItems);
   if(seq!==newsSeq)return;
-  const L = rawItems.map((o,i)=>({i,identity:ContentLanguage.originalIdentity('news',o),legacySeen:ContentLanguage.legacyNewsSeenKey(o),title:ContentLanguage.displayText('news',o,'title',I18n.language),date:newsPick(o,'date'),text:ContentLanguage.displayText('news',o,'text',I18n.language),link:newsPick(o,'link'),company:ContentLanguage.displayText('news',o,'company',I18n.language),up:newsPick(o,'up'),cat:newsCatOf(o),sources:ContentLanguage.displaySources(o,I18n.language),preview:ContentLanguage.displayText('news',o,'preview',I18n.language),imgs:newsImgs(o)})).filter(o=>o.title||o.text||o.imgs.length);
+  const L = rawItems.map((o,i)=>({i,ak:alNewsKey(o),identity:ContentLanguage.originalIdentity('news',o),legacySeen:ContentLanguage.legacyNewsSeenKey(o),title:ContentLanguage.displayText('news',o,'title',I18n.language),date:newsPick(o,'date'),text:ContentLanguage.displayText('news',o,'text',I18n.language),link:newsPick(o,'link'),company:ContentLanguage.displayText('news',o,'company',I18n.language),up:newsPick(o,'up'),cat:newsCatOf(o),sources:ContentLanguage.displaySources(o,I18n.language),preview:ContentLanguage.displayText('news',o,'preview',I18n.language),imgs:newsImgs(o)})).filter(o=>o.title||o.text||o.imgs.length);
   // v66: order by UPLOAD time, not the publish date. The file's order is not reliable (items have been added both at the top and at
   // the bottom), so: an explicit "הועלה"/"uploaded" time wins; otherwise the time this device first saw the item (remembered in
   // localStorage – not portfolio data). On a device's very first load the publish date seeds the order.
@@ -6083,7 +6083,7 @@ async function loadNews(){ const el = $('newsList'); if(!el) return; const seq =
     L.forEach((o,i)=>{ const k = o.identity;if(seen[k]==null&&seen[o.legacySeen]!=null)seen[k]=seen[o.legacySeen]; if(seen[k]==null) seen[k] = first ? (o.t || 0) : now; keep[k] = seen[k]; const u = o.up ? newsTime(o.up) : null; o.u = u!=null ? u : keep[k]; });
     try{ localStorage.setItem(NSEEN_KEY, JSON.stringify(keep)); }catch(e){}
     L.sort((a,b)=>(b.u - a.u) || ((b.t ?? -Infinity) - (a.t ?? -Infinity)) || a.i - b.i); }
-  newsItems = L; newsErr = err; newsRender();
+  newsItems = L; newsErr = err; newsAt = tick; newsRender();
 }
 // v56: search – live filter over title/text/company/date (case-insensitive), every match wrapped in <mark>; text is escaped piece by piece
 let newsItems = [], newsErr = false;
@@ -6099,13 +6099,14 @@ function newsSourceHtml(o){ if(!o.sources?.length)return /^https?:\/\//i.test(o.
  return I18n.p("ui-1246","<details class=\"news-sources\" style=\"margin-top:12px\"><summary style=\"cursor:pointer;font-weight:700;color:var(--blue)\">מקורות (")+o.sources.length+')</summary>'+o.sources.map(x=>`<div style="margin-top:10px"><a class="news-l" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)} ←</a>${x.role?`<div class="note">${esc(x.role)}</div>`:''}</div>`).join('')+'</details>'; }
 function newsRender(){ const el = $('newsList'), cnt = $('newsCnt'); if(!el) return; const L = newsItems, q = ($('newsQ').value||'').trim(); $('newsQx').hidden = !$('newsQ').value;
   newsAll = [];
-  if(!L.length){ cnt.hidden = true; el.innerHTML = `<div class="news-empty">${newsErr ? I18n.p("ui-1247","קובץ החדשות (news.json) לא תקין – בדקו פסיקים ומירכאות.") : I18n.p("ui-1248","אין עדיין חדשות.<br><small>מוסיפים פריטים בקובץ news.json באתר GitHub.</small>")}</div>`; return; }
+  if(!L.length){ cnt.hidden = true; el.innerHTML = `<div class="news-empty">${newsErr ? I18n.p("ui-1247","קובץ החדשות (news.json) לא תקין – בדקו פסיקים ומירכאות.") : I18n.p("ui-1248","אין עדיין חדשות.<br><small>מוסיפים פריטים בקובץ news.json באתר GitHub.</small>")}</div>`; alReveal(); return; }
   const B = newsCat==='all' ? L : L.filter(o=>o.cat===newsCat); // v110
-  if(!B.length){ cnt.hidden = true; el.innerHTML = `${I18n.p("ui-1249","<div class=\"news-empty\">אין עדיין חדשות בלשונית זו.</div>")}`; return; }
+  if(!B.length){ cnt.hidden = true; el.innerHTML = `${I18n.p("ui-1249","<div class=\"news-empty\">אין עדיין חדשות בלשונית זו.</div>")}`; alReveal(); return; }
   const ql = q.toLocaleLowerCase(), M = q ? B.filter(o=>[o.title, o.text, o.company, o.date, newsFd(o)].some(v=>String(v||'').toLocaleLowerCase().includes(ql))) : B;
   cnt.hidden = !q; cnt.textContent = q ? (M.length===1 ? I18n.p("ui-1250","תוצאה אחת") : `${M.length}${I18n.p("ui-1251"," תוצאות")}`) : '';
-  if(!M.length){ el.innerHTML = `${I18n.p("ui-1252","<div class=\"news-empty\">לא נמצאו חדשות עבור „")}${esc(q)}”</div>`; return; }
-  el.innerHTML = M.map(o=>`<article class="news-it"><details class="news-expand"><summary style="cursor:pointer;list-style-position:outside"><div class="news-d" style="display:inline-block;margin-bottom:6px">${newsHl(newsFd(o),q)}</div><h3 style="margin:0">${newsHl(o.title||o.company||I18n.p("ui-1253","עדכון"),q)}</h3><div class="news-preview" style="font-weight:400;font-size:13px;line-height:1.65;color:var(--muted);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${newsHl(newsPreview(o),q)}</div></summary>${o.company ? `<span class="news-co">${newsHl(o.company,q)}</span>` : ''}${o.text ? `<div class="news-t">${newsHl(o.text,q)}</div>` : ''}${newsImgHtml(o)}${newsSourceHtml(o)}</details></article>`).join('');
+  if(!M.length){ el.innerHTML = `${I18n.p("ui-1252","<div class=\"news-empty\">לא נמצאו חדשות עבור „")}${esc(q)}”</div>`; alReveal(); return; }
+  el.innerHTML = M.map(o=>`<article class="news-it" data-ak="${esc(o.ak)}"><details class="news-expand"><summary style="cursor:pointer;list-style-position:outside"><div class="news-d" style="display:inline-block;margin-bottom:6px">${newsHl(newsFd(o),q)}</div><h3 style="margin:0">${newsHl(o.title||o.company||I18n.p("ui-1253","עדכון"),q)}</h3><div class="news-preview" style="font-weight:400;font-size:13px;line-height:1.65;color:var(--muted);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${newsHl(newsPreview(o),q)}</div></summary>${o.company ? `<span class="news-co">${newsHl(o.company,q)}</span>` : ''}${o.text ? `<div class="news-t">${newsHl(o.text,q)}</div>` : ''}${newsImgHtml(o)}${newsSourceHtml(o)}</details></article>`).join('');
+  alReveal();
 }
 function newsSetAll(open){$('newsList').querySelectorAll('details').forEach(d=>{d.open=open;});}
 $('newsExpandAll').onclick=()=>newsSetAll(true);
@@ -6158,9 +6159,9 @@ const memOf = sym=>{ const L = idxMem && idxMem.s[memNorm(sym)]; return L ? IDXM
 const ixCls = k=>/^u:/.test(k) ? '' : ' ix-'+k;
 function applyNewsTab(){ try{ repPopClose(); }catch(_){} $('newsSeg').querySelectorAll('[data-nt]').forEach(b=>{ const on = b.dataset.nt===newsTab; b.classList.toggle('on', on); b.setAttribute('aria-selected', String(on)); });
   $('ntNews').hidden = newsTab!=='news'; $('ntRep').hidden = newsTab!=='rep'; $('ntCal').hidden = newsTab!=='cal'; applyNewsCat(); }
-async function loadNt(kind){ const seq = ++ntSeq, f = kind==='rep' ? 'reports.json' : 'calendar.json'; let items = [], err = false;
+async function loadNt(kind){ const seq = ++ntSeq, tick = kind==='rep' ? ++alRepTick : 0, f = kind==='rep' ? 'reports.json' : 'calendar.json'; let items = [], err = false;
   try{ const r = await fetch(f+'?t='+Date.now(), {cache:'no-store'}); if(r.ok){ const t = (await r.text()).trim(); if(t){ try{ const j = JSON.parse(t); items = Array.isArray(j) ? j : (j && Array.isArray(j.items) ? j.items : []); }catch(e){ err = true; } } } }catch(e){}
-  if(seq!==ntSeq) return;items=items.filter(o=>o&&typeof o==='object');if(I18n.language==='en')await ContentLanguage.prepare(kind==='rep'?'reports':'calendar',items);if(seq!==ntSeq)return;ntData[kind] = {items, err}; kind==='rep' ? drawReports() : drawCal(); }
+  if(seq!==ntSeq) return;items=items.filter(o=>o&&typeof o==='object');if(I18n.language==='en')await ContentLanguage.prepare(kind==='rep'?'reports':'calendar',items);if(seq!==ntSeq)return;if(kind==='rep')repAt=tick;ntData[kind] = {items, err}; kind==='rep' ? drawReports() : drawCal(); }
 function loadNewsTab(){ applyNewsTab(); if(newsTab==='news') loadNews(); else loadNt(newsTab); }
 $('newsSeg').addEventListener('click', e=>{ const b = e.target.closest('[data-nt]'); if(!b || b.dataset.nt===newsTab) return; newsTab = b.dataset.nt; try{ sessionStorage.setItem('portfolioTracker.newsTab', newsTab); }catch(_){} if(newsTab==='rep') repEnter = true; if(newsTab==='cal') calEnter = true; loadNewsTab(); });
 // v110: news category sub-tabs – הכל / מיקרו / מאקרו; filters only the news list, never reports/calendar
@@ -6333,7 +6334,7 @@ document.addEventListener('click', e=>{
   const fb=e.target.closest('#finBack'); if(fb){ navDrop('finD'); finSel=null; renderFin(); return; }
 });
 
-function drawReports(){ const repReset=repEnter; const D = ntData.rep, el = $('repList'); if(!D) return; if(!D.items.length){ $('repFil').innerHTML = ''; el.innerHTML = ntEmpty('rep', D.err); return; }
+function drawReports(){ const repReset=repEnter; const D = ntData.rep, el = $('repList'); if(!D) return; if(!D.items.length){ $('repFil').innerHTML = ''; el.innerHTML = ntEmpty('rep', D.err); alReveal(); return; }
   const held = new Set(computeAll().positions.filter(p=>Math.abs(p.qty)>1e-9).map(p=>p.sym)), watched = new Set(wlData.lists.flatMap(l=>l.items.map(x=>x.sym)));
   const L = D.items.map(o=>{ const r = {}; for(const k in REP_K) r[k] = pickK(o, REP_K, k);r.view={};for(const k of ContentLanguage.HUMAN.reports)r.view[k]=ContentLanguage.displayText('reports',o,k,I18n.language); r.symbol = r.symbol.toUpperCase(); r.d = ntDate(r.date); r.tag = held.has(r.symbol) ? I18n.p("ui-1306","בתיק") : watched.has(r.symbol) ? I18n.p("ui-1307","במעקב") : ''; r.ixs = idxOf(o); r.hasIdx = hasIdxKey(o); return r; }).filter(r=>r.company || r.symbol);
   if(L.some(r=>!r.ixs.length && !r.hasIdx) && (!idxMem || Date.now()-idxMem.at > 20*3600e3)) loadIdxMem().then(m=>{ if(m && newsTab==='rep') drawReports(); });
@@ -6347,6 +6348,11 @@ function drawReports(){ const repReset=repEnter; const D = ntData.rep, el = $('r
   if(repEnter){ repEnter = false; ntFil.q = ''; $('repQ').value = ''; repShow = 60; repPopClose(); repSearchUi(false);
     const dated = days.filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)); ntFil.day = t; ntFil.dateFrom=''; ntFil.dateTo=''; }
   if(ntFil.day!=='range' && !week.includes(ntFil.day)) ntFil.day=t;
+  const pin = alRepWant();
+  if(pin){ alFocus.applied = true; const raw = (D.items||[]).find(o=>String(o['סימול']||o.symbol||'').toUpperCase()===pin.sym && String(o['תאריך']||o.date||'').slice(0,10)===pin.day);
+    if(!raw) alFocus.miss = true; else { const nd = ntDate(pickK(raw, REP_K, 'date') || pin.day), day = /^\d{4}-\d{2}-\d{2}$/.test(nd) ? nd : pin.day; alFocus.sym = pin.sym; alFocus.day = day;
+      ntFil.rep = 'all'; ntFil.tm = 'all'; ntFil.idx = 'all'; ntFil.q = ''; const rq = $('repQ'); if(rq) rq.value = ''; try{ repPopClose(); repSearchUi(false); }catch(e){}
+      if(week.includes(day)){ ntFil.day = day; ntFil.dateFrom = ''; ntFil.dateTo = ''; } else { ntFil.day = 'range'; ntFil.dateFrom = day; ntFil.dateTo = day; } } }
   const dShort = d=>{ if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return d; const l = dayLbl(d); const w = new Date(d+'T12:00:00Z').toLocaleDateString(I18n.locale,{weekday:'short', timeZone:'UTC'}).replace('יום ',''); return `${l || w} ${+d.slice(8)}.${+d.slice(5,7)}`; };
   const qn = ntFil.q.trim().toLowerCase(), inQ = r=>!qn || r.symbol.toLowerCase().includes(qn) || String(r.company||'').toLowerCase().includes(qn);
   L.forEach(r=>{ const f = repCapParse(r.cap), c = repCap[r.symbol]; r.capV = f!=null && f>0 ? f : c && c.v ? c.v : null; });
@@ -6378,7 +6384,7 @@ function drawReports(){ const repReset=repEnter; const D = ntData.rep, el = $('r
     : ((b.ixs.length?1:0)-(a.ixs.length?1:0));
   const M = M0.slice().sort((a,b)=> ntFil.sort==='cap' ? within(a,b) : (a.d<b.d?-1:a.d>b.d?1:0) || within(a,b));   // v186: market-cap sort ranks the whole filtered list globally; other sorts stay within day groups
   if(ntFil.sort==='cap'){ const miss = [...new Set(M.filter(r=>r.capV==null).map(r=>r.symbol))]; if(miss.length) loadRepCaps(miss).then(ch=>{ if(ch && newsTab==='rep') drawReports(); }); }
-  if(!M.length){ el.innerHTML = `<div class="news-empty">${qn ? I18n.p("ui-1327","לא נמצאו דוחות עבור „")+esc(ntFil.q.trim())+'”.' : I18n.p("ui-1328","אין דוחות בסינון הזה.")}</div>`; return; }
+  if(!M.length){ el.innerHTML = `<div class="news-empty">${qn ? I18n.p("ui-1327","לא נמצאו דוחות עבור „")+esc(ntFil.q.trim())+'”.' : I18n.p("ui-1328","אין דוחות בסינון הזה.")}</div>`; alReveal(); return; }
   const hasResults = r=>[r.eps, r.rev].some(v=>v!=null && String(v).trim()!=='' && !/^(?:[—–-]|n\/?a|null)$/i.test(String(v).trim()));
   const up = M.filter(r=>!hasResults(r)), past = M.filter(hasResults).sort((a,b)=>(a.d>b.d?-1:a.d<b.d?1:0) || within(a,b));
   const shortN = n=>String(n||'').replace(/,?\s*(Inc\.?|Incorporated|Corporation|Corp\.?|Company|Co\.|Ltd\.?|Limited|plc|PLC|Holdings?|Group|N\.V\.|S\.A\.|SE|AG|L\.P\.|LP|Class [A-C]|Ordinary Shares?|Common Stock)\b\.?/g,'').replace(/[\s,.-]+$/,'').trim();
@@ -6475,7 +6481,7 @@ function drawReports(){ const repReset=repEnter; const D = ntData.rep, el = $('r
       return act ? `<span>${lbl}${I18n.p("ui-1385"," בפועל</span><b class=\"num ")}${c}">${vb(act)}${I18n.p("ui-1386","</b><small>צפי ")}${eb(est)}</small>${tg}${cm.ok ? (uns ? I18n.p("ui-1383","<em class=\"rs na\">ללא %</em>") : isRng ? rngB(rr, est, act) : sp(x, ap)) : I18n.p("ui-1384","<em class=\"rs na\">ללא %</em>")}` : `<span>${lbl}${I18n.p("ui-1387"," צפי</span><b class=\"num\">")}${vb(est)}</b>${tg}`; };
     const whyL = [r.eps && !E.ok ? 'EPS: '+E.why : '', r.rev && !R.ok ? I18n.p("ui-1388","הכנסות: ")+R.why : ''].filter(Boolean);
     const whyHtml = ()=> whyL.length ? ib(whyL.map(x=>`<div>${esc(x)}</div>`).join(''), I18n.p("ui-1389","למה אין השוואה לצפי"), 'warn') : '';
-    return `<article class="rrow${(ec||rc) ? ' r-'+(ec||rc) : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.view.company)}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
+    return `<article class="rrow${(ec||rc) ? ' r-'+(ec||rc) : ''}"${r.symbol ? ` data-rsym="${esc(r.symbol)}" data-rname="${esc(r.view.company)}" data-rdate="${esc(r.d)}" data-rday="${esc(String(r.date||'').slice(0,10))}" role="button" tabindex="0"` : ''}>${r.symbol ? logoHtml(r.symbol) : '<span></span>'}`+
       `<div class="rn"><div class="r1"><b class="ltr">${esc(r.symbol || r.view.company)}</b>${releaseClock}${ti}${r.tag ? `<span class="rtag">${r.tag}</span>` : ''}<span class="rix">${ix}</span>${whyHtml(r)}</div><small class="rmeta"><span class="rcompany">${esc(shortN(r.symbol ? r.view.company : ''))}${r.quarter ? ' · '+esc(r.quarter) : ''}</span>${ntFil.sort==='cap' && multiDay ? '<bdi class="rdate num">'+esc(fmtDate(r.d))+'</bdi>' : ''}${ntFil.sort==='cap' ? '<bdi class="rcap num">'+(r.capV ? fmtCap(r.capV) : I18n.p("ui-1390","שווי לא ידוע"))+'</bdi>' : ''}</small></div>`+
       `<div class="rv">${val('EPS', r.epsEst, r.eps, ec, eu ? null : surp(e2, e1), E, tagB(r.epsEstB, r.epsB, r.epsCur||r.epsActCur), false, null, false, eu)}</div><div class="rv">${val(I18n.p("ui-1391","הכנסות"), r.revEst, r.rev, rc, isRng ? null : surp(r2, r1), R, tagB(r.revEstB, r.revB, r.revCur||r.revActCur), true, RR, isRng, ru)}</div>${link}`+
             reportPdfControls(r.symbol)+
@@ -6484,8 +6490,9 @@ function drawReports(){ const repReset=repEnter; const D = ntData.rep, el = $('r
   // v186: in market-cap sort the list is one global ranking – no day/section group headers; the card shows its date when the filter spans days
   const multiDay = new Set(M.map(r=>r.d)).size > 1;
   const grpCap = A=>A.map(card).join('');
+  if(alFocus && alFocus.kind==='rep' && alFocus.sym && !alFocus.miss){ const ordered = ntFil.sort==='cap' ? M : [...up, ...past]; const idx = ordered.findIndex(r=>r.symbol===alFocus.sym && r.d===alFocus.day); if(idx>=repShow) repShow = idx+1; }
   const capFlat = ntFil.sort==='cap', A = capFlat ? M : [...up, ...past], more = A.length - repShow, upS = capFlat ? [] : up.slice(0, repShow), pastS = capFlat ? [] : past.slice(0, Math.max(0, repShow - up.length));
-  el.innerHTML = `<div class="rcnt">${M.length}${I18n.p("ui-1394"," דוחות")}${ntFil.idx!=='all' || ntFil.day==='range' || ntFil.tm!=='all' || qn ? I18n.p("ui-1393"," בסינון") : ''}</div>` + (capFlat ? grpCap(M.slice(0, repShow)) : (upS.length ? I18n.p("ui-1395","<div class=\"rsec\">ללא תוצאות מאומתות</div>")+grp(upS) : '') + (pastS.length ? `${I18n.p("ui-1396","<div class=\"rsec\">דוחות שפורסמו</div>")}${grp(pastS)}` : '')) + (more > 0 ? `${I18n.p("ui-1397","<button class=\"btn btn-light rmore\" data-rmore>הצגת עוד ")}${Math.min(60, more)}${I18n.p("ui-1398"," (מתוך ")}${more})</button>` : ''); }
+  el.innerHTML = `<div class="rcnt">${M.length}${I18n.p("ui-1394"," דוחות")}${ntFil.idx!=='all' || ntFil.day==='range' || ntFil.tm!=='all' || qn ? I18n.p("ui-1393"," בסינון") : ''}</div>` + (capFlat ? grpCap(M.slice(0, repShow)) : (upS.length ? I18n.p("ui-1395","<div class=\"rsec\">ללא תוצאות מאומתות</div>")+grp(upS) : '') + (pastS.length ? `${I18n.p("ui-1396","<div class=\"rsec\">דוחות שפורסמו</div>")}${grp(pastS)}` : '')) + (more > 0 ? `${I18n.p("ui-1397","<button class=\"btn btn-light rmore\" data-rmore>הצגת עוד ")}${Math.min(60, more)}${I18n.p("ui-1398"," (מתוך ")}${more})</button>` : '');  alReveal(); }
 const FLAGS = {US:'🇺🇸', IL:'🇮🇱', EU:'🇪🇺', DE:'🇩🇪', GB:'🇬🇧', UK:'🇬🇧', FR:'🇫🇷', JP:'🇯🇵', CN:'🇨🇳', CA:'🇨🇦', CH:'🇨🇭', AU:'🇦🇺', 'ארה״ב':'🇺🇸', 'ארה"ב':'🇺🇸', 'ישראל':'🇮🇱', 'אירופה':'🇪🇺', 'גוש האירו':'🇪🇺', 'גרמניה':'🇩🇪', 'בריטניה':'🇬🇧', 'יפן':'🇯🇵', 'סין':'🇨🇳'};
 const CNAME = {US:I18n.p("ux-0733","ארה״ב"), IL:I18n.p("ux-0734","ישראל"), EU:I18n.p("ux-0735","אירופה"), DE:I18n.p("ux-0736","גרמניה"), GB:I18n.p("ux-0737","בריטניה"), UK:I18n.p("ux-0738","בריטניה"), FR:I18n.p("ux-0739","צרפת"), JP:I18n.p("ux-0740","יפן"), CN:I18n.p("ux-0741","סין"), CA:I18n.p("ux-0742","קנדה"), CH:I18n.p("ux-0743","שווייץ"), AU:I18n.p("ux-0744","אוסטרליה")};
 function drawCal(){ const D = ntData.cal, el = $('calList'); if(!D) return; const enter = calEnter; calEnter = false; if(!D.items.length){ $('calFil').innerHTML = ''; el.innerHTML = ntEmpty('cal', D.err); return; }
@@ -6638,7 +6645,7 @@ document.querySelector('nav.bottom').addEventListener('click', e=>{ const b = e.
   try{ if(o.perf && ['1W','1M','3M','YTD','1Y','ALL'].includes(o.perf)){ ui.perfRange = o.perf; syncRangeChips(); } }catch(e){}
   try{ if(o.newsQ){ $('newsQ').value = o.newsQ; $('newsQ').dispatchEvent(new Event('input')); } }catch(e){}
   try{ if(o.repQ){ $('repQ').value = o.repQ; ntFil.q = o.repQ; } }catch(e){}
-  const y = o.sy && o.sy[ui.tab]; setTimeout(()=>{ try{ if(y) window.scrollTo(0, y); if(o.pos) openPosition(o.pos); }catch(e){} restoring = false; save(); }, 700);
+  const y = o.sy && o.sy[ui.tab]; setTimeout(()=>{ try{ if(!alDeep){ if(y) window.scrollTo(0, y); if(o.pos) openPosition(o.pos); } }catch(e){} restoring = false; save(); }, 700);
 })();
 $('btnSet').onclick = ()=>openSettings();   // tapping the gear in settings keeps it open; leave via the back button / Android back
 $('setBack').onclick = ()=>closeSettings();
@@ -7144,12 +7151,42 @@ function alRender(){ const c = $('alertsCard'); if(!c || !alView) return;
       ${alSN ? `${I18n.p("ui-1481","<div class=\"set-sec\"><button class=\"btn btn-light btn-block\" id=\"alTest\">🔔 שליחת התראת בדיקה</button><button class=\"btn btn-light btn-block\" id=\"alSys\" style=\"margin-top:8px\">⚙️ הגדרות התראות במערכת</button></div>\n      <div class=\"al-note\">ℹ️ ")}${perm==='granted' ? I18n.p("ui-1477","התראות דרך האפליקציה פעילות") : I18n.p("ui-1478","התראות דרך האפליקציה")} – ${alFcmOk ? I18n.p("ui-1479","✓ מחובר להתראות מיידיות: חדשות ודוחות מגיעים תוך שניות, גם כשהאפליקציה סגורה. כגיבוי, בדיקה ברקע גם כל ~15 דקות.") : I18n.p("ui-1480","חדשות ודוחות נבדקים ברקע בערך כל 15 דקות, גם כשהאפליקציה סגורה (אנדרואיד עשוי לעכב במצב חיסכון בסוללה).")}${I18n.p("ui-1482"," התראות מחיר נבדקות רק כשהאפליקציה פתוחה.</div>")}` : `${I18n.p("ui-1485","<div class=\"al-note\">ℹ️ הבדיקה רצה כשהאפליקציה פתוחה, וגם ברקע כשהדפדפן מאפשר (אנדרואיד, אפליקציה מותקנת – לא בזמן קבוע). ")}${alPushOk ? I18n.p("ui-1483","✓ מחובר לשרת ההתראות – התראות מגיעות גם כשהאפליקציה סגורה (חדשות ודוחות).") : I18n.p("ui-1484","שרת התראות (Cloudflare) עוד לא פעיל – ההתראות לא מובטחות כשהאפליקציה סגורה.")}${I18n.p("ui-1486"," התראות מחיר נבדקות רק כשהאפליקציה פתוחה.</div>")}`}`;
   }
   $('alBack').onclick = ()=>{ navDrop('alerts'); alClose(); }; }
-function alGoto(kind, sym){
-  if(kind==='px' || (!kind && sym)){ try{ const S = computeAll(); if(S.positions.some(p=>p.sym===sym) || S.closed.some(p=>p.sym===sym)){ if(ui.tab==='settings') setTab('portfolio'); openPosition(sym); return; } }catch(e){} setTab('watch'); return; }
+var alFocus = null, alDeep = false, alNewsTick = 0, alRepTick = 0, newsAt = 0, repAt = 0;
+function alHash(s){ if(window.AlertsCore && typeof AlertsCore.H==='function') return AlertsCore.H(s); let h = 5381; for(let i=0;i<s.length;i++) h = ((h*33) ^ s.charCodeAt(i))>>>0; return h.toString(36); }
+function alNewsKey(o){ const t = String(o && o['כותרת'] || '').trim(); return 'n|'+alHash(t+'|'+(o && (o['הועלה']||o['תאריך']) || '')); }
+function alScroll(el){ const go = ()=>{ if(!el || !el.isConnected) return; const hb = document.querySelector('header.top')?.getBoundingClientRect().bottom || 0; window.scrollTo({top: Math.max(0, el.getBoundingClientRect().top + window.scrollY - hb - 8)}); }; go(); requestAnimationFrame(go); }
+function alMark(el){ if(!el || el.dataset.alPin==='1') return false; el.dataset.alPin = '1'; el.classList.add('al-pin'); setTimeout(()=>{ el.classList.remove('al-pin'); }, 1800); return true; }
+function alRepWant(){ const f = alFocus; if(!f || f.kind!=='rep' || f.done || f.applied) return null; if(!(repAt > f.repMark)) return null; const m = /^(?:rp|rb|rm)\|([^|]+)\|(\d{4}-\d{2}-\d{2})$/.exec(f.key||''); if(!m){ f.done = true; return null; } return {sym:m[1].toUpperCase(), day:m[2]}; }
+function alRepEl(){ const f = alFocus; if(!f || !f.sym) return null; const raw = (f.key||'').split('|')[2] || ''; return [...document.querySelectorAll('#repList article[data-rsym]')].find(n=>n.dataset.rsym===f.sym && (n.dataset.rdate===f.day || n.dataset.rday===raw || n.dataset.rdate===raw)); }
+function alShowRep(el){ const note = el.querySelector('[data-rnote]'); if(note){ note.classList.add('open'); note.setAttribute('aria-expanded','true'); const mo = note.querySelector('.rmore2'); if(mo) mo.textContent = I18n.p("ui-1420","פחות ▴"); } if(alMark(el)) alScroll(el); }
+function alShowNews(el){ const det = el.querySelector('details.news-expand'); if(det) det.open = true; if(alMark(el)) alScroll(el); }
+function alReveal(){ try{ const f = alFocus; if(!f) return;
+  if(f.kind==='news'){
+    if(newsTab!=='news' || !(newsAt > f.newsMark)) return;
+    const again = Date.now()-(f.at||0)<20000;
+    if(f.done){ if(again){ const el = [...document.querySelectorAll('#newsList article[data-ak]')].find(n=>n.dataset.ak===f.key); if(el) alShowNews(el); } return; }
+    const item = newsItems.find(o=>o.ak===f.key); if(!item){ f.done = true; return; }
+    const q = ($('newsQ').value||'').trim().toLocaleLowerCase();
+    const hiddenCat = newsCat!=='all' && item.cat!==newsCat;
+    const hiddenQ = !!q && ![item.title, item.text, item.company, item.date, newsFd(item)].some(v=>String(v||'').toLocaleLowerCase().includes(q));
+    if(hiddenCat || hiddenQ){ if((f.relax||0)>3){ f.done = true; return; } f.relax = (f.relax||0)+1; if(hiddenCat){ newsCat = 'all'; try{ sessionStorage.setItem('portfolioTracker.newsCat','all'); }catch(e){} applyNewsCat(); } if(hiddenQ) $('newsQ').value = ''; newsRender(); return; }
+    const el = [...document.querySelectorAll('#newsList article[data-ak]')].find(n=>n.dataset.ak===f.key); if(!el){ f.done = true; return; }
+    f.at = f.at || Date.now(); alShowNews(el); f.done = true; return; }
+  if(f.kind==='rep'){
+    if(newsTab!=='rep' || !(repAt > f.repMark)) return;
+    if(f.done){ if(Date.now()-(f.at||0)<20000){ const el = alRepEl(); if(el) alShowRep(el); } return; }
+    if(f.miss || !f.sym){ f.done = true; return; }
+    const el = alRepEl(); if(!el){ if(f.applied) f.done = true; return; }
+    f.at = f.at || Date.now(); alShowRep(el); f.done = true; }
+}catch(e){ console.warn('alReveal', e); } }
+function alGoto(kind, sym, key){
+  if(kind==='px' || (!kind && sym)){ alFocus = null; try{ const S = computeAll(); if(S.positions.some(p=>p.sym===sym) || S.closed.some(p=>p.sym===sym)){ if(ui.tab==='settings') setTab('portfolio'); openPosition(sym); return; } }catch(e){} setTab('watch'); return; }
+  if(key && (kind==='news' || kind==='rep')){ alFocus = {kind:kind==='rep'?'rep':'news', key:String(key), sym:sym||'', applied:false, done:false, miss:false, newsMark:alNewsTick, repMark:alRepTick, at:0}; alDeep = true; try{ if($('sheet').classList.contains('open')) closeSheet(); }catch(e){} }
+  else alFocus = null;
   setTab('news'); const b = document.querySelector('#newsSeg [data-nt="'+(kind==='rep'?'rep':'news')+'"]'); if(b && !b.classList.contains('on')) b.click(); }
 function alFromUrl(u){ try{ const p = new URL(u, location.href).searchParams, kind = p.get('al'); if(kind==null) return false; const key = p.get('k');
   alSync().then(()=>{ const a = alList.find(x=>x.key===key); if(a){ a.read = true; alSave(); alBadge(); } });
-  alGoto(kind, p.get('s')||''); return true; }catch(e){ return false; } }
+  alGoto(kind, p.get('s')||'', key||''); return true; }catch(e){ return false; } }
 window.SavageOpenAlert = u=>alFromUrl(u);   // v190: called by the Android app when a native notification is tapped while the app is open
 window.SavageAlerts = {add:items=>alAdd(items), unread:()=>alUnread(), sync:()=>alSync(), check:()=>alCheckData(true)};   // small handle for testing from the console
 (function alInit(){
@@ -7163,7 +7200,7 @@ window.SavageAlerts = {add:items=>alAdd(items), unread:()=>alUnread(), sync:()=>
     const f = e.target.closest('[data-f]'); if(f){ alFilter = f.dataset.f; alRender(); return; }
     if(e.target.closest('#alReadAll')){ alList.forEach(a=>a.read = true); alSave(); alBadge(); alRender(); return; }
     if(e.target.closest('#alClear')){ if(confirm(I18n.p("ui-1498","לנקות את רשימת ההתראות?"))){ alList = []; alSave(); alBadge(); alRender(); } return; }
-    const it = e.target.closest('[data-i]'); if(it){ const a = alList.find(x=>x.key===it.dataset.i); if(a){ a.read = true; alSave(); alBadge(); alClose(); alClose(); alGoto(a.kind, a.sym); } } });
+    const it = e.target.closest('[data-i]'); if(it){ const a = alList.find(x=>x.key===it.dataset.i); if(a){ a.read = true; alSave(); alBadge(); alClose(); alClose(); alGoto(a.kind, a.sym, a.key); } } });
   document.addEventListener('change', e=>{ const t = e.target; const c = $('alertsCard'); if(!c || !c.contains(t)) return;
     if(t.dataset.al==='on'){ alMaster(t.checked); return; }
     if(t.dataset.al==='newsMacro'){ alP.newsMacro=t.checked;if(t.checked)alP.newsAll=false;alSave();alRender();(t.checked ? alSwallowNews() : Promise.resolve()).then(()=>{alPushSoon();alSync();});return; }
@@ -7206,6 +7243,9 @@ html.dark .al-tg{background:#334155}.al-tg::after{content:"";position:absolute;t
 .al-f{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}.al-f button{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:14px;padding:5px 12px;font:inherit;font-size:.8rem;cursor:pointer}.al-f button.on{background:var(--primary);border-color:var(--primary);color:#fff}
 .al-it{display:flex;gap:10px;padding:11px 6px;border-bottom:1px solid var(--border);cursor:pointer;border-radius:10px}.al-it.new{background:rgba(59,130,246,.12)}.al-it .ic{font-size:1.2rem}
 .al-it b{font-size:.88rem}.al-it p{margin:3px 0;color:var(--muted);font-size:.8rem;line-height:1.4}.al-it .t{font-size:.7rem;color:var(--muted)}
+.news-it.al-pin,.rrow.al-pin{animation:alPin 1.7s ease}
+@keyframes alPin{0%,30%{box-shadow:inset 0 0 0 3px #2563eb;background:rgba(37,99,235,.28)}100%{box-shadow:inset 0 0 0 0 transparent;background:transparent}}
+@media (prefers-reduced-motion:reduce){.news-it.al-pin,.rrow.al-pin{animation:none;background:rgba(37,99,235,.22);box-shadow:inset 0 0 0 3px #2563eb}}
 </style>
 
 
