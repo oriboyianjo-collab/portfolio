@@ -26978,5 +26978,31 @@
         "source_hash": "84580119a47f187218764fa8194f393ace689608ed1341c55cbe9577a7cad7e8"
       }
     }
+  },
+  {
+    "מזהה": "n-1121",
+    "category": "micro",
+    "תאריך": "2026-11-09 19:41",
+    "הועלה": "2026-11-09 19:41",
+    "כותרת": "דיווח Seattle Times (לא מאומת מול מקור ראשוני): בואינג תקצץ כ-5% מכוח האדם בחטיבת המטוסים המסחריים",
+    "כותרת_en": "Seattle Times report (not verified against a primary source): Boeing to cut about 5% of commercial airplane workforce",
+    "תקציר": "לא מאומת מול מקור ראשוני: לפי מייל לעובדים שעליו מדווח העיתון, הקיצוץ בחטיבה ישלב פיטורים ועזיבה טבעית, והודעות לנפגעים יימסרו בדצמבר. זה אינו קיצוץ של 5% בכל קבוצת בואינג; מספר המפוטרים לא נקבע בדיווח.",
+    "תקציר_en": "Not verified against a primary source: an employee email reported by the newspaper describes a division-level reduction through layoffs and attrition, with affected staff to be notified in December. This is not a 5% cut across all Boeing; the number of layoffs is unclear.",
+    "טקסט": "לא מאומת מול מקור ראשוני.\n\nכתבת לורן רוזנבלט ב-Seattle Times מ-9.11.2026, שפורסמה ב-09:30 בשעון סיאטל, נקראה במלואה דרך עמוד המקור. לפי העיתון, מנהלת Boeing Commercial Airplanes סטפני פופ מסרה לעובדים ביום שני כי החטיבה תצמצם את כוח האדם בכ-5% ותאט את קצב העלייה בייצור המטוסים המסחריים.\n\nהעיתון מסתמך על מייל לעובדים שנמסר לו. לפי המייל המצוטט, הצמצום ישלב פיטורים ועזיבה טבעית, ועובדים שיושפעו יקבלו הודעה בדצמבר. אין בדיווח מספר מאומת של מפוטרים, ואין להמיר את אחוז הצמצום למספר אנשים על בסיס מצבת עובדים היסטורית. לא דווח שהפיטורים כבר הושלמו.\n\nפופ הסבירה, לפי העיתון, שהתאמת תוכניות הייצור ותפוקת המטוסים יוצרת עודף כוח אדם, ושיש לתת למפעלים ולספקים זמן להגיע ליציבות. הכתבה מזכירה כיווני ייצור שנמסרו בשיחת התוצאות באוקטובר; אין להציג את כל הרקע הזה כתחזית ייצור חדשה שהוכרזה היום.\n\nההיקף הוא חטיבת המטוסים המסחריים, לא כלל עובדי קבוצת בואינג. המייל המקורי והודעת חברה פומבית על הקיצוץ לא נקראו כאן. לכן פרטי התוכנית מיוחסים לעיתון ולא מוצגים כאימות ראשוני ישיר. אין בכתבה שנבדקה אומדן חיסכון, עלות ארגון מחדש או שינוי כמותי חדש בתחזית הכספית.\n\nזהו עדכון תעסוקתי ותפעולי נפרד מפריט n-1094 על מועד מסירת ה-777-9 ללופטהנזה; אין להסיק שהקיצוץ הוא הסיבה המאומתת לדחייה ההיא או לתנועת מחיר המניה.",
+    "טקסט_en": "Not verified against a primary source.\n\nLauren Rosenblatt's Nov 9, 2026 Seattle Times article, published at 9:30 am Seattle time, was read in full through the original page. The newspaper reports that Boeing Commercial Airplanes head Stephanie Pope told staff Monday that the division would cut its workforce by about 5% and slow the commercial airplane production ramp-up.\n\nThe newspaper cites an employee email shared with it. According to the quoted email, reductions will combine layoffs and attrition, and affected staff will be notified in December. The number of layoffs is unclear; the percentage must not be converted into a headcount using historical staffing. The report does not say the layoffs are already complete.\n\nPope says, according to the report, that adjusted production schedules and aircraft output create an overstaffed position, and factories and suppliers need time to achieve stability. The article recalls production plans discussed on the October earnings call; that background must not all be treated as new production guidance announced today.\n\nThe scope is the commercial airplane division, not all Boeing employees. The original email and a public company statement confirming this reduction were not read here. The details are therefore attributed to the newspaper, not presented as directly primary-verified. The story provides no savings estimate, restructuring charge or new quantified financial-guidance change.\n\nThis is a separate workforce and operating update from n-1094 on Lufthansa's first 777-9 delivery timing. It does not establish that these cuts caused that delay or a stock-price move.",
+    "קישור": "https://www.seattletimes.com/business/boeing-aerospace/boeing-will-cut-5-of-its-commercial-airplane-workforce/",
+    "מקורות": [
+      {
+        "label": "Seattle Times, לורן רוזנבלט, 9.11.2026 09:30 בסיאטל; מקור משני",
+        "label_en": "Seattle Times, Lauren Rosenblatt, Nov 9, 2026 9:30 am Seattle time; secondary source",
+        "url": "https://www.seattletimes.com/business/boeing-aerospace/boeing-will-cut-5-of-its-commercial-airplane-workforce/"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "cf86d3856eecd26d387069adf5c3ef1f45ac0a98a3fe189a4d9684b190ac5e40"
+      }
+    }
   }
 ]
