@@ -1877,6 +1877,24 @@
   },
   {
     "תאריך": "2026-11-09",
+    "שעה": "17:00",
+    "מדינה": "US",
+    "אירוע": "Austan Goolsbee - שאלות ותשובות מונחות (Leadership Greater Chicago)",
+    "חשיבות": 1,
+    "מקור": "https://www.chicagofed.org/publications/speeches/2026/nov-9-leadership-greater-chicago",
+    "הערה": "לוח הפד של שיקגו הרשמי: 9.11.2026, שידור חי בשעה 09:00 CT (17:00 ישראל), אירוע Economics: Are We Ready for Tomorrow?. נושא האירוע אינו הבטחה לדיון בריבית.",
+    "מזהה": "c-0150",
+    "אירוע_en": "Austan Goolsbee - moderated Q&A (Leadership Greater Chicago)",
+    "הערה_en": "Official Chicago Fed listing: Nov 9, 2026, livestream at 9:00 am CT (17:00 Israel), 'Economics: Are We Ready for Tomorrow?' event. The event topic is no promise of a rate discussion.",
+    "_translation": {
+      "en": {
+        "source_hash": "b411e1b55acf224818ab0835be0ee84ec562595d54031ee4707f7a4580a5e68d",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-09",
     "שעה": "18:00",
     "מדינה": "US",
     "אירוע": "סקר ציפיות הצרכנים - SCE",
@@ -1889,6 +1907,42 @@
     "_translation": {
       "en": {
         "source_hash": "c0f2dd6dfa1802392e7caa7a34ce2509cfac1e01fed702db1aea69fc78444932",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-09",
+    "שעה": "19:15",
+    "מדינה": "US",
+    "אירוע": "Tom Barkin - נאום (Greater Greer Chamber of Commerce)",
+    "חשיבות": 1,
+    "מקור": "https://www.richmondfed.org/press_room/media_advisories/2026/20261102_barkin_greer",
+    "הערה": "הודעת הפד של ריצ'מונד הרשמית: 9.11.2026 בשעה 12:15 ET (19:15 ישראל), גריר, דרום קרוליינה; נושאים אינפלציה ומדיניות מוניטרית, כולל שאלות קהל. נושא האירוע אינו הבטחה לדיון בריבית.",
+    "מזהה": "c-0151",
+    "אירוע_en": "Tom Barkin - speech (Greater Greer Chamber of Commerce)",
+    "הערה_en": "Official Richmond Fed advisory: Nov 9, 2026 at 12:15 pm ET (19:15 Israel), Greer, SC; topics inflation and monetary policy, includes audience Q&A. The event topic is no promise of a rate discussion.",
+    "_translation": {
+      "en": {
+        "source_hash": "3a4c54f298a30ac083c08b143d131834541c7e8ba5f1e09ae144a64738741e86",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "תאריך": "2026-11-09",
+    "שעה": "19:25",
+    "מדינה": "UK",
+    "אירוע": "Andrew Bailey - נאום (Swiss Institute of International Studies, ציריך)",
+    "חשיבות": 1,
+    "מקור": "https://www.bankofengland.co.uk/events/upcoming-events",
+    "הערה": "לוח האירועים הרשמי של בנק אנגליה: 9.11.2026 בשעה 17:25 GMT (19:25 ישראל), סדרת הרצאות באוניברסיטת ציריך. נושא האירוע אינו הבטחה לדיון בריבית.",
+    "מזהה": "c-0152",
+    "אירוע_en": "Andrew Bailey - speech (Swiss Institute of International Studies, Zurich)",
+    "הערה_en": "Official Bank of England events listing: Nov 9, 2026 at 5.25pm GMT (19:25 Israel), lecture series at the University of Zurich. The event topic is no promise of a rate discussion.",
+    "_translation": {
+      "en": {
+        "source_hash": "8bfc05ebbd1d321625546fe6d35c02ed6cfb769b25988a24378bd6177625714a",
         "schema_version": 1
       }
     }
@@ -1978,60 +2032,6 @@
     "_translation": {
       "en": {
         "source_hash": "2e5fe7a6ffca7628e368027cf90126ce5483addf6b888a751293700b0872704b",
-        "schema_version": 1
-      }
-    }
-  },
-  {
-    "תאריך": "2026-11-09",
-    "שעה": "17:00",
-    "מדינה": "US",
-    "אירוע": "Austan Goolsbee - שאלות ותשובות מונחות (Leadership Greater Chicago)",
-    "חשיבות": 1,
-    "מקור": "https://www.chicagofed.org/publications/speeches/2026/nov-9-leadership-greater-chicago",
-    "הערה": "לוח הפד של שיקגו הרשמי: 9.11.2026, שידור חי בשעה 09:00 CT (17:00 ישראל), אירוע Economics: Are We Ready for Tomorrow?. נושא האירוע אינו הבטחה לדיון בריבית.",
-    "מזהה": "c-0150",
-    "אירוע_en": "Austan Goolsbee - moderated Q&A (Leadership Greater Chicago)",
-    "הערה_en": "Official Chicago Fed listing: Nov 9, 2026, livestream at 9:00 am CT (17:00 Israel), 'Economics: Are We Ready for Tomorrow?' event. The event topic is no promise of a rate discussion.",
-    "_translation": {
-      "en": {
-        "source_hash": "b411e1b55acf224818ab0835be0ee84ec562595d54031ee4707f7a4580a5e68d",
-        "schema_version": 1
-      }
-    }
-  },
-  {
-    "תאריך": "2026-11-09",
-    "שעה": "19:15",
-    "מדינה": "US",
-    "אירוע": "Tom Barkin - נאום (Greater Greer Chamber of Commerce)",
-    "חשיבות": 1,
-    "מקור": "https://www.richmondfed.org/press_room/media_advisories/2026/20261102_barkin_greer",
-    "הערה": "הודעת הפד של ריצ'מונד הרשמית: 9.11.2026 בשעה 12:15 ET (19:15 ישראל), גריר, דרום קרוליינה; נושאים אינפלציה ומדיניות מוניטרית, כולל שאלות קהל. נושא האירוע אינו הבטחה לדיון בריבית.",
-    "מזהה": "c-0151",
-    "אירוע_en": "Tom Barkin - speech (Greater Greer Chamber of Commerce)",
-    "הערה_en": "Official Richmond Fed advisory: Nov 9, 2026 at 12:15 pm ET (19:15 Israel), Greer, SC; topics inflation and monetary policy, includes audience Q&A. The event topic is no promise of a rate discussion.",
-    "_translation": {
-      "en": {
-        "source_hash": "3a4c54f298a30ac083c08b143d131834541c7e8ba5f1e09ae144a64738741e86",
-        "schema_version": 1
-      }
-    }
-  },
-  {
-    "תאריך": "2026-11-09",
-    "שעה": "19:25",
-    "מדינה": "UK",
-    "אירוע": "Andrew Bailey - נאום (Swiss Institute of International Studies, ציריך)",
-    "חשיבות": 1,
-    "מקור": "https://www.bankofengland.co.uk/events/upcoming-events",
-    "הערה": "לוח האירועים הרשמי של בנק אנגליה: 9.11.2026 בשעה 17:25 GMT (19:25 ישראל), סדרת הרצאות באוניברסיטת ציריך. נושא האירוע אינו הבטחה לדיון בריבית.",
-    "מזהה": "c-0152",
-    "אירוע_en": "Andrew Bailey - speech (Swiss Institute of International Studies, Zurich)",
-    "הערה_en": "Official Bank of England events listing: Nov 9, 2026 at 5.25pm GMT (19:25 Israel), lecture series at the University of Zurich. The event topic is no promise of a rate discussion.",
-    "_translation": {
-      "en": {
-        "source_hash": "8bfc05ebbd1d321625546fe6d35c02ed6cfb769b25988a24378bd6177625714a",
         "schema_version": 1
       }
     }
