@@ -26843,5 +26843,31 @@
         "source_hash": "3648dafa9c2887833195d35524e1362a15c25c39ed283ef4a1b11c38ca59fcba"
       }
     }
+  },
+  {
+    "מזהה": "n-1116",
+    "category": "macro",
+    "תאריך": "2026-11-09 18:02",
+    "הועלה": "2026-11-09 18:02",
+    "כותרת": "סקר הפד של ניו יורק לאוקטובר: ציפיות האינפלציה נותרו 3.9% לשנה; החשש מעלייה באבטלה עלה",
+    "כותרת_en": "New York Fed October survey: one-year inflation expectations hold at 3.9%; concern about higher unemployment rises",
+    "תקציר": "לפי דף הסקר הרשמי המעודכן, ציפיות האינפלציה החציוניות נותרו 3.9% לשנה, 3.3% לשלוש שנים ו-3.0% לחמש שנים. ההסתברות הממוצעת שמשקי הבית מייחסים לעלייה באבטלה בשנה הקרובה עלתה ל-45.3%; הסיכוי הנתפס לאובדן עבודה עלה ל-13.9%, אך גם הסיכוי למציאת עבודה אם תאבד עלה ל-46.5%.",
+    "תקציר_en": "The updated official survey page shows median inflation expectations unchanged at 3.9% for one year, 3.3% for three years and 3.0% for five years. Households' mean probability of higher unemployment in a year rose to 45.3%; perceived job-loss probability rose to 13.9%, while the chance of finding a job if lost also rose, to 46.5%.",
+    "טקסט": "אומת מול מקור ראשוני: דף סקר ציפיות הצרכנים של הפד של ניו יורק התעדכן לנתוני אוקטובר 2026 ונקרא ישירות לאחר מועד הפרסום המתוכנן, 9.11 בשעה 18:00 בישראל.\n\nציפיות האינפלציה החציוניות נותרו ללא שינוי בכל שלושת האופקים: 3.9% לשנה, 3.3% לשלוש שנים ו-3.0% לחמש שנים. אלה ציפיות לאינפלציה בעתיד, לא קריאת CPI ולא תחזית רשמית של הפד.\n\nבשוק העבודה התמונה מעורבת: ההסתברות הממוצעת שהאבטלה תהיה גבוהה יותר בעוד שנה עלתה ב-1.4 נקודות אחוז ל-45.3%, לפי המקור הרמה הגבוהה מאפריל 2020. העלייה הובלה בידי משיבים ללא תואר אקדמי. אין לפרש את 45.3% כשיעור האבטלה הצפוי.\n\nהסיכוי הנתפס לאובדן העבודה בשנה הקרובה עלה ב-0.4 נקודת אחוז ל-13.9%, עדיין מתחת לממוצע 12 החודשים 14.3%. הסיכוי לעזיבה מרצון ירד ב-0.5 נקודה ל-19.4%, מעל ממוצע 18.4%. הסיכוי למצוא עבודה אם הנוכחית תאבד עלה ב-0.4 נקודה ל-46.5%, לפי המקור הגבוה מנובמבר 2025.\n\nהסקר כולל פאנל מתחלף של כ-1,300 ראשי משקי בית. דף הסקר הרשמי הוא מקור המספרים כאן; קישור להודעת 9.11 הופיע בו, אך גוף ההודעה לא נטען בבדיקה ולכן לא נטען שקראנו את ההודעה המלאה. לא אומת צפי קונצנזוס יחיד לסקר.",
+    "טקסט_en": "Verified against a primary source: the New York Fed Survey of Consumer Expectations page updated to October 2026 and was read directly after the scheduled Nov 9 release at 18:00 Israel.\n\nMedian inflation expectations were unchanged at all three horizons: 3.9% for one year, 3.3% for three years and 3.0% for five years. These are future inflation expectations, not a CPI reading or an official Fed forecast.\n\nLabor-market views were mixed. The mean probability of higher unemployment in one year rose 1.4 percentage points to 45.3%, the highest since April 2020 according to the source. The rise was driven by respondents without a college degree. The 45.3% must not be interpreted as an expected unemployment rate.\n\nPerceived probability of losing one's job within a year rose 0.4 percentage point to 13.9%, still below its 12-month average of 14.3%. Voluntary job-leaving probability fell 0.5 point to 19.4%, above its 18.4% average. The probability of finding work if the current job were lost rose 0.4 point to 46.5%, the highest since November 2025 according to the source.\n\nThe survey uses a rotating panel of about 1,300 household heads. Its official survey page supplies these figures; a Nov 9 press-release link appeared there, but the release body did not load when checked, so no claim is made to have read the full release. No single consensus forecast was verified.",
+    "קישור": "https://www.newyorkfed.org/microeconomics/sce",
+    "מקורות": [
+      {
+        "label": "הפד של ניו יורק, דף SCE מעודכן לאוקטובר 2026, נקרא ישירות",
+        "label_en": "New York Fed, SCE page updated to October 2026, read directly",
+        "url": "https://www.newyorkfed.org/microeconomics/sce"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "473c986050254f641b4da9620c73ddf7ae190be429d85ea525b4583fc7806073"
+      }
+    }
   }
 ]

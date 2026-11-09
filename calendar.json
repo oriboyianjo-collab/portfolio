@@ -1901,17 +1901,20 @@
     "מדינה": "US",
     "אירוע": "סקר ציפיות הצרכנים - SCE",
     "חשיבות": 1,
-    "מקור": "https://www.newyorkfed.org/research/calendars/nationalecon_cal",
-    "הערה": "מועד לפי לוח המקור; צפי וקודם לא אומתו. ללא נתון בפועל.",
+    "מקור": "https://www.newyorkfed.org/microeconomics/sce",
+    "הערה": "פורסם 9.11.2026, מועד מתוכנן 18:00 ישראל: ציפיות אינפלציה חציוניות לשנה/3 שנים/5 שנים 3.9%/3.3%/3.0%, ללא שינוי מספטמבר. אין נתון יחיד לסקר ואין צפי קונצנזוס מאומת. הסתברות ממוצעת שהאבטלה תהיה גבוהה יותר בעוד שנה 45.3% (+1.4 נקודות אחוז); הסתברות לאובדן העבודה 13.9% (+0.4), למציאת עבודה אם תאבד 46.5% (+0.4). אלה ציפיות משקי בית, לא שיעור האבטלה בפועל. דף הסקר המעודכן נקרא ישירות; קישור ההודעה החדשה הופיע בו אך תוכן ההודעה לא נטען בעת הבדיקה.",
     "מזהה": "c-0081",
     "אירוע_en": "Survey of Consumer Expectations - SCE",
-    "הערה_en": "Timing per the source calendar; estimate and prior not verified. No actual figure.",
+    "הערה_en": "Released Nov 9, 2026, scheduled 18:00 Israel: median inflation expectations at 1/3/5 years 3.9%/3.3%/3.0%, unchanged from September. No single survey actual or verified consensus forecast. Mean probability of higher unemployment in one year 45.3% (+1.4 percentage points); losing own job 13.9% (+0.4), finding a job if lost 46.5% (+0.4). These are household expectations, not the actual unemployment rate. Updated survey page read directly; its new press-release link appeared but release text did not load when checked.",
     "_translation": {
       "en": {
-        "source_hash": "c0f2dd6dfa1802392e7caa7a34ce2509cfac1e01fed702db1aea69fc78444932",
+        "source_hash": "9cfabe725a7dba635511154cc506b4ccc62f5ce821e30cadbf3e510b2ef66e9e",
         "schema_version": 1
       }
-    }
+    },
+    "תקופה": "אוקטובר 2026",
+    "תקופה_en": "October 2026",
+    "בפועל": "1y: 3.9% | 3y: 3.3% | 5y: 3.0%"
   },
   {
     "תאריך": "2026-11-09",
