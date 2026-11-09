@@ -913,7 +913,9 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 .ft-g.bub .ft{aspect-ratio:auto!important;border-radius:50%!important;flex:none;box-sizing:border-box;border:1px solid rgba(255,255,255,.28);padding:0!important;transition:transform .15s}
 .ft-g.bub .ft.on{border:2px solid #fff;box-shadow:0 0 0 3px var(--primary),0 0 18px var(--primary)!important}
 .ft-g.bub .ft:active{transform:scale(.94)}
-.ft-g.bub .fb .xl.ftx{margin-top:2px}
+.ft-g.bub .fb .xl.ftx{margin-top:2px;display:flex;flex-direction:column;align-items:center;gap:0;line-height:1.1;min-height:2.2em}
+.ft-g.bub .fb .xl.ftx::before{position:static;margin:0}
+.ft-g.bub .fb .xl.ftx .ext-pct{font-size:var(--fund-pct,.65rem)}
 /* v263: map settings - gear button + map-type / bubbles-per-row pickers inside the open settings row */
 .fs-gear{padding:4px 8px;font-size:.95rem;line-height:1.2}
 .ft-cfg{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;width:100%;box-sizing:border-box;padding:4px 4px 8px}
@@ -4301,12 +4303,18 @@ function etfRemoveAny(t){ if(ETFS.length <= 1){ toast(I18n.p("ui-0501","חייב
 // v103/v104: fund selector = heat tiles (equal size, best -> worst, colour = daily %); always open, the picked tile is marked, holdings + summary below
 const fsPct = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.prev ? (q.price/q.prev-1)*100 : null; };
 const fsExt = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.ext ? q.ext : null; };   // v107: same extended-hours source as rows (preOf → iq().ext); null outside the session / without a fresh quote
+function fundSessionHtml(e){
+  if(e) return extLineHtml(e,'ftx');
+  const ss=usSession(), kind=ss==='post'?'after':ss;
+  if(kind==='pre'||kind==='after'||kind==='night') return `<span class="xl num ftx is-${kind} muted" title="${I18n.language==='en'?'No verified trade in this session':'אין עסקה מאומתת בשלב המסחר הנוכחי'}"><span class="ext-pct">—</span></span>`;
+  return `<span class="xl ftx muted"><small>${I18n.language==='en'?(ss==='reg'?'regular':'closed'):(ss==='reg'?'רגיל':'סגור')}</small></span>`;
+}
 function drawEtfSel(){ const el = $('etfPick'); if(!el) return; const t = etfUi.sel;
   const ord = [...ETFS].sort((a,b)=>{ const pa = fsPct(a), pb = fsPct(b); return (pa==null)-(pb==null) || (pb||0)-(pa||0); });
   const bub = etfMap.t!=='heat', perRow = etfMap.n;
   const bszW = ($('etfTiles')||{}).clientWidth || 320;   // v266: keep the 44px floor so labels always fit; enlarge only above it, and cap so perRow bubbles + gaps fit the row
   const bsz = p=>{ const base = 44 + Math.min(Math.abs(p==null?0:p), 9)*3.8; return Math.min(Math.max(44, Math.round(base * 4/perRow)), Math.floor((bszW - (perRow-1)*6)/perRow)); };
-  const btile = x=>{ const p = fsPct(x), e = fsExt(x), dm = bsz(p), col = heatColor(p); return `<div class="fb"><button class="ft${x===t?' on':''}" data-etf="${x}" aria-pressed="${x===t}" aria-label="${ETF_LBL[x]||x} ${p!=null ? fmtPct(p) : ''}${e ? ' '+e.kind+' '+fmtPct(e.pct) : ''}" style="width:${dm}px;height:${dm}px;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.3),rgba(255,255,255,0) 62%),${col};box-shadow:0 0 14px ${col.replace('rgb(','rgba(').replace(')',',.45)')}"><b class="ltr" style="font-size:${(0.6 + dm/330).toFixed(2)}rem">${ETF_LBL[x]||x}</b><span class="num" style="font-size:${(0.56 + dm/420).toFixed(2)}rem">${p!=null ? fmtPct(p) : '—'}</span>${etfEditOpen ? `<span class="ft-del" data-edel="${x}${I18n.p("ui-0503","\" role=\"button\" aria-label=\"הסרת ")}${ETF_LBL[x]||x}${I18n.p("ui-0504"," מהרשימה\">✕</span>")}` : ''}</button>${extLineHtml(e, 'ftx')}</div>`; };
+  const btile = x=>{ const p = fsPct(x), e = fsExt(x), dm = bsz(p), col = heatColor(p); return `<div class="fb" style="--fund-pct:${Math.min(.75,(.56+dm/420)*.86).toFixed(3)}rem"><button class="ft${x===t?' on':''}" data-etf="${x}" aria-pressed="${x===t}" aria-label="${ETF_LBL[x]||x} ${p!=null ? fmtPct(p) : ''}${e ? ' '+e.kind+' '+fmtPct(e.pct) : ''}" style="width:${dm}px;height:${dm}px;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.3),rgba(255,255,255,0) 62%),${col};box-shadow:0 0 14px ${col.replace('rgb(','rgba(').replace(')',',.45)')}"><b class="ltr" style="font-size:${(0.6 + dm/330).toFixed(2)}rem">${ETF_LBL[x]||x}</b><span class="num" style="font-size:${(0.56 + dm/420).toFixed(2)}rem">${p!=null ? fmtPct(p) : '—'}</span>${etfEditOpen ? `<span class="ft-del" data-edel="${x}${I18n.p("ui-0503","\" role=\"button\" aria-label=\"הסרת ")}${ETF_LBL[x]||x}${I18n.p("ui-0504"," מהרשימה\">✕</span>")}` : ''}</button>${fundSessionHtml(e)}</div>`; };
   const htile = x=>{ const p = fsPct(x), e = fsExt(x); return `<button class="ft${x===t?' on':''}" data-etf="${x}" aria-pressed="${x===t}" aria-label="${ETF_LBL[x]||x} ${p!=null ? fmtPct(p) : ''}${e ? ' '+e.kind+' '+fmtPct(e.pct) : ''}" style="background:${heatColor(p)}"><b class="ltr">${ETF_LBL[x]||x}</b><span class="num">${p!=null ? fmtPct(p) : '—'}</span>${extLineHtml(e, 'ftx')}${etfEditOpen ? `<span class="ft-del" data-edel="${x}${I18n.p("ui-0505","\" role=\"button\" aria-label=\"הסרת ")}${ETF_LBL[x]||x}${I18n.p("ui-0506"," מהרשימה\">✕</span>")}` : ''}</button>`; };
   const rowsH = []; if(bub) for(let i = 0; i < ord.length; i += perRow) rowsH.push(`<div class="ft-row">${ord.slice(i, i+perRow).map(btile).join('')}</div>`);
   const cfg = !etfEditOpen ? '' : `${I18n.p("ui-0508","<div class=\"ft-cfg\"><div class=\"viewtgl\" role=\"group\" aria-label=\"סוג המפה\"><button type=\"button\" data-mapt=\"heat\" class=\"")}${bub?'':'on'}" aria-pressed="${!bub}${I18n.p("ui-0509","\">▦ מפת חום</button><button type=\"button\" data-mapt=\"bub\" class=\"")}${bub?'on':''}" aria-pressed="${bub}${I18n.p("ui-0510","\">⚪ מפת עיגולים</button></div><button type=\"button\" class=\"btn btn-light btn-sm\" data-ereset>↺ איפוס לברירת מחדל</button>")}${bub ? `${I18n.p("ui-0507","<span class=\"ft-rp\"><small>עיגולים בשורה</small><span class=\"viewtgl\" role=\"group\" aria-label=\"מספר עיגולים בשורה\">")}${[2,3,4,5,6].map(n=>`<button type="button" data-rows="${n}" class="${n===perRow?'on':''}" aria-pressed="${n===perRow}">${n}</button>`).join('')}</span></span>` : ''}</div>`;
@@ -6759,6 +6767,7 @@ function yHoldKeys(){ const sig = state.txs.length + ':' + (state.txs.length ? s
   if(sig !== yHoldSig || Date.now() - yHoldAt > 60000){ yHoldSig = sig; yHoldAt = Date.now(); try{ yHold = openSymbols(); }catch(e){} } return yHold; }
 function yWanted(){   // yahoo symbol -> Set(app symbols); priority order = insertion order (holdings first), capped
   const keys = [], add = k=>{ if(k) keys.push(k); };
+  if(ui.tab==='market' && etfUi.mode==='etf') ETFS.forEach(add);
   yHoldKeys().forEach(add);
   IDX.forEach(x=>{ const q = idxData.q[x.k]; if(q && q.sym) add(q.sym); });
   FUT.forEach(f=>add(f.y));   // v188: index futures (used when the streamer sends them)
@@ -6768,6 +6777,7 @@ function yWanted(){   // yahoo symbol -> Set(app symbols); priority order = inse
   const night = usSession() === 'night';   // v176: overnight ticks are thin – subscribe broadly (every watchlist + market tile) so each quote is as fresh as possible when its tab opens
   if(ui.tab === 'watch' || night) wlItems().forEach(it=>add(it.sec ? it.sym : null));
   if((ui.tab === 'market' || night) && etfUi.mode !== 'etf') mktItems().forEach(it=>add(yk(it)));
+  if((ui.tab === 'market' || night) && etfUi.mode === 'etf'){ ETFS.forEach(add); etfItems(etfData[etfUi.sel]).filter(it=>!it.nq).forEach(it=>add(yk(it))); }
   const m = new Map();
   for(const k of keys){ const y = yOf(k); if(!y) continue; if(!m.has(y)){ if(m.size >= 150) continue; m.set(y, new Set()); } m.get(y).add(k); }
   return m;
@@ -6857,7 +6867,8 @@ function yFlush(){
   if(yDirtyH.size || yDirtyQ.size || yDirtyIdx) yQueue();
 }
 function yPatchMarket(Q){
-  if(ui.tab !== 'market' || mktEditing || etfUi.mode === 'etf') return; const g = $('mktGrid'); if(!g) return;
+  if(ui.tab !== 'market' || mktEditing) return;
+  if(etfUi.mode === 'etf'){ if(ETFS.some(t=>Q.has(t)) || etfItems(etfData[etfUi.sel]).some(it=>Q.has(String(it.sym||it.q).toUpperCase()))) drawEtf(); return; } const g = $('mktGrid'); if(!g) return;
   mktItems().forEach(it=>{ if(it.der || !Q.has(String(it.q).toUpperCase())) return; const el = g.querySelector(`[data-mk="${CSS.escape(it.k)}"]`); if(!el) return;
     const t = document.createElement('div'); t.innerHTML = mktCardHtml(it); if(t.firstElementChild) morphKids(el, t.firstElementChild); });
 }
@@ -6872,7 +6883,7 @@ function yPatchWatch(Q){
 // the stream: (1) the owner's Worker route /night?s=A,B,… (fast, ~3 s, only if deployed – feature-detected), else (2) a browser-direct CORS relay of the same public Robinhood
 // URL (r.jina.ai, no key, ~5 s, 20 req/min limit per IP). Both fail silently (retry later); the stream keeps working alone. A quote is applied only if newer than the newest tick.
 // Kill switches: localStorage portfolioTracker.yws='0' (everything) / portfolioTracker.nightrelay='0' (third-party relay only).
-const NW = {ok:null, fails:0, next:0, at:0, polls:0, applied:0, lastAt:0}, NR = {ok:null, fails:0, next:0, at:0, polls:0, applied:0, lastAt:0}, NIGHT = {busy:false, src:''};
+const NW = {ok:null, fails:0, next:0, at:0, polls:0, applied:0, lastAt:0}, NR = {ok:null, fails:0, next:0, at:0, polls:0, applied:0, lastAt:0}, NIGHT = {busy:false, src:'', cursor:0};
 const nrOff = ()=>{ try{ return localStorage.getItem('portfolioTracker.nightrelay') === '0'; }catch(e){ return false; } };
 const RH_Q = 'https://api.robinhood.com/marketdata/quotes/?bounds=24_5&symbols=';
 function nightRh(j){ const out = {}; ((j && j.results) || []).forEach(q=>{ if(!q || !q.symbol) return; const t = Date.parse(q.venue_last_non_reg_trade_time), p = Number(q.last_non_reg_trade_price) || Number(q.last_extended_hours_trade_price);
@@ -6887,7 +6898,7 @@ function nightApply(q, S){
   if(usSession() !== 'night') return;
   for(const k in q){ const x = q[k], id = k.replace('.', '-'), tg = YWS.subs.get(id); if(!tg) continue;
     const have = Math.max(0, ...[...tg].map(m=>{ const l = yLast[String(m).toUpperCase()]; return l ? l.ts : 0; }));
-    if(x.ts <= have) continue;                                 // the stream (or an earlier poll) already has this or something newer
+    if(x.ts <= have || !preOf({price:x.price,pre:{price:x.price,ts:x.ts,kind:'night'}})) continue;                                 // the stream (or an earlier poll) already has this or something newer
     const n0 = YWS.applied; yApply({id, p:x.price, t:x.ts, mh:4, src:'night'}); if(YWS.applied > n0) S.applied++; } }
 async function nightPoll(){
   if(NIGHT.busy || document.hidden || navigator.onLine === false || !OB_URL || yOff() || usSession() !== 'night') return;
@@ -6895,7 +6906,12 @@ async function nightPoll(){
   const wOk = useW && now >= NW.next && now - NW.at >= 3000, rOk = useR && now >= NR.next && now - NR.at >= 5000 && !(NW.ok === true && now - NW.lastAt < 15000);   // the relay rests while the Worker answers
   if(!wOk && !rOk) return;
   const w = yWanted(); if(!w.size) return; YWS.subs = w;
-  const list = [...w.keys()].filter(y=>y[0] !== '^').slice(0, 40).map(y=>y.replace('-', '.')); if(!list.length) return;
+  const all = [...w.keys()].filter(y=>y[0] !== '^'); if(!all.length) return;
+  const visible=ui.tab==='market'&&etfUi.mode==='etf'?new Set(ETFS.map(yOf).filter(Boolean)):new Set();
+  const first=all.filter(y=>visible.has(y)), rest=all.filter(y=>!visible.has(y));
+  const ordered=first.length>40?first.slice(NIGHT.cursor).concat(first.slice(0,NIGHT.cursor),rest):first.concat(rest.slice(NIGHT.cursor),rest.slice(0,NIGHT.cursor));
+  const list=ordered.slice(0,40).map(y=>y.replace('-', '.'));
+  NIGHT.cursor=first.length>40?(NIGHT.cursor+40)%first.length:rest.length?(NIGHT.cursor+Math.max(1,40-first.length))%rest.length:0;
   NIGHT.busy = true;
   try{
     if(wOk){ NW.at = Date.now(); NW.polls++; const ctrl = new AbortController(), to = setTimeout(()=>ctrl.abort(), 5000);

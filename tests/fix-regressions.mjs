@@ -27,7 +27,7 @@ ok('stored perf range assigned directly', perfBlock.includes('ui.perfRange = o.p
 
 // 3-4. visible version, shell cache and stylesheet query agree.
 ok('settings shows v298', html.includes('גרסת האפליקציה:') && html.includes('>v298</b>') && read('i18n-en.js').includes('App version:') && read('i18n-en.js').includes('>v298</b>'));
-ok('shell cache v306', sw.includes("const CACHE = 'portfolio-shell-v309'"));
+ok('shell cache v306', sw.includes("const CACHE = 'portfolio-shell-v310'"));
 ok('page and worker request the same chart css', html.includes('chart-tools.css?v=267') && sw.includes("'./chart-tools.css?v=267'"));
 ok('alerts script query matches', html.includes('alerts-core.js?v=269') && sw.includes('alerts-core.js?v=269'));
 ok('notification key is passed through', html.includes("alGoto(kind, p.get('s')||'', key||'')") && html.includes('alGoto(a.kind, a.sym, a.key)'));
