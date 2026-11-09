@@ -26708,8 +26708,6 @@
     "מזהה": "n-1111",
     "כותרת": "Goodyear (GT): מארק סטיוארט עוזב מיידית; הדירקטור רוג'ר ווד מונה למנכ\"ל זמני והחל חיפוש מחליף קבוע",
     "כותרת_en": "Goodyear (GT): Mark Stewart leaves immediately; director Roger Wood appointed interim CEO as permanent search begins",
-    "summary": "הודעת גודייר מ-9.11.2026 מאשרת שסטיוארט עוזב את תפקידי המנכ\"ל, הנשיא והדירקטור. ווד יוביל זמנית בזמן חיפוש מחליף קבוע. ועדת הבדיקה האסטרטגית שהוקמה מוקדם יותר השנה ממשיכה בעבודתה; לא הוכרזו עסקת מכירה או שינוי אסטרטגי סופי.",
-    "summary_en": "Goodyear's Nov 9, 2026 release confirms Stewart is leaving as CEO, president and director. Wood will lead on an interim basis during a permanent successor search. The strategic review committee formed earlier this year continues its work; no sale transaction or final strategic decision was announced.",
     "טקסט": "המידע אומת מול המקור הראשוני: הודעת Goodyear מ-9.11.2026 נקראה במלואה. שעת פרסום מקורית לא אומתה.\n\nמארק סטיוארט עוזב את תפקידי המנכ\"ל, הנשיא וחבר הדירקטוריון בתוקף מיידי. רוג'ר ווד, דירקטור מאז 2023 ומנכ\"ל משותף לשעבר של Tenneco, מונה למנכ\"ל זמני. הדירקטוריון מחפש מנכ\"ל קבוע עם חברת חיפוש מנהלים. ווד יוותר על תפקיד יו\"ר ועדת ההון האנושי והתגמול.\n\nועדה מיוחדת שהוקמה מוקדם יותר השנה ממשיכה בבדיקה אסטרטגית של העסקים והפעילות, לרבות תמהיל עסקי, פריסה תפעולית, יעילות והשקעה במוצרים ויכולות. אין בהודעה עסקת מכירה, מיזוג או תוצאה סופית של הבדיקה.\n\nברקע בלבד: מינוי ג'רום רוקה לסמנכ\"ל כספים החל מ-1.12.2026 הוכרז כבר ב-27.10.2026 ואינו הודעת מינוי חדשה היום.",
     "טקסט_en": "Verified against the primary source: Goodyear's Nov 9, 2026 release was read in full. The original publication time was not verified.\n\nMark Stewart is stepping down immediately as CEO, president and director. Roger Wood, a director since 2023 and former co-CEO of Tenneco, is interim CEO. The board is conducting a permanent CEO search with an executive search firm. Wood will step down as chair of the human capital and compensation committee.\n\nA special committee formed earlier this year continues its strategic assessment, including business mix, operating footprint, efficiency and investment in products and capabilities. The release announces no sale, merger or final outcome of that review.\n\nBackground only: Jerome Rouquet's CFO appointment effective Dec 1, 2026 was already announced Oct 27, 2026 and is not a new appointment today.",
     "תאריך": "2026-11-09 17:02",
@@ -26728,14 +26726,14 @@
         "schema_version": 1,
         "source_hash": "29229a7f55bb50a9edebaf601b031ec631edfafc8d7b386f25773f1be5c86737"
       }
-    }
+    },
+    "תקציר": "הודעת גודייר מ-9.11.2026 מאשרת שסטיוארט עוזב את תפקידי המנכ\"ל, הנשיא והדירקטור. ווד יוביל זמנית בזמן חיפוש מחליף קבוע. ועדת הבדיקה האסטרטגית שהוקמה מוקדם יותר השנה ממשיכה בעבודתה; לא הוכרזו עסקת מכירה או שינוי אסטרטגי סופי.",
+    "תקציר_en": "Goodyear's Nov 9, 2026 release confirms Stewart is leaving as CEO, president and director. Wood will lead on an interim basis during a permanent successor search. The strategic review committee formed earlier this year continues its work; no sale transaction or final strategic decision was announced."
   },
   {
     "מזהה": "n-1112",
     "כותרת": "עדכון ל-n-1097: תמליל משרד החוץ הסיני מאמת שגואו ג'יאקון כינה את טענת \"המרגלת הסינית\" בפרשת מנכ\"ל NVIDIA השמצה חסרת בסיס",
     "כותרת_en": "Update to n-1097: Chinese MFA transcript confirms Guo Jiakun called the \"Chinese spy\" narrative in the NVIDIA CEO affair groundless smearing",
-    "summary": "תמליל רשמי מ-9.11.2026 נקרא ישירות: בתשובה לשאלת AFP, שגם NBC שאל עליה, גואו ג'יאקון אמר שטענת \"המרגלת הסינית\" היא ספקולציה והשמצה. זהו אימות לתגובת המשרד, לא הוכחה עצמאית באשר לטענות המודיעיניות ולא שינוי בציטוט המסחר המוקדם שפורסם קודם.",
-    "summary_en": "The official Nov 9, 2026 transcript was read directly: answering AFP, with NBC also asking, Guo Jiakun called the \"Chinese spy\" narrative baseless speculation and smearing. This verifies the ministry's response, not the truth of the intelligence allegations, and does not alter the earlier premarket quote.",
     "טקסט": "אומת מול המקור הראשוני: התמליל הסיני הרשמי של מסיבת העיתונאים ב-9.11.2026 נקרא ישירות. זהו עדכון אימות נפרד ל-n-1097; הפריט המקורי והציטוט ההיסטורי של המניה נשמרים.\n\nהדובר גואו ג'יאקון נשאל בידי AFP על דיווחי ניו יורק טיימס ופייננשל טיימס בנוגע לקשר של ג'נסן הואנג עם מנהלת בחברת טכנולוגיה סינית ועל טענת גורמים אמריקאיים שהיא עבדה עבור שירותי מודיעין סיניים. התמליל מציין שגם NBC שאל בנושא. זו מסגרת השאלה, לא אימות של טענותיה.\n\nגואו השיב: \"我们此前已就此作出回应。所谓‘中国间谍’的论调纯属捕风捉影，污蔑抹黑。\" בתרגום: כבר הגבנו על כך; הטענות על \"מרגלת סינית\" הן ספקולציה חסרת בסיס והשמצה. התגובה אינה מפרטת ממצא חקירה או ראיות, ואין להסיק ממנה שהטענות הוכחו או הופרכו באופן עצמאי.\n\nהתמליל נושא תאריך 9.11.2026 ושעה 17:24 בסין (11:24 בישראל). זהו מועד התמליל באתר, לא זמן בדיקתו ולא ציטוט מחיר חדש. אינדקס התמלילים באנגלית שנבדק עדיין הציג 6.11 כפריט האחרון; האימות כאן מבוסס על הטקסט הסיני.",
     "טקסט_en": "Verified against the primary source: the official Chinese transcript of the Nov 9, 2026 press conference was read directly. This is a separate verification update to n-1097; the original item and its historical stock quote are retained.\n\nSpokesperson Guo Jiakun was asked by AFP about New York Times and Financial Times reports concerning Jensen Huang's relationship with a Chinese technology executive and U.S. officials' allegation that she worked for Chinese intelligence. The transcript notes NBC also asked. That describes the question, not independent confirmation of its allegations.\n\nGuo replied: \"我们此前已就此作出回应。所谓‘中国间谍’的论调纯属捕风捉影，污蔑抹黑。\" Translated: We have responded previously; the so-called \"Chinese spy\" narrative is baseless speculation and smearing. The reply provides no investigative findings or evidence and does not independently prove or disprove the allegations.\n\nThe transcript is dated Nov 9, 2026 at 17:24 China time (11:24 Israel). That is its website timestamp, not the verification time or a new price quote. The English transcript index checked still showed Nov 6 as its latest entry; this verification relies on the Chinese text.",
     "תאריך": "2026-11-09 17:02",
@@ -26754,14 +26752,14 @@
         "schema_version": 1,
         "source_hash": "9278f879aab162a483688391251671f1f2db754212ae03db4feaa301e742998a"
       }
-    }
+    },
+    "תקציר": "תמליל רשמי מ-9.11.2026 נקרא ישירות: בתשובה לשאלת AFP, שגם NBC שאל עליה, גואו ג'יאקון אמר שטענת \"המרגלת הסינית\" היא ספקולציה והשמצה. זהו אימות לתגובת המשרד, לא הוכחה עצמאית באשר לטענות המודיעיניות ולא שינוי בציטוט המסחר המוקדם שפורסם קודם.",
+    "תקציר_en": "The official Nov 9, 2026 transcript was read directly: answering AFP, with NBC also asking, Guo Jiakun called the \"Chinese spy\" narrative baseless speculation and smearing. This verifies the ministry's response, not the truth of the intelligence allegations, and does not alter the earlier premarket quote."
   },
   {
     "מזהה": "n-1113",
     "כותרת": "עדכון לקירישי n-1083 (לא מאומת מול מקור ראשוני): לפי Kyiv Independent, המושל אישר שריפה בבית הזיקוק שכובתה; אישה נהרגה בעיירה אחרת",
     "כותרת_en": "Kirishi update to n-1083 (not verified against a primary source): Kyiv Independent says governor confirmed refinery fire was extinguished; woman killed in a different town",
-    "summary": "לא מאומת מול מקור ראשוני: Kyiv Independent מייחס למושל אישור לשריפה בבית הזיקוק בקירישי ולכיבויה, וכן דיווח על אישה שנהרגה מפגיעת שרידים בווסבולוז'סק, לא בקירישי. TASS ממשיך לדווח על היעדר נפגעים בדירת קירישי. לא אומתו נזק ליחידות, השבתה או פגיעה בתפוקה.",
-    "summary_en": "Not verified against a primary source: Kyiv Independent attributes confirmation of a Kirishi refinery fire and its extinguishment to the governor, plus a woman killed by debris in Vsevolozhsk, not Kirishi. TASS still reports no injuries in the Kirishi apartment incident. Unit damage, shutdown and production impact remain unverified.",
     "טקסט": "לא מאומת מול מקור ראשוני.\n\nעדכון נפרד ל-n-1083 בעקבות שינוי בכתבת Kyiv Independent על התקיפה הלילית ב-9.11.2026. הכתבה מייחסת למושל מחוז לנינגרד אלכסנדר דרוזדנקו אישור לכך שפרצה שריפה בשטח בית הזיקוק בקירישי ושהיא כובתה. הודעת המושל עצמה לא נקראה ישירות, ולכן זהו ייחוס של העיתון, לא אימות עצמאי של דברי המושל.\n\nהכתבה מדווחת גם שאישה נהרגה מפגיעת שרידי רחפן בבניין דירות בווסבולוז'סק, עיירה אחרת במחוז. אין לייחס את המוות לבית הזיקוק או לדירה בקירישי. דיווח TASS שנבדק על דירת קירישי עדיין מציין שאין נפגעים באותה תקרית; ההבדל במיקום אינו בהכרח סתירה.\n\nלא פורסמו במקורות שנבדקו נתונים מאומתים על יחידות שנפגעו, עצירת עיבוד או שינוי בתפוקת בית הזיקוק. טענת מוקדי החום של FIRMS בכתבה לא אומתה עצמאית ואינה מוצגת כאן כראיה מאומתת. זמן העדכון המדויק של הכתבה לא צוין; אין כאן זמן תקיפה חדש.",
     "טקסט_en": "Not verified against a primary source.\n\nSeparate update to n-1083 after changes to Kyiv Independent's report on the overnight Nov 9, 2026 attack. The article attributes confirmation of a fire on the Kirishi refinery grounds and its subsequent extinguishment to Leningrad governor Alexander Drozdenko. His own statement was not read directly, so this remains the outlet's attribution, not independent verification of his remarks.\n\nThe article also reports a woman killed by drone debris at an apartment building in Vsevolozhsk, a different town in the region. The death must not be attributed to the refinery or the Kirishi apartment. The TASS report checked still says no one was injured in the Kirishi apartment incident; the different locations are not necessarily contradictory.\n\nNo verified unit-damage, processing-halt or refinery-output figures were established in the sources checked. The article's FIRMS hotspot claim was not independently verified and is not presented here as confirmed evidence. The article's exact update time is not specified; this is not a new attack timestamp.",
     "תאריך": "2026-11-09 17:02",
@@ -26785,6 +26783,8 @@
         "schema_version": 1,
         "source_hash": "c782678232d2c8d71d18cdeb275ad803c28a97899775a8e64e5a7d5448d0842a"
       }
-    }
+    },
+    "תקציר": "לא מאומת מול מקור ראשוני: Kyiv Independent מייחס למושל אישור לשריפה בבית הזיקוק בקירישי ולכיבויה, וכן דיווח על אישה שנהרגה מפגיעת שרידים בווסבולוז'סק, לא בקירישי. TASS ממשיך לדווח על היעדר נפגעים בדירת קירישי. לא אומתו נזק ליחידות, השבתה או פגיעה בתפוקה.",
+    "תקציר_en": "Not verified against a primary source: Kyiv Independent attributes confirmation of a Kirishi refinery fire and its extinguishment to the governor, plus a woman killed by debris in Vsevolozhsk, not Kirishi. TASS still reports no injuries in the Kirishi apartment incident. Unit damage, shutdown and production impact remain unverified."
   }
 ]
