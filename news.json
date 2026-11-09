@@ -27625,5 +27625,34 @@
         "source_hash": "a1184d825f37c7e5dd8a4d38764a7ea09f7d44ddb2881f4805d2155dc39216e7"
       }
     }
+  },
+  {
+    "מזהה": "n-1145",
+    "תאריך": "2026-11-09 23:30",
+    "הועלה": "2026-11-09 23:32",
+    "חברה": "Steel Dynamics",
+    "חברה_en": "Steel Dynamics",
+    "סימול": "STLD",
+    "category": "micro",
+    "כותרת": "Steel Dynamics (STLD): הדירקטוריון אישר מסגרת נוספת של 3 מיליארד דולר לרכישה עצמית",
+    "כותרת_en": "Steel Dynamics (STLD): board authorizes an additional $3 billion share repurchase program",
+    "summary": "ההרשאה בתוקף מיידי ומתווספת למסגרת הקודמת. זהו אישור לרכישות אפשריות, לא דיווח על רכישות שבוצעו או התחייבות לרכוש כמות מסוימת של מניות.",
+    "summary_en": "The authorization is effective immediately and adds to the previous program. It permits potential repurchases, rather than reporting completed purchases or requiring any specific number of shares to be bought.",
+    "טקסט": "9.11.2026, 16:30 בחוף המזרחי בארה״ב = 23:30 בישראל | הודעה רשמית של Steel Dynamics.\n\nדירקטוריון Steel Dynamics אישר תוכנית נוספת לרכישה עצמית של מניות רגילות בהיקף של 3 מיליארד דולר, בתוקף מיידי. המסגרת החדשה מתווספת לתוכנית קודמת של 1.5 מיליארד דולר.\n\nלפי ההודעה, ב-30 בספטמבר 2026 נותרו 216 מיליון דולר זמינים במסגרת הישנה. זהו נתון היסטורי לתאריך זה, לא יתרה מאומתת ל-9 בנובמבר, ולכן אין לחבר אותו למסגרת החדשה כאילו הוא סכום נוכחי ודאי.\n\nרכישות ייקבעו לפי מחיר המניה, הזדמנויות השקעה וצמיחה אחרות, תזרים מזומנים צפוי ותנאים כלכליים. ניתן לבצע אותן בשוק או בעסקאות פרטיות, לרבות תחת תוכנית Rule 10b5-1. ההרשאה אינה מחייבת רכישה של כמות מניות מסוימת, והחברה יכולה לשנות, להשעות, להאריך או לסיים את התוכנית בכל עת ללא הודעה מראש.\n\nהחידוש הוא הרחבת הרשאת הרכישה העצמית, לא הוכחה לביצוע של רכישות בסכום זה ולא תחזית לרווח למניה או למחיר המניה. באותה הודעה נכלל גם דיבידנד רבעוני רגיל; הוא אינו מוצג כאן כאירוע חדשות נפרד.",
+    "טקסט_en": "Nov 9, 2026, 16:30 US Eastern = 23:30 Israel | Official Steel Dynamics release.\n\nThe Steel Dynamics board authorized an additional $3 billion common-share repurchase program, effective immediately. The new authorization adds to the previous $1.5 billion program.\n\nThe release says $216 million remained available under the old authorization on September 30, 2026. This is a historical balance on that date, not a verified November 9 balance. It should not be added to the new authorization as if it were a certain current total.\n\nPurchases will depend on the stock price, other investment and growth opportunities, expected free cash flow and economic conditions. They may occur in open-market or private transactions, including under Rule 10b5-1. The program does not require any specific number of shares to be bought and may be modified, suspended, extended or terminated at any time without prior notice.\n\nThe new event is an expanded repurchase authorization, not evidence of completed purchases of that amount or a forecast for earnings per share or the stock price. The same release includes a regular quarterly dividend, which is not treated here as a separate news event.",
+    "קישור": "https://www.prnewswire.com/news-releases/steel-dynamics-announces-additional-3-0-billion-share-repurchase-authorization-and-fourth-quarter-2026-cash-dividend-302933762.html",
+    "מקורות": [
+      {
+        "label": "Steel Dynamics: הודעה רשמית מלאה על הרשאת הרכישה העצמית",
+        "label_en": "Steel Dynamics: full official share repurchase authorization release",
+        "url": "https://www.prnewswire.com/news-releases/steel-dynamics-announces-additional-3-0-billion-share-repurchase-authorization-and-fourth-quarter-2026-cash-dividend-302933762.html"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "afbf5552531fc9e8875eb209d9cdc1c28f39488c09097af53e679e85759b5982"
+      }
+    }
   }
 ]
