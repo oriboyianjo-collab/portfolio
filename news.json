@@ -25416,5 +25416,31 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "סין מאריכה בחודשיים את השעיית התעריף המוסף של 24% על סחורות אמריקאיות; תעריף של 10% נשמר — ההסדר הקודם, לשנה, פג מחר",
+    "category": "macro",
+    "קישור": "http://gss.mof.gov.cn/gzdt/zhengcefabu/202611/t20261109_4004260.htm",
+    "מקורות": [
+      {
+        "label": "ועדת התעריפים של מועצת המדינה של סין, הודעה מס' 6 ל-2026, 9.11.2026",
+        "url": "http://gss.mof.gov.cn/gzdt/zhengcefabu/202611/t20261109_4004260.htm",
+        "label_en": "State Council Tariff Commission of China, Announcement No. 6 of 2026, Nov 9, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 9.11.2026 (הודעה רשמית מס' 6 ל-2026 של ועדת התעריפים של מועצת המדינה, באתר משרד האוצר של סין).\n\nועדת התעריפים של מועצת המדינה של סין הודיעה כי, במטרה ליישם את ההסכמות מהפסגה בין מנהיגי שתי המדינות בוושינגטון ובאישור מועצת המדינה, החל ממחר 10.11 בשעה 13:01 שעון בייג'ינג (07:01 בישראל): ההשעיה של התעריף המוסף של 24% על סחורות מארה\"ב תימשך חודשיים נוספים, והתעריף המוסף של 10% יישמר. ההודעה מתקנת את הוראות הודעה מס' 4 ל-2025.\n\nההסדר הקודם מ-5.11.2025 השהה את תעריף ה-24% לשנה אחת החל מ-10.11.2025 — כלומר הוא היה אמור לפוג מחר; ההארכה הנוכחית קצרה (חודשיים) ולא לשנה נוספת.",
+    "תקציר": "הודעה רשמית: סין מאריכה בחודשיים (מ-10.11, 13:01 בייג'ינג) את השעיית תעריף ה-24% על סחורות אמריקאיות ומשאירה את תעריף ה-10%; ההסדר הקודם היה לשנה ופג מחר.",
+    "מזהה": "n-1068",
+    "תאריך": "2026-11-09 04:41",
+    "הועלה": "2026-11-09 04:41",
+    "כותרת_en": "China extends the suspension of the 24% additional tariff on US goods by two months; the 10% rate stays - the prior one-year arrangement was set to lapse tomorrow",
+    "טקסט_en": "Source publication: Nov 9, 2026 (official Announcement No. 6 of 2026 of the State Council Tariff Commission, on the Chinese Ministry of Finance site).\n\nChina's State Council Tariff Commission announced that, to implement the consensus reached at the Washington summit between the two countries' leaders and with State Council approval, from tomorrow Nov 10 at 13:01 Beijing time (07:01 Israel): the suspension of the 24% additional tariff rate on US goods will continue for two more months, and the 10% additional rate will be retained. The announcement amends the measures of Announcement No. 4 of 2025.\n\nThe prior arrangement of Nov 5, 2025 suspended the 24% rate for one year starting Nov 10, 2025 - it was set to lapse tomorrow; the current extension is short (two months), not another year.",
+    "תקציר_en": "Official announcement: China extends the 24% tariff suspension on US goods for two months (from Nov 10, 13:01 Beijing), keeping the 10% rate; the prior arrangement ran one year and was to lapse tomorrow.",
+    "_translation": {
+      "en": {
+        "source_hash": "98d50071b2f14dcbec55133854be52940498fca658182029f324a8584c634073",
+        "schema_version": 1
+      }
+    }
   }
 ]
