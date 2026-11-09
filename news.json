@@ -27401,12 +27401,17 @@
         "label": "BLS: לוח פרסום CPI מעודכן - ראשוני",
         "label_en": "BLS: current CPI release schedule - primary",
         "url": "https://www.bls.gov/schedule/news_release/cpi.htm"
+      },
+      {
+        "label": "BLS: הודעת השכר הריאלי לספטמבר ומועד פרסום אוקטובר - ראשוני",
+        "label_en": "BLS: September real earnings release and October release timing - primary",
+        "url": "https://www.bls.gov/news.release/realer.nr0.htm"
       }
     ],
     "_translation": {
       "en": {
         "schema_version": 1,
-        "source_hash": "b7fc33bfda963251322699f5288e102a1b0845f49c2b0b6295b426c1ed54eac8"
+        "source_hash": "e910c09eed5e22116599cc536481f1337a075b00abbb9de586f2ea1e36afea38"
       }
     }
   }
