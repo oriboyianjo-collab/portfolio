@@ -25979,5 +25979,31 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "Alphabet (GOOGL): לפי Bloomberg, החברה בשיחות על הנפקת אג\"ח ב-HKD וב-SGD בהיקף כולל של 2.5-3 מיליארד דולר (לא מאומת מול מקור ראשוני)",
+    "תאריך": "2026-11-09 10:05",
+    "הועלה": "2026-11-09 10:05",
+    "טקסט": "לא מאומת מול מקור ראשוני\n9.11.2026 | Bloomberg פורסם ב-12:43 שעון הודו (09:13 שעון ישראל), נקרא בשידור מחדש של Business Standard\n\nלפי Bloomberg, Alphabet (GOOGL) קיימה לאחרונה שיחות עם בנקים ומשקיעים על הנפקה אפשרית של אג\"ח בדולר הונג-קונגי ובדולר סינגפורי, כבר החודש: שווה ערך של 1 עד 1.5 מיליארד דולר ב-HKD וכ-1.5 מיליארד דולר ב-SGD, סך הכל כ-2.5 עד 3 מיליארד דולר. התמורה תשמש למטרות כלליות של החברה. השיחות מתמשכות והפרטים עלולים להשתנות; אין כאן הנפקה מוצהרת או מועד מחייב.\n\nהדיווח נשען על מקורות אנונימיים המכירים את הנושא. הכתבה של Bloomberg לא נקראה במקור אלא דרך השידור המחדש, ו-Alphabet מסרה בתגובה כי אינה מגיבה לשמועות שוק.\n\nרקע מהדיווח: בשבוע שעבר השלימה החברה הנפקת אג\"ח ביורו בהיקף 6 מיליארד יורו (עליה דווחה כאן ב-2-3.11), ובמהלך 2026 גיוונה מקורות מימון בהנפקות בדולר אוסטרלי (ראשונה, באוגוסט), בפרנק שוויצרי, בליש\"ט, בדולר קנדי ובין יפנית. אין בדיווח נתון תשואה או דירוג מותנה.\n\nפריט קשור: הידיעות מ-2-3.11.2026 על הנפקת האירו בהיקף 6 מיליארד יורו. כאן שוק אחר (אסיה) ושלב מוקדם של שיחות בלבד, ללא הכרזה.",
+    "summary": "לפי Bloomberg, Alphabet בשיחות על הנפקת אג\"ח ב-HKD (1-1.5 מיליארד דולר שווה ערך) וב-SGD (כ-1.5 מיליארד דולר) כבר החודש; שיחות בלבד, ללא הכרזה. החברה: לא מגיבים לשמועות שוק.",
+    "קישור": "https://www.business-standard.com/world-news/alphabet-mulls-asia-bond-sale-as-ai-concerns-fuel-global-volatility-126110900413_1.html",
+    "מקורות": [
+      {
+        "label": "Bloomberg (ג'ניס הואנג ואיילין צ'ואנג), 9.11.2026, 12:43 שעון הודו (09:13 שעון ישראל), בשידור מחדש של Business Standard; מקורות אנונימיים, Bloomberg לא נקראה במקור, החברה דחתה תגובה לשמועות",
+        "url": "https://www.business-standard.com/world-news/alphabet-mulls-asia-bond-sale-as-ai-concerns-fuel-global-volatility-126110900413_1.html",
+        "label_en": "Bloomberg (Janice Huang and Aileen Chuang), Nov 9, 2026, 12:43 PM India time (09:13 Israel), via Business Standard syndication; anonymous sourcing, Bloomberg not read at origin, the company declined to comment on market speculation"
+      }
+    ],
+    "category": "micro",
+    "מזהה": "n-1086",
+    "כותרת_en": "Alphabet (GOOGL): per Bloomberg, the company is in talks on HKD and SGD bond offerings totaling $2.5-3 billion (not verified against a primary source)",
+    "טקסט_en": "Not verified against a primary source\nNov 9, 2026 | Bloomberg published at 12:43 PM India time (09:13 Israel time), read via Business Standard syndication\n\nPer Bloomberg, Alphabet (GOOGL) has recently held talks with banks and investors about a possible bond offering in Hong Kong dollars and Singapore dollars as early as this month: the equivalent of $1 to $1.5 billion in HKD and around $1.5 billion in SGD, roughly $2.5 to $3 billion in total. Proceeds would be used for general corporate purposes. Discussions are ongoing and details could still change; this is not an announced sale and there is no binding timeline.\n\nThe report rests on anonymous people familiar with the matter. The Bloomberg story was not read at origin, only via the syndication, and Alphabet said in response that it does not comment on market speculation.\n\nBackground from the report: last week the company completed a 6 billion euro bond sale (covered here on Nov 2-3), and during 2026 it diversified funding with sales in Australian dollars (its first, in August), Swiss francs, British pounds, Canadian dollars and Japanese yen. The report carries no pricing or rating terms.\n\nRelated items: the Nov 2-3, 2026 items on the 6 billion euro sale. This is a different market (Asia) and only an early stage of talks, with no announcement.",
+    "summary_en": "Per Bloomberg, Alphabet is in talks on HKD ($1-1.5bn equivalent) and SGD (about $1.5bn) bond sales as early as this month; talks only, no announcement. The company declined comment on market speculation.",
+    "_translation": {
+      "en": {
+        "source_hash": "a8daeb7c9bcd14a64fe451d850a94f9950e5965d12623e4217608f4b1a5d3a32",
+        "schema_version": 1
+      }
+    }
   }
 ]
