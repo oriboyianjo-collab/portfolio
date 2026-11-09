@@ -25442,5 +25442,31 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "WEC Energy Group (WEC), 6.11: הרגולטור של ויסקונסין קיצץ את בקשות התעריפים של We Energies ו-WPS - שולי רווח מופחתים והחזר של מעל 25 מיליון דולר ללקוחות",
+    "category": "micro",
+    "קישור": "https://psc.wi.gov/Documents/PressReleases/11.06.2026PressRelease.PDF",
+    "מקורות": [
+      {
+        "label": "רשות השירותים הציבוריים של ויסקונסין (PSC), הודעה לעיתונות, 6.11.2026",
+        "url": "https://psc.wi.gov/Documents/PressReleases/11.06.2026PressRelease.PDF",
+        "label_en": "Public Service Commission of Wisconsin, press release, Nov 6, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 6.11.2026 (הודעה לעיתונות של רשות השירותים הציבוריים של ויסקונסין, PSC).\n\nרשות השירותים הציבוריים של ויסקונסין החליטה בישיבה פתוחה ב-5.11 בשני הליכי התעריפים של We Energies ושל Wisconsin Public Service Corporation (WPS) - שתיהן חברות בנות של WEC Energy Group - וקיצצה משמעותית את בקשותיהן. עיקרי ההחלטה: קיצוץ שולי הרווח המורשים ושינויים נוספים שיפחיתו את ההכנסות שייגבו מהלקוחות; הוצאת הוצאות הדירקטוריון של We Energies מהתעריפים ללקוחות; שינוי מנגנון חלוקת הרווחים (Earnings Sharing Mechanism) כך שחלק גדול יותר מהרווחים העודפים יוחזר ללקוחות, כולל אישור החזר של מעל 25 מיליון דולר ללקוחות We Energies; אישור תוכנית ניהול יערות לצמצום הפסקות חשמל; ושיפור תוכנית הסיוע ללקוחות מעוטי הכנסה (LIFT), כולל הרחבת הזכאות להשתתפות.\n\nההחלטה התקבלה בישיבה הפתוחה ב-5.11 והודעת הרשות פורסמה ב-6.11; הצו הסופי יפורסם בשבועות הקרובים (תיקים 5-UR-112 ו-6690-UR-129).\n\nפריט קשור: בפרסום מ-5.11 בשעה 08:27 דווח על תוכנית WEC למכירת מניות בהיקף של עד 4 מיליארד דולר - תוכנית, לא גיוס שכבר הושלם.",
+    "תקציר": "PSC של ויסקונסין (6.11) קיצץ את בקשות התעריפים של We Energies ו-WPS: שולי רווח מופחתים, שינוי מנגנון ESM והחזר של מעל 25 מיליון דולר ללקוחות We Energies.",
+    "מזהה": "n-1069",
+    "תאריך": "2026-11-09 05:02",
+    "הועלה": "2026-11-09 05:02",
+    "כותרת_en": "WEC Energy Group (WEC), Nov 6: Wisconsin regulator cuts We Energies and WPS rate requests - lower authorized profit margin and over $25M returned to customers",
+    "טקסט_en": "Source publication: Nov 6, 2026 (Public Service Commission of Wisconsin press release).\n\nThe Public Service Commission of Wisconsin decided the rate cases of We Energies and Wisconsin Public Service Corporation (WPS) - both WEC Energy Group subsidiaries - at a Nov 5 open meeting, significantly cutting the utilities' requests. Key decisions: a reduced authorized profit margin and other adjustments that significantly cut the revenue to be collected from customers; We Energies board-of-director expenses removed from customer rates; changes to the Earnings Sharing Mechanism so more overearnings are refunded, including authorization to return more than $25 million to We Energies customers; approval of a forestry management plan to reduce outages; and improvements to the low-income LIFT assistance program, including expanded eligibility.\n\nThe decision was made at the Nov 5 open meeting and the commission's release was published Nov 6; the final order will be posted in the coming weeks (dockets 5-UR-112 and 6690-UR-129).\n\nRelated: the Nov 5, 8:27 AM publication covered WEC's plan to sell up to $4 billion of stock - a program, not a completed raise.",
+    "תקציר_en": "Wisconsin PSC (Nov 6) cut the We Energies and WPS rate requests: lower authorized profit margin, ESM changes, and over $25M returned to We Energies customers.",
+    "_translation": {
+      "en": {
+        "source_hash": "d5bc875b1a4ef422940393894993d431b77d9ff1cc0a6e7b24c64aab1ddd3c3f",
+        "schema_version": 1
+      }
+    }
   }
 ]
