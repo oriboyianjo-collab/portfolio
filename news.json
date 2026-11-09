@@ -25203,5 +25203,31 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "OneSubsea של SLB זכתה בחוזה לפיתוח שדה Lyra של Aker BP בים הצפון הנורווגי (עדכון לפרסום מ-5.11)",
+    "category": "companies",
+    "קישור": "https://www.slb.com/newsroom/press-release/2026/pr-2026-1105-slb-oss-lyra",
+    "מקורות": [
+      {
+        "label": "SLB, הודעה לעיתונות, 5.11.2026",
+        "url": "https://www.slb.com/newsroom/press-release/2026/pr-2026-1105-slb-oss-lyra",
+        "label_en": "SLB press release, Nov 5, 2026"
+      }
+    ],
+    "טקסט": "עדכון לפרסום של SLB מ-5.11.2026.\n\nחברת מיזם OneSubsea של SLB (NYSE: SLB), בשותפות עם Aker Solutions ו-Subsea7, זכתה בחוזה של Aker BP לאספקת מערכות הפקה תת-ימיות (SPS), כבלים תת-ימיים (umbilicals) ושירותים נלווים לפיתוח שדה Lyra — בעבר Kjøttkake — בשלף היבשתי הנורווגי (NCS). שווי החוזה לא נמסר.\n\nהשדה יפותח כקשור תת-ימי (tieback) לתשתית קיימת, בשימוש בטכנולוגיה סטנדרטית ומוכחת לצמצום מורכבות הפיתוח והאצת הדרך להפקה ראשונה. לפי Marte Mogstad, סגן נשיא בכיר ב-Aker BP, הפרויקט מדגים הפיכת משאבים שוליים לכלכליים בביצוע מסלול מהיר, עם שלוש שנים מגילוי להפקה ראשונה. הצדדים שיתפו פעולה משלבים מוקדמים דרך מודל הברית של Aker BP בן כעשור. Mads Hjelmeland, מנכ\"ל SLB OneSubsea, אמר שהעבודה המשותפת מהשלבים המוקדמים מאפשרת לעצב אסטרטגיות פיתוח סביב סדרי העדיפויות של הלקוחות.",
+    "תקציר": "OneSubsea של SLB זכתה בחוזה מערכות תת-ימיות לשדה Lyra של Aker BP (NCS); פיתוח כ-tieback לתשתית קיימת, שווי לא נמסר; לפי Aker BP: שלוש שנים מגילוי להפקה ראשונה.",
+    "מזהה": "n-1060",
+    "תאריך": "2026-11-09 04:10",
+    "הועלה": "2026-11-09 04:10",
+    "כותרת_en": "SLB's OneSubsea wins contract for Aker BP's Lyra field development in the Norwegian North Sea (update to Nov 5 publication)",
+    "טקסט_en": "Update to SLB's publication of Nov 5, 2026.\n\nSLB's OneSubsea joint venture (NYSE: SLB), a partnership with Aker Solutions and Subsea7, has been awarded a contract by Aker BP to deliver subsea production systems (SPS), umbilicals and associated services for the Lyra field development - formerly Kjøttkake - on the Norwegian Continental Shelf (NCS). The contract value was not disclosed.\n\nThe field will be developed as a subsea tieback to existing infrastructure, using proven, standardized technology to reduce development complexity and accelerate the path to first production. According to Marte Mogstad, senior vice president at Aker BP, the project demonstrates making marginal resources economically viable through fast-track execution, with three years from discovery to first oil. The parties collaborated from the early stages through Aker BP's decade-long alliance model. Mads Hjelmeland, CEO of SLB OneSubsea, said working together from the earliest stages allows development strategies to be shaped around customers' priorities.",
+    "תקציר_en": "SLB's OneSubsea wins a subsea systems contract for Aker BP's Lyra field (NCS); development as a tieback to existing infrastructure, value undisclosed; per Aker BP: three years from discovery to first oil.",
+    "_translation": {
+      "en": {
+        "source_hash": "9c3b0c3f271e1d3dfa77000627f83c37c9f98dfcdb50d6b73bc2c1f1dd80b0c8",
+        "schema_version": 1
+      }
+    }
   }
 ]
