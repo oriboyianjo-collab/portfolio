@@ -2023,20 +2023,20 @@
     "מדינה": "US",
     "אירוע": "שערי חליפין שבועיים (H.10) - הפד",
     "חשיבות": 1,
-    "הערה": "לוח הפד:9.11בשעה16:15ET; אין צפי יחיד\nאומת בדף הפד המעודכן ל-9.11.2026 לאחר מועד הפרסום המתוכנן 23:15 בישראל; נתוני השבוע 2-6 בנובמבר. ב-6 בנובמבר: מדד דולר רחב 121.8803 (ינואר 2006=100), לעומת 121.5061 ב-5 בנובמבר; 1.1154 דולר לאירו, 158.2300 ין לדולר ו-1.4106 דולר קנדי לדולר. מדד הדולר אינו שינוי באחוזים ואינו דולר-אינדקס DXY. אין נתון יחיד לכל סדרות המט״ח או צפי קונצנזוס. ND משמעו שאין נתון, לא אפס.",
+    "הערה": "לוח הפד:9.11בשעה16:15ET; אין צפי יחיד\nאומת בדף הפד המעודכן ל-9.11.2026 לאחר מועד הפרסום המתוכנן 23:15 בישראל; נתוני השבוע 2-6 בנובמבר. ב-6 בנובמבר: מדד דולר רחב 121.8803 (ינואר 2006=100), לעומת 121.5061 ב-5 בנובמבר; 1.1154 דולר לאירו, 158.2300 ין לדולר ו-1.4106 דולר קנדי לדולר. מדד הדולר אינו שינוי באחוזים ואינו דולר-אינדקס DXY. אין נתון יחיד לכל סדרות המט״ח או צפי קונצנזוס. ND משמעו שאין נתון, לא אפס.\nבתא בפועל מוצג 121.88 בעיגול לשתי ספרות אחרי הנקודה; הערך המדויק במקור הוא 121.8803, כמפורט לעיל.",
     "מקור": "https://federalreserve.gov/newsevents/2026-november.htm",
     "מזהה": "c-0085",
     "אירוע_en": "Weekly foreign exchange rates (H.10) - Fed",
-    "הערה_en": "Fed schedule: Nov 9 at 16:15 ET; no single estimate\nVerified on the Fed page updated Nov 9, 2026, after the scheduled 23:15 Israel release; observations cover Nov 2-6. Nov 6: Broad dollar index 121.8803 (January 2006=100), versus 121.5061 on Nov 5; 1.1154 US dollars per euro, 158.2300 yen per US dollar and 1.4106 Canadian dollars per US dollar. The index level is not a percent change or the DXY index. No single actual or consensus covers all FX series. ND means no data, not zero.",
+    "הערה_en": "Fed schedule: Nov 9 at 16:15 ET; no single estimate\nVerified on the Fed page updated Nov 9, 2026, after the scheduled 23:15 Israel release; observations cover Nov 2-6. Nov 6: Broad dollar index 121.8803 (January 2006=100), versus 121.5061 on Nov 5; 1.1154 US dollars per euro, 158.2300 yen per US dollar and 1.4106 Canadian dollars per US dollar. The index level is not a percent change or the DXY index. No single actual or consensus covers all FX series. ND means no data, not zero.\nThe actual cell displays 121.88 rounded to two decimal places; the exact source value is 121.8803, as detailed above.",
     "_translation": {
       "en": {
         "schema_version": 1,
-        "source_hash": "31c182859b533f88a88621dea40a6694b37ae55387ac3cd94fba3b97527a683c"
+        "source_hash": "cfe7e2fd824e00a0977d4c73036f631525e32b318275779524111463a644b9e3"
       }
     },
-    "תקופה": "מדד דולר רחב, 6.11.2026",
-    "תקופה_en": "Broad dollar index, Nov 6, 2026",
-    "בפועל": "121.8803",
+    "תקופה": "מדד דולר רחב, 6.11.2026; תצוגה מעוגלת ל-2 ספרות",
+    "תקופה_en": "Broad dollar index, Nov 6, 2026; display rounded to 2 decimals",
+    "בפועל": "121.88",
     "מקורות_בדיקה_עדכנית": [
       "https://www.federalreserve.gov/releases/h10/current/"
     ],
