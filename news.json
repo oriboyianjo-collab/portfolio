@@ -26926,5 +26926,31 @@
         "source_hash": "81f4f614ea379d7ee6191b6b8b60eceec3469145958cb24de9e957582ca989e2"
       }
     }
+  },
+  {
+    "מזהה": "n-1119",
+    "category": "macro",
+    "תאריך": "2026-11-09 19:01",
+    "הועלה": "2026-11-09 19:01",
+    "כותרת": "דיווח רויטרס (לא מאומת מול מקור ראשוני): צרפת מאשימה את משמרות המהפכה בפריצות למקררים ומאיימת בסנקציות נוספות",
+    "כותרת_en": "Reuters report (not verified against a primary source): France blames IRGC for refrigerator hacks, threatens further sanctions",
+    "תקציר": "לא מאומת מול מקור ראשוני: לפי רויטרס, שר החוץ הצרפתי זימן את שגריר איראן ואיים בסנקציות נוספות של האיחוד בעקבות תקיפות מערכות הקירור. זהו ייחוס רשמי מדווח ואיום בצעד עתידי, לא הוכחה עצמאית לאחריות איראן או החלטת סנקציות שכבר התקבלה.",
+    "תקציר_en": "Not verified against a primary source: Reuters reports that France summoned Iran's ambassador and threatened further EU sanctions after refrigerator cyberattacks. This is a reported official attribution and threat of future action, not independent proof of Iranian responsibility or an enacted sanctions decision.",
+    "טקסט": "לא מאומת מול מקור ראשוני.\n\nעדכון נפרד לפריטים n-0267 ו-n-0508 על הסיכון למערכות קירור: כתבת רויטרס שפורסמה ב-The Korea Times נקראה במלואה. לפי הכתבה, גורמים צרפתיים האשימו ביום שני, 9 בנובמבר, את משמרות המהפכה באיראן באחריות לתקיפות שהשביתו מקררים ומקפיאים מסחריים בצרפת בחודש שעבר. שר החוץ ז׳אן-נואל בארו מסר כי שגריר איראן זומן למשרד החוץ ואיים בסנקציות נוספות של האיחוד האירופי.\n\nמה חדש הוא הייחוס המדווח מצד צרפת והתגובה הדיפלומטית. לא דווח בכתבה על סנקציות חדשות שכבר אומצו, רשימת יעדים מאושרת או מועד תחולה. רויטרס מציינת שלא הצליחה לברר כיצד הגיעה צרפת למסקנתה. ההודעה הצרפתית המקורית לא נקראה כאן, ולכן אין להציג את ייחוס האחריות כהוכחה עצמאית.\n\nלפי הכתבה, תקיפת 11 באוקטובר פגעה במאות בתי עסק בצרפת ושינתה את בקרת הטמפרטורה; גל נוסף החודש פגע ביותר מ-100 בתי עסק באירופה וכלל מקררים של בנקי דם בצרפת. הכתבה מדווחת על קלקול מזון ועל העברת דם לאחסון אחר, אך אינה מבססת מחסור כולל במזון או בדם. הערכת נזק של עשרות מיליוני אירו היא אומדן של בעל מרכול שצוטט, לא ספירת נזק ממשלתית מאומתת.\n\nרויטרס גם לא הצליחה לאמת קשר בין האירועים באירופה לתקלות חשודות בקירור בבסיסי צבא ארה\"ב באוגוסט. משלחת איראן לאו\"ם לא השיבה לבקשת תגובה; הכתבה מציינת שאיראן נוהגת להכחיש פעולות סייבר זדוניות. אין בפריט עדכון מחיר שוק או קביעה על השפעה כספית בחברה מסוימת.\n\nהעמוד נושא תאריך 10 בנובמבר לפי שעון קוריאה, אך האירועים המתוארים בו התרחשו ביום שני, 9 בנובמבר בצרפת.",
+    "טקסט_en": "Not verified against a primary source.\n\nSeparate update to n-0267 and n-0508 on refrigeration-system risks: the Reuters story published by The Korea Times was read in full. It says French officials on Monday, Nov 9 accused Iran's Revolutionary Guards of responsibility for last month's attacks that disabled commercial refrigerators and freezers in France. Foreign Minister Jean-Noel Barrot said Iran's ambassador had been summoned and threatened further EU sanctions.\n\nThe new development is France's reported attribution and diplomatic response. The story reports no newly adopted sanctions, approved target list or effective date. Reuters says it could not establish how France reached its conclusion. The original French statement was not read here, so the attribution must not be presented as independent proof.\n\nAccording to the story, the Oct 11 attack affected hundreds of French establishments and overrode temperature controls; another wave this month hit more than 100 establishments across Europe, including refrigerators at French blood banks. It reports spoiled food and blood being moved to alternative storage, but does not establish a general food or blood shortage. A tens-of-millions-of-euros damage estimate is one supermarket owner's estimate, not a verified government damage tally.\n\nReuters also could not verify a link between the European incidents and suspected refrigeration sabotage at U.S. military bases in August. Iran's UN mission did not respond to requests for comment; the story notes Iran routinely denies malicious cyber operations. This item makes no market-price update or claim of a quantified financial impact at a particular company.\n\nThe page is dated Nov 10 in Korea, but describes events on Monday, Nov 9 in France.",
+    "קישור": "https://www.koreatimes.co.kr/world/20261110/french-officials-accuse-iran-of-being-behind-refrigerator-hacks",
+    "מקורות": [
+      {
+        "label": "רויטרס דרך The Korea Times, 10.11.2026 לפי שעון קוריאה; מקור משני שנקרא במלואו",
+        "label_en": "Reuters via The Korea Times, Nov 10, 2026 Korea time; secondary report read in full",
+        "url": "https://www.koreatimes.co.kr/world/20261110/french-officials-accuse-iran-of-being-behind-refrigerator-hacks"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "62773044d204fcabad9f4beed27e4d73fc7cf1ef9cd121ac9078580480a0f547"
+      }
+    }
   }
 ]
