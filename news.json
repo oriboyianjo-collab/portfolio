@@ -26242,5 +26242,31 @@
         "source_hash": "1478b3638939f531527d153c0f36874d178d5b7c27bc1718f3a2f189cac6575f"
       }
     }
+  },
+  {
+    "מזהה": "n-1095",
+    "כותרת": "לפי Reuters: NextDC מפסיקה עבודה על פרויקטים ללא חוזי לקוח בעקבות משבר מרכז M3 במלבורן; ברקע רכישת 9.9% בידי DLR וגודמן (לא מאומת מול מקור ראשוני)",
+    "כותרת_en": "Per Reuters: NextDC stops work on projects without customer contracts after the M3 Melbourne setback; DLR and Goodman's 9.9% stake in the background (not verified against a primary source)",
+    "summary": "לא מאומת מול מקור ראשוני: לפי Reuters, NextDC הודיעה על הפסקת עבודה בפרויקטים ללא חוזי לקוח לאחר שהשהיית M3 במלבורן הובילה החודש שעבר לחיתוך תחזיות ולצניחת 42% במנייה (אירוע היסטורי, לא תנועת יום). המנכ\"ל סקרוג'י: פרויקט ללא מחויבות לקוח \"כבר לא בראש סדר העדיפויות\".",
+    "summary_en": "Not verified against a primary source: per Reuters, NextDC is stopping work on projects without customer contracts after the M3 Melbourne suspension forced last month's forecast cut and a 42% share tumble (historical, not a day move). CEO Scroggie: any project without a customer commitment \"is now no longer a priority\".",
+    "טקסט": "לא מאומת מול מקור ראשוני\n9.11.2026 | Reuters פורסם ב-03:51 EST (10:51 שעון ישראל); הדברים נאמרו בוועידת UBS Australasia בסידני\n\nלפי Reuters, מפעילת מרכזי הנתונים האוסטרלית NextDC הודיעה היום (ב') על הפסקת העבודה על כל הפרויקטים שאין להם חוזי לקוח, בעקבות המשבר סביב מרכז M3 במלבורן. מנכ\"ל החברה, קרייג סקרוג'י, אמר בוועידה כי \"כל דבר שאין לו חוזה לקוח ומחויבות לקוח שאנחנו מחויבים לספק - כבר לא בראש סדר העדיפויות\", וכי העבודה על פרויקטים אלה לא תתחדש עד שהחברה תשיב את אמון התומכים ב-M3. לא נמסר מספר הפרויקטים שיושהו; לפי הדוח השנתי ל-2026, לחברה 11 מרכזים בפיתוח או בתכנון.\n\nדיוק מספרי: ההשהיה של הרחבת M3 (עיכובי אספקת חשמל והתנגדות ציבורית) הובילה בחודש שעבר לחיתוך תחזיות הרווח ולצניחה של 42% במנייה - אירוע היסטורי של החודש שעבר, לא תנועה ביממה האחרונה. בעקבות הצניחה ביצעו Goodman ו-Digital Realty (DLR) רכישת נחת של 9.9% בהיקף 715 מיליון דולר אוסטרלי (כ-492 מיליון דולר); לדברי הצדדים אין כרגע תוכנית להצעת רכש מלאה, אך הם שומרים על הזכות. לפי Reuters, לאחר רכישת הנחת התאוששה המנייה ומחקה את הירידה.\n\nפריט קשור: השלמת רכישת 9.9% של DLR ו-Goodman ב-NextDC (היום 09:55).",
+    "טקסט_en": "Not verified against a primary source\nNov 9, 2026 | Reuters published 3:51 a.m. EST (10:51 a.m. Israel time); remarks made at the UBS Australasia conference in Sydney\n\nPer Reuters, Australian data centre operator NextDC said today (Monday) it would stop work on all projects without customer contracts, following the setback around its M3 Melbourne facility. CEO Craig Scroggie told the conference that \"anything that didn't have a customer contract and a customer commitment that we absolutely have to deliver on is now no longer a priority\", and that work on such projects will not restart until the company has rebuilt supporter trust around M3. He did not say how many projects would be paused; the company had 11 centres in development or planning per its 2026 annual report.\n\nNumerical precision: the M3 expansion suspension (power delays and community backlash) forced last month's earnings-forecast cut and a 42% share tumble - a historical event from last month, not a move in the last day. After the tumble, Goodman and New York-listed Digital Realty (DLR) executed a 9.9% raid worth A$715 million ($492 million); the parties said they have no current plan for a full takeover offer but reserve the right. Per Reuters, the shares have since recovered the ground lost from the earnings writedown.\n\nRelated item: DLR and Goodman's completed 9.9% acquisition of NextDC (today, 09:55).",
+    "תאריך": "2026-11-09 11:17",
+    "הועלה": "2026-11-09 11:17",
+    "category": "micro",
+    "קישור": "https://www.streetinsider.com/Reuters/NextDC+pauses+uncontracted+projects+after+Australian+data+centre+woes/27309886.html",
+    "מקורות": [
+      {
+        "label": "Reuters בשידור StreetInsider, 9.11.2026 03:51 EST (10:51 שעון ישראל); חוט הסוכנות לא נקרא במקורו, הודעת החברה לא נבדקה",
+        "label_en": "Reuters via StreetInsider, Nov 9, 2026 3:51 a.m. EST (10:51 a.m. Israel); wire not read at origin, company statement not checked",
+        "url": "https://www.streetinsider.com/Reuters/NextDC+pauses+uncontracted+projects+after+Australian+data+centre+woes/27309886.html"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "f79ea413cf324893a56dc7cc084a2c85d8f60172b355988748520197f68fb629"
+      }
+    }
   }
 ]
