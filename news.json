@@ -26412,5 +26412,31 @@
         "source_hash": "92864c64ab42eefabe5e4c97fc2b678a1ff84434e6f599bbe5ef414d9a53de3b"
       }
     }
+  },
+  {
+    "מזהה": "n-1100",
+    "כותרת": "NVIDIA (NVDA): מדיסון הואנג ביטלה את הופעתה המתוכננת בכנס AI Day Seoul ואת פגישתה עם שר המדע הקוריאני; החברה סירבה להגיב (לא מאומת מול מקור ראשוני)",
+    "כותרת_en": "NVIDIA (NVDA): Madison Huang canceled her planned AI Day Seoul appearance and her meeting with Korea's science minister; the company declined to comment (not verified against a primary source)",
+    "summary": "לא מאומת מול מקור ראשוני: לפי Korea Times, מדיסון הואנג - בתו של ג'נסן הואנג ומנהלת בכירה בחברה - ביטלה את הופעתה המתוכננת בכנס AI Day Seoul 2026 היום ואת פגישתה אתמול עם שר המדה\"מ באה קיונג-הון; במסיבת העיתונאים בכנס סירבה אנבידיה להתייחס להיעדרותה ולשאלות על השותפויות הקוריאניות. החברה לא נתנה סיבה לביטולים.",
+    "summary_en": "Not verified against a primary source: per the Korea Times, Madison Huang - Jensen Huang's daughter and a senior director at the company - canceled her planned appearance at Nvidia AI Day Seoul 2026 today and her meeting yesterday with Science and ICT Minister Bae Kyung-hoon; at the event's press conference Nvidia declined to address her absence or questions about its Korean partnerships. The company gave no reason for the cancellations.",
+    "טקסט": "לא מאומת מול מקור ראשוני\nעדכון לפריטים הקשורים n-1089 (הכרזות אנבידיה בכנס AI Day Seoul), n-1076 (הבהרת משרד המדע הקוריאני), n-1043 ו-n-1046 (חקירת הדירקטוריון וההודאה).\n\nלפי Korea Times (נאם היון-ווו, פורסם 9.11.2026 ב-16:35 שעון קוריאה = 09:35 שעון ישראל), מדיסון הואנג - מנהלת בכירה בשיווק מוצר באנבידיה ובתו של המנכ\"ל ג'נסן הואנג - ביטלה את הופעתה המתוכננת בכנס NVIDIA AI Day Seoul 2026 שהתקיים היום (שני, 9.11) במרכז הקונגרסים Coex בסיאול, וכן פגישה שהייתה מתוכננת אתמול (ראשון, 8.11) עם שר המדע וה-ICT באה קיונג-הון. במסיבת העיתונאים שהתקיימה בכנס סירבה אנבידיה להתייחס להיעדרותה, וכן לשאלה אם המחלוקת עלולה להשפיע על תוכניות רכש ה-GPU של קוריאה או על שותפויות זיכרון ה-HBM עם Samsung Electronics ו-SK hynix.\n\nאמינות ובסיס: Korea Times היא המקור המקורי לדיווח; כתב העיתון שהה באירוע (התמונות המצורפות צולמו על ידו), וסירוב ההתייחסות נאמר במסיבת עיתונאים שהתקיימה בכנס. עם זאת, אישור רשמי מטעם אנבידיה או משרד המדע לא פורסם ולא נקרא ישירות, ולכן הפריט מסומן כלא מאומת מול מקור ראשוני.\n\nגבולות: החברה לא נתנה כל סיבה לביטולים; הפריט אינו קובע שהביטולים נבעו מהפרשה האישית, ואינו מצביע על ביטול או סיכון של חוזה או שותפות כלשהי. מזכר ההבנות המשולש עם SK Telecom ו-Rebellions (כיסוי: n-1078) נחתם בכנס כמתוכנן.",
+    "טקסט_en": "Not verified against a primary source\nUpdate to related items n-1089 (Nvidia's announcements at AI Day Seoul), n-1076 (the Korean science ministry's assurance), n-1043 and n-1046 (the board investigation and the admission).\n\nPer the Korea Times (Nam Hyun-woo, published Nov 9, 2026 at 4:35 p.m. KST = 9:35 a.m. Israel), Madison Huang - Nvidia's senior director of product marketing and CEO Jensen Huang's daughter - canceled her planned appearance at NVIDIA AI Day Seoul 2026 held today (Monday, Nov 9) at the Coex convention center in Seoul, as well as a meeting planned for yesterday (Sunday, Nov 8) with Science and ICT Minister Bae Kyung-hoon. At a press conference held at the event, Nvidia declined to comment on her absence, or on whether the controversy could affect Korea's GPU procurement plans or its HBM memory partnerships with Samsung Electronics and SK hynix.\n\nBasis: the Korea Times is the original source of this report; its reporter was at the event (the attached photos are his own), and the refusal to comment came at the on-site press conference. That said, no official confirmation from Nvidia or the science ministry has been published or read directly, so the item is labeled as not verified against a primary source.\n\nLimits: the company gave no reason for the cancellations; this item does not assert that they resulted from the personal affair, and it does not indicate that any contract or partnership has been canceled or threatened. The trilateral MOU with SK Telecom and Rebellions (coverage: n-1078) was signed at the event as planned.",
+    "תאריך": "2026-11-09 13:21",
+    "הועלה": "2026-11-09 13:21",
+    "category": "micro",
+    "קישור": "https://www.koreatimes.co.kr/business/companies/20261109/jensen-huang-affair-casts-shadow-over-nvidias-korea-partnerships",
+    "מקורות": [
+      {
+        "label": "Korea Times (נאם היון-ווו), 9.11.2026 16:35 שעון קוריאה - דיווח מקורי מהכנס בסיאול; אישור רשמי של אנבידיה או משרד המדע לא פורסם",
+        "label_en": "Korea Times (Nam Hyun-woo), Nov 9, 2026 4:35 p.m. KST - original on-site reporting from the Seoul event; no official confirmation from Nvidia or the science ministry published",
+        "url": "https://www.koreatimes.co.kr/business/companies/20261109/jensen-huang-affair-casts-shadow-over-nvidias-korea-partnerships"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "ec8812c8638c3e0e2895f5f52f49ac7417154dd90647352e57c35f60e3fe7cfb"
+      }
+    }
   }
 ]
