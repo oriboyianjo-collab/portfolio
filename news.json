@@ -26895,5 +26895,36 @@
         "source_hash": "abb32084a02f2c24841d8ac135fd0bcc74904dd87475d08ef9649a3964bc5504"
       }
     }
+  },
+  {
+    "מזהה": "n-1118",
+    "category": "micro",
+    "תאריך": "2026-11-09 18:44",
+    "הועלה": "2026-11-09 18:44",
+    "כותרת": "RPM מציגה את MAP 2030: יעד הכנסות של 10 מיליארד דולר ו-EBITDA מתואם של 2 מיליארד דולר בשנת הכספים 2030",
+    "כותרת_en": "RPM presents MAP 2030: targets $10 billion revenue and $2 billion adjusted EBITDA in fiscal 2030",
+    "תקציר": "במצגת יום המשקיעים מ-9.11.2026 RPM מציבה יעד לשולי EBITDA מתואם של 20% בשנת הכספים 2030, לעומת 15.6% בשנת 2026, והכנסות של 10 מיליארד דולר לעומת 7.863 מיליארד. אלו יעדי חברה לטווח ארוך, לא תוצאות שהושגו או תחזית מעודכנת לשנה הקרובה.",
+    "תקציר_en": "RPM's Nov 9, 2026 Investor Day presentation targets a 20% adjusted EBITDA margin in fiscal 2030, versus 15.6% in fiscal 2026, and $10 billion revenue versus $7.863 billion. These are long-term company targets, not achieved results or updated near-term guidance.",
+    "טקסט": "אומת מול מקורות ראשוניים: דיווח 8-K ומצגת יום המשקיעים של RPM מ-9.11.2026 נקראו ישירות, לרבות שקפים 14-15 והסתייגויות המדדים המתואמים. שעת קבלת הדיווח ב-SEC אינה מוצגת כשעת ההכרזה.\n\nמה חדש: תוכנית השיפור התפעולי MAP 2030 כוללת יעדים לשנת הכספים 2030 של הכנסות 10 מיליארד דולר, לעומת 7.863 מיליארד בשנת הכספים 2026; EBITDA מתואם של 2 מיליארד דולר לעומת 1.228 מיליארד; ושולי EBITDA מתואם של 20% לעומת 15.6%, שיפור של 440 נקודות בסיס.\n\nהנחת צמיחת ההכנסות השנתית הממוצעת היא 6.2%, עם תרומות בקירוב של 2% מנפח, 2% ממחיר ו-2% ממיזוגים ורכישות. רכיב הרכישות הוא הנחה בתוכנית, לא עסקאות חתומות שהוכרזו. החברה גם מכוונת להון חוזר של 20% מהמכירות לעומת 23.7% בשנת 2026.\n\nהתוכנית מתמקדת בייצור, רכש, הוצאות מכירה והנהלה, יעילות מסחרית, הרחבה בינלאומית ושיתוף משאבים בין העסקים. היא נפרדת מפריט n-0131 על תוכנית פרישת המנכ\"ל; אין כאן שינוי במועד הפרישה או מינוי מחליף.\n\nEBITDA מתואם הוא מדד שאינו GAAP. החברה צירפה התאמות לנתונים ההיסטוריים, אך לא התאמה לתחזיות EBITDA מתואם ושוליו לשנת 2030, משום שסעיפים מהותיים אינם בשליטתה או אינם ניתנים לחיזוי סביר ללא מאמץ בלתי סביר. אין להשוות את היעדים לרווח נקי או להציגם כהתחייבות שתתממש.",
+    "טקסט_en": "Verified against primary sources: RPM's Nov 9, 2026 8-K and Investor Day presentation were read directly, including slides 14-15 and adjusted-metric caveats. SEC acceptance time is not presented as the announcement time.\n\nWhat is new: the MAP 2030 operating improvement program sets fiscal 2030 targets of $10 billion revenue versus $7.863 billion in fiscal 2026; $2 billion adjusted EBITDA versus $1.228 billion; and a 20% adjusted EBITDA margin versus 15.6%, a 440-basis-point improvement.\n\nThe revenue CAGR assumption is 6.2%, with approximate contributions of 2% volume, 2% price and 2% M&A. The M&A contribution is a planning assumption, not announced signed deals. Working capital is targeted at 20% of sales versus 23.7% in fiscal 2026.\n\nThe plan focuses on manufacturing, procurement, selling and administrative costs, commercial efficiency, international expansion and shared resources across businesses. It is separate from n-0131 on the CEO retirement plan; this item announces no retirement-date change or successor appointment.\n\nAdjusted EBITDA is a non-GAAP measure. Historical reconciliations are provided, but fiscal 2030 adjusted EBITDA and margin targets are not reconciled because material components are outside the company's control or cannot reasonably be predicted without unreasonable effort. The targets must not be equated with net income or treated as a commitment that will be achieved.",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/110621/000119312526452970/d152872dex991.htm",
+    "מקורות": [
+      {
+        "label": "RPM, מצגת יום המשקיעים 9.11.2026, נספח 99.1 ב-SEC",
+        "label_en": "RPM, Nov 9, 2026 Investor Day presentation, SEC Exhibit 99.1",
+        "url": "https://www.sec.gov/Archives/edgar/data/110621/000119312526452970/d152872dex991.htm"
+      },
+      {
+        "label": "RPM, דיווח 8-K מ-9.11.2026",
+        "label_en": "RPM, Nov 9, 2026 8-K",
+        "url": "https://www.sec.gov/Archives/edgar/data/110621/000119312526452970/d152872d8k.htm"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "81f4f614ea379d7ee6191b6b8b60eceec3469145958cb24de9e957582ca989e2"
+      }
+    }
   }
 ]
