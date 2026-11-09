@@ -25074,5 +25074,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "הבנק המרכזי של אוסטרליה (RBA): הביקוש סביב ה-AI ילחץ כלפי מעלה על האינפלציה בטווח הקרוב; אם התשואות על ההשקעה יאכזבו, מחירי נכסים חשופים לתיקון חד ואולי לא-מסודר",
+    "category": "macro",
+    "קישור": "https://www.rba.gov.au/speeches/2026/sp-ag-2026-11-09.html",
+    "מקורות": [
+      {
+        "label": "הבנק המרכזי של אוסטרליה, נאום האנטר בכנס UBS, 9.11.2026",
+        "url": "https://www.rba.gov.au/speeches/2026/sp-ag-2026-11-09.html",
+        "label_en": "Reserve Bank of Australia, Hunter speech at the UBS conference, Nov 9, 2026"
+      },
+      {
+        "label": "רויטרס (via Investing.com), 8.11.2026",
+        "url": "https://www.investing.com/news/economy-news/rbas-hunter-says-ai-has-yet-to-deliver-productivity-boost-trigger-job-losses-5010341",
+        "label_en": "Reuters (via Investing.com), Nov 8, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 9.11.2026 (נאום מלא באתר הבנק המרכזי של אוסטרליה; סיקור רויטרס מ-8.11).\n\nסארא האנטר, סגנית הנגיד (כלכלה) של הבנק המרכזי של אוסטרליה, אמרה בנאום בכנס UBS Australasia בסידני כי בטווח הקרוב, ההלם החיובי בביקוש המצרפי סביב ההשקעה ב-AI, מול כושר ההיצע הקיים של הכלכלה, \"יפעיל לחץ מסוים כלפי מעלה על האינפלציה\" — לדבריה, מגמה התואמת את הנראה כיום: ההשקעה העולמית ב-AI תורמת ללחצי קיבולת בשרשרת האספקה של מוצרים כמו מוליכים למחצה, והעלויות עוברות לחלק מהמוצרים במדינות המפותחות. לעומת זאת, בהנחה שה-AI יניב שיפור פרודוקטיביות רחב יותר, לחצי המחירים הראשוניים צפויים לפוג, ולדבריה ההשפעה ארוכת הטווח של ה-AI על האינפלציה \"צפויה להיות ניטרלית בערך\", בדומה לטכנולוגיות כלליות קודמות.\n\nעל שוק העבודה והפרודוקטיביות אמרה האנטר כי עד כה יש \"ראיות מוגבלות\" לכך שה-AI הרים באופן מהותי את הפרודוקטיביות המצרפית, ומעט ראיות להשפעות גדולות על התעסוקה המצרפית בכלכלות המפותחות — אך יש סימנים מתהווים להיחלשות בגיוס, במיוחד בקרב עובדים צעירים במקצועות חשופים ל-AI; הערכות הבנק לשיעור הריבית הנייטרלי עלו בשנים האחרונות, ותשואות האג\"ח עלו בחודשים האחרונים, לדבריה גם על רקע הביקוש להון.\n\nבנושא הסיכון הפיננסי אמרה כי החשיפה של משתתפי השווקים לבום ההשקעה ב-AI גדלה בזמן שפרמיות הסיכון בשווקים העולמיים נמוכות בהשוואה היסטורית: \"אם התשואות על ההשקעה ב-AI יאכזבו, חלק ממחירי הנכסים (לרבות מניות וחוב תאגידי) יהיו חשופים לתמחור מחדש חד ואולי לתיקונים לא-מסודרים\" — נושא שצוין כנמצא בליבת סקירת היציבות הפיננסית והדו\"ח על מדיניות מוניטרית האחרונים של הבנק.",
+    "תקציר": "האנטר (RBA) בכנס UBS: הביקוש סביב AI ילחץ כלפי מעלה על האינפלציה בטווח הקרוב, אך ההשפעה ארוכת הטווח ניטרלית בערך; ראיות מוגבלות לשיפור פרודוקטיביות או לפגיעה תעסוקתית גדולה; אם תשואות ה-AI יאכזבו — נכסים חשופים לתיקון חד ואולי לא-מסודר.",
+    "מזהה": "n-1056",
+    "תאריך": "2026-11-09 04:01",
+    "הועלה": "2026-11-09 04:01",
+    "כותרת_en": "Reserve Bank of Australia: AI-driven demand will put upward pressure on near-term inflation; if AI investment returns disappoint, asset prices are exposed to sharp and possibly disorderly repricing",
+    "טקסט_en": "Source publication: Nov 9, 2026 (full speech on the Reserve Bank of Australia site; Reuters coverage Nov 8).\n\nSarah Hunter, the RBA's Assistant Governor (Economic), said in a speech at the UBS Australasia Conference in Sydney that in the near term, the positive shock to aggregate demand from AI investment, set against the economy's current supply capacity, \"will put some upward pressure on inflation\" - consistent, she said, with what is already visible: surging global AI investment is contributing to capacity pressures in supply chains for products such as semiconductors, and upstream cost pressures are passing through to some downstream goods in advanced economies. Over time, provided AI delivers broader productivity gains, the initial inflationary pressures are likely to dissipate, and AI's long-run effect on inflation \"is likely to be broadly neutral\", consistent with previous general-purpose technologies.\n\nOn the labor market and productivity, Hunter said there is so far \"limited evidence\" that AI has materially lifted aggregate productivity, and little evidence of large effects on aggregate employment in advanced economies - though there are emerging signs of weaker hiring, particularly among younger workers in highly AI-exposed occupations. The Bank's neutral-rate estimates have risen in recent years, and bond yields have increased over the past couple of months, partly on strong demand for capital.\n\nOn financial risk, she said market participants' exposure to the AI investment boom is increasing while risk premia in global markets are low by historical standards: \"If the returns to AI investment disappoint, some asset prices (including equities and corporate debt) will be exposed to sharp repricing and possibly disorderly adjustments\" - an issue she said is receiving close attention and is discussed in the RBA's latest Financial Stability Review and Statement on Monetary Policy.",
+    "תקציר_en": "RBA's Hunter at the UBS conference: AI-driven demand will put upward pressure on near-term inflation, but the long-run effect is likely broadly neutral; limited evidence so far of productivity gains or large employment effects; if AI returns disappoint, asset prices face sharp and possibly disorderly repricing.",
+    "_translation": {
+      "en": {
+        "source_hash": "946eb8ea027323709231d96b2072ee17274e1f8f0ca61409cd5d8e038e14b823",
+        "schema_version": 1
+      }
+    }
   }
 ]
