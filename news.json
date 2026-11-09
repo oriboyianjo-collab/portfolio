@@ -27544,5 +27544,31 @@
         "source_hash": "8be9973aed2f2612e04acd247559bcc24d1bd8c3af1effdec198472ae2ec9890"
       }
     }
+  },
+  {
+    "כותרת": "קנדה מאריכה עד יוני 2028 הקלות במכסים קנדיים על יבוא מארה״ב; חלק מההקלות יצומצמו",
+    "כותרת_en": "Canada extends relief from Canadian tariffs on US imports through June 2028, while removing some exemptions",
+    "summary": "הארכה בשנה עד 30 ביוני 2028 והרחבה למוצרים שאינם מפלדה בכרייה ובהפקת נפט וגז ולמוצרים לחינוך ציבורי. במקביל תבוטל הקלה לחלק מהנגררים בדצמבר ולמוצרי אלומיניום וקרטון מסוימים בפברואר. זה אינו ביטול מכסים אמריקאיים על יצוא קנדי.",
+    "summary_en": "A one-year extension to June 30, 2028 adds non-steel mining and oil-and-gas inputs and goods for public education. Relief is also being removed for certain trailers in December and aluminum and paperboard products in February. This does not remove US tariffs on Canadian exports.",
+    "טקסט": "9.11.2026 | הודעה רשמית של משרד האוצר הקנדי מאוטווה.\n\nקנדה מאריכה בשנה, עד 30 ביוני 2028, את מסלול ההקלה הרוחבית במכסים על מוצרים מארה״ב המיובאים לקנדה לשימושים מוגדרים. הכיוון חשוב: מדובר בהקלות של קנדה במכסים קנדיים על יבוא מארה״ב, לא בהודעה שארה״ב מבטלת מכסים על יצוא קנדי.\n\nהחל מ-9 בנובמבר 2026 המסלול מורחב למוצרים שאינם מפלדה המשמשים בכרייה, בחציבה ובהפקת נפט או גז, ולכל המוצרים המשמשים גופי חינוך ציבורי, כולל גופים שהוסמכו בידי ארגונים ילידיים. זהו מסלול תלוי שימוש וזכאות, לא פטור גורף לכל מוצר או חברה.\n\nלצד ההרחבה, הממשלה מסירה הקלה רוחבית ממוצרים מסוימים שיש להם ייצור מקומי: חלק מהנגררים החל מ-1 בדצמבר 2026, וחוטי אלומיניום, מוצרי שחול מאלומיניום ומוצרי קרטון מסוימים החל מ-1 בפברואר 2027. ההודעה נותנת ליבואנים זמן לשנות שרשרת אספקה או לבקש הקלה פרטנית.\n\nנוספות גם הקלות ממוקדות למוצרים מסוימים שנמצאים במחסור בשוק הקנדי ולחברות בנסיבות חריגות, כגון התחייבויות חוזיות קיימות. אין כאן ביטול כללי של מכסי הנגד או הבטחה שכל בקשה תאושר.\n\nלפי המשרד, רשימות המוצרים המפורטות יפורסמו באתרו וישולבו בצו באמצעות הפניה. הרשימות עצמן לא נקראו לצורך הפריט; לא מפורסמים כאן קודי סיווג או קביעה שמוצר מסוים זכאי.",
+    "טקסט_en": "Nov 9, 2026 | Official Department of Finance Canada release from Ottawa.\n\nCanada is extending horizontal tariff remission by one year, through June 30, 2028, for US goods imported into Canada for defined end uses. The direction matters: Canada is providing relief from Canadian tariffs on US imports. This is not a US announcement lifting tariffs on Canadian exports.\n\nEffective November 9, 2026, coverage expands to non-steel goods used in mining, quarrying and oil or gas extraction, and all goods used by public education entities, including those mandated by Indigenous organizations. Eligibility depends on the end use; this is not a blanket exemption for every good or company.\n\nAt the same time, horizontal relief is being removed for certain goods with domestic production: certain trailers from December 1, 2026, and certain aluminum wire, aluminum extrusions and paperboard products from February 1, 2027. Importers are given time to adjust supply chains or seek case-by-case remission.\n\nTargeted relief also covers certain goods in short supply in Canada and companies facing exceptional circumstances, such as pre-existing contracts. This is not a general elimination of counter-tariffs or a guarantee that every request will qualify.\n\nThe department says detailed product schedules will be published on its website and incorporated into the orders by reference. Those schedules were not read for this item; no tariff codes or product-specific eligibility determinations are stated here.",
+    "קישור": "https://www.canada.ca/en/department-finance/news/2026/11/canada-modifies-tariff-relief-measures-to-better-support-workers-and-businesses.html",
+    "מקורות": [
+      {
+        "label": "משרד האוצר הקנדי: הודעה רשמית על הארכה, הרחבה והסרת הקלות",
+        "label_en": "Department of Finance Canada: official extension, expansion and relief-removal notice",
+        "url": "https://www.canada.ca/en/department-finance/news/2026/11/canada-modifies-tariff-relief-measures-to-better-support-workers-and-businesses.html"
+      }
+    ],
+    "מזהה": "n-1142",
+    "תאריך": "2026-11-09 23:17",
+    "הועלה": "2026-11-09 23:17",
+    "category": "macro",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "170973b0dc5f76854883b2d157ccbdb0dc0bc0d46eb3eaabdeeeb58b020509eb"
+      }
+    }
   }
 ]
