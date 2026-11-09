@@ -25136,5 +25136,72 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "סין: האינפלציה הסיטונאית (PPI) האיצה ל-5.7% באוקטובר, הגבוהה מיוני 2022 ומעל הצפי; מדד המחירים לצרכן האט ל-0.7%, מתחת לצפי",
+    "category": "macro",
+    "קישור": "https://www.stats.gov.cn/sj/zxfb/202611/t20261109_1965794.html",
+    "מקורות": [
+      {
+        "label": "לשכת הסטטיסטיקה של סין, PPI אוקטובר, 9.11.2026",
+        "url": "https://www.stats.gov.cn/sj/zxfb/202611/t20261109_1965794.html",
+        "label_en": "National Bureau of Statistics of China, October PPI, Nov 9, 2026"
+      },
+      {
+        "label": "לשכת הסטטיסטיקה של סין, CPI אוקטובר, 9.11.2026",
+        "url": "https://www.stats.gov.cn/sj/zxfb/202611/t20261109_1965795.html",
+        "label_en": "National Bureau of Statistics of China, October CPI, Nov 9, 2026"
+      },
+      {
+        "label": "CNBC, 8.11.2026",
+        "url": "https://www.cnbc.com/2026/11/09/china-wholesale-inflation-rises-consumer.html",
+        "label_en": "CNBC, Nov 8, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 9.11.2026 בשעה 09:30 בייג'ינג (לשכת הסטטיסטיקה של סין; סיקור CNBC מ-8.11).\n\nמדד מחירי היצרן (PPI) בסין עלה ב-5.7% לעומת אוקטובר אשתקד — האצה שלישית ברציפות והקצב המהיר מיוני 2022 — מעל צפי הכלכלנים בסקר רויטרס (5.3%); במונחים חודשיים עלה המדד ב-0.7%. מחירי הקלט של היצרנים עלו ב-7.9% שנתית, ובתוך מחירי התפוקה בלטו מחירי המוצרים הייצוריים (+7.4%), כשעליית מחירי תעשיית ההפקה (כרייה) מגיעה ל-27.9%. בממוצע ינואר-אוקטובר ה-PPI עלה 2.7%.\n\nמדד המחירים לצרכן (CPI) עלה ב-0.7% שנתית — האטה ראשונה לאחר חודשיים של עליות, מתחת לצפי בסקר רויטרס (0.8%) ולנתון ספטמבר (0.9%); במונחים חודשיים לא חל שינוי. מחירי המזון ירדו 2.9% שנתית (ירקות טריים -16.9%, חזיר -8.6%), מחירי שאינם מזון עלו 1.5%, והמדד ללא מזון ואנרגיה עלה 0.8%.",
+    "תקציר": "PPI סין באוקטובר: +5.7% שנתית, האצה שלישית ברצף והגבוה מיוני 2022, מעל צפי 5.3%; CPI: +0.7% בלבד, מתחת לצפי 0.8% ול-0.9% בספטמבר, עם ירידת מחירי מזון של 2.9%.",
+    "מזהה": "n-1058",
+    "תאריך": "2026-11-09 04:09",
+    "הועלה": "2026-11-09 04:09",
+    "כותרת_en": "China: wholesale inflation (PPI) accelerated to 5.7% in October, the fastest since June 2022 and above forecast; CPI slowed to 0.7%, below expectations",
+    "טקסט_en": "Source publication: Nov 9, 2026 at 09:30 Beijing time (National Bureau of Statistics of China; CNBC coverage Nov 8).\n\nChina's producer price index (PPI) rose 5.7% year over year in October - a third straight acceleration and the fastest pace since June 2022 - above the 5.3% expected in a Reuters poll of economists; month over month the index rose 0.7%. Producer purchasing prices rose 7.9% year over year, and within output prices, production materials rose 7.4%, with extractive industry prices up 27.9%. On a January-October average, PPI rose 2.7%.\n\nThe consumer price index (CPI) rose 0.7% year over year - the first deceleration after two months of increases, below the 0.8% expected in the Reuters poll and September's 0.9%; month over month it was flat. Food prices fell 2.9% year over year (fresh vegetables -16.9%, pork -8.6%), non-food prices rose 1.5%, and the index excluding food and energy rose 0.8%.",
+    "תקציר_en": "China October PPI: +5.7% YoY, a third straight acceleration and the fastest since June 2022, above the 5.3% forecast; CPI: just +0.7%, below the 0.8% forecast and September's 0.9%, with food prices down 2.9%.",
+    "_translation": {
+      "en": {
+        "source_hash": "6f8f39b9ff702eec61249f2cd56cfac424ec2a4b66eb47cead5d2ddeced74f6f",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "כותרת": "טראמפ ב-60 Minutes: סיכוני ה-AI \"ניתנים לניהול\"; \"לא איכפת לי מגדרות בטיחות\", כל עוד ארה\"ב נשארת במקום הראשון",
+    "category": "macro",
+    "קישור": "https://www.cbsnews.com/news/donald-trump-2026-post-midterm-elections-interview-60-minutes-transcript/",
+    "מקורות": [
+      {
+        "label": "CBS, תמליל הראיון המלא ב-60 Minutes, 9.11.2026",
+        "url": "https://www.cbsnews.com/news/donald-trump-2026-post-midterm-elections-interview-60-minutes-transcript/",
+        "label_en": "CBS, full 60 Minutes interview transcript, Nov 9, 2026"
+      },
+      {
+        "label": "רויטרס (via StreetInsider), 8.11.2026",
+        "url": "https://www.streetinsider.com/Reuters/Trump+says+AI+risks+can+be+managed%2C+signals+openness+to+guardrails/27309543.html",
+        "label_en": "Reuters (via StreetInsider), Nov 8, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: הראיון שודר ב-8.11.2026 ב-CBS 60 Minutes (התמליל המלא פורסם ב-9.11; סיקור רויטרס).\n\nבראיון הראשון שלו מאז הבחירות לאמצע הכהונה, לרוס דות'אט, נשאל הנשיא טראמפ על סיכוני הבינה המלאכותית וענה: \"אני חושב שהסיכון לא ממשי כמו שמדברים עליו. ואני חושב שאפשר לנהל את הסיכון\". כשנשאל אם ישתף פעולה עם הדמוקרטים בנושא בטיחות AI, ענה: \"בהחלט... לא איכפת לי מגדרות בטיחות (guardrails). אבל אני לא רוצה להכניס אותנו לעמדת מקום שני עמוק. אנחנו במקום הראשון. ולסין, דרך אגב, אין גדרות בטיחות\".",
+    "תקציר": "טראמפ ב-60 Minutes: סיכוני AI \"ניתנים לניהול\", לא מתנגד ל\"גדרות בטיחות\" ובשיתוף פעולה עם הדמוקרטים, אך לא במחיר של איבוד ההובלה על סין.",
+    "מזהה": "n-1059",
+    "תאריך": "2026-11-09 04:09",
+    "הועלה": "2026-11-09 04:09",
+    "כותרת_en": "Trump on 60 Minutes: AI risks \"can be managed\"; \"I don't mind guardrails\" as long as the US keeps the lead",
+    "טקסט_en": "Source publication: the interview aired Nov 8, 2026 on CBS 60 Minutes (full transcript published Nov 9; Reuters coverage).\n\nIn his first sit-down interview since the midterm elections, with Ross Douthat, President Trump was asked about the risks of artificial intelligence and answered: \"I think that the risk is not nearly as real as they talk. And I think the risk can be managed.\" Asked whether he would work with Democrats on AI safety, he said: \"Absolutely... I don't mind guardrails. But I don't wanna put us in a deep second position. We're leading number one. And China has no guardrails, by the way.\"",
+    "תקציר_en": "Trump on 60 Minutes: AI risks \"can be managed\"; open to \"guardrails\" and to working with Democrats, but not at the cost of losing the lead over China.",
+    "_translation": {
+      "en": {
+        "source_hash": "16b3ca2df6d4deaa177f8890f47cb0ba774dc81fe2356d84ef9bfbba18b42c3f",
+        "schema_version": 1
+      }
+    }
   }
 ]
