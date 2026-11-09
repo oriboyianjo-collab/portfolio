@@ -4322,10 +4322,7 @@ function etfRemoveAny(t){ if(ETFS.length <= 1){ toast(I18n.p("ui-0501","חייב
 const fsPct = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.prev ? (q.price/q.prev-1)*100 : null; };
 const fsExt = t=>{ const q = iq(secInst({sym:t, type:'etf'})); return q && q.ext ? q.ext : null; };   // v107: same extended-hours source as rows (preOf → iq().ext); null outside the session / without a fresh quote
 function fundSessionHtml(e){
-  if(e) return extLineHtml(e,'ftx');
-  const ss=usSession(), kind=ss==='post'?'after':ss;
-  if(kind==='pre'||kind==='after'||kind==='night') return `<span class="xl num ftx is-${kind} muted" title="${I18n.language==='en'?'No verified trade in this session':'אין עסקה מאומתת בשלב המסחר הנוכחי'}"><span class="ext-pct">—</span></span>`;
-  return `<span class="xl ftx muted"><small>${I18n.language==='en'?(ss==='reg'?'regular':'closed'):(ss==='reg'?'רגיל':'סגור')}</small></span>`;
+  return e ? extLineHtml(e,'ftx') : '<span class="xl ftx" aria-hidden="true"></span>';
 }
 function drawEtfSel(){ const el = $('etfPick'); if(!el) return; const t = etfUi.sel;
   const ord = [...ETFS].sort((a,b)=>{ const pa = fsPct(a), pb = fsPct(b); return (pa==null)-(pb==null) || (pb||0)-(pa||0); });
