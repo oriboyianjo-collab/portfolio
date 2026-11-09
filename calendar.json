@@ -1850,7 +1850,7 @@
     "תקופה": "ספטמבר · חודשי",
     "חשיבות": 1,
     "קודם": "0.6%",
-    "הערה": "הקודם על־פי ההערכה המוקדמת מ־28.10; עשוי להיות מתוקן בפרסום הסופי\nעדכון 07.11.2026: צפי לפי ForexFactory 0.6%. מקורו לא אומת מול מקור ראשוני. היסטוריית הצפי וההערות נשמרה; אין כאן נתון בפועל חדש.",
+    "הערה": "הקודם על־פי ההערכה המוקדמת מ־28.10; עשוי להיות מתוקן בפרסום הסופי\nעדכון 07.11.2026: צפי לפי ForexFactory 0.6%. מקורו לא אומת מול מקור ראשוני. היסטוריית הצפי וההערות נשמרה; אין כאן נתון בפועל חדש.\nפורסם 9.11.2026 בשעה 17:00 ישראל: מלאי ספטמבר סופי +0.7% חודשי ($1,013.1 מיליארד), לעומת הערכה מוקדמת +0.6%. נתון אוגוסט המתוקן +0.6% ($1,006.2 מיליארד) אומת כעת בדוח הרשמי; ההערה הקודמת ייחסה את שדה הקודם להערכת ספטמבר המוקדמת. הצפי 0.6% נשמר בנפרד ואינו מקור ראשוני. מכירות +2.8% ($840.1 מיליארד), יחס מלאי/מכירות 1.21. הנתונים מנוכי עונתיות, לא שינויי מחירים.",
     "היסטוריית_צפי": [
       {
         "צפי": null,
@@ -1867,13 +1867,15 @@
     "מזהה": "c-0080",
     "אירוע_en": "Wholesale inventories (final)",
     "תקופה_en": "September · monthly",
-    "הערה_en": "Prior per the advance estimate of Oct 28; may be revised in the final release\nUpdate Nov 7, 2026: estimate per ForexFactory 0.6%. Its source was not verified against a primary source. Estimate history and notes were retained; there is no new actual figure here.",
+    "הערה_en": "Prior per the advance estimate of Oct 28; may be revised in the final release\nUpdate Nov 7, 2026: estimate per ForexFactory 0.6%. Its source was not verified against a primary source. Estimate history and notes were retained; there is no new actual figure here.\nReleased Nov 9, 2026 at 17:00 Israel: final September inventories +0.7% MoM ($1,013.1 billion), versus the +0.6% advance estimate. Revised August +0.6% ($1,006.2 billion) is now verified in the official report; the earlier note had attributed the prior field to the September advance estimate. The 0.6% forecast is preserved separately and is not a primary-source forecast. Sales +2.8% ($840.1 billion), inventory/sales ratio 1.21. Seasonally adjusted, not price adjusted.",
     "_translation": {
       "en": {
-        "source_hash": "281162062b845e7cdde2c15713e151fa8e3d3632bf2fe98e02f1c7b3f71eaa31",
+        "source_hash": "056d174a695a975bc38329708e31d967b05b529160c0ed25911d39b661d7cbac",
         "schema_version": 1
       }
-    }
+    },
+    "בפועל": "0.7%",
+    "מקור": "https://www.census.gov/wholesale/current/index.html"
   },
   {
     "תאריך": "2026-11-09",
