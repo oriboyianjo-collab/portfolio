@@ -27004,5 +27004,114 @@
         "source_hash": "cf86d3856eecd26d387069adf5c3ef1f45ac0a98a3fe189a4d9684b190ac5e40"
       }
     }
+  },
+  {
+    "מזהה": "n-1122",
+    "כותרת": "ברקין: AI עלול לפגוע בתעסוקה גם אם יאכזב וגם אם יעלה על הציפיות; יש לפעול בזהירות",
+    "כותרת_en": "Barkin: AI could threaten employment whether it disappoints or exceeds expectations; policy should move with care",
+    "summary": "בנאום הרשמי בגריר, נשיא הפד של ריצ'מונד מציג שני מסלולי סיכון חדשים לצד הדגש המוכר על אינפלציה: אכזבה מ-AI עלולה לפגוע בהשקעות ובצריכה התלויה בנכסים; הצלחה מהירה מדי עלולה לדחוק עובדים. אין התחייבות להחלטה בדצמבר.",
+    "summary_en": "In his official Greer speech, the Richmond Fed president sets out two risk channels alongside his familiar inflation warning: disappointing AI returns could hurt investment and asset-supported spending; stronger AI performance could displace workers. No December decision is promised.",
+    "טקסט": "9.11.2026 | הנאום הרשמי The Rooms Driving the Economy, לשכת המסחר Greater Greer, דרום קרוליינה. פריט קשור: n-0270, ראיון CNBC מ-5.11. זהו נאום חדש, לא שינוי שהוסק מהדיווח הישן.\n\nברקין מציג שני כיוונים שבהם AI יכול לסכן את התעסוקה: אם הטכנולוגיה תאכזב, השקעות העסקים עלולות להיחלש, מחירי המניות עלולים לרדת ובעקבותיהם הצריכה הנשענת על עושר. אם הטכנולוגיה תעלה על הציפיות, היא עלולה לדחוק יותר עובדים מהצפוי ולהביא לירידה בהוצאות. בשני המקרים תשומת הלב עשויה לעבור לצד התעסוקה של המנדט הכפול. אלה תרחישי סיכון, לא תחזית שכבר התממשה.\n\nבהווה הוא מתאר ביקוש עמיד ולחצי עלויות רחבים שמאפשרים לחברות לגלגל התייקרויות לצרכנים. אם המשק ימשיך במסלולו הנוכחי, הסיכון לדעתו נמצא בצד האינפלציה. במקביל, הסיכונים לביקוש מצדיקים פעולה זהירה במדיניות. הדברים הם עמדתו האישית, לא עמדת הוועדה כולה.\n\nהדגש על אינפלציה ועל זהירות כבר הופיע בפריט הקודם ואינו מוצג כתפנית. בנוסח הרשמי שנקרא כאן אין אמירה על תרחיש בסיס לישיבת דצמבר או הערכה מספרית/חדשה של הריבית הניטרלית; אמירות שאלות ותשובות שהופצו במבזקים אינן נכללות ללא אימות נוסף.",
+    "טקסט_en": "Nov 9, 2026 | Official speech, The Rooms Driving the Economy, Greater Greer Chamber of Commerce, South Carolina. Related item: n-0270, the Nov 5 CNBC interview. This is a new speech, not a change inferred from the earlier report.\n\nBarkin describes two ways AI could threaten employment: if it underdelivers, business investment could retreat, stock prices could follow, and so could spending supported by wealth. If it overdelivers, it could displace more workers than expected and reduce spending. Either scenario could shift attention toward the employment side of the dual mandate. These are risks, not forecasts already realized.\n\nFor now, he describes resilient demand and broad cost pressures that allow firms to pass increases on to customers. If the economy stays on its current path, he sees the risk on the inflation side. At the same time, risks to demand make it wise to move policy with care. These are his own views, not the views of the whole committee.\n\nThe emphasis on inflation and caution was already in the earlier item and is not presented as a reversal. The official text read here contains no December-meeting base case or new numerical neutral-rate estimate; Q&A remarks circulated in flashes are excluded pending further verification.",
+    "תאריך": "2026-11-09 20:58",
+    "הועלה": "2026-11-09 20:58",
+    "category": "macro",
+    "קישור": "https://www.richmondfed.org/press_room/speeches/thomas_i_barkin/2026/barkin_speech_20261109",
+    "מקורות": [
+      {
+        "label": "הפד של ריצ'מונד: נאום ברקין המלא, 9.11.2026 - ראשוני",
+        "label_en": "Richmond Fed: full Barkin speech, Nov 9, 2026 - primary",
+        "url": "https://www.richmondfed.org/press_room/speeches/thomas_i_barkin/2026/barkin_speech_20261109"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "edc91b8dba1e5a32577e01d011dbe03fab1d62e0d33958183f4c368b3780a70c"
+      }
+    }
+  },
+  {
+    "כותרת": "דיווח Business Insider (לא מאומת מול מקור ראשוני): הואנג הוסר מתוכניות אירועים של Anthropic ו-ElevenLabs",
+    "כותרת_en": "Business Insider report (not verified against a primary source): Huang removed from Anthropic and ElevenLabs event agendas",
+    "summary": "לא מאומת מול מקור ראשוני: לפי אדם הבקיא בנושא שצוטט ב-Business Insider, מנכ״ל NVIDIA כבר אינו בתוכנית פורום המנכ״לים הפרטי של Anthropic במונטסיטו ביום שני בערב. העיתון מדווח גם ששמו ותמונתו נעלמו מתוכנית פסגת ElevenLabs ביום רביעי בניו יורק. הסיבה לשינויים לא אומתה.",
+    "summary_en": "Not verified against a primary source: a person familiar with the matter told Business Insider that NVIDIA's CEO is no longer on the agenda for Anthropic's private CEO forum in Montecito on Monday evening. The outlet also reports that his name and image disappeared from the ElevenLabs Summit lineup in New York on Wednesday. The reasons for the changes were not verified.",
+    "טקסט": "לא מאומת מול מקור ראשוני\n9.11.2026 | Business Insider, נוסח מעודכן מ-18:27:41 UTC, 20:27 בישראל. פריטים קשורים: n-1043 (חקירת הדירקטוריון), n-1046 (הודעת הואנג לעובדים), n-1117 (הדיווח על חקירת MegaSpeed).\n\nלפי הדיווח, אדם הבקיא באירוע אמר שג'נסן הואנג תוכנן להתראיין בידי בכיר Anthropic בפורום מנכ״לים פרטי במונטסיטו ביום שני בערב. אדם נוסף הבקיא בנושא אמר שכבר אינו צפוי להשתתף. Anthropic סירבה להגיב. מדובר בדיווח המיוחס למקורות ללא שם, לא בהודעה רשמית על ביטול.\n\nבנוסף מדווח העיתון ששמו ותמונתו של הואנג נעלמו מרשימת הדוברים של פסגת ElevenLabs בניו יורק ביום רביעי. השיחה המתוכננת עם מנכ״ל ElevenLabs מתי סטנישבסקי הוחלפה ברשימה בנאום סיום של סטנישבסקי לבדו. לפי הכתבה, NVIDIA ו-ElevenLabs לא הגיבו מיד לבקשות תגובה.\n\nהפריט מוסיף שינויי תוכנית אירועים לסיפור שכבר סוקר, לא ממצא חדש בחקירת הדירקטוריון. סיבת השינויים לא אומתה, ואין כאן קביעה שהם נגרמו מהטענות שפורסמו, שינוי במעמדו כמנכ״ל או השפעה מוכחת על המניה. הטענה במבזק אחר שלפיה NVIDIA מסרה כעת שיישאר מנכ״ל לא נמצאה בנוסח המקורי שנקרא ולכן אינה מוצגת כתגובה חדשה.",
+    "טקסט_en": "Not verified against a primary source\nNov 9, 2026 | Business Insider, version updated at 18:27:41 UTC, 8:27 p.m. Israel time. Related items: n-1043 (board investigation), n-1046 (Huang's employee message), n-1117 (MegaSpeed investigation report).\n\nAccording to the report, one person familiar with the event said Jensen Huang had been scheduled for an interview by an Anthropic executive at a private CEO forum in Montecito on Monday evening. A second person familiar with the matter said he was no longer expected to attend. Anthropic declined to comment. This is reporting attributed to unnamed sources, not an official cancellation announcement.\n\nThe outlet also reports that Huang's name and image disappeared from the ElevenLabs Summit speaker list in New York on Wednesday. His planned conversation with ElevenLabs CEO Mati Staniszewski was replaced on the agenda by a closing keynote from Staniszewski alone. The article says NVIDIA and ElevenLabs did not immediately respond to requests for comment.\n\nThis item adds event-agenda changes to the previously covered story, not a new finding in the board investigation. The reasons were not verified, and no claim is made that published allegations caused the changes, that his CEO status changed, or that they caused a share-price move. Another relay's claim that NVIDIA had now said he would remain CEO was not found in the original article read and is not presented as a new response.",
+    "category": "micro",
+    "קישור": "https://www.businessinsider.com/nvidia-jensen-huang-disappears-elevenlabs-summit-conference-lineup-2026-11",
+    "מקורות": [
+      {
+        "label": "Business Insider: כתבה מלאה מעודכנת, מקור משני; ללא אישור ראשוני",
+        "label_en": "Business Insider: full updated article, secondary source; no primary confirmation",
+        "url": "https://www.businessinsider.com/nvidia-jensen-huang-disappears-elevenlabs-summit-conference-lineup-2026-11"
+      }
+    ],
+    "מזהה": "n-1123",
+    "תאריך": "2026-11-09 20:58",
+    "הועלה": "2026-11-09 20:58",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "a9584f53fb6404d5a06d07401d77d90a47de202cefec2d7fdd32a99d709026e1"
+      }
+    }
+  },
+  {
+    "מזהה": "n-1124",
+    "כותרת": "טרימבל מרחיבה את שכבת ה-AI של Trimble Connect: חלק מהיכולות זמינות כעת ואחרות עדיין בפיתוח או בניסוי",
+    "כותרת_en": "Trimble expands the Trimble Connect AI layer: some capabilities available now, others still in development or testing",
+    "summary": "החברה הכריזה בכנס Dimensions על Trimble Assist, ממשק שיחה משותף, ועל Agent Studio לסוכני AI מותאמים. מידול מבני, סריקות, בדיקות שטח, התאמת חשבוניות ותזמון זמינים היום; אין להציג את כל החבילה כהשקה כללית.",
+    "summary_en": "At Dimensions, the company announced Trimble Assist, a shared conversational interface, and Agent Studio for custom AI agents. Structural modeling, capture, field inspections, invoice matching and scheduling are available today; the whole bundle is not generally available.",
+    "טקסט": "9.11.2026 | הודעת Trimble פורסמה ב-13:30 ET, 20:30 בישראל, במסגרת כנס Dimensions.\n\nTrimble הכריזה על הרחבת יכולות AI ב-Trimble Connect לאורך שלבי התכנון, הביצוע והתפעול של פרויקטי בנייה. Trimble Assist הוא ממשק שיחה משותף לאינטראקציה עם סוכנים ולמידע מכלי החברה; Agent Studio נועד לאפשר ללקוחות להפוך נהלי עבודה וידע ארגוני לסוכנים מותאמים. ההודעה מתארת שילוב של נתוני הפרויקט, טלמטריה מהשטח וממכונות וכלי התוכנה הקיימים, עם החלטות סופיות בידי אנשים.\n\nמה זמין לפי החברה: מידול אוטומטי של מבני פלדה, סיווג ענני נקודות בתוך מבנים, 360 Reality Capture, בדיקות שטח קוליות AI Punch Walk, התאמת רכש וחשבוניות ותזמון Trimble Connect Scheduling זמינים כבר היום. אבחון חומרת שטח זמין רק ללקוחות נבחרים. אימות קובצי תכנון ואוטומציה של הוראות שינוי נמצאים בפיתוח. תכנון גנרטיבי נמצא בתוכנית ההתנסות המוקדמת Trimble Labs. עצם ההכרזה על המעטפת אינה אישור שכל רכיב זמין לכל לקוח.\n\nהחברה מציינת יותר מ-55 מיליון משתמשים מצטברים, יותר מ-35 מיליון פרויקטים ומעל 400 אינטגרציות. אלה נתוני רקע מצטברים, לא תוספת לקוחות או פרויקטים שהושגה היום. לא פורסמו בהודעה תנאים כספיים, חוזי לקוחות חדשים או שינוי בתחזית. טענות בדבר הפחתת סיכון ושיפור רווחיות הן מטרות ותיאורי החברה, לא תוצאות כספיות שאומתו כאן.\n\nהודעת המשך של החברה מ-13:35 ET מבהירה כי Connect Scheduling זמין בצפון אמריקה לקבלנים ולקבלני משנה. המנוע בוחן מקורות מידע ומציע התאמות ללוח הזמנים לבדיקת הצוות ולאישורו, לא שינוי אוטונומי בלתי מסויג של הפרויקט. ניתן לייבא לוחות Primavera P6 ו-MS Project תוך שמירת הלוגיקה וקווי הבסיס. זהו פירוט של אותה השקת פלטפורמה, לא אירוע נפרד.",
+    "טקסט_en": "Nov 9, 2026 | Trimble company release at 1:30 p.m. ET, 8:30 p.m. Israel time, at its Dimensions conference.\n\nTrimble announced new AI capabilities across the design, build and operate lifecycle in Trimble Connect. Trimble Assist is a shared conversational interface for agents and information across its tools; Agent Studio is intended to let customers turn operating procedures and institutional knowledge into custom agents. The release describes combining project data, field and machine telemetry and existing software tools, while keeping final decisions with people.\n\nAvailability according to the company: automated structural modeling, indoor point-cloud classification, 360 Reality Capture, voice-driven AI Punch Walk inspections, procurement and invoice matching, and Trimble Connect Scheduling are available today. Field-hardware diagnostics are available only to select customers. Design-file verification and change-order automation are in development. Generative design is in the early-engagement Trimble Labs program. Announcing the overall AI layer does not establish that every component is available to every customer.\n\nThe company cites more than 55 million cumulative users, over 35 million projects and more than 400 integrations. These are cumulative background figures, not new customers or projects added today. The release provides no financial terms, new customer contracts or guidance change. Claims about lower risk or better profitability describe company aims, not financial outcomes independently verified here.\n\nA company follow-up at 1:35 p.m. ET specifies that Connect Scheduling is available in North America for general contractors and subcontractors. The engine reviews data and suggests schedule changes for teams to review and approve, not unrestricted autonomous project changes. It can import Primavera P6 and MS Project schedules while preserving logic and baselines. This details the same platform launch, not a separate event.",
+    "תאריך": "2026-11-09 20:58",
+    "הועלה": "2026-11-09 20:58",
+    "category": "micro",
+    "קישור": "https://www.prnewswire.com/news-releases/trimble-launches-new-trimble-connect-platform-ai-capabilities-aimed-at-de-risking-construction-302933579.html",
+    "מקורות": [
+      {
+        "label": "Trimble: הודעת החברה ב-PR Newswire, 9.11.2026 - ראשוני",
+        "label_en": "Trimble: company release on PR Newswire, Nov 9, 2026 - primary",
+        "url": "https://www.prnewswire.com/news-releases/trimble-launches-new-trimble-connect-platform-ai-capabilities-aimed-at-de-risking-construction-302933579.html"
+      },
+      {
+        "label": "Trimble: פירוט Connect Scheduling, זמינות בצפון אמריקה ואישור צוות - ראשוני",
+        "label_en": "Trimble: Connect Scheduling detail, North America availability and team approval - primary",
+        "url": "https://www.prnewswire.com/news-releases/trimble-launches-new-ai-accelerated-scheduling-solution-to-help-contractors-protect-project-milestones-302932621.html"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "bedd1bd318455f5eae009a08b7d21598318ec70782ca390f14b9a6b40f979b77"
+      }
+    }
+  },
+  {
+    "מזהה": "n-1125",
+    "כותרת": "הונדה מתכננת מפעל רכב חדש באוהיו ב-3 מיליארד דולר; תחילת ייצור צפויה ב-2029 בכפוף לאישורים",
+    "כותרת_en": "Honda plans a new $3 billion Ohio auto plant; production expected in 2029 subject to approvals",
+    "summary": "המפעל החדש מיועד לקיבולת של 240 אלף כלי רכב בשנה וליותר מ-2,000 משרות. הוא חלק מתוכנית רחבה יותר להגדלת ייצור היברידי בארה״ב, עם השקעות נוספות שמחירן לא פורט באוהיו, אלבמה וג׳ורג׳יה.",
+    "summary_en": "The new plant is planned for 240,000 vehicles a year and more than 2,000 jobs. It is part of a broader US hybrid-production expansion, with additional investments of unspecified size in Ohio, Alabama and Georgia.",
+    "טקסט": "9.11.2026 | הודעת Honda הרשמית, מריסוויל, אוהיו.\n\nהונדה הודיעה על השקעה מתוכננת של 3 מיליארד דולר במפעל הרכבת רכב חדש במרכז אוהיו, בין מפעליה הקיימים באיסט ליברטי ובמריסוויל. המפעל מיועד לקיבולת שנתית של 240 אלף כלי רכב וליותר מ-2,000 משרות חדשות. תחילת הייצור צפויה ב-2029, בכפוף לאישורים סופיים מהממשלה. זו תוכנית השקעה עתידית, לא קיבולת שכבר פועלת.\n\nהחברה מדגישה הרחבת היצע היברידי, אך המפעל מתוכנן לגמישות שתאפשר כלי רכב היברידיים, מונעי בנזין וגם חשמליים מלאים. לכן אין לתאר אותו כמפעל חשמלי בלבד.\n\nלצד המפעל החדש מתוכננות השקעות נוספות במתקנים באוהיו, אלבמה וג׳ורג׳יה, לרבות מנועי V6 היברידיים באלבמה, מנועי ארבעה צילינדרים באנה ומערכות היברידיות באוהיו ובג׳ורג׳יה. סכומי ההשקעות הנוספות לא פורטו; 3 מיליארד הדולר מיוחסים למפעל הרכב החדש, לא לסכום הכולל של התוכנית.\n\nלפי החברה, הפרויקטים יגדילו את כושר ייצור הרכב בארה״ב לכ-1.3 מיליון בשנה ובצפון אמריקה לכ-1.9 מיליון. כושר ייצור המערכות ההיברידיות באוהיו צפוי לגדול ב-250% בשנים הקרובות. זהו שיעור הגידול במערכות ההיברידיות באוהיו, לא בייצור כל כלי הרכב של הונדה. לא פורסמו כאן תחזית רווח או תנאי סבסוד שאומתו.",
+    "טקסט_en": "Nov 9, 2026 | Official Honda release, Marysville, Ohio.\n\nHonda announced a planned $3 billion investment in a new auto assembly plant in Central Ohio, between its existing East Liberty and Marysville facilities. The plant is planned for annual capacity of 240,000 vehicles and more than 2,000 new jobs. Production is expected to begin in 2029, pending final government approvals. This is a future investment plan, not capacity already operating.\n\nThe company emphasizes hybrid growth, but the plant is intended to be flexible enough to build hybrids, gasoline-powered vehicles and battery-electric vehicles. It should not be described as an exclusively electric-vehicle plant.\n\nAdditional investments are planned at facilities in Ohio, Alabama and Georgia, including V6 hybrid engines in Alabama, four-cylinder engines at Anna, and hybrid systems in Ohio and Georgia. The additional investment amounts were not specified; the $3 billion figure refers to the new auto plant, not the cost of the entire program.\n\nAccording to Honda, the projects will increase annual US vehicle-production capacity to about 1.3 million and North American capacity to about 1.9 million. Ohio hybrid-system capacity is expected to rise 250% in coming years. That percentage applies to Ohio hybrid systems, not all Honda vehicle output. No earnings forecast or verified subsidy terms are provided here.",
+    "תאריך": "2026-11-09 20:58",
+    "הועלה": "2026-11-09 20:58",
+    "category": "micro",
+    "קישור": "https://hondanews.com/en-US/honda-corporate/releases/release-b26ae02ff5dca50cb32a1f4783115123-honda-to-boost-us-hybrid-production-with-new-3-billion-us-auto-plant-and-investments-in-multiple-facilities",
+    "מקורות": [
+      {
+        "label": "Honda: הודעת החברה המלאה מ-9.11.2026 - ראשוני",
+        "label_en": "Honda: full company release, Nov 9, 2026 - primary",
+        "url": "https://hondanews.com/en-US/honda-corporate/releases/release-b26ae02ff5dca50cb32a1f4783115123-honda-to-boost-us-hybrid-production-with-new-3-billion-us-auto-plant-and-investments-in-multiple-facilities"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "ef36a69ca0fa51d5dcb4b2fe373352dc2cd54d73bed17cfbb8ead8dd2cca8189"
+      }
+    }
   }
 ]
