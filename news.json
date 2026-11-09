@@ -27274,5 +27274,31 @@
         "source_hash": "9ed1f729d3972f6caa7dac1768368af9567660f7e9ac21f72587238bd33fe5bf"
       }
     }
+  },
+  {
+    "כותרת": "Anthropic, דיווח IFR (לא מאומת מול מקור ראשוני): השקת ההנפקה בנאסד״ק מתוכננת ליום שלישי בבוקר",
+    "כותרת_en": "Anthropic, IFR report (not verified against a primary source): Nasdaq IPO launch planned for Tuesday morning",
+    "summary": "לא מאומת מול מקור ראשוני: זו כותרת IFR שנקראה ישירות, לא אישור שהמסחר במניה מתחיל ביום שלישי. גוף הכתבה מוגבל למנויים ולא נקרא; אין כאן גודל הנפקה, מחיר או אישור השלמה.",
+    "summary_en": "Not verified against a primary source: this is the IFR headline read directly, not confirmation that shares begin trading Tuesday. The subscriber-only body was not read; no offering size, price or completion is established.",
+    "טקסט": "לא מאומת מול מקור ראשוני\n9.11.2026 | כותרת דיווח של Amy Or ב-IFR שנקראה ישירות בדף המקורי; שעת פרסום ואזור זמן לא אומתו במקור שנקרא.\n\nכותרת IFR היא: \"Anthropic to launch Nasdaq IPO Tuesday morning\". בדיווח מיום שני, 9 בנובמבר, יום שלישי הוא 10.11.2026. זהו דיווח מיוחס על השקה מתוכננת, לא הודעת חברה מאומתת.\n\nמגבלת הגישה מהותית: גוף הכתבה מוגבל למנויים ולא נקרא. לכן אין לקבוע מתוך הכותרת אם המונח launch מתייחס לפתיחת שיווק, שלב אחר בתהליך ההנפקה או תחילת מסחר. אין כאן אישור שמניות יחלו להיסחר ביום שלישי, שהרישום נכנס לתוקף, שנקבעו מחיר או גודל הנפקה, או שההנפקה הושלמה.\n\nקשור לפריטים n-1050 על דיווח ה-roadshow ו-n-1099 על התשקיף המתוקן. מה חדש: כותרת IFR מציינת תזמון מתוכנן ליום שלישי בבוקר. היא אינה מאמתת מחדש את השווי שנמסר בדיווח הקודם. השקת המודלים בפריט n-1128 היא אירוע נפרד; לא הוכח קשר סיבתי בינה לבין תהליך ההנפקה.",
+    "טקסט_en": "Not verified against a primary source\nNov 9, 2026 | A headline by Amy Or at IFR, read directly on the original page. The exact publication time and timezone were not independently verified in the source read.\n\nThe IFR headline is: \"Anthropic to launch Nasdaq IPO Tuesday morning\". For a report dated Monday, November 9, Tuesday is November 10, 2026. This is an attributed report of a planned launch, not a verified company announcement.\n\nThe access limitation matters: the subscriber-only article body was not read. The headline alone does not establish whether launch means the start of marketing, another offering stage or the start of trading. It does not confirm that shares will begin trading Tuesday, that registration has become effective, that offering price or size has been set, or that the IPO has completed.\n\nRelated to n-1050 on the roadshow report and n-1099 on the amended prospectus. What is new: the IFR headline gives planned Tuesday-morning timing. It does not independently revalidate the valuation in the earlier report. The model launch in n-1128 is a separate event; no causal link to the IPO process is established.",
+    "תאריך": "2026-11-09 22:03",
+    "הועלה": "2026-11-09 22:03",
+    "מזהה": "n-1132",
+    "category": "micro",
+    "קישור": "https://www.ifre.com/equities/2510788/anthropic-to-launch-nasdaq-ipo-tuesday-morning",
+    "מקורות": [
+      {
+        "label": "IFR: כותרת מקורית מאת Amy Or; גוף למנויים לא נקרא, מקור משני",
+        "label_en": "IFR: original Amy Or headline; subscriber-only body not read, secondary source",
+        "url": "https://www.ifre.com/equities/2510788/anthropic-to-launch-nasdaq-ipo-tuesday-morning"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "ad81be1c6df7074bc6568bce0059f810eaaf18a63983335dfc2a78103f49d1f9"
+      }
+    }
   }
 ]
