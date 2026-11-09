@@ -26786,5 +26786,36 @@
     },
     "תקציר": "לא מאומת מול מקור ראשוני: Kyiv Independent מייחס למושל אישור לשריפה בבית הזיקוק בקירישי ולכיבויה, וכן דיווח על אישה שנהרגה מפגיעת שרידים בווסבולוז'סק, לא בקירישי. TASS ממשיך לדווח על היעדר נפגעים בדירת קירישי. לא אומתו נזק ליחידות, השבתה או פגיעה בתפוקה.",
     "תקציר_en": "Not verified against a primary source: Kyiv Independent attributes confirmation of a Kirishi refinery fire and its extinguishment to the governor, plus a woman killed by debris in Vsevolozhsk, not Kirishi. TASS still reports no injuries in the Kirishi apartment incident. Unit damage, shutdown and production impact remain unverified."
+  },
+  {
+    "מזהה": "n-1114",
+    "category": "macro",
+    "תאריך": "2026-11-09 17:32",
+    "הועלה": "2026-11-09 17:32",
+    "כותרת": "גולסבי (לא מאומת מול מקור ראשוני): הבעיה היא באינפלציה, עם התחממות בשירותים; הצמיחה והתעסוקה יציבות",
+    "כותרת_en": "Goolsbee (not verified against a primary source): inflation is the problem as services heat up; growth and employment stable",
+    "תקציר": "לא מאומת מול מקור ראשוני: דיווחי מבזק מייחסים לנשיא הפד של שיקגו אמירות על כישלון במאבק באינפלציה ועל עליית לחצים בשירותים; לדבריו המדווחים, מרכזי נתונים נראים כמו התחממות יתר מהסוג הישן, בעוד הצמיחה והתעסוקה יציבות והצריכה מובילה את הצמיחה. אין כאן החלטת ריבית או התחייבות למדיניות.",
+    "תקציר_en": "Not verified against a primary source: flash reports attribute remarks about an inflation failure and rising services inflation to the Chicago Fed president. He reportedly likened data centers to old-fashioned overheating while describing growth and employment as stable and consumption as the main growth driver. This is no rate decision or policy commitment.",
+    "טקסט": "לא מאומת מול מקור ראשוני.\n\nבמבזקים מ-9.11.2026 יוחסו לאוסטן גולסבי, נשיא הפד של שיקגו, הדברים הבאים: התעסוקה והצמיחה למעשה די יציבות, אך הבעיה הגדולה הייתה בצד האינפלציה; יש להתמודד עם הכישלון בנושא האינפלציה, ומתחילים לראות האצה באינפלציה בשירותים.\n\nלפי אותם מבזקים, גולסבי אמר שמרכזי נתונים נראים כמו התחממות יתר מהסוג הישן, ושהוצאות הצרכנים היו מנוע הצמיחה העיקרי. אלו אמירות מדווחות, לא ניתוח עצמאי של תרומת מרכזי הנתונים לאינפלציה ולא הוכחה לקשר סיבתי.\n\nהעמוד הרשמי מאמת את קיום מפגש השאלות והתשובות של Leadership Greater Chicago ב-9.11.2026 ואת השידור הרשמי, אך אינו מכיל את הטקסט המדווח. השידור אותר ישירות בערוץ הפד של שיקגו; בעת הבדיקה לא היו בו כתוביות זמינות או תמליל שניתן לקרוא. האמירות עצמן לא נבדקו מול ההקלטה במלואה.\n\nזמני המבזקים אינם זמני אמירה מדויקים. אין להסיק מהקטעים החלטת ריבית, הבטחה לשינוי ריבית, או עמדה לגבי הצבעה מסוימת. הקישורים להלן משמשים לאימות האירוע והשידור בלבד, לא כאימות עצמאי של האמירות.",
+    "טקסט_en": "Not verified against a primary source.\n\nFlash reports dated Nov 9, 2026 attribute the following remarks to Chicago Fed president Austan Goolsbee: employment and growth are actually pretty stable, but the big problem has been inflation; there is a need to come to terms with an inflation failure, and services inflation is starting to pick up.\n\nThe same reports say Goolsbee described data centers as looking like old-fashioned overheating and consumer spending as the main growth driver. These are reported remarks, not an independent analysis of data centers' inflation contribution or proof of causality.\n\nThe official page verifies the Leadership Greater Chicago moderated Q&A on Nov 9, 2026 and its official stream, but does not contain the reported remarks. The stream was located directly on the Chicago Fed channel; no captions or readable transcript were available when checked. The remarks themselves were not checked against the full recording.\n\nFlash publication times are not exact speaking times. These excerpts do not establish a rate decision, a commitment to change rates or a position on a particular vote. The links below verify the event and stream only, not the reported remarks independently.",
+    "קישור": "https://www.chicagofed.org/publications/speeches/2026/nov-9-leadership-greater-chicago",
+    "מקורות": [
+      {
+        "label": "הפד של שיקגו: פרטי האירוע בלבד, לא תמליל האמירות",
+        "label_en": "Chicago Fed: event details only, not a transcript of the remarks",
+        "url": "https://www.chicagofed.org/publications/speeches/2026/nov-9-leadership-greater-chicago"
+      },
+      {
+        "label": "השידור הרשמי בערוץ הפד של שיקגו; ללא תמליל נגיש בעת הבדיקה",
+        "label_en": "Official Chicago Fed stream; no readable transcript available when checked",
+        "url": "https://www.youtube.com/watch?v=iCA9Jd1DLtU"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "e6e787f89c2f093ed42b244d2b90e208375d13a8f90a34e67c8258ab536e772e"
+      }
+    }
   }
 ]
