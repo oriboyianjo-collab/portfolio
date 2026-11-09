@@ -25530,5 +25530,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "NVIDIA (NVDA), 5-6.11: בוחנת הסבת כ-130 בנייני טלקום ישנים של Brightspeed למרכזי נתונים קטנים - שיחות חקירתיות, לא עסקה חתומה",
+    "category": "micro",
+    "קישור": "https://www.tomshardware.com/tech-industry/data-centers/nvidia-wants-to-repurpose-over-130-old-telco-buildings-as-tiny-data-centers-report-claims-company-in-talks-with-brightspeed-after-pitching-idea-to-parent-company-apollo-global-management",
+    "מקורות": [
+      {
+        "label": "Tom's Hardware (מבוסס על The Information), 6.11.2026",
+        "url": "https://www.tomshardware.com/tech-industry/data-centers/nvidia-wants-to-repurpose-over-130-old-telco-buildings-as-tiny-data-centers-report-claims-company-in-talks-with-brightspeed-after-pitching-idea-to-parent-company-apollo-global-management",
+        "label_en": "Tom's Hardware (based on The Information), Nov 6, 2026"
+      },
+      {
+        "label": "Techmeme, 5.11.2026",
+        "url": "https://www.techmeme.com/261105/p50",
+        "label_en": "Techmeme, Nov 5, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 5-6.11.2026 (The Information, בשידוך Tom's Hardware ו-Techmeme).\n\nלפי הדיווח, NVIDIA פנתה ל-Apollo Global Management, הבעלים של ספקית התקשורת Brightspeed, בהצעה להסב חלק מכ-130 הבניינים הוותיקים של החברה ברחבי ארה\"ב לרשת של מרכזי נתונים קטנים. אפולו ביקשה תוכניות בכתב; NVIDIA הגישה אותן וביקשה מידע נוסף וביקורי אתר בתשתיות הקיימות. הבניינים כבר מותאמים לתעבורת נתונים ולתשתית חשמל; לפי ההערכות, האתרים יכולים לספק ביחד כ-1 גיגה-וואט קיבולת מחשוב - מספיק ליותר מ-2,200 ארונות Vera Rubin NVL72 (72 מעבדי Rubin ו-36 מעבדי Vera בכל ארון). עדיין נדרשים התקנת מערכות קירור, היתרים ואישורים מקומיים, וטרם נקבע מי יהיה בעל השבבים שיוצבו.\n\nהמהלך נועד לעקוף מורטוריומים והתנגדות ציבורית למרכזי נתונים בארה\"ב; נציגי NVIDIA תיארו את האתרים הקטנים כפועלים יחד כ\"רשת הסקה\" (inference network). מדובר בשיחות חקירתיות ובדיווח בלבד - לא בעסקה חתומה.",
+    "תקציר": "לפי The Information (5-6.11): NVIDIA בשיחות חקירתיות עם Brightspeed של אפולו על הסבת כ-130 בנייני טלקום ישנים למרכזי נתונים קטנים בהיקף משוער של כ-1 גיגה-וואט; לא עסקה חתומה.",
+    "מזהה": "n-1072",
+    "תאריך": "2026-11-09 05:27",
+    "הועלה": "2026-11-09 05:27",
+    "כותרת_en": "NVIDIA (NVDA), Nov 5-6: exploring conversion of about 130 old Brightspeed telecom buildings into small data centers - exploratory talks, not a signed deal",
+    "טקסט_en": "Source publication: Nov 5-6, 2026 (The Information, carried by Tom's Hardware and Techmeme).\n\nAccording to the report, NVIDIA approached Apollo Global Management, the owner of telecom provider Brightspeed, with a proposal to convert some of the company's roughly 130 older buildings across the US into a network of small data centers. Apollo asked for written plans; NVIDIA submitted them and requested additional information and site visits to existing infrastructure. The buildings are already suited to data traffic and power infrastructure; by the estimates cited, the sites could collectively deliver about 1 gigawatt of compute capacity - enough for more than 2,200 Vera Rubin NVL72 racks (72 Rubin GPUs and 36 Vera CPUs each). Cooling systems, permits and local approvals are still required, and ownership of the chips to be installed has not been determined.\n\nThe move is meant to work around data-center moratoriums and public opposition in the US; NVIDIA representatives described the small sites as working together as an \"inference network\". These are exploratory talks and a report only - not a signed deal.",
+    "תקציר_en": "Per The Information (Nov 5-6): NVIDIA is in exploratory talks with Apollo's Brightspeed on converting about 130 old telecom buildings into small data centers estimated at about 1 gigawatt; not a signed deal.",
+    "_translation": {
+      "en": {
+        "source_hash": "e165580c05e3365c399f01132472558a33353854fa6cb2a35a372dd605d7c9b2",
+        "schema_version": 1
+      }
+    }
   }
 ]
