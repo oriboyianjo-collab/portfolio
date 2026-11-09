@@ -4760,7 +4760,7 @@ function instSheetLive(){ const S = instSheet; if(S && $('isV')){ const a = $('i
   if($('isDetG') && detOpen){ drawDet(); fundLoad(); } loadAv3m(it); obVolDraw();
   if(!customRange(S.range)&&S.series && S.bar && q && q.price!=null){ const b = S.bar; b.close = q.price; b.high = Math.max(b.high, q.price); b.low = Math.min(b.low, q.price); try{ S.series.update(Object.assign({}, b)); }catch(e){} }
   else if(!customRange(S.range)&&S.series && q && q.price!=null && pts.length){ const t = Math.floor(pts[pts.length-1][0]/1000) + S.off; if(t >= S.lastT){ try{ S.series.update({time:t, value:q.price}); S.lastT = t; }catch(e){} } } }
-function drawIvSeg(){ const S = instSheet, el = $('isIv'); if(!S || !el) return; el.innerHTML = (customRange(S.range)?['1D']:IV_OPT[S.range]).map(v=>`<button data-iv="${v}" class="${v===S.iv?'on':''}">${IV_LBL[v]}</button>`).join(''); }
+function drawIvSeg(){ const S = instSheet, el = $('isIv'); if(!S || !el) return; el.innerHTML = (customRange(S.range)?['1D']:IV_OPT[S.range]).map(v=>`<button data-iv="${v}" class="${v===S.iv?'on':''}">${IV_LBL[v]}</button>`).join(''); MiniEMA.mountControls(el); }
 async function drawInstChart(){ const S = instSheet; if(!S) return; const it = S.it, el = $('isChart'), seq = ++S.seq;
   $('isRange').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===S.range));
   const cnd = !it.y && (S.style || 'candle')==='candle'; if($('isStyle')) $('isStyle').querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===(cnd?'candle':'line')));
@@ -5414,7 +5414,7 @@ ${I18n.p("ui-1033","\n    <div class=\"set-sec al-row\" id=\"alRow\" role=\"butt
   }));
   $('settingsCard').querySelectorAll('[data-app-language]').forEach(b=>b.onclick=()=>{if(!I18n.select(b.dataset.appLanguage))return;renderAll();renderSettings();renderEye();renderLiveStatus();try{alBadge();alSync();alPushSoon();}catch(_){}});
   const navSec=document.createElement('button');navSec.type='button';navSec.className='set-sec al-row nav-order-row';navSec.id='navOrderOpen';navSec.innerHTML=`<div><h4>↔ ${I18n.language==='en'?'Bottom bar order':'סדר הסרגל התחתון'}</h4><div class="al-sub">${I18n.language==='en'?'Choose button positions':'בחירת המיקום של הכפתורים'}</div></div><span class="al-chev">‹</span>`;$('languageSection').after(navSec);navSec.onclick=navOrderOpen;
-  const emaSec=document.createElement('div');emaSec.className='set-sec';emaSec.innerHTML=`<button type="button" class="btn btn-light btn-block" id="miniEMAOpen">${I18n.language==='en'?'Mini-chart EMA':'EMA בגרפים מוקטנים'}</button>`;$('languageSection').after(emaSec);$('miniEMAOpen').onclick=()=>MiniEMA.open();
+
   renderFeeInfer();
   // v187: the theme (header ☀️/🌙) and live-refresh (saved refreshSec kept as is) pickers left this screen; 🔔 alerts took their place
   if($('setTheme')){ $('setTheme').value = themePref(); $('setTheme').onchange = e=>setTheme(e.target.value); }
