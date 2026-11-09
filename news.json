@@ -27654,5 +27654,31 @@
         "source_hash": "afbf5552531fc9e8875eb209d9cdc1c28f39488c09097af53e679e85759b5982"
       }
     }
+  },
+  {
+    "מזהה": "n-1146",
+    "תאריך": "2026-11-09 23:53",
+    "הועלה": "2026-11-09 23:53",
+    "category": "micro",
+    "כותרת": "OpenAI מציגה את Control Room לעצירת פלט מודלים בעומסי מחקר; לפי החברה, עד 35 שניות מקבלת הוראת עצירה",
+    "כותרת_en": "OpenAI introduces Control Room to stop model output in research workloads; company says up to 35 seconds from receiving a stop instruction",
+    "summary": "המערכת כבר פרוסה בתשתית המחקר הפנימית, לא מוצר ללקוחות או מתג כיבוי כללי ל-ChatGPT. מנגנון חסימה בעת כשל כבר חל על כל מחקר המודלים המתקדמים; הרחבתו לשאר עומסי המחקר צפויה בימים הקרובים.",
+    "summary_en": "Already deployed in internal research infrastructure, this is not a customer product or a global ChatGPT off switch. Fail-closed protection already covers all frontier-model research; rollout to remaining research workloads is expected over the next few days.",
+    "טקסט": "9.11.2026 | הודעת OpenAI הרשמית נקראה במלואה; שעת הפרסום המקורית אינה ידועה. השעה בכרטיס היא שעת העלאה לאפליקציה.\n\nOpenAI מציגה את Control Room, מערכת מרכזית שכבר פרוסה בתשתית המחקר שלה, למעקב אחר עומסי הסקה ועצירת פלט מודלים כאשר מתעוררת בעיית בטיחות או אבטחה. בין השימושים: דגימה לאימון ולהערכה ועיבוד נתונים, כולל עומסים סוכניים. זהו שינוי בתשתית מחקר פנימית, לא השקת מוצר זמין ללקוחות.\n\nלפי החברה, הזמן המרבי מהרגע שבו המערכת מקבלת הוראה לעצור משימת מחקר ועד שלא ניתן להמשיך להתקדם הוא 35 שניות. זה אינו זמן מקצה לקצה מזיהוי סכנה: זמן הזיהוי וההחלטה לעצור אינם כלולים. מדובר בטענת ביצועים של OpenAI, לא בבדיקה עצמאית.\n\nמנועי ההסקה בודקים אם מזהה המשימה עדיין מורשה לקבל פלט. לאחר עצירה, בקשות נוספות של אותה משימה נדחות. תהליך המחקר עצמו עשוי להישאר פעיל, ומנוע משותף יכול להמשיך לשרת משימות אחרות שמורשות לפעול. אין להסיק מכך שהמערכת מכבה את כל המודלים או את ChatGPT.\n\nהמערכת מתוכננת לחסום בקשות הסקה אם שירות הבקרה נופל, עד לחזרתו לפעולה. לפי OpenAI, מצב זה כבר פרוס בכל עומסי המחקר של מודלי החזית, וההרחבה לשאר עומסי המחקר תושלם בימים הקרובים. החברה שואפת לקצר את ההשהיה לאפס, אך אינה טוענת שכבר השיגה עצירה מיידית.\n\nהחידוש הוא פריסה והרחבה של בקרת בטיחות ברמת תשתית המחקר. אין בהודעה מחיר, הכנסות, חוזה מסחרי או שינוי מאומת בזמינות שירותי הלקוחות.",
+    "טקסט_en": "Nov 9, 2026 | The official OpenAI announcement was read in full; its original publication time is unknown. The time shown on this card is the app upload time.\n\nOpenAI introduces Control Room, a central system already deployed across its research infrastructure to track inference workloads and stop model output when safety or security concerns arise. Uses include sampling for training and evaluation and data processing, including agentic workloads. This is an internal research-infrastructure deployment, not a customer product launch.\n\nThe company says the maximum time from Control Room receiving an instruction to stop a research job until further progress is impossible is 35 seconds. That is not end-to-end time from detecting a danger: detection and the decision to stop are excluded. It is an OpenAI performance claim, not an independent test.\n\nInference engines check whether a job identifier is still authorized to receive output. After a stop, further requests from that job are denied. The research process itself may remain alive, while a shared engine can continue serving other authorized jobs. This should not be described as switching off all models or ChatGPT.\n\nThe system is designed to deny inference requests if the control service goes down, until it resumes operation. OpenAI says this fail-closed protection already covers all frontier-model research workloads, with rollout to remaining research workloads finishing over the next few days. It aims to reduce the delay to zero, but does not claim instantaneous stopping today.\n\nThe new event is deployment and expansion of research-infrastructure safety controls. The announcement provides no price, revenue figure, commercial contract or verified change to customer-service availability.",
+    "קישור": "https://openai.com/index/introducing-control-room/",
+    "מקורות": [
+      {
+        "label": "OpenAI: הודעה רשמית מלאה על Control Room; טענות ביצועים של החברה",
+        "label_en": "OpenAI: full official Control Room announcement; company performance claims",
+        "url": "https://openai.com/index/introducing-control-room/"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "4101d88aed2d15e95089315508a9bc8c4a5d5a6f965b34c9027dad5b9cf6061a"
+      }
+    }
   }
 ]
