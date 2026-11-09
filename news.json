@@ -25364,5 +25364,57 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "טראמפ יארח היום בבית הלבן את ראש ממשלת קטאר, המתווך המרכזי מול איראן; רוביו: אין פריצת דרך קרובה במו\"מ",
+    "category": "macro",
+    "קישור": "https://www.investing.com/news/commodities-news/trump-to-meet-qatars-prime-minister-as-iran-diplomacy-faces-hurdles-5010408",
+    "מקורות": [
+      {
+        "label": "רויטרס (via Investing.com), 8.11.2026",
+        "url": "https://www.investing.com/news/commodities-news/trump-to-meet-qatars-prime-minister-as-iran-diplomacy-faces-hurdles-5010408",
+        "label_en": "Reuters (via Investing.com), Nov 8, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 8.11.2026 (רויטרס).\n\nהנשיא טראמפ ייפגש היום (9.11) בבית הלבן עם ראש ממשלת קטאר השייח' מוחמד בן עבד א-רחמן אאל ת'אני, המשמש גם שר החוץ, בפגישה סגורה — על רקע המשך העימות עם איראן והקשיים במאמצים הדיפלומטיים לסיומו. גם סגן הנשיא ואנס צפוי להיפגש עם המנהיג הקטארי, לפי גורם אמריקאי. קטאר משמשת מתווכת מרכזית בין וושינגטון לטהרן.\n\nמזכיר המדינה רוביו אמר אתמול, לפני יציאתו לפגישת שרי חוץ של G7 בפריז, כי המו\"מ עם איראן התקדם מעט והוא אינו רואה פריצת דרך קרובה; לדבריו טראמפ מעדיף פתרון דיפלומטי, אך דרישות איראן \"בלתי מתקבלות על הדעת\" ובחלקן \"שערורייתיות ומגוחכות ולא ריאליות באמת\".",
+    "תקציר": "טראמפ מארח היום את ראש ממשלת קטאר בבית הלבן (גם ואנס ייפגש איתו); רוביו: המו\"מ עם איראן התקדם מעט, אין פריצת דרך קרובה, דרישות טהרן \"שערורייתיות ומגוחכות\".",
+    "מזהה": "n-1066",
+    "תאריך": "2026-11-09 04:28",
+    "הועלה": "2026-11-09 04:28",
+    "כותרת_en": "Trump hosts Qatar's PM - the central US-Iran intermediary - at the White House today; Rubio: no imminent breakthrough in talks",
+    "טקסט_en": "Source publication: Nov 8, 2026 (Reuters).\n\nPresident Trump will meet Qatar's Prime Minister Sheikh Mohammed bin Abdulrahman Al-Thani, who also serves as foreign minister, at the White House today (Nov 9) in a closed-door meeting, as the Iran conflict drags on and diplomatic efforts to end it face significant obstacles. Vice President Vance is also scheduled to meet the Qatari leader, per a US official. Qatar has played a central intermediary role between Washington and Tehran.\n\nSecretary of State Rubio said Sunday, before departing for a G7 foreign ministers meeting in Paris, that negotiations with Iran had made little progress and he saw no imminent breakthrough; he said Trump prefers a diplomatic solution but described Iran's demands as \"unacceptable\" and in some cases \"outrageous and ridiculous, and really not realistic\".",
+    "תקציר_en": "Trump hosts Qatar's PM at the White House today (Vance also meets him); Rubio: talks with Iran have made little progress, no imminent breakthrough, Tehran's demands \"outrageous and ridiculous\".",
+    "_translation": {
+      "en": {
+        "source_hash": "599fc24fa0019b8ec6cb37185aece6ddfcd2a8b3c1ea26dd4db191807709d5f3",
+        "schema_version": 1
+      }
+    }
+  },
+  {
+    "כותרת": "לא מאומת מול מקור ראשוני: מנכ\"ל Mistral מזהיר שחוק זכויות היוצרים הצרפתי עלול להרחיק מצרפת את מרכזי הנתונים העתידיים של החברה",
+    "category": "micro",
+    "קישור": "https://thetechcapital.com/mistral-copyright-bill-data-centres-france/",
+    "מקורות": [
+      {
+        "label": "The Tech Capital, 9.11.2026",
+        "url": "https://thetechcapital.com/mistral-copyright-bill-data-centres-france/",
+        "label_en": "The Tech Capital, Nov 9, 2026"
+      }
+    ],
+    "טקסט": "לא מאומת מול מקור ראשוני — פרסום יחיד (The Tech Capital), המצטט מפוסט LinkedIn של המנכ\"ל שלא נצפה ישירות.\n\nפרסום המקור: 9.11.2026.\n\nארתור מנש, מנכ\"ל Mistral AI, כתב אתמול ב-LinkedIn כי הצעת חוק זכויות היוצרים בנושא AI בצרפת (\"חוק דארקו\") עלולה להשפיע על המקומות שבהם החברה תבנה מרכזי נתונים ותנהל מחקר — וקישר את המחלוקת לתוכנית החברה להקמת קיבולת מחשוב של 1GW, בעיקר באירופה ובצרפת בפרט. לדבריו, \"כשמדובר בבנייה ושימוש במרכז נתונים באסון או מחוץ לצרפת... הסיכון הזה יכריע עבורנו ועבור לקוחותינו\". ההצעה מכילה חזקה (ניתנת לסתירה) שספק AI עשה שימוש ביצירה מוגנת; הוועדה לתרבות של האספה הלאומית אישרה את הנוסח ב-2 ביוני והדיון באספה מתוכנן ל-19 בנובמבר. מנש הציע במקום זאת היטל מבוסס הכנסות על כל ספקי ה-AI הפועלים מסחרית באירופה, כולל חברות זרות. ההשקעות של Mistral כבר חורגות מצרפת: השקעה של 1.2 מיליארד יורו במרכזי נתונים בשוודיה (פברואר) וגיוס חוב של 830 מיליון דולר למימון 13,800 מעבדי NVIDIA GB300 במרכז מושכר ליד פריז (מרץ).",
+    "תקציר": "לא מאומת מול מקור ראשוני: מנש (Mistral) מזהיר שחוק דארקו יכריע היכן תבנה החברה את קיבולת ה-1GW שלה; מציע היטל הכנסות על ספקי AI באירופה; דיון באספה ב-19.11.",
+    "מזהה": "n-1067",
+    "תאריך": "2026-11-09 04:28",
+    "הועלה": "2026-11-09 04:28",
+    "כותרת_en": "Not verified against a primary source: Mistral CEO warns France's AI copyright bill could push the company's future data centres outside France",
+    "טקסט_en": "Not verified against a primary source - single outlet (The Tech Capital), quoting a LinkedIn post by the CEO that was not viewed directly.\n\nSource publication: Nov 9, 2026.\n\nMistral AI CEO Arthur Mensch wrote on LinkedIn Sunday that France's proposed AI copyright law (the \"Darcos law\") could influence where the company builds future data centres and conducts research, linking the dispute to its planned 1GW computing expansion, intended mainly in Europe and largely in France. \"When it comes to building and using a data centre in Essonne or another outside France... this risk will make the difference for us and for our clients,\" he wrote. The bill introduces a rebuttable presumption that an AI provider used a protected work; the National Assembly's cultural affairs committee approved the text on June 2 and an Assembly debate is scheduled for November 19. Mensch instead proposed a revenue-based contribution from all AI providers operating commercially in Europe, including foreign companies. Mistral's investments already extend beyond France: a 1.2 billion euro Swedish data-centre investment (February) and an $830 million debt raise for 13,800 NVIDIA GB300 GPUs at a leased site near Paris (March).",
+    "תקציר_en": "Not verified against a primary source: Mensch (Mistral) warns the Darcos bill will decide where its 1GW capacity is built; proposes a revenue levy on AI providers in Europe; Assembly debate Nov 19.",
+    "_translation": {
+      "en": {
+        "source_hash": "eae97fdcc8bcece601dadbfaccc1b242799dd0e05855b506c7c1c91595284e89",
+        "schema_version": 1
+      }
+    }
   }
 ]
