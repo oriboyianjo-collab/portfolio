@@ -2047,17 +2047,23 @@
     "מדינה": "US",
     "אירוע": "סקירת שוק הפחם השבועית (EIA)",
     "חשיבות": 1,
-    "הערה": "לוח EIA:יום שני עד17ET=עד00:00ב10.11ישראל; ללא שעה מדויקת/צפי יחיד.",
+    "הערה": "לוח EIA:יום שני עד17ET=עד00:00ב10.11ישראל; ללא שעה מדויקת/צפי יחיד.\nהדוח מ-9.11.2026 אומת בדף EIA בשעה 23:58 בישראל, לפני תום חלון הפרסום. ממוצעי מחירי ספוט שבועיים למסירת פחם ברבעון העוקב, בדולרים לטון קצר: מרכז אפלצ׳יה (12,500 Btu) 88.00; צפון אפלצ׳יה (13,000 Btu) 68.00; אגן אילינוי (11,800 Btu) 56.00; אגן Powder River (8,800 Btu) 14.65. בכל ארבע הסדרות השינוי לעומת השבוע הקודם הוא 0.00 דולר לטון קצר. אלו מחירים אזוריים, לא מדד פחם ארצי יחיד ולא חוזים עתידיים. הנתונים של S&P Global באישור דרך EIA; סדרת Uinta הופסקה ואין להמציא לה מחיר עדכני. אין צפי או נתון בפועל יחיד לכל הדוח. הפרסום הבא בדף: 16.11.2026.",
     "מקור": "https://www.eia.gov/reports/upcoming.php",
     "מזהה": "c-0086",
     "אירוע_en": "Weekly coal market review (EIA)",
-    "הערה_en": "EIA schedule: Monday by 17:00 ET = by 00:00 Israel on Nov 10; no exact time/single estimate.",
+    "הערה_en": "EIA schedule: Monday by 17:00 ET = by 00:00 Israel on Nov 10; no exact time/single estimate.\nThe November 9, 2026 report was verified on the EIA page at 23:58 Israel, before the release-window deadline. Average weekly spot coal prices for prompt-quarter delivery, in US dollars per short ton: Central Appalachia (12,500 Btu) 88.00; Northern Appalachia (13,000 Btu) 68.00; Illinois Basin (11,800 Btu) 56.00; Powder River Basin (8,800 Btu) 14.65. All four series show a 0.00 dollar-per-short-ton change from the previous week. These are regional prices, not one national coal index or futures prices. Data are from S&P Global, used with permission by EIA; the Uinta series was discontinued and has no current price here. No single estimate or aggregate actual represents the whole report. The page lists the next release as November 16, 2026.",
     "_translation": {
       "en": {
-        "source_hash": "2e5fe7a6ffca7628e368027cf90126ce5483addf6b888a751293700b0872704b",
-        "schema_version": 1
+        "schema_version": 1,
+        "source_hash": "f9ac8085a09a220b239407d145c66373d36898ac16b46e3c237e49507f7dd85e"
       }
-    }
+    },
+    "תקופה": "שבוע שהסתיים ב-6.11.2026",
+    "תקופה_en": "Week ended Nov 6, 2026",
+    "מקורות_בדיקה_עדכנית": [
+      "https://www.eia.gov/coal/markets/"
+    ],
+    "תאריך_בדיקה_עדכנית": "2026-11-09"
   },
   {
     "תאריך": "2026-11-10",
