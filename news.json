@@ -27570,5 +27570,60 @@
         "source_hash": "170973b0dc5f76854883b2d157ccbdb0dc0bc0d46eb3eaabdeeeb58b020509eb"
       }
     }
+  },
+  {
+    "מזהה": "n-1143",
+    "תאריך": "2026-11-09 23:16",
+    "הועלה": "2026-11-09 23:24",
+    "סימול": "OXY",
+    "חברה": "Occidental",
+    "חברה_en": "Occidental",
+    "category": "micro",
+    "כותרת": "Occidental (OXY): הסכמי אספקת CO₂ ארוכי טווח לשיפור הפקת נפט; תחילת משלוחים צפויה ב-2029 וכפופה להחלטות השקעה",
+    "כותרת_en": "Occidental (OXY): long-term CO₂ supply agreements for enhanced oil recovery; first shipments expected in 2029, subject to investment decisions",
+    "summary": "שני פרויקטים באגן דלאוור צפויים לספק יחד כ-2 מיליון טונות CO₂ בשנה, עם פוטנציאל להתרחב עד 4 מיליון. היזמים יממנו ויבנו את תשתיות הלכידה וההובלה; אין עדיין תחילת אספקה או מחיר שפורסם.",
+    "summary_en": "Two Delaware Basin projects are expected to supply about 2 million metric tons of CO₂ annually combined, potentially expanding to 4 million. Developers will fund and build capture and transport infrastructure; deliveries have not started and no price was disclosed.",
+    "טקסט": "9.11.2026, 16:16 בחוף המזרחי בארה״ב = 23:16 בישראל | הודעת Occidental הרשמית.\n\nOccidental חתמה עם שתי חברות על הסכמים ארוכי טווח לקבלת CO₂ שיילכד במתקני עיבוד גז טבעי של צדדים שלישיים באגן דלאוור, לשימוש בשיפור הפקת נפט (EOR) באגן פרמיאן. שמות שתי החברות אינם מופיעים בהודעה.\n\nשני הפרויקטים צפויים ללכוד ולהוביל יחד כ-2 מיליון טונות מטריות CO₂ בשנה ממתקני עיבוד גז קיימים וחדשים, עם אפשרות להתרחב עד 4 מיליון טונות בשנה במצטבר. הפרויקטים כפופים להחלטות השקעה סופיות; משלוחים ראשונים צפויים ב-2029. אין כאן מתקנים שכבר פועלים, אספקה נוכחית או תפוקה מובטחת.\n\nשני היזמים יממנו ויבנו את תשתיות הלכידה, ההובלה והמסירה. התוכניות כוללות יחד כמעט 100 מייל של צינורות CO₂ חדשים, שיתחברו לרשת הקיימת המספקת את אגן פרמיאן. התכנון כולל קיבולת נוספת לחיבורים עתידיים; זו אפשרות התרחבות, לא חוזים נוספים שכבר נחתמו.\n\nזהו הסכם תפעולי לאספקת CO₂ להפקת נפט, לא רכישת חברות, לא נתון הכנסות ולא התחייבות מאומתת להסרת פחמן אטמוספרי. מחיר, שווי חוזה ומשך מדויק מעבר להגדרה ארוך טווח לא פורסמו. לוחות הזמנים וההיקפים הם ציפיות החברה, לא תוצאות שהושגו.",
+    "טקסט_en": "Nov 9, 2026, 16:16 US Eastern = 23:16 Israel | Official Occidental release.\n\nOccidental signed long-term agreements with two companies to receive CO₂ captured at third-party natural gas processing facilities in the Delaware Basin for enhanced oil recovery (EOR) in the Permian Basin. The release does not name the two companies.\n\nThe two projects are expected to capture and transport approximately 2 million metric tons of CO₂ annually combined from existing and new gas processing plants, with potential to expand to 4 million metric tons per year combined. They are subject to final investment decisions; initial shipments are anticipated in 2029. This is not confirmation of operating facilities, current deliveries or guaranteed volumes.\n\nThe two developers will fund and build capture, transport and delivery infrastructure. Plans include nearly 100 miles of new CO₂ pipelines in total, connecting to the existing network supplying the Permian Basin. Additional designed capacity could support future connections; that potential is not evidence of additional signed contracts.\n\nThis is an operating supply agreement for CO₂ used in oil recovery, not a company acquisition, revenue figure or verified commitment to remove atmospheric carbon. No price, contract value or exact duration beyond long-term was disclosed. Timing and volumes are company expectations, not achieved results.",
+    "קישור": "https://www.globenewswire.com/news-release/2026/11/09/3399013/0/en/occidental-signs-long-term-co-offtake-agreements-to-support-enhanced-oil-recovery-operations.html",
+    "מקורות": [
+      {
+        "label": "Occidental: הודעה רשמית מלאה על הסכמי CO₂ ותנאי הפרויקטים",
+        "label_en": "Occidental: full official release on CO₂ agreements and project conditions",
+        "url": "https://www.globenewswire.com/news-release/2026/11/09/3399013/0/en/occidental-signs-long-term-co-offtake-agreements-to-support-enhanced-oil-recovery-operations.html"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "904ff80b26ea6f642adca43add56856ebd22ec9406646a2cbefa13eaf727bbd5"
+      }
+    }
+  },
+  {
+    "מזהה": "n-1144",
+    "תאריך": "2026-11-09 23:12",
+    "הועלה": "2026-11-09 23:24",
+    "category": "micro",
+    "כותרת": "Anthropic, דיווח WSJ (לא מאומת מול מקור ראשוני): יעד לתחילת מסחר ב-19 או 20 בנובמבר",
+    "כותרת_en": "Anthropic, WSJ report (not verified against a primary source): targeting trading debut on November 19 or 20",
+    "summary": "לא מאומת מול מקור ראשוני: לפי הפתיח שנקרא ב-WSJ, פגישות משקיעים מתוכננות השבוע ויעד לתחילת מסחר בחמישי או שישי בשבוע הבא. יתר הכתבה מוגבל למנויים ולא נקרא. זהו יעד מדווח, לא מועד רישום מאושר.",
+    "summary_en": "Not verified against a primary source: the WSJ opening paragraphs report investor meetings this week and a target to begin trading Thursday or Friday next week. The remaining subscriber-only body was not read. This is a reported target, not a confirmed listing date.",
+    "טקסט": "לא מאומת מול מקור ראשוני\n9.11.2026, 16:12 בחוף המזרחי בארה״ב = 23:12 בישראל | דיווח Corrie Driebusch ב-Wall Street Journal; הכותרת, כותרת המשנה ושתי פסקאות הפתיחה נקראו בדף המקורי. יתר הכתבה מוגבל למנויים ולא נקרא.\n\nלפי הפתיח, Anthropic מתכננת להתקדם בהנפקה בהמשך החודש למרות תנודתיות בשוק הקשורה להשקעות בבינה מלאכותית. החברה קבעה פגישות עם משקיעים מרכזיים לשבוע הנוכחי ומכוונת לכך שמניותיה יחלו להיסחר ביום חמישי או שישי בשבוע הבא, לפי אנשים המכירים את העניין. ביחס לפרסום ביום שני, 9 בנובמבר, אלו 19 או 20 בנובמבר 2026.\n\nזהו יעד שמדווח WSJ מפי מקורותיו, לא הודעת חברה או בורסה מאומתת. מהחלק שנקרא לא נקבעו מחיר הנפקה, טווח מחיר, גודל הנפקה או שווי, ואין אישור שההנפקה הושלמה או שהמסחר אכן יתחיל באחד משני הימים.\n\nעדכון קשור לפריט n-1132 על כותרת IFR שלפיה השקת ההנפקה מתוכננת ליום שלישי בבוקר. השקה ותחילת מסחר הן אבני דרך שונות; הכותרת הקודמת לבדה לא קבעה תחילת מסחר ביום שלישי, ולכן אין לקבוע סתירה בין הדיווחים. החידוש כאן הוא יעד מדווח לתחילת המסחר, לא אימות מחדש של הערכות שווי קודמות.",
+    "טקסט_en": "Not verified against a primary source\nNov 9, 2026, 16:12 US Eastern = 23:12 Israel | Corrie Driebusch in The Wall Street Journal. The headline, deck and two opening paragraphs were read on the original page. The remaining subscriber-only body was not read.\n\nThe opening says Anthropic plans to proceed with its IPO later this month despite market volatility tied to AI investments. It has meetings lined up with key investors this week and aims for its shares to start trading Thursday or Friday next week, according to people familiar with the matter. Relative to the Monday, November 9 report, those dates are November 19 or 20, 2026.\n\nThis is a target reported by WSJ based on its sources, not a verified company or exchange announcement. The visible text does not establish an offering price, price range, offering size or valuation. It does not confirm that the IPO has completed or that trading will begin on either date.\n\nRelated update to n-1132, which covered the IFR headline about a planned Tuesday-morning IPO launch. Launch and the start of trading are different milestones. The earlier headline alone did not establish Tuesday trading, so these reports should not be treated as contradictory. The new fact here is a reported trading-debut target, not a revalidation of earlier valuation estimates.",
+    "קישור": "https://www.wsj.com/finance/stocks/anthropic-prepares-to-push-ahead-with-ipo-despite-market-jitters-843dd16c?mod=hp_lead_pos2",
+    "מקורות": [
+      {
+        "label": "WSJ: כותרת, כותרת משנה ושתי פסקאות פתיחה נקראו; יתר הגוף למנויים לא נקרא, מקור משני",
+        "label_en": "WSJ: headline, deck and two opening paragraphs read; remaining subscriber-only body not read, secondary source",
+        "url": "https://www.wsj.com/finance/stocks/anthropic-prepares-to-push-ahead-with-ipo-despite-market-jitters-843dd16c?mod=hp_lead_pos2"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "a1184d825f37c7e5dd8a4d38764a7ea09f7d44ddb2881f4805d2155dc39216e7"
+      }
+    }
   }
 ]

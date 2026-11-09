@@ -2031,12 +2031,12 @@
     "_translation": {
       "en": {
         "schema_version": 1,
-        "source_hash": "f8986409279d116f47e8200e2cbe8469e7ca11f93c07971dc31c7bf8c8e82a35"
+        "source_hash": "31c182859b533f88a88621dea40a6694b37ae55387ac3cd94fba3b97527a683c"
       }
     },
-    "תקופה": "שבוע 2-6.11.2026",
-    "תקופה_en": "Week of Nov 2-6, 2026",
-    "בפועל": "Broad (Nov 6): 121.8803",
+    "תקופה": "מדד דולר רחב, 6.11.2026",
+    "תקופה_en": "Broad dollar index, Nov 6, 2026",
+    "בפועל": "121.8803",
     "מקורות_בדיקה_עדכנית": [
       "https://www.federalreserve.gov/releases/h10/current/"
     ],
