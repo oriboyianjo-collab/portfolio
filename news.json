@@ -27414,5 +27414,31 @@
         "source_hash": "e910c09eed5e22116599cc536481f1337a075b00abbb9de586f2ea1e36afea38"
       }
     }
+  },
+  {
+    "כותרת": "עדכון Tesla (TSLA), דיווח Electrek: הקצאת עובדים מ-Cybertruck ל-Cybercab; לא מאומת מול מקור ראשוני",
+    "כותרת_en": "Tesla (TSLA) update, Electrek report: allocating Cybertruck staff to Cybercab; not verified against a primary source",
+    "summary": "לא מאומת מול מקור ראשוני: האתר מייחס למאסק הסבר שלפיו אותם עובדים נדרשים לקו, לשרשרת האספקה ולהנדסת Cybertruck ולכן אינם זמינים להרחבת Cybercab. זהו הסבר מדווח להקצאת משאבים, לא נתון כמותי על מחסור במהנדסים.",
+    "summary_en": "Not verified against a primary source: the outlet attributes to Musk an explanation that staff maintaining Cybertruck production, supply chain and engineering cannot also scale Cybercab. This is a reported resource-allocation explanation, not a quantified engineer shortage.",
+    "טקסט": "לא מאומת מול מקור ראשוני.\n9.11.2026 | Electrek, מאת Fred Lambert, בשעה 08:41 בחוף המערבי של ארה״ב, 18:41 בישראל.\n\nהאתר מדווח על תשובה שמיוחסת למאסק מ-7 בנובמבר ברשת X: מספר האנשים החכמים והמסורים מוגבל, ועובדים המוקצים לתחזוקת קו הייצור, שרשרת האספקה והנדסת Cybertruck אינם יכולים לשמש בו-זמנית להרחבת Cybercab. הפרסום המקורי לא שימש לאימות ואין כאן הודעת חברה נפרדת או ציטוט שאומת מול מאסק. הדברים מיוחסים לדיווח Electrek בלבד.\n\nהחדש ביחס לפריטים הקודמים הוא ההסבר המדווח על התחרות על אותם משאבי כוח אדם. ההצטמצמות המתוכננת של ייצור Cybertruck בטקסס סביב אמצע 2027 והדיווח על החזרי מקדמות כבר כוסו בנפרד. אין כאן הודעה חדשה על סגירת קו, מועד נוסף או מספר עובדים שיועברו.\n\nElectrek מונה גם שבעה מתוך 14 המציגים באירוע המשקיעים מ-1.3.2023 שלדבריו עזבו מאז. זו קבוצה היסטורית מסוימת, לא מדגם של כלל ההנהלה או המהנדסים; אחת העזיבות נסמכת בכתבה על WSJ ואינה מאושרת בידי Tesla. אין להסיק שמחצית ההנהלה עזבה, שמחצית מהמהנדסים חסרים או שקיים מחסור חמור בהיקף כמותי מוכח.\n\nפריט קשור: n-0249 מ-6.11.2026 על צמצום הייצור המתוכנן; n-1085 מ-9.11.2026 על מסגרת של כ-8 חודשים והחזרי מקדמות.",
+    "טקסט_en": "Not verified against a primary source.\nNov 9, 2026 | Electrek, Fred Lambert, at 08:41 US Pacific time, 18:41 Israel time.\n\nThe outlet reports a reply attributed to Musk on X on Nov 7: smart, dedicated people are limited, and staff assigned to maintaining Cybertruck production, supply chain and engineering cannot also be used to scale Cybercab. The original post was not used for verification. There is no separate company announcement or quote verified directly with Musk here. The attribution rests on Electrek alone.\n\nWhat is new versus earlier items is the reported explanation of competing demands on the same personnel. The planned Cybertruck production wind-down in Texas around mid-2027 and the report of deposit refunds were covered separately. This is not a new line-closure announcement, a new deadline or a count of staff to be reassigned.\n\nElectrek also lists seven of the 14 presenters at the March 1, 2023 Investor Day who it says have since left. This is one historical group, not a sample of all management or engineers. One departure is sourced in the article to WSJ and is not confirmed by Tesla. It does not establish that half of management has left, half of engineers are missing or a severe shortage of any quantified size.\n\nRelated items: n-0249, Nov 6, 2026, on the planned production wind-down; n-1085, Nov 9, 2026, on the roughly eight-month timeframe and deposit refunds.",
+    "קישור": "https://electrek.co/2026/11/09/tesla-deep-bench-gone-musk-admits-talent-shortage/",
+    "מקורות": [
+      {
+        "label": "Electrek: דיווח ופרשנות; הדברים המיוחסים למאסק נגזרים מ-X ולא אומתו מול מקור ראשוני",
+        "label_en": "Electrek: reporting and commentary; attributed Musk remarks are X-derived and not verified against a primary source",
+        "url": "https://electrek.co/2026/11/09/tesla-deep-bench-gone-musk-admits-talent-shortage/"
+      }
+    ],
+    "מזהה": "n-1137",
+    "תאריך": "2026-11-09 22:43",
+    "הועלה": "2026-11-09 22:43",
+    "category": "micro",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "d9adce78b4e53d869006cc0702725b94cdb04a6c1713384bdd8650de02d00c6e"
+      }
+    }
   }
 ]
