@@ -27300,5 +27300,83 @@
         "source_hash": "ad81be1c6df7074bc6568bce0059f810eaaf18a63983335dfc2a78103f49d1f9"
       }
     }
+  },
+  {
+    "כותרת": "Kyndryl (KD) ו-ServiceNow (NOW): פתרון התפעול האוטונומי המשותף זמין ב-ServiceNow Store",
+    "כותרת_en": "Kyndryl (KD) and ServiceNow (NOW): joint autonomous operations offering available on ServiceNow Store",
+    "summary": "ההצעה משלבת נתונים וסוכני AI של Kyndryl Bridge עם פלטפורמת ServiceNow לניתוח תקלות והכוונת תיקון. נתוני 1,400 לקוחות ושיפור של עד 50% מתייחסים לפלטפורמת Bridge הקיימת, לא לתוצאות מוכחות של המוצר החדש.",
+    "summary_en": "The offering combines Kyndryl Bridge operational data and AI agents with ServiceNow for incident analysis and remediation guidance. The 1,400-customer and up-to-50% improvement figures concern the existing Bridge platform, not proven results of the new product.",
+    "טקסט": "9.11.2026, 22:00 בישראל (15:00 ET) | הודעת Kyndryl רשמית.\n\nהחברות הרחיבו את השותפות והודיעו שהפתרון Kyndryl Autonomous Operations for ServiceNow, המבוסס על Kyndryl Bridge, זמין בחנות ServiceNow. הפתרון פותח במשותף ומשלב נתוני תפעול, ידע הנדסי וסוכני AI עם פלטפורמת ServiceNow.\n\nלפי החברה, המערכת תנתח הקשרים בין נכסים, הגדרות, תלות, ביצועים ותקריות כדי לזהות דפוסי כשל, להציע ניתוח סיבתי, להעריך סיכונים ולספק צעדי תיקון. המטרה היא לעבור מחיזוי וזיהוי תקלות לתפעול אוטומטי מבוקר; התועלות הן טענות החברה, לא התחייבות לתוצאה בכל לקוח.\n\nנתוני יותר מ-1,400 ארגונים, יותר מ-16 מיליון תובנות AI בחודש והפחתת תקריות של עד 50% מתייחסים לפלטפורמת Kyndryl Bridge מאז השקתה ב-2022. אין להציגם כגיוס לקוחות חדש או כמדידה עצמאית של ההצעה החדשה. לא פורסמו סכום עסקה, מחיר או הכנסות מההשקה.",
+    "טקסט_en": "Nov 9, 2026, 10:00 p.m. Israel time (3:00 p.m. ET) | Official Kyndryl release.\n\nThe companies expanded their partnership and announced that Kyndryl Autonomous Operations for ServiceNow, powered by Kyndryl Bridge, is available on ServiceNow Store. The jointly developed offering combines operational data, engineering knowledge and AI agents with the ServiceNow platform.\n\nKyndryl says the system uses context across assets, configurations, dependencies, performance and incidents to identify failure patterns, generate causal analysis, assess risk and offer remediation steps. The aim is controlled automation beyond incident detection and prediction; benefits are company claims, not guaranteed outcomes for every customer.\n\nMore than 1,400 enterprises, over 16 million monthly AI insights and up to 50% fewer IT incidents refer to the existing Kyndryl Bridge platform since its 2022 launch. They are not newly acquired customers or independent measurements of the new offering. No deal value, price or launch revenue was disclosed.",
+    "קישור": "https://www.prnewswire.com/news-releases/kyndryl-expands-partnership-with-servicenow-to-enable-trusted-autonomous-operations-302933738.html",
+    "מקורות": [
+      {
+        "label": "Kyndryl: הודעת שותפות וזמינות, 9.11.2026 - ראשוני",
+        "label_en": "Kyndryl: partnership and availability release, Nov 9, 2026 - primary",
+        "url": "https://www.prnewswire.com/news-releases/kyndryl-expands-partnership-with-servicenow-to-enable-trusted-autonomous-operations-302933738.html"
+      }
+    ],
+    "מזהה": "n-1133",
+    "תאריך": "2026-11-09 22:08",
+    "הועלה": "2026-11-09 22:08",
+    "category": "micro",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "8fd556af9d1e2fb87c1699ef340218441227aff846760ef1f4833eba2699be4f"
+      }
+    }
+  },
+  {
+    "כותרת": "Cisco (CSCO): שילוב Claude Mythos בבדיקות אבטחת AI ומוצרי Splunk חדשים; הזמינות מדורגת",
+    "כותרת_en": "Cisco (CSCO): Claude Mythos AI security testing and new Splunk products announced with staged availability",
+    "summary": "בדיקות AI Defense עם Mythos יגיעו בקרוב ללקוחות נבחרים; מודלי ההערכה וה-Evaluation Tuner זמינים כללית החל מהחודש. Tokenomics מתוכנן לניסוי פרטי בדצמבר ולהפצה כללית בתחילת 2027.",
+    "summary_en": "Mythos-powered AI Defense testing is coming soon for select enterprises; evaluation models and Evaluation Tuner are generally available starting this month. Tokenomics is planned for private preview in December and general availability in early 2027.",
+    "טקסט": "9.11.2026, 22:00 בישראל (15:00 ET) | הודעת Cisco רשמית בכנס Cisco Live APJC. קשור לפריט n-1128 על שדרוגי Anthropic; זו הכרזת שילוב של Cisco, לא פתיחת גישה בלתי מוגבלת ל-Mythos.\n\nהחברה מוסיפה את Claude Mythos למסגרת בדיקות התקיפה המבוקרות של AI Defense, כדי לתכנן בדיקות לאפליקציות ולסוכני AI. הגישה תיעשה דרך ממשק מובנה, ללא גישה חופשית לפרומפטים, ורק ליעדים שהלקוח רשאי לבדוק. הזמינות מתוארת כ״בקרוב״ לארגונים נבחרים, לא כהפצה כללית היום.\n\nב-Splunk Agent Observability הוכרזו מודלי הערכה Eval-G1 ו-Evaluation Tuner, עם זמינות כללית החל מהחודש. טענות על עלות הערכה נמוכה עד 98% וזמן תגובה מהיר פי 2.5 הן השוואות של Cisco, לא בדיקת ביצועים עצמאית.\n\nהרחבת Tokenomics נועדה לקשור עלויות סוכנים לאיכות ולתוצאות באמצעות נתוני Amazon Bedrock ו-CloudWatch. ניסוי פרטי מתוכנן לדצמבר, וזמינות כללית ב-AWS Marketplace לתחילת 2027. אין להציג את כל החבילה כזמינה כעת.\n\nעדכוני Cisco IQ כוללים שילוב נתוני חולשות וחשיפה עם Splunk, מחברים ל-ServiceNow ולפרוטוקול MCP, ותכנון תיקון ושדרוג תשתיות. ההודעה אינה מפרסמת סכום עסקה או הכנסות מהיכולות החדשות. הודעות הכנס המקבילות על אותה חבילה אינן נספרות כהשקות נפרדות.",
+    "טקסט_en": "Nov 9, 2026, 10:00 p.m. Israel time (3:00 p.m. ET) | Official Cisco release at Cisco Live APJC. Related to n-1128 on Anthropic upgrades; this is a Cisco integration announcement, not unrestricted Mythos access.\n\nCisco is adding Claude Mythos to AI Defense adaptive red teaming to plan controlled tests of AI applications and agents. Access is through a structured interface without open-ended prompts, and only for targets the customer is authorized to test. Availability is described as coming soon for select enterprises, not general availability today.\n\nSplunk Agent Observability adds Eval-G1 evaluation models and Evaluation Tuner, generally available starting this month. Claims of up to 98% lower evaluation cost and 2.5 times faster response are Cisco comparisons, not independent performance tests.\n\nExpanded Tokenomics connects agent costs with quality and outcomes using Amazon Bedrock and CloudWatch usage data. Private preview is planned for December, with general availability on AWS Marketplace in early 2027. The whole bundle is not available now.\n\nCisco IQ updates include connecting vulnerability and exposure data with Splunk, ServiceNow and MCP connectors, and infrastructure remediation and modernization planning. No deal value or revenue for the new capabilities was disclosed. Parallel conference releases describing the same bundle are not separate launches.",
+    "קישור": "https://www.prnewswire.com/news-releases/cisco-unveils-frontier-ai-red-teaming-and-agent-observability-to-secure-the-agentic-enterprise-302933763.html",
+    "מקורות": [
+      {
+        "label": "Cisco: הודעת AI Defense, Splunk ו-IQ - ראשוני",
+        "label_en": "Cisco: AI Defense, Splunk and IQ announcement - primary",
+        "url": "https://www.prnewswire.com/news-releases/cisco-unveils-frontier-ai-red-teaming-and-agent-observability-to-secure-the-agentic-enterprise-302933763.html"
+      }
+    ],
+    "מזהה": "n-1134",
+    "תאריך": "2026-11-09 22:08",
+    "הועלה": "2026-11-09 22:08",
+    "category": "micro",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "ba2f9abf7ecf4468d3d46542a945b3f4dc7683bb021002d3ca27a612f5dd4f36"
+      }
+    }
+  },
+  {
+    "כותרת": "PG&E (PCG): הושלמו 1,500 מייל של קווי חשמל תת-קרקעיים; טענת צמצום רגולטורי לא אומתה מול הרגולטור",
+    "כותרת_en": "PG&E (PCG): 1,500 miles of underground power lines completed; claimed regulatory restriction not verified with regulator",
+    "summary": "החברה מדווחת שהקווים הותקנו וחושמלו מאז 2021, מהם 325 מייל ב-2026. לא מאומת מול מקור רגולטורי: לטענתה, הצעת החלטה עשויה לצמצם זכאות בתוכנית העתידית מ-5,000 לכ-1,100 מייל; אין החלטה סופית מאומתת.",
+    "summary_en": "The company reports lines installed and energized since 2021, including 325 miles in 2026. Not verified with the regulatory source: it says a proposed decision could reduce eligible planned mileage from 5,000 to about 1,100; no final decision is established.",
+    "טקסט": "החלק הרגולטורי לא מאומת מול מקור ראשוני של הרגולטור; נתוני הביצוע מקורם בהודעת החברה.\n9.11.2026, 22:00 בישראל (15:00 ET) | הודעת PG&E רשמית.\n\nחברת החשמל מסרה שמאז השקת תוכנית הטמנת הקווים ב-2021 הותקנו וחושמלו 1,500 מייל של קווי חשמל באזורים בעלי סיכון שריפה גבוה. מתוכם הושלמו 325 מייל במהלך 2026 עד השבוע הנוכחי. זהו היקף מצטבר, לא 1,500 מייל שנבנו השנה.\n\nלפי PG&E, הטמנת הקווים מפחיתה בכ-98% את סיכון ההצתה ובכ-90% את ההפסקות ללקוחות המחוברים להם. אלו נתוני החברה, לא בדיקה עצמאית ולא הבטחה לביטול כל סיכון שריפה.\n\nלפי החברה, תוכנית עשר השנים שהגישה מציעה להטמין 5,000 מייל ביותר מ-30 מחוזות. החברה טוענת שהצעת החלטה של CPUC בהליך SPD-37 עשויה, אם תאומץ, לצמצם את היקף ההטמנה הזכאי בתוכנית לכ-1,100 מייל. מקור ההחלטה הרגולטורי לא נקרא, ולכן זו טענת PG&E לא מאומתת מול הרגולטור, ולא קביעה שהרגולטור כבר קיצץ את התוכנית.\n\nההודעה אינה מפרסמת עלות חדשה לתוכנית, אישור תעריף או החלטת מימון. אין להסיק שהיקף ההטמנה העתידי כבר אושר או בוטל.",
+    "טקסט_en": "The regulatory component is not verified against the regulator's primary source; execution figures come from the company release.\nNov 9, 2026, 10:00 p.m. Israel time (3:00 p.m. ET) | Official PG&E release.\n\nThe utility says it has installed and energized 1,500 miles of underground power lines in high fire-threat districts since launching the program in 2021. This includes 325 miles completed during 2026 through this week. The 1,500-mile figure is cumulative, not construction completed this year alone.\n\nPG&E says undergrounding reduces ignition risk by about 98% and outages by about 90% for customers served by those lines. These are company figures, not independent verification or a guarantee eliminating all wildfire risk.\n\nThe company says its submitted ten-year plan proposes 5,000 miles across more than 30 counties. It argues that a CPUC proposed decision in the SPD-37 proceeding could, if adopted, reduce eligible undergrounding in its plan to about 1,100 miles. The regulator's decision source was not read. This is PG&E's characterization, not verified with the regulator and not a finding that the regulator has already cut the plan.\n\nThe release does not state a new program cost, tariff approval or financing decision. Future mileage has not been established as approved or cancelled.",
+    "קישור": "https://www.prnewswire.com/news-releases/pge-achieves-1-500-mile-milestone-in-major-wildfire-safety-undergrounding-effort-302933756.html",
+    "מקורות": [
+      {
+        "label": "PG&E: הודעת החברה; טענת CPUC אינה מאומתת מול הרגולטור",
+        "label_en": "PG&E: company release; CPUC characterization not verified with regulator",
+        "url": "https://www.prnewswire.com/news-releases/pge-achieves-1-500-mile-milestone-in-major-wildfire-safety-undergrounding-effort-302933756.html"
+      }
+    ],
+    "מזהה": "n-1135",
+    "תאריך": "2026-11-09 22:08",
+    "הועלה": "2026-11-09 22:08",
+    "category": "micro",
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "4df72a5db0b29ca852583064dd591e16de96d11df6381155b3c14d24e42f8aff"
+      }
+    }
   }
 ]
