@@ -1984,12 +1984,12 @@
     "_translation": {
       "en": {
         "schema_version": 1,
-        "source_hash": "528fa37863a2be82dcb34af71483b0d09a4f08bcce24b2ff6e920f1269d8e531"
+        "source_hash": "2cb2960684e2870c97c1baf16522ec7ddabb136e0bbc6ac4baae80587f5c5c5a"
       }
     },
     "תקופה": "נתוני 6.11.2026, פורסמו 9.11",
     "תקופה_en": "Nov 6, 2026 data, posted Nov 9",
-    "בפועל": "AA nonfinancial 30d: 4.02% | A2/P2 30d: 4.16%"
+    "בפועל": "AA: 4.02% / A2/P2: 4.16%"
   },
   {
     "תאריך": "2026-11-09",
