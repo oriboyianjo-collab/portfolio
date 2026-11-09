@@ -26594,5 +26594,36 @@
         "source_hash": "4a02b2b314f8b7aa7dd28d3fbc23f0e0233e80d2b0615b0c56383b54fc625178"
       }
     }
+  },
+  {
+    "מזהה": "n-1107",
+    "כותרת": "Sonoco (SON): הווארד קוקר יפרוש בסוף 2026; ארנסט היינס השלישי יחליפו כנשיא, מנכ\"ל ודירקטור ב-31.12.2026",
+    "כותרת_en": "Sonoco (SON): Howard Coker to retire; Ernest Haynes III to succeed him as president, CEO and director effective Dec 31, 2026",
+    "summary": "סונוקו הודיעה היום, 9.11.2026, על תוכנית חילופי מנכ\"ל: הווארד קוקר יפרוש לאחר יותר מ-40 שנה בחברה, וארנסט היינס השלישי, נשיא פעילות האריזות לצרכן העולמית, יחליפו ב-31.12.2026. ההודעה לציבור פורסמה היום; הודעת הפרישה והחלטת הדירקטוריון התקבלו ב-6.11.2026.",
+    "summary_en": "Sonoco announced its CEO succession plan today, Nov 9, 2026: Howard Coker will retire after more than 40 years with the company, and Ernest Haynes III, president of Global Consumer Packaging, will succeed him on Dec 31, 2026. The public announcement is dated today; the retirement notice and board decision occurred on Nov 6, 2026.",
+    "טקסט": "הפריט אומת מול המקור הראשוני: דוח 8-K (סעיפים 5.02 ו-7.01) והודעת החברה המצורפת כנספח 99.1 נקראו ישירות. הודעת החברה מתוארכת ל-9.11.2026; הודעת הפרישה והחלטת הדירקטוריון הן מ-6.11.2026. מועד קבלת הדוח ב-SEC אינו מוצג כמועד פרסום ההודעה.\n\nSonoco Products (SON, ניו יורק) הודיעה על חילופי הנהלה: ר. הווארד קוקר יפרוש מתפקידיו כדירקטור, נשיא ומנכ\"ל בתוקף מ-31.12.2026, לאחר קריירה של יותר מ-40 שנה בחברה ומנכ\"לות מאז 2020. הדירקטוריון מינה ובחר את ארנסט ד. היינס השלישי לתפקידי הנשיא והמנכ\"ל ולדירקטוריון החל מאותו מועד; הוא גם יכהן בוועדה המבצעת של הדירקטוריון.\n\nהיינס (53) הצטרף לחברה ב-1997, ומכהן כנשיא פעילות האריזות לצרכן העולמית מאוגוסט 2026. קודם לכן ניהל את פעילות האריזות לצרכן באמריקות ואת חטיבת אריזות המתכת, וכן תפקידים באריזות נייר קשיחות ובצינורות וליבות.\n\nלפי ה-8-K, שכר הבסיס השנתי של היינס יהיה 1,100,004 דולר, בונוס היעד השנתי 120% מהשכר, ויעד מענקי ההון השנתיים הצפוי הוא כ-6 מיליון דולר; המענק הראשון צפוי בפברואר 2027. בנוסף אושר ב-6.11 מענק שימור של 1.5 מיליון דולר ב-RSU לסמנכ\"ל הכספים פול יואכימצ'יק, שיבשיל כולו ביום השנה השני למענק, בכפוף להמשך העסקתו.",
+    "טקסט_en": "Verified against primary sources: the 8-K (Items 5.02 and 7.01) and the company release attached as Exhibit 99.1 were read directly. The public release is dated Nov 9, 2026; the retirement notice and board decision occurred on Nov 6, 2026. SEC acceptance time is not presented as the announcement time.\n\nSonoco Products (SON, NYSE) announced a leadership transition: R. Howard Coker will retire as director, president and CEO effective Dec 31, 2026, after more than 40 years at the company and serving as CEO since 2020. The board appointed and elected Ernest D. Haynes III as president, CEO and director beginning on the same effective date; he will also serve on the board's Executive Committee.\n\nHaynes (53) joined Sonoco in 1997 and has served as president of Global Consumer Packaging since August 2026. His previous roles include leading Consumer Packaging, Americas, the Metal Packaging Division, rigid paper containers, and tubes and cores.\n\nAccording to the 8-K, Haynes will receive annual base salary of $1,100,004, an annual target bonus of 120% of base salary, and annual equity awards with an anticipated approximate target level of $6 million; the first grant is expected in February 2027. Separately, on Nov 6 the compensation committee approved a $1.5 million RSU retention award for CFO Paul Joachimczyk, cliff vesting on the second anniversary of grant subject to continued service.",
+    "תאריך": "2026-11-09 15:43",
+    "הועלה": "2026-11-09 15:43",
+    "category": "micro",
+    "קישור": "https://www.sec.gov/Archives/edgar/data/91767/000009176726000054/exhibit991pressreleaseofso.htm",
+    "מקורות": [
+      {
+        "label": "Sonoco, דוח 8-K ל-SEC (9.11.2026)",
+        "label_en": "Sonoco SEC 8-K (Nov 9, 2026)",
+        "url": "https://www.sec.gov/Archives/edgar/data/91767/000009176726000054/son-20261106.htm"
+      },
+      {
+        "label": "הודעת Sonoco מ-9.11.2026, נספח 99.1",
+        "label_en": "Sonoco release dated Nov 9, 2026, Exhibit 99.1",
+        "url": "https://www.sec.gov/Archives/edgar/data/91767/000009176726000054/exhibit991pressreleaseofso.htm"
+      }
+    ],
+    "_translation": {
+      "en": {
+        "schema_version": 1,
+        "source_hash": "85b9fe1891105492a6b1ee496ce3c37b8757dbf0f6a8f232618f0f83992e53fa"
+      }
+    }
   }
 ]
