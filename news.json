@@ -25499,5 +25499,36 @@
         "schema_version": 1
       }
     }
+  },
+  {
+    "כותרת": "קופאנג (CPNG) ו-Woowa Brothers: רשות התחרות הקוריאנית החליטה על קנסות זמניים של 631.9 מיליארד וון בסך הכל על דרישות MFN מול מסעדות",
+    "category": "micro",
+    "קישור": "https://en.yna.co.kr/view/AEN20261109004200320",
+    "מקורות": [
+      {
+        "label": "Yonhap, 9.11.2026",
+        "url": "https://en.yna.co.kr/view/AEN20261109004200320",
+        "label_en": "Yonhap, Nov 9, 2026"
+      },
+      {
+        "label": "Korea Times, 9.11.2026",
+        "url": "https://www.koreatimes.co.kr/business/companies/20261109/woowa-brothers-coupang-face-465-mil-in-fines-for-abusing-delivery-market-dominance",
+        "label_en": "Korea Times, Nov 9, 2026"
+      }
+    ],
+    "טקסט": "פרסום המקור: 9.11.2026 (Yonhap; Korea Times).\n\nרשות התחרות הקוריאנית (FTC) הודיעה כי החליטה להטיל קנסות זמניים של 331.1 מיליארד וון על Woowa Brothers, מפעילת אפליקציית בעאמין (Baemin), ו-300.8 מיליארד וון על Coupang Corp., מפעילת Coupang Eats והיחידה הקוריאנית של קופאנג הנסחרת בניו יורק (CPNG) - 631.9 מיליארד וון (כ-465 מיליון דולר) בסך הכל - ולהוציא לשתיהן צווי תיקון, על הטלת דרישות \"המועדף ביותר\" (MFN) על מסעדות שותפות. לשתי הפלטפורמות נתח משולב של מעל 90% משוק המשלוחים בקוריאה (58.45% ו-34.44% בהתאמה ב-2025, לפי ערך הזמנות).\n\nלפי הרשות, קופאנג אכפה את הדרישות מיולי 2023 ועד ינואר 2026 באמצעות סטטוס \"מסעדת WOW\" (תנאים במחירי תפריט, הזמנה מינימלית, הנחות, דמי משלוח ושעות פעילות), ובעאמין ממאי 2024 ועד אוקטובר 2025 באמצעות Baemin Club. שיעור המסעדות העומדות בתנאים עלה מ-13% ל-94% אצל קופאנג (עד אוקטובר 2025) ומ-63% ל-80% אצל בעאמין (עד ינואר 2025). הקנס על Woowa Brothers מורכב מ-160.2 מיליארד וון על דרישות ה-MFN, 155.4 מיליארד על דחיפה כפויה של מסעדות לשירות המשלוחים העצמי שלה (OD) ו-15.4 מיליארד על פרסום מטעה של זמני משלוח.\n\nהקנסות הם זמניים בשלב זה, לצד צווי התיקון. פריט קשור: בפרסום מ-6.11 בשעה 10:01 דווח על עיכוב ביצוע של קנס אחר נגד קופאנג, בסך 201.1 מיליארד וון; מדובר בהליך נפרד.",
+    "תקציר": "FTC הקוריאני (9.11) החליט על קנסות זמניים של 631.9 מיליארד וון בסך הכל נגד Woowa Brothers (בעאמין) ו-Coupang (CPNG) על דרישות MFN מול מסעדות; הליך נפרד מקנס ה-201.1 מיליארד שעיכובו דווח ב-6.11.",
+    "מזהה": "n-1071",
+    "תאריך": "2026-11-09 05:20",
+    "הועלה": "2026-11-09 05:20",
+    "כותרת_en": "Coupang (CPNG) and Woowa Brothers: Korea's FTC decides on provisional fines totaling 631.9 billion won over MFN requirements imposed on restaurants",
+    "טקסט_en": "Source publication: Nov 9, 2026 (Yonhap; Korea Times).\n\nSouth Korea's Fair Trade Commission said it decided to impose provisional fines of 331.1 billion won on Woowa Brothers, operator of the Baemin delivery app, and 300.8 billion won on Coupang Corp., operator of Coupang Eats and the Korean unit of NYSE-listed Coupang (CPNG) - 631.9 billion won (about $465 million) combined - and to issue rectification orders, over most-favored-nation (MFN) requirements imposed on partner restaurants. The two platforms hold a combined share of over 90% of Korea's food-delivery market (58.45% and 34.44% respectively in 2025, by order value).\n\nAccording to the FTC, Coupang enforced the requirements from July 2023 to January 2026 through its \"WOW restaurant\" status (conditions on menu prices, minimum orders, discounts, delivery fees and operating hours), and Baemin from May 2024 to October 2025 through Baemin Club. The share of restaurants meeting the conditions rose from 13% to 94% at Coupang (by October 2025) and from 63% to 80% at Baemin (by January 2025). Woowa Brothers' fine comprises 160.2 billion won for the MFN requirements, 155.4 billion for effectively forcing restaurants onto its own-delivery service (OD), and 15.4 billion for misleading delivery-time advertising.\n\nThe fines are provisional at this stage, alongside the rectification orders. Related: the Nov 6, 10:01 AM publication covered a stay of enforcement of a different 201.1 billion won fine against Coupang; that is a separate proceeding.",
+    "תקציר_en": "Korea's FTC (Nov 9) decided on provisional fines totaling 631.9 billion won against Woowa Brothers (Baemin) and Coupang (CPNG) over MFN requirements imposed on restaurants; separate from the 201.1 billion won fine whose stay was reported on Nov 6.",
+    "_translation": {
+      "en": {
+        "source_hash": "53fe77884eed23a19d59181a6940ccc43c1a1440f3f784d81e9a1a2183fd52d6",
+        "schema_version": 1
+      }
+    }
   }
 ]
