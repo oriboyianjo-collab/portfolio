@@ -1957,18 +1957,19 @@
     "מדינה": "US",
     "אירוע": "מכרז אג\"ח ממשלת ארה\"ב ל-3 שנים",
     "חשיבות": 1,
-    "מקור": "https://home.treasury.gov/news/press-releases/sb0678",
-    "הערה": "הודעת ההחזר הרבעוני מ-4.11: מכרז בשעה13:00ניו יורק=20:00ישראל; היקף הצעה 58 מיליארד דולר. זהו היקף הנפקה מתוכנן, לא תשואת תוצאת המכרז או צפי לתשואה. סליקה ב-16.11.",
+    "מקור": "https://www.treasurydirect.gov/auctions/auction-query/?cusip=91282CRW3",
+    "הערה": "הודעת ההחזר הרבעוני מ-4.11: מכרז בשעה13:00ניו יורק=20:00ישראל; היקף הצעה 58 מיליארד דולר. זהו היקף הנפקה מתוכנן, לא תשואת תוצאת המכרז או צפי לתשואה. סליקה ב-16.11. תוצאה אומתה ב-TreasuryDirect לאחר הפרסום: CUSIP 91282CRW3, מכרז 9.11.2026, אג\"ח ל-3 שנים, סליקה 16.11.2026 ופדיון 15.11.2029. תשואה גבוהה 4.627%; יחס ביקוש לכיסוי 2.53. שדה ההצעה הוא 58 מיליארד דולר, לא סכום שגויס שהוסק מהיחס. עדכון המקור 13:04:16 ET. אין צפי מאומת או פער מול תשואת when-issued שאומת כאן.",
     "שעה": "20:00",
     "מזהה": "c-0082",
     "אירוע_en": "US Treasury 3-year note auction",
-    "הערה_en": "Quarterly refunding announcement of Nov 4: auction at 13:00 New York = 20:00 Israel; offering size 58 billion USD. This is a planned issuance size, not an auction result yield or a yield estimate. Settlement Nov 16.",
+    "הערה_en": "Quarterly refunding announcement of Nov 4: auction at 13:00 New York = 20:00 Israel; offering size 58 billion USD. This is a planned issuance size, not an auction result yield or a yield estimate. Settlement Nov 16. Result verified on TreasuryDirect after posting: CUSIP 91282CRW3, Nov 9, 2026 auction, 3-year note, Nov 16, 2026 settlement and Nov 15, 2029 maturity. High yield 4.627%; bid-to-cover ratio 2.53. The offering field is $58 billion, not proceeds inferred from that ratio. Source updated 13:04:16 ET. No verified consensus or when-issued tail comparison here.",
     "_translation": {
       "en": {
-        "source_hash": "5214099d6f9669a3f5cd98bef85e486003d781f198256fb44445491cda65f2f9",
+        "source_hash": "a24846bfb037f29e388e807c7dcf4dd600a1cf18d40ca5ce8f8968359ef52df0",
         "schema_version": 1
       }
-    }
+    },
+    "בפועל": "4.627%"
   },
   {
     "תאריך": "2026-11-09",
