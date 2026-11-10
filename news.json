@@ -28221,5 +28221,77 @@
     "schema_version": 1
    }
   }
+ },
+ {
+  "כותרת": "צ'רלס שוואב (SCHW) מרחיבה את Schwab Crypto: סולאנה, אוולאנץ' וצ'יינלינק זמינים למסחר",
+  "category": "micro",
+  "קישור": "https://pressroom.aboutschwab.com/press-releases/press-release/2026/Charles-Schwab-Makes-Solana-Avalanche-and-Chainlink-Available-to-Trade-Through-Schwab-Crypto-Accounts/default.aspx",
+  "מקורות": [
+   {
+    "label": "Charles Schwab: הודעת החברה, וסטלייק טקסס, 9 בנובמבר 2026 - מקור ראשוני",
+    "url": "https://pressroom.aboutschwab.com/press-releases/press-release/2026/Charles-Schwab-Makes-Solana-Avalanche-and-Chainlink-Available-to-Trade-Through-Schwab-Crypto-Accounts/default.aspx",
+    "label_en": "Charles Schwab: company release, Westlake TX, November 9, 2026 - primary source"
+   }
+  ],
+  "טקסט": "09.11.2026 | לפי הודעת החברה.\n\nצ'רלס שוואב הודיעה שלקוחות Schwab Crypto יכולים כעת לקנות ולמכור סולאנה (SOL), אוולאנץ' (AVAX) וצ'יינלינק (LINK), בנוסף לביטקוין ואת'ריום - חמישה נכסים דיגיטליים בסך הכל, לצד ההשקעות המסורתיות באתר Schwab.com, באפליקציה וב-thinkorswim, בתמחור של 75 נקודות בסיס מערך כל עסקה. Schwab Crypto הפך זמין לכל לקוחות הקמעונאות הזכאים באוקטובר, לאחר השקת גישה מוקדמת במאי 2026; החברה מתכננת להוסיף נכסים דיגיטליים נוספים עם הזמן.",
+  "כותרת_en": "Charles Schwab (SCHW) expands Schwab Crypto: Solana, Avalanche and Chainlink now tradable",
+  "טקסט_en": "Nov 9, 2026 | per the company release.\n\nCharles Schwab announced that Schwab Crypto clients can now buy and sell solana (SOL), avalanche (AVAX) and chainlink (LINK), in addition to bitcoin and ethereum - five digital assets in total, side-by-side with traditional investments on Schwab.com, Schwab Mobile and thinkorswim, priced at 75 basis points of each trade's dollar value. Schwab Crypto became available to all eligible retail clients in October after an early-access launch in May 2026; the company plans to add more digital assets over time.",
+  "תאריך": "2026-11-10 09:20",
+  "הועלה": "2026-11-10 09:20",
+  "מזהה": "n-1166",
+  "_translation": {
+   "en": {
+    "source_hash": "7baa20d3ddf9f0fb3ba373950ac68680ca3c834fd3ec7711b1026e94b0714508",
+    "schema_version": 1
+   }
+  }
+ },
+ {
+  "כותרת": "Dropbox (DBX) תימחרה אג\"ח להמרה מוגדלות של 1.1 מיליארד דולר ל-2031, בקופון 1.25%, לצד רכישה עצמית והחזר חוב",
+  "category": "micro",
+  "קישור": "https://www.businesswire.com/news/home/20261109623758/en/Dropbox-Inc.-Announces-Upsize-and-Pricing-of-%241.1-Billion-Convertible-Senior-Notes-Offering",
+  "מקורות": [
+   {
+    "label": "Dropbox דרך BusinessWire: הודעת התמחור, פורסמה לאחר סגירת 9 בנובמבר 2026 - מקור ראשוני",
+    "url": "https://www.businesswire.com/news/home/20261109623758/en/Dropbox-Inc.-Announces-Upsize-and-Pricing-of-%241.1-Billion-Convertible-Senior-Notes-Offering",
+    "label_en": "Dropbox via BusinessWire: pricing release, published after the November 9, 2026 close - primary source"
+   }
+  ],
+  "טקסט": "09.11.2026 (אחרי הסגירה) | לפי הודעת החברה.\n\nDropbox תימחרה הנפקת אג\"ח להמרה מוגדלת: 1.1 מיליארד דולר (במקום המיליארד שהוכרז קודם) באג\"ח בכירות ל-2031, בקופון 1.25%, במכירה פרטית 144A, עם אופציית גרינשו של 150 מיליון דולר וסגירה צפויה ב-12 בנובמבר. מחיר ההמרה הראשוני כ-40.73 דולר - פרמיה של כ-25% על מחיר הסגירה ב-9 בנובמבר (32.58 דולר).\n\nהתמורה נטו כ-1.082 מיליארד דולר: כ-103.1 מיליון לעלות עסקאות הגידור (note hedge), כ-175 מיליון לרכישה עצמית של מניות Class A ממשקיעים מוסדיים במחיר הסגירה של 9 בנובמבר, והשאר - יחד עם מזומן קיים - להחזר של לפחות 750 מיליון דולר מהלוואת הטווח (term loan).",
+  "כותרת_en": "Dropbox (DBX) prices upsized $1.1B convertible notes due 2031 at 1.25%, with concurrent buyback and debt repayment",
+  "טקסט_en": "Nov 9, 2026 (after the close) | per the company release.\n\nDropbox priced an upsized $1.1 billion convertible senior notes offering due 2031 (increased from the previously announced $1.0 billion) at a 1.25% coupon in a 144A private placement, with a $150 million greenshoe and expected settlement on November 12. The initial conversion price is about $40.73 - a roughly 25% premium to the November 9 close of $32.58.\n\nNet proceeds of about $1.082 billion: approximately $103.1 million for the convertible note hedge cost, about $175 million to repurchase Class A shares from institutional investors at the November 9 closing price, and the remainder - together with cash on hand - to repay at least $750 million of term-loan borrowings.",
+  "תאריך": "2026-11-10 09:20",
+  "הועלה": "2026-11-10 09:20",
+  "מזהה": "n-1167",
+  "_translation": {
+   "en": {
+    "source_hash": "d03aecb6e325eb31597698180ca2ed3b4424d7e3be0d0cd99e98f0784e266717",
+    "schema_version": 1
+   }
+  }
+ },
+ {
+  "כותרת": "KBR הכריזה על דירקטוריון Trinzic העתידי לקראת הפיצול; ההשקה צפויה ב-4 בינואר 2027",
+  "category": "micro",
+  "קישור": "https://investors.kbr.com/news-and-events/news/news-details/2026/KBR-Announces-Future-Board-of-Directors-for-Trinzic/default.aspx",
+  "מקורות": [
+   {
+    "label": "KBR דרך GlobeNewswire: הודעת החברה, יוסטון, 9 בנובמבר 2026 - מקור ראשוני",
+    "url": "https://investors.kbr.com/news-and-events/news/news-details/2026/KBR-Announces-Future-Board-of-Directors-for-Trinzic/default.aspx",
+    "label_en": "KBR via GlobeNewswire: company release, Houston, November 9, 2026 - primary source"
+   }
+  ],
+  "טקסט": "09.11.2026 | לפי הודעת החברה.\n\nKBR הכריזה על דירקטוריון העתיד בן שמונה החברים של Trinzic - הפיצול המתוכנן של עסקי Mission Technology Solutions, שצפוי לצאת לדרך ב-4 בינואר 2027. לתפקיד היושבת-ראש צפויה למנות את ונדי מסיילו, גנרלית (אל\"מ) בדימוס מחיל האוויר; מייקל לרוש, המנכ\"ל היועד, ישמש גם דירקטור. המינויים ייכנסו לתוקף עם השלמת הפיצול וכפופים לאישור סופי של דירקטוריון KBR ולתנאים המקובלים.",
+  "כותרת_en": "KBR names future Trinzic board ahead of the spin-off; launch expected January 4, 2027",
+  "טקסט_en": "Nov 9, 2026 | per the company release.\n\nKBR announced the future eight-member board of Trinzic, the planned spin-off of its Mission Technology Solutions business, expected to launch on January 4, 2027. Wendy M. Masiello, a retired U.S. Air Force lieutenant general, is expected to serve as Chair; CEO-designate Michael LaRouche will also serve as a director. The appointments take effect upon completion of the spin-off and remain subject to final approval by KBR's board and customary conditions.",
+  "תאריך": "2026-11-10 09:20",
+  "הועלה": "2026-11-10 09:20",
+  "מזהה": "n-1168",
+  "_translation": {
+   "en": {
+    "source_hash": "c8b844565d2d38699a2cf5032d14df7d4ba312ec851411bcccc8774b33197e3f",
+    "schema_version": 1
+   }
+  }
  }
 ]
