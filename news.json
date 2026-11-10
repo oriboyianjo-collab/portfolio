@@ -27975,5 +27975,34 @@
     "schema_version": 1
    }
   }
+ },
+ {
+  "כותרת": "TSMC (TSM): הכנסות אוקטובר זינקו 59.7% ל-NT$586.9 מיליארד - טרם אומת מול הודעת החברה",
+  "category": "micro",
+  "קישור": "https://www.cnbc.com/2026/11/10/tsmcs-october-sales-.html",
+  "מקורות": [
+   {
+    "label": "CNBC: דיווח על הכנסות אוקטובר של TSMC, פורסם 10 בנובמבר 00:41 שעון ניו יורק - מקור משני",
+    "url": "https://www.cnbc.com/2026/11/10/tsmcs-october-sales-.html",
+    "label_en": "CNBC: report on TSMC October revenue, published November 10, 12:41am New York time - secondary source"
+   },
+   {
+    "label": "TSMC: דף ההכנסות החודשיות הרשמי של החברה - נתון אוקטובר טרם פורסם בו בעת הבדיקה",
+    "url": "https://investor.tsmc.com/english/monthly-revenue",
+    "label_en": "TSMC: the company's official monthly revenue page - the October figure was not yet posted there at the time of the check"
+   }
+  ],
+  "טקסט": "לא מאומת מול מקור ראשוני: דף ההכנסות החודשיות הרשמי של TSMC טרם הציג את נתון אוקטובר נכון ל-08:10 שעון ישראל; הפריט מבוסס על דיווח CNBC בלבד.\n10.11.2026 | לפי CNBC; פורסם 00:41 שעון ניו יורק (07:41 שעון ישראל).\n\nלפי CNBC, TSMC דיווחה היום על הכנסות אוקטובר של 586.89 מיליארד דולר טייוואני חדש (כ-17.88 מיליארד דולר אמריקאי) - עלייה של 59.7% לעומת אוקטובר אשתקד ושל 14.7% לעומת ספטמבר. מדובר בנתון הכנסות חודשי, לא בדוח רווח רבעוני.\n\nבדיקת עקביות שערכנו: נתון ספטמבר הרשמי של החברה עמד על 511.86 מיליארד דולר טייוואני; החישוב 586.89/511.86 נותן עלייה חודשית של כ-14.66%, עולה בקנה אחד עם ה-14.7% שמציין CNBC.\n\nרקע מהכתבה, ללא אישור נוסף: החברה מפיקה תועלת מביקוש חזק לשבבים מתקדמים בהשקעות הבינה המלאכותית. ברבעון השלישי (דוח שפורסם בחודש שעבר, הקשר בלבד) ההכנסות היו 1.49 טריליון דולר טייוואני והרווח הנקי שיא של 763.1 מיליארד; שולי הרווח התפעולי 58.7%; החברה צופה הוצאות הון ב-2026-2028 גבוהות משמעותית משלוש השנים הקודמות.\n\nהקשר טייוואני מהכתבה: יצוא טייוואן זינק 58.9% באוקטובר ל-96.76 מיליארד דולר, לפי נתוני ממשלה שפורסמו אתמול; יצוא רכיבים אלקטרוניים עלה 61.4%, לפי מדיה מקומית המצטטת את משרד האוצר. מניות TSMC נסגרו בעלייה של 2.24% היום, על רקע תנודתיות ולאחר שהרגולטור הפיננסי צימצם את מגבלת המכירות בחסר התוך-יומיות מ-30% ל-3% (בתוקף מיום שני).\n\nהערה: הפריט יעודכן ותיווסר התווית לאחר פרסום הנתון בדף הרשמי של החברה.",
+  "כותרת_en": "TSMC (TSM): October revenue jumps 59.7% to NT$586.9 billion - not yet verified against the company's own release",
+  "טקסט_en": "Not verified against a primary source: TSMC's official monthly revenue page had not posted the October figure as of 08:10 Israel time; this item is based on CNBC's report only.\nNov 10, 2026 | per CNBC; published 12:41am New York time (07:41 Israel time).\n\nPer CNBC, TSMC today reported October revenue of NT$586.89 billion (about $17.88 billion), up 59.7% from a year earlier and up 14.7% from the previous month. This is monthly revenue data, not a quarterly earnings report.\n\nOur consistency check: the company's official September figure was NT$511.86 billion; 586.89/511.86 implies a month-on-month rise of about 14.66%, consistent with CNBC's 14.7%.\n\nBackground from the article, without additional confirmation: the company is benefiting from strong demand for advanced chips amid AI investment. In the third quarter (reported last month, context only) revenue was NT$1.49 trillion with a record net profit of NT$763.1 billion; operating margin 58.7%; the company expects 2026-2028 capital expenditure significantly higher than the previous three years.\n\nTaiwan context from the article: Taiwan's exports surged 58.9% in October to $96.76 billion, per government data released Monday; electronic components exports rose 61.4%, per local media citing the finance ministry. TSMC shares closed 2.24% higher today amid volatility, after the financial regulator cut the intraday short-selling limit from 30% to 3% (effective Monday).\n\nNote: the item will be updated and the label removed once the company posts the figure on its official page.",
+  "תאריך": "2026-11-10 08:12",
+  "הועלה": "2026-11-10 08:12",
+  "מזהה": "n-1157",
+  "_translation": {
+   "en": {
+    "source_hash": "812c36b2751607089a538e7c16b8b98b7e01c448ebb7fda8c6da0768f47dd6aa",
+    "schema_version": 1
+   }
+  }
  }
 ]
