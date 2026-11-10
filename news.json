@@ -27946,5 +27946,34 @@
     "schema_version": 1
    }
   }
+ },
+ {
+  "כותרת": "סין: העודף המסחרי השנתי חצה את רף טריליון הדולר; האיחוד האירופי מגביל יבוא רכב היברידי סיני - עדכון לנתוני אוקטובר",
+  "category": "macro",
+  "קישור": "https://www.cnbc.com/2026/11/10/china-trade-october-exports-imports-surplus-.html",
+  "מקורות": [
+   {
+    "label": "CNBC: ניתוח נתוני הסחר של סין לאוקטובר, פורסם 9 בנובמבר ועודכן 10 בנובמבר",
+    "url": "https://www.cnbc.com/2026/11/10/china-trade-october-exports-imports-surplus-.html",
+    "label_en": "CNBC: China October trade analysis, published November 9, updated November 10"
+   },
+   {
+    "label": "מנהל המכסים של סין (GACC): טבלת סך הסחר לפי מדינות, אוקטובר 2026 (דולר)",
+    "url": "http://www.customs.gov.cn/customs/2026-11/10/article_2026111009531211205.html",
+    "label_en": "China Customs (GACC): October 2026 trade by major country (USD)"
+   }
+  ],
+  "טקסט": "CNBC: 9-10.11.2026 | פרסום אפליקציה: 10.11.2026\n\nעדכון לפריט n-1151 (נתוני הסחר הרשמיים של סין לאוקטובר). זוויות חדשות מ-CNBC, עם הצלבה מול טבלאות מכס סין:\n\n- אבן דרך: העודף המסחרי המצטבר של סין ב-2026 חצה את רף הטריליון דולר ועומד על כ-1.04 טריליון דולר (מאומת מול טבלאות GACC: יצוא מצטבר 3.783 טריליון פחות יבוא 2.740 טריליון) - מול שיא של 1.2 טריליון דולר לכל 2025. עודף אוקטובר, 105.3 מיליארד דולר, הוא הנמוך מאפריל, לפי נתוני LSEG.\n- היבוא (+41.6%) הוא החד ביותר מאז מאי 2021, לפי גוף הכתבה - אך בנקודות המפתח של הכתבה נכתב \"מאי 2011\" ובכותרת \"החד בחמש שנים\"; ההסתירה כפי שפורסמה ב-CNBC. סקר Reuters: ציפה לעליית יצוא של 33.5% ולעליית יבוא של 32% בלבד - שני הנתונים הכו בציפיות. היבוא נבע מביקוש לסחורות טכנולוגיה, נחושת ואנרגיה, לדברי Economist Intelligence Unit.\n- לפי חישוב CNBC של הנתונים הרשמיים: יבוא מוצרי הייטק זינק 72% בערכים; יבוא נפט גולמי, LNG ופחם גדל בכ-41%, 50% ו-60% בהתאמה בערכים.\n- ארה\"ב: היצוא לארה\"ב זינק 32.9% באוקטובר לעומת אוקטובר 2025 (המטען לארה\"ב עלה 12.1% מצטבר השנה, לאחר צניחה של 20% אשתקד בעטיית המכסים - מאומת מול GACC); היבוא מארה\"ב עלה כמעט 35%; העודף 32.7 מיליארד דולר.\n- האיחוד האירופי: היצוא לבלוק גדל 24.4% באוקטובר והיבוא ממנו ירד מעל 4%, לפי CNBC; העודף מול האיחוד התרחב ל-33.4 מיליארד דולר (מאומת מול GACC). בחודש שעבר הגיע האיחוד להסכם עם בייג'ינג להגבלת יבוא כלי רכב היברידיים סיניים - תקרה של 350 אלף מכוניות בשנה מ-1 בדצמבר. ברד סטסר מ-CFR: התקרה מעל 300 אלף ההיברידיים שסין ייצאה לאירופה אשתקד, אך מתחת לקצב השנתי של 800 אלף ברבעון האחרון.\n- רקע מדיני: וושינגטון ובייג'ינג הסכימו בספטמבר להאריך את הפסקת האש המסחרית בחודשיים עד ינואר; שי וטראמפ צפויים להיפגש בפעם השלישית השנה בפסגת APEC בשנג'ן בשבוע הבא.\n\nהערכות כלכלנים: קפיטל אקונומיקס מעריכה ירידה מתואמת-עונה של 2% ביצוא מול ספטמבר; סקר China Beige Book הראה האטה בהזמנת חדשות באוקטובר, וה-PMI הרשמי התכווץ.",
+  "כותרת_en": "China: 2026 trade surplus crosses $1 trillion; EU caps Chinese hybrid car imports - update to the October trade data",
+  "טקסט_en": "CNBC: Nov 9-10, 2026 | App publication: Nov 10, 2026\n\nUpdate to item n-1151 (China's official October trade data). New angles from CNBC, cross-checked against the GACC tables:\n\n- Milestone: China's 2026 year-to-date trade surplus crossed the $1 trillion mark at roughly $1.04 trillion (verified against GACC: cumulative exports $3.783T minus imports $2.740T) - versus a record $1.2 trillion for full-year 2025. October's $105.3B surplus is the lowest since April, per LSEG data.\n- Imports (+41.6%) are the strongest since May 2021, per the article body - though its key points say \"May 2011\" and the headline says \"in five years\"; the inconsistency is as published by CNBC. A Reuters poll had expected exports +33.5% and imports +32% - both beat. The import jump was driven by tech goods, copper and energy, per the Economist Intelligence Unit.\n- Per CNBC's calculations of the official figures: high-tech product imports surged 72% by value; crude oil, LNG and coal imports grew about 41%, 50% and 60% respectively by value.\n- US: exports to the US soared 32.9% in October year over year (US-bound shipments up 12.1% YTD after last year's 20% tariff-driven plunge - verified against GACC); imports from the US grew nearly 35%; surplus $32.7B.\n- EU: shipments to the bloc grew 24.4% in October while imports from it fell more than 4%, per CNBC; the EU surplus widened to $33.4B (verified against GACC). Last month the EU reached a deal with Beijing to cap Chinese hybrid vehicle imports at 350,000 cars per year from December 1. CFR's Brad Setser: the cap is above the 300,000 hybrids China exported to Europe last year but below the 800,000 annualized pace of the last three months.\n- Policy backdrop: Washington and Beijing agreed in September to extend the trade truce by two months to January; Xi and Trump are expected to meet for a third time this year at the APEC summit in Shenzhen next week.\n\nEconomist views: Capital Economics estimates a seasonally adjusted 2% month-on-month fall in exports; a China Beige Book survey showed new orders slowed in October, and the official PMI unexpectedly shrank.",
+  "תאריך": "2026-11-10 07:12",
+  "הועלה": "2026-11-10 07:12",
+  "מזהה": "n-1156",
+  "_translation": {
+   "en": {
+    "source_hash": "ea8d50754828e8d47abf858eb42a729442f33147a8b200864b41b392d41f985f",
+    "schema_version": 1
+   }
+  }
  }
 ]
