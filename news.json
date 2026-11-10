@@ -28048,5 +28048,53 @@
     "schema_version": 1
    }
   }
+ },
+ {
+  "כותרת": "סקייוורקס (SWKS) משיקה משפחת מעבדי אודיו לרכב SKY4680x",
+  "category": "micro",
+  "קישור": "https://investors.skyworksinc.com/news-releases/news-release-details/skyworks-introduces-scalable-multi-core-audio-dsp-family",
+  "מקורות": [
+   {
+    "label": "Skyworks: הודעת החברה על השקת משפחת SKY4680x, פורסמה 10 בנובמבר 2026 (02:01 שעון ניו יורק, 09:01 ישראל) - מקור ראשוני",
+    "url": "https://investors.skyworksinc.com/news-releases/news-release-details/skyworks-introduces-scalable-multi-core-audio-dsp-family",
+    "label_en": "Skyworks: company release introducing the SKY4680x family, published November 10, 2026 (2:01am New York, 9:01am Israel) - primary source"
+   }
+  ],
+  "טקסט": "10.11.2026 | לפי הודעת החברה.\n\nסקייוורקס השיקה את משפחת מעבדי האודיו לרכב SKY4680x, הרחבה של פעילות הרכב שלה מעבר לטיונרים ורדיו דיגיטלי לתחום עיבוד האודיו. המשפחה מוצעת בתצורות של ליבה אחת, שתיים או שלוש ליבות עם ארכיטקטורה וסביבת תוכנה משותפים, כך שיצרני רכב וספקי Tier 1 יכולים לבסס מספר דגמים על פלטפורמה אחת.\n\nמפרט עיקרי: עד שלוש ליבות Cadence HiFi 5 (מעל 1.2GHz בגרסת שלוש הליבות), זיכרון SRAM מובנה של 8MB, ועד 64 ערוצי אודיו (32 קלט ו-32 פלט). המשפחה תומכת באלגוריתמים של הלקוח, ביישומי Edge AI וב-IP של צדדים שלישיים.\n\nזמינות: דגימות הנדסיות ולוחות הערכה זמינים כעת. בהודעה לא נמסר על ייצור המוני, שילוב ברכבים או זכייה אצל יצרנית רכב; הדגמת זיהוי צופרים ב-Electronica היא הדגמה בלבד.",
+  "כותרת_en": "Skyworks (SWKS) introduces the SKY4680x automotive audio DSP family",
+  "טקסט_en": "Nov 10, 2026 | per the company release.\n\nSkyworks introduced the SKY4680x family of automotive audio DSPs, expanding its automotive business beyond tuners and digital radio into audio processing. The family comes in one-, two- and three-core variants with a shared architecture and software environment, letting automakers and Tier 1 suppliers build multiple vehicle programs on one platform.\n\nKey specs: up to three Cadence HiFi 5 cores (over 1.2GHz in the three-core variant), 8MB of integrated SRAM, and up to 64 audio channels (32 in, 32 out). The family supports customer-developed algorithms, Edge AI applications and third-party audio IP.\n\nAvailability: engineering samples and evaluation boards are available now. The release does not report mass production, vehicle deployment or an automaker win; the siren-detection demo at Electronica is a demonstration only.",
+  "תאריך": "2026-11-10 09:08",
+  "הועלה": "2026-11-10 09:08",
+  "מזהה": "n-1159",
+  "_translation": {
+   "en": {
+    "source_hash": "8d4f2427269a00c1a2c72592be9675497d36c848dd8b23893d6b58ab6fbd8abc",
+    "schema_version": 1
+   }
+  }
+ },
+ {
+  "כותרת": "מרק (MRK): תוצאות חיוביות בשלב 2b לאפינופגלוטייד ב-MASH - 56-63% השיגו העלמה מלאה של המחלה מול 13% בפלצבו",
+  "category": "micro",
+  "קישור": "https://www.merck.com/news/merck-announces-positive-results-from-phase-2b-trial-of-efinopegdutide-in-adults-with-metabolic-dysfunction-associated-steatohepatitis-mash-and-stage-2-3-fibrosis/",
+  "מקורות": [
+   {
+    "label": "Merck: הודעת החברה על תוצאות ניסוי שלב 2b של אפינופגלוטייד, פורסמה 9 בנובמבר 2026, 13:05 שעון ניו יורק (20:05 ישראל) - מקור ראשוני",
+    "url": "https://www.merck.com/news/merck-announces-positive-results-from-phase-2b-trial-of-efinopegdutide-in-adults-with-metabolic-dysfunction-associated-steatohepatitis-mash-and-stage-2-3-fibrosis/",
+    "label_en": "Merck: company release on the efinopegdutide Phase 2b results, published November 9, 2026, 1:05pm New York (8:05pm Israel) - primary source"
+   }
+  ],
+  "טקסט": "09.11.2026 | לפי הודעת החברה.\n\nמרק דיווחה על תוצאות חיוביות מניסוי שלב 2b של אפינופגלוטייד (efinopegdutide), אגוניסט משולב לקולטני GLP-1 וגלוקגון, ב-386 מבוגרים עם MASH (סטיהטוהפטיטיס מטבולית) ופיברוזיס בדרגות F2-F3: לאחר 52 שבועות, 56%-63% מהמטופלים במינונים השונים השיגו העלמה מלאה של ה-MASH ללא החמרת פיברוזיס, מול 13% בקבוצת הפלצבו (p<0.0001 בכל המינונים). נצפתה גם התפרצות משמעותית בשיפור פיברוזיס, יעד משני מרכזי.\n\nהנתונים הוצגו בכנס The Liver Meeting בדנבר ופורסמו במקביל בכתב העת The Lancet. המולקולה מפותחת ברישיון מ-Hanmi הקוריאנית ומחזיקה במעמד Fast Track של ה-FDA ל-MASH.\n\nבטיחות: הפרופיל היה דומה באופן כללי לזה של סמגלוטייד (קבוצת ייחוס פעילה בניסוי); בחילות היו התופעה השכיחה (29%-44% במינונים השונים מול 11% בפלצבו).",
+  "כותרת_en": "Merck (MRK): positive Phase 2b results for efinopegdutide in MASH - 56-63% achieved full disease resolution vs 13% on placebo",
+  "טקסט_en": "Nov 9, 2026 | per the company release.\n\nMerck reported positive Phase 2b results for efinopegdutide, a GLP-1/glucagon receptor co-agonist, in 386 adults with MASH (metabolic dysfunction-associated steatohepatitis) and F2-F3 fibrosis: after 52 weeks, 56-63% of participants across dose arms achieved MASH resolution without worsening of fibrosis, versus 13% on placebo (p<0.0001 for all doses). A meaningful improvement in fibrosis, a key secondary endpoint, was also observed.\n\nThe data were presented at The Liver Meeting in Denver and simultaneously published in The Lancet. The molecule is developed under license from Hanmi Pharmaceutical and holds FDA Fast Track designation for MASH.\n\nSafety: the profile was generally consistent with semaglutide (the active reference arm); nausea was the most common event (29-44% across doses vs 11% on placebo).",
+  "תאריך": "2026-11-09 20:05",
+  "הועלה": "2026-11-10 09:08",
+  "מזהה": "n-1160",
+  "_translation": {
+   "en": {
+    "source_hash": "8444b7e098fdc8229c2c69d879a2b1f40f1517b6b6602bc046a16300a480f88d",
+    "schema_version": 1
+   }
+  }
  }
 ]
