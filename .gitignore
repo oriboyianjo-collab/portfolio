@@ -1,8 +1,0 @@
-# Never publish personal data
-*.xlsx
-*.xls
-*.csv
-*backup*.json
-state*.json
-shot-*.png
-private*/

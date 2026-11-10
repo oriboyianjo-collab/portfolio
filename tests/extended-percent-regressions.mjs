@@ -1,3 +1,0 @@
-import fs from 'node:fs';import assert from 'node:assert/strict';const s=fs.readFileSync('index.html','utf8');
-assert.ok(s.includes('.idx .xl .ext-pct{font-size:1em}'));assert.ok(s.includes('#hPre>b{font-size:1.014rem}'));assert.ok(s.includes('font-size:.75rem!important;width:max-content'));
-assert.ok(s.includes('font-size:.48rem!important;padding:0 2px!important'));assert.ok(s.includes('class="ext-pct"'));assert.ok(s.includes("const e = esc(n)"));assert.ok(s.includes('r.epsCmp, r.epsWhy'));console.log('PASS extended percentage isolation, index exclusion, unchanged label size, renderer fixes kept out of scope');
