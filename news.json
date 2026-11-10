@@ -28004,5 +28004,49 @@
     "schema_version": 1
    }
   }
+ },
+ {
+  "כותרת": "מבט יומי - וול סטריט, ג׳ 10.11.26",
+  "category": "macro",
+  "קישור": "https://www.bls.gov/schedule/news_release/cpi.htm",
+  "מקורות": [
+   {
+    "label": "BLS: לוח פרסומי CPI - נתון אוקטובר 2026 מתפרסם היום 10 בנובמבר ב-08:30 שעון ניו יורק (15:30 ישראל) - מקור ראשוני",
+    "url": "https://www.bls.gov/schedule/news_release/cpi.htm",
+    "label_en": "BLS: CPI release schedule - October 2026 data is released today, November 10, 8:30am New York time (3:30pm Israel) - primary source"
+   },
+   {
+    "label": "הפדרל ריזרב: לוח הנאומים הרשמי לנובמבר 2026 - Waller ב-04:00 וב-Bowman ב-15:30 וב-18:30 שעון ניו יורק - מקור ראשוני",
+    "url": "https://www.federalreserve.gov/newsevents/2026-november.htm",
+    "label_en": "Federal Reserve: official November 2026 speeches calendar - Waller 4:00am, Bowman 3:30pm and 6:30pm New York time - primary source"
+   },
+   {
+    "label": "Wrightson FedSpeak: לוג נואמי הפד - Logan ב-10:50, Schmid ב-13:30, Paulson ב-18:30 שעון ניו יורק - מקור משני",
+    "url": "https://www.wrightson.com/fedspeak-database",
+    "label_en": "Wrightson FedSpeak: Fed speaker log - Logan 10:50am, Schmid 1:30pm, Paulson 6:30pm New York time - secondary source"
+   },
+   {
+    "label": "Investing.com: תצוגת יום המסחר - קונצנזוס CPI ופרטי ADP ו-NFIB - מקור משני",
+    "url": "https://www.investing.com/news/stock-market-news/cpi-data-and-fed-speakers-highlight-tuesdays-economic-calendar-93CH-5013020",
+    "label_en": "Investing.com: trading-day preview - CPI consensus and ADP/NFIB details - secondary source"
+   },
+   {
+    "label": "Forex Factory: לוח הכלכלי ל-10 בנובמבר 2026 - מקור משני",
+    "url": "https://www.forexfactory.com/calendar?day=nov10.2026",
+    "label_en": "Forex Factory: economic calendar for November 10, 2026 - secondary source"
+   }
+  ],
+  "טקסט": "(כל השעות בזמן ישראל)\n\n15:30 - מדד המחירים לצרכן (CPI) לאוקטובר, לפי לוח הפרסומים הרשמי של ה-BLS. קונצנזוס: +0.3% חודשי כולל מול +0.6% קודם; +0.2% ליבה מול +0.3% קודם.\n\n15:15 - שינוי תעסוקה שבועי של ADP, רבע שעה לפני ה-CPI.\n\n13:00 - מדד האופטימיות של עסקים קטנים NFIB. הקונצנזוס נע בין 97.7 ל-98.0 (משתנה בין המקורות) מול 97.9 קודם.\n\nנואמי פד: Waller ב-11:00 (ועידת בנק אוף אינגלנד בלונדון), Logan ב-17:50, Schmid ב-20:30, Bowman ב-22:30 ושוב ב-01:30, Paulson ב-01:30. שעות הנואמים מחברי הדירקטוריון (Waller, Bowman) אומתו מול לוח הנאומים הרשמי של הפדרל ריזרב; יתר השעות לפי אגרגטורי היומן.\n\nזהו פריט ה-Morning Preview היומי - מכאן ואילך הוא מתפרסם באפליקציה בלבד ולא נשלח בוואטסאפ.",
+  "כותרת_en": "Daily look - Wall Street, Tuesday Nov 10, 2026",
+  "טקסט_en": "(All times Israel time)\n\n3:30pm - October Consumer Price Index (CPI), per the BLS official release schedule. Consensus: +0.3% month-over-month headline vs +0.6% prior; +0.2% core vs +0.3% prior.\n\n3:15pm - ADP weekly employment change, fifteen minutes before CPI.\n\n1:00pm - NFIB Small Business Optimism index. Consensus ranges between 97.7 and 98.0 (varies by source) vs 97.9 prior.\n\nFed speakers: Waller at 11:00am (Bank of England conference, London), Logan at 5:50pm, Schmid at 8:30pm, Bowman at 10:30pm and again at 1:30am, Paulson at 1:30am. Times for Board members (Waller, Bowman) verified against the Federal Reserve official speeches calendar; other times per calendar aggregators.\n\nThis is the daily Morning Preview item - from now on it is published in the app only and not sent on WhatsApp.",
+  "תאריך": "2026-11-10 08:50",
+  "הועלה": "2026-11-10 08:50",
+  "מזהה": "n-1158",
+  "_translation": {
+   "en": {
+    "source_hash": "008f8eac2ff7bcf9184db7b8f6c2524c992dc4f0b5e229156e35f274324a7adb",
+    "schema_version": 1
+   }
+  }
  }
 ]
