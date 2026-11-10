@@ -27864,5 +27864,34 @@
     "schema_version": 1
    }
   }
+ },
+ {
+  "כותרת": "דרום קוריאה: רשות התחרות פתחה בדיון פורמלי נגד מיזוג Naver-Dunamu; הבודק קבע הפרה של חוק הגבלים עסקיים",
+  "category": "micro",
+  "קישור": "https://www.ftc.go.kr/www/selectBbsNttView.do?bordCd=3&key=12&nttSn=48208&searchCtgry=01,02",
+  "מקורות": [
+   {
+    "label": "רשות הסחר ההוגן של קוריאה (KFTC): הודעה רשמית על פתיחת הליך הדיון, 10 בנובמבר",
+    "url": "https://www.ftc.go.kr/www/selectBbsNttView.do?bordCd=3&key=12&nttSn=48208&searchCtgry=01,02",
+    "label_en": "Korea Fair Trade Commission (KFTC): official press release opening deliberations, November 10"
+   },
+   {
+    "label": "Korea Times: סיקור באנגלית, 10 בנובמבר",
+    "url": "https://www.koreatimes.co.kr/business/companies/20261110/navers-dunamu-takeover-faces-antitrust-scrutiny-amid-competition-concerns",
+    "label_en": "Korea Times: English coverage, November 10"
+   }
+  ],
+  "טקסט": "רשות הסחר ההוגן של קוריאה (KFTC): 10.11.2026 | ההודעה פורסמה באתר הרשות. פרסום אפליקציה: 10.11.2026\n\nרשות התחרות הקוריאנית הודיעה רשמית על פתיחת הליך דיון (심의) בעסקת המיזוג בין Naver Financial, זרוע הפיננסים של Naver (035420.KS), לבין Dunamu, המפעילה של בורסת הקריפטו הגדולה במדינה Upbit. דוח הבודק (הממונה על החקירה) נמסר לוועדה ונשלח לחברות ב-6 בנובמבר.\n\nתנאי העסקה: החלפת מניות כוללת (포괄적 주식교환) - Naver Financial תרכוש את מלוא מניות Dunamu, ובעלי מניות Dunamu יקבלו כ-2.54 מניות Naver Financial על כל מניה. בסיום, Dunamu תהפוך לחברת-בת בבעלות מלאה.\n\nקביעות הבודק, לפי ההודעה הרשמית:\n- העסקה עלולה להגביל באופן מהותי את התחרות בשלל שווקים; הוגדרו 10 שווקים רלוונטיים, בהם תשלומים מקוונים, בורסות נכסים דיגיטליים, פורטל חיפוש, פרסום מקוון, קניות מקוונות, MyData פיננסי, תיווך מניות לא רשומות, פלטפורמות השקעה במניות רשומות, מסחר יד-שנייה מקוון - ושוק עתידי של הנפקת סטייבלקוין צמוד וון.\n- זוהו 12 שילובים אופקיים, אנכיים ומעורבים (2 האופקיים נקבעו כבטוחים).\n- הבודק קבע שהעסקה מהווה הפרה של סעיף 9(1) לחוק הגבלת המונופול והסחר ההוגן, והציע צעדי תיקון בהתבסס על תוכנית התיקון הסופית שהגישו החברות.\n\nרקע: דיווח המיזוג הוגש ב-28 בנובמבר 2025. החברות הגישו טיוטת צעדי תיקון ששולבה בדוח הבודק. ההחלטה הסופית - אישור, דחייה או התניה - תתקבל על ידי הנציבים העצמאיים של הוועדה, ודוח הבודק אינו מחייב אותה. דו\"ח הבודק כולל את עמדת הבודק בלבד.\n\nמשמעות: זו פעולת הרגולציה המשמעותית ביותר עד כה נגד עסקת הטכנולוגיה-קריפטו הגדולה בקוריאה, המאחדת את פלטפורמת התשלומים המובילה (Naver Pay) עם בורסת הקריפטו הגדולה במדינה.",
+  "כותרת_en": "South Korea: FTC opens formal deliberations on the Naver-Dunamu merger; examiner finds competition-law violation",
+  "טקסט_en": "Korea Fair Trade Commission (KFTC): Nov 10, 2026 | statement posted on the regulator's site. App publication: Nov 10, 2026\n\nKorea's antitrust regulator officially opened deliberation proceedings on the merger between Naver Financial, the fintech arm of Naver (035420.KS), and Dunamu, operator of the country's largest crypto exchange Upbit. The examiner's report was submitted to the Commission and served on the companies on November 6.\n\nDeal terms: a comprehensive stock swap - Naver Financial acquires all Dunamu shares, and Dunamu shareholders receive about 2.54 Naver Financial shares per share. Dunamu would become a wholly owned subsidiary.\n\nExaminer's findings, per the official release:\n- The deal could substantially restrict competition across multiple markets; 10 relevant markets were defined, including online payments, digital-asset exchanges, search portals, online advertising, online shopping, financial MyData, unlisted-stock brokerage, listed-stock investment platforms, online secondhand trading - and a future KRW stablecoin issuance market.\n- 12 horizontal, vertical and conglomerate combinations were identified (the 2 horizontal ones deemed safe).\n- The examiner found the merger violates Article 9(1) of the Monopoly Regulation and Fair Trade Act and proposed corrective measures based on the companies' final remedy submission.\n\nBackground: the merger filing was received November 28, 2025. The companies submitted draft remedies that were incorporated into the examiner's report. The final decision - approval, rejection or conditions - rests with the independent commissioners, who are not bound by the report. A hearing is expected soon.\n\nSignificance: the most significant regulatory action yet against Korea's landmark tech-crypto deal, uniting the leading payments platform (Naver Pay) with the country's biggest crypto exchange.",
+  "תאריך": "2026-11-10 05:08",
+  "הועלה": "2026-11-10 05:08",
+  "מזהה": "n-1153",
+  "_translation": {
+   "en": {
+    "source_hash": "649c428aed859d17ddad14b7e20f2242a17f98101d8a70490cbd9098fe0f9aca",
+    "schema_version": 1
+   }
+  }
  }
 ]
