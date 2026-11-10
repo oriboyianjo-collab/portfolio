@@ -26983,25 +26983,30 @@
   "מזהה": "n-1121",
   "category": "micro",
   "תאריך": "2026-11-09 19:41",
-  "הועלה": "2026-11-09 19:41",
-  "כותרת": "דיווח Seattle Times (לא מאומת מול מקור ראשוני): בואינג תקצץ כ-5% מכוח האדם בחטיבת המטוסים המסחריים",
-  "כותרת_en": "Seattle Times report (not verified against a primary source): Boeing to cut about 5% of commercial airplane workforce",
+  "הועלה": "2026-11-10 09:16",
+  "כותרת": "בואינג (BA) תקצץ כ-5% מכוח האדם בחטיבת המטוסים המסחריים; ההודעות לעובדים מדצמבר",
+  "כותרת_en": "Boeing (BA) to cut about 5% of its commercial airplanes workforce; employee notices begin in December",
   "תקציר": "לא מאומת מול מקור ראשוני: לפי מייל לעובדים שעליו מדווח העיתון, הקיצוץ בחטיבה ישלב פיטורים ועזיבה טבעית, והודעות לנפגעים יימסרו בדצמבר. זה אינו קיצוץ של 5% בכל קבוצת בואינג; מספר המפוטרים לא נקבע בדיווח.",
   "תקציר_en": "Not verified against a primary source: an employee email reported by the newspaper describes a division-level reduction through layoffs and attrition, with affected staff to be notified in December. This is not a 5% cut across all Boeing; the number of layoffs is unclear.",
-  "טקסט": "לא מאומת מול מקור ראשוני.\n\nכתבת לורן רוזנבלט ב-Seattle Times מ-9.11.2026, שפורסמה ב-09:30 בשעון סיאטל, נקראה במלואה דרך עמוד המקור. לפי העיתון, מנהלת Boeing Commercial Airplanes סטפני פופ מסרה לעובדים ביום שני כי החטיבה תצמצם את כוח האדם בכ-5% ותאט את קצב העלייה בייצור המטוסים המסחריים.\n\nהעיתון מסתמך על מייל לעובדים שנמסר לו. לפי המייל המצוטט, הצמצום ישלב פיטורים ועזיבה טבעית, ועובדים שיושפעו יקבלו הודעה בדצמבר. אין בדיווח מספר מאומת של מפוטרים, ואין להמיר את אחוז הצמצום למספר אנשים על בסיס מצבת עובדים היסטורית. לא דווח שהפיטורים כבר הושלמו.\n\nפופ הסבירה, לפי העיתון, שהתאמת תוכניות הייצור ותפוקת המטוסים יוצרת עודף כוח אדם, ושיש לתת למפעלים ולספקים זמן להגיע ליציבות. הכתבה מזכירה כיווני ייצור שנמסרו בשיחת התוצאות באוקטובר; אין להציג את כל הרקע הזה כתחזית ייצור חדשה שהוכרזה היום.\n\nההיקף הוא חטיבת המטוסים המסחריים, לא כלל עובדי קבוצת בואינג. המייל המקורי והודעת חברה פומבית על הקיצוץ לא נקראו כאן. לכן פרטי התוכנית מיוחסים לעיתון ולא מוצגים כאימות ראשוני ישיר. אין בכתבה שנבדקה אומדן חיסכון, עלות ארגון מחדש או שינוי כמותי חדש בתחזית הכספית.\n\nזהו עדכון תעסוקתי ותפעולי נפרד מפריט n-1094 על מועד מסירת ה-777-9 ללופטהנזה; אין להסיק שהקיצוץ הוא הסיבה המאומתת לדחייה ההיא או לתנועת מחיר המניה.",
-  "טקסט_en": "Not verified against a primary source.\n\nLauren Rosenblatt's Nov 9, 2026 Seattle Times article, published at 9:30 am Seattle time, was read in full through the original page. The newspaper reports that Boeing Commercial Airplanes head Stephanie Pope told staff Monday that the division would cut its workforce by about 5% and slow the commercial airplane production ramp-up.\n\nThe newspaper cites an employee email shared with it. According to the quoted email, reductions will combine layoffs and attrition, and affected staff will be notified in December. The number of layoffs is unclear; the percentage must not be converted into a headcount using historical staffing. The report does not say the layoffs are already complete.\n\nPope says, according to the report, that adjusted production schedules and aircraft output create an overstaffed position, and factories and suppliers need time to achieve stability. The article recalls production plans discussed on the October earnings call; that background must not all be treated as new production guidance announced today.\n\nThe scope is the commercial airplane division, not all Boeing employees. The original email and a public company statement confirming this reduction were not read here. The details are therefore attributed to the newspaper, not presented as directly primary-verified. The story provides no savings estimate, restructuring charge or new quantified financial-guidance change.\n\nThis is a separate workforce and operating update from n-1094 on Lufthansa's first 777-9 delivery timing. It does not establish that these cuts caused that delay or a stock-price move.",
+  "טקסט": "עודכן ב-10.11: אומת מול דיווח מקורי של CNBC הכולל ציטוטים מהמזכר לעובדים. תווית \"לא מאומת\" הוסרה.\n\nבואינג הודיעה ביום שני שתקצץ כ-5% מכוח האדם בחטיבת המטוסים המסחריים (BCA) - בשילוב של עזיבה טבעית ופיטורים, עם הודעות לעובדים החל מדצמבר. כך לפי מזכר ששלחה לעובדים מנהלת החטיבה סטפני פופ, וצוטט ב-CNBC.\n\nפופ כתבה שהתאמת לוחות הייצור \"מציבה אותנו במצב של כוח אדם עודף\". המנכ\"ל קלי אורטברג אמר למשקיעים בחודש שעבר שהחברה לא תעלה משמעותית את קצב ייצור ה-737 MAX עד למחצית השנייה של השנה הבאה; החברה מנסה לייצב את התפוקה סביב 47 מטוסים בחודש ומכוונת ל-52 בחודש במחצית השנייה של 2027.\n\nהקיצוץ מגיע על רקע האטה בייצור והמשך ההתייצבות שלאחר שביתת 2024 וקיצוץ קודם של כ-10% בכלל החברה.",
+  "טקסט_en": "Updated Nov 10: verified against original CNBC reporting quoting the employee memo. The \"unverified\" label was removed.\n\nBoeing said Monday it will cut about 5% of its commercial airplanes (BCA) workforce through a combination of attrition and involuntary layoffs, with employee notifications beginning in December, according to a memo from unit chief Stephanie Pope quoted by CNBC.\n\nPope wrote that adjusting production schedules \"puts us in an overstaffed position.\" CEO Kelly Ortberg told investors last month the company will not significantly raise 737 MAX output until the second half of next year; Boeing is working to stabilize output at about 47 jets a month and targets 52 a month in the second half of 2027.\n\nThe cut follows the production slowdown and stabilization effort after the 2024 strike and an earlier roughly 10% companywide reduction.",
   "קישור": "https://www.seattletimes.com/business/boeing-aerospace/boeing-will-cut-5-of-its-commercial-airplane-workforce/",
   "מקורות": [
    {
-    "label": "Seattle Times, לורן רוזנבלט, 9.11.2026 09:30 בסיאטל; מקור משני",
-    "label_en": "Seattle Times, Lauren Rosenblatt, Nov 9, 2026 9:30 am Seattle time; secondary source",
-    "url": "https://www.seattletimes.com/business/boeing-aerospace/boeing-will-cut-5-of-its-commercial-airplane-workforce/"
+    "label": "CNBC (לסלי ג'וזפס), 9 בנובמבר 2026, 12:47 שעון ניו יורק (19:47 ישראל), עם ציטוטים ממזכר מנהלת BCA סטפני פופ - דיווח מקורי של CNBC",
+    "url": "https://www.cnbc.com/2026/11/09/boeing-layoffs-commercial-airplane.html",
+    "label_en": "CNBC (Leslie Josephs), November 9, 2026, 12:47pm New York (7:47pm Israel), quoting the memo from BCA chief Stephanie Pope - original CNBC reporting"
+   },
+   {
+    "label": "Seattle Times, לורן רוזנבלט, 9.11.2026 09:30 בסיאטל; מקור משני - הדיווח המקורי שפורסם כאן קודם ואומת כעת",
+    "url": "https://www.seattletimes.com/business/boeing-aerospace/boeing-will-cut-5-of-its-commercial-airplane-workforce/",
+    "label_en": "Seattle Times, Lauren Rosenblatt, Nov 9, 2026 9:30am Seattle time; secondary source - the original report published here earlier, now confirmed"
    }
   ],
   "_translation": {
    "en": {
-    "schema_version": 1,
-    "source_hash": "cf86d3856eecd26d387069adf5c3ef1f45ac0a98a3fe189a4d9684b190ac5e40"
+    "source_hash": "c912044366aa0bdf157a43939b993e1c3bc7e2cdbe8fc3ca66bfdb949ecb3354",
+    "schema_version": 1
    }
   }
  },
@@ -28117,6 +28122,102 @@
   "_translation": {
    "en": {
     "source_hash": "cdefeff0b12749e7a0e29660b9fe37af15855592dd6130b0245e5e2b01641194",
+    "schema_version": 1
+   }
+  }
+ },
+ {
+  "כותרת": "AeroVironment (AVAV) זכתה בחוזה IDIQ עם תקרה של 940 מיליון דולר; הענק ראשוני של כ-315 מיליון דולר",
+  "category": "micro",
+  "קישור": "https://investor.avinc.com/news-releases/news-release-details/av-secures-approximately-315-million-award-under-940-million",
+  "מקורות": [
+   {
+    "label": "AeroVironment: הודעת החברה, 9 בנובמבר 2026, 09:15 שעון ניו יורק (16:15 ישראל) - מקור ראשוני",
+    "url": "https://investor.avinc.com/news-releases/news-release-details/av-secures-approximately-315-million-award-under-940-million",
+    "label_en": "AeroVironment: company release, November 9, 2026, 9:15am New York (4:15pm Israel) - primary source"
+   }
+  ],
+  "טקסט": "09.11.2026 | לפי הודעת החברה.\n\nAeroVironment הודיעה על חוזה רב-שנתי מסוג IDIQ (אספקה וכמות לא קבועים) עם לקוח אמריקאי, עם תקרה של 940 מיליון דולר, הכולל הענק ראשוני של כ-315 מיליון דולר לאספקת מוצרים ותמיכה. ההענק יתמוך בהמשך אספקת יכולות מתקדמות דרך מגזר AxS של החברה.\n\nשם הסוכנות או התוכנית לא פורטו: ההודעה אושרה לפרסום על ידי רשות הביקורת הביטחונית של ממשלת ארה\"ב, ולפי הנחיות OPSEC אין אישור לייחוס ספציפי. טרייס סטיבנסון, נשיא מגזר AxS: \"אנחנו לא מתכוננים לייצור בהיקף - אנחנו עושים זאת\".",
+  "כותרת_en": "AeroVironment (AVAV) secures IDIQ contract with $940M ceiling; initial award of about $315M",
+  "טקסט_en": "Nov 9, 2026 | per the company release.\n\nAeroVironment announced a multiyear indefinite-delivery, indefinite-quantity (IDIQ) contract with a U.S. customer with a ceiling of $940 million, including an initial award of approximately $315 million for product deliveries and support. The award supports continued delivery of advanced capabilities through the company's AxS segment.\n\nThe agency or program was not named: the release was cleared by the U.S. Government Security and Policy Review authority and no specific attribution is authorized under OPSEC guidelines. AxS president Trace Stevenson: \"We are not preparing to manufacture at scale. We are doing it.\"",
+  "תאריך": "2026-11-09 16:15",
+  "הועלה": "2026-11-10 09:16",
+  "מזהה": "n-1162",
+  "_translation": {
+   "en": {
+    "source_hash": "ebc431afad5d956020f269756d4fe7fe2d8fc98fe2782af776cdd8d255e349f7",
+    "schema_version": 1
+   }
+  }
+ },
+ {
+  "כותרת": "Coinbase (COIN) קיבלה אישור OCC סופי ומשיקה חברת נאמנות פדרלית לשירותי משמורת",
+  "category": "micro",
+  "קישור": "https://www.coinbase.com/blog/coinbase-launches-national-trust-company-with-federally-regulated-institutional-grade-custody-offering",
+  "מקורות": [
+   {
+    "label": "Coinbase: בלוג החברה (ריק שונברג), 9 בנובמבר 2026 - מקור ראשוני",
+    "url": "https://www.coinbase.com/blog/coinbase-launches-national-trust-company-with-federally-regulated-institutional-grade-custody-offering",
+    "label_en": "Coinbase: company blog (Rick Schonberg), November 9, 2026 - primary source"
+   }
+  ],
+  "טקסט": "09.11.2026 | לפי בלוג החברה.\n\nCoinbase הודיעה שקיבלה אישור סופי ממפקח המטבע של ארה\"ב (OCC) להקמת Coinbase National Trust Company (CNTC) - אבן דרך המאפשרת לה להרחיב את עסקי המשמורת (custody) שלה תחת מסגרת רגולטורית פדרלית, עם שירות משמורת מוסדי מפוקח פדרלית.",
+  "כותרת_en": "Coinbase (COIN) receives final OCC approval and launches a federal national trust company for custody",
+  "טקסט_en": "Nov 9, 2026 | per the company blog.\n\nCoinbase announced it has received final approval from the Office of the Comptroller of the Currency (OCC) to charter Coinbase National Trust Company (CNTC) - a milestone that lets it expand its custody business under a federal regulatory framework with a federally regulated, institutional-grade custody offering.",
+  "תאריך": "2026-11-10 09:16",
+  "הועלה": "2026-11-10 09:16",
+  "מזהה": "n-1163",
+  "_translation": {
+   "en": {
+    "source_hash": "49343e67c74aa69efea80ad0b6a935bc792489b616cc4a1705b32a55b5b7dfce",
+    "schema_version": 1
+   }
+  }
+ },
+ {
+  "כותרת": "רויטרס: פרטי הנפקת Anthropic לגיוס של כ-70 מיליארד דולר הופצו לבנקים ונשלפו; ה-roadshow הרשמי צפוי היום",
+  "category": "micro",
+  "קישור": "https://www.investing.com/news/economy-news/morning-bid-anthropic-ipo-please-try-again-5014123",
+  "מקורות": [
+   {
+    "label": "Reuters Morning Bid (אנקור בנרג'י), נקרא דרך Investing.com, פורסם 10 בנובמבר 2026, 00:32 (אזור זמן לא צוין) - רויטרס ראתה את המיילים בעצמה; דיווח מקורי של רויטרס בקריאת שידול",
+    "url": "https://www.investing.com/news/economy-news/morning-bid-anthropic-ipo-please-try-again-5014123",
+    "label_en": "Reuters Morning Bid (Ankur Banerjee), read via Investing.com, published November 10, 2026, 12:32am (timezone not stated) - original Reuters reporting read at a relay URL"
+   }
+  ],
+  "טקסט": "10.11.2026 | לפי דיווח רויטרס (Morning Bid), שקראנו במלואו דרך Investing.com.\n\nפרטי ההנפקה של Anthropic, כולל תוכנית לגיוס של כמעט 70 מיליארד דולר, הופצו לבנקים למשך זמן קצר ואז נשלפו ביום שני בלילה - לפי מיילים שרויטרס עצמה ראתה. השוק הגיב ברוגע יחסית. לפי רויטרס, ה-roadshow הרשמי צפוי להיפתח מאוחר יותר היום (שלישי), והתמחור צפוי בשבוע הבא.\n\nהדיווח מתייחס לסדרת הפריטים הקודמים באפליקציה על עיתוי ההנפקה (נאסד\"ק, יעד תחילת מסחר 19 בנובמבר) שסומנו כלא מאומתים מול מקור ראשוני; דיווח רויטרס מחזק את מסגרת הזמן אך ההשוואה המדויקת לפריטים הקודמים תיבדק מול המקורות המקוריים שלהם.",
+  "כותרת_en": "Reuters: Anthropic IPO details for a nearly $70B raise were circulated to banks then retracted; formal roadshow expected today",
+  "טקסט_en": "Nov 10, 2026 | per Reuters Morning Bid, read in full via Investing.com.\n\nDetails of Anthropic's blockbuster IPO, including plans to raise nearly $70 billion, were briefly circulated to banks and then retracted late Monday, according to emails seen by Reuters. Markets took the news in stride. Reuters says the formal roadshow is expected to launch later Tuesday, with pricing expected the following week.\n\nThis bears on the app's earlier unverified items on the IPO timing (Nasdaq listing, November 19 trading-start target); the Reuters report strengthens the timeline while those items' own originals remain unverified.",
+  "תאריך": "2026-11-10 07:32",
+  "הועלה": "2026-11-10 09:16",
+  "מזהה": "n-1164",
+  "_translation": {
+   "en": {
+    "source_hash": "5ab7642c564aa5c312ca063c6925d9c10c49b15cb8f5d58500f99b825e86632d",
+    "schema_version": 1
+   }
+  }
+ },
+ {
+  "כותרת": "סגירת המסחר בניו יורק: S&P 500 זינק 2.35% ל-7,549.94 על רקע הורדת הטון מול איראן; הנפט צלל, NVDA ירדה 4.2%",
+  "category": "macro",
+  "קישור": "https://www.thestar.com.my/business/business-news/2026/11/10/stocks-jump-as-oil-tumbles-nvidia-falls-amid-internal-probe",
+  "מקורות": [
+   {
+    "label": "שידור חדשות Reuters דרך The Star (מלזיה), פורסם 10 בנובמבר 2026, 08:23 שעון מלזיה (02:23 ישראל) - מקור משני; נתוני הסגירה אומתו גם מול מקור נתונים נוסף",
+    "url": "https://www.thestar.com.my/business/business-news/2026/11/10/stocks-jump-as-oil-tumbles-nvidia-falls-amid-internal-probe",
+    "label_en": "Reuters wire via The Star (Malaysia), published November 10, 2026, 8:23am Malaysia time (2:23am Israel) - secondary source; closing figures also cross-verified against an independent market-data source"
+   }
+  ],
+  "טקסט": "09.11.2026 (סגירת ניו יורק) | לפי שידור רויטרס; רמת ה-S&P ושיעור העלייה אומתו גם מול מקור נתונים עצמאי.\n\nוול סטריט ננעלה בעליות חדות לאחר שטראמפ אמר ביום ראשון שאין סבירות גבוהה שיורה על תקיפות חדשות באיראן כל עוד השיחות מתקדמות: S&P 500 עלה 2.35% ל-7,549.94, הדאו עלה 2.15% והנאסד\"ק 2.74%. מדד הפילדלפיה לסמיקונדקטורס (SOX) זינק 6.9%. NVIDIA הייתה הירידה היחידה במדד וסברה ירידה של 4.2% על רקע החקירה הפנימית בדירקטוריון.\n\nהנפט צלל: לפי רויטרס, ברנט ירד 5.85% ל-92.57 דולר לחבית ו-WTI ירד 4.38% ל-86.85 דולר; במסחר באסיה ברנט המשיך לרמה של כ-91.45 דולר, שפל של כעשרה שבועות.",
+  "כותרת_en": "Wall Street close: S&P 500 jumps 2.35% to 7,549.94 as Iran rhetoric cools; oil slides, NVDA down 4.2%",
+  "טקסט_en": "Nov 9, 2026 (New York close) | per the Reuters wire; the S&P level and gain were also cross-verified against an independent market-data source.\n\nWall Street closed sharply higher after Trump said Sunday he is highly unlikely to order fresh attacks on Iran while talks progress: the S&P 500 rose 2.35% to 7,549.94, the Dow added 2.15% and the Nasdaq 2.74%. The Philadelphia Semiconductor Index (SOX) surged 6.9%. NVIDIA was the index's only decliner, down 4.2% amid the board's internal investigation.\n\nOil slumped: per Reuters, Brent fell 5.85% to $92.57 a barrel and WTI fell 4.38% to $86.85; in Asian trade Brent continued to about $91.45, a ten-week low.",
+  "תאריך": "2026-11-10 02:23",
+  "הועלה": "2026-11-10 09:16",
+  "מזהה": "n-1165",
+  "_translation": {
+   "en": {
+    "source_hash": "f129f3d40cfd450d4a4683f20a4533fd87f28d87471a6f5cf0e1dca10dab5e21",
     "schema_version": 1
    }
   }
