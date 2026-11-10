@@ -1086,6 +1086,8 @@ html:not(.dark) .pchg .chg:has(.pos){background:#ecfdf5;border-color:#a7f3d0}htm
 </style><style id="watch-session-price-layout">
 #wlLists .wr.wgrid:not(.egrid),#wlLists .wl-cols.wgrid{grid-template-columns:var(--k-lg) minmax(0,1fr) var(--k-sp) calc(var(--k-d) + 12px);grid-template-areas:"lg nm sp d" "lg cp sp d"}
 #wlLists .wl-cols>.pc-p{display:none}
+/* Keep the crypto row footprint; the removed session slot becomes outer breathing room, not a gap between numbers. */
+html.ext-sess #wlLists .wr[data-continuous="true"]>.pc-d{padding-block:7.5px}
 #wlLists .wr.wgrid:not(.egrid)>.pc-d{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0}
 #wlLists .wr.wgrid:not(.egrid)>.pc-d>.pc-p{display:block;text-align:center;min-width:0;width:100%;overflow:visible}
 #wlLists .wr.wgrid:not(.egrid)>.pc-d .wl-p{display:inline-block;max-width:100%;width:max-content;font-size:.748rem;font-weight:700;line-height:1.2;white-space:nowrap;text-align:center}
@@ -4449,9 +4451,9 @@ function wlFlashPrices(before){
 }
 function wlRowHtml(it, i, n){ const q = iq(it), c = instCache[it.q+'|1D'], pts = c ? withLive(it, '1D', c.pts) : null, up = q && q.prev ? q.price >= q.prev : true;
   const {pct, extO} = wlDayView(it, q);
-  return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}">${it.fx ? `<span class="fxfl" aria-hidden="true">${it.fl}</span>` : logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div>${it.fx && staleTag(q) ? `<div class="pname" style="font-size:.72rem;white-space:normal">${esc(staleTag(q))}</div>` : ''}</div>`+
+  return `<div class="wr wgrid" role="button" tabindex="0" data-ws="${esc(it.sym)}"${it.type==='crypto' ? ' data-continuous="true"' : ''}>${it.fx ? `<span class="fxfl" aria-hidden="true">${it.fl}</span>` : logoHtml(it.sym)}<div class="pc-n"><div class="psym"><span class="ltr">${esc(it.sym)}</span></div><div class="pname">${esc(it.n)}</div>${it.fx && staleTag(q) ? `<div class="pname" style="font-size:.72rem;white-space:normal">${esc(staleTag(q))}</div>` : ''}</div>`+
     `<div class="pcol pc-s wl-live">${watchSparkHtml(it)}</div><div class="pcol pc-m wl-live num">${capT(q && q.mcap, it.cur)}</div>`+
-    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${it.y && q && q.prev ? `<small class="ybp ${cls(pct)}">${chgInst(it, q.price, q.prev).sub}</small>` : ''}${extLineHtml(q && (q.hlt ? {halt:q.hlt} : extO))}<div class="pcol pc-p wl-live"><span class="wl-p v num" data-wl-price="${q ? ((it.fx||it.y) ? q.price : (q.ext ? q.ext.price : q.price)) : ''}">${q ? ((it.fx||it.y) ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div></div>`+
+    `<div class="pcol pc-d wl-live"><b class="num ${cls(pct)}">${pct!=null ? fmtPct(pct) : '—'}</b>${it.y && q && q.prev ? `<small class="ybp ${cls(pct)}">${chgInst(it, q.price, q.prev).sub}</small>` : ''}${it.type==='crypto' ? '' : extLineHtml(q && (q.hlt ? {halt:q.hlt} : extO))}<div class="pcol pc-p wl-live"><span class="wl-p v num" data-wl-price="${q ? ((it.fx||it.y) ? q.price : (q.ext ? q.ext.price : q.price)) : ''}">${q ? ((it.fx||it.y) ? fmtInst(it, q.price) : fmtPrice(q.ext ? q.ext.price : q.price, it.cur)) : '—'}</span></div></div>`+
     `${I18n.p("ui-0550","<div class=\"wl-ed\" style=\"grid-column:3/-1\"><button data-wm=\"up\" aria-label=\"הזזה למעלה\" ")}${i===0?'disabled':''}${I18n.p("ui-0551",">▲</button><button data-wm=\"down\" aria-label=\"הזזה למטה\" ")}${i===n-1?'disabled':''}${I18n.p("ui-0552",">▼</button><button data-wm=\"del\" class=\"del\" aria-label=\"הסרה מהרשימה\">✕</button></div></div>")}`; }
 // v112: lists are horizontal tabs at the top; only the active list renders, without the old collapsible header
 function wlTabsHtml(){ const cur = wlCur().id;
