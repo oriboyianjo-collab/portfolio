@@ -28096,5 +28096,29 @@
     "schema_version": 1
    }
   }
+ },
+ {
+  "כותרת": "פדקס (FDX) מרחיבה את הקישוריות סין-ארה\"ב לקראת עונת השיא: חמש טיסות מטען שבועיות חדשות בבואינג 777F",
+  "category": "micro",
+  "קישור": "https://newsroom.fedex.com/newsroom/asia-english/fedex-expands-china-u-s-connectivity-ahead-of-peak-season-to-support-semiconductors-ai-supply-chains-premium-e-commerce-and-advanced-industrial-manufacturing",
+  "מקורות": [
+   {
+    "label": "FedEx: הודעת החברה על הרחבת הקישוריות סין-ארה\"ב, פורסמה 9 בנובמבר 2026, 06:45 (אזור זמן לא צוין במקור) - מקור ראשוני",
+    "url": "https://newsroom.fedex.com/newsroom/asia-english/fedex-expands-china-u-s-connectivity-ahead-of-peak-season-to-support-semiconductors-ai-supply-chains-premium-e-commerce-and-advanced-industrial-manufacturing",
+    "label_en": "FedEx: company release on the China-U.S. connectivity expansion, published November 9, 2026, 6:45am (timezone not stated in source) - primary source"
+   }
+  ],
+  "טקסט": "09.11.2026 | לפי הודעת החברה.\n\nפדקס מרחיבה את הקישוריות בין סין לארה\"ב לקראת עונת השיא: חמש טיסות מטען שבועיות חדשות במטוסי בואינג 777F, ארבע מהן משנחאי וגואנגזו. שלוש טיסות יחברו את שנחאי לאנקורג' ולממפיס דרך אוסקה, והרביעית תחבר את גואנגזו ישירות לאנקורג' וממפיס.\n\nבנוסף, הרשת המורחבת כוללת חיבור חדש של חמש טיסות בשבוע ללקוחות בסין אל דאלאס-פורט וורת' דרך אנקורג', שער נוסף לאחד משווקי הטכנולוגיה ומרכזי הנתונים המובילים בארה\"ב.\n\nההרחבה מכוונת לשרשרת האספקה של ייצור סמיקונדקטורס, תשתיות AI, מסחר אלקטרוני פרימיום וייצור תעשייתי מתקדם. בהודעה לא פורטו נתוני הכנסות או חוזים.",
+  "כותרת_en": "FedEx (FDX) expands China-U.S. connectivity ahead of peak season: five new weekly Boeing 777F freighter flights",
+  "טקסט_en": "Nov 9, 2026 | per the company release.\n\nFedEx is expanding China-U.S. connectivity ahead of peak season with five new weekly Boeing 777F freighter flights, four of them from Shanghai and Guangzhou. Three flights will connect Shanghai to Anchorage and Memphis via Osaka, and the fourth links Guangzhou directly to Anchorage and Memphis.\n\nThe enhanced network also adds a new five-times-weekly connection for China customers to Dallas-Fort Worth via Anchorage, an additional gateway to one of the leading U.S. technology and data center markets.\n\nThe expansion targets semiconductor manufacturing, AI infrastructure, premium e-commerce and advanced industrial manufacturing supply chains. No revenue or contract figures were disclosed.",
+  "תאריך": "2026-11-09 06:45",
+  "הועלה": "2026-11-10 09:11",
+  "מזהה": "n-1161",
+  "_translation": {
+   "en": {
+    "source_hash": "cdefeff0b12749e7a0e29660b9fe37af15855592dd6130b0245e5e2b01641194",
+    "schema_version": 1
+   }
+  }
  }
 ]
