@@ -27840,5 +27840,29 @@
     "schema_version": 1
    }
   }
+ },
+ {
+  "כותרת": "קליפורניה: הבוחרים דחו את \"מס המיליארדרים\" (הצעה 40) - מס חד-פעמי של 5% על הון של מעל מיליארד דולר לא יחול",
+  "category": "macro",
+  "קישור": "https://apnews.com/article/california-billionaire-tax-4ae8cbdc057b99579818016f02ac9d9e",
+  "מקורות": [
+   {
+    "label": "סוכנות הידיעות AP: קליפורניה דחתה את המס על הון המיליארדרים, 10 בנובמבר",
+    "url": "https://apnews.com/article/california-billionaire-tax-4ae8cbdc057b99579818016f02ac9d9e",
+    "label_en": "Associated Press: California voters reject measure to tax the wealth of billionaires, November 10"
+   }
+  ],
+  "טקסט": "סוכנות הידיעות AP: 10.11.2026 | הקריאה הרשמית פורסמה 04:37 שעון ישראל. פרסום אפליקציה: 10.11.2026\n\nבוחרי קליפורניה דחו את הצעה 40 (Proposition 40) - מס חד-פעמי ראשון מסוגו בארה\"ב בשיעור 5% על שווי ההון של תושבי המדינה שהון נטו שלהם עולה על מיליארד דולר. רוב הכסף היה אמור לכסות קיצוצים פדרליים במימון בריאות, ו-10% היו מופנים לחינוך ולסיוע במזון.\n\nהדחייה היא ניצחון למנהיגים דמוקרטים שהתנגדו למס, בראשם המושל גאווין ניוסום, השוקל התמודדות לנשיאות ב-2028. המתנגדים טענו שהמס היה גורם לעזיבת עשירים את המדינה.\n\nמאבק הקמפיינים היה מהיקרים בתולדות המדינה: צד ה\"נגד\" גייס פי 10 מצד ה\"בעד\". הוועדה הפוליטית Building a Better California, שפעלה להפיל את המס, גייסה מעל 333 מיליון דולר - כמעט שליש ממנו מסרגיי ברין, מייסד-שותף של גוגל, שהזרים לבדו מעל 100 מיליון דולר. ברין ולארי פייג' היו בין המיליארדרים שהחלו לנתק קשרים עם המדינה עוד לפני ההצבעה; מארק צוקרברג לעומתם התחייב להישאר שמונה שנים וערך הסכם עם Meta שיסייע לו לשלם את המס מבלי לאבד את החזקתו בחברה.\n\nאת המס קידמה איגוד העובדים SEIU United Healthcare Workers West, ותמך בו בין השאר הסנאטור ברני סנדרס. לדברי התומכים, המס נועד להחליף כ-100 מיליארד דולר שהמדינה צפויה לאבד במימון פדרלי לבריאות לאורך חמש שנים.\n\nמשמעות לשווקים: ההצעה נחשבה למבחן הגדול ביותר עד כה בארה\"ב לרעיון מיסוי ההון של העשירים ביותר - מיסוי השקעות ולא משכורות. הדחייה משאירה את הסטטוס-קוו על כנו ומסירה סיכון מדיניות שריחף מעל עשירי מעמד הביניים הטכנולוגי של המדינה.",
+  "כותרת_en": "California: voters reject the \"billionaire tax\" (Proposition 40) - one-time 5% levy on wealth above $1B will not take effect",
+  "טקסט_en": "Associated Press: Nov 10, 2026 | race officially called 04:37 Israel time. App publication: Nov 10, 2026\n\nCalifornia voters rejected Proposition 40, a first-in-the-nation one-time 5% tax on the net worth of state residents worth more than $1 billion. Most of the revenue would have backfilled federal healthcare funding cuts, with 10% going to education and food assistance.\n\nThe rejection is a win for Democratic leaders who opposed it, led by Governor Gavin Newsom, who is weighing a 2028 presidential run. Critics argued the tax would drive wealthy residents out of the state.\n\nThe ballot fight was among the most expensive in state history: the \"no\" side raised roughly 10 times the \"yes\" side. The Building a Better California PAC, which worked to defeat the measure, raised more than $333 million - nearly a third of it from Google co-founder Sergey Brin, who personally put in over $100 million. Brin and Larry Page were among the billionaires who began cutting ties with the state ahead of the vote; Mark Zuckerberg, by contrast, committed to stay eight years and made a deal with Meta to help him pay the tax without losing his stake in the company.\n\nThe tax was championed by SEIU United Healthcare Workers West and backed by Senator Bernie Sanders, among others. Supporters said it was needed to replace an estimated $100 billion in federal healthcare funding the state stands to lose over five years.\n\nMarket significance: the measure was the biggest US test yet of taxing the ultra-wealthy through their investments rather than paychecks. The rejection preserves the status quo and removes a policy risk that had hung over the state's tech billionaire class.",
+  "תאריך": "2026-11-10 04:45",
+  "הועלה": "2026-11-10 04:45",
+  "מזהה": "n-1152",
+  "_translation": {
+   "en": {
+    "source_hash": "8ef056dba83e86c10aaf16124cad5e24b75f3c238fae034b0066b40622657f88",
+    "schema_version": 1
+   }
+  }
  }
 ]
