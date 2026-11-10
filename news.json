@@ -27917,5 +27917,34 @@
     "schema_version": 1
    }
   }
+ },
+ {
+  "כותרת": "NVIDIA (NVDA): דירקטוריון החברה חוקר אם ג'נסן הואנג היה מטרה של מאמץ ביון זר; המניה בשפל 7 חודשים",
+  "category": "micro",
+  "קישור": "https://www.koreatimes.co.kr/business/companies/20261109/jensen-huang-affair-casts-shadow-over-nvidias-korea-partnerships",
+  "מקורות": [
+   {
+    "label": "Korea Times: סיקור מקורי מכנס AI Day Seoul, 9 בנובמבר",
+    "url": "https://www.koreatimes.co.kr/business/companies/20261109/jensen-huang-affair-casts-shadow-over-nvidias-korea-partnerships",
+    "label_en": "Korea Times: original coverage from Nvidia AI Day Seoul, November 9"
+   },
+   {
+    "label": "Reuters (בשידור Korea Times): קשרי הואנג-טראמפ בעין הסערה, 10 בנובמבר",
+    "url": "https://www.koreatimes.co.kr/world/20261110/trumps-close-ties-to-nvidias-huang-scrutinized-after-foreign-intelligence-concerns",
+    "label_en": "Reuters wire via Korea Times: Trump-Huang ties under scrutiny, November 10"
+   }
+  ],
+  "טקסט": "Korea Times ו-Reuters: 9-10.11.2026 | פרסום אפליקציה: 10.11.2026\n\nדירקטוריון NVIDIA פתח בחקירה עצמאית אם מנכ\"ל החברה ג'נסן הואנג היה מטרה של מאמץ מודיעין זר, בעקבות דיווח של הניו יורק טיימס על קשר הדוק בינו לבין אשת עסקים סינית, אליס הואנג, שלפי גורמי מודיעין אמריקאים העבירה מידע לבייג'ינג. הואנג הודה בקשר חוץ-זוגי בהודעה לעובדי החברה וכתב שהיה \"לא נאמן\" לאשתו ולמשפחתו. הדיווחים המקוריים של NYT טרם נקראו ישירות; הפרטים מבוססים על סיקור מקורי של Korea Times ועל שידור Reuters.\n\nעיקרי הדברים:\n- דירקטוריון NVIDIA מסר כי אין ראיות שמידע חסוי של החברה או ביטחון לאומי אמריקאי נפגעו.\n- מנית NVDA ירדה ביום ב' לשפל של שבעה חודשים.\n- הסנאטור כריס קונס (דמוקרט, דלאוור) קרא לחקירה אם הביטחון הלאומי נפגע ודרש תשובות על היחסים בין \"מיליארדרי AI\" לממשל טראמפ.\n- חברי קונגרס ביקשו תדריך סגור עם הואנג ב-18 בנובמבר.\n- טראמפ אמר ביום א' שלא דן בטענות עם הואנג וכינה אותו \"בחור honorable (מכובד)\". לפי NYT, טראמפ קיבל תדריך על הקשר ובחר שלא לפעול.\n\nרקע פוליטי (Reuters): הואנג מקרב מקורבי טראמפ בעמק הסיליקון - טס עמו באייר פורס 1 לסין במאי, השתתף בארוחת המדינה לשי ג'ינפינג בספטמבר, והחברה התחייבה ל-25 מיליון דולר לאולם האירועים המתוכנן בבית הלבן. באפריל 2025 הממשל חזר בו מתוכנית להגביל יצוא שבבי AI לסין אחרי ארוחת ערב במאר-א-לאגו; בדצמבר 2025 טראמפ אישר יצוא שבבי H200 לסין תמורת עמלה של 25%. באוקטובר העניק לו מדליית המדע הלאומית.\n\nזוית קוריאה (Korea Times מכנס AI Day Seoul): מדיסון הואנג, בתו של המנכ\"ל ומנהלת שיווק מוצר בכירה, ביטלה את הופעתה המתוכננת בכנס ואת פגישתה עם שר המדע וה-ICT בי קיונג-הון. גורמי תעשייה מעריכים השפעה קצרת-טווח מוגבלת, אך מזהירים שממצאי ביטחון או שינוי הנהגה עלולים לפגוע בשותפויות עם סמסונג ו-SK hynix (זיכרון HBM), יונדאי ו-LG. NVIDIA סירבה להגיב.\n\nקשור לפריטים n-1078 ו-n-1089 (כנס AI Day Seoul ושותפויות NVIDIA בקוריאה).",
+  "כותרת_en": "NVIDIA (NVDA): board investigates whether Jensen Huang was targeted by a foreign intelligence effort; shares hit 7-month low",
+  "טקסט_en": "Korea Times and Reuters: Nov 9-10, 2026 | App publication: Nov 10, 2026\n\nNvidia's board opened an independent investigation into whether CEO Jensen Huang was the target of a foreign intelligence effort, following a New York Times report on his close relationship with Alice Huang, a Chinese businesswoman US intelligence officials believe passed information to Beijing. Huang admitted an extramarital affair in a message to employees, writing he was \"unfaithful\" to his wife and family. The NYT originals have not been read directly; details are based on Korea Times original reporting and the Reuters wire.\n\nKey points:\n- Nvidia's board said there was no evidence that confidential company information or US national security was compromised.\n- NVDA shares fell to a seven-month low on Monday.\n- Senator Chris Coons (D-DE) called for an investigation into whether national security was compromised and demanded answers about ties between \"AI billionaires\" and the Trump administration.\n- US lawmakers requested a closed-door briefing with Huang on November 18.\n- Trump said Sunday he had not discussed the allegations with Huang and called him an \"honorable guy.\" Per NYT, Trump was briefed on the relationship and chose not to act.\n\nPolitical background (Reuters): Huang is among Trump's closest Silicon Valley allies - he flew with Trump to China on Air Force One in May, attended the September state dinner for Xi Jinping, and the company committed $25 million to Trump's planned White House ballroom. In April 2025 the administration dropped plans to restrict AI-chip exports to China after a Mar-a-Lago dinner; in December 2025 Trump allowed H200 exports to China with a 25% fee. In October he awarded Huang the National Medal of Science.\n\nKorea angle (Korea Times from AI Day Seoul): Madison Huang, the CEO's daughter and senior director of product marketing, canceled her planned appearance at the conference and her meeting with Science and ICT Minister Bae Kyung-hoon. Industry officials expect limited short-term impact but warn that security findings or a leadership change could affect partnerships with Samsung and SK hynix (HBM memory), Hyundai and LG. Nvidia declined to comment.\n\nRelated to items n-1078 and n-1089 (Nvidia AI Day Seoul and Korea partnerships).",
+  "תאריך": "2026-11-10 06:55",
+  "הועלה": "2026-11-10 06:55",
+  "מזהה": "n-1155",
+  "_translation": {
+   "en": {
+    "source_hash": "1d8f90293181c6fb7cb907f12e3bd36259f16283ffe1a095cc5e47294daf0714",
+    "schema_version": 1
+   }
+  }
  }
 ]
