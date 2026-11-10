@@ -27893,5 +27893,29 @@
     "schema_version": 1
    }
   }
+ },
+ {
+  "כותרת": "FormFactor (FORM): השקעת Teradyne בהיקף 300 מיליון דולר הושלמה; החברה רשמה את המניות למכירה חוזרת בטופס S-3",
+  "category": "micro",
+  "קישור": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000047/forms3-2026teradynepipe.htm",
+  "מקורות": [
+   {
+    "label": "SEC: טופס S-3 של FormFactor, הוגש 9 בנובמבר",
+    "url": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000047/forms3-2026teradynepipe.htm",
+    "label_en": "SEC: FormFactor Form S-3, filed November 9"
+   }
+  ],
+  "טקסט": "רשות ניירות ערך האמריקאית (SEC): 9.11.2026 | הטופס הוגש 17:29 שעון ניו יורק (00:29 שעון ישראל, 10.11). פרסום אפליקציה: 10.11.2026\n\nFormFactor (FORM), יצרנית כרטיסי בדיקה (probe cards) למוליכים למחצה, הודיעה בטופס S-3 כי ההשקעה האסטרטגית של Teradyne (TER) הושלמה ב-9 בנובמבר 2026. לפי הסכם הרכישה מ-6 באוקטובר, Teradyne רכשה 2,234,887 מניות של FormFactor תמורת כ-300 מיליון דולר במזומן - כ-134.21 דולר למניה (לשם השוואה, מחיר הסגירה של FORM ב-6 בנובמבר היה 81.12 דולר, לפי הטופס עצמו).\n\nפרטים מהטופס:\n- המניות הונפקו בהנפקה פרטית (סעיף 4(a)(2) ו-Reg D); העסקה נסגרה ב-9 בנובמבר.\n- טופס ה-S-3 רושם את המניות למכירה חוזרת על ידי Teradyne בלבד. הרישום הוא הרשאה בלבד - אין בו ראיה ש-Teradyne מכרה או מתכוונת למכור, ו-FormFactor לא תקבל דבר ממכירה עתידית.\n- המניות כפופות להגבלות העברה: לפני כל מכירה, ל-FormFactor עומדת זכות הצעה ראשונה או זכות סירוב ראשון.\n\nמשמעות: השקעה אסטרטגית גדולה של שחקנית מרכזית בציוד בדיקות למוליכים למחצה (Teradyne) בספקית כרטיסי הבדיקה FormFactor - צמידות שרשרת-אספקה שעשויה לרמוז על שיתוף פעולה עמוק יותר בעתיד.",
+  "כותרת_en": "FormFactor (FORM): Teradyne's $300M strategic investment closed; company registers the shares for resale on Form S-3",
+  "טקסט_en": "US Securities and Exchange Commission (SEC): Nov 9, 2026 | filed 5:29 PM New York time (00:29 Israel time, Nov 10). App publication: Nov 10, 2026\n\nFormFactor (FORM), a maker of semiconductor probe cards, disclosed in a Form S-3 that Teradyne's (TER) strategic investment closed on November 9, 2026. Under the October 6 purchase agreement, Teradyne bought 2,234,887 FormFactor shares for approximately $300.0 million in cash - about $134.21 per share (for comparison, FORM's closing price on November 6 was $81.12, per the filing itself).\n\nDetails from the filing:\n- The shares were issued in a private placement (Section 4(a)(2) and Reg D); the transaction closed November 9.\n- The S-3 registers the shares for resale by Teradyne only. Registration is permission, not evidence that Teradyne has sold or plans to sell, and FormFactor will receive no proceeds from any future sale.\n- The shares carry transfer restrictions: before any sale, FormFactor holds a right of first offer or right of first refusal.\n\nSignificance: a sizable strategic investment by a leading semiconductor test-equipment player (Teradyne) in probe-card supplier FormFactor - a supply-chain alignment that may signal deeper cooperation ahead.",
+  "תאריך": "2026-11-10 06:03",
+  "הועלה": "2026-11-10 06:03",
+  "מזהה": "n-1154",
+  "_translation": {
+   "en": {
+    "source_hash": "113ea60a2bf42ab50882cc3fbd9b2207d6efbc6386a50a5ad356d3eb279a7cef",
+    "schema_version": 1
+   }
+  }
  }
 ]
